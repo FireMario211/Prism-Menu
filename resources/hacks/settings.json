@@ -1,0 +1,94 @@
+[
+    {
+        "name": "Enable Patching",
+        "desc": "Changes from hooking to patching. This also allows more hacks to be enabled. Only enable if necessary. [Windows Only]",
+        "winOnly": true,
+        "opcodes": [],
+        "type": "bool"
+    },
+    {
+        "name": "Menu Opacity",
+        "desc": "Determines how opaque the menu should be.",
+        "opcodes": [],
+        "type": "float",
+        "min": 0,
+        "max": 1,
+        "default": 0.98
+    },
+    {
+        "name": "Theme",
+        "desc": "Select the UI theme for Prism Menu!",
+        "opcodes": [],
+        "type": "dropdown",
+        "default": 0,
+        "values": ["Future Dark", "Light", "Catppuccin (Macchiato)"]
+    },
+    {
+        "name": "Import Theme",
+        "desc": "Imports a theme! [JSON file]",
+        "opcodes": [],
+        "type": "button",
+        "default": "a"
+    },
+    {
+        "name": "Live Theme Editing",
+        "desc": "This will allow you to edit your custom theme while seeing changes on screen! (Warning: This may cause a memory leak.)",
+        "opcodes": [],
+        "type": "bool",
+        "default": false
+    },
+    {
+        "name": "Show Tooltips",
+        "desc": "Whether or not tooltips should be shown when hovering over mods.",
+        "opcodes": [],
+        "type": "bool",
+        "default": true
+    },
+    {
+        "name": "Show Button",
+        "desc": "Shows the button to activate the menu. It's recommended to keep this enabled for Android.",
+        "opcodes": [],
+        "type": "bool",
+        "default": true
+    },
+    {
+        "name": "Button Position X",
+        "desc": "The X position for the button to open the menu.",
+        "opcodes": [],
+        "type": "int",
+        "min": -30,
+        "max": 600,
+        "default": 25
+    },
+    {
+        "name": "Button Position Y",
+        "desc": "The Y position for the button to open the menu.",
+        "opcodes": [],
+        "type": "int",
+        "min": -20,
+        "max": 350,
+        "default": 80
+    },
+    {
+        "name": "Language",
+        "desc": "Sets the language for Prism Menu!",
+        "opcodes": [],
+        "type": "dropdown",
+        "default": 0,
+        "values": ["English [100%]", "Español [0%]", "Français [0%]", "Русский [0%]"]
+    },
+    {
+        "name": "Restore Defaults",
+        "desc": "Disables all mods and resets everything to default.",
+        "opcodes": [],
+        "type": "button",
+        "default": "button"
+    },
+    {
+        "name": "Credits",
+        "desc": "People who have helped with the mod!",
+        "opcodes": [],
+        "type": "button",
+        "default": "button"
+    }
+]

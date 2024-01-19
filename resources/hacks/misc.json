@@ -1,0 +1,31 @@
+[
+    {
+        "name": "No Progress Bar",
+        "desc": "Removes the progress bar! The precentage will still be shown.",
+        "opcodes": [],
+        "type": "bool"
+    },
+    {
+        "name": "Progress Bar Position",
+        "desc": "Sets the position of the progress bar.",
+        "opcodes": [],
+        "type": "dropdown",
+        "default": 0,
+        "values": ["Top", "Bottom", "Left", "Right"]
+    },
+    {
+        "name": "Hide Attempts",
+        "desc": "Whether or not the attempt label should be shown when playing a level.",
+        "opcodes": [],
+        "type": "bool"
+    },
+    {
+        "name": "Attempt Opacity",
+        "desc": "Determines how opaque the attempt label should be.",
+        "opcodes": [],
+        "type": "float",
+        "min": 0,
+        "max": 1,
+        "default": 1
+    }
+]

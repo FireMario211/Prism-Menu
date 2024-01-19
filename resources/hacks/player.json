@@ -1,0 +1,101 @@
+[
+    {
+        "name": "Noclip",
+        "desc": "Makes the player invincible.",
+        "opcodes": [
+            {"addr": "0x20A23C", "on": "E9 79 06 00 00", "off": "6A 14 8B CB FF"}
+        ],
+        "type": "bool"
+    },
+    {
+        "name": "No Spikes",
+        "desc": "Ignores spike objects.",
+        "opcodes": [
+            {"addr": "0x205347", "on": "75", "off": "74"}
+        ],
+        "type": "bool"
+    },
+    {
+        "name": "No Hitbox",
+        "desc": "Disables all object hitboxes. Special objects are disabled.",
+        "opcodes": [
+            {"addr": "0x20456D", "on": "B8 07 00 00 00 90", "off": "8B 83 00 03 00 00"}
+        ],
+        "type": "bool",
+        "winOnly": true
+    },
+    {
+        "name": "No Solids",
+        "desc": "Disables most solid hitboxes. Special objects still work.",
+        "opcodes": [
+            {"addr": "0x20456D", "on": "B8 14 00 00 00 90", "off": "8B 83 00 03 00 00"}
+        ],
+        "type": "bool",
+        "winOnly": true
+    },
+    {
+        "name": "Everything Hurts",
+        "desc": "Owie.",
+        "opcodes": [
+            {"addr": "0x20456D", "on": "B8 02 00 00 00 90", "off": "8B 83 00 03 00 00"}
+        ],
+        "type": "bool",
+        "winOnly": true
+    },
+    {
+        "name": "Freeze Player",
+        "desc": "Freezes player movement.",
+        "opcodes": [
+            {"addr": "0x203519", "on": "90 90 90", "off": "50 FF D6"}
+        ],
+        "type": "bool"
+    },
+    {
+        "name": "No Mirror Transition",
+        "desc": "Prevents the screen from being flipped upon a mirror portal.",
+        "opcodes": [],
+        "type": "bool"
+    },
+    {
+        "name": "Instant Mirror Portal",
+        "desc": "Reverse portal now instantly switches.",
+        "opcodes": [],
+        "type": "bool"
+    },
+    {
+        "name": "Jump Hack",
+        "desc": "Allows for jumping in mid-air.",
+        "opcodes": [
+            {"addr": "0x1E9141", "on": "01", "off": "00"},
+            {"addr": "0x1E9498", "on": "01", "off": "00"}
+        ],
+        "type": "bool"
+    },
+    {
+        "name": "Instant Complete",
+        "desc": "Instantly completes the level. (Do not enable in the Editor)",
+        "opcodes": [],
+        "type": "bool"
+    },
+    {
+        "name": "Force Platformer Mode",
+        "desc": "Forces you to be in platformer mode when playing a level.",
+        "opcodes": [],
+        "type": "bool"
+    },
+    {
+        "name": "Change Gravity",
+        "desc": "Allows you to change gravity when jumping or falling.",
+        "opcodes": [],
+        "type": "bool"
+    },
+    {
+        "name": "Gravity Value",
+        "desc": "The value the gravity should be set to.",
+        "opcodes": [],
+        "type": "float",
+        "min": -5,
+        "max": 5,
+        "default": 1
+    }
+]

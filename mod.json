@@ -1,0 +1,43 @@
+{
+	"geode": "2.0.0",
+	"version": "v1.0.0",
+    "gd": {
+        "win": "2.204",
+        "android": "2.200"
+    },
+	"id": "firee.PrismMenu",
+	"name": "Prism Menu",
+	"developer": "Firee",
+	"description": "A mod that intends to be a free alternative to other mod menus, while also adding extra useful additions.",
+    "early-load": true,
+    "resources": {
+        "files": [
+            "resources/icon.png",
+            "resources/PrismMenu.otf",
+            "resources/Hack-Regular.ttf",
+            "resources/themes.json",
+            "resources/hacks/README.md",
+            "resources/hacks/global.json",
+            "resources/hacks/player.json",
+            "resources/hacks/creator.json",
+            "resources/hacks/bypass.json",
+            "resources/hacks/misc.json",
+            "resources/hacks/settings.json",
+            "resources/langs/spanish.json"
+        ]
+    },
+    "dependenciesnone": [
+        {
+            "id": "geode.custom-keybinds",
+            "version": "v1.2.3",
+            "required": true
+        }
+    ],
+    "settings": {
+        "values": {
+            "name": "Hack Values",
+            "description": "NONE",
+            "type": "custom"
+        }
+    }
+}

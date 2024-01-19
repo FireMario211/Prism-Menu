@@ -1,0 +1,4 @@
+https://www.dafont.com/code-saver.font
+https://www.dafont.com/hack.font (For Russian)
+
+Merged both Code-Saver and Hack into 1 font, while also adding icons
