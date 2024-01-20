@@ -16,6 +16,15 @@
         "default": 0.98
     },
     {
+        "name": "Menu Scale",
+        "desc": "Decides how big the text and buttons should be. (Will require restarting the game)",
+        "opcodes": [],
+        "type": "float",
+        "min": 1,
+        "max": 2,
+        "default": 1
+    },
+    {
         "name": "Language",
         "desc": "Sets the language for Prism Menu!",
         "opcodes": [],
@@ -67,7 +76,8 @@
         "type": "int",
         "min": -30,
         "max": 600,
-        "default": 25
+        "default": 75,
+        "step": 1
     },
     {
         "name": "Button Position Y",
@@ -76,7 +86,8 @@
         "type": "int",
         "min": -20,
         "max": 350,
-        "default": 80
+        "default": 295,
+        "step": 1
     },
     {
         "name": "Restore Defaults",

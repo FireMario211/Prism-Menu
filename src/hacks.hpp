@@ -319,6 +319,7 @@ class Hacks {
     static void setPitch(float pitch) {
         // no fmod?
         auto fmod = FMODAudioEngine::sharedEngine();
+        //fmod->pitchForIdx()
         AudioTargetType what;
         //fmod->setChannelPitch(1, what, pitch);
     }

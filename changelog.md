@@ -1,3 +1,11 @@
+# v1.1.0
+    - Added Menu Scale (for people using Android)
+    - Added "X" button in the menu in case Android users can't close the menu.
+    - Added "Verify Hack" and "No (C) Mark" back
+    - Fixed issue with Prism Button not working on the main menu
+    - Fixed issue with speedhack not working on levels that use Time Warp
+    - Fixed "Progress Bar Position", "Attempt Opacity", and "No Progress Bar"
+    - Removed Hide Attempts
 # v1.0.2
     - Fixed bug with the game crashing if you are on a platformer level, and you press pause a couple of times.
 # v1.0.1

@@ -399,5 +399,11 @@
         "And thank you for using the mod! I hope you enjoy using Prism Menu!": {
             "name": "And thank you for using the mod! I hope you enjoy using Prism Menu!"
         }
+    },
+    {
+        "Menu Scale": {
+            "name": "Menu Scale",
+            "desc": "Decides how big the text and buttons should be. (Will require restarting the game)"
+        }
     }
 ]

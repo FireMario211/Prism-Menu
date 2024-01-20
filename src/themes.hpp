@@ -81,8 +81,9 @@ class Themes {
         config.GlyphRanges = io.Fonts->GetGlyphRangesCyrillic();
         std::string fontName = (Mod::get()->getResourcesDir() / "PrismMenu.otf").string();
         //std::string fontName = (Mod::get()->getResourcesDir() / "Hack-Regular.ttf").string();
-        io.Fonts->AddFontFromFileTTF(fontName.c_str(), theme["FontSize"].as_int(), &config);
-        io.Fonts->AddFontFromFileTTF(fontName.c_str(), theme["IconSize"].as_int(), &config);
+        float menuScale = Hacks::getHack("Menu Scale")->value.floatValue;
+        io.Fonts->AddFontFromFileTTF(fontName.c_str(), theme["FontSize"].as_int() * menuScale, &config);
+        io.Fonts->AddFontFromFileTTF(fontName.c_str(), theme["IconSize"].as_int() * menuScale, &config);
         
         style.Alpha = 1.0f;
         style.DisabledAlpha = 1.0f;
@@ -109,7 +110,7 @@ class Themes {
         
         style.IndentSpacing = 20.0f;
         style.ColumnsMinSpacing = 6.0f;
-        style.ScrollbarSize = 12.0f;
+        style.ScrollbarSize = (12.0f * menuScale);
         style.ScrollbarRounding = 20.0f;
         style.GrabMinSize = 12.0f;
         style.GrabRounding = 0.0f;

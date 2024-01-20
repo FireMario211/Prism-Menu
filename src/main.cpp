@@ -32,6 +32,28 @@ EditMode editingMode;
 #include <imgui-cocos.hpp>
 #include <Geode/modify/MenuLayer.hpp>
 
+// theres no including Geode Util class funcs so, https://github.com/geode-sdk/DevTools
+std::string getNodeName(cocos2d::CCObject* node) {
+#ifdef GEODE_IS_WINDOWS
+    return typeid(*node).name() + 6;
+#else 
+    {
+        std::string ret;
+
+        int status = 0;
+        auto demangle = abi::__cxa_demangle(typeid(*node).name(), 0, 0, &status);
+        if (status == 0) {
+            ret = demangle;
+        }
+        free(demangle);
+
+        return ret;
+    }
+#endif
+}
+
+
+
 std::string determineName(const char* name, float width) {
     std::wstring_convert<std::codecvt_utf8<wchar_t>> converter; // what is this nonsense chat jippity, i just wanna handle unicode!
 
@@ -99,6 +121,7 @@ protected:
         this->addChild(createButton(this));
         this->setPositionX(posX->value.intValue);
         this->setPositionY(posY->value.intValue);
+        CCDirector::sharedDirector()->getTouchDispatcher()->setForcePrio(2);
         this->registerWithTouchDispatcher();
         this->setTouchEnabled(true);
         this->setZOrder(CCScene::get()->getHighestChildZ() + 100);
@@ -128,7 +151,8 @@ PrismButton* prismButton;
 
 bool firstLoad = false;
 // early load is amazing!
-class $modify(MyCustomMenu, MenuLayer) {
+class $modify(MenuLayer) {
+    CCMenuItemSpriteExtra* menuPrismButton;
     bool init() {
         if (!MenuLayer::init()) return false;
         /*auto username = static_cast<CCLabelBMFont*>(this->getChildByID("player-username"));
@@ -139,6 +163,20 @@ class $modify(MyCustomMenu, MenuLayer) {
             this->addChild(normal);
             username->setString("FIRE IN THE HOLE");
         }*/
+        // lmao
+
+        if (prismButton != nullptr) {
+            prismButton->setVisible(false);
+        }
+        HackItem* posX = Hacks::getHack("Button Position X");
+        HackItem* posY = Hacks::getHack("Button Position Y");
+        auto mainMenu = static_cast<CCMenu*>(this->getChildByID("bottom-menu"));
+        m_fields->menuPrismButton = PrismButton::createButton(mainMenu);
+        m_fields->menuPrismButton->setPositionX(posX->value.intValue - 110);
+        m_fields->menuPrismButton->setPositionY(posY->value.intValue - 16);
+        m_fields->menuPrismButton->setZOrder(CCScene::get()->getHighestChildZ() + 100);
+        mainMenu->addChild(m_fields->menuPrismButton);
+        m_fields->menuPrismButton->setVisible(Hacks::isHackEnabled("Show Button"));
         if (firstLoad) return true;
         firstLoad = true;
         log::info("Prism Menu loaded! Enjoy the mod.");
@@ -325,10 +363,9 @@ class $modify(MyCustomMenu, MenuLayer) {
                     ImGui::TableSetColumnIndex(0);
                     std::vector<matjson::Value> jsonArray;
                     switch (currentMenuIndex) {
-                        case 0: { // Global 
+                        case 0: // Global 
                             jsonArray = matjson::parse(Hacks::getGlobalHacks()).as_array();
                             break;
-                        }
                         case 1: // Player
                             jsonArray = matjson::parse(Hacks::getPlayerHacks()).as_array();
                             break;
@@ -344,7 +381,16 @@ class $modify(MyCustomMenu, MenuLayer) {
                         case 5: // Settings
                             jsonArray = matjson::parse(Hacks::getSettings()).as_array();
                             ImGui::Text("%s", Lang::get(currentLang)->name("Prism Menu by Firee").c_str());
-                            ImGui::Text("V1.0.2 (Geode)");
+                            const char* version = "V1.1.0 (Geode)";
+                            #ifdef GEODE_IS_WINDOWS
+                            ImGui::Text("%s - Windows", version);
+                            #elif GEODE_IS_ANDROID32
+                            ImGui::Text("%s - Android (32)", version);
+                            #elif GEODE_IS_ANDROID32
+                            ImGui::Text("%s - Android (64)", version);
+                            #elif GEODE_IS_ANDROID
+                            ImGui::Text("%s - Android", version);
+                            #endif
                             ImGui::Separator();
                             break;
                     }
@@ -371,7 +417,13 @@ class $modify(MyCustomMenu, MenuLayer) {
                             if (hack->value.type == ValueType::Int && hack->type != "dropdown") {
                                 auto min = obj.get<int>("min");
                                 auto max = obj.get<int>("max");
-                                if (ImGui::InputInt(Lang::get(currentLang)->name(name).c_str(), &hack->value.intValue, 10, 100, ImGuiInputTextFlags_EnterReturnsTrue)) {
+                                int step = (obj.contains("step")) ? obj.get<int>("step") : 5;
+                                int oldValue = hack->value.intValue;
+                                if (ImGui::InputInt(Lang::get(currentLang)->name(name).c_str(), &hack->value.intValue, step, 100, ImGuiInputTextFlags_EnterReturnsTrue)) {
+                                    if (min > hack->value.intValue || hack->value.intValue > max) {
+                                        hack->value.intValue = oldValue;
+                                        return;
+                                    }
                                     if (name == "FPS Bypass") {
                                         // from mats fps unlocker
                                         //Hacks::Settings::setSettingValue(&settings, *hack, hack->value.floatValue);
@@ -383,6 +435,8 @@ class $modify(MyCustomMenu, MenuLayer) {
                                     } else if (name == "Button Position Y") {
                                         Hacks::Settings::setSettingValue(&settings, *hack, hack->value.intValue);
                                         prismButton->setPositionY(hack->value.intValue);
+                                    } else {
+                                        Hacks::Settings::setSettingValue(&settings, *hack, hack->value.intValue);
                                     }
                                 }
                             } else if (hack->value.type == ValueType::Float) {
@@ -390,11 +444,12 @@ class $modify(MyCustomMenu, MenuLayer) {
                                 auto max = obj.get<float>("max");
                                 if (!editingMode.isEditing || editingMode.name != name.c_str()) {
                                     if (ImGui::SliderFloat(Lang::get(currentLang)->name(name).c_str(), &hack->value.floatValue, min, max, "%.3f", ImGuiSliderFlags_NoInput)) {
-                                        Hacks::Settings::setSettingValue(&settings, *hack, hack->value.floatValue);
                                         if (name == "Speedhack") {
                                             if (hack->value.floatValue < 0.0F) return;
                                             Hacks::setPitch(hack->value.floatValue);
                                             CCDirector::sharedDirector()->getScheduler()->setTimeScale(hack->value.floatValue);
+                                        } else {
+                                            Hacks::Settings::setSettingValue(&settings, *hack, hack->value.floatValue);
                                         }
                                     }
                                     if (ImGui::IsItemHovered() && ImGui::IsMouseDoubleClicked(0)) {
@@ -431,11 +486,12 @@ class $modify(MyCustomMenu, MenuLayer) {
                                         Hacks::Settings::setSettingValue(&settings, *hack, hack->value.boolValue);
                                         if (name == "Show Button") {
                                             prismButton->setVisible(hack->value.boolValue);
+                                            // TODO: add a check to see if currently on MenuLayer
                                         }
                                         if (Hacks::isHackEnabled("Enable Patching") && !opcodes.empty()) {
-#ifdef GEODE_IS_WINDOWS
+                                            #ifdef GEODE_IS_WINDOWS
                                             Hacks::applyPatches(name, opcodes, hack->value.boolValue);
-#endif
+                                            #endif
                                         }
                                     }
                                 }
@@ -517,7 +573,7 @@ class $modify(MyCustomMenu, MenuLayer) {
                                     }
                                     int selectedIndex = hack->value.intValue;
                                     if (ImGui::BeginCombo(Lang::get(currentLang)->name(name).c_str(), values[selectedIndex].as_string().c_str())) {
-                                        for (int i = 0; i < values.size(); i++) {
+                                        for (size_t i = 0; i < values.size(); i++) {
                                             const bool isSelected = (selectedIndex == i);
                                             if (ImGui::Selectable(values[i].as_string().c_str(), isSelected)) {
                                                 hack->value.intValue = i;
@@ -550,7 +606,9 @@ class $modify(MyCustomMenu, MenuLayer) {
                             }
                         }
                     }
-                    
+                    if (ImGui::Button("X")) {
+                        showMenu = !showMenu;
+                    }
                     ImGui::PopStyleVar();
                     ImGui::EndTable();
                 }
@@ -564,9 +622,21 @@ class $modify(MyCustomMenu, MenuLayer) {
             }
         });
         prismButton = PrismButton::create();
-        prismButton->setVisible(Hacks::isHackEnabled("Show Button"));
+        prismButton->setVisible(false);
         SceneManager::get()->keepAcrossScenes(prismButton);
         return true;
+    }
+    void onCreator(CCObject* sender) {
+        prismButton->setVisible(Hacks::isHackEnabled("Show Button"));
+        MenuLayer::onCreator(sender);
+    }
+    void onPlay(CCObject* sender) {
+        prismButton->setVisible(Hacks::isHackEnabled("Show Button"));
+        MenuLayer::onPlay(sender);
+    }
+    void onGarage(CCObject* sender) {
+        prismButton->setVisible(Hacks::isHackEnabled("Show Button"));
+        MenuLayer::onGarage(sender);
     }
 };
 $on_mod(Loaded) {
@@ -637,44 +707,28 @@ pCVar2 = (CCActionInterval *)cocos2d::CCActionTween::create((float)uVar8,(char *
         // ??* esp = 0x3F;
         if (!Hacks::isHackEnabled("No Mirror Transition")) GJBaseGameLayer::toggleFlipped(p0, Hacks::isHackEnabled("Instant Mirror Portal"));
     }
-};
-
-// theres no including Geode Util class funcs so, https://github.com/geode-sdk/DevTools
-std::string getNodeName(cocos2d::CCObject* node) {
-#ifdef GEODE_IS_WINDOWS
-    return typeid(*node).name() + 6;
-#else 
-    {
-        std::string ret;
-
-        int status = 0;
-        auto demangle = abi::__cxa_demangle(typeid(*node).name(), 0, 0, &status);
-        if (status == 0) {
-            ret = demangle;
-        }
-        free(demangle);
-
-        return ret;
+    // Speedhack fix
+    void updateTimeWarp(float speed) {
+        HackItem* speedhack = Hacks::getHack("Speedhack");
+        if (speedhack == nullptr) return GJBaseGameLayer::updateTimeWarp(speed);
+        GJBaseGameLayer::updateTimeWarp(speed * speedhack->value.floatValue);
     }
-#endif
-}
-
+};
 // showing the icon for android users lol
 class $modify(PauseLayer) {
     void customSetup() {
         PauseLayer::customSetup();
-        CCMenu* menu;
-        for (int i = 0; i < this->getChildrenCount(); i++) {
-            auto child = this->getChildren()->objectAtIndex(i);
-            if (getNodeName(child) == "cocos2d::CCMenu") {
-                menu = static_cast<CCMenu*>(child);
+        for (size_t i = 0; i < this->getChildrenCount(); i++) {
+            auto obj = this->getChildren()->objectAtIndex(i);
+            if (getNodeName(obj) == "cocos2d::CCMenu") {
+                auto menu = static_cast<CCMenu*>(obj);
+                auto button = PrismButton::createButton(this);
+                button->setPositionX(-240);
+                menu->addChild(button);
                 break;
             }
         }
-        if (menu == nullptr) return;
-        auto button = PrismButton::createButton(this);
-        button->setPositionX(-240);
-        menu->addChild(button);
+        
     }
 };
 
@@ -693,6 +747,11 @@ class $modify(PlayLayer) {
     GJGameLevel* m_gameLevel;
     GJLevelType oldLevelType;
     CircleButtonSprite* cheatIndicator;
+
+    CCSprite* progressBar;
+    CCLabelBMFont* percentLabel;
+    CCLabelBMFont* attemptLabel;
+
     bool isCheating = false;
     int updateInit = 0;
     // Anticheat Bypass, Noclip, No Spikes, No Solids
@@ -730,7 +789,7 @@ class $modify(PlayLayer) {
             PlayLayer::playEndAnimationToPos({2,2});
         }
         // 0xaa9
-        bool m_isTestMode = *reinterpret_cast<bool*>(reinterpret_cast<uintptr_t>(this) + 0x3d4 + 0x4); // absolutely cursed
+        //bool m_isTestMode = *reinterpret_cast<bool*>(reinterpret_cast<uintptr_t>(this) + 0x3d4 + 0x4); // absolutely cursed
         int targetValue = true;
         /*for (int offset = 0x0; offset < 0xAAAA; offset += 0x1) {
             int val = *reinterpret_cast<int*>(reinterpret_cast<uintptr_t>(this) + offset);
@@ -747,9 +806,17 @@ class $modify(PlayLayer) {
         if (Hacks::isHackEnabled("Level Edit")) {
             //m_fields->m_gameLevel->m_levelType = static_cast<GJLevelType>(2);
         }
-        auto testModeLabel = dynamic_cast<CCLabelBMFont*>(this->getChildren()->objectAtIndex(this->getChildrenCount() - 1));
-        if (testModeLabel != nullptr && !strcmp(testModeLabel->getString(), "Testmode") && Hacks::isHackEnabled("Hide Testmode")) {
-            testModeLabel->setVisible(false);
+        if (Hacks::isHackEnabled("Hide Testmode")) {
+            for (size_t i = this->getChildrenCount(); i >= 0; i--) {
+                auto obj = this->getChildren()->objectAtIndex(i);
+                if (getNodeName(obj) == "cocos2d::CCLabelBMFont") {
+                    auto testModeLabel = static_cast<CCLabelBMFont*>(obj);
+                    if (!strcmp(testModeLabel->getString(), "Testmode")) {
+                        testModeLabel->setVisible(false);
+                    }
+                    break;
+                }
+            }
         }
         if (Hacks::isHackEnabled("Practice Music")) {
             GameStatsManager::sharedState()->toggleEnableItem(UnlockType::GJItem, 17, true);
@@ -767,9 +834,6 @@ class $modify(PlayLayer) {
     }
     void postUpdate(float p0) {
         // whats the difference between m_fields and not using? i have no idea!
-        auto progressBar = dynamic_cast<CCSprite*>(this->getChildren()->objectAtIndex(6));
-        auto percentLabel = dynamic_cast<CCLabelBMFont*>(this->getChildren()->objectAtIndex(7));
-        auto node = dynamic_cast<CCNode*>(this->getChildren()->objectAtIndex(0));
         m_fields->cheatIndicator->setVisible(Hacks::isHackEnabled("Cheat Indicator"));
         if ( // i dont know what are considered "cheats"
             Hacks::isHackEnabled("Noclip") ||
@@ -804,54 +868,68 @@ class $modify(PlayLayer) {
             FLAlertLayer::create(nullptr, "Cheater!", "Just a warning, you will be <cr>banned off leaderboards</c> if you use this on rated levels. Consider this your <cy>warning</c>.", "OK", nullptr)->show();
         }
         m_fields->updateInit = m_fields->updateInit + 1;
-        if (progressBar == nullptr || percentLabel == nullptr || node == nullptr) return PlayLayer::postUpdate(p0);
-        auto layer = dynamic_cast<CCLayer*>(node->getChildren()->objectAtIndex(2));
-        if (layer != nullptr) {
-            if (layer->getChildrenCount() > 100) {
-                // can this please be the solution
-                auto attemptLabel = dynamic_cast<CCLabelBMFont*>(layer->getChildren()->objectAtIndex(layer->getChildrenCount() - 1));
-                if (attemptLabel != nullptr) {
-                    attemptLabel->setVisible(!Hacks::isHackEnabled("Hide Attempts"));
-                    attemptLabel->setOpacity(Hacks::getHack("Attempt Opacity")->value.floatValue * 255);
+        float attemptOpacity = Hacks::getHack("Attempt Opacity")->value.floatValue;
+        //if (!Hacks::isHackEnabled("No Progress Bar") && !Hacks::isHackEnabled("Hide Attempts") && attemptOpacity == 1.0F) return PlayLayer::postUpdate(p0);
+        int currentPosition = Hacks::getHack("Progress Bar Position")->value.intValue;
+        // stop dynamic_cast abuse
+        auto node = static_cast<CCNode*>(this->getChildren()->objectAtIndex(0));
+        if (node == nullptr) return PlayLayer::postUpdate(p0); // never will happen (or will it)
+        if (m_fields->progressBar == nullptr || m_fields->percentLabel == nullptr || m_fields->attemptLabel == nullptr) {
+            for (size_t i = 0; i < this->getChildrenCount(); i++) {
+                auto obj = this->getChildren()->objectAtIndex(i);
+                if (getNodeName(obj) == "cocos2d::CCLabelBMFont" && m_fields->percentLabel == nullptr) {
+                    auto labelTest = static_cast<CCLabelBMFont*>(obj);
+                    if (strlen(labelTest->getString()) < 6) {
+                        m_fields->percentLabel = labelTest;
+                    }
+                } else if (getNodeName(obj) == "cocos2d::CCSprite" && m_fields->progressBar == nullptr) {
+                    m_fields->progressBar = static_cast<CCSprite*>(obj);
                 }
             }
-        }
-        int currentPosition = Hacks::getHack("Progress Bar Position")->value.intValue;
-        auto winSize = CCDirector::sharedDirector()->getWinSize();
-        if (Hacks::isHackEnabled("No Progress Bar")) {
-            if (this->m_fields->previousPositionX == 0.0F) {
-                this->m_fields->previousPositionX = percentLabel->getPositionX();
+            auto layer = typeinfo_cast<CCLayer*>(node->getChildren()->objectAtIndex(2));
+            if (layer != nullptr) {
+                if (layer->getChildrenCount() > 100) {
+                    m_fields->attemptLabel = typeinfo_cast<CCLabelBMFont*>(layer->getChildren()->objectAtIndex(layer->getChildrenCount() - 1));
+                }
             }
-            progressBar->setVisible(false);
-            percentLabel->setPositionX(winSize.width / 2);
         } else {
-            if (m_fields->previousPositionX != 0.0F) {
-                progressBar->setVisible(true);
-                percentLabel->setPositionX(this->m_fields->previousPositionX);
+            auto winSize = CCDirector::sharedDirector()->getWinSize();
+            if (Hacks::isHackEnabled("No Progress Bar")) {
+                if (m_fields->previousPositionX == 0.0F) {
+                    m_fields->previousPositionX = m_fields->percentLabel->getPositionX();
+                }
+                m_fields->progressBar->setVisible(false);
+                m_fields->percentLabel->setPositionX(winSize.width / 2);
+            } else {
+                if (m_fields->previousPositionX != 0.0F) {
+                    m_fields->progressBar->setVisible(true);
+                    m_fields->percentLabel->setPositionX(m_fields->previousPositionX);
+                }
             }
+            m_fields->progressBar->setRotation(0.0F);
+            switch (currentPosition) {
+                case 0: // Top (312)
+                    m_fields->progressBar->setPositionY(winSize.height - 8);
+                    m_fields->percentLabel->setPositionY(winSize.height - 8);
+                    break;
+                case 1: // Bottom (10)
+                    m_fields->progressBar->setPositionY(10);
+                    m_fields->percentLabel->setPositionY(10);
+                    break;
+                case 2: // Left // 275
+                    m_fields->progressBar->setPosition({ 10, winSize.height / 2 });
+                    m_fields->percentLabel->setPosition({ 5, winSize.height - 45 }); // 275
+                    m_fields->progressBar->setRotation(-90.0F);
+                    break;
+                case 3: // Right
+                    m_fields->progressBar->setPosition({ winSize.width - 10, winSize.height / 2 });
+                    m_fields->percentLabel->setPosition({ winSize.width - 40, winSize.height - 45 });
+                    m_fields->progressBar->setRotation(-90.0F);
+                    break;
+            }
+            m_fields->attemptLabel->setOpacity(attemptOpacity * 255);
         }
-        progressBar->setRotation(0.0F);
-        switch (currentPosition) {
-            case 0: // Top (312)
-                progressBar->setPositionY(winSize.height - 8);
-                percentLabel->setPositionY(winSize.height - 8);
-                break;
-            case 1: // Bottom (10)
-                progressBar->setPositionY(10);
-                percentLabel->setPositionY(10);
-                break;
-            case 2: // Left // 275
-                progressBar->setPosition({ 10, winSize.height / 2 });
-                percentLabel->setPosition({ 5, winSize.height - 45 }); // 275
-                progressBar->setRotation(-90.0F);
-                break;
-            case 3: // Right
-                progressBar->setPosition({ winSize.width - 10, winSize.height / 2 });
-                percentLabel->setPosition({ winSize.width - 40, winSize.height - 45 });
-                progressBar->setRotation(-90.0F);
-                break;
-        }
-        PlayLayer::postUpdate(p0);
+        PlayLayer::postUpdate(p0);           
     }
     
     // Accurate Percentage
@@ -924,22 +1002,14 @@ class $modify(PlayLayer) {
 };
 */
 class $modify(PlayerObject) {
-    // No Solids, Everything Hurts
-    /*bool collidedWithObject(float fl, GameObject* obj) { // what is the point of not having p2, because this doesnt work without it
-        if (Hacks::isHackEnabled("Enable Patching")) return PlayerObject::collidedWithObject(fl, obj);
-        if (Hacks::isHackEnabled("Everything Hurts")) { // not accurate to the original, but whats the point of this hack!? also apparently i had && this->m_isInPlayLayer but forgor what its for
-            //        std::cout << (typeid(*this).name() + 6) << std::endl;
-            //std::cout << (typeid(*(this->getParent()->getParent()->getParent())).name() + 6) << std::endl;
-            auto* playLayer = static_cast<PlayLayer*>(this->getParent()->getParent()->getParent()); // bruh
-            if (playLayer != nullptr) {
-                playLayer->destroyPlayer(this, obj);
-            }
-            std::cout << "WHY ARE YOU CRASHING" << std::endl;
-        }
-        if (!Hacks::isHackEnabled("No Solids")) return PlayerObject::collidedWithObject(fl, obj);
-        return PlayerObject::collidedWithObject(fl, obj);
-    }*/
-    #ifndef GEODE_IS_ANDROID // for whatever reason, fields arent found!
+#ifndef GEODE_IS_ANDROID // for whatever reason, fields arent found!
+    // No Solids
+    bool collidedWithObject(float p0, GameObject* obj, cocos2d::CCRect p2, bool p3) { // what is the point of not having p2, because this doesnt work without it
+        if (Hacks::isHackEnabled("Enable Patching")) return PlayerObject::collidedWithObject(p0, obj, p2, p3);
+        if (!Hacks::isHackEnabled("No Solids")) return PlayerObject::collidedWithObject(p0, obj, p2, p3);
+        //return PlayerObject::collidedWithObject(p0, obj, p2, p3);
+        return false;
+    }
     bool was_platformer;
     float old_gravity;
     /*bool collidedWithObject(float fl, GameObject* obj,  cocos2d::CCRect p0, bool p1) {
@@ -1142,7 +1212,7 @@ class $modify(GameStatsManager) {
 };
 */
 
-/*
+
 class $modify(EditLevelLayer) {
     // Verify Hack, No (C) Mark
     void onShare(CCObject* sender) {
@@ -1159,7 +1229,6 @@ class $modify(EditLevelLayer) {
         EditLevelLayer::onShare(sender);
     }
 };
-*/
 
 class $modify(LevelInfoLayer) {
     // Copy Hack

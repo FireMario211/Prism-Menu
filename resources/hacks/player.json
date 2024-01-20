@@ -30,17 +30,7 @@
         "opcodes": [
             {"addr": "0x20456D", "on": "B8 14 00 00 00 90", "off": "8B 83 00 03 00 00"}
         ],
-        "type": "bool",
-        "winOnly": true
-    },
-    {
-        "name": "Everything Hurts",
-        "desc": "Owie.",
-        "opcodes": [
-            {"addr": "0x20456D", "on": "B8 02 00 00 00 90", "off": "8B 83 00 03 00 00"}
-        ],
-        "type": "bool",
-        "winOnly": true
+        "type": "bool"
     },
     {
         "name": "Freeze Player",
