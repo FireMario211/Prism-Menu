@@ -4,44 +4,37 @@
 	"gd": {
 		"win": "2.204",
 		"android": "2.200"
-    },
+    	},
 	"id": "firee.PrismMenu",
 	"name": "Prism Menu",
 	"developer": "Firee",
 	"description": "A cross-platform mod menu for Geode.",
-    "early-load": true,
-    "repository": "https://github.com/FireMario211/Prism-Menu",
-    "resources": {
-        "files": [
-            "resources/icon.png",
-            "resources/Screenshot1.png",
-            "resources/Screenshot2.png",
-            "resources/PrismMenu.otf",
-            "resources/Hack-Regular.ttf",
-            "resources/themes.json",
-            "resources/hacks/README.md",
-            "resources/hacks/global.json",
-            "resources/hacks/player.json",
-            "resources/hacks/creator.json",
-            "resources/hacks/bypass.json",
-            "resources/hacks/misc.json",
-            "resources/hacks/settings.json",
-            "resources/langs/spanish.json",
-            "resources/langs/french.json"
-        ]
-    },
-    "dependenciesnone": [
-        {
-            "id": "geode.custom-keybinds",
-            "version": "v1.2.3",
-            "required": true
-        }
-    ],
-    "settings": {
-        "values": {
-            "name": "Hack Values",
-            "description": "NONE",
-            "type": "custom"
-        }
-    }
+    	"early-load": true,
+    	"repository": "https://github.com/FireMario211/Prism-Menu",
+    	"resources": {
+		"files": [
+			"resources/icon.png",
+			"resources/Screenshot1.png",
+            		"resources/Screenshot2.png",
+            		"resources/PrismMenu.otf",
+            		"resources/Hack-Regular.ttf",
+            		"resources/themes.json",
+            		"resources/hacks/README.md",
+            		"resources/hacks/global.json",
+            		"resources/hacks/player.json",
+            		"resources/hacks/creator.json",
+            		"resources/hacks/bypass.json",
+            		"resources/hacks/misc.json",
+            		"resources/hacks/settings.json",
+            		"resources/langs/spanish.json",
+            		"resources/langs/french.json"
+		]
+	},
+    	"settings": {
+		"values": {
+			"name": "Hack Values",
+			"description": "NONE",
+			"type": "custom"
+		}
+	}
 }
