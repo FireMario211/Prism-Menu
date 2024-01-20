@@ -141,6 +141,7 @@ class $modify(MyCustomMenu, MenuLayer) {
         }*/
         if (firstLoad) return true;
         firstLoad = true;
+        log::info("Prism Menu loaded! Enjoy the mod.");
         ImGuiCocos::get().setup([] {
             /*
             // Future Dark style by rewrking from ImThemes
@@ -343,9 +344,7 @@ class $modify(MyCustomMenu, MenuLayer) {
                         case 5: // Settings
                             jsonArray = matjson::parse(Hacks::getSettings()).as_array();
                             ImGui::Text("%s", Lang::get(currentLang)->name("Prism Menu by Firee").c_str());
-                            std::string betaUser = "Patrick61804";
-                            ImGui::Text("V0.9.0 (BETA)");
-                            //ImGui::Text("Given to %s", betaUser.c_str());
+                            ImGui::Text("V1.0.0 (Geode)");
                             ImGui::Separator();
                             break;
                     }
@@ -764,7 +763,7 @@ class $modify(PlayLayer) {
             }
         }
         if (Hacks::isHackEnabled("Instant Complete") && m_fields->updateInit < 5) {
-            log::info("CRIMINAL… criminal… criminal… criminal…");
+            log::debug("CRIMINAL… criminal… criminal… criminal…");
             // funny message
             FLAlertLayer::create(nullptr, "Cheater!", "Just a warning, you will be <cr>banned off leaderboards</c> if you use this on rated levels. Consider this your <cy>warning</c>.", "OK", nullptr)->show();
         }
