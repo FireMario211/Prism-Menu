@@ -24,7 +24,6 @@ matjson::Value Hacks::Settings::getSettingValue(const matjson::Array& objArr, co
 }
 
 void Hacks::Settings::setSettingValue(SettingHackStruct* settings, const HackItem& item, const matjson::Value& value) {
-    //if (objArr.is_array()) {
     auto array = settings->m_hackValues;
     auto name = item.name;
     auto it = std::find_if(array.begin(), array.end(), [name](const matjson::Value& obj) {
@@ -41,7 +40,4 @@ void Hacks::Settings::setSettingValue(SettingHackStruct* settings, const HackIte
     }
     settings->m_hackValues = array;
     Mod::get()->setSavedValue("values", *settings);
-    //return array;
-    //}
-    //return objArr;
 }

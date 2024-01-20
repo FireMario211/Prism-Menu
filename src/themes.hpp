@@ -83,7 +83,6 @@ class Themes {
         //std::string fontName = (Mod::get()->getResourcesDir() / "Hack-Regular.ttf").string();
         io.Fonts->AddFontFromFileTTF(fontName.c_str(), theme["FontSize"].as_int(), &config);
         io.Fonts->AddFontFromFileTTF(fontName.c_str(), theme["IconSize"].as_int(), &config);
-        // TODO, look at gamershackers or idk his cchannels tutorials on adding images to add icons
         
         style.Alpha = 1.0f;
         style.DisabledAlpha = 1.0f;
