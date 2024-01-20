@@ -994,27 +994,44 @@ class $modify(GameObject) {
             GameObjectType targetValue = GameObjectType::Decoration;
             for (int offset = 0x0; ; offset += 0x1) {
                 GameObjectType val = *reinterpret_cast<GameObjectType*>(reinterpret_cast<uintptr_t>(this) + offset);
+                //int val = *reinterpret_cast<int*>(reinterpret_cast<uintptr_t>(this) + offset);
                 //std::cout << "Offset: 0x" << std::hex << offset << std::dec << ", Value: " << val << std::endl;
                 if (val == targetValue) {
                     //std::cout << "Found target " << targetValue << " at offset 0x" << std::hex << offset << std::dec << std::endl;
-                    std::cout << "Found target at offset 0x" << std::hex << offset << std::dec << std::endl;
+                    log::info(fmt::format("Found target at offset 0x{}", offset));;
                     break;
                 }
             }
-        }*/
+        //}*/
         // yes letes overwrite fields!
-        int m_objectID = *reinterpret_cast<int*>(reinterpret_cast<uintptr_t>(this) + 0x384); // absolutely cursed
-        if (Hacks::isHackEnabled("Instant Complete")) {
-            //*reinterpret_cast<int*>(reinterpret_cast<uintptr_t>(this) + 0x384) = 3600; // i dont like this
-        }
-        GameObjectType m_objectType = *reinterpret_cast<GameObjectType*>(reinterpret_cast<uintptr_t>(this) + 0x31c);
+        // plesae commit add paddings for android64 and windows kthx
+        int objectID = -1;
+        GameObjectType objectType;
+        int objectTypeInt = -1;
+#ifdef GEODE_IS_WINDOWS
+        objectID = *reinterpret_cast<int*>(reinterpret_cast<uintptr_t>(this) + 0x384); // absolutely cursed
+        objectType = *reinterpret_cast<GameObjectType*>(reinterpret_cast<uintptr_t>(this) + 0x31c);
+#elif GEODE_IS_ANDROID32
+        objectID = this->m_objectID;
+        objectType = this->m_objectType;
+#else // android 64 (BROKEN)
+        objectType = *reinterpret_cast<GameObjectType*>(reinterpret_cast<uintptr_t>(this) + 0x904);
+#endif
         if (!Hacks::isHackEnabled("Layout Mode")) return GameObject::setVisible(v);
         GameObject::setVisible(v);
-        if (m_objectType == GameObjectType::Decoration && m_objectID != 44) { // 44 being practice mode checkpoint, because thats a "decoration"
+#ifdef GEODE_IS_WINDOWS
+        if (objectType == GameObjectType::Decoration && objectID != 44) { // 44 being practice mode checkpoint, because thats a "decoration"
             GameObject::setVisible(false);
         } else {
             GameObject::setVisible(v);
         }
+#else
+        if (objectType == GameObjectType::Decoration) {
+            GameObject::setVisible(false);
+        } else {
+            GameObject::setVisible(v);
+        }
+#endif
     }
     /*
     void objectFromVector(gd::vector<gd::string> &p0, gd::vector<void *> &p1, GJBaseGameLayer *p2, bool p3) {
