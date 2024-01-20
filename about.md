@@ -1,3 +1,3 @@
-# Template Mod
+# Prism Menu
 
-Edit about.md to change this
+you have the beta version

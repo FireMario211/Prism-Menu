@@ -359,7 +359,6 @@ class $modify(MyCustomMenu, MenuLayer) {
                             jsonArray = matjson::parse(Hacks::getBypassHacks()).as_array();
                             break;
                         case 3: // Creator
-                            
                             jsonArray = matjson::parse(Hacks::getCreatorHacks()).as_array();
                             break;
                         case 4: // Misc
@@ -368,7 +367,9 @@ class $modify(MyCustomMenu, MenuLayer) {
                         case 5: // Settings
                             jsonArray = matjson::parse(Hacks::getSettings()).as_array();
                             ImGui::Text("%s", Lang::get(currentLang)->name("Prism Menu by Firee").c_str());
-                            ImGui::Text("V1.0.0");
+                            std::string betaUser = "Patrick61804";
+                            ImGui::Text("V0.9.0 (BETA)");
+                            ImGui::Text("Given to %s", betaUser.c_str());
                             ImGui::Separator();
                             break;
                     }
