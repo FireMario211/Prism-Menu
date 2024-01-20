@@ -55,6 +55,8 @@ tmp/
 
 # other things
 build-android/
+build-android-old/
+build-androidold.sh
 build-linux-deb/
 svgs/
 compile_commands.json

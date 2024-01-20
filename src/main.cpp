@@ -344,7 +344,7 @@ class $modify(MyCustomMenu, MenuLayer) {
                         case 5: // Settings
                             jsonArray = matjson::parse(Hacks::getSettings()).as_array();
                             ImGui::Text("%s", Lang::get(currentLang)->name("Prism Menu by Firee").c_str());
-                            ImGui::Text("V1.0.0 (Geode)");
+                            ImGui::Text("V1.0.2 (Geode)");
                             ImGui::Separator();
                             break;
                     }
@@ -639,11 +639,38 @@ pCVar2 = (CCActionInterval *)cocos2d::CCActionTween::create((float)uVar8,(char *
     }
 };
 
+// theres no including Geode Util class funcs so, https://github.com/geode-sdk/DevTools
+std::string getNodeName(cocos2d::CCObject* node) {
+#ifdef GEODE_IS_WINDOWS
+    return typeid(*node).name() + 6;
+#else 
+    {
+        std::string ret;
+
+        int status = 0;
+        auto demangle = abi::__cxa_demangle(typeid(*node).name(), 0, 0, &status);
+        if (status == 0) {
+            ret = demangle;
+        }
+        free(demangle);
+
+        return ret;
+    }
+#endif
+}
+
 // showing the icon for android users lol
 class $modify(PauseLayer) {
     void customSetup() {
         PauseLayer::customSetup();
-        auto menu = dynamic_cast<CCMenu*>(this->getChildren()->objectAtIndex(8));
+        CCMenu* menu;
+        for (int i = 0; i < this->getChildrenCount(); i++) {
+            auto child = this->getChildren()->objectAtIndex(i);
+            if (getNodeName(child) == "cocos2d::CCMenu") {
+                menu = static_cast<CCMenu*>(child);
+                break;
+            }
+        }
         if (menu == nullptr) return;
         auto button = PrismButton::createButton(this);
         button->setPositionX(-240);
