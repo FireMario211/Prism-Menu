@@ -1,9 +1,9 @@
 {
 	"geode": "2.0.0",
-	"version": "v1.0.0",
-    "gd": {
-        "win": "2.204",
-        "android": "2.200"
+	"version": "v1.0.1",
+	"gd": {
+		"win": "2.204",
+		"android": "2.200"
     },
 	"id": "firee.PrismMenu",
 	"name": "Prism Menu",
