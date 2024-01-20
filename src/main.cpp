@@ -603,7 +603,7 @@ class $modify(MenuLayer) {
                             if (ImGui::IsItemHovered() && Hacks::isHackEnabled("Show Tooltips")) {
                                 if ((obj.contains("winOnly") && Hacks::isHackEnabled("Enable Patching")) || !obj.contains("winOnly")) {
                                     ImGui::BeginTooltip();
-                                    ImGui::Text("%s", Lang::get(currentLang)->desc(name).c_str());
+                                    ImGui::Text("%s", Lang::get(currentLang)->desc(name, desc).c_str());
                                     ImGui::EndTooltip();
                                 }
                             }

@@ -40,8 +40,8 @@ class Lang {
             if (obj == nullptr) return key;
             return obj.get<std::string>("name");
         }
-        std::string desc(std::string key) {
-            if (this->langId == 0) return key;
+        std::string desc(std::string key, std::string original) {
+            if (this->langId == 0) return original;
             auto obj = this->find(key);
             if (obj == nullptr) return key;
             return obj.get<std::string>("desc");
