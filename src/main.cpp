@@ -363,6 +363,11 @@ class $modify(MyCustomMenu, MenuLayer) {
                                 ImGui::BeginDisabled(true);
                                 //#endif
                             }
+                            if (obj.contains("win")) { // yeah idk what property okay
+                                #ifndef GEODE_IS_WINDOWS
+                                ImGui::BeginDisabled(true);
+                                #endif
+                            }
                             if (hack->value.type == ValueType::Int && hack->type != "dropdown") {
                                 auto min = obj.get<int>("min");
                                 auto max = obj.get<int>("max");
@@ -530,6 +535,11 @@ class $modify(MyCustomMenu, MenuLayer) {
                                 //#ifndef GEODE_IS_WINDOWS
                                 ImGui::EndDisabled();
                                 //#endif
+                            }
+                            if (obj.contains("win")) { // yeah idk what property okay
+                                #ifndef GEODE_IS_WINDOWS
+                                ImGui::EndDisabled();
+                                #endif
                             }
                             if (ImGui::IsItemHovered() && Hacks::isHackEnabled("Show Tooltips")) {
                                 if ((obj.contains("winOnly") && Hacks::isHackEnabled("Enable Patching")) || !obj.contains("winOnly")) {
@@ -706,10 +716,9 @@ class $modify(PlayLayer) {
             }*\/
         }*/
         m_fields->m_gameLevel = p0;
-        std::cout << p0->m_levelLength << std::endl;
         m_fields->oldLevelType = p0->m_levelType;
         if (Hacks::isHackEnabled("Level Edit")) {
-            m_fields->m_gameLevel->m_levelType = static_cast<GJLevelType>(2);
+            //m_fields->m_gameLevel->m_levelType = static_cast<GJLevelType>(2);
         }
         auto testModeLabel = dynamic_cast<CCLabelBMFont*>(this->getChildren()->objectAtIndex(this->getChildrenCount() - 1));
         if (testModeLabel != nullptr && !strcmp(testModeLabel->getString(), "Testmode") && Hacks::isHackEnabled("Hide Testmode")) {
@@ -861,24 +870,6 @@ class $modify(PlayLayer) {
         }
         return PlayLayer::init(p0);
     }
-    // No Mirror Transition, Instant Mirror Portal
-    void toggleFlipped(bool p0, bool p1) { // i spent a lot of time figuring out why CCActionTween wont hook, only to realize that p1 instantly transitions it
-        if (Hacks::isHackEnabled("Enable Patching")) return PlayLayer::toggleFlipped(p0, p1);
-        /*
-pCVar2 = (CCActionInterval *)cocos2d::CCActionTween::create((float)uVar8,(char *)0x3f000000,(float)((ulonglong)uVar8 >> 0x20),fVar7);
-        *\/
-        // MOV DWORD PTR [ESP], 3F
-        // ??* esp = 0x3F;
-        if (!Hacks::isHackEnabled("No Mirror Transition")) PlayLayer::toggleFlipped(p0, Hacks::isHackEnabled("Instant Mirror Portal"));
-    }
-    void togglePracticeMode(bool p0) {
-        PlayLayer::togglePracticeMode(p0);
-        if (Hacks::isHackEnabled("Enable Patching")) return;
-        if (Hacks::isHackEnabled("Practice Music") && p0) {
-            PlayLayer::markCheckpoint(); // a weird bug that i dont know how to fix! for some reason the music only works if you have one checkpoint, can someone tell me how to fix!
-            PlayLayer::startMusic();
-        }
-    }
 
     // Accurate Percentage
     void updateProgressbar() {
@@ -896,7 +887,7 @@ pCVar2 = (CCActionInterval *)cocos2d::CCActionTween::create((float)uVar8,(char *
         }
     }
 
-    /*void levelComplete() {
+    /\*void levelComplete() {
         if (!Hacks::isHackEnabled("Safe Mode") || Hacks::isHackEnabled("Enable Patching")) return PlayLayer::levelComplete();
         PlayLayer::resetLevel(); // haha
     }
@@ -921,7 +912,6 @@ class $modify(PlayerObject) {
         if (!Hacks::isHackEnabled("No Solids")) return PlayerObject::collidedWithObject(fl, obj);
         return PlayerObject::collidedWithObject(fl, obj);
     }*/
-    //GJBaseGameLayer* m_baseGame;
     #ifndef GEODE_IS_ANDROID // for whatever reason, fields arent found!
     bool was_platformer;
     float old_gravity;
@@ -930,17 +920,18 @@ class $modify(PlayerObject) {
     }*/
     // Freeze Player
     void update(float dt) {
-        if (!was_platformer) {
-            was_platformer = this->m_isPlatformer;
+        if (!m_fields->was_platformer) {
+            m_fields->was_platformer = this->m_isPlatformer;
         }
         if (Hacks::isHackEnabled("Force Platformer Mode")) {
-            this->m_isPlatformer = true;
+            togglePlatformerMode(true);
         } else {
-            this->m_isPlatformer = m_fields->was_platformer;
+            togglePlatformerMode(m_fields->was_platformer);
         }
         auto gravityHack = Hacks::getHack("Gravity Value");
         if (Hacks::isHackEnabled("Change Gravity")) { // assume its enabled 
             m_gravityMod = gravityHack->value.floatValue;
+            std::cout << gravityHack->value.floatValue;
         } else {
             m_gravityMod = m_fields->old_gravity;
         }
@@ -1004,6 +995,7 @@ class $modify(GameObject) {
         //}*/
         // yes letes overwrite fields!
         // plesae commit add paddings for android64 and windows kthx
+        if (!Hacks::isHackEnabled("Layout Mode")) return GameObject::setVisible(v);
         int objectID = -1;
         GameObjectType objectType;
         int objectTypeInt = -1;
@@ -1018,7 +1010,6 @@ class $modify(GameObject) {
         objectType = *reinterpret_cast<GameObjectType*>(reinterpret_cast<uintptr_t>(this) + 0x904);
     #endif
 #endif
-        if (!Hacks::isHackEnabled("Layout Mode")) return GameObject::setVisible(v);
         GameObject::setVisible(v);
 #ifdef GEODE_IS_WINDOWS
         if (objectType == GameObjectType::Decoration && objectID != 44) { // 44 being practice mode checkpoint, because thats a "decoration"
@@ -1147,6 +1138,11 @@ class $modify(LevelInfoLayer) {
     bool init(GJGameLevel *p0, bool p1) {
         if (!LevelInfoLayer::init(p0, p1)) return false;
         if (Hacks::isHackEnabled("Copy Hack")) {
+            auto gm = GameManager::sharedState();
+            if (gm->m_playerUserID_a == p0->m_userID) return true;
+            if (gm->m_playerUserID_b == p0->m_userID) return true;
+            if (gm->m_playerUserID == p0->m_userID) return true;
+            if ((gm->m_playerUserID_a + gm->m_playerUserID_b) == p0->m_userID) return true;
             auto aCloneBtn = CCMenuItemSpriteExtra::create(CCSprite::createWithSpriteFrameName("GJ_duplicateBtn_001.png"), this, menu_selector(LevelInfoLayer::confirmClone));
             aCloneBtn->setPosition(m_cloneBtn->getPosition());
             m_cloneBtn->getParent()->addChild(aCloneBtn);

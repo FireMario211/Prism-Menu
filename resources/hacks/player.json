@@ -81,13 +81,15 @@
         "name": "Force Platformer Mode",
         "desc": "Forces you to be in platformer mode when playing a level.",
         "opcodes": [],
-        "type": "bool"
+        "type": "bool",
+        "win": true
     },
     {
         "name": "Change Gravity",
         "desc": "Allows you to change gravity when jumping or falling.",
         "opcodes": [],
-        "type": "bool"
+        "type": "bool",
+        "win": true
     },
     {
         "name": "Gravity Value",

@@ -5,7 +5,8 @@
     	"opcodes": [
 	        {"addr": "0x1E4A32", "on": "90 90", "off": "75 6C"}
 	    ],
-        "type": "bool"
+        "type": "bool",
+        "winOnly": true
 	},
     {
 	    "name": "Verify Hack",
@@ -13,7 +14,8 @@
 	    "opcodes": [
 	        {"addr": "0x71D48", "on": "EB", "off": "74"}
 	    ],
-        "type": "bool"
+        "type": "bool",
+        "winOnly": true
 	},
     {
 	    "name": "Copy Hack",
@@ -28,7 +30,8 @@
 	        {"addr": "0xA6B8B", "on": "2B 87 CC 02 00 00", "off": "2B 87 D0 02 00 00"},
 		    {"addr": "0x70E87", "on": "EB 26", "off": "74 26"}
 	    ],
-        "type": "bool"
+        "type": "bool",
+        "winOnly": true
 	},
     {
 	    "name": "Hide Testmode",
