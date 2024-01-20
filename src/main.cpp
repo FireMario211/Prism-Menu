@@ -56,33 +56,9 @@ struct ItemRectInfo {
 ItemRectInfo g_ItemRectInfo;
 
 void RoundTableBG() {
-    /*ImDrawList* drawList = ImGui::GetWindowDrawList();
-    ImVec2 min = ImGui::GetItemRectMin();
-    ImVec2 max = ImGui::GetItemRectMax();
-
-    std::cout << fmt::format("{},{} - {},{}", min.x, min.y, max.x, max.y) << std::endl;
-    //ImVec4(0.1176470592617989f, 0.1333333402872086f, 0.1490196138620377f, 1.0f);
-    */
     auto currentTheme = Themes::getCurrentTheme();
-    /*ImU32 color = IM_COL32(
-        static_cast<int>(0.1176470592617989f * 255),
-        static_cast<int>(0.1333333402872086f * 255),
-        static_cast<int>(0.1490196138620377f * 255),
-        255 / 2
-    );*/ 
     auto color = Themes::RGBAToImU32(currentTheme["TableRowBg"]);
-    /*
-    drawList->AddRect(
-        ImVec2(min.x, min.y - 14),
-        ImVec2(max.x, max.y + 14),
-        color,
-        15.0F
-        //ImDrawFlags_RoundCornersAll,
-        //3.0f // Line thickness
-    );*/ 
     ImDrawList* drawList = ImGui::GetWindowDrawList();
-    //ImVec2 min = ImGui::GetItemRectMin();
-    //ImVec2 max = ImGui::GetItemRectMax();
     ImVec2 min = g_ItemRectInfo.min;
     ImVec2 max = g_ItemRectInfo.max;
     drawList->AddRectFilled(min, max, color, 15.0F, ImDrawFlags_RoundCornersAll);
@@ -579,6 +555,7 @@ class $modify(MyCustomMenu, MenuLayer) {
             }
         });
         prismButton = PrismButton::create();
+        prismButton->setVisible(Hacks::isHackEnabled("Show Button"));
         SceneManager::get()->keepAcrossScenes(prismButton);
         return true;
     }
@@ -665,6 +642,14 @@ class $modify(PauseLayer) {
     }
 };
 
+CircleButtonSprite* createCheatIndicator(bool isHacking) {
+    auto winSize = CCDirector::sharedDirector()->getWinSize();
+    auto cheatIndicator = CircleButtonSprite::create(CCNode::create(), (isHacking) ? CircleBaseColor::Pink : CircleBaseColor::Green, CircleBaseSize::Tiny); //, CircleBaseColor::Geode
+    cheatIndicator->setAnchorPoint({1,1});
+    cheatIndicator->setPosition({winSize.width, winSize.height});
+    return cheatIndicator;
+}
+
 class $modify(PlayLayer) {
     float previousPositionX = 0.0F;
     bool initedDeath = false;
@@ -672,7 +657,8 @@ class $modify(PlayLayer) {
     GJGameLevel* m_gameLevel;
     GJLevelType oldLevelType;
     CircleButtonSprite* cheatIndicator;
-
+    bool isCheating = false;
+    int updateInit = 0;
     // Anticheat Bypass, Noclip, No Spikes, No Solids
     void destroyPlayer(PlayerObject *p0, GameObject *p1) {
         //bool m_isTestMode = *reinterpret_cast<bool*>(reinterpret_cast<uintptr_t>(this) + 0x413);
@@ -704,7 +690,9 @@ class $modify(PlayLayer) {
     bool init(GJGameLevel *p0, bool p1, bool p2) {
         if (!PlayLayer::init(p0,p1,p2)) return false;
         if (prismButton != nullptr && Hacks::isHackEnabled("Show Button")) prismButton->setVisible(false);
-        if (Hacks::isHackEnabled("Instant Complete")) PlayLayer::playEndAnimationToPos({2,2});
+        if (Hacks::isHackEnabled("Instant Complete")) {
+            PlayLayer::playEndAnimationToPos({2,2});
+        }
         // 0xaa9
         bool m_isTestMode = *reinterpret_cast<bool*>(reinterpret_cast<uintptr_t>(this) + 0x3d4 + 0x4); // absolutely cursed
         int targetValue = true;
@@ -713,7 +701,7 @@ class $modify(PlayLayer) {
             if (val == 0 || val == 1) {
             //std::cout << "Offset: 0x" << std::hex << offset << std::dec << ", Value: " << val << std::endl;
             }
-            /*if (val == targetValue) {
+            /\*if (val == targetValue) {
                 std::cout << "Found target " << targetValue << " at offset 0x" << std::hex << offset << std::dec << std::endl;
                 break;
             }*\/
@@ -728,11 +716,11 @@ class $modify(PlayLayer) {
         if (testModeLabel != nullptr && !strcmp(testModeLabel->getString(), "Testmode") && Hacks::isHackEnabled("Hide Testmode")) {
             testModeLabel->setVisible(false);
         }
-
         if (Hacks::isHackEnabled("Practice Music")) {
             GameStatsManager::sharedState()->toggleEnableItem(UnlockType::GJItem, 17, true);
         }
-        m_fields->cheatIndicator = CircleButtonSprite::create(CCNode::create(), CircleBaseColor::Pink); //, CircleBaseColor::Geode
+        m_fields->cheatIndicator = createCheatIndicator(false);
+        m_fields->cheatIndicator->setVisible(Hacks::isHackEnabled("Cheat Indicator"));
         this->addChild(m_fields->cheatIndicator);
         return true;
     }
@@ -747,6 +735,40 @@ class $modify(PlayLayer) {
         auto progressBar = dynamic_cast<CCSprite*>(this->getChildren()->objectAtIndex(6));
         auto percentLabel = dynamic_cast<CCLabelBMFont*>(this->getChildren()->objectAtIndex(7));
         auto node = dynamic_cast<CCNode*>(this->getChildren()->objectAtIndex(0));
+        m_fields->cheatIndicator->setVisible(Hacks::isHackEnabled("Cheat Indicator"));
+        if ( // i dont know what are considered "cheats"
+            Hacks::isHackEnabled("Noclip") ||
+            Hacks::isHackEnabled("No Spikes") ||
+            Hacks::isHackEnabled("Freeze Player") ||
+            Hacks::isHackEnabled("No Mirror Transition") ||
+            Hacks::isHackEnabled("Instant Mirror Portal") ||
+            Hacks::isHackEnabled("Jump Hack") ||
+            Hacks::isHackEnabled("Instant Complete") ||
+            Hacks::isHackEnabled("Force Platformer Mode") ||
+            Hacks::isHackEnabled("Change Gravity")
+        ) { // cheating
+            if (!m_fields->isCheating) {
+                m_fields->isCheating = true;
+                if (Hacks::isHackEnabled("Cheat Indicator")) {
+                    m_fields->cheatIndicator->removeFromParentAndCleanup(true);
+                    m_fields->cheatIndicator = createCheatIndicator(true);
+                    this->addChild(m_fields->cheatIndicator);
+                }
+            }
+        } else { // not cheating
+            if (m_fields->isCheating) {
+                m_fields->isCheating = false;
+                m_fields->cheatIndicator->removeFromParentAndCleanup(true);
+                m_fields->cheatIndicator = createCheatIndicator(false);
+                this->addChild(m_fields->cheatIndicator);
+            }
+        }
+        if (Hacks::isHackEnabled("Instant Complete") && m_fields->updateInit < 5) {
+            log::info("CRIMINAL… criminal… criminal… criminal…");
+            // funny message
+            FLAlertLayer::create(nullptr, "Cheater!", "Just a warning, you will be <cr>banned off leaderboards</c> if you use this on rated levels. Consider this your <cy>warning</c>.", "OK", nullptr)->show();
+        }
+        m_fields->updateInit = m_fields->updateInit + 1;
         if (progressBar == nullptr || percentLabel == nullptr || node == nullptr) return PlayLayer::postUpdate(p0);
         auto layer = dynamic_cast<CCLayer*>(node->getChildren()->objectAtIndex(2));
         if (layer != nullptr) {
@@ -956,7 +978,6 @@ class $modify(CCTransitionFade) {
     // No Transition
     bool initWithDuration(float t, cocos2d::CCScene* scene, cocos2d::ccColor3B const& color)  {
         if (!Hacks::isHackEnabled("No Transition") || Hacks::isHackEnabled("Enable Patching")) {
-            //std::cout << *reinterpret_cast<int*>(GameObjectType::Decoration) << std::endl;
             return CCTransitionFade::initWithDuration(t, scene, color);
         } else {
             return CCTransitionFade::initWithDuration(0.0F, scene, color);
@@ -969,8 +990,6 @@ class $modify(GameObject) {
     void setVisible(bool v) {
         /*int aaa = *reinterpret_cast<int*>(reinterpret_cast<uintptr_t>(this) + 0x14E); // we do the funny because someone forgor pad for windows
         if (aaa > 1600000000) {
-            std::cout << "practice mode!" << std::endl;
-            std::cout << aaa << std::endl;
             //int targetValue = 44;
             GameObjectType targetValue = GameObjectType::Decoration;
             for (int offset = 0x0; ; offset += 0x1) {
@@ -990,7 +1009,6 @@ class $modify(GameObject) {
         }
         GameObjectType m_objectType = *reinterpret_cast<GameObjectType*>(reinterpret_cast<uintptr_t>(this) + 0x31c);
         if (!Hacks::isHackEnabled("Layout Mode")) return GameObject::setVisible(v);
-        //std::cout << (typeid(*this).name() + 6) << std::endl;
         GameObject::setVisible(v);
         if (m_objectType == GameObjectType::Decoration && m_objectID != 44) { // 44 being practice mode checkpoint, because thats a "decoration"
             GameObject::setVisible(false);
