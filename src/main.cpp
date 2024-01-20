@@ -1010,11 +1010,13 @@ class $modify(GameObject) {
 #ifdef GEODE_IS_WINDOWS
         objectID = *reinterpret_cast<int*>(reinterpret_cast<uintptr_t>(this) + 0x384); // absolutely cursed
         objectType = *reinterpret_cast<GameObjectType*>(reinterpret_cast<uintptr_t>(this) + 0x31c);
-#elif GEODE_IS_ANDROID32
+#else
+    #ifdef GEODE_IS_ANDROID32
         objectID = this->m_objectID;
         objectType = this->m_objectType;
-#else // android 64 (BROKEN)
+    #else // android 64 (BROKEN)
         objectType = *reinterpret_cast<GameObjectType*>(reinterpret_cast<uintptr_t>(this) + 0x904);
+    #endif
 #endif
         if (!Hacks::isHackEnabled("Layout Mode")) return GameObject::setVisible(v);
         GameObject::setVisible(v);
