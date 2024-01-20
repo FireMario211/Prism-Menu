@@ -974,6 +974,7 @@ class $modify(CCTransitionFade) {
     }
 };
 
+#ifndef GEODE_IS_ANDROID
 class $modify(GameObject) {
     // Layout Mode
     void setVisible(bool v) {
@@ -1033,6 +1034,7 @@ class $modify(GameObject) {
 
     */
 };
+#endif
 
 class $modify(GameManager) {
     bool isIconUnlocked(int _id, IconType _type) {
