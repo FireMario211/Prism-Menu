@@ -14,8 +14,8 @@ class Lang {
             if (langId > 0) {
                 std::string file = "{}";
                 switch (langId) {
-                    case 1: // Spanish
-                        file = Hacks::readFile("spanish.json");
+                    case 1: // French
+                        file = Hacks::readFile("french.json");
                         break;
                     case 2: // Russian
                         //file = b::embed<"resources/langs/russian.json">().str();

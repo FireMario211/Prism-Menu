@@ -603,7 +603,7 @@ class $modify(MenuLayer) {
                             if (ImGui::IsItemHovered() && Hacks::isHackEnabled("Show Tooltips")) {
                                 if ((obj.contains("winOnly") && Hacks::isHackEnabled("Enable Patching")) || !obj.contains("winOnly")) {
                                     ImGui::BeginTooltip();
-                                    ImGui::Text("%s", Lang::get(currentLang)->desc(desc).c_str());
+                                    ImGui::Text("%s", Lang::get(currentLang)->desc(name).c_str());
                                     ImGui::EndTooltip();
                                 }
                             }
@@ -765,6 +765,7 @@ class $modify(PlayLayer) {
         bool noclipDisabled = !Hacks::isHackEnabled("No Solids") && !Hacks::isHackEnabled("Noclip");
         if ((noclipDisabled && !Hacks::isHackEnabled("No Spikes"))) return PlayLayer::destroyPlayer(p0, p1);
         if (Hacks::isHackEnabled("No Spikes") && noclipDisabled && p1 == nullptr) return PlayLayer::destroyPlayer(p0, p1); // why solids are nullptr is beyond my comprehension.
+        #ifndef GEODE_IS_ANDROID // it crashes
         if (Hacks::isHackEnabled("Anticheat Bypass")) {
             if (!m_fields->initedDeath) {
                 // bad coding
@@ -783,6 +784,7 @@ class $modify(PlayLayer) {
                 return PlayLayer::destroyPlayer(p0, p1);
             }
         }
+        #endif
     }
     // Instant Complete, Practice Music, Hide Testmode
     bool init(GJGameLevel *p0, bool p1, bool p2) {

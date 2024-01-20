@@ -1,4 +1,5 @@
 # v1.1.0
+    - Added French Translations (Merci Jouca !)
     - Added Menu Scale (for people using Android)
     - Added "X" button in the menu in case Android users can't close the menu.
     - Added "Verify Hack" and "No (C) Mark" back

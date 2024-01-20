@@ -26,7 +26,8 @@
             "resources/hacks/bypass.json",
             "resources/hacks/misc.json",
             "resources/hacks/settings.json",
-            "resources/langs/spanish.json"
+            "resources/langs/spanish.json",
+            "resources/langs/french.json"
         ]
     },
     "dependenciesnone": [
