@@ -931,7 +931,6 @@ class $modify(PlayerObject) {
         auto gravityHack = Hacks::getHack("Gravity Value");
         if (Hacks::isHackEnabled("Change Gravity")) { // assume its enabled 
             m_gravityMod = gravityHack->value.floatValue;
-            std::cout << gravityHack->value.floatValue;
         } else {
             m_gravityMod = m_fields->old_gravity;
         }
