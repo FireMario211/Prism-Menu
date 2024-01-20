@@ -384,12 +384,12 @@ class $modify(MenuLayer) {
                             const char* version = "V1.1.0 (Geode)";
                             #ifdef GEODE_IS_WINDOWS
                             ImGui::Text("%s - Windows", version);
-                            #elif GEODE_IS_ANDROID32
-                            ImGui::Text("%s - Android (32)", version);
-                            #elif GEODE_IS_ANDROID32
-                            ImGui::Text("%s - Android (64)", version);
-                            #elif GEODE_IS_ANDROID
-                            ImGui::Text("%s - Android", version);
+                            #else // why does android not like elif
+                            #ifdef GEODE_IS_ANDROID
+                                ImGui::Text("%s - Android", version);
+                            #else 
+                                ImGui::Text("%s - HOW by Spu7nix", version);
+                            #endif
                             #endif
                             ImGui::Separator();
                             break;
@@ -487,6 +487,9 @@ class $modify(MenuLayer) {
                                         if (name == "Show Button") {
                                             prismButton->setVisible(hack->value.boolValue);
                                             // TODO: add a check to see if currently on MenuLayer
+                                        }
+                                        if (name == "Instant Complete" && hack->value.boolValue) {
+                                            FLAlertLayer::create(nullptr, "Cheater!", "Just a warning, you will be <cr>banned off leaderboards</c> if you use this on rated levels. Consider this your <cy>warning</c>.", "OK", nullptr)->show();
                                         }
                                         if (Hacks::isHackEnabled("Enable Patching") && !opcodes.empty()) {
                                             #ifdef GEODE_IS_WINDOWS
