@@ -51,5 +51,5 @@ jobs:
 
       - uses: actions/upload-artifact@v3
         with:
-          name: GDUtils Build Output
+          name: Prism Menu Build Output
           path: ${{ steps.build.outputs.build-output }}
