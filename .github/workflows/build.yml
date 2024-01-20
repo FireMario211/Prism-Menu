@@ -1,0 +1,54 @@
+name: Build Geode Mod
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - "main"
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        config:
+        - name: Windows
+          os: windows-latest
+          target: Win32
+        # will uncomment mac only when it releases
+        #- name: macOS
+        #  os: macos-latest
+        - name: Android32
+          os: ubuntu-latest
+          target: Android32
+        - name: Android64
+          os: ubuntu-latest
+          target: Android64
+        
+
+    name: ${{ matrix.config.name }}
+    runs-on: ${{ matrix.config.os }}
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: 'recursive'
+          
+      - name: Build the mod
+        uses: geode-sdk/build-geode-mod@main
+        with:
+          #sdk: nightly
+          combine: true
+          target: ${{ matrix.config.target }}
+
+  package:
+    name: Package builds
+    runs-on: ubuntu-latest
+    needs: ['build']
+    steps:
+      - uses: geode-sdk/build-geode-mod@combine
+        id: build
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: GDUtils Build Output
+          path: ${{ steps.build.outputs.build-output }}
