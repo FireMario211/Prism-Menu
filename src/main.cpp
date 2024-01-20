@@ -1004,12 +1004,13 @@ class $modify(PlayLayer) {
 class $modify(PlayerObject) {
 #ifndef GEODE_IS_ANDROID // for whatever reason, fields arent found!
     // No Solids
+    /*
     bool collidedWithObject(float p0, GameObject* obj, cocos2d::CCRect p2, bool p3) { // what is the point of not having p2, because this doesnt work without it
         if (Hacks::isHackEnabled("Enable Patching")) return PlayerObject::collidedWithObject(p0, obj, p2, p3);
         if (!Hacks::isHackEnabled("No Solids")) return PlayerObject::collidedWithObject(p0, obj, p2, p3);
         //return PlayerObject::collidedWithObject(p0, obj, p2, p3);
         return false;
-    }
+    }*/
     bool was_platformer;
     float old_gravity;
     /*bool collidedWithObject(float fl, GameObject* obj,  cocos2d::CCRect p0, bool p1) {
@@ -1236,10 +1237,7 @@ class $modify(LevelInfoLayer) {
         if (!LevelInfoLayer::init(p0, p1)) return false;
         if (Hacks::isHackEnabled("Copy Hack")) {
             auto gm = GameManager::sharedState();
-            if (gm->m_playerUserID_a == p0->m_userID) return true;
-            if (gm->m_playerUserID_b == p0->m_userID) return true;
             if (gm->m_playerUserID == p0->m_userID) return true;
-            if ((gm->m_playerUserID_a + gm->m_playerUserID_b) == p0->m_userID) return true;
             auto aCloneBtn = CCMenuItemSpriteExtra::create(CCSprite::createWithSpriteFrameName("GJ_duplicateBtn_001.png"), this, menu_selector(LevelInfoLayer::confirmClone));
             aCloneBtn->setPosition(m_cloneBtn->getPosition());
             m_cloneBtn->getParent()->addChild(aCloneBtn);
