@@ -96,6 +96,12 @@
             "desc": "Unlocks your FPS to be higher than 60 or your monitor's refresh rate."
         }
     },
+    {
+        "Reset Speedhack": {
+            "name": "Reset Speedhack",
+            "desc": "Resets speedhack back to normal."
+        }
+    },
 
     {
         "Noclip": {

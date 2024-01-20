@@ -80,5 +80,12 @@
         "min": 1,
         "max": 1000,
         "default": 60
+    },
+    {
+        "name": "Reset Speedhack",
+        "desc": "Resets speedhack back to normal.",
+        "opcodes": [],
+        "type": "button",
+        "default": "a"
     }
 ]

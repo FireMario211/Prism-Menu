@@ -8,11 +8,14 @@
 	"id": "firee.PrismMenu",
 	"name": "Prism Menu",
 	"developer": "Firee",
-	"description": "A mod that intends to be a free alternative to other mod menus, while also adding extra useful additions.",
+	"description": "A cross-platform mod menu for Geode.",
     "early-load": true,
+    "repository": "https://github.com/FireMario211/Prism-Menu",
     "resources": {
         "files": [
             "resources/icon.png",
+            "resources/Screenshot1.png",
+            "resources/Screenshot2.png",
             "resources/PrismMenu.otf",
             "resources/Hack-Regular.ttf",
             "resources/themes.json",

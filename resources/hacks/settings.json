@@ -16,6 +16,15 @@
         "default": 0.98
     },
     {
+        "name": "Language",
+        "desc": "Sets the language for Prism Menu!",
+        "opcodes": [],
+        "type": "dropdown",
+        "default": 0,
+        "values": ["English [100%]"],
+        "valuesold": ["English [100%]", "Español [0%]", "Français [0%]", "Русский [0%]"]
+    },
+    {
         "name": "Theme",
         "desc": "Select the UI theme for Prism Menu!",
         "opcodes": [],
@@ -68,15 +77,6 @@
         "min": -20,
         "max": 350,
         "default": 80
-    },
-    {
-        "name": "Language",
-        "desc": "Sets the language for Prism Menu!",
-        "opcodes": [],
-        "type": "dropdown",
-        "default": 0,
-        "values": ["English [100%]"],
-        "valuesold": ["English [100%]", "Español [0%]", "Français [0%]", "Русский [0%]"]
     },
     {
         "name": "Restore Defaults",

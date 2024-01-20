@@ -369,7 +369,7 @@ class $modify(MyCustomMenu, MenuLayer) {
                             ImGui::Text("%s", Lang::get(currentLang)->name("Prism Menu by Firee").c_str());
                             std::string betaUser = "Patrick61804";
                             ImGui::Text("V0.9.0 (BETA)");
-                            ImGui::Text("Given to %s", betaUser.c_str());
+                            //ImGui::Text("Given to %s", betaUser.c_str());
                             ImGui::Separator();
                             break;
                     }
@@ -508,6 +508,12 @@ class $modify(MyCustomMenu, MenuLayer) {
                                                     FLAlertLayer::create("Success!", "The <cy>theme</c> has successfully been imported! Restart your game to use it.", "OK")->show();
                                                 }
                                             );
+                                        } else if (name == "Reset Speedhack") {
+                                            HackItem* speedHack = Hacks::getHack("Speedhack");
+                                            speedHack->value.floatValue = 1.0F;
+                                            Hacks::Settings::setSettingValue(&settings, *speedHack, 1.0F);
+                                            Hacks::setPitch(1.0F);
+                                            CCDirector::sharedDirector()->getScheduler()->setTimeScale(1.0F);
                                         }
                                         ImGui::OpenPopup(name.c_str());
                                         
