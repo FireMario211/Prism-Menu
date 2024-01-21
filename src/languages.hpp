@@ -2,6 +2,7 @@
 #include <unordered_map>
 #include "hacks.hpp"
 //#include <battery/embed.hpp>
+
 class Lang {
     matjson::Array langFile;
     int langId = 0;

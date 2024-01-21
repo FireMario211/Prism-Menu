@@ -1,3 +1,8 @@
+# v1.1.1
+    - Fixed memory leak if you change languages from English.
+    - Fixed issue with Hide Testmode crashing.
+    - Fixed issue with Misc settings crashing on newer levels.
+    - Fixed other bugs
 # v1.1.0
     - Added French Translations (Merci Jouca !)
     - Added Menu Scale (for people using Android)

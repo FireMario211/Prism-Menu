@@ -149,6 +149,8 @@ public:
 
 PrismButton* prismButton;
 
+Lang* currentLanguage;
+
 bool firstLoad = false;
 // early load is amazing!
 class $modify(MenuLayer) {
@@ -178,6 +180,8 @@ class $modify(MenuLayer) {
         mainMenu->addChild(m_fields->menuPrismButton);
         m_fields->menuPrismButton->setVisible(Hacks::isHackEnabled("Show Button"));
         if (firstLoad) return true;
+        int currentLang = Hacks::getHack("Language")->value.intValue;
+        currentLanguage = Lang::get(currentLang);
         firstLoad = true;
         log::info("Prism Menu loaded! Enjoy the mod.");
         ImGuiCocos::get().setup([] {
@@ -315,7 +319,6 @@ class $modify(MenuLayer) {
                 ImGui::Begin("Prism Menu", nullptr, ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoTitleBar);
                 //231,245 - 451,701
                 RoundTableBG();
-                int currentLang = Hacks::getHack("Language")->value.intValue;
                 if (ImGui::BeginTable("table_left", 1, ImGuiTableFlags_NoHostExtendX | ImGuiTableFlags_BordersInnerV | ImGuiTableFlags_BordersOuterV, { tableWidth, 0 })) // ImGuiTableFlags_RowBg | ImGuiTableFlags_None |
                 {
                     ImGui::TableSetupColumn("", ImGuiTableColumnFlags_None, 0);
@@ -335,18 +338,18 @@ class $modify(MenuLayer) {
                     // oh and PLEASE dont complain about it being misaligned in the center
                     float buttonWidth = (194 * frameSize.width) / 1366;
                     float buttonHeight = (60 * frameSize.height) / 768;
-                    CreateButton(Lang::get(currentLang)->name("§ Global").c_str(), 0, buttonWidth, buttonHeight);
-                    CreateButton(Lang::get(currentLang)->name("¬ Player").c_str(), 1, buttonWidth, buttonHeight);
-                    CreateButton(Lang::get(currentLang)->name("ª Bypass").c_str(), 2, buttonWidth, buttonHeight);
-                    CreateButton(Lang::get(currentLang)->name("« Creator").c_str(), 3, buttonWidth, buttonHeight);
-                    CreateButton(Lang::get(currentLang)->name("··· Misc").c_str(), 4, buttonWidth, buttonHeight);
+                    CreateButton(currentLanguage->name("§ Global").c_str(), 0, buttonWidth, buttonHeight);
+                    CreateButton(currentLanguage->name("¬ Player").c_str(), 1, buttonWidth, buttonHeight);
+                    CreateButton(currentLanguage->name("ª Bypass").c_str(), 2, buttonWidth, buttonHeight);
+                    CreateButton(currentLanguage->name("« Creator").c_str(), 3, buttonWidth, buttonHeight);
+                    CreateButton(currentLanguage->name("··· Misc").c_str(), 4, buttonWidth, buttonHeight);
 
                     ImGui::Spacing();
                     ImGui::Spacing();
                     ImGui::PopStyleVar(2);
                     ImGui::PushStyleVar(ImGuiStyleVar_FrameRounding, 12.0f);
                     // ad "UI Labels"
-                    CreateButton(Lang::get(currentLang)->name("¶ Settings").c_str(), 5, buttonWidth, buttonHeight);
+                    CreateButton(currentLanguage->name("¶ Settings").c_str(), 5, buttonWidth, buttonHeight);
                     ImGui::PopStyleVar();
                     ImGui::PopFont(); // Restore the old font
                     //ImGui::PushStyleVar(ImGuiStyleVar_ItemSpacing, ImVec2(12.0f, 15.0f));
@@ -380,7 +383,7 @@ class $modify(MenuLayer) {
                             break;
                         case 5: // Settings
                             jsonArray = matjson::parse(Hacks::getSettings()).as_array();
-                            ImGui::Text("%s", Lang::get(currentLang)->name("Prism Menu by Firee").c_str());
+                            ImGui::Text("%s", currentLanguage->name("Prism Menu by Firee").c_str());
                             const char* version = "V1.1.0 (Geode)";
                             #ifdef GEODE_IS_WINDOWS
                             ImGui::Text("%s - Windows", version);
@@ -419,7 +422,7 @@ class $modify(MenuLayer) {
                                 auto max = obj.get<int>("max");
                                 int step = (obj.contains("step")) ? obj.get<int>("step") : 5;
                                 int oldValue = hack->value.intValue;
-                                if (ImGui::InputInt(Lang::get(currentLang)->name(name).c_str(), &hack->value.intValue, step, 100, ImGuiInputTextFlags_EnterReturnsTrue)) {
+                                if (ImGui::InputInt(currentLanguage->name(name).c_str(), &hack->value.intValue, step, 100, ImGuiInputTextFlags_EnterReturnsTrue)) {
                                     if (min > hack->value.intValue || hack->value.intValue > max) {
                                         hack->value.intValue = oldValue;
                                         return;
@@ -443,7 +446,7 @@ class $modify(MenuLayer) {
                                 auto min = obj.get<float>("min");
                                 auto max = obj.get<float>("max");
                                 if (!editingMode.isEditing || editingMode.name != name.c_str()) {
-                                    if (ImGui::SliderFloat(Lang::get(currentLang)->name(name).c_str(), &hack->value.floatValue, min, max, "%.3f", ImGuiSliderFlags_NoInput)) {
+                                    if (ImGui::SliderFloat(currentLanguage->name(name).c_str(), &hack->value.floatValue, min, max, "%.3f", ImGuiSliderFlags_NoInput)) {
                                         if (name == "Speedhack") {
                                             if (hack->value.floatValue < 0.0F) return;
                                             Hacks::setPitch(hack->value.floatValue);
@@ -459,7 +462,7 @@ class $modify(MenuLayer) {
                                     }
                                 } else {
                                     ImGui::BeginDisabled();
-                                    ImGui::SliderFloat(Lang::get(currentLang)->name(name).c_str(), &editingMode.editedValue.floatValue, min, max);
+                                    ImGui::SliderFloat(currentLanguage->name(name).c_str(), &editingMode.editedValue.floatValue, min, max);
                                     ImGui::EndDisabled();
                                     ImGui::SetKeyboardFocusHere();
                                     if (ImGui::InputFloat("##EditValue", &editingMode.editedValue.floatValue, 0, 0, "%.3f", ImGuiInputTextFlags_EnterReturnsTrue)) {
@@ -482,7 +485,7 @@ class $modify(MenuLayer) {
                                 }
                             } else if (hack->value.type == ValueType::Bool) {
                                 if ((Hacks::isHackEnabled("Enable Patching") && obj.contains("winOnly")) || !obj.contains("winOnly") || name == "Enable Patching") {
-                                    if (ImGui::Checkbox(Lang::get(currentLang)->name(name).c_str(), &hack->value.boolValue)) {
+                                    if (ImGui::Checkbox(currentLanguage->name(name).c_str(), &hack->value.boolValue)) {
                                         Hacks::Settings::setSettingValue(&settings, *hack, hack->value.boolValue);
                                         if (name == "Show Button") {
                                             prismButton->setVisible(hack->value.boolValue);
@@ -500,7 +503,7 @@ class $modify(MenuLayer) {
                                 }
                             } else if (hack->value.type == ValueType::Char) {
                                 /*auto oldValue = hack->value.charValue;
-                                if (ImGui::InputTextWithHint(Lang::get(currentLang)->name(name).c_str(), "C", hack->value.charValue, 2, ImGuiInputTextFlags_EnterReturnsTrue)) {
+                                if (ImGui::InputTextWithHint(currentLanguage->name(name).c_str(), "C", hack->value.charValue, 2, ImGuiInputTextFlags_EnterReturnsTrue)) {
                                     if (name == "Open Menu Keybind") {
                                         auto it = charToKeyMap.find(*hack->value.charValue);
                                         if (it != charToKeyMap.end()) {
@@ -524,7 +527,7 @@ class $modify(MenuLayer) {
                             } else if (hack->type == "dropdown" || hack->value.type == ValueType::Custom) {
                                 auto type = obj.get<std::string>("type");
                                 if (type == "button") {
-                                    if (ImGui::Button(Lang::get(currentLang)->name(name).c_str())) {
+                                    if (ImGui::Button(currentLanguage->name(name).c_str())) {
                                         if (name == "Restore Defaults") {
                                             Hacks::processJSON(true);
                                         } else if (name == "Import Theme") {
@@ -559,12 +562,12 @@ class $modify(MenuLayer) {
                                     }
                                     // Popups
                                     if (ImGui::BeginPopupModal("Credits", nullptr)) {
-                                        auto creditLine1 = Lang::get(currentLang)->name(Lang::get(currentLang)->name("Thank you to Electrify (ES), Jouca (FR), and dank_meme01 (RU) for translations!"));
-                                        auto creditLine2 = Lang::get(currentLang)->name(Lang::get(currentLang)->name("And thank you for using the mod! I hope you enjoy using Prism Menu!"));
+                                        auto creditLine1 = currentLanguage->name(currentLanguage->name("Thank you to Electrify (ES), Jouca (FR), and dank_meme01 (RU) for translations!"));
+                                        auto creditLine2 = currentLanguage->name(currentLanguage->name("And thank you for using the mod! I hope you enjoy using Prism Menu!"));
                                         ImGui::Text("%s", creditLine1.c_str());
                                         ImGui::Separator();
                                         ImGui::Text("%s", creditLine2.c_str());
-                                        if (ImGui::Button(Lang::get(currentLang)->name(Lang::get(currentLang)->name("Close Popup").c_str()).c_str()))
+                                        if (ImGui::Button(currentLanguage->name(currentLanguage->name("Close Popup").c_str()).c_str()))
                                             ImGui::CloseCurrentPopup();
                                         ImGui::EndPopup();
                                     }
@@ -575,12 +578,15 @@ class $modify(MenuLayer) {
                                         values = Themes::getCurrentThemes();
                                     }
                                     int selectedIndex = hack->value.intValue;
-                                    if (ImGui::BeginCombo(Lang::get(currentLang)->name(name).c_str(), values[selectedIndex].as_string().c_str())) {
+                                    if (ImGui::BeginCombo(currentLanguage->name(name).c_str(), values[selectedIndex].as_string().c_str())) {
                                         for (size_t i = 0; i < values.size(); i++) {
                                             const bool isSelected = (selectedIndex == i);
                                             if (ImGui::Selectable(values[i].as_string().c_str(), isSelected)) {
                                                 hack->value.intValue = i;
                                                 Hacks::Settings::setSettingValue(&settings, *hack, hack->value.intValue);
+                                                if (name == "Language") {
+                                                    currentLanguage = Lang::get(hack->value.intValue);
+                                                }
                                             }
                                             // Set the initial focus when opening the combo (scrolling + keyboard navigation focus)
                                             if (isSelected)
@@ -603,7 +609,7 @@ class $modify(MenuLayer) {
                             if (ImGui::IsItemHovered() && Hacks::isHackEnabled("Show Tooltips")) {
                                 if ((obj.contains("winOnly") && Hacks::isHackEnabled("Enable Patching")) || !obj.contains("winOnly")) {
                                     ImGui::BeginTooltip();
-                                    ImGui::Text("%s", Lang::get(currentLang)->desc(name, desc).c_str());
+                                    ImGui::Text("%s", currentLanguage->desc(name, desc).c_str());
                                     ImGui::EndTooltip();
                                 }
                             }
@@ -617,7 +623,7 @@ class $modify(MenuLayer) {
                 }
                 if (ImGui::BeginPopupModal("Success", nullptr)) {
                     ImGui::Text("The custom theme has successfully been imported! Restart your game to use it.");
-                    if (ImGui::Button(Lang::get(currentLang)->name("Close Popup").c_str()))
+                    if (ImGui::Button(currentLanguage->name("Close Popup").c_str()))
                         ImGui::CloseCurrentPopup();
                     ImGui::EndPopup();
                 }
@@ -714,6 +720,7 @@ pCVar2 = (CCActionInterval *)cocos2d::CCActionTween::create((float)uVar8,(char *
     void updateTimeWarp(float speed) {
         HackItem* speedhack = Hacks::getHack("Speedhack");
         if (speedhack == nullptr) return GJBaseGameLayer::updateTimeWarp(speed);
+        if (speedhack->value.floatValue == 1.0F) return GJBaseGameLayer::updateTimeWarp(speed);
         GJBaseGameLayer::updateTimeWarp(speed * speedhack->value.floatValue);
     }
 };
@@ -812,14 +819,14 @@ class $modify(PlayLayer) {
             //m_fields->m_gameLevel->m_levelType = static_cast<GJLevelType>(2);
         }
         if (Hacks::isHackEnabled("Hide Testmode")) {
-            for (size_t i = this->getChildrenCount(); i >= 0; i--) {
+            for (size_t i = 0; i < this->getChildrenCount(); i++) { // i cant test if this works, bruh
                 auto obj = this->getChildren()->objectAtIndex(i);
                 if (getNodeName(obj) == "cocos2d::CCLabelBMFont") {
                     auto testModeLabel = static_cast<CCLabelBMFont*>(obj);
                     if (!strcmp(testModeLabel->getString(), "Testmode")) {
                         testModeLabel->setVisible(false);
+                        break;
                     }
-                    break;
                 }
             }
         }
@@ -843,13 +850,15 @@ class $modify(PlayLayer) {
         if ( // i dont know what are considered "cheats"
             Hacks::isHackEnabled("Noclip") ||
             Hacks::isHackEnabled("No Spikes") ||
+            Hacks::isHackEnabled("No Solids") ||
             Hacks::isHackEnabled("Freeze Player") ||
             Hacks::isHackEnabled("No Mirror Transition") ||
             Hacks::isHackEnabled("Instant Mirror Portal") ||
             Hacks::isHackEnabled("Jump Hack") ||
             Hacks::isHackEnabled("Instant Complete") ||
             Hacks::isHackEnabled("Force Platformer Mode") ||
-            Hacks::isHackEnabled("Change Gravity")
+            Hacks::isHackEnabled("Change Gravity") ||
+            Hacks::isHackEnabled("Hide Testmode")
         ) { // cheating
             if (!m_fields->isCheating) {
                 m_fields->isCheating = true;
@@ -891,10 +900,17 @@ class $modify(PlayLayer) {
                     m_fields->progressBar = static_cast<CCSprite*>(obj);
                 }
             }
-            auto layer = typeinfo_cast<CCLayer*>(node->getChildren()->objectAtIndex(2));
-            if (layer != nullptr) {
-                if (layer->getChildrenCount() > 100) {
-                    m_fields->attemptLabel = typeinfo_cast<CCLabelBMFont*>(layer->getChildren()->objectAtIndex(layer->getChildrenCount() - 1));
+            for (size_t i = 0; i < node->getChildrenCount(); i++) {
+                auto obj = node->getChildren()->objectAtIndex(i);
+                if (getNodeName(obj) == "cocos2d::CCLayer") {
+                    auto layer = static_cast<CCLayer*>(obj);
+                    for (size_t y = 0; y < layer->getChildrenCount(); y++) {
+                        auto obj2 = layer->getChildren()->objectAtIndex(y);
+                        if (getNodeName(obj2) == "cocos2d::CCLabelBMFont") {
+                            m_fields->attemptLabel = static_cast<CCLabelBMFont*>(obj2);
+                            break;
+                        }
+                    }
                 }
             }
         } else {
