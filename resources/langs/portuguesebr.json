@@ -1,0 +1,408 @@
+[
+    {
+        "§ Global": {
+            "name": "§ Global"
+        }
+    },
+    {
+        "¬ Player": {
+            "name": "¬ Jogador"
+        }
+    },
+    {
+        "ª Bypass": {
+            "name": "ª Bypass"
+        }
+    },
+    {
+        "« Creator": {
+            "name": "« Criador"
+        }
+    },
+    {
+        "··· Misc": {
+            "name": "··· Outros"
+        }
+    },
+    {
+        "¶ Settings": {
+            "name": "¶ Configurações"
+        }
+    },
+
+    {
+        "Prism Menu by Firee": {
+            "name": "Prism Menu por Firee"
+        }
+    },
+
+    {
+        "Anticheat Bypass": {
+            "name": "Remover Anticheat",
+            "desc": "Remove todos os anticheats, duh. [Níveis, Editor, etc]"
+        }
+    },
+    {
+        "Practice Music": {
+            "name": "Música no modo de praticar",
+            "desc": "Remove a música do modo de prática e muda pela música normal."
+        }
+    },
+    {
+        "Safe Mode": {
+            "name": "Modo Seguro",
+            "desc": "Remove progresso em níveis."
+        }
+    },
+    {
+        "Accurate Percentage": {
+            "name": "Porcentagem Prescisa",
+            "desc": "Em vez de 3%, tipo 3.462123%"
+        }
+    },
+    {
+        "Layout Mode": {
+            "name": "Modo de layout",
+            "desc": "Remove toda decoração."
+        }
+    },
+    {
+        "No Transition": {
+            "name": "Sem Transição",
+            "desc": "Remove a cutscene de menu para menu."
+        }
+    },
+    {
+        "Cheat Indicator": {
+            "name": "Indicador de Hack",
+            "desc": "Mostra um ícone se você tá hackeando."
+        }
+    },
+    {
+        "Speedhack": {
+            "name": "Speedhack",
+            "desc": "Faz tudo ficar devagar ou rápido."
+        }
+    },
+    {
+        "FPS Bypass": {
+            "name": "Sem limite de FPS",
+            "desc": "Remove o limite de 60FPS, meio inútil da 2.2 mas sei lá."
+        }
+    },
+    {
+        "Reset Speedhack": {
+            "name": "Resetar Speedhack",
+            "desc": "Redefine a velocidade de volta ao normal."
+        }
+    },
+
+    {
+        "Noclip": {
+            "name": "Noclip",
+            "desc": "Você não morre."
+        }
+    },
+    {
+        "No Spikes": {
+            "name": "Sem espinhos",
+            "desc": "Ignora o dano dos espinhos ou triângulos."
+        }
+    },
+    {
+        "No Hitbox": {
+            "name": "Sem hitboxes",
+            "desc": "Tira todas as hitboxes incluindo triggers e tal."
+        }
+    },
+    {
+        "No Solids": {
+            "name": "Sem sólidos",
+            "desc": "Eu realmente tenho que explicar isso?"
+        }
+    },
+    {
+        "Everything Hurts": {
+            "name": "Tudo te mata",
+            "desc": "Sim ô Einstein, tudo te mata."
+        }
+    },
+    {
+        "No Mirror Transition": {
+            "name": "Sem portal espelho",
+            "desc": "eu ODEIO portal espelho!!"
+        }
+    },
+    {
+        "Instant Mirror Portal": {
+            "name": "Portal espelho instantâneo",
+            "desc": "remove a transição do portal espelho."
+        }
+    },
+    {
+        "Freeze Player": {
+            "name": "Congelar jogador",
+            "desc": "Faz você ficar parado."
+        }
+    },
+    {
+        "Jump Hack": {
+            "name": "Pulo no ar",
+            "desc": "Faz você poder pular no ar."
+        }
+    },
+    {
+        "Instant Complete": {
+            "name": "Completar instantâneamente",
+            "desc": "Meio simples. (não ative no editor)"
+        }
+    },
+    {
+        "Force Platformer Mode": {
+            "name": "Platformer forçado",
+            "desc": "te força a ficar em platformer em qualquer nível."
+        }
+    },
+    {
+        "Change Gravity": {
+            "name": "Mudar gravidade",
+            "desc": "Te deixa mudar gravidade enquanto pula e cai. (de cabeça para baixo e normal)"
+        }
+    },
+    {
+        "Gravity Value": {
+            "name": "Valor de gravidade",
+            "desc": "Muda a gravidade. (quão rápido você cai)"
+        }
+    },
+
+    {
+        "Icon Bypass": {
+            "name": "Desbloquear ícones",
+            "desc": "._."
+        }
+    },
+    {
+        "Text Length": {
+            "name": "Tamanho de texto",
+            "desc": "Pode fazer texto muito longoooooooooooooooooooooooooooooooooo."
+        }
+    },
+    {
+        "Character Filter": {
+            "name": "Qualquer letra",
+            "desc": "Pode usar tipo !$;\"+#! em níveis e tal."
+        }
+    },
+    {
+        "Slider Limit": {
+            "name": "Limite de slider",
+            "desc": "Desbloqueia os sliders."
+        }
+    },
+    {
+        "Main Levels": {
+            "name": "Níveis principais",
+            "desc": "Seja desbloqueado, demonho do capeta!."
+        }
+    },
+    {
+        "Guard Vault": {
+            "name": "Guarda dos códigos",
+            "desc": "Desbloqueia o cofre."
+        }
+    },
+    {
+        "Keymaster Vault": {
+            "name": "Cofre do keymaster",
+            "desc": "Desbloqueia o cofre do keymaster."
+        }
+    },
+    {
+        "Treasure Room": {
+            "name": "Sala de tesouro",
+            "desc": "desbloqueia a sala do tesouro."
+        }
+    },
+    {
+        "Free Shop Items": {
+            "name": "Items da loja",
+            "desc": "Sílvio Santos simulator."
+        }
+    },
+    {
+        "Gatekeeper Vault": {
+            "name": "Outro cofre",
+            "desc": "Desbloqueia outro cofre, até esqueci."
+        }
+    },
+    {
+        "Backup Stars Limit": {
+            "name": "Limite para salvar",
+            "desc": "Deixa você salvar com menos de dez moedas."
+        }
+    },
+
+
+    {
+        "Level Edit": {
+            "name": "Editar nível",
+            "desc": "Deixa você editar qualquer nível (MEIO BUGADO)"
+        }
+    },
+    {
+        "Verify Hack": {
+            "name": "Verificar automáticamente",
+            "desc": "Bem simples, não prescisa mais verificar"
+        }
+    },
+    {
+        "Copy Hack": {
+            "name": "Copiar",
+            "desc": "Pode copiar qualquer nível."
+        }
+    },
+    {
+        "No (C) Mark": {
+            "name": "Remover marca de cópia",
+            "desc": "Remove a marca de cópia quando postar níveis copiádos, seu roubão."
+        }
+    },
+    {
+        "Hide Testmode": {
+            "name": "Remover testmode",
+            "desc": "Remove a marca da Start Pos."
+        }
+    },
+    {
+        "Rotation Hack": {
+            "name": "Qualquer rotação",
+            "desc": "Pode virar qualquer objeto de qualquer jeito. só funciona localmente, não salva nem posta."
+        }
+    },
+    {
+        "Default Song Bypass": {
+            "name": "Músicas escondidas",
+            "desc": "Pode usar músicas como The Challenge e as do GD World que normalmente não pode usar."
+        }
+    },
+
+    {
+        "No Progress Bar": {
+            "name": "Sem barra de progresso",
+            "desc": "Tô cansado de fazer essas descrições de coisas óbvias ):."
+        }
+    },
+    {
+        "Progress Bar Position": {
+            "name": "Local da barra de progresso",
+            "desc": "meio óbvio."
+        }
+    },
+    {
+        "Hide Attempts": {
+            "name": "Esconder tentativas",
+            "desc": "Esconde as tentativas nos níveis."
+        }
+    },
+    {
+        "Attempt Opacity": {
+            "name": "Opacidade das tentativas",
+            "desc": "Determina a opacidade das tentativas."
+        }
+    },
+
+    {
+        "Enable Patching": {
+            "name": "Enable Patching",
+            "desc": "Sei lá, tô confuso"
+        }
+    },
+    {
+        "Menu Opacity": {
+            "name": "Opacidade do menu",
+            "desc": "Determina quão transparente é o menu de pausa."
+        }
+    },
+    {
+        "Theme": {
+            "name": "Tema",
+            "desc": "Seleciona o tema para o menu Prisma!"
+        }
+    },
+    {
+        "Import Theme": {
+            "name": "Importar tema",
+            "desc": "Importa um tema [JSON]"
+        }
+    },
+    {
+        "Live Theme Editing": {
+            "name": "Editar Tema",
+            "desc": "Editar o tema do Prism enquanto você vê como fica (pode crashar)"
+        }
+    },
+    {
+        "Show Tooltips": {
+            "name": "Mostrar descrição",
+            "desc": "Se essa parte aparece."
+        }
+    },
+    {
+        "Show Button": {
+            "name": "Mostrar ícone",
+            "desc": "Se mostra o ícone para o menu. não desative no celular seu gênio."
+        }
+    },
+    {
+        "Button Position X": {
+            "name": "Posição do ícone X",
+            "desc": "A posição horizontalmente."
+        }
+    },
+    {
+        "Button Position Y": {
+            "name": "Posição do ícone Y",
+            "desc": "A posição verticalmente."
+        }
+    },
+    {
+        "Language": {
+            "name": "Língua",
+            "desc": "Muda a língua"
+        }
+    },
+    {
+        "Restore Defaults": {
+            "name": "Resetar",
+            "desc": "Desativa todos os hacks."
+        }
+    },
+    {
+        "Credits": {
+            "name": "Créditos",
+            "desc": "Pessoas que ajudaram com o menu Prism!"
+        }
+    },
+    {
+        "Thank you to Electrify (ES), Jouca (FR), dank_meme01 (RU), and Gazonk (BR) for translations!": {
+            "name": "Obrigado a Electrify (ES), Jouca (FR), dank_meme01 (RU), e Gazonk (BR) Por traduções!"
+        }
+    },
+    {
+        "And thank you for using the mod! I hope you enjoy using Prism Menu!": {
+            "name": "E obrigado a você por usar por usar o menu! Espero que você gostou de usar o menu!"
+        }
+    },
+    {
+        "Close Popup": {
+            "name": "Fechar Popup"
+        }
+    },
+    {
+        "Menu Scale": {
+            "name": "Menu Scale",
+            "desc": "Decide o tamanho do texto e dos botões."
+        }
+    }
+]

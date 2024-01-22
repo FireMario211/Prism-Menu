@@ -10,7 +10,7 @@ This mod menu also provides unique features not present in most mod menus, here 
 * Currently, there are 2 themes available: `Future Dark` and `Catppuccin`, but you can create your own theme and share it with others!
 ![Theme Example](firee.PrismMenu/Screenshot2.png)
 ## Multiple Language (Half way done)
-* Prism Menu supports more languages than **English,** it supports **French** as well!
+* Prism Menu supports more languages than **English,** it supports **French** and **Portuguese** (Brazilian) as well!
 ## Cross Platform
 * Prism Menu is available on both `Windows` and `Android`!
 
@@ -25,5 +25,6 @@ Press on the circle button located on the left corner, or press `Tab` to open th
 * [Electrify](https://www.youtube.com/channel/UCxYliOd2aV6iZuc5wuG9QxA) - Translations for Spanish
 * [Jouca](https://twitter.com/JoucaJouca) - Translations for French
 * [dankmeme01](https://github.com/dankmeme01) - Translations for Russian
+* [Gazonk](https://www.youtube.com/channel/UCgp5Tql2b6Y1Xcni82pPxmA) - Translations for Brazilian Portuguese
 
 Send any suggestions or report any issues to the GitHub Repository. I hope you enjoy using the mod!

@@ -965,7 +965,7 @@ class $modify(PlayLayer) {
             Hacks::isHackEnabled("Instant Complete") ||
             Hacks::isHackEnabled("Force Platformer Mode") ||
             Hacks::isHackEnabled("Change Gravity") ||
-            Hacks::isHackEnabled("Hide Testmode")
+            Hacks::isHackEnabled("Layout Mode")
         ) { // cheating
             if (!m_fields->isCheating) {
                 m_fields->isCheating = true;

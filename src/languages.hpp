@@ -18,8 +18,9 @@ class Lang {
                     case 1: // French
                         file = Hacks::readFile("french.json");
                         break;
-                    case 2: // Russian
+                    case 2: // Portuguese
                         //file = b::embed<"resources/langs/russian.json">().str();
+                        file = Hacks::readFile("portuguesebr.json");
                         break;
                 }
                 lang->langFile = matjson::parse(file).as_array();

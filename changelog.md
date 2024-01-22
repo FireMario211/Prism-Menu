@@ -1,3 +1,6 @@
+# v1.1.3 
+    - Removed "Hide Testmode" from being considered a "cheat" in the "Cheat Indicator"
+    - Added Portuguese translations (Obrigado Gazonk!)
 # v1.1.2 
     - Added live update for Menu Scale
     - Increased the size of the scrollbar

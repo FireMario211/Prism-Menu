@@ -36,11 +36,7 @@
         }
     },
 
-    {
-        "Close Popup": {
-            "name": "Close Popup"
-        }
-    },
+
 
     {
         "Anticheat Bypass": {
@@ -391,13 +387,18 @@
         }
     },
     {
-        "Thank you to Electrify (ES), Jouca (FR), and dank_meme01 (RU) for translations!": {
-            "name": "Thank you to Electrify (ES), Jouca (FR), and dank_meme01 (RU) for translations!"
+        "Thank you to Electrify (ES), Jouca (FR), and dank_meme01 (RU), and Gazonk (BR) for translations!": {
+            "name": "Thank you to Electrify (ES), Jouca (FR), and dank_meme01 (RU), and Gazonk (BR) for translations!"
         }
     },
     {
         "And thank you for using the mod! I hope you enjoy using Prism Menu!": {
             "name": "And thank you for using the mod! I hope you enjoy using Prism Menu!"
+        }
+    },
+    {
+        "Close Popup": {
+            "name": "Close Popup"
         }
     },
     {

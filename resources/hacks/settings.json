@@ -30,7 +30,7 @@
         "opcodes": [],
         "type": "dropdown",
         "default": 0,
-        "values": ["English [100%]", "Français [100%]"],
+        "values": ["English [100%]", "Français [100%]", "Português (Brasil) [100%]"],
         "valuesold": ["English [100%]", "Español [0%]", "Français [100%]", "Русский [0%]"]
     },
     {

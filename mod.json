@@ -1,6 +1,6 @@
 {
 	"geode": "2.0.0",
-	"version": "v1.1.2",
+	"version": "v1.1.3",
 	"gd": {
 		"win": "2.204",
 		"android": "2.200"
@@ -27,7 +27,8 @@
             		"resources/hacks/misc.json",
             		"resources/hacks/settings.json",
             		"resources/langs/spanish.json",
-            		"resources/langs/french.json"
+            		"resources/langs/french.json",
+            		"resources/langs/portuguesebr.json"
 		]
 	},
     	"settings": {
