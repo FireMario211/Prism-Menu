@@ -29,4 +29,7 @@ cmake \
    -DGEODE_DISABLE_FMT_CONSTEVAL=1 -G Ninja
 
 cmake --build build-linux-deb --config RelWithDebInfo
+# geode for some reason doesnt extract .dll, so im making .dlll as it can extract that
+cp build-linux-deb/firee.PrismMenu.dll build-linux-deb/firee.PrismMenu.dlll 
+zip -j build-linux-deb/firee.PrismMenu.geode build-linux-deb/firee.PrismMenu.dlll
 cp build-linux-deb/firee.PrismMenu.geode "/SDrive/Users/Fire/Desktop/Restoration/ClarifyGDPS V.1.3/GDGeode-2.204/geode/mods/firee.PrismMenu.geode"

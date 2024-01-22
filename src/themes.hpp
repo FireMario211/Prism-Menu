@@ -110,7 +110,8 @@ class Themes {
         
         style.IndentSpacing = 20.0f;
         style.ColumnsMinSpacing = 6.0f;
-        style.ScrollbarSize = (12.0f * menuScale);
+        //style.ScrollbarSize = (12.0f * menuScale);
+        style.ScrollbarSize = (24.0f * menuScale);
         style.ScrollbarRounding = 20.0f;
         style.GrabMinSize = 12.0f;
         style.GrabRounding = 0.0f;

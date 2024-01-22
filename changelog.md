@@ -1,3 +1,9 @@
+# v1.1.2 
+    - Added live update for Menu Scale
+    - Increased the size of the scrollbar
+    - Fixed lag issues when the menu is open
+    - Fixed bug on PC where gravity doesn't work for platformer levels.
+    - Hopefully fixed crashing issue for Android if you press any other button in the Main Menu
 # v1.1.1
     - Fixed memory leak if you change languages from English.
     - Fixed issue with Hide Testmode crashing.
