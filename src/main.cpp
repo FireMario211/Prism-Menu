@@ -823,12 +823,14 @@ pCVar2 = (CCActionInterval *)cocos2d::CCActionTween::create((float)uVar8,(char *
         if (!Hacks::isHackEnabled("No Mirror Transition")) GJBaseGameLayer::toggleFlipped(p0, Hacks::isHackEnabled("Instant Mirror Portal"));
     }
     // Speedhack fix
+#ifndef GEODE_IS_ANDROID // applyTimewarp instead?
     void updateTimeWarp(float speed) {
         HackItem* speedhack = Hacks::getHack("Speedhack");
         if (speedhack == nullptr) return GJBaseGameLayer::updateTimeWarp(speed);
         if (speedhack->value.floatValue == 1.0F) return GJBaseGameLayer::updateTimeWarp(speed);
         GJBaseGameLayer::updateTimeWarp(speed * speedhack->value.floatValue);
     }
+#endif
 };
 // showing the icon for android users lol
 class $modify(PauseLayer) {
@@ -950,8 +952,8 @@ class $modify(PlayLayer) {
         PlayLayer::onQuit();
     }
     void postUpdate(float p0) {
+        PlayLayer::postUpdate(p0);
         // whats the difference between m_fields and not using? i have no idea!
-        m_fields->cheatIndicator->setVisible(Hacks::isHackEnabled("Cheat Indicator"));
         if ( // i dont know what are considered "cheats"
             Hacks::isHackEnabled("Noclip") ||
             Hacks::isHackEnabled("No Spikes") ||
@@ -991,8 +993,9 @@ class $modify(PlayLayer) {
         //if (!Hacks::isHackEnabled("Hide Attempts") && attemptOpacity == 1.0F) return PlayLayer::postUpdate(p0);
         int currentPosition = Hacks::getHack("Progress Bar Position")->value.intValue;
         // stop dynamic_cast abuse
-        auto node = static_cast<CCNode*>(this->getChildren()->objectAtIndex(0));
-        if (node == nullptr) return PlayLayer::postUpdate(p0); // never will happen (or will it)
+        auto node = typeinfo_cast<CCNode*>(this->getChildren()->objectAtIndex(0));
+        if (node == nullptr) return; // never will happen (or will it)
+        m_fields->cheatIndicator->setVisible(Hacks::isHackEnabled("Cheat Indicator"));
         if (m_fields->progressBar == nullptr || m_fields->percentLabel == nullptr || m_fields->attemptLabel == nullptr) {
             for (size_t i = 0; i < this->getChildrenCount(); i++) {
                 auto obj = this->getChildren()->objectAtIndex(i);
@@ -1043,7 +1046,6 @@ class $modify(PlayLayer) {
             }
             m_fields->attemptLabel->setOpacity(attemptOpacity * 255);
         }
-        PlayLayer::postUpdate(p0);           
     }
     
     // Accurate Percentage

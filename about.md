@@ -28,5 +28,6 @@ Press on the circle button located on the left corner, or press `Tab` to open th
 * [Jouca](https://twitter.com/JoucaJouca) - Translations for French
 * [dankmeme01](https://github.com/dankmeme01) - Translations for Russian
 * [Gazonk](https://www.youtube.com/channel/UCgp5Tql2b6Y1Xcni82pPxmA) - Translations for Brazilian Portuguese
+* huhnmitferrari - Translations for German
 
 Send any suggestions or report any issues to the GitHub Repository. I hope you enjoy using the mod!

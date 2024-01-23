@@ -1,3 +1,5 @@
+# v1.1.41 
+    - Fixed bug when you enter levels, it crashes. (On Android)
 # v1.1.4 
     - Added support for 2.205 on Android.
     - Fixed issue where the shop crashes.
