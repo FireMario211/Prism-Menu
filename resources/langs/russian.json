@@ -11,7 +11,7 @@
     },
     {
         "ª Bypass": {
-            "name": "ª Байпас"
+            "name": "ª Обходы"
         }
     },
     {
@@ -21,12 +21,12 @@
     },
     {
         "··· Misc": {
-            "name": "··· Миск"
+            "name": "··· Прочее"
         }
     },
     {
         "¶ Settings": {
-            "name": "¶ настройки"
+            "name": "¶ Настройки"
         }
     },
 
@@ -44,32 +44,32 @@
 
     {
         "Anticheat Bypass": {
-            "name": "Анти чит байпас",
-            "desc": "Отключает все античиты. [Левел, Редакток, и другие]"
+            "name": "Обход античита",
+            "desc": "Отключает все античиты. [Уровень, Редактор, и другие]"
         }
     },
     {
         "Practice Music": {
             "name": "Музыка в практике",
-            "desc": "Включает музыку в практике если функция ещё не открыта."
+            "desc": "Включает музыку в практике, если функция ещё не открыта."
         }
     },
     {
         "Safe Mode": {
-            "name": "Сахрание мод",
-            "desc": "Не даёт выполение любых действий в уровене."
+            "name": "Безопасный режим",
+            "desc": "Не сохраняет прогресс в уровне."
         }
     },
     {
         "Accurate Percentage": {
             "name": "Точные проценты",
-            "desc": "Делает проценты в деситичных цифрах. [за тысячные доли]"
+            "desc": "Показывает проценты в десятичных числах. [за тысячные доли]"
         }
     },
     {
         "Layout Mode": {
-            "name": "Лаяют мод",
-            "desc": "Убирает все декарации в уровне."
+            "name": "Режим Layout'а",
+            "desc": "Убирает все декорации в уровне."
         }
     },
     {
@@ -80,33 +80,33 @@
     },
     {
         "Cheat Indicator": {
-            "name": "Чит индекатор",
-            "desc": "Показывает значок используйте вы моды которые расцениваются как читы!"
+            "name": "Индикатор читов",
+            "desc": "Показывает значок, указывающий на то, используете ли вы читы или нет."
         }
     },
     {
         "Speedhack": {
-            "name": "Спидхак",
+            "name": "Скорость игры",
             "desc": "Изменяет скорость и музыку игры."
         }
     },
     {
         "FPS Bypass": {
-            "name": "Фпс байпасс",
-            "desc": "Разблокирует ."
+            "name": "Неограниченный ФПС",
+            "desc": "Разблокирует ограничение ФПС по герцовке вашего монитора."
         }
     },
     {
         "Reset Speedhack": {
-            "name": "Reset Speedhack",
-            "desc": "Resets speedhack back to normal."
+            "name": "Сбросить скорость",
+            "desc": "Сбрасывает скорость игры на нормальную."
         }
     },
 
     {
         "Noclip": {
-            "name": "Ноу клип",
-            "desc": "Длетает игрока не победимым."
+            "name": "Noclip",
+            "desc": "Позволяет проходить сквозь объекты."
         }
     },
     {
@@ -117,20 +117,20 @@
     },
     {
         "No Hitbox": {
-            "name": "Нет хибоксов",
-            "desc": "Нет хитбоксов у всез объктов. Специальные объекты отключены."
+            "name": "Нет хитбоксов",
+            "desc": "Отключает хитбоксы у всех объектов. Специальные объекты отключены."
         }
     },
     {
         "No Solids": {
-            "name": "Без твердых частиц",
+            "name": "Без твёрдых частиц",
             "desc": "Отключает большинство твердых хитбоксов. Специальные объекты продолжают работать."
         }
     },
     {
         "Everything Hurts": {
             "name": "Всё убивает",
-            "desc": "Делает все обькты опасными."
+            "desc": "Делает все обьекты опасными."
         }
     },
     {
@@ -141,14 +141,14 @@
     },
     {
         "Instant Mirror Portal": {
-            "name": "Мгновеное переворачивание экрана",
-            "desc": "Перевород экрана портал теперь мгновенно переключается."
+            "name": "Мгновенное переворачивание экрана",
+            "desc": "Зеркальный портал переворачивает экран мгновенно."
         }
     },
     {
         "Freeze Player": {
             "name": "Заморозить игрока",
-            "desc": "Замараживыает движение игрока."
+            "desc": "Замораживает движение игрока."
         }
     },
     {
@@ -159,25 +159,25 @@
     },
     {
         "Instant Complete": {
-            "name": "Мновеное прохождение",
-            "desc": "Мновенное прохождение уровня. (Не вкллючать в редакторе)"
+            "name": "Мгновенное прохождение",
+            "desc": "Мгновенное прохождение уровня. (Не включать в редакторе!)"
         }
     },
     {
         "Force Platformer Mode": {
-            "name": "Платформер мод",
+            "name": "Режим платформера",
             "desc": "Изменяет режим игры на платформер в любом уровне."
         }
     },
     {
         "Change Gravity": {
             "name": "Изменение гравитации",
-            "desc": "Позволяет изменять гравитацию при прыжках и падениях."
+            "desc": "Позволяет изменить гравитацию при прыжках и падениях."
         }
     },
     {
         "Gravity Value": {
-            "name": "Изменение значение гравитации",
+            "name": "Изменение значения гравитации",
             "desc": "Значение, на которое должна быть установлена гравитация."
         }
     },
@@ -190,225 +190,225 @@
     },
     {
         "Text Length": {
-            "name": "Text Length",
-            "desc": "Allows for unlimited text length in text inputs."
+            "name": "Длина текста",
+            "desc": "Позволяет вводить неограниченное количество символов."
         }
     },
     {
         "Character Filter": {
-            "name": "Character Filter",
-            "desc": "Lets you input any character in all text inputs."
+            "name": "Фильтр символов",
+            "desc": "Позволяет вводить любые символы."
         }
     },
     {
         "Slider Limit": {
-            "name": "Slider Limit",
-            "desc": "Lets sliders be dragged beyond the visible limit."
+            "name": "Лимит ползунков",
+            "desc": "Позволяет ползункам выйти за пределы видимого лимита."
         }
     },
     {
         "Main Levels": {
-            "name": "Main Levels",
-            "desc": "Unlocks locked demon levels."
+            "name": "Основные уровни",
+            "desc": "Открывает заблокированные уровни."
         }
     },
     {
         "Guard Vault": {
-            "name": "Guard Vault",
-            "desc": "Unlocks the guard's vault."
+            "name": "Хранилище охранника",
+            "desc": "Открывает хранилище охранника."
         }
     },
     {
         "Keymaster Vault": {
-            "name": "Keymaster Vault",
-            "desc": "Unlocks the keymaster's vault."
+            "name": "Хранилище мастера ключей",
+            "desc": "Открывает хранилище мастера ключей."
         }
     },
     {
         "Treasure Room": {
-            "name": "Treasure Room",
-            "desc": "Unlocks the treasure room."
+            "name": "Комната сокровищ",
+            "desc": "Открывает комнату сокровищ."
         }
     },
     {
         "Free Shop Items": {
-            "name": "Free Shop Items",
-            "desc": "Allows all shop items to be bought for 0 mana orbs."
+            "name": "Бесплатные предметы в магазинах",
+            "desc": "Позволяет покупать предметы в магазинах за 0 орбов."
         }
     },
     {
         "Gatekeeper Vault": {
-            "name": "Gatekeeper Vault",
-            "desc": "Unlocks the Gatekeeper's vault."
+            "name": "Хранилище сторожа",
+            "desc": "Открывает хранилище сторожа."
         }
     },
     {
         "Backup Stars Limit": {
-            "name": "Backup Stars Limit",
-            "desc": "Lets you backup data, even with less than 10 stars."
+            "name": "Лимит на сохранение аккаунта",
+            "desc": "Позволяет сохранить ваш аккаунт, если у вас нет 10 звёзд."
         }
     },
 
 
     {
         "Level Edit": {
-            "name": "Level Edit",
-            "desc": "Lets you edit any level, access the editor through the pause menu. (UNSTABLE)"
+            "name": "Изменение уровня",
+            "desc": "Позволяет изменить любой уровень. (НЕСТАБИЛЬНО)"
         }
     },
     {
         "Verify Hack": {
-            "name": "Verify Hack",
-            "desc": "Lets you upload unverified levels. Will automatically set levels to be verified."
+            "name": "Верификация уровня",
+            "desc": "Позволяет опубликовать неверифицированные уровни."
         }
     },
     {
         "Copy Hack": {
-            "name": "Copy Hack",
-            "desc": "Lets you copy any level, without a password."
+            "name": "Копирование уровня",
+            "desc": "Позволяет скопировать любой уровень."
         }
     },
     {
         "No (C) Mark": {
-            "name": "No (C) Mark",
-            "desc": "Removes the (C) mark when uploading copied levels. Will automatically set levels to be original."
+            "name": "Без марки (C)",
+            "desc": "Убирает марку (С) при загрузке уровня."
         }
     },
     {
         "Hide Testmode": {
-            "name": "Hide Testmode",
-            "desc": "Hides the 'Testmode' text when playing with a startpos."
+            "name": "Спрятать 'Testmode'",
+            "desc": "Прячет 'Testmode', если вы играете со стартовой позицией."
         }
     },
     {
         "Rotation Hack": {
-            "name": "Rotation Hack",
-            "desc": "Allows you to rotate any object. Only works locally."
+            "name": "Поворот объекта",
+            "desc": "Позволяет повернуть любой объект. Работает только локально."
         }
     },
     {
         "Default Song Bypass": {
-            "name": "Default Song Bypass",
-            "desc": "Lets you use hidden default songs in the editor."
+            "name": "Обход основных песен",
+            "desc": "Позволяет использовать скрытые песни в редакторе."
         }
     },
 
     {
         "No Progress Bar": {
-            "name": "No Progress Bar",
-            "desc": "Removes the progress bar! The precentage will still be shown."
+            "name": "Без полоски прогресса",
+            "desc": "Убирает полоску прогресса! Проценты всё ещё будут видны."
         }
     },
     {
         "Progress Bar Position": {
-            "name": "Progress Bar Position",
-            "desc": "Sets the position of the progress bar."
+            "name": "Позиция полосы прогресса",
+            "desc": "Устанавливает позицию полосы прогресса."
         }
     },
     {
         "Hide Attempts": {
-            "name": "Hide Attempts",
-            "desc": "Whether or not the attempt label should be shown when playing a level."
+            "name": "Спрятать попытки",
+            "desc": "Прячет надпись с количеством попыток в уровне."
         }
     },
     {
         "Attempt Opacity": {
-            "name": "Attempt Opacity",
-            "desc": "Determines how opaque the attempt label should be."
+            "name": "Прозрачность попыток",
+            "desc": "Изменяет прозрачность надписи с количеством попыток."
         }
     },
 
     {
         "Enable Patching": {
-            "name": "Enable Patching",
+            "name": "Включить патчи",
             "desc": "Changes from hooking to patching. This also allows more hacks to be enabled. Only enable if necessary. [Windows Only]"
         }
     },
     {
         "Menu Opacity": {
-            "name": "Menu Opacity",
-            "desc": "Determines how opaque the menu should be."
+            "name": "Прозрачность меню",
+            "desc": "Изменяет прозрачность меню."
         }
     },
     {
         "Theme": {
-            "name": "Theme",
-            "desc": "Select the UI theme for Prism Menu!"
+            "name": "Тема",
+            "desc": "Выберите тему для Prism Menu!"
         }
     },
     {
         "Import Theme": {
-            "name": "Import Theme",
-            "desc": "Imports a theme! [JSON file]"
+            "name": "Добавить тему",
+            "desc": "Добавляет тему! [JSON файл]"
         }
     },
     {
         "Live Theme Editing": {
-            "name": "Live Theme Editing",
-            "desc": "This will allow you to edit your custom theme while seeing changes on screen! (Warning: This may cause a memory leak.)"
+            "name": "Изменение темы в реальном времени",
+            "desc": "Позволяет изменять вашу тему и видеть изменения в реальном времени! (Внимание: может вызвать утечку памяти.)"
         }
     },
     {
         "Show tooltips": {
-            "name": "Show tooltips",
-            "desc": "Whether or not tooltips should be shown when hovering over mods."
+            "name": "Показывать подсказки",
+            "desc": "Показывает подсказки при наведении на модификации."
         }
     },
     {
         "Show Button": {
-            "name": "Show Button",
-            "desc": "Shows the button to activate the menu. It's recommended to keep this enabled for Android."
+            "name": "Показывать кнопку",
+            "desc": "Показывает кнопку для активации меню. Рекомендовано на Android."
         }
     },
     {
         "Button Position X": {
-            "name": "Button Position X",
-            "desc": "The X position for the button to open the menu."
+            "name": "Позиция кнопки по X",
+            "desc": "Изменяет позицию кнопки для открытия меню по X."
         }
     },
     {
         "Button Position Y": {
-            "name": "Button Position Y",
-            "desc": "The Y position for the button to open the menu."
+            "name": "Позиция кнопки по Y",
+            "desc": "Изменяет позицию кнопки для открытия меню по Y."
         }
     },
     {
         "Language": {
-            "name": "Language",
-            "desc": "Sets the language for Prism Menu!"
+            "name": "Язык",
+            "desc": "Изменяет язык Prism Menu!"
         }
     },
     {
         "Restore Defaults": {
-            "name": "Restore Defaults",
-            "desc": "Disables all mods and resets everything to default."
+            "name": "Сбросить настройки",
+            "desc": "Отключает моды и сбрасывает всё по умолчанию."
         }
     },
     {
         "Credits": {
-            "name": "Credits",
-            "desc": "People who have helped with the mod!"
+            "name": "Упоминания",
+            "desc": "Люди, которые помогли с модом!"
         }
     },
     {
         "Thank you to Electrify (ES), Jouca (FR), and dank_meme01 (RU) for translations!": {
-            "name": "Thank you to Electrify (ES), Jouca (FR), and dank_meme01 (RU) for translations!"
+            "name": "Спасибо Electrify (ES), Jouca (FR), и dank_meme01 (RU) за переводы!"
         }
     },
     {
         "And thank you for using the mod! I hope you enjoy using Prism Menu!": {
-            "name": "And thank you for using the mod! I hope you enjoy using Prism Menu!"
+            "name": "И спасибо вам за использование мода! Я надеюсь, вам нравится Prism Menu!"
         }
     },
     {
         "Close Popup": {
-            "name": "Close Popup"
+            "name": "Закрыть окно"
         }
     },
     {
         "Menu Scale": {
-            "name": "Menu Scale",
-            "desc": "Decides how big the text and buttons should be. (Will require restarting the game)"
+            "name": "Размер меню",
+            "desc": "Изменяет размер текста и кнопок в меню. (Нужен перезапуск игры)"
         }
     }
 ]
