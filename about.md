@@ -1,6 +1,8 @@
 # Prism Menu
 **By [Firee](user:6253758)**
 A mod that intends to be a free alternative to other mod menus, while also adding extra useful additions. (Press `Tab` to open menu)
+[Support Discord Server](https://discord.gg/pnD8cnwdhZ)
+
 ![Mod Example](firee.PrismMenu/Screenshot1.png)
 This mod menu also provides unique features not present in most mod menus, here are a few examples.
 ## Tons of different mods

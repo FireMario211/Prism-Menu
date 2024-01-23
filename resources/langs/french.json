@@ -37,12 +37,6 @@
     },
 
     {
-        "Close Popup": {
-            "name": "Fermer la boite de dialogue"
-        }
-    },
-
-    {
         "Anticheat Bypass": {
             "name": "Anticheat Bypass",
             "desc": "Désactiver tout les anticheats. [Niveaux, Éditeur, ect]"
@@ -288,21 +282,9 @@
     },
 
     {
-        "No Progress Bar": {
-            "name": "Aucune Barre de Progression",
-            "desc": "Supprime la barre de progression ! Le pourcentage reste affiché."
-        }
-    },
-    {
         "Progress Bar Position": {
             "name": "Position de la Barre de Progression",
             "desc": "Définit la position de la barre de progression."
-        }
-    },
-    {
-        "Hide Attempts": {
-            "name": "Cacher les Tentatives",
-            "desc": "Indique si le label de la tentative doit être affichée ou non lors de la lecture d'un niveau."
         }
     },
     {
@@ -385,8 +367,8 @@
         }
     },
     {
-        "Thank you to Electrify (ES), Jouca (FR), and dank_meme01 (RU) for translations!": {
-            "name": "Merci à Electrify (ES), Jouca (FR), et dank_meme01 (RU) pour les traductions !"
+        "Thank you to Electrify (ES), Jouca (FR), dank_meme01 (RU), Gazonk (BR), savvacorgi (RU), and huhnmitferrari (DE) for translations!": {
+            "name": "Merci à Electrify (ES), Jouca (FR), dank_meme01 (RU), Gazonk (BR), savvacorgi (RU), et huhnmitferrari (DE) pour les traductions !"
         }
     },
     {
@@ -396,7 +378,7 @@
     },
     {
         "Close Popup": {
-            "name": "Fermer la fenêtre"
+            "name": "Fermer la boite de dialogue"
         }
     },
     {

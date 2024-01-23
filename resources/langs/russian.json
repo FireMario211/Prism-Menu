@@ -1,0 +1,415 @@
+[
+    {
+        "§ Global": {
+            "name": "§ Глобальный"
+        }
+    },
+    {
+        "¬ Player": {
+            "name": "¬ Игрок"
+        }
+    },
+    {
+        "ª Bypass": {
+            "name": "ª Байпас"
+        }
+    },
+    {
+        "« Creator": {
+            "name": "« Креатор"
+        }
+    },
+    {
+        "··· Misc": {
+            "name": "··· Миск"
+        }
+    },
+    {
+        "¶ Settings": {
+            "name": "¶ настройки"
+        }
+    },
+
+    {
+        "Prism Menu by Firee": {
+            "name": "Prism Menu от Firee"
+        }
+    },
+
+    {
+        "Close Popup": {
+            "name": "Закрыть окно"
+        }
+    },
+
+    {
+        "Anticheat Bypass": {
+            "name": "Анти чит байпас",
+            "desc": "Отключает все античиты. [Левел, Редакток, и другие]"
+        }
+    },
+    {
+        "Practice Music": {
+            "name": "Музыка в практике",
+            "desc": "Включает музыку в практике если функция ещё не открыта."
+        }
+    },
+    {
+        "Safe Mode": {
+            "name": "Сахрание мод",
+            "desc": "Не даёт выполение любых действий в уровене."
+        }
+    },
+    {
+        "Accurate Percentage": {
+            "name": "Точные проценты",
+            "desc": "Делает проценты в деситичных цифрах. [за тысячные доли]"
+        }
+    },
+    {
+        "Layout Mode": {
+            "name": "Лаяют мод",
+            "desc": "Убирает все декарации в уровне."
+        }
+    },
+    {
+        "No Transition": {
+            "name": "Без перехода",
+            "desc": "Сокращает переход сцены до 0 секунд."
+        }
+    },
+    {
+        "Cheat Indicator": {
+            "name": "Чит индекатор",
+            "desc": "Показывает значок используйте вы моды которые расцениваются как читы!"
+        }
+    },
+    {
+        "Speedhack": {
+            "name": "Спидхак",
+            "desc": "Изменяет скорость и музыку игры."
+        }
+    },
+    {
+        "FPS Bypass": {
+            "name": "Фпс байпасс",
+            "desc": "Разблокирует ."
+        }
+    },
+    {
+        "Reset Speedhack": {
+            "name": "Reset Speedhack",
+            "desc": "Resets speedhack back to normal."
+        }
+    },
+
+    {
+        "Noclip": {
+            "name": "Ноу клип",
+            "desc": "Длетает игрока не победимым."
+        }
+    },
+    {
+        "No Spikes": {
+            "name": "Нет шипов",
+            "desc": "Игнорировать шипы."
+        }
+    },
+    {
+        "No Hitbox": {
+            "name": "Нет хибоксов",
+            "desc": "Нет хитбоксов у всез объктов. Специальные объекты отключены."
+        }
+    },
+    {
+        "No Solids": {
+            "name": "Без твердых частиц",
+            "desc": "Отключает большинство твердых хитбоксов. Специальные объекты продолжают работать."
+        }
+    },
+    {
+        "Everything Hurts": {
+            "name": "Всё убивает",
+            "desc": "Делает все обькты опасными."
+        }
+    },
+    {
+        "No Mirror Transition": {
+            "name": "Не переворачивается экран",
+            "desc": "Предотвращает переворачивание экрана на зеркальном портале."
+        }
+    },
+    {
+        "Instant Mirror Portal": {
+            "name": "Мгновеное переворачивание экрана",
+            "desc": "Перевород экрана портал теперь мгновенно переключается."
+        }
+    },
+    {
+        "Freeze Player": {
+            "name": "Заморозить игрока",
+            "desc": "Замараживыает движение игрока."
+        }
+    },
+    {
+        "Jump Hack": {
+            "name": "Бесконечные прыжки",
+            "desc": "Позволяет прыгать в воздухе."
+        }
+    },
+    {
+        "Instant Complete": {
+            "name": "Мновеное прохождение",
+            "desc": "Мновенное прохождение уровня. (Не вкллючать в редакторе)"
+        }
+    },
+    {
+        "Force Platformer Mode": {
+            "name": "Платформер мод",
+            "desc": "Изменяет режим игры на платформер в любом уровне."
+        }
+    },
+    {
+        "Change Gravity": {
+            "name": "Изменение гравитации",
+            "desc": "Позволяет изменять гравитацию при прыжках и падениях."
+        }
+    },
+    {
+        "Gravity Value": {
+            "name": "Изменение значение гравитации",
+            "desc": "Значение, на которое должна быть установлена гравитация."
+        }
+    },
+
+    {
+        "Icon Bypass": {
+            "name": "Открыть все иконки",
+            "desc": "Открывает все иконки."
+        }
+    },
+    {
+        "Text Length": {
+            "name": "Text Length",
+            "desc": "Allows for unlimited text length in text inputs."
+        }
+    },
+    {
+        "Character Filter": {
+            "name": "Character Filter",
+            "desc": "Lets you input any character in all text inputs."
+        }
+    },
+    {
+        "Slider Limit": {
+            "name": "Slider Limit",
+            "desc": "Lets sliders be dragged beyond the visible limit."
+        }
+    },
+    {
+        "Main Levels": {
+            "name": "Main Levels",
+            "desc": "Unlocks locked demon levels."
+        }
+    },
+    {
+        "Guard Vault": {
+            "name": "Guard Vault",
+            "desc": "Unlocks the guard's vault."
+        }
+    },
+    {
+        "Keymaster Vault": {
+            "name": "Keymaster Vault",
+            "desc": "Unlocks the keymaster's vault."
+        }
+    },
+    {
+        "Treasure Room": {
+            "name": "Treasure Room",
+            "desc": "Unlocks the treasure room."
+        }
+    },
+    {
+        "Free Shop Items": {
+            "name": "Free Shop Items",
+            "desc": "Allows all shop items to be bought for 0 mana orbs."
+        }
+    },
+    {
+        "Gatekeeper Vault": {
+            "name": "Gatekeeper Vault",
+            "desc": "Unlocks the Gatekeeper's vault."
+        }
+    },
+    {
+        "Backup Stars Limit": {
+            "name": "Backup Stars Limit",
+            "desc": "Lets you backup data, even with less than 10 stars."
+        }
+    },
+
+
+    {
+        "Level Edit": {
+            "name": "Level Edit",
+            "desc": "Lets you edit any level, access the editor through the pause menu. (UNSTABLE)"
+        }
+    },
+    {
+        "Verify Hack": {
+            "name": "Verify Hack",
+            "desc": "Lets you upload unverified levels. Will automatically set levels to be verified."
+        }
+    },
+    {
+        "Copy Hack": {
+            "name": "Copy Hack",
+            "desc": "Lets you copy any level, without a password."
+        }
+    },
+    {
+        "No (C) Mark": {
+            "name": "No (C) Mark",
+            "desc": "Removes the (C) mark when uploading copied levels. Will automatically set levels to be original."
+        }
+    },
+    {
+        "Hide Testmode": {
+            "name": "Hide Testmode",
+            "desc": "Hides the 'Testmode' text when playing with a startpos."
+        }
+    },
+    {
+        "Rotation Hack": {
+            "name": "Rotation Hack",
+            "desc": "Allows you to rotate any object. Only works locally."
+        }
+    },
+    {
+        "Default Song Bypass": {
+            "name": "Default Song Bypass",
+            "desc": "Lets you use hidden default songs in the editor."
+        }
+    },
+
+    {
+        "No Progress Bar": {
+            "name": "No Progress Bar",
+            "desc": "Removes the progress bar! The precentage will still be shown."
+        }
+    },
+    {
+        "Progress Bar Position": {
+            "name": "Progress Bar Position",
+            "desc": "Sets the position of the progress bar."
+        }
+    },
+    {
+        "Hide Attempts": {
+            "name": "Hide Attempts",
+            "desc": "Whether or not the attempt label should be shown when playing a level."
+        }
+    },
+    {
+        "Attempt Opacity": {
+            "name": "Attempt Opacity",
+            "desc": "Determines how opaque the attempt label should be."
+        }
+    },
+
+    {
+        "Enable Patching": {
+            "name": "Enable Patching",
+            "desc": "Changes from hooking to patching. This also allows more hacks to be enabled. Only enable if necessary. [Windows Only]"
+        }
+    },
+    {
+        "Menu Opacity": {
+            "name": "Menu Opacity",
+            "desc": "Determines how opaque the menu should be."
+        }
+    },
+    {
+        "Theme": {
+            "name": "Theme",
+            "desc": "Select the UI theme for Prism Menu!"
+        }
+    },
+    {
+        "Import Theme": {
+            "name": "Import Theme",
+            "desc": "Imports a theme! [JSON file]"
+        }
+    },
+    {
+        "Live Theme Editing": {
+            "name": "Live Theme Editing",
+            "desc": "This will allow you to edit your custom theme while seeing changes on screen! (Warning: This may cause a memory leak.)"
+        }
+    },
+    {
+        "Show tooltips": {
+            "name": "Show tooltips",
+            "desc": "Whether or not tooltips should be shown when hovering over mods."
+        }
+    },
+    {
+        "Show Button": {
+            "name": "Show Button",
+            "desc": "Shows the button to activate the menu. It's recommended to keep this enabled for Android."
+        }
+    },
+    {
+        "Button Position X": {
+            "name": "Button Position X",
+            "desc": "The X position for the button to open the menu."
+        }
+    },
+    {
+        "Button Position Y": {
+            "name": "Button Position Y",
+            "desc": "The Y position for the button to open the menu."
+        }
+    },
+    {
+        "Language": {
+            "name": "Language",
+            "desc": "Sets the language for Prism Menu!"
+        }
+    },
+    {
+        "Restore Defaults": {
+            "name": "Restore Defaults",
+            "desc": "Disables all mods and resets everything to default."
+        }
+    },
+    {
+        "Credits": {
+            "name": "Credits",
+            "desc": "People who have helped with the mod!"
+        }
+    },
+    {
+        "Thank you to Electrify (ES), Jouca (FR), and dank_meme01 (RU) for translations!": {
+            "name": "Thank you to Electrify (ES), Jouca (FR), and dank_meme01 (RU) for translations!"
+        }
+    },
+    {
+        "And thank you for using the mod! I hope you enjoy using Prism Menu!": {
+            "name": "And thank you for using the mod! I hope you enjoy using Prism Menu!"
+        }
+    },
+    {
+        "Close Popup": {
+            "name": "Close Popup"
+        }
+    },
+    {
+        "Menu Scale": {
+            "name": "Menu Scale",
+            "desc": "Decides how big the text and buttons should be. (Will require restarting the game)"
+        }
+    }
+]
+

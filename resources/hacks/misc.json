@@ -1,11 +1,5 @@
 [
     {
-        "name": "No Progress Bar",
-        "desc": "Removes the progress bar! The precentage will still be shown.",
-        "opcodes": [],
-        "type": "bool"
-    },
-    {
         "name": "Progress Bar Position",
         "desc": "Sets the position of the progress bar.",
         "opcodes": [],

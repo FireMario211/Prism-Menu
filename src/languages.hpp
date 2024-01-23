@@ -22,6 +22,9 @@ class Lang {
                         //file = b::embed<"resources/langs/russian.json">().str();
                         file = Hacks::readFile("portuguesebr.json");
                         break;
+                    case 3: // German
+                        file = Hacks::readFile("german.json");
+                        break;
                 }
                 lang->langFile = matjson::parse(file).as_array();
                 lang->langId = langId;

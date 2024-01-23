@@ -1,9 +1,9 @@
 {
 	"geode": "2.0.0",
-	"version": "v1.1.3",
+	"version": "v1.1.4",
 	"gd": {
 		"win": "2.204",
-		"android": "2.200"
+		"android": "2.205"
     	},
 	"id": "firee.PrismMenu",
 	"name": "Prism Menu",
@@ -28,7 +28,9 @@
             		"resources/hacks/settings.json",
             		"resources/langs/spanish.json",
             		"resources/langs/french.json",
-            		"resources/langs/portuguesebr.json"
+            		"resources/langs/portuguesebr.json",
+                    "resources/langs/german.json",
+                    "resources/langs/russian.json"
 		]
 	},
     	"settings": {

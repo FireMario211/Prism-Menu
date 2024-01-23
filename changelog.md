@@ -1,3 +1,9 @@
+# v1.1.4 
+    - Added support for 2.205 on Android.
+    - Fixed issue where the shop crashes.
+    - Removed "No Progress Bar" as it's now added in 2.205
+    - Added German translations (Thank you huhnmitferrari!)
+    - Fixed Portuguese translations
 # v1.1.3 
     - Removed "Hide Testmode" from being considered a "cheat" in the "Cheat Indicator"
     - Added Portuguese translations (Obrigado Gazonk!)

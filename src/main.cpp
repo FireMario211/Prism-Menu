@@ -1,4 +1,5 @@
 // Prism Menu by Firee
+// i am looking at you. make sure you credit me and this mod, i worked hard on it ;-;
 // please do not judge my coding, ok thank you!!!
 #include "CustomSettings.hpp"
 #include <Geode/utils/file.hpp>
@@ -122,7 +123,7 @@ protected:
     float initialTouchY;
     float touchHoldTimer;
 
-    bool init() {
+    bool init(CCScene* p0) {
         if (!CCMenu::init())
             return false;
         HackItem* posX = Hacks::getHack("Button Position X");
@@ -134,7 +135,7 @@ protected:
         CCDirector::sharedDirector()->getTouchDispatcher()->setForcePrio(2);
         this->registerWithTouchDispatcher();
         this->setTouchEnabled(true);
-        this->setZOrder(CCScene::get()->getHighestChildZ() + 100);
+        this->setZOrder(p0->getHighestChildZ() + 100);
         allowDragging = true;
         isTouchOnButton = false;
         touchHoldTimer = 0.0f;
@@ -228,9 +229,9 @@ public:
         showMenu = !showMenu;
     }
 
-    static PrismButton* create() {
+    static PrismButton* create(CCScene* p0) {
         auto ret = new PrismButton();
-        if (ret && ret->init()) {
+        if (ret && ret->init(p0)) {
             ret->autorelease();
             return ret;
         }
@@ -257,7 +258,7 @@ class $modify(AchievementNotifier) {
             if (getNodeName(obj) != "PlayLayer") {
                 SceneManager::get()->forget(prismButton);
                 if (prismButton != nullptr) prismButton->removeFromParentAndCleanup(true);
-                prismButton = PrismButton::create();
+                prismButton = PrismButton::create(p0);
                 prismButton->setVisible(Hacks::isHackEnabled("Show Button"));
                 SceneManager::get()->keepAcrossScenes(prismButton);
             } else {
@@ -490,7 +491,7 @@ class $modify(MenuLayer) {
                         case 5: // Settings
                             jsonArray = matjson::parse(Hacks::getSettings()).as_array();
                             ImGui::Text("%s", currentLanguage->name("Prism Menu by Firee").c_str());
-                            const char* version = "V1.1.2 (Geode)";
+                            const char* version = "V1.1.4 (Geode)";
                             #ifdef GEODE_IS_WINDOWS
                             ImGui::Text("%s - Windows", version);
                             #else // why does android not like elif
@@ -677,7 +678,7 @@ class $modify(MenuLayer) {
                                     }
                                     // Popups
                                     if (ImGui::BeginPopupModal("Credits", nullptr)) {
-                                        auto creditLine1 = currentLanguage->name(currentLanguage->name("Thank you to Electrify (ES), Jouca (FR), and dank_meme01 (RU) for translations!"));
+                                        auto creditLine1 = currentLanguage->name(currentLanguage->name("Thank you to Electrify (ES), Jouca (FR), dank_meme01 (RU), Gazonk (BR), savvacorgi (RU), and huhnmitferrari (DE) for translations!"));
                                         auto creditLine2 = currentLanguage->name(currentLanguage->name("And thank you for using the mod! I hope you enjoy using Prism Menu!"));
                                         ImGui::Text("%s", creditLine1.c_str());
                                         ImGui::Separator();
@@ -745,7 +746,7 @@ class $modify(MenuLayer) {
                 ImGui::End();
             }
         });
-        prismButton = PrismButton::create();
+        prismButton = PrismButton::create(CCScene::get());
         prismButton->setVisible(Hacks::isHackEnabled("Show Button"));
         SceneManager::get()->keepAcrossScenes(prismButton);
         return true;
@@ -810,10 +811,8 @@ class $modify(CCKeyboardDispatcher) {
 #include <Geode/modify/LevelInfoLayer.hpp>
 #include <Geode/modify/GJBaseGameLayer.hpp>
 #include <Geode/modify/PauseLayer.hpp>
-
 class $modify(GJBaseGameLayer) {
-
-// No Mirror Transition, Instant Mirror Portal
+    // No Mirror Transition, Instant Mirror Portal
     void toggleFlipped(bool p0, bool p1) { // i spent a lot of time figuring out why CCActionTween wont hook, only to realize that p1 instantly transitions it
         if (Hacks::isHackEnabled("Enable Patching")) return GJBaseGameLayer::toggleFlipped(p0, p1);
         /*
@@ -856,7 +855,6 @@ CircleButtonSprite* createCheatIndicator(bool isHacking) {
     cheatIndicator->setPosition({winSize.width, winSize.height});
     return cheatIndicator;
 }
-
 class $modify(PlayLayer) {
     float previousPositionX = 0.0F;
     bool initedDeath = false;
@@ -990,7 +988,7 @@ class $modify(PlayLayer) {
         }
         m_fields->updateInit = m_fields->updateInit + 1;
         float attemptOpacity = Hacks::getHack("Attempt Opacity")->value.floatValue;
-        //if (!Hacks::isHackEnabled("No Progress Bar") && !Hacks::isHackEnabled("Hide Attempts") && attemptOpacity == 1.0F) return PlayLayer::postUpdate(p0);
+        //if (!Hacks::isHackEnabled("Hide Attempts") && attemptOpacity == 1.0F) return PlayLayer::postUpdate(p0);
         int currentPosition = Hacks::getHack("Progress Bar Position")->value.intValue;
         // stop dynamic_cast abuse
         auto node = static_cast<CCNode*>(this->getChildren()->objectAtIndex(0));
@@ -1022,18 +1020,6 @@ class $modify(PlayLayer) {
             }
         } else {
             auto winSize = CCDirector::sharedDirector()->getWinSize();
-            if (Hacks::isHackEnabled("No Progress Bar")) {
-                if (m_fields->previousPositionX == 0.0F) {
-                    m_fields->previousPositionX = m_fields->percentLabel->getPositionX();
-                }
-                m_fields->progressBar->setVisible(false);
-                m_fields->percentLabel->setPositionX(winSize.width / 2);
-            } else {
-                if (m_fields->previousPositionX != 0.0F) {
-                    m_fields->progressBar->setVisible(true);
-                    m_fields->percentLabel->setPositionX(m_fields->previousPositionX);
-                }
-            }
             m_fields->progressBar->setRotation(0.0F);
             switch (currentPosition) {
                 case 0: // Top (312)
@@ -1067,9 +1053,9 @@ class $modify(PlayLayer) {
         if (Hacks::isHackEnabled("Accurate Percentage")) {
             auto percentLabel = typeinfo_cast<CCLabelBMFont*>(this->getChildren()->objectAtIndex(7));
             if (percentLabel == nullptr) return;
-            float percent = (this->m_player1->getPositionX() / m_fields->gameLevel->m_levelLength) * 100; // 6
-            std::string percentStr = std::to_string(percent) + "%";
-            percentLabel->setString(percentStr.c_str());
+            //float percent = (this->m_player1->getPositionX() / m_fields->gameLevel->m_levelLength) * 100; // 6
+            //std::string percentStr = std::to_string(percent) + "%";
+            //percentLabel->setString(percentStr.c_str());
         }
     }
     /*void levelComplete() {
@@ -1078,32 +1064,8 @@ class $modify(PlayLayer) {
     }*/
 };
 
-
 /*
 class $modify(PlayLayer) {
-    float previousPositionX = 0.0F;
-    void destroyPlayer(PlayerObject* p0, GameObject* p1) {
-        
-        
-    }
-    // Safe Mode
-    void update(float p0) {
-        if (Hacks::isHackEnabled("Safe Mode") && !Hacks::isHackEnabled("Enable Patching")) {
-            m_isTestMode = true;
-        }
-
-        
-        
-        //std::cout << fmt::format("{},{},{}", this->unk508, this->unk518, this->unknown4d8) << std::endl;
-        return PlayLayer::update(p0);
-    }
-    bool init(GJGameLevel* p0) {
-        if (Hacks::isHackEnabled("Practice Music")) {
-            GameStatsManager::sharedState()->toggleEnableItem(UnlockType::GJItem, 0x11, true);
-        }
-        return PlayLayer::init(p0);
-    }
-
     // Accurate Percentage
     void updateProgressbar() {
         PlayLayer::updateProgressbar();
@@ -1297,7 +1259,6 @@ class $modify(GameStatsManager) {
         }
     }
 };
-
 /*
 class $modify(GameStatsManager) {
     // Almost all bypass

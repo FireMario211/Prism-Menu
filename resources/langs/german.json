@@ -1,0 +1,408 @@
+[
+    {
+        "§ Global": {
+            "name": "§ Global"
+        }
+    },
+    {
+        "¬ Player": {
+            "name": "¬ Spieler"
+        }
+    },
+    {
+        "ª Bypass": {
+            "name": "ª Bypass"
+        }
+    },
+    {
+        "« Creator": {
+            "name": "« Creator"
+        }
+    },
+    {
+        "··· Misc": {
+            "name": "··· Sonstiges"
+        }
+    },
+    {
+        "¶ Settings": {
+            "name": "¶ Einstellungen"
+        }
+    },
+
+    {
+        "Prism Menu by Firee": {
+            "name": "Prism Menu von Firee"
+        }
+    },
+
+    {
+        "Anticheat Bypass": {
+            "name": "Anticheat Bypass",
+            "desc": "Deaktiviert alle Anticheats. [Levels, Editor, etc]"
+        }
+    },
+    {
+        "Practice Music": {
+            "name": "Practice Musik",
+            "desc": "Aktiviert Practice Musik auch wenn es gesperrt ist."
+        }
+    },
+    {
+        "Safe Mode": {
+            "name": "Safe Modus",
+            "desc": "Pausiert jeglichen Fortschritt auf dem Level."
+        }
+    },
+    {
+        "Accurate Percentage": {
+            "name": "Genaue Prozentanzahl",
+            "desc": "Erlaubt Dezimalstellen im Level-Prozentanteil. [Über der Tausendstelstelle]"
+        }
+    },
+    {
+        "Layout Mode": {
+            "name": "Layout Modus",
+            "desc": "Entfernt jede Dekoration, die mit einem Level verbunden ist."
+        }
+    },
+    {
+        "No Transition": {
+            "name": "Kein Übergang",
+            "desc": "Verkürzt die Szenenübergangszeit auf 0s."
+        }
+    },
+    {
+        "Cheat Indicator": {
+            "name": "Cheat Anzeige",
+            "desc": "Zeigt ein Symbol an, um anzuzeigen, ob du Mods verwendest, die als cheaten angesehen werden könnten!"
+        }
+    },
+    {
+        "Speedhack": {
+            "name": "Speedhack",
+            "desc": "Ändert die Geschwindigkeit des Spiels und des Tons."
+        }
+    },
+    {
+        "FPS Bypass": {
+            "name": "FPS Bypass",
+            "desc": "Entsperrt deine FPS, um höher als 60 oder die Aktualisierungsrate deines Monitors zu sein."
+        }
+    },
+    {
+        "Reset Speedhack": {
+            "name": "Speedhack zurücksetzen",
+            "desc": "Setzt Speedhack auf normal zurück."
+        }
+    },
+
+    {
+        "Noclip": {
+            "name": "Noclip",
+            "desc": "Macht deinen Spieler unsterblich."
+        }
+    },
+    {
+        "No Spikes": {
+            "name": "Keine Spikes",
+            "desc": "Ignoriert Spike Objekte."
+        }
+    },
+    {
+        "No Hitbox": {
+            "name": "Keine Hitbox",
+            "desc": "Deaktiviert alle Objekt-Hitboxen. Spezielle Objekte sind deaktiviert."
+        }
+    },
+    {
+        "No Solids": {
+            "name": "Keine festen Objekte",
+            "desc": "Deaktiviert die meisten festen Hitboxen. Spezielle Objekte funktionieren weiterhin."
+        }
+    },
+    {
+        "Everything Hurts": {
+            "name": "Alles tut weh",
+            "desc": "Aua."
+        }
+    },
+    {
+        "No Mirror Transition": {
+            "name": "Kein Mirror-Übergang",
+            "desc": "Verhindert, dass der Bildschirm beim Durchqueren eines Mirror-Portals umgekehrt wird."
+        }
+    },
+    {
+        "Instant Mirror Portal": {
+            "name": "Sofortiges Mirror-Portal",
+            "desc": "Das umgekehrte Portal wechselt jetzt sofort."
+        }
+    },
+    {
+        "Freeze Player": {
+            "name": "Spieler einfrieren",
+            "desc": "Friert die Bewegung des Spielers ein."
+        }
+    },
+    {
+        "Jump Hack": {
+            "name": "Sprung-Hack",
+            "desc": "Ermöglicht das Springen in der Luft."
+        }
+    },
+    {
+        "Instant Complete": {
+            "name": "Sofortiger Abschluss",
+            "desc": "Schließt das Level sofort ab. (Nicht im Editor aktivieren)"
+        }
+    },
+    {
+        "Force Platformer Mode": {
+            "name": "Erzwinge Plattformer-Modus",
+            "desc": "Zwingt dich, im Plattformer-Modus zu sein, wenn du ein Level spielst."
+        }
+    },
+    {
+        "Change Gravity": {
+            "name": "Ändere die Gravitation",
+            "desc": "Ermöglicht das Ändern der Gravitation beim Springen oder Fallen."
+        }
+    },
+    {
+        "Gravity Value": {
+            "name": "Gravitationswert",
+            "desc": "Der Wert, auf den die Gravitation eingestellt werden sollte."
+        }
+    },
+
+    {
+        "Icon Bypass": {
+            "name": "Icon Bypass",
+            "desc": "Entperrt alle Icons."
+        }
+    },
+    {
+        "Text Length": {
+            "name": "Text Länge",
+            "desc": "Ermöglicht eine unbegrenzte Textlänge in Texteingaben."
+        }
+    },
+    {
+        "Character Filter": {
+            "name": "Zeichenfilter",
+            "desc": "Ermöglicht die Eingabe beliebiger Zeichen in allen Texteingaben."
+        }
+    },
+    {
+        "Slider Limit": {
+            "name": "Schieberegler Limit",
+            "desc": "Ermöglicht das Ziehen von Schiebereglern über das sichtbare Limit hinaus."
+        }
+    },
+    {
+        "Main Levels": {
+            "name": "Hauptlevel",
+            "desc": "Entsperrt gesperrte Demon-Levels."
+        }
+    },
+    {
+        "Guard Vault": {
+            "name": "Guard Vault",
+            "desc": "Entsperrt den Guard's Vault."
+        }
+    },
+    {
+        "Keymaster Vault": {
+            "name": "Keymaster Vault",
+            "desc": "Entsperrt den Keymaster's Vault."
+        }
+    },
+    {
+        "Treasure Room": {
+            "name": "Treasure Room",
+            "desc": "Ensperrt den Treasure Room."
+        }
+    },
+    {
+        "Free Shop Items": {
+            "name": "Kostenlose Shop Items",
+            "desc": "Ermöglicht den Kauf aller Shop Items für 0 Mana Orbs."
+        }
+    },
+    {
+        "Gatekeeper Vault": {
+            "name": "Gatekeeper Vault",
+            "desc": "Entsperrt den Gatekeeper's Vault."
+        }
+    },
+    {
+        "Backup Stars Limit": {
+            "name": "Grenze für Backup-Sterne",
+            "desc": "Ermöglicht das Sichern von Daten, selbst mit weniger als 10 Sternen."
+        }
+    },
+
+
+    {
+        "Level Edit": {
+            "name": "Level bearbeiten",
+            "desc": "Ermöglicht das Bearbeiten jedes Levels, greife auf den Editor über das Pause-Menü zu. (INSTABIL)"
+        }
+    },
+    {
+        "Verify Hack": {
+            "name": "Verify Hack",
+            "desc": "Ermöglicht das Veröffentlichen von unverifizierten Levels. Setzt Levels automatisch auf Verifiziert."
+        }
+    },
+    {
+        "Copy Hack": {
+            "name": "Copy Hack",
+            "desc": "Ermöglicht das kopieren jedes Levels, ohne ein Passwort."
+        }
+    },
+    {
+        "No (C) Mark": {
+            "name": "Kein (C) Symbol",
+            "desc": "Entfernt das (C) Symbol beim Hochladen kopierter Levels. Setzt Levels automatisch auf Original."
+        }
+    },
+    {
+        "Hide Testmode": {
+            "name": "Testmodus verstecken",
+            "desc": "Verbirgt den Text 'Testmodus', wenn du mit einer Startpos spielst."
+        }
+    },
+    {
+        "Rotation Hack": {
+            "name": "Rotations Hack",
+            "desc": "Ermöglicht dir, jedes Objekt zu rotieren. Funktioniert nur lokal."
+        }
+    },
+    {
+        "Default Song Bypass": {
+            "name": "Default Song Bypass",
+            "desc": "Ermöglicht dir die Verwendung von versteckter Default Songs im Editor."
+        }
+    },
+
+    {
+        "No Progress Bar": {
+            "name": "Keine Fortschrittsleiste",
+            "desc": "Entfernt die Fortschrittsleiste! Die Prozentanzahl wird weiterhin angezeigt."
+        }
+    },
+    {
+        "Progress Bar Position": {
+            "name": "Position der Fortschrittsleiste",
+            "desc": "Legt die Position der Fortschrittsleiste fest."
+        }
+    },
+    {
+        "Hide Attempts": {
+            "name": "Attempts Verbergen",
+            "desc": "Ob der Versuchslabel angezeigt werden soll oder nicht, wenn ein Level gespielt wird."
+        }
+    },
+    {
+        "Attempt Opacity": {
+            "name": "Attempt Deckkraft",
+            "desc": "Legt fest, wie deckend das Versuchslabel sein soll."
+        }
+    },
+
+    {
+        "Enable Patching": {
+            "name": "Patching aktivieren",
+            "desc": "Ändert von Hooking zu Patching. Dies ermöglicht auch das Aktivieren von mehr Hacks. Nur aktivieren, wenn notwendig. [Nur für Windows]"
+        }
+    },
+    {
+        "Menu Opacity": {
+            "name": "Menü Deckkraft",
+            "desc": "Legt fest, wie deckend das Menü sein soll."
+        }
+    },
+    {
+        "Theme": {
+            "name": "Theme",
+            "desc": "Wähle das UI Theme für das Prism Menu aus!"
+        }
+    },
+    {
+        "Import Theme": {
+            "name": "Theme importieren",
+            "desc": "Importiert ein Theme! [JSON Datei]"
+        }
+    },
+    {
+        "Live Theme Editing": {
+            "name": "Live Theme bearbeitung",
+            "desc": "Dies ermöglicht es Ihnen, Ihr benutzerdefiniertes Theme zu bearbeiten und Änderungen direkt auf dem Bildschirm zu sehen! (Warnung: Dies kann zu einem Memory Leak führen.)"
+        }
+    },
+    {
+        "Show Tooltips": {
+            "name": "Tooltips anzeigen",
+            "desc": "Ob Tooltips angezeigt werden sollen oder nicht, wenn der Mauszeiger über Mods schwebt."
+        }
+    },
+    {
+        "Show Button": {
+            "name": "Button anzeigen",
+            "desc": "Zeigt die Schaltfläche zum Aktivieren des Menüs an. Es wird empfohlen, dies für Android aktiviert zu lassen."
+        }
+    },
+    {
+        "Button Position X": {
+            "name": "Button Position X",
+            "desc": "Die X-Position für die Schaltfläche zum Öffnen des Menüs."
+        }
+    },
+    {
+        "Button Position Y": {
+            "name": "Button Position Y",
+            "desc": "Die Y-Position für die Schaltfläche zum Öffnen des Menüs."
+        }
+    },
+    {
+        "Language": {
+            "name": "Sprache",
+            "desc": "Legt die Sprache für Prism Menu fest"
+        }
+    },
+    {
+        "Restore Defaults": {
+            "name": "Standardeinstellungen wiederherstellen",
+            "desc": "Deaktiviert alle Mods und setzt alles auf die Standardeinstellungen zurück."
+        }
+    },
+    {
+        "Credits": {
+            "name": "Credits",
+            "desc": "Leute, die bei der Mod geholfen haben!"
+        }
+    },
+    {
+        "Thank you to Electrify (ES), Jouca (FR), dank_meme01 (RU), Gazonk (BR), savvacorgi (RU), and huhnmitferrari (DE) for translations!": {
+            "name": "Danke an Electrify (ES), Jouca (FR), dank_meme01 (RU), Gazonk (BR), savvacorgi (RU), und huhnmitferrari (DE) für die Übersetzungen!"
+        }
+    },
+    {
+        "And thank you for using the mod! I hope you enjoy using Prism Menu!": {
+            "name": "Und danke, dass du die Mod benutzt! Ich hoffe, du hast Spaß beim Verwenden von Prism Menu!"
+        }
+    },
+    {
+        "Close Popup": {
+            "name": "Popup schließen"
+        }
+    },
+    {
+        "Menu Scale": {
+            "name": "Menü Größe",
+            "desc": "Legt fest, wie groß der Text und die Schaltflächen sein sollen. (Ein Neustart des Spiels ist erforderlich)"
+        }
+    }
+]

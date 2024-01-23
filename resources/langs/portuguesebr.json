@@ -93,7 +93,7 @@
     {
         "Reset Speedhack": {
             "name": "Resetar Speedhack",
-            "desc": "Redefine a velocidade de volta ao normal."
+            "desc": "Reseta a velocidade do jogo."
         }
     },
 
@@ -288,21 +288,9 @@
     },
 
     {
-        "No Progress Bar": {
-            "name": "Sem barra de progresso",
-            "desc": "Tô cansado de fazer essas descrições de coisas óbvias ):."
-        }
-    },
-    {
         "Progress Bar Position": {
             "name": "Local da barra de progresso",
             "desc": "meio óbvio."
-        }
-    },
-    {
-        "Hide Attempts": {
-            "name": "Esconder tentativas",
-            "desc": "Esconde as tentativas nos níveis."
         }
     },
     {
@@ -385,8 +373,8 @@
         }
     },
     {
-        "Thank you to Electrify (ES), Jouca (FR), dank_meme01 (RU), and Gazonk (BR) for translations!": {
-            "name": "Obrigado a Electrify (ES), Jouca (FR), dank_meme01 (RU), e Gazonk (BR) Por traduções!"
+        "Thank you to Electrify (ES), Jouca (FR), dank_meme01 (RU), Gazonk (BR), savvacorgi (RU), and huhnmitferrari (DE) for translations!": {
+            "name": "Obrigado a Electrify (ES), Jouca (FR), dank_meme01 (RU), Gazonk (BR), savvacorgi (RU), e huhnmitferrari (DE) Por traduções!"
         }
     },
     {
@@ -401,8 +389,8 @@
     },
     {
         "Menu Scale": {
-            "name": "Menu Scale",
-            "desc": "Decide o tamanho do texto e dos botões."
+            "name": "Escala do Menu",
+            "desc": "Define o tamanho do menu (resete o jogo para funcionar)"
         }
     }
 ]
