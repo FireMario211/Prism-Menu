@@ -247,27 +247,37 @@ bool firstLoad = false;
 bool changedOpacity = false;
 bool changedMenuScale = false;
 // early load is amazing!
-
+#if 0
 class $modify(AchievementNotifier) {
     // WHY DO I HAVE TO DO THIS, also menu layer will only work after you change scenes. bad!
     void willSwitchToScene(CCScene* p0) {
         AchievementNotifier::willSwitchToScene(p0);
+        std::cout << "step 0" << std::endl;
         if (prismButton != nullptr && p0 != nullptr) {
+            std::cout << "step 1" << std::endl;
             auto obj = p0->getChildren()->objectAtIndex(0);
+            std::cout << "step 2" << std::endl;
             if (getNodeName(obj) == "LoadingLayer") return; // fix the bug!
+            std::cout << "step 3" << std::endl;
             if (getNodeName(obj) != "PlayLayer") {
-                SceneManager::get()->forget(prismButton);
-                if (prismButton != nullptr) prismButton->removeFromParentAndCleanup(true);
+                std::cout << "step 4" << std::endl;
+                if (prismButton != nullptr) {
+                    SceneManager::get()->forget(prismButton);
+                    if (prismButton != nullptr) prismButton->removeFromParentAndCleanup(true);
+                }
+                std::cout << "step 5" << std::endl;
                 prismButton = PrismButton::create(p0);
                 prismButton->setVisible(Hacks::isHackEnabled("Show Button"));
                 SceneManager::get()->keepAcrossScenes(prismButton);
             } else {
-                SceneManager::get()->forget(prismButton);
+                std::cout << "step 6" << std::endl;
+                if (prismButton != nullptr) SceneManager::get()->forget(prismButton);
                 if (prismButton != nullptr) prismButton->removeFromParentAndCleanup(true);
             }
         }
     }
 };
+#endif
 class $modify(MenuLayer) {
     bool init() {
         if (!MenuLayer::init()) return false;
@@ -949,7 +959,7 @@ class $modify(PlayLayer) {
         return true;
     }
     void onQuit() {
-        if (prismButton != nullptr && Hacks::isHackEnabled("Show Button")) prismButton->setVisible(true);
+        if (prismButton != nullptr && Hacks::isHackEnabled("Show Button")) prismButton->setVisible(true); // look at this
         m_fields->gameLevel->m_levelType = m_fields->oldLevelType;
         m_fields->initedDeath = false;
         PlayLayer::onQuit();
