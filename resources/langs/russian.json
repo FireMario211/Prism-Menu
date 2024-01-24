@@ -349,7 +349,7 @@
         }
     },
     {
-        "Show tooltips": {
+        "Show Tooltips": {
             "name": "Показывать подсказки",
             "desc": "Показывает подсказки при наведении на модификации."
         }
@@ -391,8 +391,8 @@
         }
     },
     {
-        "Thank you to Electrify (ES), Jouca (FR), and dank_meme01 (RU) for translations!": {
-            "name": "Спасибо Electrify (ES), Jouca (FR), и dank_meme01 (RU) за переводы!"
+        "Thank you to Electrify (ES), Jouca (FR), dank_meme01, savvacorgi, МегаСвятой (RU), Gazonk (BR), huhnmitferrari (DE), and Ignis (CS) for translations!": {
+            "name": "Спасибо Electrify (ES), Jouca (FR), dank_meme01, savvacorgi, МегаСвятой (RU), Gazonk (BR), huhnmitferrari (DE), и Ignis (CS) за переводы!"
         }
     },
     {

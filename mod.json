@@ -1,6 +1,6 @@
 {
 	"geode": "2.0.0",
-	"version": "v1.1.41",
+	"version": "v1.1.5",
 	"gd": {
 		"win": "2.204",
 		"android": "2.205"
@@ -15,6 +15,7 @@
 		"files": [
 			"resources/icon.png",
 			"resources/Screenshot1.png",
+            "resources/gato.jpg",
             		"resources/Screenshot2.png",
             		"resources/PrismMenu.otf",
             		"resources/Hack-Regular.ttf",
@@ -30,7 +31,8 @@
             		"resources/langs/french.json",
             		"resources/langs/portuguesebr.json",
                     "resources/langs/german.json",
-                    "resources/langs/russian.json"
+                    "resources/langs/russian.json",
+                    "resources/langs/czech.json"
 		]
 	},
     	"settings": {

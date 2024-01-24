@@ -491,7 +491,7 @@ class $modify(MenuLayer) {
                         case 5: // Settings
                             jsonArray = matjson::parse(Hacks::getSettings()).as_array();
                             ImGui::Text("%s", currentLanguage->name("Prism Menu by Firee").c_str());
-                            const char* version = "V1.1.4 (Geode)";
+                            const char* version = "V1.1.5 (Geode)";
                             #ifdef GEODE_IS_WINDOWS
                             ImGui::Text("%s - Windows", version);
                             #else // why does android not like elif
@@ -678,7 +678,9 @@ class $modify(MenuLayer) {
                                     }
                                     // Popups
                                     if (ImGui::BeginPopupModal("Credits", nullptr)) {
-                                        auto creditLine1 = currentLanguage->name(currentLanguage->name("Thank you to Electrify (ES), Jouca (FR), dank_meme01 (RU), Gazonk (BR), savvacorgi (RU), and huhnmitferrari (DE) for translations!"));
+                                        auto creditLine1 = currentLanguage->name(currentLanguage->name(
+"Thank you to Electrify (ES), Jouca (FR), dank_meme01, savvacorgi, МегаСвятой (RU), Gazonk (BR), huhnmitferrari (DE), and Ignis (CS) for translations!"
+                                        ));
                                         auto creditLine2 = currentLanguage->name(currentLanguage->name("And thank you for using the mod! I hope you enjoy using Prism Menu!"));
                                         ImGui::Text("%s", creditLine1.c_str());
                                         ImGui::Separator();

@@ -77,13 +77,23 @@ class Themes {
         // Future Dark style by rewrking from ImThemes
         ImGuiStyle& style = ImGui::GetStyle();
         ImGuiIO& io = ImGui::GetIO();
-        ImFontConfig config;
-        config.GlyphRanges = io.Fonts->GetGlyphRangesCyrillic();
+        ImFontGlyphRangesBuilder builder;
+
+        // probably a bad idea to loop 127 times every frame, but this will only happen if the user has like "Live Theme Editing" enabled
+        // Add Czech character ranges manually
+        for (int i = 0x0100; i <= 0x017F; ++i) { // Czech characters in Unicode range
+            builder.AddChar(i);
+        }
+
+        builder.AddRanges(io.Fonts->GetGlyphRangesCyrillic()); // russian chars
+
+        ImVector<ImWchar> ranges;
+        builder.BuildRanges(&ranges);
         std::string fontName = (Mod::get()->getResourcesDir() / "PrismMenu.otf").string();
         //std::string fontName = (Mod::get()->getResourcesDir() / "Hack-Regular.ttf").string();
         float menuScale = Hacks::getHack("Menu Scale")->value.floatValue;
-        io.Fonts->AddFontFromFileTTF(fontName.c_str(), theme["FontSize"].as_int() * menuScale, &config);
-        io.Fonts->AddFontFromFileTTF(fontName.c_str(), theme["IconSize"].as_int() * menuScale, &config);
+        io.Fonts->AddFontFromFileTTF(fontName.c_str(), theme["FontSize"].as_int() * menuScale, NULL, ranges.Data);
+        io.Fonts->AddFontFromFileTTF(fontName.c_str(), theme["IconSize"].as_int() * menuScale, NULL, ranges.Data);
         
         style.Alpha = 1.0f;
         style.DisabledAlpha = 1.0f;

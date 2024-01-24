@@ -1,0 +1,400 @@
+[
+    {
+        "§ Global": {
+            "name": "§ Globální"
+        }
+    },
+    {
+        "¬ Player": {
+            "name": "¬ Hráč"
+        }
+    },
+    {
+        "ª Bypass": {
+            "name": "ª Bypass"
+        }
+    },
+    {
+        "« Creator": {
+            "name": "« Tvůrce"
+        }
+    },
+    {
+        "··· Misc": {
+            "name": "··· Ostatní"
+        }
+    },
+    {
+        "¶ Settings": {
+            "name": "¶ Nastavení"
+        }
+    },
+    {
+        "Prism Menu by Firee": {
+            "name": "Prism Menu od Firee"
+        }
+    },
+    {
+        "Anticheat Bypass": {
+            "name": "Anticheat Bypass",
+            "desc": "Vypne všechen anticheat. [Levely, Editor, atd.]"
+        }
+    },
+    {
+        "Practice Music": {
+            "name": "Practice Music",
+            "desc": "Zapne Practice Music, i když je uzamčenen."
+        }
+    },
+    {
+        "Safe Mode": {
+            "name": "Safe Mode",
+            "desc": "Zastaví jakýkoliv progres na levelu."
+        }
+    },
+    {
+        "Accurate Percentage": {
+            "name": "Přesná procenta",
+            "desc": "Umožní mít desetinná místa v procentech levelu. [Nad tisíciny]"
+        }
+    },
+    {
+        "Layout Mode": {
+            "name": "Layout Mode",
+            "desc": "Odstraní všechny dekorace z levelu."
+        }
+    },
+    {
+        "No Transition": {
+            "name": "Žádný Přechod",
+            "desc": "Zkrátí přechody mezi scénami na 0s."
+        }
+    },
+    {
+        "Cheat Indicator": {
+            "name": "Cheat Indikátor",
+            "desc": "Ukáže ikonu k rozpoznání, zda používáš nějaké módy, které mohou být považovány za podvádění!"
+        }
+    },
+    {
+        "Speedhack": {
+            "name": "Speedhack",
+            "desc": "Změní rychlost hry a zvuku."
+        }
+    },
+    {
+        "FPS Bypass": {
+            "name": "FPS Bypass",
+            "desc": "Odemkne tvá FPS, aby byla vyšší než 60 či vyšší než obnovovací frekvence tvého monitoru."
+        }
+    },
+    {
+        "Reset Speedhack": {
+            "name": "Resetovat Speedhack",
+            "desc": "Resetuje speedhack zpátky do normálu."
+        }
+    },
+    {
+        "Noclip": {
+            "name": "Noclip",
+            "desc": "Udělá hráče nesmrtelného."
+        }
+    },
+    {
+        "No Spikes": {
+            "name": "Žádné Ostny",
+            "desc": "Ignoruje ostnové objekty."
+        }
+    },
+    {
+        "No Hitbox": {
+            "name": "Žádný Hitbox",
+            "desc": "Vypne hitboxy všech objektů. Speciální objekty jsou vypnuty."
+        }
+    },
+    {
+        "No Solids": {
+            "name": "Žádné Solidní Objekty",
+            "desc": "Vypne většinu hitboxů solidních objektů. Speciální objekty stále fungují."
+        }
+    },
+    {
+        "Everything Hurts": {
+            "name": "Všechno Bolí",
+            "desc": "Au."
+        }
+    },
+    {
+        "No Mirror Transition": {
+            "name": "Žádné Zrcadlové Přechody",
+            "desc": "Zabrání otočení obrazovky při zrcadlovém portálu."
+        }
+    },
+    {
+        "Instant Mirror Portal": {
+            "name": "Instantní Zrcadlový Portál",
+            "desc": "Zrcadlové portály teď ihned otáčí."
+        }
+    },
+    {
+        "Freeze Player": {
+            "name": "Zmrazit Hráče",
+            "desc": "Zmrazí pohyb hráče."
+        }
+    },
+    {
+        "Jump Hack": {
+            "name": "Jump Hack",
+            "desc": "Umožní skákat ve vzduchu."
+        }
+    },
+    {
+        "Instant Complete": {
+            "name": "Instantní Dokončení",
+            "desc": "Instantně dokončí level. (Nezapínat v editoru)"
+        }
+    },
+    {
+        "Force Platformer Mode": {
+            "name": "Vnucení Platformer Módu",
+            "desc": "Vnutí tě být v platformer módu při hraní jakéhokoliv levelu."
+        }
+    },
+    {
+        "Change Gravity": {
+            "name": "Změnit Gravitaci",
+            "desc": "Umožní ti změnit gravitaci při skoku či pádu."
+        }
+    },
+    {
+        "Gravity Value": {
+            "name": "Gravitační Síla",
+            "desc": "Jak silná bude gravitace."
+        }
+    },
+    {
+        "Icon Bypass": {
+            "name": "Icon Bypass",
+            "desc": "Odemkne všechny ikony."
+        }
+    },
+    {
+        "Text Length": {
+            "name": "Délka Textu",
+            "desc": "Umožní pro neomezenou délku textu při psaní jakéhokoliv textu."
+        }
+    },
+    {
+        "Character Filter": {
+            "name": "Znakový Filtr",
+            "desc": "Umožní ti napsat jakýkoliv znak při psaní textu."
+        }
+    },
+    {
+        "Slider Limit": {
+            "name": "Limit Posunů",
+            "desc": "Umožní posuny být přetáhnuty nad viditelný limit."
+        }
+    },
+    {
+        "Main Levels": {
+            "name": "Hlavní Levely",
+            "desc": "Odemkne zamčené demon levely."
+        }
+    },
+    {
+        "Guard Vault": {
+            "name": "Guard Vault",
+            "desc": "Odemkne guardův vault."
+        }
+    },
+    {
+        "Keymaster Vault": {
+            "name": "Keymaster Vault",
+            "desc": "Odemkne keymasterův vault."
+        }
+    },
+    {
+        "Treasure Room": {
+            "name": "Treasure Room",
+            "desc": "Odemkne treasure room."
+        }
+    },
+    {
+        "Free Shop Items": {
+            "name": "Bezplatný Obchod",
+            "desc": "Umožní všechny věci v obchodech být koupeny za 0 mana orbů."
+        }
+    },
+    {
+        "Gatekeeper Vault": {
+            "name": "Gatekeeper Vault",
+            "desc": "Odemkne Gatekeeperův vault."
+        }
+    },
+    {
+        "Backup Stars Limit": {
+            "name": "Limit Uložení Hvězd",
+            "desc": "Umožní ti uložit data, i s méně než 10 hvězdy."
+        }
+    },
+    {
+        "Level Edit": {
+            "name": "Level Edit",
+            "desc": "Umožní ti editovat jakýkoliv level, vstup do editoru přes menu pauzy. (NESTABILNÍ)"
+        }
+    },
+    {
+        "Verify Hack": {
+            "name": "Verify Hack",
+            "desc": "Umožní ti nahrát neverifikováne levely. Automaticky nastaví levely, aby byly verifikovány."
+        }
+    },
+    {
+        "Copy Hack": {
+            "name": "Copy Hack",
+            "desc": "Umožní ti zkopírovat jakýkoliv level, bez hesla."
+        }
+    },
+    {
+        "No (C) Mark": {
+            "name": "Žádná (C) Značka",
+            "desc": "Odstraní (C) značku při nahrávání zkopírovaných levelů. Automaticky nastaví levely, aby byly originální."
+        }
+    },
+    {
+        "Hide Testmode": {
+            "name": "Skrýt Testmode",
+            "desc": "Skryje \"Testmode\" text při hraní levelu se start pozicí."
+        }
+    },
+    {
+        "Rotation Hack": {
+            "name": "Rotation Hack",
+            "desc": "Umožní ti otáčet jakýkoliv objekt. Funguje pouze lokálně."
+        }
+    },
+    {
+        "Default Song Bypass": {
+            "name": "Default Song Bypass",
+            "desc": "Umožní ti používat skryté defaultní písně v editoru."
+        }
+    },
+    {
+        "No Progress Bar": {
+            "name": "Žádný Progres Bar",
+            "desc": "Odstraní progres bar! Procenta budou stále ukázána."
+        }
+    },
+    {
+        "Progress Bar Position": {
+            "name": "Pozice Progres Baru",
+            "desc": "Nastaví pozici progres baru."
+        }
+    },
+    {
+        "Hide Attempts": {
+            "name": "Skrýt Pokusy",
+            "desc": "Skryje počet pokusů při hraní levelů."
+        }
+    },
+    {
+        "Attempt Opacity": {
+            "name": "Průhlednost Pokusů",
+            "desc": "Určuje jak průhledný počet pokusů bude."
+        }
+    },
+    {
+        "Enable Patching": {
+            "name": "Zapnout Patching",
+            "desc": "Mění z hooking na patching. Také umožňuje více hackům fungovat. Pouze zapni pokud je to potřeba. [Pouze na Windows]"
+        }
+    },
+    {
+        "Menu Opacity": {
+            "name": "Průhlednost Menu",
+            "desc": "Určuje jak průhledné bude toto menu."
+        }
+    },
+    {
+        "Theme": {
+            "name": "Téma",
+            "desc": "Vyber si UI téma pro Prism Menu!"
+        }
+    },
+    {
+        "Import Theme": {
+            "name": "Importovat Téma",
+            "desc": "Importuje téma! [JSON soubor]"
+        }
+    },
+    {
+        "Live Theme Editing": {
+            "name": "Živé Editování Témata",
+            "desc": "Umožní ti editovat svoje vlastní téma a při tom živě vidět změny na obrazovce! (Varování: Může způsobit únik paměti.)"
+        }
+    },
+    {
+        "Show Tooltips": {
+            "name": "Ukázat Popisky",
+            "desc": "Ukáže popisky při najetí na módy."
+        }
+    },
+    {
+        "Show Button": {
+            "name": "Ukázat Tlačítko",
+            "desc": "Ukáže tlačítko pro zobrazení mena. Je doporučeno zanechat toto zapnuto pokud jsi na Androidu."
+        }
+    },
+    {
+        "Button Position X": {
+            "name": "X Pozice Tlačítka",
+            "desc": "X pozice pro tlačítko na zobrazení mena."
+        }
+    },
+    {
+        "Button Position Y": {
+            "name": "Y Pozice Tlačítka",
+            "desc": "Y pozice pro tlačítko na zobrazení mena."
+        }
+    },
+    {
+        "Language": {
+            "name": "Jazyk",
+            "desc": "Nastaví jazyk pro Prism Menu!"
+        }
+    },
+    {
+        "Restore Defaults": {
+            "name": "Obnovit Default",
+            "desc": "Vypne všechny módy a resetuje vše na defaultní nastavení."
+        }
+    },
+    {
+        "Credits": {
+            "name": "Titulky",
+            "desc": "Lidé, co pomohli s tímto módem!"
+        }
+    },
+    {
+        "Thank you to Electrify (ES), Jouca (FR), dank_meme01, savvacorgi, МегаСвятой (RU), Gazonk (BR), huhnmitferrari (DE), and Ignis (CS) for translations!": {
+            "name": "Děkuji Electrify (ES), Jouca (FR), dank_meme01, savvacorgi, МегаСвятой (RU), Gazonk (BR), huhnmitferrari (DE), a Ignis (CS) za překlady!"
+        }
+    },
+    {
+        "And thank you for using the mod! I hope you enjoy using Prism Menu!": {
+            "name": "A děkuji tobě pro používání tohoto módu! Doufám, že si užiješ Prism Menu!"
+        }
+    },
+    {
+        "Close Popup": {
+            "name": "Zavřít Vyskakovací Okno"
+        }
+    },
+    {
+        "Menu Scale": {
+            "name": "Velikost Mena",
+            "desc": "Určuje jak velký bude text a tlačítka. (Bude potřeba restartovat hru)"
+        }
+    }
+]

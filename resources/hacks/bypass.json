@@ -79,7 +79,8 @@
             {"addr": "0xF33BB", "on": "8B 93 10 01 00 00", "off": "8B 93 14 01 00 00"},
             {"addr": "0x14B339", "on": "2B B3 10 01 00 00", "off": "2B B3 14 01 00 00"}
         ],
-        "type": "bool"
+        "type": "bool",
+        "winOnly": true
     },
     {
         "name": "Backup Stars Limit",
