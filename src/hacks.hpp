@@ -273,14 +273,14 @@ class Hacks {
                     reinterpret_cast<void*>(base::getCocos() + std::stoul(addrStr, nullptr, 16)),
                     bytes
                 ).has_error()) {
-                    log::error(fmt::format("Something went wrong when trying to patch \"{}\"", name));
+                    log::error("Something went wrong when trying to patch \"{}\"", name);
                 }
             } else {
                 if (Mod::get()->patch(
                     reinterpret_cast<void*>(base::get() + std::stoul(addrStr, nullptr, 16)),
                     bytes
                 ).has_error()) {
-                    log::error(fmt::format("Something went wrong when trying to patch \"{}\"", name));
+                    log::error("Something went wrong when trying to patch \"{}\"", name);
                 }
             }
         }
