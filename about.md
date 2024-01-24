@@ -27,10 +27,11 @@ Press on the circle button located on the left corner, or press `Tab` to open th
 * [Electrify](https://www.youtube.com/channel/UCxYliOd2aV6iZuc5wuG9QxA) - Translations for Spanish
 * [Jouca](https://twitter.com/JoucaJouca) - Translations for French
 * [dankmeme01](https://github.com/dankmeme01) - Proofreading for Russian
-* МегаСвятой - Translations for Russian
+* MegaSa1nt - Translations for Russian
 * savvacorgi - Translations for Russian
 * [Gazonk](https://www.youtube.com/channel/UCgp5Tql2b6Y1Xcni82pPxmA) - Translations for Brazilian Portuguese
 * huhnmitferrari - Translations for German
 * [Ignis](https://twitter.com/IgnisPeaks0) - Translations for Czech
+* [RazIX](https://twitter.com/RzaIX_) - Translations for Indonesian
 
 Send any suggestions or report any issues to the GitHub Repository. I hope you enjoy using the mod!

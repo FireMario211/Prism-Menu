@@ -31,6 +31,8 @@ class Lang {
                     case 5: // Czech
                         file = Hacks::readFile("czech.json");
                         break;
+                    case 6: // Indonesian
+                        file = Hacks::readFile("indonesian.json");
                 }
                 lang->langFile = matjson::parse(file).as_array();
                 lang->langId = langId;

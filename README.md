@@ -11,6 +11,7 @@ A mod menu made in Geode for Geometry Dash
 - Add startpos switcher
 - Add "uncomplete level" hack
 - Add "Hitbox on Death" & "Hitbox Trail"
+- Add "Randomize Gamemode" just for fun
 - Add a "Replay Bot"
 - Support more languages
 

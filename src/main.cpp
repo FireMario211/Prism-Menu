@@ -132,7 +132,6 @@ protected:
         this->addChild(menuButton);
         this->setPositionX(posX->value.intValue);
         this->setPositionY(posY->value.intValue);
-        CCDirector::sharedDirector()->getTouchDispatcher()->setForcePrio(2);
         this->registerWithTouchDispatcher();
         this->setTouchEnabled(true);
         this->setZOrder(p0->getHighestChildZ() + 100);
@@ -255,6 +254,7 @@ class $modify(AchievementNotifier) {
         AchievementNotifier::willSwitchToScene(p0);
         if (prismButton != nullptr && p0 != nullptr) {
             auto obj = p0->getChildren()->objectAtIndex(0);
+            if (getNodeName(obj) == "LoadingLayer") return; // fix the bug!
             if (getNodeName(obj) != "PlayLayer") {
                 SceneManager::get()->forget(prismButton);
                 if (prismButton != nullptr) prismButton->removeFromParentAndCleanup(true);
@@ -262,7 +262,8 @@ class $modify(AchievementNotifier) {
                 prismButton->setVisible(Hacks::isHackEnabled("Show Button"));
                 SceneManager::get()->keepAcrossScenes(prismButton);
             } else {
-                prismButton->setVisible(false);
+                SceneManager::get()->forget(prismButton);
+                if (prismButton != nullptr) prismButton->removeFromParentAndCleanup(true);
             }
         }
     }
@@ -491,7 +492,7 @@ class $modify(MenuLayer) {
                         case 5: // Settings
                             jsonArray = matjson::parse(Hacks::getSettings()).as_array();
                             ImGui::Text("%s", currentLanguage->name("Prism Menu by Firee").c_str());
-                            const char* version = "V1.1.5 (Geode)";
+                            const char* version = "V1.2.0 (Geode)";
                             #ifdef GEODE_IS_WINDOWS
                             ImGui::Text("%s - Windows", version);
                             #else // why does android not like elif

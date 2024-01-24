@@ -1,3 +1,7 @@
+# v1.2.0 
+    - Added Indonesian Translations (Thank you RzaIX!)
+    - Fixed bug with Texture Loader crashing when applying a texture.
+    - Fixed bug with pause buttons not working.
 # v1.1.5
     - Added Russian Translations (Thank you MegaSa1nt, savvacorgi, and dankmeme01!)
     - Added Czech Translations (Thank you Ignis!)

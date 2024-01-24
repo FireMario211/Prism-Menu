@@ -1,0 +1,410 @@
+[
+    {
+        "§ Global": {
+            "name": "§ Global"
+        }
+    },
+    {
+        "¬ Player": {
+            "name": "¬ Pemain"
+        }
+    },
+    {
+        "ª Bypass": {
+            "name": "ª Bypass"
+        }
+    },
+    {
+        "« Creator": {
+            "name": "« Kreator"
+        }
+    },
+    {
+        "··· Misc": {
+            "name": "··· Lain-lain"
+        }
+    },
+    {
+        "¶ Settings": {
+            "name": "¶ Pengaturan"
+        }
+    },
+
+    {
+        "Prism Menu by Firee": {
+            "name": "Prism Menu oleh Firee"
+        }
+    },
+
+
+
+    {
+        "Anticheat Bypass": {
+            "name": "Anticheat Bypass",
+            "desc": "Menonaktifkan semua anticheats. [Levels, Editor, dll]"
+        }
+    },
+    {
+        "Practice Music": {
+            "name": "Practice Music",
+            "desc": "Mengaktifkan Practice Music meskipun terkunci."
+        }
+    },
+    {
+        "Safe Mode": {
+            "name": "Mode Aman",
+            "desc": "Menjeda kemajuan apa pun yang sedang dilakukan pada level tersebut."
+        }
+    },
+    {
+        "Accurate Percentage": {
+            "name": "Persentase Akurat",
+            "desc": "Memungkinkan desimal dalam persentase level. [Melampaui tempat seperseribu]"
+        }
+    },
+    {
+        "Layout Mode": {
+            "name": "Mode Tata Letak",
+            "desc": "Menghapus semua dekorasi yang terkait dengan level."
+        }
+    },
+    {
+        "No Transition": {
+            "name": "Tidak Ada Transisi",
+            "desc": "Mempersingkat waktu transisi adegan menjadi 0 detik."
+        }
+    },
+    {
+        "Cheat Indicator": {
+            "name": "Indikator Cheat",
+            "desc": "Menampilkan ikon untuk mengetahui apakah Anda menggunakan mod yang mungkin dianggap curang atau tidak!"
+        }
+    },
+    {
+        "Speedhack": {
+            "name": "Speedhack",
+            "desc": "Mengubah kecepatan permainan dan audio."
+        }
+    },
+    {
+        "FPS Bypass": {
+            "name": "FPS Bypass",
+            "desc": "Membuka kunci FPS Anda menjadi lebih tinggi dari 60 atau kecepatan refresh monitor Anda."
+        }
+    },
+    {
+        "Reset Speedhack": {
+            "name": "Menyetel ulang Speedhack",
+            "desc": "Menyetel ulang speedhack kembali normal."
+        }
+    },
+
+    {
+        "Noclip": {
+            "name": "Noclip",
+            "desc": "Membuat pemain menjadi tak terkalahkan [Tembus jir]."
+        }
+    },
+    {
+        "No Spikes": {
+            "name": "Tidak Ada Spike",
+            "desc": "Mengabaikan objek lonjakan."
+        }
+    },
+    {
+        "No Hitbox": {
+            "name": "Tidak Ada Hitbox",
+            "desc": "Menonaktifkan semua hitbox objek. Objek khusus dinonaktifkan."
+        }
+    },
+    {
+        "No Solids": {
+            "name": "Tidak Solid",
+            "desc": "Menonaktifkan sebagian besar hitbox solid. Benda khusus masih berfungsi."
+        }
+    },
+    {
+        "Everything Hurts": {
+            "name": "Semuanya menyakitkan",
+            "desc": "Aduhai."
+        }
+    },
+    {
+        "No Mirror Transition": {
+            "name": "Tidak Ada Transisi Mirror",
+            "desc": "Mencegah layar terbalik pada portal mirror."
+        }
+    },
+    {
+        "Instant Mirror Portal": {
+            "name": "Portal Mirror Instan",
+            "desc": "Portal berbalik secara langsung beralih."
+        }
+    },
+    {
+        "Freeze Player": {
+            "name": "Bekukan Pemain",
+            "desc": "Membekukan pergerakan pemain."
+        }
+    },
+    {
+        "Jump Hack": {
+            "name": "Lompat Bebas",
+            "desc": "Memungkinkan untuk melompat di udara [Menuju tak terbatas dan melampauinya!]"
+        }
+    },
+    {
+        "Instant Complete": {
+            "name": "Selesai Instan",
+            "desc": "Selesaikan level secara instan. (Jangan aktifkan di Editor)"
+        }
+    },
+    {
+        "Force Platformer Mode": {
+            "name": "Memaksa Mode Platformer",
+            "desc": "Memaksa Anda berada dalam Mode Platformer saat memainkan suatu level."
+        }
+    },
+    {
+        "Change Gravity": {
+            "name": "Merubah gravitasi",
+            "desc": "Memungkinkan Anda mengubah gravitasi saat melompat atau jatuh."
+        }
+    },
+    {
+        "Gravity Value": {
+            "name": "Nilai Gravitasi",
+            "desc": "Nilai gravitasi harus ditetapkan."
+        }
+    },
+
+    {
+        "Icon Bypass": {
+            "name": "Ikon Bypass",
+            "desc": "Membuka kunci semua ikon."
+        }
+    },
+    {
+        "Text Length": {
+            "name": "Panjang Teks",
+            "desc": "Memungkinkan panjang teks tak terbatas dalam input teks."
+        }
+    },
+    {
+        "Character Filter": {
+            "name": "Filter Karakter",
+            "desc": "Memungkinkan Anda memasukkan karakter apa pun di semua input teks."
+        }
+    },
+    {
+        "Slider Limit": {
+            "name": "Batas Penggeser",
+            "desc": "Memungkinkan penggeser diseret melampaui batas yang terlihat."
+        }
+    },
+    {
+        "Main Levels": {
+            "name": "Level Utama",
+            "desc": "Membuka kunci level demon yang terkunci."
+        }
+    },
+    {
+        "Guard Vault": {
+            "name": "Guard Vault",
+            "desc": "Membuka kunci Guard Vault."
+        }
+    },
+    {
+        "Keymaster Vault": {
+            "name": "Keymaster Vault",
+            "desc": "Membuka kunci keymaster vault."
+        }
+    },
+    {
+        "Treasure Room": {
+            "name": "Treasure Room",
+            "desc": "Membuka kunci treasure room."
+        }
+    },
+    {
+        "Free Shop Items": {
+            "name": "Barang Toko Menjadi Gratis",
+            "desc": "Mengizinkan semua item toko dibeli seharga 0 orb mana."
+        }
+    },
+    {
+        "Gatekeeper Vault": {
+            "name": "Gatekeeper Vault",
+            "desc": "Membuka kunci Gatekeeper vault."
+        }
+    },
+    {
+        "Backup Stars Limit": {
+            "name": "Batas Stars Cadangan",
+            "desc": "Memungkinkan Anda mencadangkan data, bahkan dengan kurang dari 10 stars."
+        }
+    },
+
+
+    {
+        "Level Edit": {
+            "name": "Edit Level",
+            "desc": "Memungkinkan Anda mengedit level mana pun, mengakses editor melalui menu pause. (TIDAK STABIL)"
+        }
+    },
+    {
+        "Verify Hack": {
+            "name": "Verifikasi Hack",
+            "desc": "Memungkinkan Anda mengunggah level yang belum diverifikasi. Secara otomatis akan mengatur level untuk diverifikasi."
+        }
+    },
+    {
+        "Copy Hack": {
+            "name": "Salin Hack",
+            "desc": "Memungkinkan Anda menyalin level apa pun, tanpa kata sandi."
+        }
+    },
+    {
+        "No (C) Mark": {
+            "name": "Tidak Ada Tanda (C)",
+            "desc": "Menghapus tanda (C) saat mengunggah level yang disalin. Secara otomatis akan mengatur level menjadi asli."
+        }    
+    },
+    {
+        "Hide Testmode": {
+            "name": "Menghilangkan Tanda Testmode",
+            "desc": "Menyembunyikan teks 'Testmode' saat bermain dengan startpos."
+        }
+    },
+    {
+        "Rotation Hack": {
+            "name": "Rotasi Hack",
+            "desc": "Memungkinkan Anda memutar objek apa pun. Hanya berfungsi secara lokal."
+        }
+    },
+    {
+        "Default Song Bypass": {
+            "name": "Lagu Default Bypass",
+            "desc": "Memungkinkan Anda menggunakan lagu default tersembunyi di editor."
+        }
+    },
+
+    {
+        "No Progress Bar": {
+            "name": "Tidak Ada Progress Bar",
+            "desc": "Menghapus bilah kemajuan! Persentasenya akan tetap ditampilkan."
+        }
+    },
+    {
+        "Progress Bar Position": {
+            "name": "Posisi Progress Bar",
+            "desc": "Mengatur posisi progress bar."
+        }
+    },
+    {
+        "Hide Attempts": {
+            "name": "Tidak Ada Tanda Attempts",
+            "desc": "Apakah label percobaan harus ditampilkan saat memainkan suatu level atau tidak."
+        }
+    },
+    {
+        "Attempt Opacity": {
+            "name": "Attempt Opacity",
+            "desc": "Menentukan seberapa buram label percobaan seharusnya."
+        }
+    },
+
+    {
+        "Enable Patching": {
+            "name": "Memungkinkan Patching",
+            "desc": "Perubahan dari hooking ke patching. Ini juga memungkinkan lebih banyak hack diaktifkan. Aktifkan hanya jika perlu. [Khusus Windows]"
+        }
+    },
+    {
+        "Menu Opacity": {
+            "name": "Menu Opacity",
+            "desc": "Menentukan seberapa buram menu seharusnya."
+        }
+    },
+    {
+        "Theme": {
+            "name": "Tema",
+            "desc": "Pilih tema UI untuk Prism Menu!"
+        }
+    },
+    {
+        "Import Theme": {
+            "name": "Impor Tema",
+            "desc": "Impor tema! [JSON file]"
+        }
+    },
+    {
+        "Live Theme Editing": {
+            "name": "Pengeditan Tema Langsung",
+            "desc": "Ini akan memungkinkan Anda untuk mengedit tema khusus Anda sambil melihat perubahan di layar! (Peringatan: Hal ini dapat menyebabkan kebocoran memori.)"
+        }
+    },
+    {
+        "Show tooltips": {
+            "name": "Tampilkan Tooltips",
+            "desc": "Apakah tooltip harus ditampilkan atau tidak saat mengarahkan kursor ke mod."
+        }
+    },
+    {
+        "Show Button": {
+            "name": "Tampilkan Tombol",
+            "desc": "Menampilkan tombol untuk mengaktifkan menu. Disarankan untuk tetap mengaktifkan ini untuk Android."
+        }
+    },
+    {
+        "Button Position X": {
+            "name": "Posisi Tombol X",
+            "desc": "Posisi X untuk tombol untuk membuka menu."
+        }
+    },
+    {
+        "Button Position Y": {
+            "name": "Posisi Tombol Y",
+            "desc": "Posisi Y untuk tombol untuk membuka menu."
+        }
+    },
+    {
+        "Language": {
+            "name": "Bahasa",
+            "desc": "Mengatur bahasa untuk Prism Menu!"
+        }
+    },
+    {
+        "Restore Defaults": {
+            "name": "Mengembalikan Pengaturan Default",
+            "desc": "Menonaktifkan semua mod dan mengatur ulang semuanya ke default."
+        }
+    },
+    {
+        "Credits": {
+            "name": "Kredit",
+            "desc": "Orang-orang yang telah membantu dengan mod!"
+        }
+    },
+    {
+        "Thank you to Electrify (ES), Jouca (FR), dank_meme01, savvacorgi, МегаСвятой (RU), Gazonk (BR), huhnmitferrari (DE), and Ignis (CS) for translations!": {
+            "name": "Terimakasih Electrify (ES), Jouca (FR), dank_meme01, savvacorgi, МегаСвятой (RU), Gazonk (BR), huhnmitferrari (DE), and Ignis (CS) untuk terjemahan!"
+        }
+    },
+    {
+        "And thank you for using the mod! I hope you enjoy using Prism Menu!": {
+            "name": "Dan terima kasih telah menggunakan mod! Saya harap Anda menikmati penggunaan Prism Menu!"
+        }
+    },
+    {
+        "Close Popup": {
+            "name": "Tutup Popup"
+        }
+    },
+    {
+        "Menu Scale": {
+            "name": "Menu Skala",
+            "desc": "Memutuskan seberapa besar teks dan tombol seharusnya. (Akan memerlukan memulai ulang permainan)"
+        }
+    }
+]
