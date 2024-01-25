@@ -20,6 +20,9 @@ struct matjson::Serialize<SettingHackStruct> {
             .m_hackValues = value.as_array(),
         };
     }
+    static bool is_json(matjson::Value const& a) { // thank you mat!
+        return a.is_array();
+    }
     static matjson::Value to_json(SettingHackStruct const& value) {
         return value.m_hackValues;
     }

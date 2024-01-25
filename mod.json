@@ -1,6 +1,6 @@
 {
 	"geode": "2.0.0",
-	"version": "v1.2.1",
+	"version": "v1.2.2",
 	"gd": {
 		"win": "2.204",
 		"android": "2.205"
@@ -16,17 +16,13 @@
 			"resources/icon.png",
 			"resources/Screenshot1.png",
             "resources/gato.jpg",
+            "resources/checkmark.png",
             		"resources/Screenshot2.png",
             		"resources/PrismMenu.otf",
             		"resources/Hack-Regular.ttf",
             		"resources/themes.json",
             		"resources/hacks/README.md",
-            		"resources/hacks/global.json",
-            		"resources/hacks/player.json",
-            		"resources/hacks/creator.json",
-            		"resources/hacks/bypass.json",
-            		"resources/hacks/misc.json",
-            		"resources/hacks/settings.json",
+            		"resources/hacks/*.json",
             		"resources/langs/spanish.json",
             		"resources/langs/french.json",
             		"resources/langs/portuguesebr.json",
@@ -34,7 +30,14 @@
                     "resources/langs/russian.json",
                     "resources/langs/czech.json",
                     "resources/langs/indonesian.json"
-		]
+		],
+        "fonts": {
+            "PrismMenu": {
+                "path": "resources/PrismMenu.otf",
+                "size": 128,
+                "charset": "21-383,507-513,898-1500"
+            }
+        }
 	},
     	"settings": {
 		"values": {
