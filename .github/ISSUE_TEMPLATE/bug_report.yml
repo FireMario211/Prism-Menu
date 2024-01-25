@@ -4,35 +4,39 @@ title: '[Bug]: '
 labels: ["bug"]
 body:
   - type: dropdown
-  - attributes:
-    label: Platform
-    description: What you used to run Geode and the mod.
-    options:
-      - "Windows"
-      - "Android"
-      - "Mac OS"
-    validations:
-      required: true
+    attributes:
+      label: Platform
+      description: "What you used to run Geode and the mod."
+      options:
+        - "Windows"
+        - "Android"
+        - "Mac OS"
+      validations:
+        required: true
   - type: input
-  - attributes:
-    label: Version
-    description: The mod version you were using when this issue happened.
-    placeholder: "Example: v1.2.1"
-    validations:
-      required: true
+    attributes:
+      label: Version
+      description: "The mod version you were using when this issue happened."
+      placeholder: "Example: v1.2.1"
+      validations:
+        required: true
   - type: textarea
-    label: Describe the bug
-    description: A clear and concise description of what the bug is.
+    attributes:
+      label: Describe the bug
+      description: "A clear and concise description of what the bug is."
   - type: textarea
     id: expected
-    label: Expected Behavior
-    description: What you think is supposed to happen.
+    attributes:
+      label: Expected Behavior
+      description: "What you think is supposed to happen."
   - type: textarea
     id: reproduce
-    label: How to reproduce
-    description: How to reproduce the bug in steps.
+    attributes:
+      label: How to reproduce
+      description: "How to reproduce the bug in steps."
     validations:
       required: true
   - type: textarea
     id: additional
-    label: Additional Context
+    attributes:
+      label: Additional Context
