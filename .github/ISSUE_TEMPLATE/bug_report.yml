@@ -1,5 +1,5 @@
 name: Bug report
-about: Found a bug in Prism Menu? Report it here!
+description: Found a bug in Prism Menu? Report it here!
 title: '[Bug]: '
 labels: ["bug"]
 body:
@@ -11,15 +11,15 @@ body:
         - "Windows"
         - "Android"
         - "Mac OS"
-      validations:
-        required: true
+    validations:
+      required: true
   - type: input
     attributes:
       label: Version
       description: "The mod version you were using when this issue happened."
       placeholder: "Example: v1.2.1"
-      validations:
-        required: true
+    validations:
+      required: true
   - type: textarea
     attributes:
       label: Describe the bug
