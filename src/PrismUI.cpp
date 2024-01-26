@@ -161,9 +161,8 @@ void PrismUI::RegenCategory() {
             break;
     }
     currentI = 0;
-    for (int i = jsonArray.size(); i --> 0; ) { // ....what is this black magic
-    //for (size_t i = 0; i < jsonArray.size(); i++) {
-        const auto& obj = jsonArray[i];
+    for (auto it = jsonArray.end() - 1; it != jsonArray.begin() - 1; it--) {
+        const auto& obj = *it;
         std::string name = obj.get<std::string>("name");
         HackItem* hack = Hacks::getHack(name);
         if (hack != nullptr) {
