@@ -321,7 +321,7 @@
     {
         "Enable Patching": {
             "name": "Включить патчи",
-            "desc": "Changes from hooking to patching. This also allows more hacks to be enabled. Only enable if necessary. [Windows Only]"
+            "desc": "Патчит вместо внедрения. Это также позволяет включить больше хаков. Включайте только при необходимости. [Только для Windows]"
         }
     },
     {
