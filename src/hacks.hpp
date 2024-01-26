@@ -72,7 +72,7 @@ struct HackItem {
     bool focused = false;
 };
 
-static std::vector<HackItem> allHacks;
+extern std::vector<HackItem> allHacks; // this fixes everything.
 
 class Hacks {
     public:
@@ -286,22 +286,7 @@ class Hacks {
         }
     }
     #endif
-    // for a while, i did this:
-    /*
-    return R"(
-            [
-                {
-                    "name": "Enable Patching",
-                    "desc": "Changes from hooking to patching. This also allows more hacks to be enabled. Only enable if necessary. [Windows Only]",
-                    "winOnly": true,
-                    "opcodes": [],
-                    "type": "bool"
-                }
-            ]
-        )";
-    */
     static std::string getGlobalHacks() {
-        //return b::embed<"resources/hacks/global.json">().str();
         return readFile("global.json");
     }
     static std::string getPlayerHacks() {
@@ -325,11 +310,19 @@ class Hacks {
     }
     // other hacks 
     static void setPitch(float pitch) {
-        // no fmod?
         auto fmod = FMODAudioEngine::sharedEngine();
+        FMOD_RESULT result; // ensuring
+        FMOD::ChannelGroup* master_group = nullptr;
+        //FMOD::SoundGroup* sound_group = nullptr;
+        result = fmod->m_system->getMasterChannelGroup(&master_group);
+        if (result == FMOD_OK) {
+            master_group->setPitch(pitch);
+        }
+        #ifdef GEODE_IS_WINDOWS // please commit support android fields, ADD THE FIELDS ON 2.205 PLS, SFX DOESNT WORK PROPERLY WITHOUT IT
+        // robert decided to change it up to sfx, huh
+        fmod->m_globalChannel->setPitch(pitch);
+        #endif
         //fmod->pitchForIdx()
-        AudioTargetType what;
-        //fmod->setChannelPitch(1, what, pitch);
     }
 };
 #endif

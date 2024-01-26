@@ -55,11 +55,12 @@
         "default": false
     },
     {
-        "name": "Show Tooltips",
-        "desc": "Whether or not tooltips should be shown when hovering over mods.",
+        "name": "Menu Style",
+        "desc": "",
         "opcodes": [],
-        "type": "bool",
-        "default": true
+        "type": "dropdown",
+        "default": 0,
+        "values": ["ImGui", "Geometry Dash"]
     },
     {
         "name": "Show Button",
@@ -87,6 +88,13 @@
         "max": 350,
         "default": 295,
         "step": 1
+    },
+    {
+        "name": "Show Tooltips",
+        "desc": "Whether or not tooltips should be shown when hovering over mods.",
+        "opcodes": [],
+        "type": "bool",
+        "default": true
     },
     {
         "name": "Restore Defaults",

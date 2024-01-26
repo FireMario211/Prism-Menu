@@ -5,6 +5,8 @@
 
 static matjson::Array currentThemes;
 
+using namespace geode::prelude;
+
 class Themes {
     public:
     static void addToCurrentThemes() {
@@ -48,6 +50,16 @@ class Themes {
             alpha
         );
     }
+    static void RGBAToCC(matjson::Value rgba, CCNodeRGBA* obj) {
+        rgba = rgba.as_array();
+        float alpha = static_cast<float>(rgba[3].as_double());
+        ccColor3B color;
+        color.r = static_cast<float>(rgba[0].as_double());
+        color.g = static_cast<float>(rgba[1].as_double());
+        color.b = static_cast<float>(rgba[2].as_double());
+        obj->setColor(color);
+        obj->setOpacity(alpha);
+    }
     static void UpdateOpacity(matjson::Object theme) {
         ImGuiStyle& style = ImGui::GetStyle();
         style.Colors[ImGuiCol_WindowBg] = RGBAToImVec4(theme["BG"]);
@@ -57,9 +69,10 @@ class Themes {
     static matjson::Object getCurrentTheme() {
         auto themes = matjson::parse(Hacks::getThemes()).as_object();
         HackItem* hack = Hacks::getHack("Theme");
-        if (currentThemes.empty()) return matjson::Object {};
+        if (hack == nullptr) return themes["Future Dark"].as_object();
+        if (currentThemes.empty()) return themes["Future Dark"].as_object();
         auto value = currentThemes[hack->value.intValue];
-        if (!value.is_string()) return matjson::Object {};
+        if (!value.is_string()) return themes["Future Dark"].as_object();
         auto valueStr = value.as_string();
         if (valueStr.ends_with("(Custom)") && std::find(currentThemes.begin(), currentThemes.end(), valueStr) != currentThemes.end()) {
             // custom themes!

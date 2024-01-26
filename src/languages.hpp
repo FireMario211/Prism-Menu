@@ -7,8 +7,8 @@ class Lang {
     matjson::Array langFile;
     int langId = 0;
     public:
-        static Lang* get(int langId) {
-            Lang* lang = new Lang();
+        static std::unique_ptr<Lang> get(int langId) {
+            auto lang = std::make_unique<Lang>();
             // 0 = English
             // 1 = Spanish
             // 2 = Russian

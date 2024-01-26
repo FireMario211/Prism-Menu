@@ -37,7 +37,7 @@ jobs:
         uses: geode-sdk/build-geode-mod@main
         with:
           #sdk: nightly
-          build-config: 'RelWithDebInfo'
+          #build-config: 'RelWithDebInfo'
           combine: true
           configure-args: '-DGEODE_DISABLE_FMT_CONSTEVAL=1'
           target: ${{ matrix.config.target }}

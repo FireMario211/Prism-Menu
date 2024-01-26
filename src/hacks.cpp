@@ -1,6 +1,8 @@
 #include "hacks.hpp"
 #include "CustomSettings.hpp"
 
+std::vector<HackItem> allHacks;
+
 bool Hacks::Settings::settingContainsHack(const matjson::Array& objArr, const std::string& name) {
     for (const matjson::Value& obj : objArr) {
         if (obj.is_object()) {

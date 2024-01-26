@@ -12,6 +12,7 @@ project(PrismMenu VERSION 1.0.0)
 # under src/ 
 file(GLOB SOURCES
 	src/*.cpp
+    src/Hacks/*.cpp
 )
 
 # Set up the mod binary

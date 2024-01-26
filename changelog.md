@@ -1,3 +1,7 @@
+# v1.2.2
+    - Fixed save issue
+# v1.2.1 
+    - Emergency Fix
 # v1.2.0 
     - Added Indonesian Translations (Thank you RzaIX!)
     - Fixed bug with Texture Loader crashing when applying a texture.

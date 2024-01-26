@@ -14,8 +14,7 @@
         "opcodes": [
             {"addr": "0x21ACB", "on": "EB 04", "off": "7C 04"}
         ],
-        "type": "bool",
-        "winOnly": true
+        "type": "bool"
     },
     {
         "name": "Character Filter",
@@ -23,8 +22,7 @@
         "opcodes": [
             {"addr": "0x21A99", "on": "90 90", "off": "75 04"}
         ],
-        "type": "bool",
-        "winOnly": true
+        "type": "bool"
     },
     {
         "name": "Slider Limit",

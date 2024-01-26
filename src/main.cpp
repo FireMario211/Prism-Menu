@@ -6,6 +6,7 @@
 #include "hacks.hpp"
 #include "languages.hpp"
 #include "themes.hpp"
+#include "PrismUI.hpp"
 #include <Geode/Geode.hpp>
 //#include <geode.custom-keybinds/include/Keybinds.hpp>
 //using namespace keybinds;
@@ -112,6 +113,7 @@ for i in range(char2nr('A'), char2nr('Z'))
   call append(line("."), printf("{'%c', cocos2d::KEY_%c},", i, i))
 endfor
 */
+std::unique_ptr<Lang> currentLanguage; // thank you @iAndy_HD3
 
 class PrismButton : public CCMenu {
 protected:
@@ -141,8 +143,8 @@ protected:
         //this->scheduleUpdate();
         return true;
     }
-    void registerWithTouchDispatcher() override {
-        CCDirector::sharedDirector()->getTouchDispatcher()->addTargetedDelegate(this, 0, true);
+    void registerWithTouchDispatcher() override { // is this even needed anymore
+        CCDirector::sharedDirector()->getTouchDispatcher()->addTargetedDelegate(this, -500, true);
     }
 public:
     // chat jippity 
@@ -225,7 +227,12 @@ public:
         return CCMenuItemSpriteExtra::create(myButtonSpr, ret, menu_selector(PrismButton::onButtonClicked));
     }
     void onButtonClicked(CCObject* p0) {
-        showMenu = !showMenu;
+        HackItem* menuStyle = Hacks::getHack("Menu Style");
+        if (menuStyle->value.intValue == 0) { // imgui
+            showMenu = !showMenu;
+        } else {
+            PrismUI::create(Themes::getCurrentTheme(), currentLanguage.get())->show();
+        }
     }
 
     static PrismButton* create(CCScene* p0) {
@@ -241,43 +248,12 @@ public:
 
 PrismButton* prismButton;
 
-Lang* currentLanguage;
 
 bool firstLoad = false;
 bool changedOpacity = false;
 bool changedMenuScale = false;
 // early load is amazing!
-#if 0
-class $modify(AchievementNotifier) {
-    // WHY DO I HAVE TO DO THIS, also menu layer will only work after you change scenes. bad!
-    void willSwitchToScene(CCScene* p0) {
-        AchievementNotifier::willSwitchToScene(p0);
-        std::cout << "step 0" << std::endl;
-        if (prismButton != nullptr && p0 != nullptr) {
-            std::cout << "step 1" << std::endl;
-            auto obj = p0->getChildren()->objectAtIndex(0);
-            std::cout << "step 2" << std::endl;
-            if (getNodeName(obj) == "LoadingLayer") return; // fix the bug!
-            std::cout << "step 3" << std::endl;
-            if (getNodeName(obj) != "PlayLayer") {
-                std::cout << "step 4" << std::endl;
-                if (prismButton != nullptr) {
-                    SceneManager::get()->forget(prismButton);
-                    if (prismButton != nullptr) prismButton->removeFromParentAndCleanup(true);
-                }
-                std::cout << "step 5" << std::endl;
-                prismButton = PrismButton::create(p0);
-                prismButton->setVisible(Hacks::isHackEnabled("Show Button"));
-                SceneManager::get()->keepAcrossScenes(prismButton);
-            } else {
-                std::cout << "step 6" << std::endl;
-                if (prismButton != nullptr) SceneManager::get()->forget(prismButton);
-                if (prismButton != nullptr) prismButton->removeFromParentAndCleanup(true);
-            }
-        }
-    }
-};
-#endif
+
 class $modify(MenuLayer) {
     bool init() {
         if (!MenuLayer::init()) return false;
@@ -502,14 +478,19 @@ class $modify(MenuLayer) {
                         case 5: // Settings
                             jsonArray = matjson::parse(Hacks::getSettings()).as_array();
                             ImGui::Text("%s", currentLanguage->name("Prism Menu by Firee").c_str());
-                            const char* version = "V1.2.0 (Geode)";
-                            #ifdef GEODE_IS_WINDOWS
-                            ImGui::Text("%s - Windows", version);
+                            //const char* version = "V1.3.0 (Geode)";
+                            #ifdef GITHUB_ACTIONS
+                            auto version = fmt::format("{} (Geode)", Mod::get()->getVersion().toString());
+                            #else 
+                            auto version = fmt::format("{}-Dev (Geode)", Mod::get()->getVersion().toString());
+                            #endif
+                           #ifdef GEODE_IS_WINDOWS
+                            ImGui::Text("%s - Windows", version.c_str());
                             #else // why does android not like elif
                             #ifdef GEODE_IS_ANDROID
-                                ImGui::Text("%s - Android", version);
+                                ImGui::Text("%s - Android", version.c_str());
                             #else 
-                                ImGui::Text("%s - HOW by Spu7nix", version);
+                                ImGui::Text("%s - HOW by Spu7nix", version.c_str());
                             #endif
                             #endif
                             ImGui::Separator();
@@ -556,6 +537,9 @@ class $modify(MenuLayer) {
                                     } else if (name == "Button Position Y") {
                                         Hacks::Settings::setSettingValue(&settings, *hack, hack->value.intValue);
                                         prismButton->setPositionY(hack->value.intValue);
+                                    } else if (name == "Menu Style") {
+                                        Hacks::Settings::setSettingValue(&settings, *hack, hack->value.intValue);
+                                        showMenu = !showMenu;
                                     } else {
                                         Hacks::Settings::setSettingValue(&settings, *hack, hack->value.intValue);
                                     }
@@ -761,10 +745,12 @@ class $modify(MenuLayer) {
         });
         prismButton = PrismButton::create(CCScene::get());
         prismButton->setVisible(Hacks::isHackEnabled("Show Button"));
+        prismButton->setID("prism-icon");
         SceneManager::get()->keepAcrossScenes(prismButton);
         return true;
     }
 };
+
 // maybe this will fix the issue
 $execute {
     SettingHackStruct val { matjson::Array() };
@@ -776,7 +762,7 @@ $on_mod(Loaded) {
     //auto getKeybindHack = Hacks::getHack("Open Menu Keybind");
     //char inputKeybind = 'C';
     //if (getKeybindHack != nullptr) inputKeybind = *(getKeybindHack->value.charValue);
-    /*
+    /*¶ Settings
     BindManager::get()->registerBindable({
         "prism-menu"_spr,
         "Toggle Prism Menu",
@@ -813,17 +799,9 @@ class $modify(CCKeyboardDispatcher) {
 // i completely wasted my time writing this whole patch script, and i kinda want android + mac support soooo
 
 #include <Geode/modify/PlayLayer.hpp>
-#include <Geode/modify/GJGameLevel.hpp>
-#include <Geode/modify/CCTransitionFade.hpp>
-#include <Geode/modify/GameObject.hpp>
-#include <Geode/modify/PlayerObject.hpp>
-#include <Geode/modify/GameManager.hpp>
-#include <Geode/modify/CCTextInputNode.hpp>
-#include <Geode/modify/GameStatsManager.hpp>
-#include <Geode/modify/EditLevelLayer.hpp>
-#include <Geode/modify/LevelInfoLayer.hpp>
 #include <Geode/modify/GJBaseGameLayer.hpp>
 #include <Geode/modify/PauseLayer.hpp>
+// TODO later: move these
 class $modify(GJBaseGameLayer) {
     // No Mirror Transition, Instant Mirror Portal
     void toggleFlipped(bool p0, bool p1) { // i spent a lot of time figuring out why CCActionTween wont hook, only to realize that p1 instantly transitions it
@@ -872,7 +850,6 @@ CircleButtonSprite* createCheatIndicator(bool isHacking) {
 }
 class $modify(PlayLayer) {
     float previousPositionX = 0.0F;
-    bool initedDeath = false;
     GameObject* antiCheatObject; // removing after lol
     GJGameLevel* gameLevel;
     GJLevelType oldLevelType;
@@ -883,6 +860,7 @@ class $modify(PlayLayer) {
     CCLabelBMFont* attemptLabel;
 
     bool isCheating = false;
+    bool initedDeath = false;
     int updateInit = 0;
     // Anticheat Bypass, Noclip, No Spikes, No Solids
     void destroyPlayer(PlayerObject *p0, GameObject *p1) {
@@ -892,10 +870,26 @@ class $modify(PlayLayer) {
         bool noclipDisabled = !Hacks::isHackEnabled("No Solids") && !Hacks::isHackEnabled("Noclip");
         if ((noclipDisabled && !Hacks::isHackEnabled("No Spikes"))) return PlayLayer::destroyPlayer(p0, p1);
         if (Hacks::isHackEnabled("No Spikes") && noclipDisabled && p1 == nullptr) return PlayLayer::destroyPlayer(p0, p1); // why solids are nullptr is beyond my comprehension.
-        #ifndef GEODE_IS_ANDROID // it crashes
         if (Hacks::isHackEnabled("Anticheat Bypass")) {
             if (!m_fields->initedDeath) {
+            #ifndef GEODE_IS_ANDROID64
+            if (m_fields->antiCheatObject == nullptr && p1 != nullptr && (
+                (p1->m_realXPosition == 0 && p1->m_realYPosition == p0->m_realYPosition) ||
+                (p1->m_realXPosition == 0 && p1->m_realYPosition == p0->m_realYPosition) // todo, get player pos during PlayLayer::init
+            )) { // thank you whamer100
+                m_fields->antiCheatObject = p1;
+                m_fields->initedDeath = true;
+            } else if (!m_fields->initedDeath && m_fields->antiCheatObject == nullptr) {
+                m_fields->antiCheatObject = p1;
+                m_fields->initedDeath = true;
+            }
+            #else //sorry android64 users, someone has to implement fields for GameObject, because I get errors 
+                if (!m_fields->initedDeath && m_fields->antiCheatObject == nullptr) {
+                    m_fields->antiCheatObject = p1;
+                    m_fields->initedDeath = true;
+                }
                 // bad coding
+                /*
                 for (int offset = 0x0; ; offset += 0x1) {
                     GameObject* val = reinterpret_cast<GameObject*>(reinterpret_cast<uintptr_t>(this) + offset);
                     if (val == p1) {
@@ -905,13 +899,13 @@ class $modify(PlayLayer) {
                     }
                 }
                 //m_antiCheatObject = p1;
-                m_fields->initedDeath = true;
+                m_fields->initedDeath = true;*/
+            #endif
             }
             if (p1 == m_fields->antiCheatObject) { // nice AC robert
                 return PlayLayer::destroyPlayer(p0, p1);
             }
         }
-        #endif
     }
     // Instant Complete, Practice Music, Hide Testmode
     bool init(GJGameLevel *p0, bool p1, bool p2) {
@@ -1073,10 +1067,10 @@ class $modify(PlayLayer) {
             //percentLabel->setString(percentStr.c_str());
         }
     }
-    /*void levelComplete() {
+    void levelComplete() {
         if (!Hacks::isHackEnabled("Safe Mode") || Hacks::isHackEnabled("Enable Patching")) return PlayLayer::levelComplete();
         PlayLayer::resetLevel(); // haha
-    }*/
+    }
 };
 
 /*
@@ -1106,235 +1100,8 @@ class $modify(PlayLayer) {
     }*\/ // WHY YOU HAVE DELAY
 };
 */
-class $modify(PlayerObject) {
-#ifndef GEODE_IS_ANDROID // for whatever reason, fields arent found!
-    // No Solids
-    /*
-     * +       bool collidedWithObject(float, GameObject*, cocos2d::CCRect, bool) = win 0x2cc450;
-+       TodoReturn collidedWithObject(float, GameObject*) = win 0x2cc3d0;
-    bool collidedWithObject(float p0, GameObject* obj, cocos2d::CCRect p2, bool p3) { // what is the point of not having p2, because this doesnt work without it
-        if (Hacks::isHackEnabled("Enable Patching")) return PlayerObject::collidedWithObject(p0, obj, p2, p3);
-        if (!Hacks::isHackEnabled("No Solids")) return PlayerObject::collidedWithObject(p0, obj, p2, p3);
-        //return PlayerObject::collidedWithObject(p0, obj, p2, p3);
-        return false;
-    }*/
-    bool was_platformer;
-    /*bool collidedWithObject(float fl, GameObject* obj,  cocos2d::CCRect p0, bool p1) {
-        return PlayerObject::collidedWithObject(fl, obj, p0, p1);
-    }*/
-    // Freeze Player
-    void update(float dt) {
-        if (!m_fields->was_platformer) {
-            m_fields->was_platformer = this->m_isPlatformer;
-        }
-        if (Hacks::isHackEnabled("Force Platformer Mode")) {
-            togglePlatformerMode(true);
-        } else {
-            togglePlatformerMode(m_fields->was_platformer);
-        }
-        auto gravityHack = Hacks::getHack("Gravity Value");
-        if (Hacks::isHackEnabled("Change Gravity")) { // assume its enabled 
-            m_gravityMod = gravityHack->value.floatValue;
-        }
-        if (Hacks::isHackEnabled("Instant Complete")) return;
-        if (Hacks::isHackEnabled("Enable Patching") || !Hacks::isHackEnabled("Freeze Player")) return PlayerObject::update(dt);
-    }
-    bool init(int p0, int p1, GJBaseGameLayer *p2, cocos2d::CCLayer *p3, bool p4) {
-        if (!PlayerObject::init(p0,p1,p2,p3,p4)) return false;
-        return true;
-    }
-
-    void playerDestroyed(bool p0) {
-        m_fields->was_platformer = this->m_isPlatformer;
-        PlayerObject::playerDestroyed(p0);
-    }
-    #endif
-    void pushButton(PlayerButton p0) {
-        if (!Hacks::isHackEnabled("Enable Patching") && Hacks::isHackEnabled("Jump Hack")) PlayerObject::boostPlayer(10.0F); // idk if i should make this customizable
-        PlayerObject::pushButton(p0);
-    }
-};
-
-class $modify(GJGameLevel) {
-    // Safe Mode (a just incase)
-    void savePercentage(int p0, bool p1, int p2, int p3, bool p4) {
-        if (!Hacks::isHackEnabled("Safe Mode") || Hacks::isHackEnabled("Enable Patching")) {
-            GJGameLevel::savePercentage(p0, p1, p2, p3, p4);
-        }
-    }
-};
-
-class $modify(CCTransitionFade) {
-    // No Transition
-    bool initWithDuration(float t, cocos2d::CCScene* scene, cocos2d::ccColor3B const& color)  {
-        if (!Hacks::isHackEnabled("No Transition") || Hacks::isHackEnabled("Enable Patching")) {
-            return CCTransitionFade::initWithDuration(t, scene, color);
-        } else {
-            return CCTransitionFade::initWithDuration(0.0F, scene, color);
-        }
-    }
-};
-
-#ifndef GEODE_IS_ANDROID
-class $modify(GameObject) {
-    // Layout Mode
-    void setVisible(bool v) {
-        /*int aaa = *reinterpret_cast<int*>(reinterpret_cast<uintptr_t>(this) + 0x14E); // we do the funny because someone forgor pad for windows
-        if (aaa > 1600000000) {
-            //int targetValue = 44;
-            GameObjectType targetValue = GameObjectType::Decoration;
-            for (int offset = 0x0; ; offset += 0x1) {
-                GameObjectType val = *reinterpret_cast<GameObjectType*>(reinterpret_cast<uintptr_t>(this) + offset);
-                //int val = *reinterpret_cast<int*>(reinterpret_cast<uintptr_t>(this) + offset);
-                //std::cout << "Offset: 0x" << std::hex << offset << std::dec << ", Value: " << val << std::endl;
-                if (val == targetValue) {
-                    //std::cout << "Found target " << targetValue << " at offset 0x" << std::hex << offset << std::dec << std::endl;
-                    log::info(fmt::format("Found target at offset 0x{}", offset));;
-                    break;
-                }
-            }
-        //}*/
-        // yes letes overwrite fields!
-        // plesae commit add paddings for android64 and windows kthx
-        if (!Hacks::isHackEnabled("Layout Mode")) return GameObject::setVisible(v);
-        int objectID = -1;
-        GameObjectType objectType;
-        int objectTypeInt = -1;
-#ifdef GEODE_IS_WINDOWS
-        objectID = *reinterpret_cast<int*>(reinterpret_cast<uintptr_t>(this) + 0x384); // absolutely cursed
-        objectType = *reinterpret_cast<GameObjectType*>(reinterpret_cast<uintptr_t>(this) + 0x31c);
-#else
-        objectID = this->m_objectID;
-        objectType = this->m_objectType;
-#endif
-        GameObject::setVisible(v);
-        if (objectType == GameObjectType::Decoration && objectID != 44) { // 44 being practice mode checkpoint, because thats a "decoration"
-            GameObject::setVisible(false);
-        } else {
-            GameObject::setVisible(v);
-        }
-    }
-    /*
-    void objectFromVector(gd::vector<gd::string> &p0, gd::vector<void *> &p1, GJBaseGameLayer *p2, bool p3) {
-        return GameObject::objectFromVector(p0,p1,p2,p3);
-    }*/ // someone got the wrong bindings!
-    /*
-    
-
-    */
-};
-#endif
-class $modify(GameManager) {
-    bool isIconUnlocked(int _id, IconType _type) {
-        if (!Hacks::isHackEnabled("Icon Bypass") || Hacks::isHackEnabled("Enable Patching")) return GameManager::isIconUnlocked(_id, _type);
-        return true;
-    }
-    bool isColorUnlocked(int _id, UnlockType _type) {
-        if (!Hacks::isHackEnabled("Icon Bypass") || Hacks::isHackEnabled("Enable Patching")) return GameManager::isColorUnlocked(_id, _type);
-        return true;
-    }
-};
-#ifdef BROKEN
-class $modify(CCTextInputNode) {
-    bool init(float width, float height, const char *caption, const char *thonburi, int maxCharCount, const char *font) {
-        bool ret = CCTextInputNode::init(width, height, caption, thonburi, maxCharCount, font);
-        /*
-         *    
-                      piVar3 = (astruct *)
-               CCTextInputNode::create
-                         ((float)uVar17,(float)((ulonglong)uVar17 >> 0x20),(char *)0x43960000,
-                          (char *)0x42480000,(int)"Level Name","Thonburi");
-      (**(code **)(*(int *)this + 0xe0))
-                (this,piVar3,0x12,*(code **)(*(int *)this + 0xe0),uVar18,pcVar12);
-      piVar3->field330_0x154 = this + 0x11c;
-      (**(code **)(piVar3->field0_0x0 + 0x24))(piVar3,1);
-      (**(code **)(piVar3->field0_0x0 + 0x5c))(piVar3,aCStack_188);
-      piVar3->field331_0x158 = 0x14; << THIS
-         */
-        //std::cout << fmt::format("maxCharCount = {}", reinterpret_cast<float*>(maxCharCount)) << std::endl;
-        return ret;
-    }
-    // Text Length, Character Filter broken for now on 2.2
-    /*bool onTextFieldInsertText(CCTextFieldTTF *p0, const char *p1, int p2, cocos2d::enumKeyCodes p3) {
-        if (Hacks::isHackEnabled("Character Filter") && !Hacks::isHackEnabled("Enable Patching")) this->setAllowedChars("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.,-!?:;)(/\\\"\'`*= +-_%[]<>|@&^#{}%$~");
-        if (Hacks::isHackEnabled("Text Length") && !Hacks::isHackEnabled("Enable Patching")) this->m_maxLabelLength = -1;
-        // this wont work but why is it private!?
-        return CCTextInputNode::onTextFieldInsertText(p0, p1, p2, p3);
-    }*/
-};
-#endif
-
-class $modify(GameStatsManager) {
-    bool isItemUnlocked(UnlockType p0, int p1) {
-        if (p0 != UnlockType::GJItem && p1 != 17) return GameStatsManager::isItemUnlocked(p0,p1);
-        if (Hacks::isHackEnabled("Practice Music")) {
-            return true;
-        } else {
-            return GameStatsManager::isItemUnlocked(p0,p1);
-        }
-    }
-};
-/*
-class $modify(GameStatsManager) {
-    // Almost all bypass
-    int getStat(char const* type) { // isnt this supposed to be int
-        int ret = GameStatsManager::getStat(type);
-        int typeInt = std::stoi(type);
-        //std::cout << fmt::format("type = {}, ret = {}", type, ret) << std::endl;
-        if (typeInt == 8 && Hacks::isHackEnabled("Main Levels") && !Hacks::isHackEnabled("Enable Patching")) { // main level
-            return 30;
-        }
-        if (typeInt == 12 && Hacks::isHackEnabled("Guard Vault") && !Hacks::isHackEnabled("Enable Patching")) { // guard vault
-            return 10;
-        }
-        if (typeInt == 13 && Hacks::isHackEnabled("Keymaster Vault") && !Hacks::isHackEnabled("Enable Patching")) { // keymaster vault
-            return 100;
-        }
-        if (typeInt == 21 && Hacks::isHackEnabled("Treasure Room") && !Hacks::isHackEnabled("Enable Patching")) { // treasure room
-            return 5;
-        }
-        if (typeInt == 14 && Hacks::isHackEnabled("Free Shop Items") && !Hacks::isHackEnabled("Enable Patching")) { // free shop items
-            return 1000000; // lol what
-        }
-        if (typeInt == 6 && Hacks::isHackEnabled("Backup Stars Limit") && !Hacks::isHackEnabled("Enable Patching")) { // backup stars limit
-            return 10;
-        }
-        return ret;
-    }
-};
-*/
 
 
-class $modify(EditLevelLayer) {
-    // Verify Hack, No (C) Mark
-    void onShare(CCObject* sender) {
-        if (!Hacks::isHackEnabled("Verify Hack") && !Hacks::isHackEnabled("No (C) Mark")) return EditLevelLayer::onShare(sender);
-        if (Hacks::isHackEnabled("Verify Hack")) {
-            auto isVerified = this->m_level->m_isVerified;
-            this->m_level->m_isVerified = true;
-            //this->m_level->m_isVerified = isVerified;
-        }
-        if (Hacks::isHackEnabled("No (C) Mark")) {
-            auto isVerified = this->m_level->m_originalLevel;
-            this->m_level->m_originalLevel = true;
-        }
-        EditLevelLayer::onShare(sender);
-    }
-};
 
-class $modify(LevelInfoLayer) {
-    // Copy Hack
-    bool init(GJGameLevel *p0, bool p1) {
-        if (!LevelInfoLayer::init(p0, p1)) return false;
-        if (Hacks::isHackEnabled("Copy Hack")) {
-            auto gm = GameManager::sharedState();
-            if (gm->m_playerUserID == p0->m_userID) return true;
-            if (m_cloneBtn == nullptr) return true;
-            auto aCloneBtn = CCMenuItemSpriteExtra::create(CCSprite::createWithSpriteFrameName("GJ_duplicateBtn_001.png"), this, menu_selector(LevelInfoLayer::confirmClone));
-            aCloneBtn->setPosition(m_cloneBtn->getPosition());
-            m_cloneBtn->getParent()->addChild(aCloneBtn);
-            m_cloneBtn->setVisible(false);
-        }
-        return true;
-    }
-};
+
+
