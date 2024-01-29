@@ -22,7 +22,7 @@
         "type": "float",
         "min": 1,
         "max": 2,
-        "default": 1
+        "default": 2
     },
     {
         "name": "Language",
@@ -53,14 +53,6 @@
         "opcodes": [],
         "type": "bool",
         "default": false
-    },
-    {
-        "name": "Menu Style",
-        "desc": "",
-        "opcodes": [],
-        "type": "dropdown",
-        "default": 0,
-        "values": ["ImGui", "Geometry Dash"]
     },
     {
         "name": "Show Button",
@@ -109,5 +101,13 @@
         "opcodes": [],
         "type": "button",
         "default": "button"
+    },
+    {
+        "name": "Menu Style",
+        "desc": "",
+        "opcodes": [],
+        "type": "dropdown",
+        "default": 0,
+        "values": ["ImGui", "Geometry Dash"]
     }
 ]

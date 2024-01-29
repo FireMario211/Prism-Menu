@@ -3,10 +3,12 @@
 #include "hacks.hpp"
 //#include <battery/embed.hpp>
 
+
 class Lang {
     matjson::Array langFile;
     int langId = 0;
     public:
+        static std::unique_ptr<Lang> getLanguage();
         static std::unique_ptr<Lang> get(int langId) {
             auto lang = std::make_unique<Lang>();
             // 0 = English
@@ -33,6 +35,9 @@ class Lang {
                         break;
                     case 6: // Indonesian
                         file = Hacks::readFile("indonesian.json");
+                    default: // anything else should be discarded
+                        langId = 0;
+                        break;
                 }
                 lang->langFile = matjson::parse(file).as_array();
                 lang->langId = langId;
@@ -48,6 +53,7 @@ class Lang {
             return nullptr;
         }
         std::string name(std::string key) {
+            if (this->langId > 6) this->langId = 0; // for some reason it goes to 72655368 which makes ZERO sense
             if (this->langId == 0) return key;
             auto obj = this->find(key);
             if (obj == nullptr) return key;

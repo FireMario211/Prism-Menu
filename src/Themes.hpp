@@ -3,32 +3,14 @@
 #include <Geode/Geode.hpp>
 #include "hacks.hpp"
 
-static matjson::Array currentThemes;
-
 using namespace geode::prelude;
+
+extern matjson::Array currentThemes;
 
 class Themes {
     public:
-    static void addToCurrentThemes() {
-        HackItem* hack = Hacks::getHack("Theme");
-        if (hack == nullptr) return;
-        auto themeArray = hack->data.get<matjson::Array>("values");
-        auto saveDir = Mod::get()->getSaveDir().string();
-        auto array = hack->data.get<matjson::Array>("values");
-        if (ghc::filesystem::exists(saveDir + "/themes")) {
-            for (const auto & entry : std::filesystem::directory_iterator(saveDir + "/themes")) {
-                if (entry.path().extension() == ".json") {
-                    auto name = entry.path().filename().string();
-                    name = name.substr(0, name.length() - 5); // remove the .json
-                    array.push_back(name + " (Custom)");
-                }
-            }
-        }
-        currentThemes = array;
-    }
-    static matjson::Array getCurrentThemes() {
-        return currentThemes;
-    }
+    static void addToCurrentThemes();
+    static matjson::Array getCurrentThemes();
     static ImVec4 RGBAToImVec4(matjson::Value rgba) {
         float currentOpacity = Hacks::getHack("Menu Opacity")->value.floatValue;
         rgba = rgba.as_array();
@@ -51,6 +33,7 @@ class Themes {
         );
     }
     static void RGBAToCC(matjson::Value rgba, CCNodeRGBA* obj) {
+        float currentOpacity = Hacks::getHack("Menu Opacity")->value.floatValue;
         rgba = rgba.as_array();
         float alpha = static_cast<float>(rgba[3].as_double());
         ccColor3B color;
@@ -58,7 +41,18 @@ class Themes {
         color.g = static_cast<float>(rgba[1].as_double());
         color.b = static_cast<float>(rgba[2].as_double());
         obj->setColor(color);
-        obj->setOpacity(alpha);
+        obj->setOpacity((alpha == -1) ? currentOpacity * 255.0F : alpha);
+    }
+    static void RGBAToCC(matjson::Value rgba, CCLabelBMFont* obj) {
+        float currentOpacity = Hacks::getHack("Menu Opacity")->value.floatValue;
+        rgba = rgba.as_array();
+        float alpha = static_cast<float>(rgba[3].as_double());
+        ccColor3B color;
+        color.r = static_cast<float>(rgba[0].as_double());
+        color.g = static_cast<float>(rgba[1].as_double());
+        color.b = static_cast<float>(rgba[2].as_double());
+        obj->setColor(color);
+        obj->setOpacity((alpha == -1) ? currentOpacity * 255.0F : alpha);
     }
     static void UpdateOpacity(matjson::Object theme) {
         ImGuiStyle& style = ImGui::GetStyle();
@@ -66,26 +60,7 @@ class Themes {
         style.Colors[ImGuiCol_ChildBg] = RGBAToImVec4(theme["BG"]);
         style.Colors[ImGuiCol_PopupBg] = RGBAToImVec4(theme["BG"]);
     }
-    static matjson::Object getCurrentTheme() {
-        auto themes = matjson::parse(Hacks::getThemes()).as_object();
-        HackItem* hack = Hacks::getHack("Theme");
-        if (hack == nullptr) return themes["Future Dark"].as_object();
-        if (currentThemes.empty()) return themes["Future Dark"].as_object();
-        auto value = currentThemes[hack->value.intValue];
-        if (!value.is_string()) return themes["Future Dark"].as_object();
-        auto valueStr = value.as_string();
-        if (valueStr.ends_with("(Custom)") && std::find(currentThemes.begin(), currentThemes.end(), valueStr) != currentThemes.end()) {
-            // custom themes!
-            auto saveDir = Mod::get()->getSaveDir().string();
-            valueStr = valueStr.substr(0, valueStr.length() - 9); // remove the (Custom)
-            auto themeData = Hacks::readFile(saveDir + "/themes/" + valueStr + ".json", true);
-            if (themeData == "{}") return themes["Future Dark"].as_object();
-            return matjson::parse(themeData).as_object();
-        } else {
-            if (!themes.contains(valueStr)) return themes["Future Dark"].as_object();
-            return themes[valueStr].as_object();
-        }
-    }
+    static matjson::Object getCurrentTheme();
     static void LoadTheme(matjson::Object theme) {
         // Future Dark style by rewrking from ImThemes
         ImGuiStyle& style = ImGui::GetStyle();

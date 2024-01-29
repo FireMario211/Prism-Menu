@@ -4,8 +4,8 @@
 #include "CustomSettings.hpp"
 #include <Geode/utils/file.hpp>
 #include "hacks.hpp"
-#include "languages.hpp"
-#include "themes.hpp"
+#include "Languages.hpp"
+#include "Themes.hpp"
 #include "PrismUI.hpp"
 #include <Geode/Geode.hpp>
 //#include <geode.custom-keybinds/include/Keybinds.hpp>
@@ -113,7 +113,6 @@ for i in range(char2nr('A'), char2nr('Z'))
   call append(line("."), printf("{'%c', cocos2d::KEY_%c},", i, i))
 endfor
 */
-std::unique_ptr<Lang> currentLanguage; // thank you @iAndy_HD3
 
 class PrismButton : public CCMenu {
 protected:
@@ -231,7 +230,7 @@ public:
         if (menuStyle->value.intValue == 0) { // imgui
             showMenu = !showMenu;
         } else {
-            PrismUI::create(Themes::getCurrentTheme(), currentLanguage.get())->show();
+            PrismUI::create()->show();
         }
     }
 
@@ -270,10 +269,9 @@ class $modify(MenuLayer) {
         HackItem* posY = Hacks::getHack("Button Position Y");
         auto mainMenu = static_cast<CCMenu*>(this->getChildByID("bottom-menu"));
         if (firstLoad) return true;
-        int currentLang = Hacks::getHack("Language")->value.intValue;
-        currentLanguage = Lang::get(currentLang);
         firstLoad = true;
         log::info("Prism Menu loaded! Enjoy the mod.");
+        // TODO: goodbye imgui
         ImGuiCocos::get().setup([] {
             /*
             // Future Dark style by rewrking from ImThemes
@@ -409,6 +407,7 @@ class $modify(MenuLayer) {
                 float height = (500 * frameSize.height) / 768;
                 float tableWidth = (220 * frameSize.width) / 1366;
 
+                auto currentLanguage = Lang::getLanguage();
                 ImGui::SetNextWindowSize({ width, height });
                 ImGui::Begin("Prism Menu", nullptr, ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoTitleBar);
                 //231,245 - 451,701
@@ -697,8 +696,8 @@ class $modify(MenuLayer) {
                                             if (ImGui::Selectable(values[i].as_string().c_str(), isSelected)) {
                                                 hack->value.intValue = i;
                                                 Hacks::Settings::setSettingValue(&settings, *hack, hack->value.intValue);
-                                                if (name == "Language") {
-                                                    currentLanguage = Lang::get(hack->value.intValue);
+                                                if (name == "Menu Style") {
+                                                    showMenu = !showMenu;
                                                 }
                                             }
                                             // Set the initial focus when opening the combo (scrolling + keyboard navigation focus)

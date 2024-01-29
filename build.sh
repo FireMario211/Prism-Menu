@@ -1,4 +1,4 @@
-#export GEODE_SDK=/home/fire/.geodenightly # remove when geode 2.0.0 is released
+export GEODE_SDK=/home/fire/.geodenightly # remove when geode 2.0.0 is released
 export SPLAT_DIR=/home/fire/xwin/splat_dir
 export TOOLCHAIN_REPO=/home/fire/xwin/toolchain_repo
 export GEODE_BINDINGS_REPO_PATH=/home/fire/.geodebindings
@@ -29,4 +29,5 @@ cmake \
    -DGEODE_DISABLE_FMT_CONSTEVAL=1 -G Ninja
 
 cmake --build build-linux-deb --config RelWithDebInfo
+# /SDrive/Users/Fire/Desktop/Restoration/ClarifyGDPS V.1.3/GDGeode-2.204
 cp build-linux-deb/firee.PrismMenu.geode "/SDrive/Users/Fire/Desktop/Restoration/ClarifyGDPS V.1.3/GDGeode-2.204/geode/mods/firee.PrismMenu.geode"

@@ -1,15 +1,38 @@
 #pragma once
 #include <Geode/Geode.hpp>
 #include <Geode/Bindings.hpp>
-#include "languages.hpp"
+#include "Languages.hpp"
 // TODO: Use custom box texture with ->setColor
 
 using namespace geode::prelude;
-class PrismUI : public FLAlertLayer, TextInputDelegate {
+
+class PrismUIButton : public CCNode, public TextInputDelegate {
+    protected:
+        CCMenu* menu;
+        HackItem* m_hack;
+        Slider* m_slider;
+        InputNode* m_input;
+        bool editedInputNode = false;
+        virtual bool init(HackItem* hack);
+        void onBoolBtn(CCObject*);
+        void intChanged();
+        void onIncBtn(CCObject*);
+        void onDecBtn(CCObject*);
+        void textChanged(CCTextInputNode* input) override;
+        void textInputOpened(CCTextInputNode* input) override;
+        void textInputClosed(CCTextInputNode* input) override;
+        void onFloatBtn(CCObject*);
+        void onBtn(CCObject*);
+        void onDropdownBtn(CCObject*);
+        cocos2d::extension::CCScale9Sprite* createCheckbox(bool checked);
+    public:
+        void onInfoBtn(CCObject*);
+        static PrismUIButton* create(HackItem* hack);
+};
+
+class PrismUI : public FLAlertLayer {
     protected:
         // layer size is stored here
-        Lang* currentLanguage;
-        matjson::Array themeArr; // solution for the operator= copy problem
         cocos2d::CCSize m_pLrSize;
         cocos2d::CCSize m_sScrLayerSize;
         cocos2d::extension::CCScale9Sprite* m_pBGSprite;
@@ -22,27 +45,23 @@ class PrismUI : public FLAlertLayer, TextInputDelegate {
 
         virtual bool init(
             float width,
-            float height,
-            matjson::Object theme,
-            Lang* currentLang
+            float height
         );
         virtual void keyDown(cocos2d::enumKeyCodes) override;
-        virtual void onClose(cocos2d::CCObject*);
         void CreateHackItem(HackItem* item);
         void RegenCategory();
         void CreateButton(const char* name, int menuIndex);
         void ButtonState(int id, bool activated);
         void onSideButton(CCObject* ret);
-        cocos2d::extension::CCScale9Sprite* createCheckbox(bool checked);
-        matjson::Object GetTheme();
 
-        void onInfoBtn(CCObject*);
-        void onBoolBtn(CCObject*);
         //void updateOpacity(CCObject*);
     public:
+        virtual void onClose(cocos2d::CCObject*);
         static constexpr const float s_defWidth = 450.0f;
         static constexpr const float s_defHeight = 250.0f;
         //static constexpr const float s_defWidth = 400.0f;
         //static constexpr const float s_defHeight = 280.0f;
-        static PrismUI* create(matjson::Object theme, Lang* currentLang);
+        void updateLabel();
+        static matjson::Object GetTheme();
+        static PrismUI* create();
 };
