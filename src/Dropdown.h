@@ -106,7 +106,8 @@ class Dropdown : public CCMenu {
             btnMenu->setAnchorPoint({0, 1});
             //btnMenu->setPosition({0, size.height * strs.size()});
             //btnMenu->setPosition({0, size.height + 25});
-            btnMenu->setPosition({0, 25 * strs.size() - 50});
+            int strAmount = strs.size();
+            btnMenu->setPosition({0, static_cast<float>(25 * strAmount - 50)});
             btnMenu->setContentSize({size.width, size.height * strs.size()});
             btnMenu->ignoreAnchorPointForPosition(false);
             btnMenu->setVisible(false);
