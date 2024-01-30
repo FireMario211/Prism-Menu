@@ -48,7 +48,7 @@ class PrismUI : public FLAlertLayer {
             float height
         );
         virtual void keyDown(cocos2d::enumKeyCodes) override;
-        void CreateHackItem(HackItem* item);
+        void CreateHackItem(HackItem* item, bool);
         void RegenCategory();
         void CreateButton(const char* name, int menuIndex);
         void ButtonState(int id, bool activated);

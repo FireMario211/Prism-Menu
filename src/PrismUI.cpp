@@ -80,7 +80,7 @@ int getYPosBasedOnCategory() { // someone give me a proper math formula ok thank
         case 4: // Misc
             return 85;
         case 5: // Settings
-            return -81;
+            return -60;
         default: return 0;
     }
 }
@@ -97,7 +97,7 @@ float getContentSizeBasedOnCategory() { // someone give me a proper math formula
         case 4: // Misc
             return 230; // 230
         case 5: // Settings
-            return 400; // 400
+            return 420; // 400
         default: return 328;
     }
 }
@@ -110,6 +110,17 @@ std::string setPrecision(float value, int streamsize) {
     std::ostringstream oss;
     oss << std::fixed << std::setprecision(streamsize) << value;
     return oss.str();
+}
+
+// since SimpleTextArea doesnt allow limitLabelWidth
+float calculateScale(const std::string& input, int charsBeforeShrink, float minScale, float maxScale) {
+    int inputLength = input.length();
+    if (inputLength > charsBeforeShrink) {
+        float scale = minScale + (maxScale - minScale) * (static_cast<float>(inputLength - charsBeforeShrink) / inputLength);
+        return scale;
+    } else {
+        return minScale;
+    }
 }
 
 bool PrismUIButton::init(HackItem* hack) {
@@ -334,8 +345,11 @@ void PrismUIButton::onBtn(CCObject* ret) {
                 if (!ghc::filesystem::exists(saveDir + "/themes")) {
                     ghc::filesystem::create_directory(saveDir + "/themes");
                 }
-                ghc::filesystem::copy_file(path, saveDir + "/themes/" + path.filename().string());
-                //ImGui::OpenPopup("Success");
+                auto savePath = saveDir + "/themes/" + path.filename().string();
+                if (ghc::filesystem::exists(savePath)) {
+                    ghc::filesystem::remove(savePath);
+                }
+                ghc::filesystem::copy_file(path, savePath); // why this crashes if a file already exists? idk
                 FLAlertLayer::create("Success!", "The <cy>theme</c> has successfully been imported! Restart your game to use it.", "OK")->show();
             }
         );
@@ -385,25 +399,14 @@ void PrismUIButton::onDropdownBtn(CCObject* sender) {
     }
 }
 
-void PrismUI::CreateHackItem(HackItem* hack) {
+void PrismUI::CreateHackItem(HackItem* hack, bool isSettings) {
     const auto& obj = hack->data;
     std::string name = hack->name;
     std::string desc = hack->desc;
     auto opcodes = obj.get<matjson::Array>("opcodes");
     if (!((Hacks::isHackEnabled("Enable Patching") && obj.contains("winOnly")) || !obj.contains("winOnly") || name == "Enable Patching")) return;
-    /*if (obj.contains("winOnly")) {
-        //#ifndef GEODE_IS_WINDOWS
-        ImGui::BeginDisabled(true);
-        //#endif
-    }
-    if (obj.contains("win")) { // yeah idk what property okay
-        #ifndef GEODE_IS_WINDOWS
-        ImGui::BeginDisabled(true);
-        #endif
-    }*/ 
     auto btn = PrismUIButton::create(hack);
-    float indexY = (currentI * 28) + 100;
-    
+    float indexY = (isSettings) ? ((currentI - 1)* 28) + 100 : (currentI * 28) + 100;
     // TODO: create custom sprite so people dont complain
     auto infoSpr = CCSprite::createWithSpriteFrameName("GJ_infoIcon_001.png");
     //infoSpr->setScale(.5F);
@@ -562,9 +565,34 @@ void PrismUI::RegenCategory() {
         case 4: // Misc
             jsonArray = matjson::parse(Hacks::getMiscHacks()).as_array();
             break;
-        case 5: // Settings
+        case 5: { // Settings
             jsonArray = matjson::parse(Hacks::getSettings()).as_array();
+            auto currentLanguage = Lang::getLanguage();
+            auto createdByLabel = CCLabelBMFont::create(currentLanguage->name("Prism Menu by Firee").c_str(), "PrismMenu.fnt"_spr);
+            auto versionLabel = CCLabelBMFont::create("Unknown.", "PrismMenu.fnt"_spr);
+            createdByLabel->limitLabelWidth(150, 1.0F, .2F);
+            createdByLabel->setPosition({63, 470});
+            versionLabel->setPosition({63, 455});
+            #ifdef GITHUB_ACTIONS
+            auto version = fmt::format("{} (Geode)", Mod::get()->getVersion().toString());
+            #else 
+            auto version = fmt::format("{}-Dev (Geode)", Mod::get()->getVersion().toString());
+            #endif
+
+            #ifdef GEODE_IS_WINDOWS
+                versionLabel->setString(fmt::format("{} - Windows", version).c_str());
+            #else // why does android not like elif
+            #ifdef GEODE_IS_ANDROID
+                versionLabel->setString(fmt::format("{} - Android", version).c_str());
+            #else 
+                versionLabel->setString(fmt::format("{} - HOW by Spu7nix", version).c_str());
+            #endif
+            #endif
+            versionLabel->limitLabelWidth(150, 1.0F, .2F);
+            m_content->addChild(createdByLabel);
+            m_content->addChild(versionLabel);
             break;
+        }
     }
     currentI = 0;
     for (auto it = jsonArray.end() - 1; it != jsonArray.begin() - 1; it--) {
@@ -572,7 +600,7 @@ void PrismUI::RegenCategory() {
         std::string name = obj.get<std::string>("name");
         HackItem* hack = Hacks::getHack(name);
         if (hack != nullptr) {
-            CreateHackItem(hack);
+            CreateHackItem(hack, currentMenuIndexGD == 5);
         }
     }
 }
@@ -632,7 +660,7 @@ void PrismUIButton::onInfoBtn(CCObject* ret) {
     auto currentLanguage = Lang::getLanguage();
     auto name = currentLanguage->name(hack->name);
     auto desc = currentLanguage->desc(hack->name, hack->desc);
-    auto flAlert = FLAlertLayer::create(name.c_str(), desc.c_str(), "OK");
+    auto flAlert = FLAlertLayer::create(name.c_str(), "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "OK");
     TextArea* lines;
     CCLabelBMFont* title;
     for (int i = 0; i < flAlert->m_mainLayer->getChildrenCount(); i++) {
@@ -667,21 +695,33 @@ void PrismUIButton::onInfoBtn(CCObject* ret) {
         /*auto newLines = TextArea::create(
             hack->desc.c_str(), "PrismMenu.fnt"_spr, 1.0F,
             240.F, { 0.5, 0 }, 20.F, false);*/
-        auto newLines = TextArea::create(
+        // broken with cyrillic and other accents :(
+        /*auto newLines = TextArea::create(
             desc.c_str(), "PrismMenu.fnt"_spr, 0.7F, //0.8
-            280.F, { 0.5, 0 }, 20.F, false);
-        //auto newLines = geode::GEODE_DLL::SimpleTextArea::create(hack->desc.c_str());
-        //const std::string& text, const std::string& font, const float scale, const float width
-        newLines->setScale(.75F);
+            280.F, { 0.5, 0 }, 20.F, false);*/ 
+        //const std::string& font, const std::string& text, const float scale, const float width,
+        auto newLines = SimpleTextArea::create("A", "PrismMenu.fnt"_spr, 0.5F, 260.0F);
+        //newLines->setScale(.75F);
+        newLines->setText(desc.c_str());
+        newLines->setScale(calculateScale(desc, 25, .75F, .25F));
+        auto newLinesMenu = static_cast<CCMenu*>(newLines->getChildren()->objectAtIndex(0));
+        newLinesMenu->setPositionY(40);
+        newLinesMenu->setLayout( // solution for SimpleTextArea not being centered, ->setAlignment doesnt work properly
+            ColumnLayout::create()
+                ->setCrossAxisLineAlignment(AxisAlignment::Center)
+                ->setAxisAlignment(AxisAlignment::Center)
+                ->setAxisReverse(true)
+        );
         //newLines->setScale(.75F);
         //newLines->setPosition({lines->getPositionX(), lines->getPositionY() - 10});
-        newLines->setPosition({336, lines->getPositionY() - 10});
+        //newLines->setPosition({285, 175});
+        newLines->setPosition({282, (cocos2d::CCDirector::sharedDirector()->getWinSize().height / 2) + 10}); // 160 - 220
         newLines->setZOrder(lines->getZOrder());
         lines->removeFromParentAndCleanup(true);
-        //lines->setVisible(false);
         flAlert->m_mainLayer->addChild(newLines);
+        flAlert->show();
+        newLinesMenu->updateLayout(); // why this no work!?
     }
-    flAlert->show();
 
 }
 
