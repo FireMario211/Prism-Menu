@@ -36,6 +36,7 @@ bool GatoSim::init() {
     auto otherMenu = CCMenu::create();
     auto gato = CCSprite::create("gato.jpg"_spr);
     
+#ifndef GEODE_IS_MACOS
     float rotateBy = 15;
     float moveBy = 15;
     float speed = 0.25;
@@ -64,7 +65,7 @@ bool GatoSim::init() {
         nullptr
     );
     gato->runAction(CCRepeatForever::create(bouncy));
-
+#endif
     auto thecenterofattention = CCMenuItemSpriteExtra::create(gato, this, nullptr);
     otherMenu->setPosition({ size.width / 2, size.height / 2});
     otherMenu->addChild(thecenterofattention);

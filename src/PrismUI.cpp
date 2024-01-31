@@ -363,7 +363,9 @@ void PrismUIButton::onDropdownBtn(CCObject* sender) {
     #ifdef GEODE_IS_WINDOWS
     obj2->runAction(CCEaseBackOut::create(CCScaleTo::create(0.5f, 0.75f, (!expanded ? -0.75f : 0.75f))));
     #else
+    #ifdef GEODE_IS_ANDROID
     obj2->runAction(CCScaleTo::create(0.5f, 0.75f, (!expanded ? -0.75f : 0.75f)));
+    #endif
     #endif
 
     auto parent = obj2->getParent();

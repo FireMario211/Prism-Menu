@@ -32,7 +32,9 @@ struct EditMode {
 
 EditMode editingMode;
 
+#ifndef GEODE_IS_MACOS
 #include <imgui-cocos.hpp>
+#endif
 #include <Geode/modify/MenuLayer.hpp>
 #include <Geode/modify/AchievementNotifier.hpp>
 
@@ -53,7 +55,7 @@ std::string determineName(const char* name, float width) {
         return nameStr;
     }
 }
-
+#ifndef GEODE_IS_MACOS
 struct ItemRectInfo {
     ImVec2 min;
     ImVec2 max;
@@ -88,6 +90,7 @@ void CreateButton(const char* name, int menuIndex, float buttonWidth, float butt
     }
     //ImGui::PushStyleColor();
 }
+#endif
 
 /*
 for i in range(char2nr('A'), char2nr('Z'))
@@ -98,7 +101,7 @@ endfor
 class PrismButton : public CCMenu {
 protected:
     CCTouch* touchs;
-    CCMenuItemSpriteExtra* menuButton;
+    //CCMenuItemSpriteExtra* menuButton;
     bool allowDragging;
     bool isTouchOnButton;
     float initialTouchX;
@@ -110,7 +113,7 @@ protected:
             return false;
         HackItem* posX = Hacks::getHack("Button Position X");
         HackItem* posY = Hacks::getHack("Button Position Y");
-        menuButton = createButton(this);
+        auto menuButton = createButton(this);
         this->addChild(menuButton);
         this->setPositionX(posX->value.intValue);
         this->setPositionY(posY->value.intValue);
@@ -253,6 +256,7 @@ class $modify(MenuLayer) {
         firstLoad = true;
         log::info("Prism Menu loaded! Enjoy the mod.");
         // TODO: goodbye imgui
+        #ifndef GEODE_IS_MACOS
         ImGuiCocos::get().setup([] {
             /*
             // Future Dark style by rewrking from ImThemes
@@ -723,10 +727,14 @@ class $modify(MenuLayer) {
                 ImGui::End();
             }
         });
+            #endif
+        
+#ifndef GEODE_IS_MACOS
         prismButton = PrismButton::create(CCScene::get());
         prismButton->setVisible(Hacks::isHackEnabled("Show Button"));
         prismButton->setID("prism-icon");
         SceneManager::get()->keepAcrossScenes(prismButton);
+#endif
         return true;
     }
 };
@@ -762,7 +770,6 @@ $on_mod(Loaded) {
 }
 
 // remove when custom keybinds is fixed
-#ifdef GEODE_IS_WINDOWS
 #include <Geode/modify/CCKeyboardDispatcher.hpp>
 class $modify(CCKeyboardDispatcher) {
     bool dispatchKeyboardMSG(enumKeyCodes key, bool down, bool arr) {
@@ -772,14 +779,17 @@ class $modify(CCKeyboardDispatcher) {
                 showMenu = !showMenu;
             } else {
                 auto prismUIExists = CCScene::get()->getChildByID("prism-menu");
-                if (prismUIExists == nullptr) PrismUI::create()->show();
+                if (prismUIExists == nullptr) {
+                    PrismUI::create()->show();
+                } else {
+                    static_cast<PrismUI*>(prismUIExists)->onClose(CCNode::create());
+                }
             }
             return true;
         }
         return CCKeyboardDispatcher::dispatchKeyboardMSG(key, down, arr);
     }
 };
-#endif
 
 // sorry, not sorry. for some reason the allHacks vector isnt being initialized in the other .cpp file
 // i completely wasted my time writing this whole patch script, and i kinda want android + mac support soooo
@@ -789,6 +799,7 @@ class $modify(CCKeyboardDispatcher) {
 #include <Geode/modify/PauseLayer.hpp>
 // TODO later: move these
 class $modify(GJBaseGameLayer) {
+#ifndef GEODE_IS_MACOS
     // No Mirror Transition, Instant Mirror Portal
     void toggleFlipped(bool p0, bool p1) { // i spent a lot of time figuring out why CCActionTween wont hook, only to realize that p1 instantly transitions it
         if (Hacks::isHackEnabled("Enable Patching")) return GJBaseGameLayer::toggleFlipped(p0, p1);
@@ -799,6 +810,7 @@ pCVar2 = (CCActionInterval *)cocos2d::CCActionTween::create((float)uVar8,(char *
         // ??* esp = 0x3F;
         if (!Hacks::isHackEnabled("No Mirror Transition")) GJBaseGameLayer::toggleFlipped(p0, Hacks::isHackEnabled("Instant Mirror Portal"));
     }
+#endif
     // Speedhack fix
 #ifdef GEODE_IS_WINDOWS // sorry its weird on android
     void applyTimeWarp(float speed) {
@@ -837,7 +849,6 @@ CircleButtonSprite* createCheatIndicator(bool isHacking) {
 class $modify(PlayLayer) {
     float previousPositionX = 0.0F;
     GameObject* antiCheatObject; // removing after lol
-    GJLevelType oldLevelType;
     CircleButtonSprite* cheatIndicator;
     bool previousTestMode;
 
@@ -857,7 +868,7 @@ class $modify(PlayLayer) {
         if ((noclipDisabled && !Hacks::isHackEnabled("No Spikes"))) return PlayLayer::destroyPlayer(p0, p1);
         if (Hacks::isHackEnabled("Anticheat Bypass")) {
             if (!m_fields->initedDeath) {
-            #ifndef GEODE_IS_ANDROID64
+            #if !defined(GEODE_IS_ANDROID64) && !defined(GEODE_IS_MACOS)
             if (m_fields->antiCheatObject == nullptr && p1 != nullptr && (
                 (p1->m_realXPosition == 0 && p1->m_realYPosition == p0->m_realYPosition) ||
                 (p1->m_realXPosition == 0 && p1->m_realYPosition == p0->m_realYPosition) // todo, get player pos during PlayLayer::init
@@ -900,7 +911,6 @@ class $modify(PlayLayer) {
             PlayLayer::playEndAnimationToPos({2,2});
         }
         // 0xaa9
-        //bool m_isTestMode = *reinterpret_cast<bool*>(reinterpret_cast<uintptr_t>(this) + 0x3d4 + 0x4); // absolutely cursed
         int targetValue = true;
         /*for (int offset = 0x0; offset < 0xAAAA; offset += 0x1) {
             int val = *reinterpret_cast<int*>(reinterpret_cast<uintptr_t>(this) + offset);
@@ -912,8 +922,10 @@ class $modify(PlayLayer) {
                 break;
             }*\/
         }*/
-        m_fields->oldLevelType = p0->m_levelType;
+        #ifndef GEODE_IS_MACOS
         m_fields->previousTestMode = m_isTestMode;
+        #endif
+        
         if (Hacks::isHackEnabled("Level Edit")) {
             //m_fields->m_gameLevel->m_levelType = static_cast<GJLevelType>(2);
         }
@@ -944,11 +956,13 @@ class $modify(PlayLayer) {
     }
     void postUpdate(float p0) {
         PlayLayer::postUpdate(p0);
+#ifndef GEODE_IS_MACOS
         if (Hacks::isHackEnabled("Safe Mode")) {
             m_isTestMode = true;
         } else {
             m_isTestMode = m_fields->previousTestMode;
         }
+#endif
         // whats the difference between m_fields and not using? i have no idea!
         if ( // i dont know what are considered "cheats"
             Hacks::isHackEnabled("Noclip") ||
@@ -1045,6 +1059,7 @@ class $modify(PlayLayer) {
     }
     
     // Accurate Percentage
+#ifndef GEODE_IS_MACOS
     void updateProgressbar() {
         PlayLayer::updateProgressbar();
         if (Hacks::isHackEnabled("Enable Patching")) return;
@@ -1055,6 +1070,7 @@ class $modify(PlayLayer) {
             m_fields->percentLabel->setString(percentStr.c_str());
         }
     }
+#endif
     void levelComplete() {
         if (!Hacks::isHackEnabled("Safe Mode") || Hacks::isHackEnabled("Enable Patching")) return PlayLayer::levelComplete();
         PlayLayer::resetLevel(); // haha

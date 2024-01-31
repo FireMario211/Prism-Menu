@@ -3,6 +3,7 @@
 	"version": "v1.3.0",
 	"gd": {
 		"win": "2.204",
+        "mac": "2.200",
 		"android": "2.205"
     	},
 	"id": "firee.PrismMenu",

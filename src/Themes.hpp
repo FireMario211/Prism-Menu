@@ -1,5 +1,7 @@
 #pragma once
+#ifndef GEODE_IS_MACOS
 #include <imgui-cocos.hpp>
+#endif
 #include <Geode/Geode.hpp>
 #include "hacks.hpp"
 
@@ -11,6 +13,7 @@ class Themes {
     public:
     static void addToCurrentThemes();
     static matjson::Array getCurrentThemes();
+#ifndef GEODE_IS_MACOS
     static ImVec4 RGBAToImVec4(matjson::Value rgba) {
         float currentOpacity = Hacks::getHack("Menu Opacity")->value.floatValue;
         rgba = rgba.as_array();
@@ -32,6 +35,7 @@ class Themes {
             alpha
         );
     }
+#endif
     static void RGBAToCC(matjson::Value rgba, CCNodeRGBA* obj) {
         float currentOpacity = Hacks::getHack("Menu Opacity")->value.floatValue;
         rgba = rgba.as_array();
@@ -54,13 +58,16 @@ class Themes {
         obj->setColor(color);
         obj->setOpacity((alpha == -1) ? currentOpacity * 255.0F : alpha);
     }
+#ifndef GEODE_IS_MACOS
     static void UpdateOpacity(matjson::Object theme) {
         ImGuiStyle& style = ImGui::GetStyle();
         style.Colors[ImGuiCol_WindowBg] = RGBAToImVec4(theme["BG"]);
         style.Colors[ImGuiCol_ChildBg] = RGBAToImVec4(theme["BG"]);
         style.Colors[ImGuiCol_PopupBg] = RGBAToImVec4(theme["BG"]);
     }
+#endif
     static matjson::Object getCurrentTheme();
+#ifndef GEODE_IS_MACOS
     static void LoadTheme(matjson::Object theme) {
         // Future Dark style by rewrking from ImThemes
         ImGuiStyle& style = ImGui::GetStyle();
@@ -173,4 +180,5 @@ class Themes {
         style.Colors[ImGuiCol_PlotHistogram] = ImVec4(1.0f, 0.2901960909366608f, 0.5960784554481506f, 1.0f);
         style.Colors[ImGuiCol_PlotHistogramHovered] = ImVec4(0.9960784316062927f, 0.4745098054409027f, 0.6980392336845398f, 1.0f);*/
     }
+#endif
 };

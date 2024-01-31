@@ -15,21 +15,22 @@ class Dropdown : public CCMenu {
         CCLabelBMFont* lbl;
 
         void onToggle(CCObject* sender) {
-            auto obj = static_cast<CCMenuItemSprite*>(sender);
-            bool expanded = obj->getScaleY() < 0 ? true : false;
+            auto obj = static_cast<CCMenuItemSpriteExtra*>(sender);
+            auto parent = obj->getParent();
+            auto ddmenu = parent->getChildByID("dropdown-menu");
+            bool expanded = !ddmenu->isVisible();
             #ifdef GEODE_IS_WINDOWS
             obj->runAction(CCEaseBackOut::create(CCScaleTo::create(0.5f, 0.75f, (!expanded ? -0.75f : 0.75f))));
             #else
+            #ifdef GEODE_IS_ANDROID
             obj->runAction(CCScaleTo::create(0.5f, 0.75f, (!expanded ? -0.75f : 0.75f)));
             #endif
+            #endif
 
-            auto parent = obj->getParent();
             auto background = parent->getChildByID("background");
-            auto ddmenu = parent->getChildByID("dropdown-menu");
 
             int h = ddmenu->getChildrenCount() + 1;
             h = expanded ? h : 1;
-
             ddmenu->setVisible(expanded);
             background->setContentSize({background->getContentSize().width, (25 / background->getScale()) * h});
             auto menuButtons = static_cast<CCMenu*>(parent->getParent()->getParent()->getParent());
@@ -84,11 +85,7 @@ class Dropdown : public CCMenu {
             auto spr = CCSprite::createWithSpriteFrameName("edit_upBtn_001.png");
             spr->setScale(0.9f);
 
-            auto spr2 = CCSprite::createWithSpriteFrameName("edit_upBtn_001.png");
-            spr2->setScale(0.9f);
-            spr2->setColor({150, 150, 150});
-
-            auto arrowBtn = CCMenuItemSprite::create(spr, spr2, menu, menu_selector(Dropdown::onToggle));
+            auto arrowBtn = CCMenuItemSpriteExtra::create(spr, menu, menu_selector(Dropdown::onToggle));
             arrowBtn->setPosition(size.width - 15, (25.F / 2.F));
             arrowBtn->setID("flip-btn");
             arrowBtn->setScale(0.75f);

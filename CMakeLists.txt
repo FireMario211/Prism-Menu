@@ -27,8 +27,11 @@ endif()
 add_subdirectory($ENV{GEODE_SDK} ${CMAKE_CURRENT_BINARY_DIR}/geode)
 
 # imgui stuff 
-set(IMGUI_VERSION "v1.90")
-CPMAddPackage("gh:matcool/gd-imgui-cocos#4eb5777") # specify a commit!
+if (NOT APPLE)
+    set(IMGUI_VERSION "v1.90")
+    CPMAddPackage("gh:matcool/gd-imgui-cocos#4eb5777") # specify a commit!
+    target_link_libraries(${PROJECT_NAME} imgui-cocos)
+endif()
 
 if (FALSE) # in favor of resources
     # embedding files
@@ -49,7 +52,6 @@ if (FALSE) # in favor of resources
     b_embed(${PROJECT_NAME} resources/themes.json)
     # embedding files
 endif()
-target_link_libraries(${PROJECT_NAME} imgui-cocos)
 
 # Set up dependencies, resources, link Geode
 setup_geode_mod(${PROJECT_NAME})

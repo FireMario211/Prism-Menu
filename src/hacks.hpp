@@ -6,7 +6,6 @@
 #include <Geode/utils/general.hpp>
 #include <Geode/Geode.hpp>
 #include <algorithm>
-#include <imgui-cocos.hpp>
 
 #ifdef GEODE_IS_WINDOWS
 #include <Geode/platform/windows.hpp>

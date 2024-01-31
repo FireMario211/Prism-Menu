@@ -1,4 +1,5 @@
 # v1.3.0 
+    - Added Mac OS Support
     - Replaced ImGui with a new natively made UI for GD (mainly for Android users. The option to switch back will be removed in the next update).
     - Added Anticheat Bypass back for Android.
     - Added Speedhack Audio
