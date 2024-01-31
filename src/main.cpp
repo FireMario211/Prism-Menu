@@ -775,6 +775,9 @@ class $modify(CCKeyboardDispatcher) {
     bool dispatchKeyboardMSG(enumKeyCodes key, bool down, bool arr) {
         if (down && (key == KEY_Tab)) {
             HackItem* menuStyle = Hacks::getHack("Menu Style");
+#ifdef GEODE_IS_MACOS //because no imgui lol
+menuStyle->value.intValue = 1;
+#endif
             if (menuStyle->value.intValue == 0) { // imgui
                 showMenu = !showMenu;
             } else {

@@ -14,7 +14,7 @@ This mod menu also provides unique features not present in most mod menus, here 
 ## Multiple Language (Half way done)
 * Prism Menu supports more languages than **English,** it supports **Spanish**, **French**, **Portuguese** (Brazilian), **German**, **Russian**, **Czech**, and many more!
 ## Cross Platform
-* Prism Menu is available on both `Windows` and `Android`!
+* Prism Menu is available on both `Windows`, `Mac`, and `Android`!
 
 Note: For Android, there may be an update soon that will make it easier to use the menu in case the buttons look too small / is hard to use.
 
