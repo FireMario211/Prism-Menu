@@ -35,7 +35,6 @@ jobs:
       - name: Build the mod
         uses: geode-sdk/build-geode-mod@main
         with:
-          bindings: 'FireMario211/bindings' # please merge my pr ok thank you
           sdk: nightly
           #build-config: 'RelWithDebInfo'
           combine: true
