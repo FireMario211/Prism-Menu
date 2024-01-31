@@ -26,6 +26,11 @@ class PrismUIButton : public CCNode, public TextInputDelegate {
         void onDropdownBtn(CCObject*);
         cocos2d::extension::CCScale9Sprite* createCheckbox(bool checked);
     public:
+        CCMenu* getMenu() { return menu; }
+        Slider* getSlider() { return m_slider; }
+        InputNode* getInputNode() { return m_input; }
+        HackItem* getHack() { return m_hack; }
+
         void onInfoBtn(CCObject*);
         static PrismUIButton* create(HackItem* hack);
 };

@@ -1,0 +1,408 @@
+[
+    {
+        "§ Global": {
+            "name": "§ Ogólne"
+        }
+    },
+    {
+        "¬ Player": {
+            "name": "¬ Gracz"
+        }
+    },
+    {
+        "ª Bypass": {
+            "name": "ª Obejście"
+        }
+    },
+    {
+        "« Creator": {
+            "name": "« Edytor"
+        }
+    },
+    {
+        "··· Misc": {
+            "name": "··· Inne"
+        }
+    },
+    {
+        "¶ Settings": {
+            "name": "¶ Ustawienia"
+        }
+    },
+
+    {
+        "Prism Menu by Firee": {
+            "name": "Prism Menu od Firee"
+        }
+    },
+
+    {
+        "Anticheat Bypass": {
+            "name": "Wyłącz Anticheat",
+            "desc": "Wyłącza Anticheat [Poziomy, Edytor, itd.]"
+        }
+    },
+    {
+        "Practice Music": {
+            "name": "Muzyka W Trybie Ćwiczenia",
+            "desc": "Włącza muzykę w trybie ćwiczenia, nawet jeżeli jest zablokowana"
+        }
+    },
+    {
+        "Safe Mode": {
+            "name": "Tryb Bezpieczny",
+            "desc": "Przerywa osiąganie nowych rekordów na poziomach."
+        }
+    },
+    {
+        "Accurate Percentage": {
+            "name": "Dokładne Procenty",
+            "desc": "Dokładniejsze procenty poza trzecią liczbą za przecinkiem."
+        }
+    },
+    {
+        "Layout Mode": {
+            "name": "Tryb Bez Dekoracji",
+            "desc": "Usuwa wszystkie obiekty dekoracji w poziomie."
+        }
+    },
+    {
+        "No Transition": {
+            "name": "Usuń Przejścia",
+            "desc": "Skraca przejścia między menu"
+        }
+    },
+    {
+        "Cheat Indicator": {
+            "name": "Wskaźnik Cheatów",
+            "desc": "Włącza wskaźnik, który pokazuje, czy korzystasz z cheatów."
+        }
+    },
+    {
+        "Speedhack": {
+            "name": "Speedhack",
+            "desc": "Zmienia prędkość gry i muzyki."
+        }
+    },
+    {
+        "FPS Bypass": {
+            "name": "Obejście FPS",
+            "desc": "Umożliwia osiąganie wyższych wartości FPS niż 60 lub częstotliwość wyświetlacza"
+        }
+    },
+    {
+        "Reset Speedhack": {
+            "name": "Zresetuj Speedhack",
+            "desc": "Resetuje Speedhack do 1.0."
+        }
+    },
+
+    {
+        "Noclip": {
+            "name": "Niepokonalność",
+            "desc": "Gracz staje sie niepokonalny."
+        }
+    },
+    {
+        "No Spikes": {
+            "name": "Bez Kolców",
+            "desc": "Ignoruje kolce."
+        }
+    },
+    {
+        "No Hitbox": {
+            "name": "Brak Hitboxów",
+            "desc": "Wyłącza hitboxy i obiekty specjalne."
+        }
+    },
+    {
+        "No Solids": {
+            "name": "Brak Obiektów Solidnych (Solids)",
+            "desc": "Wyłącza hitboxy większości obiektów normalnych, oprócz obiektów specjalnych."
+        }
+    },
+    {
+        "Everything Hurts": {
+            "name": "Wszystko Kłuje",
+            "desc": "Auć."
+        }
+    },
+    {
+        "No Mirror Transition": {
+            "name": "Brak Portali Lustra",
+            "desc": "Portale lustra nie odwracają ekranu."
+        }
+    },
+    {
+        "Instant Mirror Portal": {
+            "name": "Natychmiastowy Portal Lustra",
+            "desc": "Portal lustra od razu zmienia ekran"
+        }
+    },
+    {
+        "Freeze Player": {
+            "name": "Zatrzymaj Gracza",
+            "desc": "Zatrzymuje ruch gracza."
+        }
+    },
+    {
+        "Jump Hack": {
+            "name": "Jump Hack",
+            "desc": "Pozwala skakać w powietrzu."
+        }
+    },
+    {
+        "Instant Complete": {
+            "name": "Natychmiastowe Ukończenie",
+            "desc": "Od razu przechodzi poziom. (Nie włączaj w edytorze)"
+        }
+    },
+    {
+        "Force Platformer Mode": {
+            "name": "Wymuś Tryb Platformowy",
+            "desc": "Wymusza tryb platformowy w każdym poziomie"
+        }
+    },
+    {
+        "Change Gravity": {
+            "name": "Zmień Grawitację",
+            "desc": "Zmienia grawitację w powietrzu."
+        }
+    },
+    {
+        "Gravity Value": {
+            "name": "Siła Grawitacji",
+            "desc": "Wielkość ustawionej siły grawitacji."
+        }
+    },
+
+    {
+        "Icon Bypass": {
+            "name": "Icon Bypass",
+            "desc": "Odblokuj wszystkie ikony"
+        }
+    },
+    {
+        "Text Length": {
+            "name": "Długość Tekstu",
+            "desc": "Pozwala na nieskończoną długość wszystkich tekstów."
+        }
+    },
+    {
+        "Character Filter": {
+            "name": "Filtr Znaków",
+            "desc": "Wszystkie znaki są dozwolone."
+        }
+    },
+    {
+        "Slider Limit": {
+            "name": "Limit Suwaków",
+            "desc": "Usuwa limit suwaków."
+        }
+    },
+    {
+        "Main Levels": {
+            "name": "Poziomy Oficjalne",
+            "desc": "Odblokuj wszystkie zablokowane poziomy."
+        }
+    },
+    {
+        "Guard Vault": {
+            "name": "Odblokuj Sejf A",
+            "desc": "Odblokuj Sejf w ustawieniach."
+        }
+    },
+    {
+        "Keymaster Vault": {
+            "name": "Odblokuj Sejf B",
+            "desc": "Odblokuj Sejf w menu poziomów graczy."
+        }
+    },
+    {
+        "Treasure Room": {
+            "name": "Odblokuj Pokój Skrzyń",
+            "desc": "Odblokowuje pokój skrzyń"
+        }
+    },
+    {
+        "Free Shop Items": {
+            "name": "Bezpłatne Rzeczy w Sklepach",
+            "desc": "Bezpłatne rzeczy w sklepach."
+        }
+    },
+    {
+        "Gatekeeper Vault": {
+            "name": "Odblokuj Self C",
+            "desc": "Odblokuj sejf w menu poziomów oficialnych"
+        }
+    },
+    {
+        "Backup Stars Limit": {
+            "name": "Brak Limitu Zapisywania",
+            "desc": "Zapisuj dane poniżej 10 gwiazd."
+        }
+    },
+
+
+    {
+        "Level Edit": {
+            "name": "Edytuj Poziomy",
+            "desc": "Otwórz edytor poziomów w menu pauzy (NIESTABILNE!)"
+        }
+    },
+    {
+        "Verify Hack": {
+            "name": "Hack Weryfikacji",
+            "desc": "Pozwala przesyłanie poziomów bez weryfikacji."
+        }
+    },
+    {
+        "Copy Hack": {
+            "name": "Kopiuj Każdy Poziom",
+            "desc": "Pozwala kopiować każdy poziom bez hasła."
+        }
+    },
+    {
+        "No (C) Mark": {
+            "name": "Brak (C)",
+            "desc": "Usuwa (C) przy wstawianiu poziomów."
+        }
+    },
+    {
+        "Hide Testmode": {
+            "name": "Ukryj Testmode",
+            "desc": "Przy używaniu pozycji startowej tekst 'Testmode' nie zostaje pokazywany."
+        }
+    },
+    {
+        "Rotation Hack": {
+            "name": "Hack Obracania",
+            "desc": "Pozwala obracać każdy obiekt. Działa tylko lokalnie."
+        }
+    },
+    {
+        "Default Song Bypass": {
+            "name": "Obejście Limitu Wbudowanej Muzyki",
+            "desc": "Pozwala używać ukrytą muzyke w edytorze."
+        }
+    },
+
+    {
+        "No Progress Bar": {
+            "name": "Brak Paska Postępu",
+            "desc": "Usuwa pasek postępu. Procenty nadal zostają."
+        }
+    },
+    {
+        "Progress Bar Position": {
+            "name": "Pozycja Paska Postępu",
+            "desc": "Zmienia pozycję paska postępu."
+        }
+    },
+    {
+        "Hide Attempts": {
+            "name": "Nie Pokazuj Ilości Prób",
+            "desc": "Usuwa tekst prób w poziomie."
+        }
+    },
+    {
+        "Attempt Opacity": {
+            "name": "Przejrzystość Prób",
+            "desc": "Zmienia przejrzystość prób."
+        }
+    },
+
+    {
+        "Enable Patching": {
+            "name": "Włącz Patching",
+            "desc": "Zmienia metode dodawania hacków. Włączaj tylko jeżeli potrzebne. (Tylko na Windows)"
+        }
+    },
+    {
+        "Menu Opacity": {
+            "name": "Przejrzystość Menu",
+            "desc": "Zmienia przejrzystość menu."
+        }
+    },
+    {
+        "Theme": {
+            "name": "Motyw",
+            "desc": "Zmienia motyw Prism Menu!"
+        }
+    },
+    {
+        "Import Theme": {
+            "name": "Importuj Motyw",
+            "desc": "Importuje motyw! [JSON]"
+        }
+    },
+    {
+        "Live Theme Editing": {
+            "name": "Edytowanie Na Żywo",
+            "desc": "Pozwala edytowanie motywów na żywo. Może powodować błąd pamięci RAM."
+        }
+    },
+    {
+        "Show Tooltips": {
+            "name": "Pokaż Opisy",
+            "desc": "Pokazuje opisy osobnych cheatów.."
+        }
+    },
+    {
+        "Show Button": {
+            "name": "Pokaż Przycisk",
+            "desc": "Pokazuje przycisk do otwierania menu. Zalecane jest na telefonach."
+        }
+    },
+    {
+        "Button Position X": {
+            "name": "Pozycja X Przycisku",
+            "desc": "Pozycja X przycisku do otwierania menu."
+        }
+    },
+    {
+        "Button Position Y": {
+            "name": "Pozycja Y Przycisku",
+            "desc": "Pozycja Y przycisku do otwierania menu."
+        }
+    },
+    {
+        "Language": {
+            "name": "Język",
+            "desc": "Zmienia język menu Prism."
+        }
+    },
+    {
+        "Restore Defaults": {
+            "name": "Resetuj Do Domyślnych",
+            "desc": "Ustawienia menu zostają zresetowane i wyłączone."
+        }
+    },
+    {
+        "Credits": {
+            "name": "Podziękowania",
+            "desc": "Osoby które pomogły."
+        }
+    },
+    {
+        "Thank you to Electrify (ES), Jouca (FR), dank_meme01, savvacorgi, МегаСвятой (RU), Gazonk (BR), huhnmitferrari (DE), and Ignis (CS) for translations!": {
+            "name": "Podziękowania dla Electrify (ES), Jouca (FR), dank_meme01, savvacorgi, МегаСвятой (RU), Gazonk (BR), huhnmitferrari (DE), Ignis (CS), i olaf_294 (PL) za tłumaczenia!"
+        }
+    },
+    {
+        "And thank you for using the mod! I hope you enjoy using Prism Menu!": {
+            "name": "Dziekuję za używanie Prism Menu!"
+        }
+    },
+    {
+        "Close Popup": {
+            "name": "Zamknij"
+        }
+    },
+    {
+        "Menu Scale": {
+            "name": "Skala Menu",
+            "desc": "Zmienia wielkość menu i tekstu, wymaga restartu."
+        }
+    }
+]

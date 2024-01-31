@@ -1,9 +1,19 @@
 // code from https://github.com/TheSillyDoggo/GD-Discord-Webhook-Integration
 // sorta fixed up because why do you need reinterpret_cast!? its unsafe!
 #pragma once
+#include "PrismUI.hpp"
 #include "Themes.hpp"
+#include "Utils.hpp"
 #include "hacks.hpp"
 using namespace geode::prelude;
+
+class AFakeCCMenu : public CCMenu {
+    public:
+    void registerWithTouchDispatcher() override { // is this even needed anymore
+        CCDirector::sharedDirector()->getTouchDispatcher()->addTargetedDelegate(this, -700, true);
+    }
+};
+// TODO: figure out how to prevent touch over a background
 
 class Dropdown : public CCMenu {
     public:
@@ -30,31 +40,30 @@ class Dropdown : public CCMenu {
 
             ddmenu->setVisible(expanded);
             background->setContentSize({background->getContentSize().width, (25 / background->getScale()) * h});
+            auto menuButtons = static_cast<CCMenu*>(parent->getParent()->getParent()->getParent());
+            auto hack = static_cast<HackItem*>(parent->getUserData());
+            for (int i = 0; i < menuButtons->getChildrenCount(); i++) {
+                auto objN = menuButtons->getChildren()->objectAtIndex(i);
+                if (Utils::getNodeName(objN) == "PrismUIButton") {
+                    auto prismUIButton = static_cast<PrismUIButton*>(objN);
+                    auto pHack = prismUIButton->getHack();
+                    if (pHack == hack) continue;
+                    auto pMenu = prismUIButton->getMenu();
+                    if (pHack->type == "bool") {
+                        static_cast<CCMenuItemToggler*>(pMenu->getChildren()->objectAtIndex(1))->setEnabled(!expanded);
+                    } else if (pHack->type == "button") {
+                        static_cast<CCMenuItemSpriteExtra*>(pMenu->getChildren()->objectAtIndex(0))->setEnabled(!expanded);
+                    } else if (pHack->type == "float" || pHack->name.starts_with("Button Pos")) {
+                        prismUIButton->getInputNode()->setEnabled(!expanded);
+                        prismUIButton->getSlider()->getThumb()->setEnabled(!expanded);
+                        static_cast<CCMenuItemSpriteExtra*>(pMenu->getChildren()->objectAtIndex(0))->setEnabled(!expanded);
+                    } else if (pHack->type == "dropdown") {
+                        auto otherDDMenu = static_cast<CCMenu*>(pMenu->getChildren()->objectAtIndex(1));
+                        static_cast<CCMenuItemSpriteExtra*>(otherDDMenu->getChildByID("flip-btn"))->setEnabled(!expanded);
+                    }
+                }
+            }
         }
-        /*
-        void onSelect(CCObject* sender) {
-            auto obj = static_cast<CCMenuItemSpriteExtra*>(sender);
-            static_cast<CCLabelBMFont*>(obj->getParent()->getParent()->getChildByID("selected-label"))->setString((static_cast<CCLabelBMFont*>(obj->getChildren()->objectAtIndex(0)))->getString());
-
-            auto obj2 = static_cast<CCMenuItemSprite*>(obj->getParent()->getParent()->getChildByID("flip-btn"));
-            bool expanded = obj2->getScaleY() < 0 ? true : false;
-            #ifdef GEODE_IS_WINDOWS
-            obj2->runAction(CCEaseBackOut::create(CCScaleTo::create(0.5f, 0.75f, (!expanded ? -0.75f : 0.75f))));
-            #else
-            obj2->runAction(CCScaleTo::create(0.5f, 0.75f, (!expanded ? -0.75f : 0.75f)));
-            #endif
-
-            auto parent = obj2->getParent();
-            auto background = parent->getChildByID("background");
-            auto ddmenu = parent->getChildByID("dropdown-menu");
-
-            int h = ddmenu->getChildrenCount() + 1;
-            h = expanded ? h : 1;
-
-            ddmenu->setVisible(expanded);
-            background->setContentSize({background->getContentSize().width, (25 / background->getScale()) * h});
-        }
-        */
         static Dropdown* create(std::vector<matjson::Value> strs, HackItem* item, cocos2d::SEL_MenuHandler callback)
         {
             Dropdown* dd = new Dropdown();
@@ -62,9 +71,10 @@ class Dropdown : public CCMenu {
 
             CCSize size = {240, 25};
 
-            CCMenu* menu = CCMenu::create();
+            CCMenu* menu = AFakeCCMenu::create();
             menu->ignoreAnchorPointForPosition(false);
 
+            menu->setUserData(reinterpret_cast<void*>(item));
             menu->setContentSize(size);
 
             //auto background = CCScale9Sprite::create("GJ_square01.png");
@@ -124,16 +134,18 @@ class Dropdown : public CCMenu {
                 btn->setUserData(reinterpret_cast<void*>(item));
                 btn->setID(fmt::format("dropdown-item-{}", i));
                 btn->setPosition({size.width / 2, (background->getScaledContentSize().height - (size.height * i)) + size.height / 2});
-
+                btn->setZOrder(3);
                 btnMenu->addChild(btn);
             }
 
             
             menu->addChild(btnMenu);
             menu->registerWithTouchDispatcher();
+            cocos::handleTouchPriority(menu);
             menu->setTouchEnabled(true);
 
             dd->menu = menu;
             return dd;
         }
+        
 };

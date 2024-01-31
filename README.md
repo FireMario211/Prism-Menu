@@ -5,6 +5,7 @@ A mod menu made in Geode for Geometry Dash
 - Create another UI (cocos2d) option for mobile users
 - Add credits screen for cocos2d ui
 - Allow for dragging the button
+- Add "No Trail"
 - Add "Render Hitbox" (Basically enables hitbox even if not in practice mode)
 - Add "Disable Shaders"
 - Add background-image for custom themes (note for me: look in https://discord.com/channels/@me/1156358012852776992/1172693426429505546)

@@ -1,33 +1,16 @@
 #include "PrismUI.hpp"
+#include "GatoSim.hpp"
 #include "Themes.hpp"
 #include <Geode/binding/ButtonSprite.hpp>
 #include <Geode/ui/TextArea.hpp>
 #include "Dropdown.h"
+#include "Utils.hpp"
+
 
 int currentMenuIndexGD = 0;
 
 int calcLimit(int n) {
     return static_cast<int>(std::floor(std::log10(n)) + 1);
-}
-
-// rn im too lazy to make a "pch.h" like file
-std::string getNodeNameF(cocos2d::CCObject* node) {
-#ifdef GEODE_IS_WINDOWS
-    return typeid(*node).name() + 6;
-#else 
-    {
-        std::string ret;
-
-        int status = 0;
-        auto demangle = abi::__cxa_demangle(typeid(*node).name(), 0, 0, &status);
-        if (status == 0) {
-            ret = demangle;
-        }
-        free(demangle);
-
-        return ret;
-    }
-#endif
 }
 
 int currentI = 0;
@@ -70,7 +53,7 @@ float calculateYPosition(float x) { // love floating points
 int getYPosBasedOnCategory() { // someone give me a proper math formula ok thanks
     switch (currentMenuIndexGD) {
         case 0: // Global 
-            return -80;
+            return -90;
         case 1: // Player
             return -70;
         case 2: // Bypass
@@ -87,7 +70,7 @@ int getYPosBasedOnCategory() { // someone give me a proper math formula ok thank
 float getContentSizeBasedOnCategory() { // someone give me a proper math formula ok thanks
     switch (currentMenuIndexGD) {
         case 0: // Global 
-            return 260; // 260
+            return 280; // 260
         case 1: // Player
             return 328;
         case 2: // Bypass
@@ -211,10 +194,10 @@ bool PrismUIButton::init(HackItem* hack) {
         m_input->getInput()->setAllowedChars("0123456789.");
         m_input->setPositionX(21);
         label->setPositionX(190);
-        Slider* slider = Slider::create(this, menu_selector(PrismUIButton::onFloatBtn), .6f);
-        slider->setPositionX(122);
-        slider->setValue(getSliderValue(value, min, max, false));
-        menu->addChild(slider);
+        m_slider = Slider::create(this, menu_selector(PrismUIButton::onFloatBtn), .6f);
+        m_slider->setPositionX(122);
+        m_slider->setValue(getSliderValue(value, min, max, false));
+        menu->addChild(m_slider);
     } else if (hack->type == "dropdown" || hack->value.type == ValueType::Custom) {
         auto type = obj.get<std::string>("type");
         if (type == "button") {
@@ -248,7 +231,7 @@ bool PrismUIButton::init(HackItem* hack) {
             dropdown->menu->setPosition({78, 0});
             dropdown->menu->setScale(.75F);
 
-            cocos::handleTouchPriority(dropdown->menu);
+            //cocos::handleTouchPriority(dropdown->menu);
             label->setPositionX(180);
             /*for (int i = 0; i < dropdown->menu->getChildrenCount(); i++) {
                 auto node = dropdown->menu->getChildren()->objectAtIndex(i);
@@ -328,8 +311,8 @@ void PrismUIButton::onBtn(CCObject* ret) {
     auto prismUI = this->getParent()->getParent()->getParent()->getParent()->getParent();
     if (name == "Restore Defaults") {
         Hacks::processJSON(true);
-        // what is this, i have to use getParent 5 times, WHY
         static_cast<PrismUI*>(prismUI)->onClose(ret);
+        //GatoSim::onButton();
     } else if (name == "Import Theme") {
         geode::FileSetting::Filter filter;
         filter.description = "Theme (*.json)";
@@ -360,8 +343,10 @@ void PrismUIButton::onBtn(CCObject* ret) {
         Hacks::setPitch(1.0F);
         CCDirector::sharedDirector()->getScheduler()->setTimeScale(1.0F);
         static_cast<PrismUI*>(prismUI)->onClose(ret);
-    } else {
+    } else if (name == "Credits") {
         FLAlertLayer::create("Not working...yet.", "This will be added in a <cy>future update</c>!", "OK")->show();
+    } else {
+        GatoSim::onButton();
     }
 }
 
@@ -573,6 +558,9 @@ void PrismUI::RegenCategory() {
             createdByLabel->limitLabelWidth(150, 1.0F, .2F);
             createdByLabel->setPosition({63, 470});
             versionLabel->setPosition({63, 455});
+            Themes::RGBAToCC(GetTheme()["Text"], createdByLabel);
+            Themes::RGBAToCC(GetTheme()["Text"], versionLabel);
+
             #ifdef GITHUB_ACTIONS
             auto version = fmt::format("{} (Geode)", Mod::get()->getVersion().toString());
             #else 
@@ -665,9 +653,9 @@ void PrismUIButton::onInfoBtn(CCObject* ret) {
     CCLabelBMFont* title;
     for (int i = 0; i < flAlert->m_mainLayer->getChildrenCount(); i++) {
         auto objC = flAlert->m_mainLayer->getChildren()->objectAtIndex(i); // objective-c yes
-        if (getNodeNameF(objC) == "TextArea") {
+        if (Utils::getNodeName(objC) == "TextArea") {
             lines = static_cast<TextArea*>(objC);
-        } else if (getNodeNameF(objC) == "cocos2d::CCLabelBMFont") {
+        } else if (Utils::getNodeName(objC) == "cocos2d::CCLabelBMFont") {
             title = static_cast<CCLabelBMFont*>(objC);
         }
     }
@@ -680,18 +668,6 @@ void PrismUIButton::onInfoBtn(CCObject* ret) {
         Themes::RGBAToCC(PrismUI::GetTheme()["ButtonActive"], newTitle);
         title->removeFromParentAndCleanup(true);
         flAlert->m_mainLayer->addChild(newTitle);
-        // undocumented!
-        /* 
-              piVar4 = (int *)TextArea::create((basic_string)&local_5c,"chatFont.fnt",(float)uVar13,
-                                       (float)((ulonglong)uVar13 >> 0x20),(CCPoint)0x0,scale,
-                                       SUB41(_param_7 - 60.0,0));
-
-            what a red herring the (CCPoint)0x0 is, its actually { 0.5, 0.0 }
-        */
-        // static TextArea *TextArea::create(std::string str, const char *font, float width, float height, const cocos2d::CCPoint &anchor, float scale, bool disableColor) ACTUALLY THE ORDER IS WRONG
-        //create(std::string str, const char* font, float scale, float width, CCPoint anchor, float height, bool disableColor) - correct one!
-        // 
-        // "PrismMenu.fnt"_spr
         /*auto newLines = TextArea::create(
             hack->desc.c_str(), "PrismMenu.fnt"_spr, 1.0F,
             240.F, { 0.5, 0 }, 20.F, false);*/
@@ -701,7 +677,6 @@ void PrismUIButton::onInfoBtn(CCObject* ret) {
             280.F, { 0.5, 0 }, 20.F, false);*/ 
         //const std::string& font, const std::string& text, const float scale, const float width,
         auto newLines = SimpleTextArea::create("A", "PrismMenu.fnt"_spr, 0.5F, 260.0F);
-        //newLines->setScale(.75F);
         newLines->setText(desc.c_str());
         newLines->setScale(calculateScale(desc, 25, .75F, .25F));
         auto newLinesMenu = static_cast<CCMenu*>(newLines->getChildren()->objectAtIndex(0));
@@ -712,9 +687,6 @@ void PrismUIButton::onInfoBtn(CCObject* ret) {
                 ->setAxisAlignment(AxisAlignment::Center)
                 ->setAxisReverse(true)
         );
-        //newLines->setScale(.75F);
-        //newLines->setPosition({lines->getPositionX(), lines->getPositionY() - 10});
-        //newLines->setPosition({285, 175});
         newLines->setPosition({282, (cocos2d::CCDirector::sharedDirector()->getWinSize().height / 2) + 10}); // 160 - 220
         newLines->setZOrder(lines->getZOrder());
         lines->removeFromParentAndCleanup(true);
@@ -813,6 +785,7 @@ bool PrismUI::init(float _w, float _h) {
     cocos::handleTouchPriority(this);
     this->setKeypadEnabled(true);
     this->setTouchEnabled(true);
+    this->setID("prism-menu");
     RegenCategory();
     return true;
 }

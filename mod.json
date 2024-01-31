@@ -1,6 +1,6 @@
 {
 	"geode": "2.0.0",
-	"version": "v1.3.0",
+	"version": "v1.2.3",
 	"gd": {
 		"win": "2.204",
 		"android": "2.205"
@@ -23,13 +23,7 @@
             		"resources/themes.json",
             		"resources/hacks/README.md",
             		"resources/hacks/*.json",
-            		"resources/langs/spanish.json",
-            		"resources/langs/french.json",
-            		"resources/langs/portuguesebr.json",
-                    "resources/langs/german.json",
-                    "resources/langs/russian.json",
-                    "resources/langs/czech.json",
-                    "resources/langs/indonesian.json"
+            		"resources/langs/*.json"
 		],
         "fonts": {
             "PrismMenu": {

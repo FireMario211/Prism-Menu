@@ -30,7 +30,7 @@
         "opcodes": [],
         "type": "dropdown",
         "default": 0,
-        "values": ["English [100%]", "Français [100%]", "Português (Brasil) [100%]", "Deutsch [100%]", "Русский [100%]", "Čeština [100%]", "Indonesia [100%]"]
+        "values": ["English [100%]", "Français [100%]", "Português (Brasil) [100%]", "Deutsch [100%]", "Русский [100%]", "Čeština [100%]", "Indonesia [100%]", "Español [100%]", "Polskie [100%]", "Melayu [100%]"]
     },
     {
         "name": "Theme",
@@ -39,13 +39,6 @@
         "type": "dropdown",
         "default": 0,
         "values": ["Future Dark", "Light", "Catppuccin (Macchiato)"]
-    },
-    {
-        "name": "Import Theme",
-        "desc": "Imports a theme! [JSON file]",
-        "opcodes": [],
-        "type": "button",
-        "default": "a"
     },
     {
         "name": "Live Theme Editing",
@@ -80,6 +73,13 @@
         "max": 350,
         "default": 295,
         "step": 1
+    },
+    {
+        "name": "Import Theme",
+        "desc": "Imports a theme! [JSON file]",
+        "opcodes": [],
+        "type": "button",
+        "default": "a"
     },
     {
         "name": "Show Tooltips",

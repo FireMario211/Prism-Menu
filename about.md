@@ -26,6 +26,8 @@ Press on the circle button located on the left corner, or press `Tab` to open th
 * [Firee](https://youtube.com/@gdfiree) - Developer
 * [TheSillyDoggo](https://github.com/TheSillyDoggo) - Mod Logo Base
 * [Electrify](https://www.youtube.com/channel/UCxYliOd2aV6iZuc5wuG9QxA) - Translations for Spanish
+* [ItzLucasOG](https://twitter.com/ItzLucasOG) - Translations for Spanish
+* Hero - Translations for Spanish
 * [Jouca](https://twitter.com/JoucaJouca) - Translations for French
 * [dankmeme01](https://github.com/dankmeme01) - Proofreading for Russian
 * MegaSa1nt - Translations for Russian

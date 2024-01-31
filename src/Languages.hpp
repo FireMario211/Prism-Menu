@@ -35,6 +35,16 @@ class Lang {
                         break;
                     case 6: // Indonesian
                         file = Hacks::readFile("indonesian.json");
+                        break;
+                    case 7: // Spanish
+                        file = Hacks::readFile("spanish.json");
+                        break;
+                    case 8: // Polish
+                        file = Hacks::readFile("polish.json");
+                        break;
+                    case 9: // Malay
+                        file = Hacks::readFile("malay.json");
+                        break;
                     default: // anything else should be discarded
                         langId = 0;
                         break;
@@ -53,7 +63,7 @@ class Lang {
             return nullptr;
         }
         std::string name(std::string key) {
-            if (this->langId > 6) this->langId = 0; // for some reason it goes to 72655368 which makes ZERO sense
+            if (this->langId > 10) this->langId = 0; // for some reason it goes to 72655368 which makes ZERO sense
             if (this->langId == 0) return key;
             auto obj = this->find(key);
             if (obj == nullptr) return key;

@@ -40,8 +40,7 @@
             {"addr": "0x208114", "on": "C7 02 25 66 25 25 8B 87 C0 03 00 00 8B B0 04 01 00 00 F3 0F 5A C0 83 EC 08 F2 0F 11 04 24 83 EC 04 89 14 24 90", "off": "F3 0F 2C C0 85 C0 0F 4F C8 B8 64 00 00 00 3B C8 0F 4F C8 8B 87 C0 03 00 00 51 68 30 32 69 00 8B B0 04 01 00 00"},
             {"addr": "0x20813F", "on": "83 C4 0C", "off": "83 C4 08"}
         ],
-        "type": "bool",
-        "winOnly": true
+        "type": "bool"
     },
     {
         "name": "Layout Mode",

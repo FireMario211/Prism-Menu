@@ -1,0 +1,408 @@
+[
+    {
+        "§ Global": {
+            "name": "§ Global"
+        }
+    },
+    {
+        "¬ Player": {
+            "name": "¬ Pemain"
+        }
+    },
+    {
+        "ª Bypass": {
+            "name": "ª Pintasan"
+        }
+    },
+    {
+        "« Creator": {
+            "name": "« Pencipta"
+        }
+    },
+    {
+        "··· Misc": {
+            "name": "··· Misc"
+        }
+    },
+    {
+        "¶ Settings": {
+            "name": "¶ Tetapan"
+        }
+    },
+
+    {
+        "Prism Menu by Firee": {
+            "name": "Menu Prism oleh Firee"
+        }
+    },
+
+    {
+        "Anticheat Bypass": {
+            "name": "Pintasan Anti Menipu",
+            "desc": "Lumpuhkan semua anti penipuan. [Tahap, Penyunting, etc]"
+        }
+    },
+    {
+        "Practice Music": {
+            "name": "Muzik Latihan",
+            "desc": "Mendayakan Muzik Latihan walaupun ia dikunci."
+        }
+    },
+    {
+        "Safe Mode": {
+            "name": "Mod Selamat",
+            "desc": "Menjedakan sebarang kemajuan daripada siap pada tahap."
+        }
+    },
+    {
+        "Accurate Percentage": {
+            "name": "Peratusan Tepat",
+            "desc": "Membolehkan perpuluhan dalam peratusan tahap. [Melebihi perseribu]"
+        }
+    },
+    {
+        "Layout Mode": {
+            "name": "Mod Susun Atur",
+            "desc": "Mengalih keluar semua hiasan yang dikaitkan dengan tahap."
+        }
+    },
+    {
+        "No Transition": {
+            "name": "Tiada Peralihan",
+            "desc": "Memendekkan masa peralihan kepada 0s"
+        }
+    },
+    {
+        "Cheat Indicator": {
+            "name": "Penunjuk Penipu",
+            "desc": "Menunjukkan ikon untuk memberitahu sama ada anda menggunakan mod yang mungkin dianggap menipu atau tidak!"
+        }
+    },
+    {
+        "Speedhack": {
+            "name": "Tetapan Kelajuan",
+            "desc": "Mengubah kelajuan permainan dan audio."
+        }
+    },
+    {
+        "FPS Bypass": {
+            "name": "Pintasan FPS",
+            "desc": "Membuka kunci FPS anda menjadi lebih tinggi daripada 60 atau kadar segar semula monitor anda."
+        }
+    },
+    {
+        "Reset Speedhack": {
+            "name": "Tetap Semula Kelajuan",
+            "desc": "Menetap semula tetapan kelajuan kepada asal."
+        }
+    },
+
+    {
+        "Noclip": {
+            "name": "Tiada Klip",
+            "desc": "Membuatkan pemain menjadi kebal."
+        }
+    },
+    {
+        "No Spikes": {
+            "name": "Tiada Pancang",
+            "desc": "Abaikan objek pancang."
+        }
+    },
+    {
+        "No Hitbox": {
+            "name": "Tiada Hitbox",
+            "desc": "Melumpuhkan semua hitbox. Objek khas juga dilumpuhkan."
+        }
+    },
+    {
+        "No Solids": {
+            "name": "Tiada Pepejal",
+            "desc": "Melumpuhkan semua kotak padat. Objek khas masih berfungsi."
+        }
+    },
+    {
+        "Everything Hurts": {
+            "name": "Semuanya Sakit",
+            "desc": "Aduh."
+        }
+    },
+    {
+        "No Mirror Transition": {
+            "name": "Tiada Peralihan Cermin",
+            "desc": "Menghalang skrin terbalik pada portal cermin."
+        }
+    },
+    {
+        "Instant Mirror Portal": {
+            "name": "Portal Cermin Segera",
+            "desc": "Portal Cermin akan terbalik dengan segera."
+        }
+    },
+    {
+        "Freeze Player": {
+            "name": "Bekukan Pemain",
+            "desc": "Membekukan pergerakan pemain."
+        }
+    },
+    {
+        "Jump Hack": {
+            "name": "Mod Lompatan",
+            "desc": "Membenarkan pemain melompat di udara."
+        }
+    },
+    {
+        "Instant Complete": {
+            "name": "Segera Lengkap",
+            "desc": "Serta-merta melengkapkan tahap. (Jangan dayakan didalam Editor)"
+        }
+    },
+    {
+        "Force Platformer Mode": {
+            "name": "Mod Platformer Paksa",
+            "desc": "Memaksa anda untuk berada dalam mod platformer apabila bermain tahap."
+        }
+    },
+    {
+        "Change Gravity": {
+            "name": "Tukar Graviti",
+            "desc": "Membenarkan anda menukar graviti ketika melompat atau ketika jatuh."
+        }
+    },
+    {
+        "Gravity Value": {
+            "name": "Nilai Graviti",
+            "desc": "Nilai graviti yang perlu ditetapkan."
+        }
+    },
+
+    {
+        "Icon Bypass": {
+            "name": "Pintasan Ikon",
+            "desc": "Membuka semua ikon."
+        }
+    },
+    {
+        "Text Length": {
+            "name": "Panjang Teks",
+            "desc": "Membenarkan panjang teks tanpa had dalam input teks."
+        }
+    },
+    {
+        "Character Filter": {
+            "name": "Penapis Aksara",
+            "desc": "Membolehkan anda memasukkan sebarang aksara dalam semua input teks."
+        }
+    },
+    {
+        "Slider Limit": {
+            "name": "Had Gelangsar",
+            "desc": "Membolehkan gelangsar diheret melebihi had yang disediakan."
+        }
+    },
+    {
+        "Main Levels": {
+            "name": "Tahap Utama",
+            "desc": "Membuka kunci semua tahap Demon."
+        }
+    },
+    {
+        "Guard Vault": {
+            "name": "Bilik Kebal Pengawal",
+            "desc": "Membuka bilik kebal pengawal."
+        }
+    },
+    {
+        "Keymaster Vault": {
+            "name": "Bilik Kebal Keymaster",
+            "desc": "Membuka bilik kebal Keymaster."
+        }
+    },
+    {
+        "Treasure Room": {
+            "name": "Bilik Harta Karun",
+            "desc": "Membuka bilik harta karun."
+        }
+    },
+    {
+        "Free Shop Items": {
+            "name": "Barangan Kedai Percuma",
+            "desc": "Membolehkan semua barangan di setiap kedai dibeli menggunakan 0 orb."
+        }
+    },
+    {
+        "Gatekeeper Vault": {
+            "name": "Bilik Kebal Gatekeeper",
+            "desc": "Membuka bilik kebal Gatekeeper."
+        }
+    },
+    {
+        "Backup Stars Limit": {
+            "name": "Sandaran Had Bintang",
+            "desc": "Membolehkan anda membuat sandaran data, walaupun dengan kurang daripada 10 bintang."
+        }
+    },
+
+
+    {
+        "Level Edit": {
+            "name": "Ubah Tahap",
+            "desc": "Membenarkan anda mengubah mana-mana tahap melalui menu jeda. (TIDAK STABIL)"
+        }
+    },
+    {
+        "Verify Hack": {
+            "name": "Pintasan Pengesahan",
+            "desc": "Membenarkan anda memuat naik tahap yang belum disahkan dan akan ditanda sebagai sah secara automatik."
+        }
+    },
+    {
+        "Copy Hack": {
+            "name": "Pintasan Salinan",
+            "desc": "Membenarkan anda menyalin mana-mana tahap tanpa kata laluan."
+        }
+    },
+    {
+        "No (C) Mark": {
+            "name": "Tanpa Tanda (C)",
+            "desc": "Mengalih keluar tanda (C) apabila memuat naik tahap yang disalin. Akan menetapkan tahap secara automatik sebagai asli."
+        }
+    },
+    {
+        "Hide Testmode": {
+            "name": "Menyembunyikan Mod Ujian",
+            "desc": "Menyembunyikan teks 'testmode' apabila bermain dengan posisi mula."
+        }
+    },
+    {
+        "Rotation Hack": {
+            "name": "Pintasan Putaran",
+            "desc": "Membolehkan anda memutarkan pelbagai objek. Hanya berfungsi pada yang terdekat."
+        }
+    },
+    {
+        "Default Song Bypass": {
+            "name": "Pintasan Lagu Tersembunyi",
+            "desc": "Membolehkan anda menggunakan lagu tersembunyi di dalam mod pencipta."
+        }
+    },
+
+    {
+        "No Progress Bar": {
+            "name": "Tanpa Bar Kemajuan",
+            "desc": "Mengalih keluar bar kemajuan! Peratusan masih akan ditunjukkan."
+        }
+    },
+    {
+        "Progress Bar Position": {
+            "name": "Posisi Bar Kemajuan",
+            "desc": "Menetapkan kedudukan bar kemajuan."
+        }
+    },
+    {
+        "Hide Attempts": {
+            "name": "Sorokkan Percubaan",
+            "desc": "Sama ada atau tidak label percubaan harus ditunjukkan semasa memainkan tahap."
+        }
+    },
+    {
+        "Attempt Opacity": {
+            "name": "Kelegapan Percubaan",
+            "desc": "Menentukan kelegapan label percubaan."
+        }
+    },
+
+    {
+        "Enable Patching": {
+            "name": "Enable Patching",
+            "desc": "Perubahan daripada mengait kepada menampal. Ini juga membolehkan lebih banyak mod didayakan. Hanya dayakan jika perlu. [Hanya Windows]"
+        }
+    },
+    {
+        "Menu Opacity": {
+            "name": "Kelegapan Menu",
+            "desc": "Menentukan kelegapan menu yang diperlukan."
+        }
+    },
+    {
+        "Theme": {
+            "name": "Tema",
+            "desc": "Pilih tema UI untuk Menu Prism!"
+        }
+    },
+    {
+        "Import Theme": {
+            "name": "Import Tema",
+            "desc": "Import tema tersendiri! [fail JSON]"
+        }
+    },
+    {
+        "Live Theme Editing": {
+            "name": "Ubahan Tema Langsung",
+            "desc": "Membolehkan anda mengubah tema menu sambil melihat perubahan secara langsung! (Amaran: Ini mungkin menyebabkan kebocoran memori.)"
+        }
+    },
+    {
+        "Show Tooltips": {
+            "name": "Tunjukkan Petua Alat",
+            "desc": "Menentukan petua alat pada mana-mana mod."
+        }
+    },
+    {
+        "Show Button": {
+            "name": "Tunjukkan Butang",
+            "desc": "Tunjukkan butang untuk mengaktifkan mod. Disyorkan untuk selalu dibuka untuk Android."
+        }
+    },
+    {
+        "Button Position X": {
+            "name": "Posisi Butang X",
+            "desc": "Posisi butang X digunakan untuk membuka menu."
+        }
+    },
+    {
+        "Button Position Y": {
+            "name": "Posisi Butang Y",
+            "desc": "Posisi butang Y digunakan untuk membuka menu."
+        }
+    },
+    {
+        "Language": {
+            "name": "Bahasa",
+            "desc": "Tetapkan bahasa untuk Menu Prism!"
+        }
+    },
+    {
+        "Restore Defaults": {
+            "name": "Kembali kepada Asal",
+            "desc": "Mematikan semua mod dan tetapkan semula kepada asal."
+        }
+    },
+    {
+        "Credits": {
+            "name": "Kredit",
+            "desc": "Orang yang telah membantu saya dengan mod ini!"
+        }
+    },
+    {
+        "Thank you to Electrify (ES), Jouca (FR), and dank_meme01 (RU), and Gazonk (BR) for translations!": {
+            "name": "Terima kasih untuk Electrify (ES), Jouca (FR), dan dank_meme01 (RU), dan Gazonk (BR) untuk terjemahan!"
+        }
+    },
+    {
+        "And thank you for using the mod! I hope you enjoy using Prism Menu!": {
+            "name": "Dan terima kasih kerana menggunakan mod ini! Saya harap anda seronok menggunakan Menu Prism!"
+        }
+    },
+    {
+        "Close Popup": {
+            "name": "Tutup Pop Timbul"
+        }
+    },
+    {
+        "Menu Scale": {
+            "name": "Skala Menu",
+            "desc": "Tentukan saiz teks dan butang yang sepatutnya. (Memerlukan pemulaan semula permainan)"
+        }
+    }
+]

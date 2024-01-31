@@ -1,3 +1,14 @@
+# v1.3.0 
+    - Replaced ImGui with a new natively made UI for GD (mainly for Android users. The option to switch back will be removed in the next update).
+    - Added Anticheat Bypass back for Android.
+    - Added Speedhack Audio
+    - Added Accurate Percentage back (thanks mat!)
+    - Fixed Safe Mode
+    - Added Spanish Translations (Thank you Electrify, Hero & ItzLucasOG!)
+    - Added Polish Translations (Thank you olaf_294 & KONDIROTSU!)
+    - Added Malay Translations (Thank you hori!)
+    - Added Text Length & Character Filter back.
+    - Fixed issue where if you were to import a theme that already exists, the game would crash.
 # v1.2.2
     - Fixed save issue
 # v1.2.1 

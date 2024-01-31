@@ -7,6 +7,7 @@
 #include "Languages.hpp"
 #include "Themes.hpp"
 #include "PrismUI.hpp"
+#include "Utils.hpp"
 #include <Geode/Geode.hpp>
 //#include <geode.custom-keybinds/include/Keybinds.hpp>
 //using namespace keybinds;
@@ -34,26 +35,6 @@ EditMode editingMode;
 #include <imgui-cocos.hpp>
 #include <Geode/modify/MenuLayer.hpp>
 #include <Geode/modify/AchievementNotifier.hpp>
-
-// theres no including Geode Util class funcs so, https://github.com/geode-sdk/DevTools
-std::string getNodeName(cocos2d::CCObject* node) {
-#ifdef GEODE_IS_WINDOWS
-    return typeid(*node).name() + 6;
-#else 
-    {
-        std::string ret;
-
-        int status = 0;
-        auto demangle = abi::__cxa_demangle(typeid(*node).name(), 0, 0, &status);
-        if (status == 0) {
-            ret = demangle;
-        }
-        free(demangle);
-
-        return ret;
-    }
-#endif
-}
 
 
 
@@ -786,7 +767,13 @@ $on_mod(Loaded) {
 class $modify(CCKeyboardDispatcher) {
     bool dispatchKeyboardMSG(enumKeyCodes key, bool down, bool arr) {
         if (down && (key == KEY_Tab)) {
-            showMenu = !showMenu;
+            HackItem* menuStyle = Hacks::getHack("Menu Style");
+            if (menuStyle->value.intValue == 0) { // imgui
+                showMenu = !showMenu;
+            } else {
+                auto prismUIExists = CCScene::get()->getChildByID("prism-menu");
+                if (prismUIExists == nullptr) PrismUI::create()->show();
+            }
             return true;
         }
         return CCKeyboardDispatcher::dispatchKeyboardMSG(key, down, arr);
@@ -813,12 +800,12 @@ pCVar2 = (CCActionInterval *)cocos2d::CCActionTween::create((float)uVar8,(char *
         if (!Hacks::isHackEnabled("No Mirror Transition")) GJBaseGameLayer::toggleFlipped(p0, Hacks::isHackEnabled("Instant Mirror Portal"));
     }
     // Speedhack fix
-#ifndef GEODE_IS_ANDROID // applyTimewarp instead?
-    void updateTimeWarp(float speed) {
+#ifndef GEODE_IS_ANDROID // sorry its weird on android
+    void applyTimeWarp(float speed) {
         HackItem* speedhack = Hacks::getHack("Speedhack");
-        if (speedhack == nullptr) return GJBaseGameLayer::updateTimeWarp(speed);
-        if (speedhack->value.floatValue == 1.0F) return GJBaseGameLayer::updateTimeWarp(speed);
-        GJBaseGameLayer::updateTimeWarp(speed * speedhack->value.floatValue);
+        if (speedhack == nullptr) return GJBaseGameLayer::applyTimeWarp(speed);
+        if (speedhack->value.floatValue == 1.0F) return GJBaseGameLayer::applyTimeWarp(speed);
+        GJBaseGameLayer::applyTimeWarp(speed * speedhack->value.floatValue);
     }
 #endif
 };
@@ -828,7 +815,7 @@ class $modify(PauseLayer) {
         PauseLayer::customSetup();
         for (size_t i = 0; i < this->getChildrenCount(); i++) {
             auto obj = this->getChildren()->objectAtIndex(i);
-            if (getNodeName(obj) == "cocos2d::CCMenu") {
+            if (Utils::getNodeName(obj) == "cocos2d::CCMenu") {
                 auto menu = static_cast<CCMenu*>(obj);
                 auto button = PrismButton::createButton(this);
                 button->setPositionX(-240);
@@ -850,9 +837,9 @@ CircleButtonSprite* createCheatIndicator(bool isHacking) {
 class $modify(PlayLayer) {
     float previousPositionX = 0.0F;
     GameObject* antiCheatObject; // removing after lol
-    GJGameLevel* gameLevel;
     GJLevelType oldLevelType;
     CircleButtonSprite* cheatIndicator;
+    bool previousTestMode;
 
     CCSprite* progressBar;
     CCLabelBMFont* percentLabel;
@@ -868,7 +855,6 @@ class $modify(PlayLayer) {
         if (Hacks::isHackEnabled("Enable Patching")) return PlayLayer::destroyPlayer(p0, p1);
         bool noclipDisabled = !Hacks::isHackEnabled("No Solids") && !Hacks::isHackEnabled("Noclip");
         if ((noclipDisabled && !Hacks::isHackEnabled("No Spikes"))) return PlayLayer::destroyPlayer(p0, p1);
-        if (Hacks::isHackEnabled("No Spikes") && noclipDisabled && p1 == nullptr) return PlayLayer::destroyPlayer(p0, p1); // why solids are nullptr is beyond my comprehension.
         if (Hacks::isHackEnabled("Anticheat Bypass")) {
             if (!m_fields->initedDeath) {
             #ifndef GEODE_IS_ANDROID64
@@ -926,15 +912,15 @@ class $modify(PlayLayer) {
                 break;
             }*\/
         }*/
-        m_fields->gameLevel = p0;
         m_fields->oldLevelType = p0->m_levelType;
+        m_fields->previousTestMode = m_isTestMode;
         if (Hacks::isHackEnabled("Level Edit")) {
             //m_fields->m_gameLevel->m_levelType = static_cast<GJLevelType>(2);
         }
         if (Hacks::isHackEnabled("Hide Testmode")) {
             for (size_t i = 0; i < this->getChildrenCount(); i++) { // i cant test if this works, bruh
                 auto obj = this->getChildren()->objectAtIndex(i);
-                if (getNodeName(obj) == "cocos2d::CCLabelBMFont") {
+                if (Utils::getNodeName(obj) == "cocos2d::CCLabelBMFont") {
                     auto testModeLabel = static_cast<CCLabelBMFont*>(obj);
                     if (!strcmp(testModeLabel->getString(), "Testmode")) {
                         testModeLabel->setVisible(false);
@@ -953,12 +939,16 @@ class $modify(PlayLayer) {
     }
     void onQuit() {
         if (prismButton != nullptr && Hacks::isHackEnabled("Show Button")) prismButton->setVisible(true); // look at this
-        m_fields->gameLevel->m_levelType = m_fields->oldLevelType;
         m_fields->initedDeath = false;
         PlayLayer::onQuit();
     }
     void postUpdate(float p0) {
         PlayLayer::postUpdate(p0);
+        if (Hacks::isHackEnabled("Safe Mode")) {
+            m_isTestMode = true;
+        } else {
+            m_isTestMode = m_fields->previousTestMode;
+        }
         // whats the difference between m_fields and not using? i have no idea!
         if ( // i dont know what are considered "cheats"
             Hacks::isHackEnabled("Noclip") ||
@@ -1005,22 +995,22 @@ class $modify(PlayLayer) {
         if (m_fields->progressBar == nullptr || m_fields->percentLabel == nullptr || m_fields->attemptLabel == nullptr) {
             for (size_t i = 0; i < this->getChildrenCount(); i++) {
                 auto obj = this->getChildren()->objectAtIndex(i);
-                if (getNodeName(obj) == "cocos2d::CCLabelBMFont" && m_fields->percentLabel == nullptr) {
+                if (Utils::getNodeName(obj) == "cocos2d::CCLabelBMFont" && m_fields->percentLabel == nullptr) {
                     auto labelTest = static_cast<CCLabelBMFont*>(obj);
                     if (strlen(labelTest->getString()) < 6) {
                         m_fields->percentLabel = labelTest;
                     }
-                } else if (getNodeName(obj) == "cocos2d::CCSprite" && m_fields->progressBar == nullptr) {
+                } else if (Utils::getNodeName(obj) == "cocos2d::CCSprite" && m_fields->progressBar == nullptr) {
                     m_fields->progressBar = static_cast<CCSprite*>(obj);
                 }
             }
             for (size_t i = 0; i < node->getChildrenCount(); i++) {
                 auto obj = node->getChildren()->objectAtIndex(i);
-                if (getNodeName(obj) == "cocos2d::CCLayer") {
+                if (Utils::getNodeName(obj) == "cocos2d::CCLayer") {
                     auto layer = static_cast<CCLayer*>(obj);
                     for (size_t y = 0; y < layer->getChildrenCount(); y++) {
                         auto obj2 = layer->getChildren()->objectAtIndex(y);
-                        if (getNodeName(obj2) == "cocos2d::CCLabelBMFont") {
+                        if (Utils::getNodeName(obj2) == "cocos2d::CCLabelBMFont") {
                             m_fields->attemptLabel = static_cast<CCLabelBMFont*>(obj2);
                             break;
                         }
@@ -1057,13 +1047,12 @@ class $modify(PlayLayer) {
     // Accurate Percentage
     void updateProgressbar() {
         PlayLayer::updateProgressbar();
-        if (Hacks::isHackEnabled("Enable Patching") || m_fields->gameLevel == nullptr) return;
+        if (Hacks::isHackEnabled("Enable Patching")) return;
         if (Hacks::isHackEnabled("Accurate Percentage")) {
-            auto percentLabel = typeinfo_cast<CCLabelBMFont*>(this->getChildren()->objectAtIndex(7));
-            if (percentLabel == nullptr) return;
-            //float percent = (this->m_player1->getPositionX() / m_fields->gameLevel->m_levelLength) * 100; // 6
-            //std::string percentStr = std::to_string(percent) + "%";
-            //percentLabel->setString(percentStr.c_str());
+            if (m_fields->percentLabel == nullptr) return;
+            float percent = (this->m_player1->getPositionX() / m_levelLength) * 100; // 6
+            std::string percentStr = std::to_string(percent) + "%";
+            m_fields->percentLabel->setString(percentStr.c_str());
         }
     }
     void levelComplete() {
@@ -1075,20 +1064,6 @@ class $modify(PlayLayer) {
 /*
 class $modify(PlayLayer) {
     // Accurate Percentage
-    void updateProgressbar() {
-        PlayLayer::updateProgressbar();
-        if (Hacks::isHackEnabled("Enable Patching")) return;
-        if (Hacks::isHackEnabled("Accurate Percentage") || Hacks::isHackEnabled("Precise Accurate Percentage")) {
-            float percent = (this->m_player1->getPositionX() / m_levelLength) * 100; // 6
-            std::string percentStr = std::to_string(percent) + "%";
-            if (!Hacks::isHackEnabled("Precise Accurate Percentage")) {
-                std::ostringstream oss;
-                oss << std::fixed << std::setprecision(2) << percent << "%";
-                percentStr = oss.str();
-            }
-            m_percentLabel->setString(percentStr.c_str());
-        }
-    }
 
     /\*void levelComplete() {
         if (!Hacks::isHackEnabled("Safe Mode") || Hacks::isHackEnabled("Enable Patching")) return PlayLayer::levelComplete();

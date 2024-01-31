@@ -6,397 +6,409 @@
     },
     {
         "¬ Player": {
-            "name": "¬ Player"
+            "name": "¬ Jugador"
         }
     },
     {
         "ª Bypass": {
-            "name": "ª Bypass"
+            "name": "ª Derivación"
         }
     },
     {
         "« Creator": {
-            "name": "« Creator"
+            "name": "« Creador"
         }
     },
     {
         "··· Misc": {
-            "name": "··· Misc"
+            "name": "··· Varios"
         }
     },
     {
         "¶ Settings": {
-            "name": "¶ Settings"
+            "name": "¶ Ajustes"
         }
     },
 
     {
         "Prism Menu by Firee": {
-            "name": "Prism Menu by Firee"
+            "name": "Prism Menu hecho por Firee"
         }
     },
 
     {
         "Close Popup": {
-            "name": "Close Popup"
+            "name": "Cerrar Menú"
         }
     },
 
     {
         "Anticheat Bypass": {
-            "name": "Anticheat Bypass",
-            "desc": "Disables all anticheats. [Levels, Editor, etc]"
+            "name": "Omisión antitrampas",
+            "desc": "Desactiva la detección de hacks/trampas. [Niveles, Editor, etc]"
         }
     },
     {
         "Practice Music": {
-            "name": "Práctica de Música",
-            "desc": "Enables Practice Music even if it's locked."
+            "name": "Música de Práctica",
+            "desc": "Activa la música del nivel en el modo práctica, incluso si no lo has desbloqueado."
         }
     },
     {
         "Safe Mode": {
             "name": "Modo Seguro",
-            "desc": "Pauses any progress from being done on the level."
+            "desc": "Detiene cualquier progreso que hagas en un nivel."
         }
     },
     {
         "Accurate Percentage": {
-            "name": "Accurate Percentage",
-            "desc": "Allows for decimals in the level percentage. [Beyond thousandths place]"
+            "name": "Porcentaje exacto",
+            "desc": "Muestra decimales en el porcentaje del nivel. [Más allá de las milésimas]"
         }
     },
     {
         "Layout Mode": {
-            "name": "Layout Mode",
-            "desc": "Removes all decoration associated with a level."
+            "name": "Modo Layout",
+            "desc": "Elimina toda decoración asociada con un nivel."
         }
     },
     {
         "No Transition": {
-            "name": "No Transition",
-            "desc": "Shorterns scene transition time to 0s."
+            "name": "Transiciones Instantáneas",
+            "desc": "Reduce el tiempo de transición de escena a 0 segundos."
         }
     },
     {
         "Cheat Indicator": {
-            "name": "Cheat Indicator",
-            "desc": "Shows an icon to tell whether or not you are using mods that may be considered cheating!"
+            "name": "Indicador de Trampa",
+            "desc": "¡Muestra un ícono para indicar si estás usando mods que pueden considerarse como trampas!"
         }
     },
     {
         "Speedhack": {
             "name": "Speedhack",
-            "desc": "Changes the speed of the game and audio."
+            "desc": "Cambia la velocidad del juego y el audio."
         }
     },
     {
         "FPS Bypass": {
-            "name": "FPS Bypass",
-            "desc": "Unlocks your FPS to be higher than 60 or your monitor's refresh rate."
+            "name": "Desbloquear FPS",
+            "desc": "Desbloquea tu FPS para que sea superior a 60 o la frecuencia de actualización de tu monitor."
         }
     },
 
     {
         "Noclip": {
             "name": "Noclip",
-            "desc": "Makes the player invincible."
+            "desc": "Hace que el jugador sea invencible."
         }
     },
     {
         "No Spikes": {
-            "name": "No Spikes",
-            "desc": "Ignores spike objects."
+            "name": "Sin Pinchos",
+            "desc": "Ignora los pinchos."
         }
     },
     {
         "No Hitbox": {
-            "name": "No Hitbox",
-            "desc": "Disables all object hitboxes. Special objects are disabled."
+            "name": "Sin Hitbox",
+            "desc": "Desactiva las hitbox de todos los objetos. Los objetos especiales serán desactivados."
         }
     },
     {
         "No Solids": {
-            "name": "No Solids",
-            "desc": "Disables most solid hitboxes. Special objects still work."
+            "name": "Sin Sólidos",
+            "desc": "Desactiva la mayoría de los hitboxes sólidos. Los objetos especiales seguirán activos."
         }
     },
     {
         "Everything Hurts": {
-            "name": "Everything Hurts",
-            "desc": "Owie."
+            "name": "Todo Duele",
+            "desc": "Auuch."
         }
     },
     {
         "No Mirror Transition": {
-            "name": "No Mirror Transition",
-            "desc": "Prevents the screen from being flipped upon a mirror portal."
+            "name": "Sin Transición Espejo",
+            "desc": "Evita que la pantalla se gire al pasar por un portal espejo."
         }
     },
     {
         "Instant Mirror Portal": {
-            "name": "Instant Mirror Portal",
-            "desc": "Reverse portal now instantly switches."
+            "name": "Portal Espejo Instantáneo",
+            "desc": "La transición del portal espejo será instantánea."
         }
     },
     {
         "Freeze Player": {
-            "name": "Freeze Player",
-            "desc": "Freezes player movement."
+            "name": "Congelar Jugador",
+            "desc": "Congela el movimiento del jugador."
         }
     },
     {
         "Jump Hack": {
-            "name": "Jump Hack",
-            "desc": "Allows for jumping in mid-air."
+            "name": "Saltos Infinitos",
+            "desc": "Te permite saltar en el aire."
         }
     },
     {
         "Instant Complete": {
-            "name": "Instant Complete",
-            "desc": "Instantly completes the level. (Do not enable in the Editor)"
+            "name": "Completado Instantáneo",
+            "desc": "Completa el nivel instantáneamente. (No lo actives en el Editor)"
         }
     },
     {
         "Force Platformer Mode": {
-            "name": "Force Platformer Mode",
-            "desc": "Forces you to be in platformer mode when playing a level."
+            "name": "Forzar Modo Plataforma",
+            "desc": "Fuerza el modo plataforma cuando juegues un nivel."
         }
     },
     {
         "Change Gravity": {
-            "name": "Change Gravity",
-            "desc": "Allows you to change gravity when jumping or falling."
+            "name": "Cambio de Gravedad",
+            "desc": "Te permite cambiar la gravedad al saltar o caer."
         }
     },
     {
         "Gravity Value": {
-            "name": "Gravity Value",
-            "desc": "The value the gravity should be set to."
+            "name": "Valor de la Gravedad",
+            "desc": "El valor al cual la gravedad debería de estar."
         }
     },
 
     {
         "Icon Bypass": {
-            "name": "Icon Bypass",
-            "desc": "Unlocks all icons."
+            "name": "Desbloquear Íconos",
+            "desc": "Desbloquea todos los íconos."
         }
     },
     {
         "Text Length": {
-            "name": "Text Length",
-            "desc": "Allows for unlimited text length in text inputs."
+            "name": "Longitud del Texto",
+            "desc": "Permite una longitud de texto ilimitada en las entradas de texto."
         }
     },
     {
         "Character Filter": {
-            "name": "Character Filter",
-            "desc": "Lets you input any character in all text inputs."
+            "name": "Filtro de Caracteres",
+            "desc": "Te permite ingresar cualquier carácter en todas las entradas de texto."
         }
     },
     {
         "Slider Limit": {
-            "name": "Slider Limit",
-            "desc": "Lets sliders be dragged beyond the visible limit."
+            "name": "Límite de los Deslizadores",
+            "desc": "Permite arrastrar los controles deslizantes más allá del límite visible."
         }
     },
     {
         "Main Levels": {
-            "name": "Main Levels",
-            "desc": "Unlocks locked demon levels."
+            "name": "Desbloquear Demons Principales",
+            "desc": "Desbloquea los demons bloqueados de los niveles principales."
         }
     },
     {
         "Guard Vault": {
-            "name": "Guard Vault",
-            "desc": "Unlocks the guard's vault."
+            "name": "Bóveda del Guard",
+            "desc": "Desbloquea la bóveda del Guard."
         }
     },
     {
         "Keymaster Vault": {
-            "name": "Keymaster Vault",
-            "desc": "Unlocks the keymaster's vault."
+            "name": "Bóveda del Keymaster",
+            "desc": "Desbloquea la bóveda del Keymaster."
         }
     },
     {
         "Treasure Room": {
-            "name": "Treasure Room",
-            "desc": "Unlocks the treasure room."
+            "name": "Sala del Tesoro",
+            "desc": "Desbloquea la sala del tesoro."
         }
     },
     {
         "Free Shop Items": {
-            "name": "Free Shop Items",
-            "desc": "Allows all shop items to be bought for 0 mana orbs."
+            "name": "Tienda Gratis",
+            "desc": "Te permite comprar todos los artículos de las tiendas sin pagar."
         }
     },
     {
         "Gatekeeper Vault": {
-            "name": "Gatekeeper Vault",
-            "desc": "Unlocks the Gatekeeper's vault."
+            "name": "Bóveda del Gatekeeper",
+            "desc": "Desbloquea la bóveda del Gatekeeper."
         }
     },
     {
         "Backup Stars Limit": {
-            "name": "Backup Stars Limit",
-            "desc": "Lets you backup data, even with less than 10 stars."
+            "name": "Límite de Estrellas para Respaldo",
+            "desc": "Te permite realizar respaldos de tus datos, incluso con menos de 10 estrellas."
         }
     },
 
 
     {
         "Level Edit": {
-            "name": "Level Edit",
-            "desc": "Lets you edit any level, access the editor through the pause menu. (UNSTABLE)"
+            "name": "Editar nivel",
+            "desc": "Te permite editar cualquier nivel, accede al editor a través del menú de pausa. (INESTABLE)"
         }
     },
     {
         "Verify Hack": {
-            "name": "Verify Hack",
-            "desc": "Lets you upload unverified levels. Will automatically set levels to be verified."
+            "name": "Hack de Verificación",
+            "desc": "Te permite subir niveles sin verificar. Los niveles quedarán como verificados automáticamente."
         }
     },
     {
         "Copy Hack": {
-            "name": "Copy Hack",
-            "desc": "Lets you copy any level, without a password."
+            "name": "Hack de Copia",
+            "desc": "Te permite copiar cualquier nivel, incluso si tiene contraseña."
         }
     },
     {
         "No (C) Mark": {
-            "name": "No (C) Mark",
-            "desc": "Removes the (C) mark when uploading copied levels. Will automatically set levels to be original."
+            "name": "Eliminar Marca (C)",
+            "desc": "Elimina la marca (C) al subir niveles copiados. Los niveles serán marcados como 'original' automáticamente."
         }
     },
     {
         "Hide Testmode": {
-            "name": "Hide Testmode",
-            "desc": "Hides the 'Testmode' text when playing with a startpos."
+            "name": "Esconder Testmode",
+            "desc": "Esconde la etiqueta 'Testmode' que aparece cuando usas un startpos."
         }
     },
     {
         "Rotation Hack": {
-            "name": "Rotation Hack",
-            "desc": "Allows you to rotate any object. Only works locally."
+            "name": "Rotación Libre",
+            "desc": "Te permite rotar cualquier. Solo funciona localmente."
         }
     },
     {
         "Default Song Bypass": {
-            "name": "Default Song Bypass",
-            "desc": "Lets you use hidden default songs in the editor."
+            "name": "Canciones Ocultas",
+            "desc": "Te permite usar las canciones predeterminadas que están ocultas en el editor."
         }
     },
 
     {
         "No Progress Bar": {
-            "name": "No Progress Bar",
-            "desc": "Removes the progress bar! The precentage will still be shown."
+            "name": "Esconder Barra de Progreso",
+            "desc": "¡Esconde la barra de progreso! El porcentaje seguirá visible."
         }
     },
     {
         "Progress Bar Position": {
-            "name": "Progress Bar Position",
-            "desc": "Sets the position of the progress bar."
+            "name": "Posición de la Barra de Progreso",
+            "desc": "Establece la posición de la barra de progreso."
         }
     },
     {
         "Hide Attempts": {
-            "name": "Hide Attempts",
-            "desc": "Whether or not the attempt label should be shown when playing a level."
+            "name": "Esconder Intentos",
+            "desc": "Te deja esconder la etiqueta de intentos ('attempt x') mientras juegas un nivel."
         }
     },
     {
         "Attempt Opacity": {
-            "name": "Attempt Opacity",
-            "desc": "Determines how opaque the attempt label should be."
+            "name": "Opacidad de la Etiqueta de Intentos",
+            "desc": "Determina la opacidad de la etiqueta de intentos ('attempt x')."
         }
     },
 
     {
         "Enable Patching": {
-            "name": "Enable Patching",
-            "desc": "Changes from hooking to patching. This also allows more hacks to be enabled. Only enable if necessary. [Windows Only]"
+            "name": "Activar Parches",
+            "desc": "Cambia de hooking a patching. Esto también permite activar más hacks. Habilítelo solo si es necesario. [Solo Windows]"
         }
     },
     {
         "Menu Opacity": {
-            "name": "Menu Opacity",
-            "desc": "Determines how opaque the menu should be."
+            "name": "Opacidad del Menú",
+            "desc": "Determina la opacidad del menú."
         }
     },
     {
         "Theme": {
-            "name": "Theme",
-            "desc": "Select the UI theme for Prism Menu!"
+            "name": "Tema",
+            "desc": "¡Selecciona un tema para la interfaz de Prism Menu!"
         }
     },
     {
         "Import Theme": {
-            "name": "Import Theme",
-            "desc": "Imports a theme! [JSON file]"
+            "name": "Importar Tema",
+            "desc": "¡Importa un tema! [archivo .JSON]"
         }
     },
     {
         "Live Theme Editing": {
-            "name": "Live Theme Editing",
-            "desc": "This will allow you to edit your custom theme while seeing changes on screen! (Warning: This may cause a memory leak.)"
+            "name": "Edición de Temas en Vivo",
+            "desc": "¡Esto te permitirá editar tu tema personalizado mientras ves los cambios en la pantalla! (Advertencia: esto puede provocar una pérdida de memoria)."
         }
     },
     {
         "Show tooltips": {
-            "name": "Show tooltips",
-            "desc": "Whether or not tooltips should be shown when hovering over mods."
+            "name": "Mostrar Descripciones",
+            "desc": "Si quieres ver las descripciones de las modificaciones al pasar el cursor por ellas o no."
         }
     },
     {
         "Show Button": {
-            "name": "Show Button",
-            "desc": "Shows the button to activate the menu. It's recommended to keep this enabled for Android."
+            "name": "Mostrar Botón",
+            "desc": "Muestra el botón para activar el menú. Se recomienda mantenerlo activado en Android."
         }
     },
     {
         "Button Position X": {
-            "name": "Button Position X",
-            "desc": "The X position for the button to open the menu."
+            "name": "Posición X del Botón",
+            "desc": "La posición X del botón para abrir el menú."
         }
     },
     {
         "Button Position Y": {
-            "name": "Button Position Y",
-            "desc": "The Y position for the button to open the menu."
+            "name": "Posición Y del Botón",
+            "desc": "La posición Y del botón para abrir el menú."
         }
     },
     {
         "Language": {
             "name": "Idioma",
-            "desc": "Sets the language for Prism Menu!"
+            "desc": "¡Establece el idioma del menú Prism!"
         }
     },
     {
         "Restore Defaults": {
-            "name": "Restore Defaults",
-            "desc": "Disables all mods and resets everything to default."
+            "name": "Restaurar los Valores Predeterminados",
+            "desc": "Desactiva todas las modificaciones y restablece todo a los valores predeterminados."
         }
     },
     {
         "Credits": {
-            "name": "Credits",
-            "desc": "People who have helped with the mod!"
+            "name": "Créditos",
+            "desc": "¡Gente que ha ayudado con el mod!"
         }
     },
     {
         "Thank you to Electrify (ES), Jouca (FR), and dank_meme01 (RU) for translations!": {
-            "name": "Thank you to Electrify (ES), Jouca (FR), and dank_meme01 (RU) for translations!"
+            "name": "¡Gracias a Electrify, ItzLucasOG, 851815 (ES), Jouca (FR) y dank_meme01 (RU) por las traducciones!"
         }
     },
     {
         "And thank you for using the mod! I hope you enjoy using Prism Menu!": {
-            "name": "And thank you for using the mod! I hope you enjoy using Prism Menu!"
+            "name": "¡Y gracias por usar el mod! ¡Espero que disfrutes Prism Menu!"
         }
     },
     {
         "Close Popup": {
-            "name": "Close Popup"
+            "name": "Cerrar Menú"
+        }
+    },
+    {
+        "Reset Speedhack": {
+            "name": "Reiniciar Speedhack",
+            "desc": "Vuelve a reiniciar el hackeó de velocidad a la normalidad."
+        }
+    },
+    {
+        "Menu Scale": {
+            "name": "Tamaño del Menú",
+            "desc": "Describe que grande el texto y botones debería ser. (Es necesario a reiniciar el juego)"
         }
     }
 ]
