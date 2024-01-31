@@ -800,7 +800,7 @@ pCVar2 = (CCActionInterval *)cocos2d::CCActionTween::create((float)uVar8,(char *
         if (!Hacks::isHackEnabled("No Mirror Transition")) GJBaseGameLayer::toggleFlipped(p0, Hacks::isHackEnabled("Instant Mirror Portal"));
     }
     // Speedhack fix
-#ifndef GEODE_IS_ANDROID // sorry its weird on android
+#ifdef GEODE_IS_WINDOWS // sorry its weird on android
     void applyTimeWarp(float speed) {
         HackItem* speedhack = Hacks::getHack("Speedhack");
         if (speedhack == nullptr) return GJBaseGameLayer::applyTimeWarp(speed);

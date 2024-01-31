@@ -24,7 +24,7 @@ Press on the circle button located on the left corner, or press `Tab` to open th
 
 # Credits
 * [Firee](https://youtube.com/@gdfiree) - Developer
-* [TheSillyDoggo](https://github.com/TheSillyDoggo) - Mod Logo Base
+* [TheSillyDoggo](https://github.com/TheSillyDoggo) - Mod Logo Base & Speedhack code
 * [Electrify](https://www.youtube.com/channel/UCxYliOd2aV6iZuc5wuG9QxA) - Translations for Spanish
 * [ItzLucasOG](https://twitter.com/ItzLucasOG) - Translations for Spanish
 * Hero - Translations for Spanish

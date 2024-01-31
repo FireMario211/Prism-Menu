@@ -5,7 +5,7 @@ using namespace geode::prelude;
 #include <Geode/modify/PlayerObject.hpp>
 
 class $modify(PlayerObject) {
-#ifndef GEODE_IS_ANDROID // for whatever reason, fields arent found!
+#ifdef GEODE_IS_WINDOWS // for whatever reason, fields arent found!
     // No Solids
     /*
      * +       bool collidedWithObject(float, GameObject*, cocos2d::CCRect, bool) = win 0x2cc450;

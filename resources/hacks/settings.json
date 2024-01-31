@@ -20,9 +20,9 @@
         "desc": "Decides how big the text and buttons should be. (Will require restarting the game)",
         "opcodes": [],
         "type": "float",
-        "min": 1,
+        "min": 0,
         "max": 2,
-        "default": 2
+        "default": 1
     },
     {
         "name": "Language",

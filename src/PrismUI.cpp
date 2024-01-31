@@ -294,7 +294,9 @@ void PrismUIButton::onFloatBtn(CCObject* ret) {
     if (name == "Speedhack") {
         if (m_hack->value.floatValue < 0.0F) return;
         Hacks::setPitch(m_hack->value.floatValue);
+#ifdef GEODE_IS_WINDOWS
         CCDirector::sharedDirector()->getScheduler()->setTimeScale(m_hack->value.floatValue);
+#endif
     } else {
         if (!name.starts_with("Button Position")) {
             Hacks::Settings::setSettingValue(&settings, *m_hack, m_hack->value.floatValue);
@@ -308,10 +310,10 @@ void PrismUIButton::onFloatBtn(CCObject* ret) {
 void PrismUIButton::onBtn(CCObject* ret) {
     auto settings = Mod::get()->getSavedValue<SettingHackStruct>("values");
     std::string name = m_hack->name;
-    auto prismUI = this->getParent()->getParent()->getParent()->getParent()->getParent();
+    auto prismUI = static_cast<PrismUI*>(CCScene::get()->getChildByID("prism-menu"));
     if (name == "Restore Defaults") {
         Hacks::processJSON(true);
-        static_cast<PrismUI*>(prismUI)->onClose(ret);
+        prismUI->onClose(ret);
         //GatoSim::onButton();
     } else if (name == "Import Theme") {
         geode::FileSetting::Filter filter;
@@ -342,7 +344,7 @@ void PrismUIButton::onBtn(CCObject* ret) {
         Hacks::Settings::setSettingValue(&settings, *speedHack, 1.0F);
         Hacks::setPitch(1.0F);
         CCDirector::sharedDirector()->getScheduler()->setTimeScale(1.0F);
-        static_cast<PrismUI*>(prismUI)->onClose(ret);
+        prismUI->onClose(ret);
     } else if (name == "Credits") {
         FLAlertLayer::create("Not working...yet.", "This will be added in a <cy>future update</c>!", "OK")->show();
     } else {
@@ -379,7 +381,7 @@ void PrismUIButton::onDropdownBtn(CCObject* sender) {
     hack->value.intValue = index;
     Hacks::Settings::setSettingValue(&settings, *hack, hack->value.intValue);
     if (hack->name == "Menu Style") {
-        auto obj = static_cast<PrismUI*>(this->getParent()->getParent()->getParent()->getParent()->getParent()->getParent()->getParent());
+        auto obj = static_cast<PrismUI*>(CCScene::get()->getChildByID("prism-menu"));
         obj->onClose(sender);
     }
 }
@@ -704,25 +706,28 @@ matjson::Object PrismUI::GetTheme() {
 bool PrismUI::init(float _w, float _h) {
     auto winSize = cocos2d::CCDirector::sharedDirector()->getWinSize();
     auto currentLanguage = Lang::getLanguage();
+
+    float menuScale = Hacks::getHack("Menu Scale")->value.floatValue;
     this->m_pLrSize = cocos2d::CCSize { _w, _h };
+    //  this->m_pLrSize = cocos2d::CCSize { _w * menuScale, _h * menuScale };
     if (!this->initWithColor({ 0, 0, 0, 105 })) return false;
     this->m_mainLayer = cocos2d::CCLayer::create();
-    this->addChild(this->m_mainLayer);
+    this->addChild(m_mainLayer);
 
     auto bg = cocos2d::extension::CCScale9Sprite::create("square02b_001.png", { 0.0f, 0.0f, 80.0f, 80.0f });
     auto bgBehind = cocos2d::extension::CCScale9Sprite::create("GJ_square07.png", { 0.0f, 0.0f, 80.0f, 80.0f });
-    bg->setContentSize(this->m_pLrSize - 3);
-    bgBehind->setContentSize(this->m_pLrSize);
+    bg->setContentSize(m_pLrSize - 3);
+    bgBehind->setContentSize(m_pLrSize);
     bg->setPosition(winSize.width / 2, winSize.height / 2);
     bgBehind->setPosition(winSize.width / 2, winSize.height / 2);
 
-    this->m_mainLayer->addChild(bgBehind);
-    this->m_mainLayer->addChild(bg);
+    m_mainLayer->addChild(bgBehind);
+    m_mainLayer->addChild(bg);
     bg->setID("prism-bg");
     this->m_pBGSprite = bg;
 
     this->m_buttonMenu = cocos2d::CCMenu::create();
-    this->m_mainLayer->addChild(this->m_buttonMenu);
+    m_mainLayer->addChild(this->m_buttonMenu);
 
     // TODO: create custom sprite so people dont complain
     auto closeSpr = cocos2d::CCSprite::createWithSpriteFrameName("GJ_closeBtn_001.png");
@@ -752,7 +757,6 @@ bool PrismUI::init(float _w, float _h) {
 
     auto buttonBG = cocos2d::extension::CCScale9Sprite::create("square02b_001.png", { 0.0f, 0.0f, 80.0f, 80.0f });
     buttonBG->setContentSize({ 320.0f, 230.0f });
-    //buttonBG->setPosition(bg->getContentSize().width - 230, bg->getContentSize().height / 2);
     buttonBG->setPosition(_w - 173, _h / 2);
     Themes::RGBAToCC(GetTheme()["TableRowBg"], buttonBG);
 
@@ -769,7 +773,7 @@ bool PrismUI::init(float _w, float _h) {
     bgBehind->setColor({255, 255, 255});
         
     m_scrollLayer = ScrollLayer::create({ 0, 0, 320.0F, 230.0F }, true);
-    m_scrollLayer->setPosition(_w - 273, 45);
+    //m_scrollLayer->setPosition(_w - 273, 45);
     m_content = CCMenu::create();
     m_content->setZOrder(2);
     m_content->setPositionX(20);
@@ -779,7 +783,7 @@ bool PrismUI::init(float _w, float _h) {
 
     m_scrollLayer->setTouchEnabled(true);
 
-    this->m_mainLayer->addChild(m_scrollLayer);
+    buttonBG->addChild(m_scrollLayer);
     this->registerWithTouchDispatcher();
 
     cocos::handleTouchPriority(this);

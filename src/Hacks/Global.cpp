@@ -7,6 +7,7 @@ using namespace geode::prelude;
 #include <Geode/modify/GJGameLevel.hpp>
 #include <Geode/modify/CCTransitionFade.hpp>
 #include <Geode/modify/FMODAudioEngine.hpp>
+#include <Geode/modify/CCScheduler.hpp>
 
 // Practice Music
 class $modify(GameStatsManager) {
@@ -20,8 +21,20 @@ class $modify(GameStatsManager) {
     }
 };
 
+#ifndef GEODE_IS_WINDOWS // for the android users!!! :fire::fire::fire: i dunno maybe ill migrate with windows soon 
+    // *coding sounds* creditos a sillydoggo para esto https://github.com/TheSillyDoggo/GeodeMenu/blob/38ef8f48a3d52b1eefb09ee29dd5b985928edfd2/src/Hacks/Speedhack.cpp
+class $modify(CCScheduler) {
+    void update(float dt) {
+        HackItem* speedhack = Hacks::getHack("Speedhack");
+        if (speedhack == nullptr) return CCScheduler::update(dt);
+        if (speedhack->value.floatValue == 1.0F) return CCScheduler::update(dt);
+        CCScheduler::update(dt * speedhack->value.floatValue);
+    }
+};
+#endif
+
 // Layout Mode
-#ifndef GEODE_IS_ANDROID
+#ifdef GEODE_IS_WINDOWS
 class $modify(GameObject) {
     void setVisible(bool v) {
         /*int aaa = *reinterpret_cast<int*>(reinterpret_cast<uintptr_t>(this) + 0x14E); // we do the funny because someone forgor pad for windows

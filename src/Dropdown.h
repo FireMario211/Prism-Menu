@@ -7,14 +7,6 @@
 #include "hacks.hpp"
 using namespace geode::prelude;
 
-class AFakeCCMenu : public CCMenu {
-    public:
-    void registerWithTouchDispatcher() override { // is this even needed anymore
-        CCDirector::sharedDirector()->getTouchDispatcher()->addTargetedDelegate(this, -700, true);
-    }
-};
-// TODO: figure out how to prevent touch over a background
-
 class Dropdown : public CCMenu {
     public:
         int selected = 0;
@@ -71,7 +63,7 @@ class Dropdown : public CCMenu {
 
             CCSize size = {240, 25};
 
-            CCMenu* menu = AFakeCCMenu::create();
+            CCMenu* menu = CCMenu::create();
             menu->ignoreAnchorPointForPosition(false);
 
             menu->setUserData(reinterpret_cast<void*>(item));
