@@ -577,7 +577,11 @@ void PrismUI::RegenCategory() {
             #ifdef GEODE_IS_ANDROID
                 versionLabel->setString(fmt::format("{} - Android", version).c_str());
             #else 
+            #ifdef GEODE_IS_MACOS
+                versionLabel->setString(fmt::format("{} - Mac OS", version).c_str());
+            #else 
                 versionLabel->setString(fmt::format("{} - HOW by Spu7nix", version).c_str());
+            #endif
             #endif
             #endif
             versionLabel->limitLabelWidth(150, 1.0F, .2F);
