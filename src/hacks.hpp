@@ -309,6 +309,7 @@ class Hacks {
     }
     // other hacks 
     static void setPitch(float pitch) {
+#ifndef GEODE_IS_MACOS
         auto fmod = FMODAudioEngine::sharedEngine();
         FMOD_RESULT result; // ensuring
         FMOD::ChannelGroup* master_group = nullptr;
@@ -322,6 +323,7 @@ class Hacks {
         fmod->m_globalChannel->setPitch(pitch);
         #endif
         //fmod->pitchForIdx()
+#endif
     }
 };
 #endif
