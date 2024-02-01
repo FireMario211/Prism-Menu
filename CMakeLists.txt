@@ -26,13 +26,6 @@ endif()
 
 add_subdirectory($ENV{GEODE_SDK} ${CMAKE_CURRENT_BINARY_DIR}/geode)
 
-# imgui stuff 
-if (NOT APPLE)
-    set(IMGUI_VERSION "v1.90")
-    CPMAddPackage("gh:matcool/gd-imgui-cocos#4eb5777") # specify a commit!
-    target_link_libraries(${PROJECT_NAME} imgui-cocos)
-endif()
-
 if (FALSE) # in favor of resources
     # embedding files
     CPMAddPackage("gh:batterycenter/embed@1.2.6")

@@ -15,6 +15,7 @@ A mod menu made in Geode for Geometry Dash
 - (Possibly?) Fix FPS Bypass, or add "Show FPS" for Android users. (The func exists, just not visible to the end user lol)
 - Allow for resizing the menu with a minimum size and maximum size (Only imgui)
 - Add light theme
+- Add animated background support (Custom theme only unless I add a theme that supports it)
 - Add noclip accuracy
 - Add startpos switcher
 - Add a way to customize keybinds
