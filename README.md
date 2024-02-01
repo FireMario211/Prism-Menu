@@ -4,6 +4,7 @@ A mod menu made in Geode for Geometry Dash
 # TODOs (Based on whats next)
 - Add "No Trail"
 - Add credits screen for cocos2d ui
+- ADd "Transparent BG", removes ->setColor for the blue background thingy
 - Allow for dragging the button
 - Add "Render Hitbox" (Basically enables hitbox even if not in practice mode)
 - Add "Disable Shaders"

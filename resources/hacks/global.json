@@ -67,7 +67,7 @@
         "desc": "Changes the speed of the game and audio.",
         "opcodes": [],
         "type": "float",
-        "min": 0,
+        "min": 0.01,
         "max": 10,
         "default": 1
     },

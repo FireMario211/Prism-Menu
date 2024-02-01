@@ -184,7 +184,7 @@ bool PrismUIButton::init(HackItem* hack) {
     } else if (hack->value.type == ValueType::Float || name.starts_with("Button Position")) {
         auto value = (name.starts_with("Button Position")) ? hack->value.intValue : hack->value.floatValue;
 
-        label->limitLabelWidth(72, 0.5F, .2F);
+        label->limitLabelWidth(64, 0.5F, .1F);
         auto min = obj.get<int>("min");
         auto max = obj.get<int>("max");
         m_input = InputNode::create(100.f, "...", "PrismMenu.fnt"_spr);
@@ -207,7 +207,7 @@ bool PrismUIButton::init(HackItem* hack) {
             auto btnlabel = CCLabelBMFont::create(currentLanguage->name(name).c_str(), "PrismMenu.fnt"_spr);
 
             Themes::RGBAToCC(PrismUI::GetTheme()["Text"], btnlabel);
-            btnlabel->limitLabelWidth(250, 1.0F, .2F);
+            btnlabel->limitLabelWidth(250, 1.0F, .1F);
             btnSpr->setContentSize({ 300.0f, 50.0f });
             btnlabel->setPosition({ btnSpr->getContentSize().width / 2, btnSpr->getContentSize().height / 2 });
             btnSpr->setScale(.5F);
@@ -222,7 +222,7 @@ bool PrismUIButton::init(HackItem* hack) {
             menu->addChild(btn);
             label->removeFromParentAndCleanup(true);
         } else if (type == "dropdown") {
-            label->limitLabelWidth(72, 0.5F, .2F);
+            label->limitLabelWidth(64, 0.5F, .1F);
             auto values = obj.get<matjson::Array>("values");
             if (hack->name == "Theme") {
                 values = Themes::getCurrentThemes();
@@ -294,6 +294,7 @@ void PrismUIButton::onFloatBtn(CCObject* ret) {
     if (name == "Speedhack") {
         if (m_hack->value.floatValue < 0.0F) return;
         Hacks::setPitch(m_hack->value.floatValue);
+        m_hack->value.floatValue = std::fmax(m_hack->value.floatValue, 0.01f);
 #ifdef GEODE_IS_WINDOWS
         CCDirector::sharedDirector()->getScheduler()->setTimeScale(m_hack->value.floatValue);
 #endif
@@ -476,8 +477,10 @@ void PrismUIButton::intChanged() {
     if (name == "FPS Bypass") {
         // from mats fps unlocker
         //Hacks::Settings::setSettingValue(&settings, *hack, hack->value.floatValue);
+#ifndef GEODE_IS_MACOS // crashes
         auto app = CCApplication::sharedApplication();
         app->setAnimationInterval(1.0 / static_cast<double>(m_hack->value.intValue));
+#endif
     } else if (name == "Button Position X") {
         prismButton->setPositionX(m_hack->value.intValue);
     } else if (name == "Button Position Y") {
@@ -500,8 +503,11 @@ void PrismUIButton::textInputClosed(CCTextInputNode* input) { // basically onInt
         input->setString(setPrecision(m_hack->value.floatValue, 3));
         if (name == "Speedhack") {
             if (m_hack->value.floatValue < 0.0F) return;
+            m_hack->value.floatValue = std::fmax(m_hack->value.floatValue, 0.01f);
             Hacks::setPitch(m_hack->value.floatValue);
+#ifdef GEODE_IS_WINDOWS
             CCDirector::sharedDirector()->getScheduler()->setTimeScale(m_hack->value.floatValue);
+#endif
         }
     } else {
         input->setString(std::to_string(m_hack->value.intValue));

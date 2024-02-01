@@ -1,6 +1,6 @@
 {
 	"geode": "2.0.0",
-	"version": "v1.3.0",
+	"version": "v1.3.1",
 	"gd": {
 		"win": "2.204",
         "mac": "2.200",
@@ -18,6 +18,8 @@
 			"resources/Screenshot1.png",
             "resources/gato.jpg",
             "resources/checkmark.png",
+            "resources/checkmark-hd.png",
+            "resources/checkmark-uhd.png",
             		"resources/Screenshot2.png",
             		"resources/PrismMenu.otf",
             		"resources/Hack-Regular.ttf",

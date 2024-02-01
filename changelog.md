@@ -1,3 +1,8 @@
+# v1.3.1 
+    - Prevented users from being softlocked via speedhack.
+    - Fixed text scaling issue with other languages.
+    - Fixed issue with big checkmark on low & high quality mode.
+    - Disabled FPS Bypass on Mac OS (sorry it just doesn't work)
 # v1.3.0 
     - Added Mac OS Support
     - Replaced ImGui with a new natively made UI for GD (mainly for Android users. The option to switch back will be removed in the next update).

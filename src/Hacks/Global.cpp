@@ -26,6 +26,7 @@ class $modify(GameStatsManager) {
 class $modify(CCScheduler) {
     void update(float dt) {
         HackItem* speedhack = Hacks::getHack("Speedhack");
+        speedhack->value.floatValue = std::fmax(m_hack->value.floatValue, 0.01f);
         if (speedhack == nullptr) return CCScheduler::update(dt);
         if (speedhack->value.floatValue == 1.0F) return CCScheduler::update(dt);
         CCScheduler::update(dt * speedhack->value.floatValue);
