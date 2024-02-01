@@ -294,7 +294,7 @@ void PrismUIButton::onFloatBtn(CCObject* ret) {
     if (name == "Speedhack") {
         if (m_hack->value.floatValue < 0.0F) return;
         Hacks::setPitch(m_hack->value.floatValue);
-        m_hack->value.floatValue = std::fmax(m_hack->value.floatValue, 0.01f);
+        m_hack->value.floatValue = std::max(m_hack->value.floatValue, 0.01f);
 #ifdef GEODE_IS_WINDOWS
         CCDirector::sharedDirector()->getScheduler()->setTimeScale(m_hack->value.floatValue);
 #endif
@@ -503,7 +503,7 @@ void PrismUIButton::textInputClosed(CCTextInputNode* input) { // basically onInt
         input->setString(setPrecision(m_hack->value.floatValue, 3));
         if (name == "Speedhack") {
             if (m_hack->value.floatValue < 0.0F) return;
-            m_hack->value.floatValue = std::fmax(m_hack->value.floatValue, 0.01f);
+            m_hack->value.floatValue = std::max(m_hack->value.floatValue, 0.01f);
             Hacks::setPitch(m_hack->value.floatValue);
 #ifdef GEODE_IS_WINDOWS
             CCDirector::sharedDirector()->getScheduler()->setTimeScale(m_hack->value.floatValue);
