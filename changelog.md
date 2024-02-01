@@ -1,3 +1,8 @@
+# v1.3.2 
+    - Removed Dear ImGui :(
+    - Removed Menu Style.
+    - Fixed performance issues.
+    - Fixed text centering issues with info popup.
 # v1.3.1 
     - Prevented users from being softlocked via speedhack.
     - Fixed text scaling issue with other languages.

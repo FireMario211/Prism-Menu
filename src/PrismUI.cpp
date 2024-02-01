@@ -9,6 +9,8 @@
 
 int currentMenuIndexGD = 0;
 
+matjson::Array currentThemeApplied;
+
 int calcLimit(int n) {
     return static_cast<int>(std::floor(std::log10(n)) + 1);
 }
@@ -107,7 +109,6 @@ float calculateScale(const std::string& input, int charsBeforeShrink, float minS
 }
 
 bool PrismUIButton::init(HackItem* hack) {
-    auto currentLanguage = Lang::getLanguage();
     menu = CCMenu::create();
     const auto& obj = hack->data;
     std::string name = hack->name;
@@ -386,17 +387,19 @@ void PrismUIButton::onDropdownBtn(CCObject* sender) {
     if (hack->name == "Menu Style") {
         auto obj = static_cast<PrismUI*>(CCScene::get()->getChildByID("prism-menu"));
         obj->onClose(sender);
+    } else if (hack->name == "Theme") {
+        currentThemeApplied = matjson::Array {};
     }
 }
 
-void PrismUI::CreateHackItem(HackItem* hack, bool isSettings) {
+void PrismUI::CreateHackItem(HackItem* hack) {
     const auto& obj = hack->data;
     std::string name = hack->name;
     std::string desc = hack->desc;
     auto opcodes = obj.get<matjson::Array>("opcodes");
     if (!((Hacks::isHackEnabled("Enable Patching") && obj.contains("winOnly")) || !obj.contains("winOnly") || name == "Enable Patching")) return;
-    auto btn = PrismUIButton::create(hack);
-    float indexY = (isSettings) ? ((currentI - 1)* 28) + 100 : (currentI * 28) + 100;
+    auto btn = PrismUIButton::create(hack, m_currentLang.get());
+    float indexY = (currentI * 28) + 100;
     // TODO: create custom sprite so people dont complain
     auto infoSpr = CCSprite::createWithSpriteFrameName("GJ_infoIcon_001.png");
     //infoSpr->setScale(.5F);
@@ -562,8 +565,7 @@ void PrismUI::RegenCategory() {
             break;
         case 5: { // Settings
             jsonArray = matjson::parse(Hacks::getSettings()).as_array();
-            auto currentLanguage = Lang::getLanguage();
-            auto createdByLabel = CCLabelBMFont::create(currentLanguage->name("Prism Menu by Firee").c_str(), "PrismMenu.fnt"_spr);
+            auto createdByLabel = CCLabelBMFont::create(m_currentLang->name("Prism Menu by Firee").c_str(), "PrismMenu.fnt"_spr);
             auto versionLabel = CCLabelBMFont::create("Unknown.", "PrismMenu.fnt"_spr);
             createdByLabel->limitLabelWidth(150, 1.0F, .2F);
             createdByLabel->setPosition({63, 470});
@@ -602,7 +604,7 @@ void PrismUI::RegenCategory() {
         std::string name = obj.get<std::string>("name");
         HackItem* hack = Hacks::getHack(name);
         if (hack != nullptr) {
-            CreateHackItem(hack, currentMenuIndexGD == 5);
+            CreateHackItem(hack);
         }
     }
 }
@@ -701,7 +703,8 @@ void PrismUIButton::onInfoBtn(CCObject* ret) {
                 ->setAxisAlignment(AxisAlignment::Center)
                 ->setAxisReverse(true)
         );
-        newLines->setPosition({282, (cocos2d::CCDirector::sharedDirector()->getWinSize().height / 2) + 10}); // 160 - 220
+        auto winSize = cocos2d::CCDirector::sharedDirector()->getWinSize();
+        newLines->setPosition({(winSize.width / 2), (winSize.height / 2) + 10}); // 160 - 220
         newLines->setZOrder(lines->getZOrder());
         lines->removeFromParentAndCleanup(true);
         flAlert->m_mainLayer->addChild(newLines);
@@ -712,12 +715,16 @@ void PrismUIButton::onInfoBtn(CCObject* ret) {
 }
 
 matjson::Object PrismUI::GetTheme() {
-    return Themes::getCurrentTheme();
+    if (currentThemeApplied.empty()) {
+        log::debug("Getting current theme...");
+        currentThemeApplied.push_back(Themes::getCurrentTheme());
+    }
+    return currentThemeApplied[0].as_object();
 }
 
 bool PrismUI::init(float _w, float _h) {
     auto winSize = cocos2d::CCDirector::sharedDirector()->getWinSize();
-    auto currentLanguage = Lang::getLanguage();
+    m_currentLang = Lang::getLanguage();
 
     float menuScale = Hacks::getHack("Menu Scale")->value.floatValue;
     this->m_pLrSize = cocos2d::CCSize { _w, _h };
@@ -774,12 +781,12 @@ bool PrismUI::init(float _w, float _h) {
 
     bg->addChild(sideBar);
     bg->addChild(buttonBG);
-    CreateButton(currentLanguage->name("§ Global").c_str(), 0);
-    CreateButton(currentLanguage->name("¬ Player").c_str(), 1);
-    CreateButton(currentLanguage->name("ª Bypass").c_str(), 2);
-    CreateButton(currentLanguage->name("« Creator").c_str(), 3);
-    CreateButton(currentLanguage->name("··· Misc").c_str(), 4);
-    CreateButton(currentLanguage->name("¶ Settings").c_str(), 5);
+    CreateButton(m_currentLang->name("§ Global").c_str(), 0);
+    CreateButton(m_currentLang->name("¬ Player").c_str(), 1);
+    CreateButton(m_currentLang->name("ª Bypass").c_str(), 2);
+    CreateButton(m_currentLang->name("« Creator").c_str(), 3);
+    CreateButton(m_currentLang->name("··· Misc").c_str(), 4);
+    CreateButton(m_currentLang->name("¶ Settings").c_str(), 5);
     Themes::RGBAToCC(GetTheme()["BG"], bg);
     Themes::RGBAToCC(GetTheme()["BG"], bgBehind);
     bgBehind->setColor({255, 255, 255});
@@ -838,9 +845,10 @@ PrismUI* PrismUI::create() {
     return nullptr;
 };
 
-PrismUIButton* PrismUIButton::create(HackItem* hack) {
+PrismUIButton* PrismUIButton::create(HackItem* hack, Lang* lang) {
     auto pRet = new PrismUIButton();
     if (pRet) {
+        pRet->currentLanguage = lang;
         if (pRet->init(hack)) {
             pRet->autorelease();
             return pRet;

@@ -12,6 +12,7 @@ class PrismUIButton : public CCNode, public TextInputDelegate {
         HackItem* m_hack;
         Slider* m_slider;
         InputNode* m_input;
+        Lang* currentLanguage;
         bool editedInputNode = false;
         virtual bool init(HackItem* hack);
         void onBoolBtn(CCObject*);
@@ -32,7 +33,7 @@ class PrismUIButton : public CCNode, public TextInputDelegate {
         HackItem* getHack() { return m_hack; }
 
         void onInfoBtn(CCObject*);
-        static PrismUIButton* create(HackItem* hack);
+        static PrismUIButton* create(HackItem* hack, Lang* lang);
 };
 
 class PrismUI : public FLAlertLayer {
@@ -45,6 +46,7 @@ class PrismUI : public FLAlertLayer {
         std::vector<cocos2d::extension::CCScale9Sprite*> m_pNavButtons;
         CCScrollLayerExt* m_scrollLayer;
         CCMenu* m_content;
+        std::unique_ptr<Lang> m_currentLang;
         float m_fWidth;
         float m_fHeight;
 
@@ -53,7 +55,7 @@ class PrismUI : public FLAlertLayer {
             float height
         );
         virtual void keyDown(cocos2d::enumKeyCodes) override;
-        void CreateHackItem(HackItem* item, bool);
+        void CreateHackItem(HackItem*);
         void RegenCategory();
         void CreateButton(const char* name, int menuIndex);
         void ButtonState(int id, bool activated);

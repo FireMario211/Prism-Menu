@@ -74,9 +74,6 @@ protected:
         //this->scheduleUpdate();
         return true;
     }
-    void registerWithTouchDispatcher() override { // is this even needed anymore
-        CCDirector::sharedDirector()->getTouchDispatcher()->addTargetedDelegate(this, -500, true);
-    }
 public:
     // chat jippity 
 #if 0 // fixing later, because chatgpt is givin gme bad results
