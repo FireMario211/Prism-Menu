@@ -74,6 +74,20 @@
         "type": "bool",
         "win": true
     },
+
+    {
+        "name": "No Trail",
+        "desc": "Disables any trail effect from the player.",
+        "opcodes": [],
+        "type": "bool"
+    },
+    {
+        "name": "No Wave Trail",
+        "desc": "Disables the trail for the wave.",
+        "opcodes": [],
+        "type": "bool"
+    },
+
     {
         "name": "Change Gravity",
         "desc": "Allows you to change gravity when jumping or falling.",

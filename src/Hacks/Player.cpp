@@ -5,6 +5,7 @@ using namespace geode::prelude;
 #include <Geode/modify/PlayerObject.hpp>
 
 class $modify(PlayerObject) {
+    bool isActuallyDart;
 #ifdef GEODE_IS_WINDOWS // for whatever reason, fields arent found!
     // No Solids
     /*
@@ -50,5 +51,17 @@ class $modify(PlayerObject) {
     void pushButton(PlayerButton p0) {
         if (!Hacks::isHackEnabled("Enable Patching") && Hacks::isHackEnabled("Jump Hack")) PlayerObject::boostPlayer(10.0F); // idk if i should make this customizable
         PlayerObject::pushButton(p0);
+    }
+    void toggleDartMode(bool p0, bool p1) {
+        // this is the fix until someone actually creates pads for android32 and android64, because i cant use m_isDart
+        m_fields->isActuallyDart = p0;
+        PlayerObject::toggleDartMode(p0, p1);
+    }
+    void activateStreak() {
+        /*if (!m_isDart && Hacks::isHackEnabled("No Trail")) return;
+        if (m_isDart && Hacks::isHackEnabled("No Wave Trail")) return;*/
+        if (!m_fields->isActuallyDart && Hacks::isHackEnabled("No Trail")) return;
+        if (m_fields->isActuallyDart && Hacks::isHackEnabled("No Wave Trail")) return;
+        PlayerObject::activateStreak();
     }
 };

@@ -309,6 +309,9 @@ class Hacks {
     }
     // other hacks 
     static void setPitch(float pitch) {
+        if (!Hacks::isHackEnabled("Speedhack Audio")) {
+            pitch = 1.0F;
+        }
 #ifndef GEODE_IS_MACOS
         auto fmod = FMODAudioEngine::sharedEngine();
         FMOD_RESULT result; // ensuring

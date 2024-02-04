@@ -9,6 +9,7 @@ A mod menu made in Geode for Geometry Dash
 - Add "Render Hitbox" (Basically enables hitbox even if not in practice mode)
 - Add "Disable Shaders"
 - Add "uncomplete level" hack
+- Add "Custom Object Bypass" (basically allows you to store more than 1000 objects in custom object)
 - Add background-image for custom themes (note for me: look in https://discord.com/channels/@me/1156358012852776992/1172693426429505546)
 - Add "No Camera Movement" (basically removes all 2.2 camera stuff and only aims the camera at the player)
 - Add to Misc category everything related to changing "Stats", basically allows you to edit your stats like mana, diamonds, etc. NOT ADDING STARS, DEMONS, AND OTHER FOR REASONS.

@@ -1,3 +1,14 @@
+# v1.4.0
+    - Added Dear ImGui back (from request)
+    - Added Menu Style 
+    - Added Light Theme (NOT DONE TODO <<<)
+    - Added No Trail
+    - Added No Wave Trail
+    - Added No Glow
+    - Added Layout Mode for Android
+
+todo: hitbox & hitbox on death & solid wave trail
+
 # v1.3.2 
     - Removed Dear ImGui :(
     - Removed Menu Style.
