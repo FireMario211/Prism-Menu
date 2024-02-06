@@ -64,18 +64,6 @@
     },
 
     {
-        "name": "Show Hitboxes",
-        "desc": "Shows hitboxes on any level! No need to go in Practice Mode.",
-        "opcodes": [],
-        "type": "bool"
-    },
-    {
-        "name": "Hitbox on Death",
-        "desc": "Shows hitbox when you have to start a new attempt on a level.",
-        "opcodes": [],
-        "type": "bool"
-    },
-    {
         "name": "Transparent BG",
         "desc": "Automatically reverts colors changed in the background to be their original color.",
         "opcodes": [],

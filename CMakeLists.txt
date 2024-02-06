@@ -26,25 +26,5 @@ endif()
 
 add_subdirectory($ENV{GEODE_SDK} ${CMAKE_CURRENT_BINARY_DIR}/geode)
 
-if (FALSE) # in favor of resources
-    # embedding files
-    CPMAddPackage("gh:batterycenter/embed@1.2.6")
-
-    # hacks
-    b_embed(${PROJECT_NAME} resources/hacks/global.json)
-    b_embed(${PROJECT_NAME} resources/hacks/player.json)
-    b_embed(${PROJECT_NAME} resources/hacks/creator.json)
-    b_embed(${PROJECT_NAME} resources/hacks/bypass.json)
-    b_embed(${PROJECT_NAME} resources/hacks/misc.json)
-    b_embed(${PROJECT_NAME} resources/hacks/settings.json)
-
-    # langs
-    b_embed(${PROJECT_NAME} resources/langs/spanish.json)
-    #b_embed(${PROJECT_NAME} resources/langs/russian.json)
-
-    b_embed(${PROJECT_NAME} resources/themes.json)
-    # embedding files
-endif()
-
 # Set up dependencies, resources, link Geode
 setup_geode_mod(${PROJECT_NAME})

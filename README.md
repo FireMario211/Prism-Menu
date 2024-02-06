@@ -2,14 +2,14 @@
 A mod menu made in Geode for Geometry Dash
 
 # TODOs (Based on whats next)
-- Add "No Trail"
 - Add credits screen for cocos2d ui
-- ADd "Transparent BG", removes ->setColor for the blue background thingy
 - Allow for dragging the button
 - Add "Render Hitbox" (Basically enables hitbox even if not in practice mode)
 - Add "Disable Shaders"
 - Add "uncomplete level" hack
 - Add "Custom Object Bypass" (basically allows you to store more than 1000 objects in custom object)
+- Add "Show Hitboxes"
+- Add "Show Hitbox on Death" & "Hitbox Trail"
 - Add background-image for custom themes (note for me: look in https://discord.com/channels/@me/1156358012852776992/1172693426429505546)
 - Add "No Camera Movement" (basically removes all 2.2 camera stuff and only aims the camera at the player)
 - Add to Misc category everything related to changing "Stats", basically allows you to edit your stats like mana, diamonds, etc. NOT ADDING STARS, DEMONS, AND OTHER FOR REASONS.
@@ -21,7 +21,6 @@ A mod menu made in Geode for Geometry Dash
 - Add startpos switcher
 - Add a way to customize keybinds
 - Add a "Replay Bot"
-- Add "Hitbox on Death" & "Hitbox Trail"
 - Add "Randomize Gamemode" just for fun
 - Add a "Custom Themes Marketplace" (use aws or idk what server)
 - maybe switch to ArianaPro-Regular font? looks nice imo. make a font switcher

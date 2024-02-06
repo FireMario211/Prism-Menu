@@ -6,8 +6,8 @@
     - Added No Wave Trail
     - Added No Glow
     - Added Layout Mode for Android
-
-todo: hitbox & hitbox on death & solid wave trail
+    - Added Solid Wave Trail
+    - Added Force Platformer Mode & Change Gravity for Android
 
 # v1.3.2 
     - Removed Dear ImGui :(

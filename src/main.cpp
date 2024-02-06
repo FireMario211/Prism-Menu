@@ -371,6 +371,12 @@ class $modify(PlayLayer) {
         if (Hacks::isHackEnabled("Instant Complete")) {
             PlayLayer::playEndAnimationToPos({2,2});
         }
+        /*
+        if (Hacks::isHackEnabled("Show Hitboxes")) {
+            PlayLayer::toggleDebugDraw(false);
+        }
+        */
+        
         // 0xaa9
         int targetValue = true;
         /*for (int offset = 0x0; offset < 0xAAAA; offset += 0x1) {
@@ -386,7 +392,6 @@ class $modify(PlayLayer) {
         #ifndef GEODE_IS_MACOS
         m_fields->previousTestMode = m_isTestMode;
         #endif
-        
         if (Hacks::isHackEnabled("Level Edit")) {
             //m_fields->m_gameLevel->m_levelType = static_cast<GJLevelType>(2);
         }
@@ -417,6 +422,7 @@ class $modify(PlayLayer) {
     }
     void postUpdate(float p0) {
         PlayLayer::postUpdate(p0);
+        
 #ifndef GEODE_IS_MACOS
         if (Hacks::isHackEnabled("Safe Mode")) {
             m_isTestMode = true;
@@ -526,8 +532,8 @@ class $modify(PlayLayer) {
         if (Hacks::isHackEnabled("Enable Patching")) return;
         if (Hacks::isHackEnabled("Accurate Percentage")) {
             if (m_fields->percentLabel == nullptr) return;
-            float percent = (this->m_player1->getPositionX() / m_levelLength) * 100; // 6
-            std::string percentStr = std::to_string(percent) + "%";
+            std::cout << PlayLayer::getCurrentPercent()  << "," << PlayLayer::getCurrentPercentInt() << std::endl;
+            std::string percentStr = std::to_string(PlayLayer::getCurrentPercent()) + "%";
             m_fields->percentLabel->setString(percentStr.c_str());
         }
     }

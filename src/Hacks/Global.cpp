@@ -35,8 +35,7 @@ class $modify(CCScheduler) {
 };
 #endif
 
-
-
+#ifndef GEODE_IS_MACOS
 // Layout Mode
 class $modify(GameObject) {
     // Layout Mode, No Glow
@@ -56,6 +55,7 @@ class $modify(GameObject) {
         }
     }
 };
+#endif
 
 // Safe Mode (a just incase)
 class $modify(GJGameLevel) {
@@ -78,16 +78,19 @@ class $modify(CCTransitionFade) {
 };
 // Transparent BG
 class $modify(CCSprite) {
-    std::string spr_name;
+    bool isGradient;
     bool initWithFile(char const* name) {
         if (!CCSprite::initWithFile(name)) return false;
-        m_fields->spr_name = name;
+        if (!Hacks::isHackEnabled("Transparent BG")) return true;
+        if (!strcmp(name, "GJ_gradientBG.png")) {
+            m_fields->isGradient = true;
+        }
         return true;
     }
     void setColor(const ccColor3B& color) {
         CCSprite::setColor(color);
         if (!Hacks::isHackEnabled("Transparent BG")) return;
-        if (m_fields->spr_name == "GJ_gradientBG.png") {
+        if (m_fields->isGradient) {
             CCSprite::setColor({255,255,255});
         }
         /*

@@ -83,7 +83,13 @@
     },
     {
         "name": "No Wave Trail",
-        "desc": "Disables the trail for the wave.",
+        "desc": "Disables the trail behind the wave.",
+        "opcodes": [],
+        "type": "bool"
+    },
+    {
+        "name": "Solid Wave Trail",
+        "desc": "Removes the bledning of both icon colors on the wave trail.",
         "opcodes": [],
         "type": "bool"
     },

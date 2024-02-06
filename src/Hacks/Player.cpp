@@ -3,10 +3,13 @@
 using namespace geode::prelude;
 
 #include <Geode/modify/PlayerObject.hpp>
+#include <Geode/modify/HardStreak.hpp>
+#include <Geode/modify/CCDrawNode.hpp>
+
 
 class $modify(PlayerObject) {
     bool isActuallyDart;
-#ifdef GEODE_IS_WINDOWS // for whatever reason, fields arent found!
+#ifndef GEODE_IS_MACOS // for whatever reason, fields arent found!
     // No Solids
     /*
      * +       bool collidedWithObject(float, GameObject*, cocos2d::CCRect, bool) = win 0x2cc450;
@@ -57,11 +60,42 @@ class $modify(PlayerObject) {
         m_fields->isActuallyDart = p0;
         PlayerObject::toggleDartMode(p0, p1);
     }
-    void activateStreak() {
+    void activateStreak() { // i still need this because no one found m_isDart on mac
         /*if (!m_isDart && Hacks::isHackEnabled("No Trail")) return;
         if (m_isDart && Hacks::isHackEnabled("No Wave Trail")) return;*/
         if (!m_fields->isActuallyDart && Hacks::isHackEnabled("No Trail")) return;
         if (m_fields->isActuallyDart && Hacks::isHackEnabled("No Wave Trail")) return;
         PlayerObject::activateStreak();
+    }
+};
+
+// CCDrawNode::drawPolygon
+// p0->setBlendFunc(CCSprite::create()->getBlendFunc())
+
+// CCMotionStreak::update (actually no, CCMotionStreak is for the trail, not the wave)
+
+// Solid Wave Trail
+class $modify(CCDrawNode) {
+    /*void setBlendFunc(const ccBlendFunc &blendFunc) {
+        if (!Hacks::isHackEnabled("Solid Wave Trail")) return CCDrawNode::setBlendFunc(blendFunc);
+        if (auto playLayer = typeinfo_cast<PlayLayer*>(PlayLayer::get())) {
+            std::cout << "CCDrawNode::setBlendFunc" << std::endl;
+            //CCDrawNode::setBlendFunc(blendFunc);
+            //CCDrawNode::setBlendFunc(CCSprite::create()->getBlendFunc());
+            CCDrawNode::setBlendFunc({});
+        }
+    }*/
+	bool drawPolygon(CCPoint *p0, unsigned int p1, const ccColor4F &p2, float p3, const ccColor4F &p4) {
+        /*
+         * HardStreak::updateStroke
+                     cocos2d::CCDrawNode::drawPolygon
+                      ((CCDrawNode *)in_r0,aCStack_5c,4,(_ccColor4F *)&local_7c,fVar19,
+                       (_ccColor4F *)0x0);
+        */
+        if (!Hacks::isHackEnabled("Solid Wave Trail")) return CCDrawNode::drawPolygon(p0,p1,p2,p3,p4);
+        if (p2.r == 1.F && p2.g == 1.F && p2.b == 1.F && p2.a != 1.F) return true; // tried doing just p2.a != 1.F but uh
+        this->setBlendFunc(CCSprite::create()->getBlendFunc());
+        this->setZOrder(-1); // ok but why
+        return CCDrawNode::drawPolygon(p0,p1,p2,p3,p4);
     }
 };
