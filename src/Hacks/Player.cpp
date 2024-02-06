@@ -4,8 +4,10 @@ using namespace geode::prelude;
 
 #include <Geode/modify/PlayerObject.hpp>
 #include <Geode/modify/HardStreak.hpp>
+#include <Geode/modify/GJBaseGameLayer.hpp>
+#ifndef GEODE_IS_MACOS
 #include <Geode/modify/CCDrawNode.hpp>
-
+#endif
 
 class $modify(PlayerObject) {
     bool isActuallyDart;
@@ -69,29 +71,19 @@ class $modify(PlayerObject) {
     }
 };
 
-// CCDrawNode::drawPolygon
-// p0->setBlendFunc(CCSprite::create()->getBlendFunc())
-
-// CCMotionStreak::update (actually no, CCMotionStreak is for the trail, not the wave)
+class $modify(GJBaseGameLayer) {
+    #ifndef GEODE_IS_MACOS
+    // No Mirror Transition, Instant Mirror Portal
+    void toggleFlipped(bool p0, bool p1) { // i spent a lot of time figuring out why CCActionTween wont hook, only to realize that p1 instantly transitions it
+        if (Hacks::isHackEnabled("Enable Patching")) return GJBaseGameLayer::toggleFlipped(p0, p1);
+        if (!Hacks::isHackEnabled("No Mirror Transition")) GJBaseGameLayer::toggleFlipped(p0, Hacks::isHackEnabled("Instant Mirror Portal"));
+    }
+    #endif
+};
 
 // Solid Wave Trail
 class $modify(CCDrawNode) {
-    /*void setBlendFunc(const ccBlendFunc &blendFunc) {
-        if (!Hacks::isHackEnabled("Solid Wave Trail")) return CCDrawNode::setBlendFunc(blendFunc);
-        if (auto playLayer = typeinfo_cast<PlayLayer*>(PlayLayer::get())) {
-            std::cout << "CCDrawNode::setBlendFunc" << std::endl;
-            //CCDrawNode::setBlendFunc(blendFunc);
-            //CCDrawNode::setBlendFunc(CCSprite::create()->getBlendFunc());
-            CCDrawNode::setBlendFunc({});
-        }
-    }*/
 	bool drawPolygon(CCPoint *p0, unsigned int p1, const ccColor4F &p2, float p3, const ccColor4F &p4) {
-        /*
-         * HardStreak::updateStroke
-                     cocos2d::CCDrawNode::drawPolygon
-                      ((CCDrawNode *)in_r0,aCStack_5c,4,(_ccColor4F *)&local_7c,fVar19,
-                       (_ccColor4F *)0x0);
-        */
         if (!Hacks::isHackEnabled("Solid Wave Trail")) return CCDrawNode::drawPolygon(p0,p1,p2,p3,p4);
         if (p2.r == 1.F && p2.g == 1.F && p2.b == 1.F && p2.a != 1.F) return true; // tried doing just p2.a != 1.F but uh
         this->setBlendFunc(CCSprite::create()->getBlendFunc());

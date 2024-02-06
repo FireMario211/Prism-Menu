@@ -22,8 +22,7 @@ class $modify(GameStatsManager) {
     }
 };
 
-#ifndef GEODE_IS_WINDOWS // for the android users!!! :fire::fire::fire: i dunno maybe ill migrate with windows soon 
-    // *coding sounds* creditos a sillydoggo para esto https://github.com/TheSillyDoggo/GeodeMenu/blob/38ef8f48a3d52b1eefb09ee29dd5b985928edfd2/src/Hacks/Speedhack.cpp
+// *coding sounds* creditos a sillydoggo para esto https://github.com/TheSillyDoggo/GeodeMenu/blob/38ef8f48a3d52b1eefb09ee29dd5b985928edfd2/src/Hacks/Speedhack.cpp
 class $modify(CCScheduler) {
     void update(float dt) {
         HackItem* speedhack = Hacks::getHack("Speedhack");
@@ -33,7 +32,6 @@ class $modify(CCScheduler) {
         CCScheduler::update(dt * speedhack->value.floatValue);
     }
 };
-#endif
 
 #ifndef GEODE_IS_MACOS
 // Layout Mode

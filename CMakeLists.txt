@@ -4,6 +4,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_OSX_ARCHITECTURES "x86_64")
 set(CMAKE_CXX_VISIBILITY_PRESET hidden)
 set(CMAKE_INTERPROCEDURAL_OPTIMIZATION TRUE) # thanks dank_meme01
+include(cmake/CPM.cmake) # why do I need this, this didnt happen before
 
 project(PrismMenu VERSION 1.0.0)
 
@@ -23,6 +24,10 @@ if (NOT DEFINED ENV{GEODE_SDK})
 else()
     message(STATUS "Found Geode: $ENV{GEODE_SDK}")
 endif()
+
+set(IMGUI_VERSION "v1.90")
+CPMAddPackage("gh:matcool/gd-imgui-cocos#5bc72d6") # specify a commit!
+target_link_libraries(${PROJECT_NAME} imgui-cocos)
 
 add_subdirectory($ENV{GEODE_SDK} ${CMAKE_CURRENT_BINARY_DIR}/geode)
 

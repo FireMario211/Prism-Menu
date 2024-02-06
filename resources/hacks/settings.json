@@ -101,5 +101,13 @@
         "opcodes": [],
         "type": "button",
         "default": "button"
+    },
+    {
+        "name": "Menu Style",
+        "desc": "",
+        "opcodes": [],
+        "type": "dropdown",
+        "default": 1,
+        "values": ["ImGui", "Geometry Dash"]
     }
 ]

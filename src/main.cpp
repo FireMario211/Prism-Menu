@@ -3,6 +3,7 @@
 // please do not judge my coding, ok thank you!!!
 #include "CustomSettings.hpp"
 #include <Geode/utils/file.hpp>
+#include "PrismButton.hpp"
 #include "hacks.hpp"
 #include "Languages.hpp"
 #include "Themes.hpp"
@@ -15,30 +16,11 @@
 #include <iomanip>
 #include <string>
 #include <locale>
-#include <codecvt>
 #include <algorithm>
 
 using namespace geode::prelude;
 
 #include <Geode/modify/MenuLayer.hpp>
-#include <Geode/modify/AchievementNotifier.hpp>
-
-
-std::string determineName(const char* name, float width) {
-    std::wstring_convert<std::codecvt_utf8<wchar_t>> converter; // what is this nonsense chat jippity, i just wanna handle unicode!
-
-    std::string nameStr(name);
-    if (width <= 125) {
-        if (width <= 80) {
-            std::wstring wideName = converter.from_bytes(name);
-            return converter.to_bytes(wideName.substr(0, 1));
-        } else {
-            return nameStr.substr(2);
-        }
-    } else {
-        return nameStr;
-    }
-}
 
 /*
 for i in range(char2nr('A'), char2nr('Z'))
@@ -46,135 +28,9 @@ for i in range(char2nr('A'), char2nr('Z'))
 endfor
 */
 
-class PrismButton : public CCMenu {
-protected:
-    CCTouch* touchs;
-    //CCMenuItemSpriteExtra* menuButton;
-    bool allowDragging;
-    bool isTouchOnButton;
-    float initialTouchX;
-    float initialTouchY;
-    float touchHoldTimer;
-
-    bool init(CCScene* p0) {
-        if (!CCMenu::init())
-            return false;
-        HackItem* posX = Hacks::getHack("Button Position X");
-        HackItem* posY = Hacks::getHack("Button Position Y");
-        auto menuButton = createButton(this);
-        this->addChild(menuButton);
-        this->setPositionX(posX->value.intValue);
-        this->setPositionY(posY->value.intValue);
-        this->registerWithTouchDispatcher();
-        this->setTouchEnabled(true);
-        this->setZOrder(p0->getHighestChildZ() + 100);
-        allowDragging = true;
-        isTouchOnButton = false;
-        touchHoldTimer = 0.0f;
-        //this->scheduleUpdate();
-        return true;
-    }
-public:
-    // chat jippity 
-#if 0 // fixing later, because chatgpt is givin gme bad results
-    void update(float dt) {
-        updateTouchHoldTimer(dt);
-        // Check if the touch is on the button and has been held for 0.5 seconds
-        if (isTouchOnButton && allowDragging && touchHoldTimer >= 0.5) {
-            std::cout << "do you" << std::endl;
-            // Calculate new position based on touch movement
-            float deltaX = touchs->getDelta().x;
-            float deltaY = touchs->getDelta().y;
-            this->setPositionX(this->getPositionX() + deltaX);
-            this->setPositionY(this->getPositionY() + deltaY);
-
-            // Set opacity to 50%
-            this->setOpacity(128); // 50% opacity
-
-        } else {
-            // If not dragging, set opacity back to 100%
-            this->setOpacity(255); // 100% opacity
-        }
-    }
-
-
-    bool ccTouchBegan(CCTouch* touch, CCEvent* event) {
-        this->touchs = touch;
-        std::cout << "ccTouchBegan" << std::endl;
-        CCRect rect = menuButton->boundingBox();
-        if (rect.containsPoint(touch->getLocation())) {
-            std::cout << "ccTouchBegan you are TRUE!" << std::endl;
-            isTouchOnButton = true;
-            initialTouchX = touch->getLocation().x;
-            initialTouchY = touch->getLocation().y;
-            allowDragging = false; // Reset flag
-            touchHoldTimer = 0.0F;
-            return true;
-        }
-
-        return false;
-    }
-
-    void ccTouchMoved(CCTouch* touch, CCEvent* event) {
-        // Check if the touch is on the button
-        if (isTouchOnButton) {
-            float distance = ccpDistance(ccp(initialTouchX, initialTouchY), touch->getLocation());
-            std::cout << "ccTouchMoved " << distance << std::endl;
-            if (distance > 10) {
-                std::cout << "ccTouchBegan ya" << std::endl;
-                allowDragging = true; // Enable dragging if the touch has moved by more than 10 pixels
-            }
-        }
-    }
-
-    void ccTouchEnded(CCTouch* touch, CCEvent* event) {
-        // Check if the touch is on the button
-        if (isTouchOnButton) {
-            std::cout << "ccTouchEnded" << std::endl;
-            // If not dragging, call onButtonClicked
-            if (!allowDragging) {
-                onButtonClicked(nullptr);
-            }
-
-            // Reset flags and properties
-            isTouchOnButton = false;
-            allowDragging = false;
-            touchHoldTimer = 0.0F;
-        }
-    }
-
-    void updateTouchHoldTimer(float dt) {
-        if (isTouchOnButton) {
-            std::cout << "updateTouchHoldTimer " << touchHoldTimer << std::endl;
-            touchHoldTimer += dt;
-        }
-    }
-#endif
-    static CCMenuItemSpriteExtra* createButton(CCLayer* ret) {
-        auto myButtonSpr = CircleButtonSprite::create(CCSprite::create("icon.png"_spr));
-        return CCMenuItemSpriteExtra::create(myButtonSpr, ret, menu_selector(PrismButton::onButtonClicked));
-    }
-    void onButtonClicked(CCObject* p0) {
-        PrismUI::create()->show();
-    }
-
-    static PrismButton* create(CCScene* p0) {
-        auto ret = new PrismButton();
-        if (ret && ret->init(p0)) {
-            ret->autorelease();
-            return ret;
-        }
-        CC_SAFE_DELETE(ret);
-        return nullptr;
-    }
-};
-
 PrismButton* prismButton;
 
-
 bool firstLoad = false;
-bool changedOpacity = false;
-bool changedMenuScale = false;
 // early load is amazing!
 
 class $modify(MenuLayer) {
@@ -195,12 +51,12 @@ class $modify(MenuLayer) {
         if (firstLoad) return true;
         firstLoad = true;
         log::info("Prism Menu loaded! Enjoy the mod.");
-#ifndef GEODE_IS_MACOS
+        #ifndef GEODE_IS_MACOS
         prismButton = PrismButton::create(CCScene::get());
         prismButton->setVisible(Hacks::isHackEnabled("Show Button"));
         prismButton->setID("prism-icon");
         SceneManager::get()->keepAcrossScenes(prismButton);
-#endif
+        #endif
         return true;
     }
 };
@@ -210,6 +66,7 @@ $execute {
     SettingHackStruct val { matjson::Array() };
     Mod::get()->addCustomSetting<SettingHackValue>("values", val);
 }
+
 $on_mod(Loaded) {
     Hacks::processJSON(false);
     Themes::addToCurrentThemes();
@@ -240,11 +97,18 @@ $on_mod(Loaded) {
 class $modify(CCKeyboardDispatcher) {
     bool dispatchKeyboardMSG(enumKeyCodes key, bool down, bool arr) {
         if (down && (key == KEY_Tab)) {
-            auto prismUIExists = CCScene::get()->getChildByID("prism-menu");
-            if (prismUIExists == nullptr) {
-                PrismUI::create()->show();
+            auto prismButton = typeinfo_cast<PrismButton*>(CCScene::get()->getChildByID("prism-icon"));
+            if (prismButton == nullptr) return true;
+            HackItem* menuStyle = Hacks::getHack("Menu Style");
+            if (menuStyle->value.intValue == 0) { // imgui
+                prismButton->showImGuiMenu = !prismButton->showImGuiMenu;
             } else {
-                static_cast<PrismUI*>(prismUIExists)->onClose(CCNode::create());
+                auto prismUIExists = CCScene::get()->getChildByID("prism-menu");
+                if (prismUIExists == nullptr) {
+                    PrismUI::create()->show();
+                } else {
+                    static_cast<PrismUI*>(prismUIExists)->onClose(CCNode::create());
+                }
             }
             return true;
         }
@@ -256,32 +120,8 @@ class $modify(CCKeyboardDispatcher) {
 // i completely wasted my time writing this whole patch script, and i kinda want android + mac support soooo
 
 #include <Geode/modify/PlayLayer.hpp>
-#include <Geode/modify/GJBaseGameLayer.hpp>
 #include <Geode/modify/PauseLayer.hpp>
-// TODO later: move these
-class $modify(GJBaseGameLayer) {
-#ifndef GEODE_IS_MACOS
-    // No Mirror Transition, Instant Mirror Portal
-    void toggleFlipped(bool p0, bool p1) { // i spent a lot of time figuring out why CCActionTween wont hook, only to realize that p1 instantly transitions it
-        if (Hacks::isHackEnabled("Enable Patching")) return GJBaseGameLayer::toggleFlipped(p0, p1);
-        /*
-pCVar2 = (CCActionInterval *)cocos2d::CCActionTween::create((float)uVar8,(char *)0x3f000000,(float)((ulonglong)uVar8 >> 0x20),fVar7);
-        */
-        // MOV DWORD PTR [ESP], 3F
-        // ??* esp = 0x3F;
-        if (!Hacks::isHackEnabled("No Mirror Transition")) GJBaseGameLayer::toggleFlipped(p0, Hacks::isHackEnabled("Instant Mirror Portal"));
-    }
-#endif
-    // Speedhack fix
-#ifdef GEODE_IS_WINDOWS // sorry its weird on android
-    void applyTimeWarp(float speed) {
-        HackItem* speedhack = Hacks::getHack("Speedhack");
-        if (speedhack == nullptr) return GJBaseGameLayer::applyTimeWarp(speed);
-        if (speedhack->value.floatValue == 1.0F) return GJBaseGameLayer::applyTimeWarp(speed);
-        GJBaseGameLayer::applyTimeWarp(speed * speedhack->value.floatValue);
-    }
-#endif
-};
+
 // showing the icon for android users lol
 class $modify(PauseLayer) {
     void customSetup() {
@@ -364,7 +204,7 @@ class $modify(PlayLayer) {
             }
         }
     }
-    // Instant Complete, Practice Music, Hide Testmode
+    // Instant Complete, Hide Testmode
     bool init(GJGameLevel *p0, bool p1, bool p2) {
         if (!PlayLayer::init(p0,p1,p2)) return false;
         if (prismButton != nullptr && Hacks::isHackEnabled("Show Button")) prismButton->setVisible(false);

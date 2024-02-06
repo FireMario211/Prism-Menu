@@ -1,5 +1,6 @@
 # v1.4.0
     - Added Dear ImGui back (from request)
+    - Fixed Accurate Percentage on levels with the End Level Trigger (Thanks dankmeme01!)
     - Added Menu Style 
     - Added Light Theme (NOT DONE TODO <<<)
     - Added No Trail
@@ -8,7 +9,6 @@
     - Added Layout Mode for Android
     - Added Solid Wave Trail
     - Added Force Platformer Mode & Change Gravity for Android
-
 # v1.3.2 
     - Removed Dear ImGui :(
     - Removed Menu Style.

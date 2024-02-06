@@ -77,9 +77,7 @@ bool GatoSim::init() {
 };
 
 void GatoSim::keybackClicked() {
-#ifndef GEODE_IS_MACOS
     cocos2d::CCDirector::sharedDirector()->popSceneWithTransition(0.5F, cocos2d::PopTransition::kPopTransitionFade);
-#endif
 };
 
 void GatoSim::onClose(cocos2d::CCObject*) {

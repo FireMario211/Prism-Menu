@@ -40,7 +40,7 @@ cocos2d::extension::CCScale9Sprite* PrismUIButton::createCheckbox(bool check) {
         box->addChild(checkmark);
         Themes::RGBAToCC(PrismUI::GetTheme()["CheckMark"], checkmark);
     }
-    Themes::RGBAToCC(PrismUI::GetTheme()["Button"], box);
+    Themes::RGBAToCC(PrismUI::GetTheme()["FrameBg"], box);
     return box;
 }
 
