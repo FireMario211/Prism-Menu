@@ -26,7 +26,12 @@ else()
 endif()
 
 set(IMGUI_VERSION "v1.90")
-CPMAddPackage("gh:matcool/gd-imgui-cocos#5bc72d6") # specify a commit!
+if (APPLE)
+    message("mat please merge the pr")
+    CPMAddPackage("gh:ninXout/gd-imgui-cocos#dd044a8")
+else()
+    CPMAddPackage("gh:matcool/gd-imgui-cocos#5bc72d6") # specify a commit!
+endif()
 target_link_libraries(${PROJECT_NAME} imgui-cocos)
 
 add_subdirectory($ENV{GEODE_SDK} ${CMAKE_CURRENT_BINARY_DIR}/geode)
