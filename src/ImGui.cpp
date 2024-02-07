@@ -1,4 +1,5 @@
 #include <Geode/modify/MenuLayer.hpp>
+#ifndef GEODE_IS_MACOS
 #include <imgui-cocos.hpp>
 #include <codecvt>
 #include "PrismButton.hpp"
@@ -438,3 +439,4 @@ class $modify(MenuLayer) {
         return true;
     }
 };
+#endif

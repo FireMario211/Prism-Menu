@@ -1,6 +1,8 @@
 #pragma once
 #include <Geode/Geode.hpp>
+#ifndef GEODE_IS_MACOS
 #include <imgui-cocos.hpp>
+#endif
 #include "hacks.hpp"
 
 using namespace geode::prelude;
@@ -11,6 +13,7 @@ class Themes {
     public:
     static void addToCurrentThemes();
     static matjson::Array getCurrentThemes();
+#ifndef GEODE_IS_MACOS
     static ImVec4 RGBAToImVec4(matjson::Value rgba) {
         float currentOpacity = Hacks::getHack("Menu Opacity")->value.floatValue;
         rgba = rgba.as_array();
@@ -156,6 +159,7 @@ class Themes {
         "TextSelectedBg": [60, 55, 152, 255]
          */
     }
+#endif
     static void RGBAToCC(matjson::Value rgba, CCNodeRGBA* obj) {
         float currentOpacity = Hacks::getHack("Menu Opacity")->value.floatValue;
         rgba = rgba.as_array();
