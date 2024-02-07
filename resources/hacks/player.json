@@ -71,8 +71,7 @@
         "name": "Force Platformer Mode",
         "desc": "Forces you to be in platformer mode when playing a level.",
         "opcodes": [],
-        "type": "bool",
-        "win": true
+        "type": "bool"
     },
 
     {
@@ -89,7 +88,7 @@
     },
     {
         "name": "Solid Wave Trail",
-        "desc": "Removes the bledning of both icon colors on the wave trail.",
+        "desc": "Removes the blending of both icon colors on the wave trail.",
         "opcodes": [],
         "type": "bool"
     },
@@ -98,8 +97,7 @@
         "name": "Change Gravity",
         "desc": "Allows you to change gravity when jumping or falling.",
         "opcodes": [],
-        "type": "bool",
-        "win": true
+        "type": "bool"
     },
     {
         "name": "Gravity Value",

@@ -55,26 +55,26 @@ float calculateYPosition(float x) { // love floating points
 int getYPosBasedOnCategory() { // someone give me a proper math formula ok thanks
     switch (currentMenuIndexGD) {
         case 0: // Global 
-            return -90;
+            return 20;
         case 1: // Player
-            return -70;
+            return 70;
         case 2: // Bypass
-            return 57;
+            return -100;
         case 3: // Creator
-            return 29;
+            return -100;
         case 4: // Misc
-            return 85;
+            return -100;
         case 5: // Settings
-            return -60;
+            return 115;
         default: return 0;
     }
 }
 float getContentSizeBasedOnCategory() { // someone give me a proper math formula ok thanks
     switch (currentMenuIndexGD) {
         case 0: // Global 
-            return 280; // 260
+            return 350; // 260
         case 1: // Player
-            return 328;
+            return 400;
         case 2: // Bypass
             return 230; // 230
         case 3: // Creator
@@ -82,19 +82,13 @@ float getContentSizeBasedOnCategory() { // someone give me a proper math formula
         case 4: // Misc
             return 230; // 230
         case 5: // Settings
-            return 420; // 400
-        default: return 328;
+            return 450; // 400
+        default: return 320;
     }
 }
 
 float getSliderValue(float current, float min, float max, bool inverse) {
     return (inverse) ? (current * (max - min) + min) : (current - min) / (max - min);
-}
-
-std::string setPrecision(float value, int streamsize) {
-    std::ostringstream oss;
-    oss << std::fixed << std::setprecision(streamsize) << value;
-    return oss.str();
 }
 
 // since SimpleTextArea doesnt allow limitLabelWidth
@@ -190,7 +184,7 @@ bool PrismUIButton::init(HackItem* hack) {
         auto max = obj.get<int>("max");
         m_input = InputNode::create(100.f, "...", "PrismMenu.fnt"_spr);
         m_input->getInput()->setString(
-            name.starts_with("Button Position") ? std::to_string(value) : setPrecision(value, 3)
+            name.starts_with("Button Position") ? std::to_string(value) : Utils::setPrecision(value, 3)
         );
         m_input->getInput()->setAllowedChars("0123456789.");
         m_input->setPositionX(21);
@@ -290,7 +284,7 @@ void PrismUIButton::onFloatBtn(CCObject* ret) {
         m_hack->value.intValue = actualValue;
     }
     m_input->getInput()->setString(
-        name.starts_with("Button Position") ? std::to_string(m_hack->value.intValue) : setPrecision(m_hack->value.floatValue, 3)
+        name.starts_with("Button Position") ? std::to_string(m_hack->value.intValue) : Utils::setPrecision(m_hack->value.floatValue, 3)
     );
     if (name == "Speedhack") {
         if (m_hack->value.floatValue < 0.0F) return;
@@ -349,6 +343,12 @@ void PrismUIButton::onBtn(CCObject* ret) {
         prismUI->onClose(ret);
     } else if (name == "Credits") {
         FLAlertLayer::create("Not working...yet.", "This will be added in a <cy>future update</c>!", "OK")->show();
+    } else if (name == "Show Graphic Options") {
+        #ifdef GEODE_IS_ANDROID 
+        VideoOptionsLayer::create()->show();
+        #else 
+        FLAlertLayer::create("Error", "This option can only be used on <cy>Android</c>!", "OK")->show();
+        #endif
     } else {
         GatoSim::onButton();
     }
@@ -399,7 +399,7 @@ void PrismUI::CreateHackItem(HackItem* hack) {
     auto opcodes = obj.get<matjson::Array>("opcodes");
     if (!((Hacks::isHackEnabled("Enable Patching") && obj.contains("winOnly")) || !obj.contains("winOnly") || name == "Enable Patching")) return;
     auto btn = PrismUIButton::create(hack, m_currentLang.get());
-    float indexY = (currentI * 28) + 100;
+    float indexY = (currentI * -28) + 310;
     // TODO: create custom sprite so people dont complain
     auto infoSpr = CCSprite::createWithSpriteFrameName("GJ_infoIcon_001.png");
     //infoSpr->setScale(.5F);
@@ -413,10 +413,8 @@ void PrismUI::CreateHackItem(HackItem* hack) {
     if (m_content->getContentSize().height > 230.0F) {
         //m_scrollLayer->m_contentLayer->setContentSize(m_content->getContentSize() + CCSize { 0.f, 1.0 });
         m_scrollLayer->m_contentLayer->setContentSize(m_content->getContentSize());
-        //m_content->setPositionY(-0.5f * currentI);
     } else {
         m_scrollLayer->m_contentLayer->setContentSize(m_content->getContentSize());
-        //m_content->setPositionY(220.0f * currentI);
     }
     m_scrollLayer->m_contentLayer->setContentSize({m_content->getContentSize().width, getContentSizeBasedOnCategory()});
     infoBtn->setPosition({280, indexY});
@@ -503,7 +501,7 @@ void PrismUIButton::textInputClosed(CCTextInputNode* input) { // basically onInt
     std::string name = m_hack->name;
     Themes::RGBAToCC(PrismUI::GetTheme()["Text"], input->m_placeholderLabel);
     if (m_hack->type == "float") {
-        input->setString(setPrecision(m_hack->value.floatValue, 3));
+        input->setString(Utils::setPrecision(m_hack->value.floatValue, 3));
         if (name == "Speedhack") {
             if (m_hack->value.floatValue < 0.0F) return;
             m_hack->value.floatValue = std::max(m_hack->value.floatValue, 0.01f);
@@ -547,6 +545,7 @@ void PrismUIButton::onDecBtn(CCObject* ret) {
 
 void PrismUI::RegenCategory() {
     std::vector<matjson::Value> jsonArray;
+    currentI = 0;
     switch (currentMenuIndexGD) {
         case 0: // Global 
             jsonArray = matjson::parse(Hacks::getGlobalHacks()).as_array();
@@ -567,12 +566,12 @@ void PrismUI::RegenCategory() {
             jsonArray = matjson::parse(Hacks::getSettings()).as_array();
             auto createdByLabel = CCLabelBMFont::create(m_currentLang->name("Prism Menu by Firee").c_str(), "PrismMenu.fnt"_spr);
             auto versionLabel = CCLabelBMFont::create("Unknown.", "PrismMenu.fnt"_spr);
+            float indexY = (currentI * -28) + 310;
             createdByLabel->limitLabelWidth(150, 1.0F, .2F);
-            createdByLabel->setPosition({63, 470});
-            versionLabel->setPosition({63, 455});
+            createdByLabel->setPosition({63, indexY});
+            versionLabel->setPosition({63, indexY + 15});
             Themes::RGBAToCC(GetTheme()["Text"], createdByLabel);
             Themes::RGBAToCC(GetTheme()["Text"], versionLabel);
-
             #ifdef GITHUB_ACTIONS
             auto version = fmt::format("{} (Geode)", Mod::get()->getVersion().toString());
             #else 
@@ -595,11 +594,19 @@ void PrismUI::RegenCategory() {
             versionLabel->limitLabelWidth(150, 1.0F, .2F);
             m_content->addChild(createdByLabel);
             m_content->addChild(versionLabel);
+            currentI++;
             break;
         }
     }
-    currentI = 0;
-    for (auto it = jsonArray.end() - 1; it != jsonArray.begin() - 1; it--) {
+    /*for (auto it = jsonArray.end() - 1; it != jsonArray.begin() - 1; it--) {
+        const auto& obj = *it;
+        std::string name = obj.get<std::string>("name");
+        HackItem* hack = Hacks::getHack(name);
+        if (hack != nullptr) {
+            CreateHackItem(hack);
+        }
+    }*/
+    for (auto it = jsonArray.begin(); it != jsonArray.end(); it++) {
         const auto& obj = *it;
         std::string name = obj.get<std::string>("name");
         HackItem* hack = Hacks::getHack(name);

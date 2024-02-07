@@ -20,4 +20,11 @@ class Utils {
         }
     #endif
     }
+    static std::string setPrecision(float value, int streamsize) {
+        std::ostringstream oss;
+        oss << std::fixed << std::setprecision(streamsize) << value;
+        return oss.str();
+    }
+
+
 };

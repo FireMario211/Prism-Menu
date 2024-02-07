@@ -9,6 +9,9 @@
     - Added Layout Mode for Android
     - Added Solid Wave Trail
     - Added Force Platformer Mode & Change Gravity for Android
+    - Added Show Hidden Objects (For Layout Mode)
+    - Added Noclip Accuracy
+    - Added a "Show Graphic Options" button (For Android users)
 # v1.3.2 
     - Removed Dear ImGui :(
     - Removed Menu Style.

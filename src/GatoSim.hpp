@@ -12,6 +12,7 @@ using namespace geode::prelude;
 class GatoSim : public CCLayer, public FLAlertLayerProtocol {
     // TODO: add some json file
     // maybe turn this into some sort of "cookie clicker" because why not
+    std::string name;
     int fod = 0;
     int drank = 0;
     std::vector<std::string> toi;

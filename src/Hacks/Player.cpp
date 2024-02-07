@@ -52,11 +52,11 @@ class $modify(PlayerObject) {
         m_fields->was_platformer = this->m_isPlatformer;
         PlayerObject::playerDestroyed(p0);
     }
-    #endif
     void pushButton(PlayerButton p0) {
         if (!Hacks::isHackEnabled("Enable Patching") && Hacks::isHackEnabled("Jump Hack")) PlayerObject::boostPlayer(10.0F); // idk if i should make this customizable
         PlayerObject::pushButton(p0);
     }
+    #endif
     void toggleDartMode(bool p0, bool p1) {
         // this is the fix until someone actually creates pads for android32 and android64, because i cant use m_isDart
         m_fields->isActuallyDart = p0;
@@ -81,6 +81,7 @@ class $modify(GJBaseGameLayer) {
     #endif
 };
 
+#ifndef GEODE_IS_MACOS
 // Solid Wave Trail
 class $modify(CCDrawNode) {
 	bool drawPolygon(CCPoint *p0, unsigned int p1, const ccColor4F &p2, float p3, const ccColor4F &p4) {
@@ -91,3 +92,4 @@ class $modify(CCDrawNode) {
         return CCDrawNode::drawPolygon(p0,p1,p2,p3,p4);
     }
 };
+#endif

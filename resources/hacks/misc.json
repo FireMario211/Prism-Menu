@@ -22,5 +22,18 @@
         "desc": "Disables glow on all objects.",
         "opcodes": [],
         "type": "bool"
+    },
+    {
+        "name": "Noclip Accuracy",
+        "desc": "Informs you how accurate your noclip run is. (Will not work without Anticheat Bypass enabled)",
+        "opcodes": [],
+        "type": "bool"
+    },
+    {
+        "name": "Show Graphic Options",
+        "desc": "Shows you Geometry Dash's graphic options! Useful for Android as the option is normally not available.",
+        "opcodes": [],
+        "type": "button",
+        "default": "button"
     }
 ]

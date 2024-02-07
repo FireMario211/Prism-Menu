@@ -6,7 +6,6 @@
 #include "Languages.hpp"
 #include "Themes.hpp"
 
-bool showMenu = false;
 int currentMenuIndex;
 
 struct EditMode {
@@ -79,11 +78,9 @@ class $modify(MenuLayer) {
         ImGuiCocos::get().setup([] {
             Themes::LoadTheme(Themes::getCurrentTheme());
         }).draw([] {
-            auto prismButton = CCScene::get()->getChildByID("prism-icon");
-            if (prismButton != nullptr) {
-                showMenu = static_cast<PrismButton*>(prismButton)->showImGuiMenu;
-            }
-            if (showMenu) {
+            auto prismButton = typeinfo_cast<PrismButton*>(CCScene::get()->getChildByID("prism-icon"));
+            if (prismButton == nullptr) return;
+            if (prismButton->showImGuiMenu) {
                 // i cant use LoadTheme because 0160:err:virtual:allocate_virtual_memory out of memory for allocation, base (nil) size
                 // well just in case 
                 if (Hacks::isHackEnabled("Live Theme Editing") || changedMenuScale) {
@@ -393,7 +390,7 @@ class $modify(MenuLayer) {
                                                 hack->value.intValue = i;
                                                 Hacks::Settings::setSettingValue(&settings, *hack, hack->value.intValue);
                                                 if (name == "Menu Style") {
-                                                    showMenu = !showMenu;
+                                                    prismButton->showImGuiMenu = !prismButton->showImGuiMenu;
                                                 }
                                             }
                                             // Set the initial focus when opening the combo (scrolling + keyboard navigation focus)
@@ -424,7 +421,7 @@ class $modify(MenuLayer) {
                         }
                     }
                     if (ImGui::Button("X")) {
-                        showMenu = !showMenu;
+                        prismButton->showImGuiMenu = !prismButton->showImGuiMenu;
                     }
                     ImGui::PopStyleVar();
                     ImGui::EndTable();

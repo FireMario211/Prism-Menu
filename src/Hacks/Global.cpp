@@ -41,8 +41,13 @@ class $modify(GameObject) {
         if (Hacks::isHackEnabled("No Glow")) { // easier than having to check for glow sprite lol
             this->m_hasNoGlow = true;
         }
+        if (Hacks::isHackEnabled("Show Hidden Objects")) {
+            m_activeMainColorID = -1;
+            if (m_isHide) v = true;
+            m_isHide = false;
+            // ok but why doesnt this work
+        }
         if (!Hacks::isHackEnabled("Layout Mode")) return GameObject::setVisible(v);
-        GameObject::setVisible(v);
         //m_hasGroupParent == 0
         std::vector<int> outerPortal = {};
         //i really dont want to have to check every single object id
@@ -51,6 +56,19 @@ class $modify(GameObject) {
         } else {
             GameObject::setVisible(v);
         }
+    }
+    /*
+    void makeInvisible() { // 0x13bf20
+        std::cout << "make it invisible" << std::endl;
+        if (!Hacks::isHackEnabled("Show Hidden Objects")) return GameObject::makeInvisible();
+    }
+    */
+    static GameObject* createWithKey(int p0) {
+        auto gameObject = GameObject::createWithKey(p0);
+        if (Hacks::isHackEnabled("Show Hidden Objects")) {
+            if (p0 == 1007 && PlayLayer::get() != nullptr) return nullptr;
+        }
+        return gameObject;
     }
 };
 #endif
@@ -91,20 +109,5 @@ class $modify(CCSprite) {
         if (m_fields->isGradient) {
             CCSprite::setColor({255,255,255});
         }
-        /*
-        // taken from devtools because why not
-        if (auto texture = this->getTexture()) {
-            auto* cachedTextures = CCTextureCache::sharedTextureCache()->m_pTextures;
-            // probably a bad idea to loop, might cause some lag idk
-            // honestly i should hook the create method instead to give more performance because this is BAD!
-            for (auto [key, obj] : CCDictionaryExt<std::string, CCTexture2D*>(cachedTextures)) {
-                if (obj == texture) {
-                    if (strstr(key.c_str(), "GJ_gradientBG") != NULL) {
-                        CCSprite::setColor({255,255,255}); // original color
-                    }
-                    break;
-                }
-            }
-        }*/
     }
 };

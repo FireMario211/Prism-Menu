@@ -140,26 +140,40 @@ class $modify(PauseLayer) {
     }
 };
 
+// TODO: Check Cheat Indicator position
 CircleButtonSprite* createCheatIndicator(bool isHacking) {
     auto winSize = CCDirector::sharedDirector()->getWinSize();
     auto cheatIndicator = CircleButtonSprite::create(CCNode::create(), (isHacking) ? CircleBaseColor::Pink : CircleBaseColor::Green, CircleBaseSize::Tiny); //, CircleBaseColor::Geode
     cheatIndicator->setAnchorPoint({1,1});
-    cheatIndicator->setPosition({winSize.width, winSize.height});
+    cheatIndicator->setPosition({28, winSize.height});
+    cheatIndicator->setZOrder(1000);
+    cheatIndicator->setTag(10420); // prevent PlayLayer from interfering
     return cheatIndicator;
 }
+
 class $modify(PlayLayer) {
     float previousPositionX = 0.0F;
     GameObject* antiCheatObject; // removing after lol
     CircleButtonSprite* cheatIndicator;
+    CCLabelBMFont* accuracyLabel;
     bool previousTestMode;
+    CCNode* prismNode;
 
     CCSprite* progressBar;
     CCLabelBMFont* percentLabel;
     CCLabelBMFont* attemptLabel;
 
     bool isCheating = false;
+    
+    // Anticheat Bypass
     bool initedDeath = false;
-    int updateInit = 0;
+
+    // Noclip Accuracy
+    int frame = 0;
+    int death = 0;
+    float previousPlayerX = 0.0F;
+    float previousDeathX = 0.0F;
+
     // Anticheat Bypass, Noclip, No Spikes, No Solids
     void destroyPlayer(PlayerObject *p0, GameObject *p1) {
         //bool m_isTestMode = *reinterpret_cast<bool*>(reinterpret_cast<uintptr_t>(this) + 0x413);
@@ -167,6 +181,7 @@ class $modify(PlayLayer) {
         if (Hacks::isHackEnabled("Enable Patching")) return PlayLayer::destroyPlayer(p0, p1);
         bool noclipDisabled = !Hacks::isHackEnabled("No Solids") && !Hacks::isHackEnabled("Noclip");
         if ((noclipDisabled && !Hacks::isHackEnabled("No Spikes"))) return PlayLayer::destroyPlayer(p0, p1);
+        
         if (Hacks::isHackEnabled("Anticheat Bypass")) {
             if (!m_fields->initedDeath) {
             #if !defined(GEODE_IS_ANDROID64) && !defined(GEODE_IS_MACOS)
@@ -201,6 +216,15 @@ class $modify(PlayLayer) {
             }
             if (p1 == m_fields->antiCheatObject) { // nice AC robert
                 return PlayLayer::destroyPlayer(p0, p1);
+            }
+            if (m_fields->accuracyLabel != nullptr) {
+                m_fields->accuracyLabel->setColor({255,0,0});
+            }
+            if (m_player1 != nullptr) {
+                if (m_player1->getPositionX() != m_fields->previousDeathX) {
+                    m_fields->previousDeathX = m_player1->getPositionX();
+                    m_fields->death += 1;
+                }
             }
         }
     }
@@ -250,19 +274,53 @@ class $modify(PlayLayer) {
         if (Hacks::isHackEnabled("Practice Music")) {
             GameStatsManager::sharedState()->toggleEnableItem(UnlockType::GJItem, 17, true);
         }
+
+        auto winSize = CCDirector::sharedDirector()->getWinSize();
+        m_fields->prismNode = CCNode::create();
+        m_fields->prismNode->setTag(10420);
         m_fields->cheatIndicator = createCheatIndicator(false);
         m_fields->cheatIndicator->setVisible(Hacks::isHackEnabled("Cheat Indicator"));
-        this->addChild(m_fields->cheatIndicator);
+        m_fields->accuracyLabel = CCLabelBMFont::create("100.00%", "bigFont.fnt");
+        m_fields->accuracyLabel->setPosition({36, winSize.height - 35});
+        m_fields->accuracyLabel->setScale(0.5F);
+        m_fields->accuracyLabel->setOpacity(255 / 2);
+        m_fields->accuracyLabel->setVisible(Hacks::isHackEnabled("Noclip Accuracy"));
+        m_fields->accuracyLabel->setAlignment(CCTextAlignment::kCCTextAlignmentLeft);
+        m_fields->accuracyLabel->setZOrder(1000);
+        m_fields->accuracyLabel->setTag(10420); // prevent PlayLayer from interfering
+        m_fields->prismNode->addChild(m_fields->accuracyLabel);
+        m_fields->prismNode->addChild(m_fields->cheatIndicator);
+        this->addChild(m_fields->prismNode);
         return true;
     }
     void onQuit() {
         if (prismButton != nullptr && Hacks::isHackEnabled("Show Button")) prismButton->setVisible(true); // look at this
         m_fields->initedDeath = false;
+        m_fields->frame = 0;
+        m_fields->death = 0;
         PlayLayer::onQuit();
+    }
+    void resetLevel() {
+        m_fields->frame = 0;
+        m_fields->death = 0;
+        PlayLayer::resetLevel();
     }
     void postUpdate(float p0) {
         PlayLayer::postUpdate(p0);
-        
+        if (m_player1 != nullptr) {
+            if (m_player1->getPositionX() != m_fields->previousPlayerX) {
+                m_fields->previousPlayerX = m_player1->getPositionX();
+                m_fields->frame += 1;
+            }
+        }
+        if (m_fields->accuracyLabel != nullptr) {
+            float accuracy = ((static_cast<float>(m_fields->frame - m_fields->death)) / static_cast<float>(m_fields->frame)) * 100; // for some reason this doesnt work on android, like it goes in the negatives
+            m_fields->accuracyLabel->setString(fmt::format("{}%", Utils::setPrecision(accuracy, 2)).c_str());
+            m_fields->accuracyLabel->setVisible(Hacks::isHackEnabled("Noclip Accuracy"));
+            if (m_fields->frame % 4 == 0) { // quarter step
+                m_fields->accuracyLabel->setColor({255,255,255});
+            }
+        }
 #ifndef GEODE_IS_MACOS
         if (Hacks::isHackEnabled("Safe Mode")) {
             m_isTestMode = true;
@@ -289,7 +347,7 @@ class $modify(PlayLayer) {
                 if (Hacks::isHackEnabled("Cheat Indicator")) {
                     m_fields->cheatIndicator->removeFromParentAndCleanup(true);
                     m_fields->cheatIndicator = createCheatIndicator(true);
-                    this->addChild(m_fields->cheatIndicator);
+                    m_fields->prismNode->addChild(m_fields->cheatIndicator);
                 }
             }
         } else { // not cheating
@@ -297,15 +355,14 @@ class $modify(PlayLayer) {
                 m_fields->isCheating = false;
                 m_fields->cheatIndicator->removeFromParentAndCleanup(true);
                 m_fields->cheatIndicator = createCheatIndicator(false);
-                this->addChild(m_fields->cheatIndicator);
+                m_fields->prismNode->addChild(m_fields->cheatIndicator);
             }
         }
-        if (Hacks::isHackEnabled("Instant Complete") && m_fields->updateInit < 5) {
+        if (Hacks::isHackEnabled("Instant Complete") && m_fields->frame < 5) {
             log::debug("CRIMINAL… criminal… criminal… criminal…");
             // funny message
             FLAlertLayer::create(nullptr, "Cheater!", "Just a warning, you will be <cr>banned off leaderboards</c> if you use this on rated levels. Consider this your <cy>warning</c>.", "OK", nullptr)->show();
         }
-        m_fields->updateInit = m_fields->updateInit + 1;
         float attemptOpacity = Hacks::getHack("Attempt Opacity")->value.floatValue;
         //if (!Hacks::isHackEnabled("Hide Attempts") && attemptOpacity == 1.0F) return PlayLayer::postUpdate(p0);
         int currentPosition = Hacks::getHack("Progress Bar Position")->value.intValue;
@@ -372,7 +429,6 @@ class $modify(PlayLayer) {
         if (Hacks::isHackEnabled("Enable Patching")) return;
         if (Hacks::isHackEnabled("Accurate Percentage")) {
             if (m_fields->percentLabel == nullptr) return;
-            std::cout << PlayLayer::getCurrentPercent()  << "," << PlayLayer::getCurrentPercentInt() << std::endl;
             std::string percentStr = std::to_string(PlayLayer::getCurrentPercent()) + "%";
             m_fields->percentLabel->setString(percentStr.c_str());
         }

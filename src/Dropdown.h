@@ -32,6 +32,7 @@ class Dropdown : public CCMenu {
             int h = ddmenu->getChildrenCount() + 1;
             h = expanded ? h : 1;
             ddmenu->setVisible(expanded);
+            ddmenu->setZOrder(3);
             background->setContentSize({background->getContentSize().width, (25 / background->getScale()) * h});
             auto menuButtons = static_cast<CCMenu*>(parent->getParent()->getParent()->getParent());
             auto hack = static_cast<HackItem*>(parent->getUserData());
@@ -40,7 +41,10 @@ class Dropdown : public CCMenu {
                 if (Utils::getNodeName(objN) == "PrismUIButton") {
                     auto prismUIButton = static_cast<PrismUIButton*>(objN);
                     auto pHack = prismUIButton->getHack();
-                    if (pHack == hack) continue;
+                    if (pHack == hack) {
+                        prismUIButton->setZOrder((expanded) ? 1 : 0);
+                        continue;
+                    };
                     auto pMenu = prismUIButton->getMenu();
                     if (pHack->type == "bool") {
                         static_cast<CCMenuItemToggler*>(pMenu->getChildren()->objectAtIndex(1))->setEnabled(!expanded);

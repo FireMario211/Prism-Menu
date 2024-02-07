@@ -5,7 +5,8 @@ A mod menu made in Geode for Geometry Dash
 - Add credits screen for cocos2d ui
 - Allow for dragging the button
 - Add "Render Hitbox" (Basically enables hitbox even if not in practice mode)
-- Add "Disable Shaders"
+- Add menu scale for the cocos ui
+- Add "No Shaders"
 - Add "uncomplete level" hack
 - Add "Custom Object Bypass" (basically allows you to store more than 1000 objects in custom object)
 - Add "Show Hitboxes"
@@ -17,12 +18,12 @@ A mod menu made in Geode for Geometry Dash
 - Allow for resizing the menu with a minimum size and maximum size (Only imgui)
 - Add light theme
 - Add animated background support (Custom theme only unless I add a theme that supports it)
-- Add noclip accuracy
 - Add startpos switcher
 - Add a way to customize keybinds
-- Add a "Replay Bot"
+- Add a "Replay Bot" (Might turn this into another mod instead)
 - Add "Randomize Gamemode" just for fun
 - Add a "Custom Themes Marketplace" (use aws or idk what server)
+- Allow users to upload their macros for other users to use (If I decide to make Replay Bot on this mod, same story with another mod if i end up making it as another mod)
 - maybe switch to ArianaPro-Regular font? looks nice imo. make a font switcher
 - Add "Coin Finder" (look at https://discord.com/channels/1199008625683869787/1199008626451423275/1201272567244275903)
 

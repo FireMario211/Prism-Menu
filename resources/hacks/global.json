@@ -49,6 +49,12 @@
         "type": "bool"
     },
     {
+        "name": "Show Hidden Objects",
+        "desc": "Shows all hidden objects. This will reset the objects primary color. This will not work on objects with the \"Hide\" attribute. (Useful with Layout Mode)",
+        "opcodes": [],
+        "type": "bool"
+    },
+    {
         "name": "No Transition",
         "desc": "Shorterns scene transition time to 0s.",
         "opcodes": [
