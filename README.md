@@ -2,6 +2,7 @@
 A mod menu made in Geode for Geometry Dash
 
 # TODOs (Based on whats next)
+- Fix bug with info text being off screen
 - Add credits screen for cocos2d ui
 - Allow for dragging the button
 - Add "Render Hitbox" (Basically enables hitbox even if not in practice mode)
@@ -16,7 +17,6 @@ A mod menu made in Geode for Geometry Dash
 - Add to Misc category everything related to changing "Stats", basically allows you to edit your stats like mana, diamonds, etc. NOT ADDING STARS, DEMONS, AND OTHER FOR REASONS.
 - (Possibly?) Fix FPS Bypass, or add "Show FPS" for Android users. (The func exists, just not visible to the end user lol)
 - Allow for resizing the menu with a minimum size and maximum size (Only imgui)
-- Add light theme
 - Add animated background support (Custom theme only unless I add a theme that supports it)
 - Add startpos switcher
 - Add a way to customize keybinds

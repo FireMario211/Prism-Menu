@@ -55,7 +55,7 @@ float calculateYPosition(float x) { // love floating points
 int getYPosBasedOnCategory() { // someone give me a proper math formula ok thanks
     switch (currentMenuIndexGD) {
         case 0: // Global 
-            return 20;
+            return 40;
         case 1: // Player
             return 70;
         case 2: // Bypass
@@ -72,7 +72,7 @@ int getYPosBasedOnCategory() { // someone give me a proper math formula ok thank
 float getContentSizeBasedOnCategory() { // someone give me a proper math formula ok thanks
     switch (currentMenuIndexGD) {
         case 0: // Global 
-            return 350; // 260
+            return 370; // 260
         case 1: // Player
             return 400;
         case 2: // Bypass

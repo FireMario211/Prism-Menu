@@ -68,14 +68,12 @@
         "opcodes": [],
         "type": "bool"
     },
-
     {
         "name": "Transparent BG",
         "desc": "Automatically reverts colors changed in the background to be their original color.",
         "opcodes": [],
         "type": "bool"
     },
-
     {
         "name": "Speedhack",
         "desc": "Changes the speed of the game and audio.",
@@ -94,7 +92,6 @@
         "max": 1000,
         "default": 60
     },
-    
     {
         "name": "Speedhack Audio",
         "desc": "Whether or not to also change the audio speed based on the speedhack value.",
@@ -102,7 +99,6 @@
         "type": "bool",
         "default": true
     },
-
     {
         "name": "Reset Speedhack",
         "desc": "Resets speedhack back to normal.",

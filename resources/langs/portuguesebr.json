@@ -392,5 +392,60 @@
             "name": "Escala do Menu",
             "desc": "Define o tamanho do menu (resete o jogo para funcionar)"
         }
+    },
+
+    {
+        "Show Hidden Objects": {
+            "name": "Objetos Escondidos",
+            "desc": "Mostra todos os objetos escondidos."
+        }
+    },
+    {
+        "Transparent BG": {
+            "name": "Fundo Transparente",
+            "desc": "Faz o fundo ficar transparente."
+        }
+    },
+    {
+        "Speedhack Audio": {
+            "name": "Áudio do Speedhack",
+            "desc": "Muda a velocidade da música dependendo no speedhack."
+        }
+    },
+    {
+        "No Glow": {
+            "name": "Sem Brilho",
+            "desc": "Remove o brilho de todos os objetos."
+        }
+    },
+    {
+        "Noclip Accuracy": {
+            "name": "Porcentagem do Noclip",
+            "desc": "Prescisa do bypass de anticheat"
+        }
+    },
+    {
+        "Show Graphic Options": {
+            "name": "Mostrar Opçōes de Gráficos",
+            "desc": "sim"
+        }
+    },
+    {
+        "No Trail": {
+            "name": "Sem Trilhas",
+            "desc": "remove a trilha do jogador."
+        }
+    },
+    {
+        "No Wave Trail": {
+            "name": "Sem Trilha da Wave",
+            "desc": "adivinha"
+        }
+    },
+    {
+        "Solid Wave Trail": {
+            "name": "Trilha da Wave Sólida",
+            "desc": "Remove o blending a trilha da wave."
+        }
     }
 ]

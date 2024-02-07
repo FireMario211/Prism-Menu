@@ -73,7 +73,6 @@
         "opcodes": [],
         "type": "bool"
     },
-
     {
         "name": "No Trail",
         "desc": "Disables any trail effect from the player.",
@@ -92,7 +91,6 @@
         "opcodes": [],
         "type": "bool"
     },
-
     {
         "name": "Change Gravity",
         "desc": "Allows you to change gravity when jumping or falling.",

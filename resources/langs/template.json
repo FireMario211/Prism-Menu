@@ -406,5 +406,60 @@
             "name": "Menu Scale",
             "desc": "Decides how big the text and buttons should be. (Will require restarting the game)"
         }
+    },
+
+    {
+        "Show Hidden Objects": {
+            "name": "Show Hidden Objects",
+            "desc": "Shows all hidden objects. This will reset the objects primary color. This will not work on objects with the \"Hide\" attribute. (Useful with Layout Mode)"
+        }
+    },
+    {
+        "Transparent BG": {
+            "name": "Transparent BG",
+            "desc": "Automatically reverts colors changed in the background to be their original color."
+        }
+    },
+    {
+        "Speedhack Audio": {
+            "name": "Speedhack Audio",
+            "desc": "Whether or not to also change the audio speed based on the speedhack value."
+        }
+    },
+    {
+        "No Glow": {
+            "name": "No Glow",
+            "desc": "Disables glow on all objects."
+        }
+    },
+    {
+        "Noclip Accuracy": {
+            "name": "Noclip Accuracy",
+            "desc": "Informs you how accurate your noclip run is. (Will not work without Anticheat Bypass enabled)"
+        }
+    },
+    {
+        "Show Graphic Options": {
+            "name": "Show Graphic Options",
+            "desc": "Shows you Geometry Dash's graphic options! Useful for Android as the option is normally not available."
+        }
+    },
+    {
+        "No Trail": {
+            "name": "No Trail",
+            "desc": "Disables any trail effect from the player."
+        }
+    },
+    {
+        "No Wave Trail": {
+            "name": "No Wave Trail",
+            "desc": "Disables the trail behind the wave."
+        }
+    },
+    {
+        "Solid Wave Trail": {
+            "name": "Solid Wave Trail",
+            "desc": "Removes the blending of both icon colors on the wave trail."
+        }
     }
 ]

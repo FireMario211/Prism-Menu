@@ -2,7 +2,7 @@
     - Added Dear ImGui back (from request)
     - Fixed Accurate Percentage on levels with the End Level Trigger (Thanks dankmeme01!)
     - Added Menu Style 
-    - Added Light Theme (NOT DONE TODO <<<)
+    - Added Light Theme
     - Added No Trail
     - Added No Wave Trail
     - Added No Glow
