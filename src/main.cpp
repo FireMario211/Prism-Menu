@@ -100,8 +100,9 @@ class $modify(CCKeyboardDispatcher) {
             auto prismButton = typeinfo_cast<PrismButton*>(CCScene::get()->getChildByID("prism-icon"));
             HackItem* menuStyle = Hacks::getHack("Menu-Style");
             #ifdef GEODE_IS_MACOS 
-            if (prismButton == nullptr) return true;
             menuStyle->value.intValue = 1;
+            #else
+            if (prismButton == nullptr) return true;
             #endif
             if (menuStyle->value.intValue == 0) { // imgui
                 prismButton->showImGuiMenu = !prismButton->showImGuiMenu;
