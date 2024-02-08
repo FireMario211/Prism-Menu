@@ -103,7 +103,7 @@
         "default": "button"
     },
     {
-        "name": "Menu Style",
+        "name": "Menu-Style",
         "desc": "",
         "opcodes": [],
         "type": "dropdown",

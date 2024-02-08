@@ -384,7 +384,7 @@ void PrismUIButton::onDropdownBtn(CCObject* sender) {
     auto settings = Mod::get()->getSavedValue<SettingHackStruct>("values");
     hack->value.intValue = index;
     Hacks::Settings::setSettingValue(&settings, *hack, hack->value.intValue);
-    if (hack->name == "Menu Style") {
+    if (hack->name == "Menu-Style") {
         auto obj = static_cast<PrismUI*>(CCScene::get()->getChildByID("prism-menu"));
         obj->onClose(sender);
     } else if (hack->name == "Theme") {

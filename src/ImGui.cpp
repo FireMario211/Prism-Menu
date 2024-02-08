@@ -230,7 +230,7 @@ class $modify(MenuLayer) {
                                     } else if (name == "Button Position Y") {
                                         Hacks::Settings::setSettingValue(&settings, *hack, hack->value.intValue);
                                         if (prismButton != nullptr) prismButton->setPositionY(hack->value.intValue);
-                                    } else if (name == "Menu Style") {
+                                    } else if (name == "Menu-Style") {
                                         Hacks::Settings::setSettingValue(&settings, *hack, hack->value.intValue);
                                         static_cast<PrismButton*>(prismButton)->showImGuiMenu = false;
                                     } else {
@@ -390,7 +390,7 @@ class $modify(MenuLayer) {
                                             if (ImGui::Selectable(values[i].as_string().c_str(), isSelected)) {
                                                 hack->value.intValue = i;
                                                 Hacks::Settings::setSettingValue(&settings, *hack, hack->value.intValue);
-                                                if (name == "Menu Style") {
+                                                if (name == "Menu-Style") {
                                                     prismButton->showImGuiMenu = !prismButton->showImGuiMenu;
                                                 }
                                             }

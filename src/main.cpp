@@ -98,9 +98,9 @@ class $modify(CCKeyboardDispatcher) {
     bool dispatchKeyboardMSG(enumKeyCodes key, bool down, bool arr) {
         if (down && (key == KEY_Tab)) {
             auto prismButton = typeinfo_cast<PrismButton*>(CCScene::get()->getChildByID("prism-icon"));
-            if (prismButton == nullptr) return true;
-            HackItem* menuStyle = Hacks::getHack("Menu Style");
+            HackItem* menuStyle = Hacks::getHack("Menu-Style");
             #ifdef GEODE_IS_MACOS 
+            if (prismButton == nullptr) return true;
             menuStyle->value.intValue = 1;
             #endif
             if (menuStyle->value.intValue == 0) { // imgui

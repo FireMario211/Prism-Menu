@@ -195,15 +195,7 @@ class Hacks {
                             value = Hacks::Settings::getSettingValue(settings, name).as_int();
                             settingExists = true;
                         } else {
-                            if (name == "Menu Style") {
-                                #ifdef GEODE_IS_ANDROID
-                                value = HackValue(1);
-                                #else
-                                value = HackValue(0);
-                                #endif
-                            } else {
-                                value = HackValue(obj.get<int>("default"));
-                            }
+                            value = HackValue(obj.get<int>("default"));
                         }
                     } else if (type == "float") {
                         if (Hacks::Settings::settingContainsHack(settings, name) && !reset) {

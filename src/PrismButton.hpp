@@ -113,7 +113,10 @@ public:
         return CCMenuItemSpriteExtra::create(myButtonSpr, ret, menu_selector(PrismButton::onButtonClicked));
     }
     void onButtonClicked(CCObject* p0) {
-        HackItem* menuStyle = Hacks::getHack("Menu Style");
+        HackItem* menuStyle = Hacks::getHack("Menu-Style");
+        #ifdef GEODE_IS_MACOS 
+        menuStyle->value.intValue = 1;
+        #endif
         if (menuStyle->value.intValue == 0) { // imgui
             showImGuiMenu = !showImGuiMenu;
         } else {

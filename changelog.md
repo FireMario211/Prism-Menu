@@ -1,3 +1,5 @@
+# v1.4.1
+    - Fixed Mac OS issue with not being able to open menu.
 # v1.4.0
     - Added Dear ImGui back (from request)
     - Fixed Accurate Percentage on levels with the End Level Trigger (Thanks dankmeme01!)
