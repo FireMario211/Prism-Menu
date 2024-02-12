@@ -47,7 +47,7 @@ body:
     id: crashlogs
     attributes:
       label: Crash Logs
-      description: "In case the mod crashed, you can give crash logs here.
+      description: "In case the mod crashed, you can give crash logs here."
   - type: textarea
     id: additional
     attributes:
