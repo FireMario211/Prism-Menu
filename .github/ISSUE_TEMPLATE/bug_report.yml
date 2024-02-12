@@ -37,6 +37,18 @@ body:
     validations:
       required: true
   - type: textarea
+    id: mods
+    attributes:
+      label: Mods Installed
+      description: "If you only have Prism Menu, and no other geode mod, just say you only have Prism Menu."
+    validations:
+      required: true
+  - type: textarea
+    id: crashlogs
+    attributes:
+      label: Crash Logs
+      description: "In case the mod crashed, you can give crash logs here.
+  - type: textarea
     id: additional
     attributes:
       label: Additional Context
