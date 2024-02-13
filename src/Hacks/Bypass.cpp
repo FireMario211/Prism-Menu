@@ -19,6 +19,7 @@ class $modify(GameManager) {
 };
 
 // Text Length, Character Filter
+#if 0
 class $modify(CCTextInputNode) {
     void updateLabel(gd::string p0) {
         if (Hacks::isHackEnabled("Character Filter") && !Hacks::isHackEnabled("Enable Patching")) this->setAllowedChars("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.,-!?:;)(/\\\"\'`*= +-_%[]<>|@&^#{}%$~");
@@ -26,7 +27,7 @@ class $modify(CCTextInputNode) {
         CCTextInputNode::updateLabel(p0);
     }
 };
-
+#endif 
 /*
 class $modify(GameStatsManager) {
     // Almost all bypass

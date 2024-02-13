@@ -282,6 +282,7 @@ class $modify(PlayLayer) {
         auto winSize = CCDirector::sharedDirector()->getWinSize();
         m_fields->prismNode = CCNode::create();
         m_fields->prismNode->setTag(10420);
+        m_fields->prismNode->setZOrder(1);
         m_fields->cheatIndicator = createCheatIndicator(false);
         m_fields->cheatIndicator->setVisible(Hacks::isHackEnabled("Cheat Indicator"));
         m_fields->accuracyLabel = CCLabelBMFont::create("100.00%", "bigFont.fnt");

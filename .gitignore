@@ -61,3 +61,6 @@ build-linux-deb/
 svgs/
 compile_commands.json
 resources/fontvers/
+
+notas.h
+resources/gatos/

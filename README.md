@@ -2,11 +2,16 @@
 A mod menu made in Geode for Geometry Dash
 
 # TODOs (Based on whats next)
-- Fix bug with info text being off screen
+- Add a keyback function for those that use keyback on android
+- Fix bug with the menu buttons not working 
+    STEPS:
+
+- Fix bug with input button not working for button position on android
 - Add credits screen for cocos2d ui
 - Allow for dragging the button
 - Add "Render Hitbox" (Basically enables hitbox even if not in practice mode)
 - Add menu scale for the cocos ui
+- Add "Transparent Lists" (look in https://discord.com/channels/911701438269386882/911702353546215524/1205501190025117779)
 - Add "No Shaders"
 - Add "uncomplete level" hack
 - Add "Custom Object Bypass" (basically allows you to store more than 1000 objects in custom object)

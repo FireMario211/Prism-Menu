@@ -134,6 +134,7 @@ bool PrismUIButton::init(HackItem* hack) {
     } else if (hack->value.type == ValueType::Int && hack->type != "dropdown" && !name.starts_with("Button Position")) {
         auto min = obj.get<int>("min");
         auto max = obj.get<int>("max");
+        label->limitLabelWidth(120, 0.5F, .1F);
         // TODO: add + and - buttons because according to some, android keyboard is BAD!
         m_input = InputNode::create(150.f, "...", "PrismMenu.fnt"_spr);
         m_input->getInput()->setString(std::to_string(hack->value.intValue));
@@ -290,9 +291,6 @@ void PrismUIButton::onFloatBtn(CCObject* ret) {
         if (m_hack->value.floatValue < 0.0F) return;
         Hacks::setPitch(m_hack->value.floatValue);
         m_hack->value.floatValue = std::max(m_hack->value.floatValue, 0.01f);
-#ifdef GEODE_IS_WINDOWS
-        CCDirector::sharedDirector()->getScheduler()->setTimeScale(m_hack->value.floatValue);
-#endif
     } else {
         if (!name.starts_with("Button Position")) {
             Hacks::Settings::setSettingValue(&settings, *m_hack, m_hack->value.floatValue);
@@ -699,24 +697,18 @@ void PrismUIButton::onInfoBtn(CCObject* ret) {
             desc.c_str(), "PrismMenu.fnt"_spr, 0.7F, //0.8
             280.F, { 0.5, 0 }, 20.F, false);*/ 
         //const std::string& font, const std::string& text, const float scale, const float width,
-        auto newLines = SimpleTextArea::create("A", "PrismMenu.fnt"_spr, 0.5F, 260.0F);
-        newLines->setText(desc.c_str());
-        newLines->setScale(calculateScale(desc, 25, .75F, .25F));
-        auto newLinesMenu = static_cast<CCMenu*>(newLines->getChildren()->objectAtIndex(0));
-        newLinesMenu->setPositionY(40);
-        newLinesMenu->setLayout( // solution for SimpleTextArea not being centered, ->setAlignment doesnt work properly
-            ColumnLayout::create()
-                ->setCrossAxisLineAlignment(AxisAlignment::Center)
-                ->setAxisAlignment(AxisAlignment::Center)
-                ->setAxisReverse(true)
-        );
         auto winSize = cocos2d::CCDirector::sharedDirector()->getWinSize();
+        auto newLines = SimpleTextArea::create("A", "PrismMenu.fnt"_spr, 0.5F, winSize.width / 2.2F); // 260.0F
+        newLines->setText(desc.c_str());
+        newLines->setAlignment(CCTextAlignment::kCCTextAlignmentCenter);
+        std::cout << desc.c_str() << std::endl;
+        newLines->setScale(calculateScale(desc, 25, .75F, .25F));
+        // ok geode broke AxisLayout, thats nice
         newLines->setPosition({(winSize.width / 2), (winSize.height / 2) + 10}); // 160 - 220
         newLines->setZOrder(lines->getZOrder());
         lines->removeFromParentAndCleanup(true);
         flAlert->m_mainLayer->addChild(newLines);
         flAlert->show();
-        newLinesMenu->updateLayout(); // why this no work!?
     }
 
 }
@@ -831,12 +823,15 @@ void PrismUI::keyDown(cocos2d::enumKeyCodes key) {
     return FLAlertLayer::keyDown(key);
 }
 
+void PrismUI::keybackClicked() {
+    onClose(nullptr);
+};
+
 void PrismUI::onClose(cocos2d::CCObject* pSender) {
     auto prismButton = CCScene::get()->getChildByID("prism-icon");
     if (prismButton != nullptr) {
         static_cast<CCMenuItemSpriteExtra*>(prismButton->getChildren()->objectAtIndex(0))->setEnabled(true);
     }
-    this->setKeyboardEnabled(false);
     this->removeFromParentAndCleanup(true);
 };
 

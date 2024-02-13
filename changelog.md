@@ -1,3 +1,10 @@
+# v1.4.2
+    - Fixed bug with No Mirror Transition & Instant Mirror Portal if "No Effect" is applied.
+    - Fixed speedhack not syncing with gameplay correctly
+    - Fixed Platformer Mode buttons not showing if you use Force Platformer Mode on Android
+    - Fixed bug with camera effects affecting Cheat Indicator and Noclip Accuracy
+    - (Hopefully) Fixed issue with info text being off screen
+    - Removed Text Length and Character Filter functionality
 # v1.4.1
     - Fixed Mac OS issue with not being able to open menu.
 # v1.4.0

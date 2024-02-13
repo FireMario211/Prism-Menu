@@ -3,6 +3,24 @@
 
 // TODO: add a popup asking for name, and what sprite
 
+/*
+    std::string name;
+    std::string desc;
+    int price;
+    int tier;
+    int amount;
+*/
+
+std::vector<PetItem> items = {
+    {
+        "",
+        "",
+        2,
+        2,
+        2
+    }
+};
+
 // definitely not copied off a mod that i was working on with someone *cough cough* 
 bool GatoSim::init() {
     auto size = cocos2d::CCDirector::sharedDirector()->getWinSize();

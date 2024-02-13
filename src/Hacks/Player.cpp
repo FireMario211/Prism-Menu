@@ -31,11 +31,14 @@ class $modify(PlayerObject) {
         if (!m_fields->was_platformer) {
             m_fields->was_platformer = this->m_isPlatformer;
         }
-        if (Hacks::isHackEnabled("Force Platformer Mode")) {
-            togglePlatformerMode(true);
-        } else {
-            togglePlatformerMode(m_fields->was_platformer);
+        #ifndef GEODE_IS_DESKTOP
+        if (PlayLayer::get() != nullptr) {
+            auto playLayer = PlayLayer::get(); //shut!
+            playLayer->m_uiLayer->togglePlatformerMode(Hacks::isHackEnabled("Force Platformer Mode") ? true : m_fields->was_platformer);
+            // for some reason i was trying to look for togglePlatformerMode when I realized that i couldve just literally used the func as its android, im so mad
         }
+        #endif
+        togglePlatformerMode(Hacks::isHackEnabled("Force Platformer Mode") ? true : m_fields->was_platformer);
         auto gravityHack = Hacks::getHack("Gravity Value");
         if (Hacks::isHackEnabled("Change Gravity")) { // assume its enabled 
             m_gravityMod = gravityHack->value.floatValue;
@@ -75,10 +78,42 @@ class $modify(GJBaseGameLayer) {
     #ifndef GEODE_IS_MACOS
     // No Mirror Transition, Instant Mirror Portal
     void toggleFlipped(bool p0, bool p1) { // i spent a lot of time figuring out why CCActionTween wont hook, only to realize that p1 instantly transitions it
-        if (Hacks::isHackEnabled("Enable Patching")) return GJBaseGameLayer::toggleFlipped(p0, p1);
-        if (!Hacks::isHackEnabled("No Mirror Transition")) GJBaseGameLayer::toggleFlipped(p0, Hacks::isHackEnabled("Instant Mirror Portal"));
+        //std::cout << this->m_gameState.m_unk188 << std::endl;
+        if (!Hacks::isHackEnabled("No Mirror Transition")) return GJBaseGameLayer::toggleFlipped(p0, (p1) ? p1 : Hacks::isHackEnabled("Instant Mirror Portal"));
     }
     #endif
+    void update(float dt) {
+        /*
+            fVar30 = (float)((double)dt + *(double *)&this[4].GJBaseGameLayer_data.m_gameState.field_0xf0);
+    fVar25 = *(float *)&(this->GJBaseGameLayer_data).m_gameState.field_0x188;
+    if (1.0 < fVar25) {
+      fVar25 = 1.0;
+    }
+    fVar24 = (float10)roundf(fVar30 / (fVar25 * 0.004166667));
+    fStack_64 = (float)fVar24;
+    dVar28 = (double)(int)fVar24 * (double)(fVar25 * 0.004166667);
+    dVar26 = (double)fVar30 - dVar28;
+    dt = (float)dVar28;
+        */
+        // we love ghidra
+        /*float fVar30 = (float)((double)dt + 0.0);
+        float fVar25 = m_gameState.m_unk188;
+        if (1.0 < fVar25) {
+            fVar25 = 1.0;
+        }
+        float physicsTPS = (1.F / 360.F);
+        float fVar24 = (float)roundf(fVar30 / (fVar25 * physicsTPS));
+        double dVar28 = (int)fVar24 * (double)(fVar25 * physicsTPS);
+        double dVar26 = (double)fVar30 - dVar28;
+        auto beforeDt = dt;
+        dt = (float)dVar28;
+        std::cout << dt << "," << beforeDt << std::endl;*/
+        //this->m_gameState.m_unk188 = 0.7F;
+        //std::cout << (float)((double)dt + (double)m_gameState.m_unkf0) << "," << dt << std::endl;
+        //std::cout << m_gameState.m_unkf0 << std::endl;
+        //m_gameState.m_unkf0 = 0.00001;
+        GJBaseGameLayer::update(dt);
+    }
 };
 
 #ifndef GEODE_IS_MACOS

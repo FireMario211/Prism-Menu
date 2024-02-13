@@ -3,12 +3,14 @@
 using namespace geode::prelude;
 
 #include <Geode/modify/GameStatsManager.hpp>
+#include <Geode/modify/PlayLayer.hpp>
 #include <Geode/modify/GameObject.hpp>
 #include <Geode/modify/GJGameLevel.hpp>
 #include <Geode/modify/CCTransitionFade.hpp>
 #include <Geode/modify/FMODAudioEngine.hpp>
 #include <Geode/modify/CCScheduler.hpp>
 #include <Geode/modify/CCSprite.hpp>
+#include <Geode/modify/GJBaseGameLayer.hpp>
 
 // Practice Music
 class $modify(GameStatsManager) {
@@ -34,19 +36,26 @@ class $modify(CCScheduler) {
 };
 
 #ifndef GEODE_IS_MACOS
+class $modify(PlayLayer) {
+    // No Glow, Show Hidden Objects
+    void addObject(GameObject* obj) {
+        // "Optimization"
+        if (Hacks::isHackEnabled("Show Hidden Objects")) {
+            obj->m_activeMainColorID = -1;
+            obj->m_isHide = false;
+            if (obj->m_objectID == 1007) return;
+        }
+        if (Hacks::isHackEnabled("No Glow")) {
+            obj->m_hasNoGlow = true;
+        }
+        PlayLayer::addObject(obj);
+    }
+};
+
+
 // Layout Mode
 class $modify(GameObject) {
-    // Layout Mode, No Glow
     void setVisible(bool v) {
-        if (Hacks::isHackEnabled("No Glow")) { // easier than having to check for glow sprite lol
-            this->m_hasNoGlow = true;
-        }
-        if (Hacks::isHackEnabled("Show Hidden Objects")) {
-            m_activeMainColorID = -1;
-            if (m_isHide) v = true;
-            m_isHide = false;
-            // ok but why doesnt this work
-        }
         if (!Hacks::isHackEnabled("Layout Mode")) return GameObject::setVisible(v);
         //m_hasGroupParent == 0
         std::vector<int> outerPortal = {};
@@ -56,19 +65,6 @@ class $modify(GameObject) {
         } else {
             GameObject::setVisible(v);
         }
-    }
-    /*
-    void makeInvisible() { // 0x13bf20
-        std::cout << "make it invisible" << std::endl;
-        if (!Hacks::isHackEnabled("Show Hidden Objects")) return GameObject::makeInvisible();
-    }
-    */
-    static GameObject* createWithKey(int p0) {
-        auto gameObject = GameObject::createWithKey(p0);
-        if (Hacks::isHackEnabled("Show Hidden Objects")) {
-            if (p0 == 1007 && PlayLayer::get() != nullptr) return nullptr;
-        }
-        return gameObject;
     }
 };
 #endif
@@ -111,3 +107,14 @@ class $modify(CCSprite) {
         }
     }
 };
+
+// Physics Bypass (TPS)
+// dVar3 = 0.004166666883975267;
+// which (dVar3 * 240 = 1) lol, so 1.F / TPS?
+/*
+class $modify(GJBaseGameLayer) {
+    float getModifiedDelta(float p0) {
+        std::cout << "yAEY" << std::endl;
+        return GJBaseGameLayer::getModifiedDelta(p0);
+    }
+};*/

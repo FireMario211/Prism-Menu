@@ -2,23 +2,25 @@
 // this is all a spoiler!
 #include <Geode/Geode.hpp>
 
-struct ShopItem {
+
+struct PetItem {
     std::string name;
     std::string desc;
     int price;
+    int tier = 1;
+    int amount;
 };
+
+
 
 using namespace geode::prelude;
 class GatoSim : public CCLayer, public FLAlertLayerProtocol {
     // TODO: add some json file
     // maybe turn this into some sort of "cookie clicker" because why not
     std::string name;
-    int fod = 0;
-    int drank = 0;
+    int pet = 0;
     std::vector<std::string> toi;
     bool hasDoneDaily = false;
-    int bal = 250;
-    int satis = 0;
 
     protected:
         CCMenu* m_buttonMenu;

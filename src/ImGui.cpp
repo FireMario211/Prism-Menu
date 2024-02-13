@@ -245,7 +245,6 @@ class $modify(MenuLayer) {
                                         if (name == "Speedhack") {
                                             if (hack->value.floatValue < 0.0F) return;
                                             Hacks::setPitch(hack->value.floatValue);
-                                            CCDirector::sharedDirector()->getScheduler()->setTimeScale(hack->value.floatValue);
                                         } else {
                                             if (name == "Menu Opacity") {
                                                 changedOpacity = true;
