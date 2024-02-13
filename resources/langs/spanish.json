@@ -410,5 +410,59 @@
             "name": "Tamaño del Menú",
             "desc": "Describe que grande el texto y botones debería ser. (Es necesario a reiniciar el juego)"
         }
+    },
+        {
+        "Show Hidden Objects": {
+            "name": "Mostrar objetos ocultos",
+            "desc": "Muestra todos los objetos ocultos. Esto restablecerá el color primario del objeto. Esto no funcionará en objetos con el atributo \"Hide\". (Útil con el modo Layout)"
+        }
+    },
+    {
+        "Transparent BG": {
+            "name": "Fondo transparente",
+            "desc": "Revierte automáticamente los colores cambiados en el fondo a su color original."
+        }
+    },
+    {
+        "Speedhack Audio": {
+            "name": "Audio De SpeedHack",
+            "desc": "Si se debe cambiar también o no la velocidad del audio según el valor del speedhack."
+        }
+    },
+    {
+        "No Glow": {
+            "name": "No Glow",
+            "desc": "Desactiva el Glow en todos los objetos."
+        }
+    },
+    {
+        "Noclip Accuracy": {
+            "name": "Noclip Accuracy",
+            "desc": "Le informa qué tan precisa es su ejecución de noclip. (No funcionará sin Anticheat Bypass habilitado)"
+        }
+    },
+    {
+        "Show Graphic Options": {
+            "name": "Mostrar opciones gráficas",
+            "desc": "¡Te muestra las opciones gráficas de Geometry Dash Útil para Android ya que la opción normalmente no está disponible."
+        }
+    },
+    {
+        "No Trail": {
+            "name": "Sin Trail",
+            "desc": "Desactiva cualquier efecto de Trail del jugador."
+        }
+    },
+    {
+        "No Wave Trail": {
+            "name": "Sin Trail de Wave",
+            "desc": "Desactiva La Trail detrás de l Wave."
+        }
+    },
+    {
+        "Solid Wave Trail": {
+            "name": "Trail sólida Del Wave",
+            "desc": "Elimina la combinación de ambos colores de íconos en el Trail del Wave."
+        }
     }
 ]

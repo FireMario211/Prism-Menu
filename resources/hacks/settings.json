@@ -30,7 +30,7 @@
         "opcodes": [],
         "type": "dropdown",
         "default": 0,
-        "values": ["English [100%]", "Français [88%]", "Português (Brasil) [100%]", "Deutsch [88%]", "Русский [100%]", "Čeština [88%]", "Indonesia [88%]", "Español [88%]", "Polskie [88%]", "Melayu [88%]"]
+        "values": ["English [100%]", "Français [88%]", "Português (Brasil) [100%]", "Deutsch [100%]", "Русский [100%]", "Čeština [88%]", "Indonesia [88%]", "Español [100%]", "Polskie [100%]", "Melayu [88%]"]
     },
     {
         "name": "Theme",

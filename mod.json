@@ -1,6 +1,6 @@
 {
 	"geode": "2.0.0",
-	"version": "v1.4.1",
+	"version": "v1.4.2",
 	"gd": {
 		"win": "2.204",
         "mac": "2.200",
@@ -16,8 +16,6 @@
 		"files": [
 			"resources/icon.png",
 			"resources/Screenshot1.png",
-            "resources/gato.jpg",
-            "resources/gato2.png",
             "resources/checkmark.png",
             "resources/checkmark-hd.png",
             "resources/checkmark-uhd.png",

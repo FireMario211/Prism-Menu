@@ -56,6 +56,7 @@ class $modify(PlayerObject) {
         PlayerObject::playerDestroyed(p0);
     }
     void pushButton(PlayerButton p0) {
+        if (p0 != PlayerButton::Jump) return PlayerObject::pushButton(p0);
         if (!Hacks::isHackEnabled("Enable Patching") && Hacks::isHackEnabled("Jump Hack")) PlayerObject::boostPlayer(10.0F); // idk if i should make this customizable
         PlayerObject::pushButton(p0);
     }
@@ -82,6 +83,7 @@ class $modify(GJBaseGameLayer) {
         if (!Hacks::isHackEnabled("No Mirror Transition")) return GJBaseGameLayer::toggleFlipped(p0, (p1) ? p1 : Hacks::isHackEnabled("Instant Mirror Portal"));
     }
     #endif
+#if 0
     void update(float dt) {
         /*
             fVar30 = (float)((double)dt + *(double *)&this[4].GJBaseGameLayer_data.m_gameState.field_0xf0);
@@ -114,6 +116,7 @@ class $modify(GJBaseGameLayer) {
         //m_gameState.m_unkf0 = 0.00001;
         GJBaseGameLayer::update(dt);
     }
+#endif
 };
 
 #ifndef GEODE_IS_MACOS

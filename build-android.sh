@@ -1,3 +1,4 @@
+#!/bin/bash
 #thanks dank_meme01
 export NDK=/opt/android-ndk
 #export ANDROID_ABI=armeabi-v7a
@@ -14,4 +15,8 @@ cmake -DCMAKE_TOOLCHAIN_FILE=$NDK/build/cmake/android.toolchain.cmake -DANDROID_
 #cmake -DCMAKE_TOOLCHAIN_FILE=$NDK/build/cmake/android.toolchain.cmake -DANDROID_ABI=$ANDROID_ABI -DANDROID_PLATFORM=android-$MINSDKVERSION -DCMAKE_BUILD_TYPE=Debug -DGEODE_DEBUG=1 -DGEODE_DONT_INSTALL_MODS=1 -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -G Ninja -B build-android
 
 cmake --build build-android/$ABI --config RelWithDebInfo
+if [[ $ABI == "arm64-v8a" ]] ;then
+    echo "pushing"
+    adb push ./build-android/arm64-v8a/firee.PrismMenu.geode /sdcard/Android/media/com.geode.launcher/game/geode/mods
+fi
 done

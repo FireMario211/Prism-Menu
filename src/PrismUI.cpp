@@ -48,7 +48,6 @@ float calculateYPosition(float x) { // love floating points
     // Formula: Y = mx + b
     float m = 85;
     float result = -m + (((10 - x) * m) / 2);
-    std::cout << fmt::format("y = {},{}",result,x) << std::endl;
     return result;
 }
 
@@ -701,7 +700,6 @@ void PrismUIButton::onInfoBtn(CCObject* ret) {
         auto newLines = SimpleTextArea::create("A", "PrismMenu.fnt"_spr, 0.5F, winSize.width / 2.2F); // 260.0F
         newLines->setText(desc.c_str());
         newLines->setAlignment(CCTextAlignment::kCCTextAlignmentCenter);
-        std::cout << desc.c_str() << std::endl;
         newLines->setScale(calculateScale(desc, 25, .75F, .25F));
         // ok geode broke AxisLayout, thats nice
         newLines->setPosition({(winSize.width / 2), (winSize.height / 2) + 10}); // 160 - 220
@@ -823,6 +821,7 @@ void PrismUI::keyDown(cocos2d::enumKeyCodes key) {
     return FLAlertLayer::keyDown(key);
 }
 
+// why is onClose not actually called what!?
 void PrismUI::keybackClicked() {
     onClose(nullptr);
 };
@@ -831,6 +830,18 @@ void PrismUI::onClose(cocos2d::CCObject* pSender) {
     auto prismButton = CCScene::get()->getChildByID("prism-icon");
     if (prismButton != nullptr) {
         static_cast<CCMenuItemSpriteExtra*>(prismButton->getChildren()->objectAtIndex(0))->setEnabled(true);
+    }
+    if (PlayLayer::get() != nullptr) { // attempt to fix the stupid issue
+        #ifndef GEODE_IS_DESKTOP
+        for (size_t i = 0; i < CCScene::get()->getChildrenCount(); i++) {
+            auto obj = CCScene::get()->getChildren()->objectAtIndex(i);
+            if (Utils::getNodeName(obj) == "PauseLayer") {
+                log::debug("Gave touch priority back to PauseLayer");
+                auto pauseLayer = static_cast<PauseLayer*>(obj);
+                cocos::handleTouchPriority(pauseLayer);
+            }
+        }
+        #endif
     }
     this->removeFromParentAndCleanup(true);
 };

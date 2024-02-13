@@ -404,5 +404,60 @@
             "name": "Skala Menu",
             "desc": "Zmienia wielkość menu i tekstu, wymaga restartu."
         }
+    },
+
+    {
+        "Show Hidden Objects": {
+            "name": "Pokaż Ukryte Obiekty",
+            "desc": "Pokazuje wszystkie ukryte obiekty. Opcja resetuje główny kolor obiektu. Nie działa na obiekty z atrybutem \"Hide\". (Przydatne z Trybem Bez Dekoracji)"
+        }
+    },
+    {
+        "Transparent BG": {
+            "name": "Przezroczyste Tło",
+            "desc": "Automatycznie przywraca zmiany koloru tła do domyślnego."
+        }
+    },
+    {
+        "Speedhack Audio": {
+            "name": "Dźwięk Speedhack",
+            "desc": "Po włączeniu tej opcji dźwięk dopasowuje się do ustawionego Speedhacka."
+        }
+    },
+    {
+        "No Glow": {
+            "name": "Bez Glow",
+            "desc": "Wyłącza glow na wszystkich obiektach"
+        }
+    },
+    {
+        "Noclip Accuracy": {
+            "name": "Dokładność Noclip",
+            "desc": "Pokazuje, z jaką dokładnością przechodzisz poziom z użyciem Noclip (Nie działa bez opcji Wyłącz Anticheat)"
+        }
+    },
+    {
+        "Show Graphic Options": {
+            "name": "Pokaż Ustawienia Grafiki",
+            "desc": "Pokazuje ustawienia grafiki! Przydatne dla systemu Android, gdzie te ustawienia nie są dostępne."
+        }
+    },
+    {
+        "No Trail": {
+            "name": "Wyłącz Trail",
+            "desc": "Wyłącza każdy efekt Trail gracza."
+        }
+    },
+    {
+        "No Wave Trail": {
+            "name": "Wyłącz Wave Trail",
+            "desc": "Wyłącza Trail za trybem Wave."
+        }
+    },
+    {
+        "Solid Wave Trail": {
+            "name": "Jednolity Wave Trail",
+            "desc": "Wyłącza mieszanie obu kolorów gracza na Wave Trail."
+        }
     }
 ]
