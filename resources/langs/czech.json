@@ -396,5 +396,60 @@
             "name": "Velikost Mena",
             "desc": "Určuje jak velký bude text a tlačítka. (Bude potřeba restartovat hru)"
         }
+    },
+
+    {
+        "Show Hidden Objects": {
+            "name": "Ukázat Skryté Objekty",
+            "desc": "Ukáže všechny skryté objekty. Resetuje primární barvu objektu. Nefunguje na objekty s \"Hide\" atributou. (Užitečné s Layout Mode)"
+        }
+    },
+    {
+        "Transparent BG": {
+            "name": "Transparentní Pozadí",
+            "desc": "Automaticky navrátí změněné barvy v pozadí na originální barvu."
+        }
+    },
+    {
+        "Speedhack Audio": {
+            "name": "Speedhack Zvuk",
+            "desc": "Změní také rychlost zvuku podle hodnoty speedhacku."
+        }
+    },
+    {
+        "No Glow": {
+            "name": "Žádný Glow",
+            "desc": "Vypne glow na všech objektech."
+        }
+    },
+    {
+        "Noclip Accuracy": {
+            "name": "Noclip Přesnost",
+            "desc": "Informuje tě jak přesný je tvůj noclip run. (Nefunguje bez zapnutí Anticheat Bypass)"
+        }
+    },
+    {
+        "Show Graphic Options": {
+            "name": "Ukázat Nastavení Grafiky",
+            "desc": "Ukáže ti Geometry Dashe nastavení grafiky! Užitečné pro Android, neboť je toto nastavení nedostupné."
+        }
+    },
+    {
+        "No Trail": {
+            "name": "Žádný Trail",
+            "desc": "Vypne všechny trail efekty od hráče."
+        }
+    },
+    {
+        "No Wave Trail": {
+            "name": "Žádný Wave Trail",
+            "desc": "Vypne trail od wave."
+        }
+    },
+    {
+        "Solid Wave Trail": {
+            "name": "Solidní Wave Trail",
+            "desc": "Odstraní míchání obou barev ikony na wave trailu."
+        }
     }
 ]
