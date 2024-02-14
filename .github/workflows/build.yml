@@ -34,7 +34,7 @@ jobs:
       - name: Build the mod
         uses: geode-sdk/build-geode-mod@main
         with:
-          #sdk: nightly
+          sdk: nightly
           #build-config: 'RelWithDebInfo'
           combine: true
           target: ${{ matrix.config.target }}
@@ -44,10 +44,10 @@ jobs:
     runs-on: ubuntu-latest
     needs: ['build']
     steps:
-      - uses: geode-sdk/build-geode-mod@combine
+      - uses: geode-sdk/build-geode-mod@combine@main
         id: build
 
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v3
         with:
           name: Prism Menu Build
           path: ${{ steps.build.outputs.build-output }}

@@ -19,6 +19,11 @@ file(GLOB SOURCES
 # Set up the mod binary
 add_library(${PROJECT_NAME} SHARED ${SOURCES})
 
+if (DEFINED ENV{LOCAL})
+    message("Local Dev Build")
+    add_definitions(-DDEV_BUILD)
+endif()
+
 if (NOT DEFINED ENV{GEODE_SDK})
     message(FATAL_ERROR "Unable to find Geode SDK! Please define GEODE_SDK environment variable to point to Geode")
 else()

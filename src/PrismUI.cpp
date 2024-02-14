@@ -569,7 +569,7 @@ void PrismUI::RegenCategory() {
             versionLabel->setPosition({63, indexY + 15});
             Themes::RGBAToCC(GetTheme()["Text"], createdByLabel);
             Themes::RGBAToCC(GetTheme()["Text"], versionLabel);
-            #ifdef CI 
+            #ifndef DEV_BUILD
             auto version = fmt::format("{} (Geode)", Mod::get()->getVersion().toString());
             #else 
             auto version = fmt::format("{}-Dev (Geode)", Mod::get()->getVersion().toString());

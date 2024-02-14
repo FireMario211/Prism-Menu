@@ -3,7 +3,7 @@ export SPLAT_DIR=/home/fire/xwin/splat_dir
 export TOOLCHAIN_REPO=/home/fire/xwin/toolchain_repo
 export GEODE_BINDINGS_REPO_PATH=/home/fire/.geodebindings
 #export GEODE_GD_VERSION=2.200
-
+export LOCAL=1
 export HOST_ARCH=x86
 export MSVC_BASE=$SPLAT_DIR/crt
 export WINSDK_BASE=$SPLAT_DIR/sdk
