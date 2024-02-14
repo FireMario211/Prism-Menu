@@ -13,7 +13,6 @@ jobs:
         config:
         - name: Windows
           os: windows-latest
-          target: Win32
         - name: macOS
           os: macos-latest
         - name: Android32
@@ -28,14 +27,14 @@ jobs:
     runs-on: ${{ matrix.config.os }}
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           submodules: 'recursive'
           
       - name: Build the mod
         uses: geode-sdk/build-geode-mod@main
         with:
-          sdk: nightly
+          #sdk: nightly
           #build-config: 'RelWithDebInfo'
           combine: true
           target: ${{ matrix.config.target }}
@@ -48,7 +47,7 @@ jobs:
       - uses: geode-sdk/build-geode-mod@combine
         id: build
 
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
-          name: Prism Menu Build Output
+          name: Prism Menu Build
           path: ${{ steps.build.outputs.build-output }}
