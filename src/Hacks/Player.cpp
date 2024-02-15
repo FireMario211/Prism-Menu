@@ -3,7 +3,6 @@
 using namespace geode::prelude;
 
 #include <Geode/modify/MenuGameLayer.hpp>
-#include <Geode/modify/PlayLayer.hpp>
 #include <Geode/modify/PlayerObject.hpp>
 #include <Geode/modify/HardStreak.hpp>
 #include <Geode/modify/GJBaseGameLayer.hpp>
@@ -50,10 +49,9 @@ class $modify(PlayerObject) {
         if (Hacks::isHackEnabled("Enable Patching") || !Hacks::isHackEnabled("Freeze Player")) return PlayerObject::update(dt);
 
         // This is here because $modify doesn't want to work
-        if (Hacks::isHackEnabled("Suicide")) {
-            PlayLayer* playLayer = PlayLayer::get();
-
-            if (playLayer) playLayer->PlayLayer::destroyPlayer(playLayer->m_player1, nullptr);
+        if (Hacks::isHackEnabled("Suicide") && PlayLayer::get() != nullptr) {
+	    auto playLayer = PlayLayer::get(); //shut!
+            playLayer->destroyPlayer(playLayer->m_player1, nullptr);
         }
     }
     bool init(int p0, int p1, GJBaseGameLayer *p2, cocos2d::CCLayer *p3, bool p4) {
