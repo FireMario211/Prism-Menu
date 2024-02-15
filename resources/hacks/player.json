@@ -33,6 +33,12 @@
         "type": "bool"
     },
     {
+        "name": "Suicide",
+        "desc": "Kills the player repeatedly.",
+        "opcodes": [],
+        "type": "bool"
+    },
+    {
         "name": "Freeze Player",
         "desc": "Freezes player movement.",
         "opcodes": [
