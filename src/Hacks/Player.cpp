@@ -50,7 +50,7 @@ class $modify(PlayerObject) {
 
         // This is here because $modify doesn't want to work
         if (Hacks::isHackEnabled("Suicide") && PlayLayer::get() != nullptr) {
-	    auto playLayer = PlayLayer::get(); //shut!
+	        auto playLayer = PlayLayer::get(); //shut!
             playLayer->destroyPlayer(playLayer->m_player1, nullptr);
         }
     }
