@@ -2,6 +2,7 @@
 #include <Geode/Geode.hpp>
 using namespace geode::prelude;
 
+#include <Geode/modify/MenuGameLayer.hpp>
 #include <Geode/modify/PlayerObject.hpp>
 #include <Geode/modify/HardStreak.hpp>
 #include <Geode/modify/GJBaseGameLayer.hpp>
@@ -43,8 +44,15 @@ class $modify(PlayerObject) {
         if (Hacks::isHackEnabled("Change Gravity")) { // assume its enabled 
             m_gravityMod = gravityHack->value.floatValue;
         }
+
         if (Hacks::isHackEnabled("Instant Complete")) return;
         if (Hacks::isHackEnabled("Enable Patching") || !Hacks::isHackEnabled("Freeze Player")) return PlayerObject::update(dt);
+
+        // This is here because $modify doesn't want to work
+        if (Hacks::isHackEnabled("Suicide") && PlayLayer::get() != nullptr) {
+	        auto playLayer = PlayLayer::get(); //shut!
+            playLayer->destroyPlayer(playLayer->m_player1, nullptr);
+        }
     }
     bool init(int p0, int p1, GJBaseGameLayer *p2, cocos2d::CCLayer *p3, bool p4) {
         if (!PlayerObject::init(p0,p1,p2,p3,p4)) return false;
@@ -72,6 +80,13 @@ class $modify(PlayerObject) {
         if (!m_fields->isActuallyDart && Hacks::isHackEnabled("No Trail")) return;
         if (m_fields->isActuallyDart && Hacks::isHackEnabled("No Wave Trail")) return;
         PlayerObject::activateStreak();
+    }
+};
+
+class $modify(MenuGameLayer) {
+    void update(float dt) {
+        if (Hacks::isHackEnabled("Suicide")) destroyPlayer();
+        MenuGameLayer::update(dt);
     }
 };
 
