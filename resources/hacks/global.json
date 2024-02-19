@@ -25,6 +25,12 @@
         "type": "bool"
     },
     {
+        "name": "Auto Safe Mode",
+        "desc": "Prevents any progress from being made if certain cheats are enabled.",
+        "opcodes": [],
+        "type": "bool"
+    },
+    {
         "name": "Safe Mode",
         "desc": "Pauses any progress from being done on the level.",
         "opcodes": [

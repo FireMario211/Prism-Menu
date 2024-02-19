@@ -327,7 +327,7 @@ class $modify(PlayLayer) {
             }
         }
 #ifndef GEODE_IS_MACOS
-        if (Hacks::isHackEnabled("Safe Mode")) {
+        if (Hacks::isHackEnabled("Safe Mode") || isAutoSafeModeActive()) {
             m_isTestMode = true;
         } else {
             m_isTestMode = m_fields->previousTestMode;
@@ -345,7 +345,9 @@ class $modify(PlayLayer) {
             Hacks::isHackEnabled("Instant Complete") ||
             Hacks::isHackEnabled("Force Platformer Mode") ||
             Hacks::isHackEnabled("Change Gravity") ||
-            Hacks::isHackEnabled("Layout Mode")
+            Hacks::isHackEnabled("Layout Mode") ||
+            Hacks::isHackEnabled("No Hitbox") ||
+            Hacks::getHack("Speedhack")->value.floatValue != 1.0f
         ) { // cheating
             if (!m_fields->isCheating) {
                 m_fields->isCheating = true;
@@ -366,7 +368,9 @@ class $modify(PlayLayer) {
         if (Hacks::isHackEnabled("Instant Complete") && m_fields->frame < 5) {
             log::debug("CRIMINAL… criminal… criminal… criminal…");
             // funny message
-            FLAlertLayer::create(nullptr, "Cheater!", "Just a warning, you will be <cr>banned off leaderboards</c> if you use this on rated levels. Consider this your <cy>warning</c>.", "OK", nullptr)->show();
+
+            // Don't show if any form of safe mode is enabled, it gets VERY annoying otherwise
+            if (!(Hacks::isHackEnabled("Safe Mode") || Hacks::isHackEnabled("Auto Safe Mode"))) FLAlertLayer::create(nullptr, "Cheater!", "Just a warning, you will be <cr>banned off leaderboards</c> if you use this on rated levels. Consider this your <cy>warning</c>.", "OK", nullptr)->show();
         }
         float attemptOpacity = Hacks::getHack("Attempt Opacity")->value.floatValue;
         //if (!Hacks::isHackEnabled("Hide Attempts") && attemptOpacity == 1.0F) return PlayLayer::postUpdate(p0);
@@ -440,7 +444,7 @@ class $modify(PlayLayer) {
     }
 #endif
     void levelComplete() {
-        if (!Hacks::isHackEnabled("Safe Mode") || Hacks::isHackEnabled("Enable Patching")) return PlayLayer::levelComplete();
+        if (!(Hacks::isHackEnabled("Safe Mode") || isAutoSafeModeActive()) || Hacks::isHackEnabled("Enable Patching")) return PlayLayer::levelComplete();
         PlayLayer::resetLevel(); // haha
     }
 };
