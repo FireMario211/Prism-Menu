@@ -1,0 +1,465 @@
+[
+    {
+        "§ Global": {
+            "name": "§ Küresel"
+        }
+    },
+    {
+        "¬ Player": {
+            "name": "¬ Oyuncu"
+        }
+    },
+    {
+        "ª Bypass": {
+            "name": "ª Baypas"
+        }
+    },
+    {
+        "« Creator": {
+            "name": "« Yaratıcı"
+        }
+    },
+    {
+        "··· Misc": {
+            "name": "··· Diğer"
+        }
+    },
+    {
+        "¶ Settings": {
+            "name": "¶ Ayarlar"
+        }
+    },
+
+    {
+        "Prism Menu by Firee": {
+            "name": "Prism Menu Firee tarafından"
+        }
+    },
+
+
+
+    {
+        "Anticheat Bypass": {
+            "name": "Hile Koruması Baypas",
+            "desc": "Tüm hile korumalarını devre dışı bırakır. [Seviye, Düzenleyici, vs.]"
+        }
+    },
+    {
+        "Practice Music": {
+            "name": "Pratik Müziği",
+            "desc": "Kilitli olsa bile pratik müziğini etkinleştirir."
+        }
+    },
+    {
+        "Safe Mode": {
+            "name": "Güvenli Mod",
+            "desc": "Seviyede yapılan tüm ilerlemeleri durdurur."
+        }
+    },
+    {
+        "Accurate Percentage": {
+            "name": "Kesin Yüzde",
+            "desc": "Seviye yüzdesinde ondalık sayılara izin verir. [Binde birlik yerin ötesinde]"
+        }
+    },
+    {
+        "Layout Mode": {
+            "name": "Layout Modu",
+            "desc": "Bir seviye ile ilişkili tüm dekorasyonu kaldırır."
+        }
+    },
+    {
+        "No Transition": {
+            "name": "Sahne Geçişini Kaldır",
+            "desc": "Sahne geçiş süresini 0 saniyeye kısaltır."
+        }
+    },
+    {
+        "Cheat Indicator": {
+            "name": "Hile Göstergesi",
+            "desc": "Hile olarak kabul edilebilecek modları kullanıp kullanmadığınızı anlamak için bir simge gösterir!"
+        }
+    },
+    {
+        "Speedhack": {
+            "name": "Hız Hilesi",
+            "desc": "Oyunun ve sesin hızını değiştirir."
+        }
+    },
+    {
+        "FPS Bypass": {
+            "name": "Kare Hızı Baypas",
+            "desc": "Kare hızının 60'tan fazla olmasını veya monitörünüzün yenileme hızı olmasını sağlar."
+        }
+    },
+    {
+        "Reset Speedhack": {
+            "name": "Hız Hilesini Sıfırla",
+            "desc": "Hız hilesini normale geri çevirir."
+        }
+    },
+
+    {
+        "Noclip": {
+            "name": "Noclip",
+            "desc": "Oyuncuyu ölümsüz yapar."
+        }
+    },
+    {
+        "No Spikes": {
+            "name": "Dikenleri Kaldır",
+            "desc": "Diken objelerini yok sayar."
+        }
+    },
+    {
+        "No Hitbox": {
+            "name": "Vuruş Kutularını Kaldır",
+            "desc": "Tüm nesne vuruş kutularını devre dışı bırakır. Özel nesneler devre dışı bırakılır."
+        }
+    },
+    {
+        "No Solids": {
+            "name": "Katı Maddeleri Kaldır",
+            "desc": "Çoğu katı vuruş kutusunu devre dışı bırakır. Özel nesneler hala çalışır."
+        }
+    },
+    {
+        "Everything Hurts": {
+            "name": "Herşey Acıtıyor",
+            "desc": "Ah!"
+        }
+    },
+    {
+        "No Mirror Transition": {
+            "name": "Ayna Geçişini Kaldır",
+            "desc": "Ekranın bir ayna portalı üzerinde çevrilmesini önler."
+        }
+    },
+    {
+        "Instant Mirror Portal": {
+            "name": "Anında Ayna Portalı",
+            "desc": "Ters portal artık anında geçiş yapıyor."
+        }
+    },
+    {
+        "Freeze Player": {
+            "name": "Oyuncuyu Dondur",
+            "desc": "Oyuncunun hareketlerini dondurur."
+        }
+    },
+    {
+        "Jump Hack": {
+            "name": "Zıplama Hilesi",
+            "desc": "Havada zıplamaya izin verir."
+        }
+    },
+    {
+        "Instant Complete": {
+            "name": "Anında Tamamla",
+            "desc": "Seviyeyi anında tamamlar. (Düzenleyici'de sakın etkinleştirmeyin)"
+        }
+    },
+    {
+        "Force Platformer Mode": {
+            "name": "Platformer Modunu Zorla",
+            "desc": "Bir seviye oynarken sizi platformer modunda olmaya zorlar."
+        }
+    },
+    {
+        "Change Gravity": {
+            "name": "Yer Çekimini Değiştir",
+            "desc": "Zıplarken veya düşerken yerçekimini değiştirmenizi sağlar."
+        }
+    },
+    {
+        "Gravity Value": {
+            "name": "Yer Çekiminin Değeri",
+            "desc": "Yerçekiminin ayarlanması gereken değer."
+        }
+    },
+
+    {
+        "Icon Bypass": {
+            "name": "İkon Baypas",
+            "desc": "Tüm ikonların kilidini açar."
+        }
+    },
+    {
+        "Text Length": {
+            "name": "Yazı Uzunluğu",
+            "desc": "Metin girişlerinde sınırsız metin uzunluğuna izin verir."
+        }
+    },
+    {
+        "Character Filter": {
+            "name": "Karakter Filtresi",
+            "desc": "Tüm metin girişlerinde herhangi bir karakter girmenizi sağlar."
+        }
+    },
+    {
+        "Slider Limit": {
+            "name": "Kaydırıcı Sınırı",
+            "desc": "Kaydırıcıların görünür sınırın ötesine sürüklenmesini sağlar."
+        }
+    },
+    {
+        "Main Levels": {
+            "name": "Ana Seviyeler",
+            "desc": "Kilitlenmiş demon seviyelerini açmanızı sağlar."
+        }
+    },
+    {
+        "Guard Vault": {
+            "name": "Bekçi Kasası",
+            "desc": "Bekçinin kasasının kilidini açar."
+        }
+    },
+    {
+        "Keymaster Vault": {
+            "name": "Keymaster Kasası",
+            "desc": "Keymaster'ın kasasının kilidini açar."
+        }
+    },
+    {
+        "Treasure Room": {
+            "name": "Hazine Odası",
+            "desc": "Hazine odasının kilidini açar."
+        }
+    },
+    {
+        "Free Shop Items": {
+            "name": "Bedava Dükkan Öğeleri",
+            "desc": "Tüm mağaza eşyalarının 0 mana orb karşılığında satın alınmasını sağlar."
+        }
+    },
+    {
+        "Gatekeeper Vault": {
+            "name": "Kapı Bekçisi Kasası",
+            "desc": "Kapı bekçisinin kasasının kilidini açar."
+        }
+    },
+    {
+        "Backup Stars Limit": {
+            "name": "Yedek Yıldız Sınırı",
+            "desc": "10'dan az yıldızla bile veri yedeklemenizi sağlar."
+        }
+    },
+
+
+    {
+        "Level Edit": {
+            "name": "Seviye Düzenleme",
+            "desc": "Herhangi bir seviyeyi düzenlemenizi sağlar. Düzenleyiciye durdurma ekranından erişin. (KARARSIZ)"
+        }
+    },
+    {
+        "Verify Hack": {
+            "name": "Doğrulama Hilesi",
+            "desc": "Doğrulanmamış seviyeleri yüklemenizi sağlar. Seviyeleri otomatik olarak doğrulanacak şekilde ayarlar."
+        }
+    },
+    {
+        "Copy Hack": {
+            "name": "Kopyalama Hilesi",
+            "desc": "Herhangi bir seviyeyi şifresini bilmeden kopyalamanızı sağlar."
+        }
+    },
+    {
+        "No (C) Mark": {
+            "name": "(C) İşaretini Kaldır",
+            "desc": "Kopyalanan seviyeler yüklenirken (C) işaretini kaldırır. Seviyeleri otomatik olarak orijinal olarak ayarlar."
+        }
+    },
+    {
+        "Hide Testmode": {
+            "name": "Testmode Sakla",
+            "desc": "Bir StartPos ile oynarken 'Testmode' metnini gizler."
+        }
+    },
+    {
+        "Rotation Hack": {
+            "name": "Döndürme Hilesi",
+            "desc": "Herhangi bir objeyi döndürmenizi sağlar. Sadece yerel olarak çalışır."
+        }
+    },
+    {
+        "Default Song Bypass": {
+            "name": "Varsayılan Şarkı Baypas",
+            "desc": "Düzenleyicide gizli varsayılan şarkıları kullanmanızı sağlar."
+        }
+    },
+
+    {
+        "No Progress Bar": {
+            "name": "İlerleme Çubuğunu Kaldır",
+            "desc": "İlerleme çubuğunu kaldırır! Yüzde hala gösterilecektir."
+        }
+    },
+    {
+        "Progress Bar Position": {
+            "name": "İlerleme Çubuğu Konumu",
+            "desc": "İlerleme çubuğunun konumunu belirler."
+        }
+    },
+    {
+        "Hide Attempts": {
+            "name": "Denemeleri Gizle",
+            "desc": "Bir seviye oynatılırken deneme etiketinin gösterilip gösterilmeyeceğini ayarlar."
+        }
+    },
+    {
+        "Attempt Opacity": {
+            "name": "Deneme Opaklığı",
+            "desc": "Deneme etiketinin ne kadar opak olması gerektiğini belirler."
+        }
+    },
+
+    {
+        "Enable Patching": {
+            "name": "Yamalamayı Etkinleştir",
+            "desc": "Kancalamadan yamalamaya geçer. Bu aynı zamanda daha fazla hilenin etkinleştirilmesini sağlar. Yalnızca gerekliyse etkinleştirin. [Sadece Windows]"
+        }
+    },
+    {
+        "Menu Opacity": {
+            "name": "Menü Opaklığı",
+            "desc": "Menünün ne kadar opak olması gerektiğini belirler."
+        }
+    },
+    {
+        "Theme": {
+            "name": "Tema",
+            "desc": "Prism Menu için kullanıcı arayüzü temasını seçin!"
+        }
+    },
+    {
+        "Import Theme": {
+            "name": "Tema İçeri Aktar",
+            "desc": "Bir temayı içe aktarır! [JSON dosyası]"
+        }
+    },
+    {
+        "Live Theme Editing": {
+            "name": "Canlı Tema Düzenleme",
+            "desc": "Bu, değişiklikleri ekranda görürken özel temanızı düzenlemenize olanak tanır! (Uyarı: Bu bir bellek sızıntısına neden olabilir.)"
+        }
+    },
+    {
+        "Show tooltips": {
+            "name": "Araç ipuçlarını göster",
+            "desc": "Modların üzerine gelindiğinde araç ipuçlarının gösterilip gösterilmeyeceğini ayarlamanızı sağlar."
+        }
+    },
+    {
+        "Show Button": {
+            "name": "Butonu Göster",
+            "desc": "Menüyü etkinleştirmek için düğmeyi gösterir. Android için bunu etkin tutmanız önerilir."
+        }
+    },
+    {
+        "Button Position X": {
+            "name": "Düğme Konumu X",
+            "desc": "Menüyü açacak düğme için X konumu."
+        }
+    },
+    {
+        "Button Position Y": {
+            "name": "Düğme Konumu Y",
+            "desc": "Menüyü açacak düğme için Y konumu."
+        }
+    },
+    {
+        "Language": {
+            "name": "Dil",
+            "desc": "Prism Menu'nün dilini ayarlar!"
+        }
+    },
+    {
+        "Restore Defaults": {
+            "name": "Varsayılanları Geri Yükle",
+            "desc": "Tüm modları devre dışı bırakır ve her şeyi varsayılana sıfırlar."
+        }
+    },
+    {
+        "Credits": {
+            "name": "Katkıda Bulunanlar",
+            "desc": "Mod ile ilgili yardım eden kişiler!"
+        }
+    },
+    {
+        "Thank you to Electrify (ES), Jouca (FR), dank_meme01, savvacorgi, МегаСвятой (RU), Gazonk (BR), huhnmitferrari (DE), and Ignis (CS) for translations!": {
+            "name": "Çeviriler için Electrify (ES), Jouca (FR), dank_meme01, savvacorgi, МегаСвятой (RU), Gazonk (BR), huhnmitferrari (DE) ve Ignis'e (CS) teşekkür ederiz!"
+        }
+    },
+    {
+        "And thank you for using the mod! I hope you enjoy using Prism Menu!": {
+            "name": "Ve modu kullandığın için teşekkür ederim! Umarım Prism Menu'yü kullanmaktan keyif alıyorsundur!"
+        }
+    },
+    {
+        "Close Popup": {
+            "name": "Açılır Pencereyi Kapat"
+        }
+    },
+    {
+        "Menu Scale": {
+            "name": "Menü Ölçeği",
+            "desc": "Metin ve düğmelerin ne kadar büyük olması gerektiğine karar verir. (Oyunu yeniden başlatmayı gerektirir)"
+        }
+    },
+
+    {
+        "Show Hidden Objects": {
+            "name": "Gizli Nesneleri Göster",
+            "desc": "Tüm gizli nesneleri gösterir. Bu, nesnelerin ana rengini sıfırlayacaktır. Bu işlem \"Hide\" özelliğine sahip nesnelerde çalışmaz. (Layout Modu ile kullanışlıdır)"
+        }
+    },
+    {
+        "Transparent BG": {
+            "name": "Şeffaf Arka Plan",
+            "desc": "Arka planda değiştirilen renkleri otomatik olarak orijinal renklerine döndürür."
+        }
+    },
+    {
+        "Speedhack Audio": {
+            "name": "Ses Hız Hilesi",
+            "desc": "Hız hilesi değerine bağlı olarak ses hızının da değiştirilip değiştirilmeyeceği."
+        }
+    },
+    {
+        "No Glow": {
+            "name": "Parıltı Kaldır",
+            "desc": "Tüm nesnelerde parıltıyı kaldırır."
+        }
+    },
+    {
+        "Noclip Accuracy": {
+            "name": "Noclip Doğruluğu",
+            "desc": "Noclip çalışmanızın ne kadar doğru olduğunu size bildirir. (Hile Koruması Baypas etkinleştirilmeden çalışmaz)"
+        }
+    },
+    {
+        "Show Graphic Options": {
+            "name": "Grafik Seçeneklerini Göster",
+            "desc": "Geometry Dash'in grafik seçeneklerini gösterir! Bu seçenek normalde mevcut olmadığından Android için kullanışlıdır."
+        }
+    },
+    {
+        "No Trail": {
+            "name": "İzi Kaldır",
+            "desc": "Oyuncudan gelen herhangi bir iz efektini devre dışı bırakır."
+        }
+    },
+    {
+        "No Wave Trail": {
+            "name": "Dalga İzi Kaldır",
+            "desc": "Dalganın arkasındaki izi devre dışı bırakır."
+        }
+    },
+    {
+        "Solid Wave Trail": {
+            "name": "Katı Dalga İzi",
+            "desc": "Dalga izi üzerindeki her iki simge renginin karışımını kaldırır."
+        }
+    }
+]
