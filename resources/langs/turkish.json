@@ -416,50 +416,50 @@
     },
     {
         "Transparent BG": {
-            "name": "Transparent BG",
-            "desc": "Automatically reverts colors changed in the background to be their original color."
+            "name": "Şeffaf Arka Plan",
+            "desc": "Arka planda değiştirilen renkleri otomatik olarak orijinal renklerine döndürür."
         }
     },
     {
         "Speedhack Audio": {
             "name": "Ses Hız Hilesi",
-            "desc": "Whether or not to also change the audio speed based on the speedhack value."
+            "desc": "Hız hilesi değerine bağlı olarak ses hızının da değiştirilip değiştirilmeyeceği."
         }
     },
     {
         "No Glow": {
-            "name": "No Glow",
-            "desc": "Disables glow on all objects."
+            "name": "Parıltı Kaldır",
+            "desc": "Tüm nesnelerde parıltıyı kaldırır."
         }
     },
     {
         "Noclip Accuracy": {
-            "name": "Noclip Accuracy",
-            "desc": "Informs you how accurate your noclip run is. (Will not work without Anticheat Bypass enabled)"
+            "name": "Noclip Doğruluğu",
+            "desc": "Noclip çalışmanızın ne kadar doğru olduğunu size bildirir. (Hile Koruması Baypas etkinleştirilmeden çalışmaz)"
         }
     },
     {
         "Show Graphic Options": {
-            "name": "Show Graphic Options",
-            "desc": "Shows you Geometry Dash's graphic options! Useful for Android as the option is normally not available."
+            "name": "Grafik Seçeneklerini Göster",
+            "desc": "Geometry Dash'in grafik seçeneklerini gösterir! Bu seçenek normalde mevcut olmadığından Android için kullanışlıdır."
         }
     },
     {
         "No Trail": {
-            "name": "No Trail",
-            "desc": "Disables any trail effect from the player."
+            "name": "İzi Kaldır",
+            "desc": "Oyuncudan gelen herhangi bir iz efektini devre dışı bırakır."
         }
     },
     {
         "No Wave Trail": {
-            "name": "No Wave Trail",
-            "desc": "Disables the trail behind the wave."
+            "name": "Dalga İzi Kaldır",
+            "desc": "Dalganın arkasındaki izi devre dışı bırakır."
         }
     },
     {
         "Solid Wave Trail": {
-            "name": "Solid Wave Trail",
-            "desc": "Removes the blending of both icon colors on the wave trail."
+            "name": "Katı Dalga İzi",
+            "desc": "Dalga izi üzerindeki her iki simge renginin karışımını kaldırır."
         }
     }
 ]
