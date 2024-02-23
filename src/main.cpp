@@ -438,7 +438,10 @@ class $modify(PlayLayer) {
         if (Hacks::isHackEnabled("Enable Patching")) return;
         if (Hacks::isHackEnabled("Accurate Percentage")) {
             if (m_fields->percentLabel == nullptr) return;
-            std::string percentStr = std::to_string(PlayLayer::getCurrentPercent()) + "%";
+            std::stringstream percentStream;
+            int numDigits = Hacks::getHack("Extra Percent Digits")->value.intValue;
+            percentStream << std::fixed << std::setprecision(numDigits) << PlayLayer::getCurrentPercent() << "%";
+            std::string percentStr = percentStream.str();
             m_fields->percentLabel->setString(percentStr.c_str());
         }
     }
