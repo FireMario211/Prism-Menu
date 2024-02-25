@@ -350,28 +350,14 @@ class $modify(PlayLayer) {
             }
         }
 #ifndef GEODE_IS_MACOS
-        if (Hacks::isHackEnabled("Safe Mode") || isAutoSafeModeActive()) {
+        if (Hacks::isHackEnabled("Safe Mode") || Hacks::isAutoSafeModeActive()) {
             m_isTestMode = true;
         } else {
             m_isTestMode = m_fields->previousTestMode;
         }
 #endif
         // whats the difference between m_fields and not using? i have no idea!
-        if ( // i dont know what are considered "cheats"
-            Hacks::isHackEnabled("Noclip") ||
-            Hacks::isHackEnabled("No Spikes") ||
-            Hacks::isHackEnabled("No Solids") ||
-            Hacks::isHackEnabled("Freeze Player") ||
-            Hacks::isHackEnabled("No Mirror Transition") ||
-            Hacks::isHackEnabled("Instant Mirror Portal") ||
-            Hacks::isHackEnabled("Jump Hack") ||
-            Hacks::isHackEnabled("Instant Complete") ||
-            Hacks::isHackEnabled("Force Platformer Mode") ||
-            Hacks::isHackEnabled("Change Gravity") ||
-            Hacks::isHackEnabled("Layout Mode") ||
-            Hacks::isHackEnabled("No Hitbox") ||
-            Hacks::getHack("Speedhack")->value.floatValue != 1.0f
-        ) { // cheating
+        if (Hacks::isCheating()) { // cheating
             if (!m_fields->isCheating) {
                 m_fields->isCheating = true;
                 if (Hacks::isHackEnabled("Cheat Indicator")) {
@@ -470,7 +456,7 @@ class $modify(PlayLayer) {
     }
 #endif
     void levelComplete() {
-        if (!(Hacks::isHackEnabled("Safe Mode") || isAutoSafeModeActive()) || Hacks::isHackEnabled("Enable Patching")) return PlayLayer::levelComplete();
+        if (!(Hacks::isHackEnabled("Safe Mode") || Hacks::isAutoSafeModeActive()) || Hacks::isHackEnabled("Enable Patching")) return PlayLayer::levelComplete();
         PlayLayer::resetLevel(); // haha
     }
 
