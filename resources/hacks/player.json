@@ -111,5 +111,26 @@
         "min": -5,
         "max": 5,
         "default": 1
+    },
+    {
+        "name": "Show Hitboxes",
+        "desc": "Show player, obstacle, and solid hitboxes.",
+        "opcodes": [],
+        "type": "bool"
+    },
+    {
+        "name": "Hitbox Stroke",
+        "desc": "Stroke 'width' when drawing hitboxes",
+        "opcodes": [],
+        "type": "float",
+        "min": 0.1,
+        "max": 10,
+        "default": 1
+    },
+    {
+        "name": "Show Hitboxes on Death",
+        "desc": "Shows hitboxes when you die, and hides them when you respawn.",
+        "opcodes": [],
+        "type": "bool"
     }
 ]
