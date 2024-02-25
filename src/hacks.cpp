@@ -48,8 +48,8 @@ bool Hacks::isCheating() {
     auto cheats = Hacks::getCheats();
     if (Hacks::getHack("Speedhack")->value.floatValue != 1.0f) return true;
     bool cheating = false;
-    for (size_t i = 0; i < cheats.size(); i++) {
-        if (Hacks::isHackEnabled(cheats[i])) {
+    for (const auto& cheat : cheats) {
+        if (Hacks::isHackEnabled(cheat)) {
             cheating = true;
             break;
         }
@@ -58,7 +58,7 @@ bool Hacks::isCheating() {
 }
 
 // could instead just move this into the Hacks class but idk
-bool isAutoSafeModeActive() {
+bool Hacks::isAutoSafeModeActive() {
     if (!Hacks::isHackEnabled("Auto Safe Mode")) return false;
     return Hacks::isCheating();
 }

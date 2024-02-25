@@ -110,10 +110,18 @@ class Hacks {
             "Layout Mode",
             "Show Hidden Objects",
             "Change Gravity",
-            "Force Platformer Mode"
+            "Force Platformer Mode",
+            "No Mirror Transition",
+            "Instant Mirror Portal",
+            "Show Hitboxes",
+            "No Shaders",
+            "Disable Camera Effects",
+            "Transparent BG"
         };
     }
     static bool isCheating();
+
+    static bool isAutoSafeModeActive();
 
     class Settings {
         public: 
@@ -338,5 +346,3 @@ class Hacks {
     }
 };
 #endif
-
-bool isAutoSafeModeActive();
