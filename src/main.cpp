@@ -155,6 +155,7 @@ CircleButtonSprite* createCheatIndicator(bool isHacking) {
     return cheatIndicator;
 }
 
+#ifdef GEODE_IS_WINDOWS
 void drawPlayerHitboxes(CCDrawNode* drawNode, PlayerObject* player) {
     auto innerRect = player->getObjectRect(0.25f, 0.25f);
     drawNode->drawRect(
@@ -178,6 +179,7 @@ void drawPlayerHitboxes(CCDrawNode* drawNode, PlayerObject* player) {
             1000
     );
 }
+#endif
 
 class $modify(PlayLayer) {
     float previousPositionX = 0.0F;
@@ -471,7 +473,7 @@ class $modify(PlayLayer) {
     }
 
     // Show Hitboxes
-#ifndef GEODE_IS_MACOS
+#ifdef GEODE_IS_WINDOWS
     void updateVisibility(float p0) {
         PlayLayer::updateVisibility(p0);
         if (Hacks::isHackEnabled("Show Hitboxes") || (Hacks::isHackEnabled("Show Hitboxes on Death") && m_player1->m_isDead)) {
@@ -486,7 +488,7 @@ class $modify(PlayLayer) {
 
 };
 
-#ifndef GEODE_IS_MACOS // Show Hitboxes
+#ifdef GEODE_IS_WINDOWS // Show Hitboxes
 
 #include <Geode/modify/LevelEditorLayer.hpp>
 
