@@ -331,7 +331,6 @@ class $modify(PlayLayer) {
     }
     void postUpdate(float p0) {
         PlayLayer::postUpdate(p0);
-
         if (m_player1 != nullptr) {
             if (m_player1->getPositionX() != m_fields->previousPlayerX) {
                 m_fields->previousPlayerX = m_player1->getPositionX();
