@@ -515,7 +515,11 @@ class $modify(CCDrawNode) {
     bool drawPolygon(cocos2d::CCPoint* p0, unsigned int p1, const cocos2d::ccColor4F& p2,
                      float stroke, const cocos2d::ccColor4F& p4) {
         auto playLayer = PlayLayer::get();
-        if (playLayer && this == playLayer->m_debugDrawNode)
+        auto editLayer = LevelEditorLayer::get();
+        GJBaseGameLayer* baseLayer = nullptr;
+        if (playLayer) baseLayer = typeinfo_cast<GJBaseGameLayer*>(playLayer);
+        else if (editLayer) baseLayer = typeinfo_cast<GJBaseGameLayer*>(editLayer);
+        if (baseLayer && this == baseLayer->m_debugDrawNode)
             stroke *= Hacks::getHack("Hitbox Stroke")->value.floatValue;
         return CCDrawNode::drawPolygon(p0, p1, p2, stroke, p4);
     }
