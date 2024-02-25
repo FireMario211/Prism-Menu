@@ -6,7 +6,7 @@ A mod that intends to be a free alternative to other mod menus, while also addin
 ![Mod Example](firee.PrismMenu/Screenshot1.png)
 This mod menu also provides unique features not present in most mod menus, here are a few examples.
 ## Tons of different mods
-* Prism Menu by default comes with a lot of features present in most mod menus! While the current amount is low, I plan on adding more as I update this mod.
+* Prism Menu by default comes with a lot of mods / hacks that are in most mod menus! While the current amount is low, I plan on adding more as I update this mod.
 ## Custom Theming
 * You can use the set themes present here, or create/import your own theme!
 * Currently, there are 2 themes available: `Future Dark` and `Catppuccin`, but you can create your own theme and share it with others!
@@ -14,10 +14,7 @@ This mod menu also provides unique features not present in most mod menus, here 
 ## Multiple Language (Half way done)
 * Prism Menu supports more languages than **English,** it supports **Spanish**, **French**, **Portuguese** (Brazilian), **German**, **Russian**, **Czech**, and many more!
 ## Cross Platform
-* Prism Menu is available on both `Windows`, `Mac`, and `Android`!
-
-Note: For Android, there may be an update soon that will make it easier to use the menu in case the buttons look too small / is hard to use.
-
+* Prism Menu is available on `Windows`, `Mac`, and `Android`!
 ---
 # How to use 
 Press on the circle button located on the left corner, or press `Tab` to open the menu!

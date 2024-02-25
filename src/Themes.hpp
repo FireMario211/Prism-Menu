@@ -1,6 +1,6 @@
 #pragma once
 #include <Geode/Geode.hpp>
-#ifndef GEODE_IS_MACOS
+#ifndef NO_IMGUI
 #include <imgui-cocos.hpp>
 #endif
 #include "hacks.hpp"
@@ -13,7 +13,7 @@ class Themes {
     public:
     static void addToCurrentThemes();
     static matjson::Array getCurrentThemes();
-#ifndef GEODE_IS_MACOS
+#ifndef NO_IMGUI
     static ImVec4 RGBAToImVec4(matjson::Value rgba) {
         float currentOpacity = Hacks::getHack("Menu Opacity")->value.floatValue;
         rgba = rgba.as_array();
@@ -54,7 +54,8 @@ class Themes {
         }
 
         builder.AddRanges(io.Fonts->GetGlyphRangesCyrillic()); // russian chars
-
+        builder.AddRanges(io.Fonts->GetGlyphRangesVietnamese()); // vietnamese chars
+        //builder.AddRanges(io.Fonts->GetGlyphRangesJapanese()); // JP chars
         ImVector<ImWchar> ranges;
         builder.BuildRanges(&ranges);
         std::string fontName = (Mod::get()->getResourcesDir() / "PrismMenu.otf").string();

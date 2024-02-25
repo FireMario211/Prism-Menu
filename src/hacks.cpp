@@ -44,15 +44,21 @@ void Hacks::Settings::setSettingValue(SettingHackStruct* settings, const HackIte
     Mod::get()->setSavedValue("values", *settings);
 }
 
+bool Hacks::isCheating() {
+    auto cheats = Hacks::getCheats();
+    if (Hacks::getHack("Speedhack")->value.floatValue != 1.0f) return true;
+    bool cheating = false;
+    for (size_t i = 0; i < cheats.size(); i++) {
+        if (Hacks::isHackEnabled(cheats[i])) {
+            cheating = true;
+            break;
+        }
+    }
+    return cheating;
+}
+
+// could instead just move this into the Hacks class but idk
 bool isAutoSafeModeActive() {
-    bool isAutoSafeModeOn = Hacks::isHackEnabled("Auto Safe Mode");
-
-    if (!isAutoSafeModeOn) return false;
-
-    if (Hacks::getHack("Speedhack")->value.floatValue != 1.0f || Hacks::isHackEnabled("Instant Complete") || Hacks::isHackEnabled("Noclip") ||
-        Hacks::isHackEnabled("No Spikes") || Hacks::isHackEnabled("No Hitbox") || Hacks::isHackEnabled("No Solids") || Hacks::isHackEnabled("Freeze Player") ||
-        Hacks::isHackEnabled("Jump Hack") || Hacks::isHackEnabled("Force Platformer Mode") || Hacks::isHackEnabled("Change Gravity") || Hacks::isHackEnabled("Layout Mode")
-    ) return true;
-
-    return false;
+    if (!Hacks::isHackEnabled("Auto Safe Mode")) return false;
+    return Hacks::isCheating();
 }

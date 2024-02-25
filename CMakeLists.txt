@@ -24,6 +24,11 @@ if (DEFINED ENV{LOCAL})
     add_definitions(-DDEV_BUILD)
 endif()
 
+if (DEFINED ENV{NO_IMGUI} OR APPLE)
+    message("Not compiling with ImGui")
+    add_definitions(-DNO_IMGUI)
+endif()
+
 if (NOT DEFINED ENV{GEODE_SDK})
     message(FATAL_ERROR "Unable to find Geode SDK! Please define GEODE_SDK environment variable to point to Geode")
 else()
@@ -31,7 +36,7 @@ else()
 endif()
 
 set(IMGUI_VERSION "v1.90")
-if (NOT APPLE)
+if (NOT APPLE AND NOT DEFINED ENV{NO_IMGUI})
     CPMAddPackage("gh:matcool/gd-imgui-cocos#5bc72d6") # specify a commit!
     target_link_libraries(${PROJECT_NAME} imgui-cocos)
 endif()

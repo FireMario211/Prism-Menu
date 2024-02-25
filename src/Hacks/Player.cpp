@@ -1,4 +1,5 @@
 #include "../hacks.hpp"
+#include "../Utils.hpp"
 #include <Geode/Geode.hpp>
 using namespace geode::prelude;
 
@@ -44,19 +45,8 @@ class $modify(PlayerObject) {
         if (Hacks::isHackEnabled("Change Gravity")) { // assume its enabled 
             m_gravityMod = gravityHack->value.floatValue;
         }
-
         if (Hacks::isHackEnabled("Instant Complete")) return;
         if (Hacks::isHackEnabled("Enable Patching") || !Hacks::isHackEnabled("Freeze Player")) return PlayerObject::update(dt);
-
-        // This is here because $modify doesn't want to work
-        if (Hacks::isHackEnabled("Suicide") && PlayLayer::get() != nullptr) {
-            auto playLayer = PlayLayer::get(); //shut!
-            playLayer->destroyPlayer(playLayer->m_player1, nullptr);
-        }
-    }
-    bool init(int p0, int p1, GJBaseGameLayer *p2, cocos2d::CCLayer *p3, bool p4) {
-        if (!PlayerObject::init(p0,p1,p2,p3,p4)) return false;
-        return true;
     }
 
     void playerDestroyed(bool p0) {
@@ -65,7 +55,9 @@ class $modify(PlayerObject) {
     }
     void pushButton(PlayerButton p0) {
         if (p0 != PlayerButton::Jump) return PlayerObject::pushButton(p0);
-        if (!Hacks::isHackEnabled("Enable Patching") && Hacks::isHackEnabled("Jump Hack")) PlayerObject::boostPlayer(10.0F); // idk if i should make this customizable
+        float boost = 10.0F;
+        boost = (m_isUpsideDown) ? -boost : boost;
+        if (!Hacks::isHackEnabled("Enable Patching") && Hacks::isHackEnabled("Jump Hack")) PlayerObject::boostPlayer(boost); // idk if i should make this customizable
         PlayerObject::pushButton(p0);
     }
     #endif
@@ -83,12 +75,18 @@ class $modify(PlayerObject) {
     }
 };
 
+// yeah no this will make the game lag
 class $modify(MenuGameLayer) {
     void update(float dt) {
-        if (Hacks::isHackEnabled("Suicide")) destroyPlayer();
+        // yeah no this will make the game lag
+        //if (Hacks::isHackEnabled("Suicide")) destroyPlayer();
+        if (m_playerObject->getPositionX() > -25 && Hacks::isHackEnabled("Suicide")) { // prevent the game from crashing
+            MenuGameLayer::destroyPlayer();
+        }
         MenuGameLayer::update(dt);
     }
 };
+
 
 class $modify(GJBaseGameLayer) {
     #ifndef GEODE_IS_MACOS

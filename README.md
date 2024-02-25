@@ -2,10 +2,16 @@
 A mod menu made in Geode for Geometry Dash
 
 # TODOs (Based on whats next)
+- Add "No Shaders"
+- Add "uncomplete level" hack
+- Add a "First Start" menu when you install prism for the first time (Like, ask what language, theme, etc). Only do this when the user clicks on the prism button, and not show again after doing it unless they reset defaults.
 - Fix bug with input button not working for button position on android (ok why cant i reproduce this now wth)
+- Add a "Font Downloader" for languages like Japanese, Chinese, Arabic, etc
+- Added Japanese Translations. (bruh 1000 characters :()
 - Add Arabic translations (this ones gonna be hard)
 - Add credits screen for cocos2d ui
-- Add "No Shaders"
+- Allow changing the prism button icon (different colors, up to the server icon style)
+- Add a toggle to "Lock 2.21 icons"
 - Add "Transparent Lists" (look in https://discord.com/channels/911701438269386882/911702353546215524/1205501190025117779)
 - Change button icon to be the same as server icon
 - Add ???
@@ -13,9 +19,7 @@ A mod menu made in Geode for Geometry Dash
 - Add background-image for custom themes (note for me: look in https://discord.com/channels/@me/1156358012852776992/1172693426429505546)
 - Allow for dragging the button
 - Add "No Camera Movement" (basically removes all 2.2 camera stuff and only aims the camera at the player)
-- Add "Suicide" hack (or call it something else idk)
 - Add menu scale for the cocos ui
-- Add "uncomplete level" hack
 - Add "Custom Object Bypass" (basically allows you to store more than 1000 objects in custom object)
 - Add "Show Hitboxes" (Basically enables hitbox even if not in practice mode)
 - Add "Show Hitbox on Death" & "Hitbox Trail"

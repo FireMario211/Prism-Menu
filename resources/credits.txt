@@ -1,4 +1,6 @@
 https://www.dafont.com/code-saver.font
 https://www.dafont.com/hack.font (For Russian)
+https://www.fontspace.com/salma-pro-font-f73552 (For Vietnamese)
+https://fonts.google.com/noto/specimen/Noto+Sans+JP? (For Japanese)
 
 Merged both Code-Saver and Hack into 1 font, while also adding icons

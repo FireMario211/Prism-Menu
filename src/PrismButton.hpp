@@ -114,7 +114,7 @@ public:
     }
     void onButtonClicked(CCObject* p0) {
         HackItem* menuStyle = Hacks::getHack("Menu-Style");
-        #ifdef GEODE_IS_MACOS 
+        #ifdef NO_IMGUI
         menuStyle->value.intValue = 1;
         #endif
         if (menuStyle->value.intValue == 0) { // imgui

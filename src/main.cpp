@@ -99,7 +99,7 @@ class $modify(CCKeyboardDispatcher) {
         if (down && (key == KEY_Tab)) {
             auto prismButton = typeinfo_cast<PrismButton*>(CCScene::get()->getChildByID("prism-icon"));
             HackItem* menuStyle = Hacks::getHack("Menu-Style");
-            #ifdef GEODE_IS_MACOS 
+            #ifdef NO_IMGUI 
             menuStyle->value.intValue = 1;
             #else
             if (prismButton == nullptr) return true;
@@ -256,6 +256,7 @@ class $modify(PlayLayer) {
                     m_fields->death += 1;
                 }
             }
+            if (Hacks::isHackEnabled("Suicide")) return PlayLayer::destroyPlayer(p0, p1);
         }
     }
     // Instant Complete, Hide Testmode
@@ -334,6 +335,7 @@ class $modify(PlayLayer) {
     void postUpdate(float p0) {
         PlayLayer::postUpdate(p0);
         if (m_player1 != nullptr) {
+            if (Hacks::isHackEnabled("Suicide")) return PlayLayer::destroyPlayer(m_player1, nullptr);
             if (m_player1->getPositionX() != m_fields->previousPlayerX) {
                 m_fields->previousPlayerX = m_player1->getPositionX();
                 m_fields->frame += 1;

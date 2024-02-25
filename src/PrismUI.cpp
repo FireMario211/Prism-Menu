@@ -51,8 +51,8 @@ float calculateYPosition(float x) { // love floating points
     return result;
 }
 
-int getYPosBasedOnCategory() { // someone give me a proper math formula ok thanks
-    switch (currentMenuIndexGD) {
+int getYPosBasedOnCategory(int length) { // someone give me a proper math formula ok thanks
+    /*switch (currentMenuIndexGD) {
         case 0: // Global 
             return 40;
         case 1: // Player
@@ -66,9 +66,14 @@ int getYPosBasedOnCategory() { // someone give me a proper math formula ok thank
         case 5: // Settings
             return 115;
         default: return 0;
-    }
+    }*/
+    if (length <= 8) return -100;
+    if (currentMenuIndexGD == 5) length += 1;
+    return (30 * length) - 350;
 }
-float getContentSizeBasedOnCategory() { // someone give me a proper math formula ok thanks
+float getContentSizeBasedOnCategory(int length) { // someone give me a proper math formula ok thanks
+    // 8
+    /*
     switch (currentMenuIndexGD) {
         case 0: // Global 
             return 370; // 260
@@ -83,7 +88,10 @@ float getContentSizeBasedOnCategory() { // someone give me a proper math formula
         case 5: // Settings
             return 450; // 400
         default: return 320;
-    }
+    }*/
+    if (length <= 8) return 230;
+    if (currentMenuIndexGD == 5) length += 2;
+    return (29 * length) - 7;
 }
 
 float getSliderValue(float current, float min, float max, bool inverse) {
@@ -347,7 +355,8 @@ void PrismUIButton::onBtn(CCObject* ret) {
         FLAlertLayer::create("Error", "This option can only be used on <cy>Android</c>!", "OK")->show();
         #endif
     } else {
-        GatoSim::onButton();
+        // NO SPOILERS!
+        //GatoSim::onButton();
     }
 }
 
@@ -376,16 +385,29 @@ void PrismUIButton::onDropdownBtn(CCObject* sender) {
 
     ddmenu->setVisible(expanded);
     background->setContentSize({background->getContentSize().width, (25 / background->getScale()) * h});
-    int index = std::stoi(idStr.substr(idStr.length() - 1));
 
-    auto settings = Mod::get()->getSavedValue<SettingHackStruct>("values");
-    hack->value.intValue = index;
-    Hacks::Settings::setSettingValue(&settings, *hack, hack->value.intValue);
-    if (hack->name == "Menu-Style") {
-        auto obj = static_cast<PrismUI*>(CCScene::get()->getChildByID("prism-menu"));
-        obj->onClose(sender);
-    } else if (hack->name == "Theme") {
-        currentThemeApplied = matjson::Array {};
+    // chat jippity
+    // Splitting the string by "-"
+    std::istringstream ss(idStr);
+    std::string token;
+    std::vector<std::string> tokens;
+    
+    while (std::getline(ss, token, '-')) {
+        tokens.push_back(token);
+    }
+    if (!tokens.empty()) {
+        std::string lastElement = tokens.back();
+        int index = std::stoi(lastElement);
+        auto settings = Mod::get()->getSavedValue<SettingHackStruct>("values");
+        log::debug("Set Dropdown Value to {}", index);
+        hack->value.intValue = index;
+        Hacks::Settings::setSettingValue(&settings, *hack, hack->value.intValue);
+        if (hack->name == "Menu-Style") {
+            auto obj = static_cast<PrismUI*>(CCScene::get()->getChildByID("prism-menu"));
+            obj->onClose(sender);
+        } else if (hack->name == "Theme") {
+            currentThemeApplied = matjson::Array {};
+        }
     }
 }
 
@@ -413,10 +435,10 @@ void PrismUI::CreateHackItem(HackItem* hack) {
     } else {
         m_scrollLayer->m_contentLayer->setContentSize(m_content->getContentSize());
     }
-    m_scrollLayer->m_contentLayer->setContentSize({m_content->getContentSize().width, getContentSizeBasedOnCategory()});
+    m_scrollLayer->m_contentLayer->setContentSize({m_content->getContentSize().width, getContentSizeBasedOnCategory(currentI + 1)});
     infoBtn->setPosition({280, indexY});
     //m_content->setPositionY(calculateYPosition(currentI));
-    m_content->setPositionY(getYPosBasedOnCategory());
+    m_content->setPositionY(getYPosBasedOnCategory(currentI + 1));
     m_scrollLayer->moveToTop();
     currentI++;
 }

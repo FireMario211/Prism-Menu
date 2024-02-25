@@ -98,6 +98,22 @@ class Hacks {
             return "{}";
         }
     }
+    static std::vector<std::string> getCheats() {
+        return {
+            "Noclip",
+            "Instant Complete",
+            "No Spikes",
+            "No Hitbox",
+            "No Solids",
+            "Freeze Player",
+            "Jump Hack",
+            "Layout Mode",
+            "Show Hidden Objects",
+            "Change Gravity",
+            "Force Platformer Mode"
+        };
+    }
+    static bool isCheating();
 
     class Settings {
         public: 

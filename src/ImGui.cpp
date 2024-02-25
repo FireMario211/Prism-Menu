@@ -1,5 +1,5 @@
 #include <Geode/modify/MenuLayer.hpp>
-#ifndef GEODE_IS_MACOS
+#ifndef NO_IMGUI
 #include <imgui-cocos.hpp>
 #include <codecvt>
 #include "PrismButton.hpp"
@@ -274,7 +274,6 @@ class $modify(MenuLayer) {
                                                 hack->value.floatValue = 1.0F;
                                             }
                                             Hacks::setPitch(hack->value.floatValue);
-                                            CCDirector::sharedDirector()->getScheduler()->setTimeScale(hack->value.floatValue);
                                         } else if (name == "Menu Opacity") {
                                             changedOpacity = true;
                                         } else if (name == "Menu Scale") {
@@ -359,6 +358,12 @@ class $modify(MenuLayer) {
                                             Hacks::Settings::setSettingValue(&settings, *speedHack, 1.0F);
                                             Hacks::setPitch(1.0F);
                                             CCDirector::sharedDirector()->getScheduler()->setTimeScale(1.0F);
+                                        } else if (name == "Show Graphic Options") {
+                                            #ifdef GEODE_IS_ANDROID 
+                                            VideoOptionsLayer::create()->show();
+                                            #else 
+                                            FLAlertLayer::create("Error", "This option can only be used on <cy>Android</c>!", "OK")->show();
+                                            #endif
                                         }
                                         ImGui::OpenPopup(name.c_str());
 

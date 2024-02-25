@@ -1,3 +1,16 @@
+# v1.5.0
+    - Added Auto Safe Mode.
+    - Added No Shaders.
+    - Allowed changing "percent digits".
+    - Added Show Hitboxes.
+    - Added Hitbox Stroke.
+    - Added Show Hitboxes on Death.
+    - Added Suicide.
+    - Added Disable Camera Effects
+    - Added Turkish Translations.
+    - Added Vietnamese Translations.
+    - Fixed bug with Jump Hack not working when upside down.
+    - Fixed issue with "Show Graphic Options" not working on ImGui.
 # v1.4.2
     - Fixed bug with No Mirror Transition & Instant Mirror Portal if "No Effect" is applied.
     - Fixed speedhack not syncing with gameplay correctly.
