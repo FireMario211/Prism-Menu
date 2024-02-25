@@ -57,7 +57,6 @@ bool Hacks::isCheating() {
     return cheating;
 }
 
-// could instead just move this into the Hacks class but idk
 bool Hacks::isAutoSafeModeActive() {
     if (!Hacks::isHackEnabled("Auto Safe Mode")) return false;
     return Hacks::isCheating();
