@@ -8,9 +8,11 @@
     - Added Suicide.
     - Added Disable Camera Effects
     - Added Turkish Translations.
-    - Added Vietnamese Translations.
+    - Allowed Mac OS to view Graphic Options.
+    - Fixed FPS Bypass for Mac OS.
     - Fixed bug with Jump Hack not working when upside down.
     - Fixed issue with "Show Graphic Options" not working on ImGui.
+    - Fixed issue with Accurate Percentage not working sometimes in Test Mode.
 # v1.4.2
     - Fixed bug with No Mirror Transition & Instant Mirror Portal if "No Effect" is applied.
     - Fixed speedhack not syncing with gameplay correctly.

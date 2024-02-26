@@ -393,7 +393,9 @@ class $modify(PlayLayer) {
                 auto obj = this->getChildren()->objectAtIndex(i);
                 if (Utils::getNodeName(obj) == "cocos2d::CCLabelBMFont" && m_fields->percentLabel == nullptr) {
                     auto labelTest = static_cast<CCLabelBMFont*>(obj);
-                    if (strlen(labelTest->getString()) < 6) {
+                    //if (strlen(labelTest->getString()) < 6) {
+                    std::string labelStr = labelTest->getString();
+                    if (labelStr.ends_with("%")) {
                         m_fields->percentLabel = labelTest;
                     }
                 } else if (Utils::getNodeName(obj) == "cocos2d::CCSprite" && m_fields->progressBar == nullptr) {
@@ -444,7 +446,6 @@ class $modify(PlayLayer) {
 #ifndef GEODE_IS_MACOS
     void updateProgressbar() {
         PlayLayer::updateProgressbar();
-        if (Hacks::isHackEnabled("Enable Patching")) return;
         if (Hacks::isHackEnabled("Accurate Percentage")) {
             if (m_fields->percentLabel == nullptr) return;
             std::stringstream percentStream;

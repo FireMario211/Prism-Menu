@@ -3,6 +3,7 @@
 #ifndef NO_IMGUI
 #include <imgui-cocos.hpp>
 #endif
+#include <Geode/ui/TextInput.hpp>
 #include "hacks.hpp"
 
 using namespace geode::prelude;

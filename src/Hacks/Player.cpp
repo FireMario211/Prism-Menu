@@ -77,12 +77,16 @@ class $modify(PlayerObject) {
 
 // yeah no this will make the game lag
 class $modify(MenuGameLayer) {
+    int frame = 0;
     void update(float dt) {
-        // yeah no this will make the game lag
-        //if (Hacks::isHackEnabled("Suicide")) destroyPlayer();
-        if (m_playerObject->getPositionX() > -25 && Hacks::isHackEnabled("Suicide")) { // prevent the game from crashing
-            MenuGameLayer::destroyPlayer();
+        if (Hacks::isHackEnabled("Suicide")) {
+            m_fields->frame++;
+            if (m_fields->frame % 250 == 0) { // uhh idk
+                m_fields->frame = 1;
+                MenuGameLayer::destroyPlayer();
+            }
         }
+        // if i dont have the "frame" modulus if condition, this will crash the game because its running EVERY FRAME
         MenuGameLayer::update(dt);
     }
 };

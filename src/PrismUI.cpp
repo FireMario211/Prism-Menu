@@ -143,9 +143,9 @@ bool PrismUIButton::init(HackItem* hack) {
         auto max = obj.get<int>("max");
         label->limitLabelWidth(120, 0.5F, .1F);
         // TODO: add + and - buttons because according to some, android keyboard is BAD!
-        m_input = InputNode::create(150.f, "...", "PrismMenu.fnt"_spr);
-        m_input->getInput()->setString(std::to_string(hack->value.intValue));
-        m_input->getInput()->setAllowedChars("0123456789");
+        m_input = TextInput::create(150.f, "...", "PrismMenu.fnt"_spr);
+        m_input->setString(std::to_string(hack->value.intValue));
+        m_input->setFilter("0123456789");
         m_input->setPositionX(37);
         
         auto incBtnSpr = cocos2d::extension::CCScale9Sprite::create("square02b_001.png", { 0.0f, 0.0f, 80.0f, 80.0f });
@@ -190,11 +190,11 @@ bool PrismUIButton::init(HackItem* hack) {
         label->limitLabelWidth(64, 0.5F, .1F);
         auto min = obj.get<int>("min");
         auto max = obj.get<int>("max");
-        m_input = InputNode::create(100.f, "...", "PrismMenu.fnt"_spr);
-        m_input->getInput()->setString(
+        m_input = TextInput::create(100.f, "...", "PrismMenu.fnt"_spr);
+        m_input->setString(
             name.starts_with("Button Position") ? std::to_string(value) : Utils::setPrecision(value, 3)
         );
-        m_input->getInput()->setAllowedChars("0123456789.");
+        m_input->setFilter("0123456789.");
         m_input->setPositionX(21);
         label->setPositionX(190);
         m_slider = Slider::create(this, menu_selector(PrismUIButton::onFloatBtn), .6f);
@@ -246,10 +246,10 @@ bool PrismUIButton::init(HackItem* hack) {
         }
     }
     if (m_input != nullptr) {
-        Themes::RGBAToCC(PrismUI::GetTheme()["Button"], m_input);
+        Themes::RGBAToCC(PrismUI::GetTheme()["Button"], m_input->getBGSprite());
         m_input->setScale(.65f);
-        m_input->getInput()->setDelegate(this);
-        Themes::RGBAToCC(PrismUI::GetTheme()["Text"], m_input->getInput()->m_placeholderLabel);
+        m_input->setDelegate(this);
+        Themes::RGBAToCC(PrismUI::GetTheme()["Text"], m_input->getInputNode()->m_placeholderLabel);
         menu->addChild(m_input);
     }
     menu->setPosition({0,0});
@@ -291,7 +291,7 @@ void PrismUIButton::onFloatBtn(CCObject* ret) {
     } else {
         m_hack->value.intValue = actualValue;
     }
-    m_input->getInput()->setString(
+    m_input->setString(
         name.starts_with("Button Position") ? std::to_string(m_hack->value.intValue) : Utils::setPrecision(m_hack->value.floatValue, 3)
     );
     if (name == "Speedhack") {
@@ -352,7 +352,11 @@ void PrismUIButton::onBtn(CCObject* ret) {
         #ifdef GEODE_IS_ANDROID 
         VideoOptionsLayer::create()->show();
         #else 
-        FLAlertLayer::create("Error", "This option can only be used on <cy>Android</c>!", "OK")->show();
+        #ifdef GEODE_IS_MACOS
+        VideoOptionsLayer::create()->show();
+        #else
+        FLAlertLayer::create("Error", "This option can only be used on <cy>Android</c> and <cy>Mac</c>!", "OK")->show();
+        #endif
         #endif
     } else {
         // NO SPOILERS!
@@ -500,7 +504,11 @@ void PrismUIButton::intChanged() {
 #ifndef GEODE_IS_MACOS // crashes
         auto app = CCApplication::sharedApplication();
         app->setAnimationInterval(1.0 / static_cast<double>(m_hack->value.intValue));
-#endif
+#endif 
+        auto GM = GameManager::sharedState();
+        GM->m_customFPSTarget = m_hack->value.intValue;
+        GM->setGameVariable("0116", true);
+        GM->updateCustomFPS();
     } else if (name == "Button Position X") {
         prismButton->setPositionX(m_hack->value.intValue);
     } else if (name == "Button Position Y") {

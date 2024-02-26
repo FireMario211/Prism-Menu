@@ -32,7 +32,7 @@
 
     {
         "Prism Menu by Firee": {
-            "name": "Prism Menu Firee tarafından"
+            "name": "Firee tarafından Prism Menu"
         }
     },
 
@@ -70,7 +70,7 @@
     },
     {
         "No Transition": {
-            "name": "Sahne Geçişini Kaldır",
+            "name": "Sahne Geçişini Devre Dışı Bırak",
             "desc": "Sahne geçiş süresini 0 saniyeye kısaltır."
         }
     },
@@ -107,31 +107,31 @@
     },
     {
         "No Spikes": {
-            "name": "Dikenleri Kaldır",
+            "name": "Dikenleri Devre Dışı Bırak",
             "desc": "Diken objelerini yok sayar."
         }
     },
     {
         "No Hitbox": {
-            "name": "Vuruş Kutularını Kaldır",
+            "name": "Vuruş Kutularını Devre Dışı Bırak",
             "desc": "Tüm nesne vuruş kutularını devre dışı bırakır. Özel nesneler devre dışı bırakılır."
         }
     },
     {
         "No Solids": {
-            "name": "Katı Maddeleri Kaldır",
+            "name": "Katı Maddeleri Devre Dışı Bırak",
             "desc": "Çoğu katı vuruş kutusunu devre dışı bırakır. Özel nesneler hala çalışır."
         }
     },
     {
         "Everything Hurts": {
-            "name": "Herşey Acıtıyor",
+            "name": "Her Şey Acıtıyor",
             "desc": "Ah!"
         }
     },
     {
         "No Mirror Transition": {
-            "name": "Ayna Geçişini Kaldır",
+            "name": "Ayna Geçişini Devre Dışı Bırak",
             "desc": "Ekranın bir ayna portalı üzerinde çevrilmesini önler."
         }
     },
@@ -162,18 +162,18 @@
     {
         "Force Platformer Mode": {
             "name": "Platformer Modunu Zorla",
-            "desc": "Bir seviye oynarken sizi platformer modunda olmaya zorlar."
+            "desc": "Bir seviye oynarken sizi Platformer modunda olmaya zorlar."
         }
     },
     {
         "Change Gravity": {
-            "name": "Yer Çekimini Değiştir",
+            "name": "Yerçekimini Değiştir",
             "desc": "Zıplarken veya düşerken yerçekimini değiştirmenizi sağlar."
         }
     },
     {
         "Gravity Value": {
-            "name": "Yer Çekiminin Değeri",
+            "name": "Yerçekiminin Değeri",
             "desc": "Yerçekiminin ayarlanması gereken değer."
         }
     },
@@ -186,7 +186,7 @@
     },
     {
         "Text Length": {
-            "name": "Yazı Uzunluğu",
+            "name": "Metin Uzunluğu",
             "desc": "Metin girişlerinde sınırsız metin uzunluğuna izin verir."
         }
     },
@@ -205,7 +205,7 @@
     {
         "Main Levels": {
             "name": "Ana Seviyeler",
-            "desc": "Kilitlenmiş demon seviyelerini açmanızı sağlar."
+            "desc": "Kilitlenmiş Demon seviyelerini açmanızı sağlar."
         }
     },
     {
@@ -228,7 +228,7 @@
     },
     {
         "Free Shop Items": {
-            "name": "Bedava Dükkan Öğeleri",
+            "name": "Bedava Mağaza Eşyaları",
             "desc": "Tüm mağaza eşyalarının 0 mana orb karşılığında satın alınmasını sağlar."
         }
     },
@@ -240,7 +240,7 @@
     },
     {
         "Backup Stars Limit": {
-            "name": "Yedek Yıldız Sınırı",
+            "name": "Yedekleme Yıldız Sınırı",
             "desc": "10'dan az yıldızla bile veri yedeklemenizi sağlar."
         }
     },
@@ -272,7 +272,7 @@
     },
     {
         "Hide Testmode": {
-            "name": "Testmode Sakla",
+            "name": "Testmode Metnini Gizle",
             "desc": "Bir StartPos ile oynarken 'Testmode' metnini gizler."
         }
     },
@@ -291,7 +291,7 @@
 
     {
         "No Progress Bar": {
-            "name": "İlerleme Çubuğunu Kaldır",
+            "name": "İlerleme Çubuğunu Devre Dışı Bırak",
             "desc": "İlerleme çubuğunu kaldırır! Yüzde hala gösterilecektir."
         }
     },
@@ -346,13 +346,13 @@
     },
     {
         "Show tooltips": {
-            "name": "Araç ipuçlarını göster",
+            "name": "Araç İpuçlarını Göster",
             "desc": "Modların üzerine gelindiğinde araç ipuçlarının gösterilip gösterilmeyeceğini ayarlamanızı sağlar."
         }
     },
     {
         "Show Button": {
-            "name": "Butonu Göster",
+            "name": "Düğmeyi Göster",
             "desc": "Menüyü etkinleştirmek için düğmeyi gösterir. Android için bunu etkin tutmanız önerilir."
         }
     },
@@ -428,7 +428,7 @@
     },
     {
         "No Glow": {
-            "name": "Parıltı Kaldır",
+            "name": "Parıltı Devre Dışı Bırak",
             "desc": "Tüm nesnelerde parıltıyı kaldırır."
         }
     },
@@ -446,13 +446,13 @@
     },
     {
         "No Trail": {
-            "name": "İzi Kaldır",
+            "name": "İzi Devre Dışı Bırak",
             "desc": "Oyuncudan gelen herhangi bir iz efektini devre dışı bırakır."
         }
     },
     {
         "No Wave Trail": {
-            "name": "Dalga İzi Kaldır",
+            "name": "Dalga İzi Devre Dışı Bırak",
             "desc": "Dalganın arkasındaki izi devre dışı bırakır."
         }
     },

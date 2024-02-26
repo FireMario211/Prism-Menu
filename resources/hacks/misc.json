@@ -30,7 +30,7 @@
     },
     {
         "name": "Disable Camera Effects",
-        "desc": "Disables any camera effects, and only focuses the camera on the player.",
+        "desc": "Disables any camera effects, and only focuses the camera on the player. This might break all gamemodes except Cube and Robot.",
         "opcodes": [],
         "type": "bool"
     },

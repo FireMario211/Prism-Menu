@@ -2,7 +2,7 @@
 A mod menu made in Geode for Geometry Dash
 
 # TODOs (Based on whats next)
-- Add "No Shaders"
+- Added Vietnamese Translations.
 - Add "uncomplete level" hack
 - Add a "First Start" menu when you install prism for the first time (Like, ask what language, theme, etc). Only do this when the user clicks on the prism button, and not show again after doing it unless they reset defaults.
 - Fix bug with input button not working for button position on android (ok why cant i reproduce this now wth)
@@ -21,8 +21,6 @@ A mod menu made in Geode for Geometry Dash
 - Add "No Camera Movement" (basically removes all 2.2 camera stuff and only aims the camera at the player)
 - Add menu scale for the cocos ui
 - Add "Custom Object Bypass" (basically allows you to store more than 1000 objects in custom object)
-- Add "Show Hitboxes" (Basically enables hitbox even if not in practice mode)
-- Add "Show Hitbox on Death" & "Hitbox Trail"
 - (Possibly?) Fix FPS Bypass, or add "Show FPS" for Android users. (The func exists, just not visible to the end user lol)
 - Allow for resizing the menu with a minimum size and maximum size (Only imgui)
 - Add animated background support (Custom theme only unless I add a theme that supports it)

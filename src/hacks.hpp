@@ -115,8 +115,7 @@ class Hacks {
             "Instant Mirror Portal",
             "Show Hitboxes",
             "No Shaders",
-            "Disable Camera Effects",
-            "Transparent BG"
+            "Disable Camera Effects"
         };
     }
     static bool isCheating();

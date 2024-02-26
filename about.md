@@ -36,5 +36,6 @@ Press on the circle button located on the left corner, or press `Tab` to open th
 * KONDIROTSU - Translations for Polish
 * olaf_294 - Translations for Polish
 * hori - Translations for Malay
+* slideglide - Translations for Turkish
 
 Send any suggestions or report any issues to the GitHub Repository or Discord Server. I hope you enjoy using the mod!

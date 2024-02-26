@@ -11,9 +11,6 @@ class Lang {
         static std::unique_ptr<Lang> getLanguage();
         static std::unique_ptr<Lang> get(int langId) {
             auto lang = std::make_unique<Lang>();
-            // 0 = English
-            // 1 = Spanish
-            // 2 = Russian
             if (langId > 0) {
                 std::string file = "{}";
                 switch (langId) {
@@ -45,6 +42,15 @@ class Lang {
                     case 9: // Malay
                         file = Hacks::readFile("malay.json");
                         break;
+                    case 10:
+                        file = Hacks::readFile("turkish.json");
+                        break;
+                    case 11: // Japanese
+                        file = Hacks::readFile("japanese.json");
+                        break;
+                    case 12: // Vietnamese
+                        file = Hacks::readFile("vietnamese.json");
+                        break;
                     default: // anything else should be discarded
                         langId = 0;
                         break;
@@ -63,7 +69,7 @@ class Lang {
             return nullptr;
         }
         std::string name(std::string key) {
-            if (this->langId > 10) this->langId = 0; // for some reason it goes to 72655368 which makes ZERO sense
+            if (this->langId > 50) this->langId = 0; // for some reason it goes to 72655368 which makes ZERO sense
             if (this->langId == 0) return key;
             auto obj = this->find(key);
             if (obj == nullptr) return key;

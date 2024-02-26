@@ -222,8 +222,14 @@ class $modify(MenuLayer) {
                                     if (name == "FPS Bypass") {
                                         // from mats fps unlocker
                                         //Hacks::Settings::setSettingValue(&settings, *hack, hack->value.floatValue);
+                                        
+                                        auto GM = GameManager::sharedState();
                                         auto app = CCApplication::sharedApplication();
                                         app->setAnimationInterval(1.0 / static_cast<double>(hack->value.intValue));
+                                        // ^^^ is this even necessary
+                                        GM->m_customFPSTarget = hack->value.intValue;
+                                        GM->setGameVariable("0116", true);
+                                        GM->updateCustomFPS();
                                     } else if (name == "Button Position X") {
                                         Hacks::Settings::setSettingValue(&settings, *hack, hack->value.intValue);
                                         if (prismButton != nullptr) prismButton->setPositionX(hack->value.intValue);
@@ -362,7 +368,7 @@ class $modify(MenuLayer) {
                                             #ifdef GEODE_IS_ANDROID 
                                             VideoOptionsLayer::create()->show();
                                             #else 
-                                            FLAlertLayer::create("Error", "This option can only be used on <cy>Android</c>!", "OK")->show();
+                                            FLAlertLayer::create("Error", "This option can only be used on <cy>Android</c> and <cy>Mac</c>!", "OK")->show();
                                             #endif
                                         }
                                         ImGui::OpenPopup(name.c_str());

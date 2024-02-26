@@ -1,6 +1,7 @@
 #pragma once
 #include <Geode/Geode.hpp>
 #include <Geode/Bindings.hpp>
+#include <Geode/ui/TextInput.hpp>
 #include "Languages.hpp"
 // TODO: Use custom box texture with ->setColor
 
@@ -11,7 +12,7 @@ class PrismUIButton : public CCNode, public TextInputDelegate {
         CCMenu* menu;
         HackItem* m_hack;
         Slider* m_slider;
-        InputNode* m_input;
+        TextInput* m_input;
         Lang* currentLanguage;
         bool editedInputNode = false;
         virtual bool init(HackItem* hack);
@@ -29,7 +30,7 @@ class PrismUIButton : public CCNode, public TextInputDelegate {
     public:
         CCMenu* getMenu() { return menu; }
         Slider* getSlider() { return m_slider; }
-        InputNode* getInputNode() { return m_input; }
+        TextInput* getInputNode() { return m_input; }
         HackItem* getHack() { return m_hack; }
 
         void onInfoBtn(CCObject*);
