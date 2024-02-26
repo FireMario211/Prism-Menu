@@ -368,7 +368,7 @@ class $modify(MenuLayer) {
                                             #ifdef GEODE_IS_ANDROID 
                                             VideoOptionsLayer::create()->show();
                                             #else 
-                                            FLAlertLayer::create("Error", "This option can only be used on <cy>Android</c> and <cy>Mac</c>!", "OK")->show();
+                                            FLAlertLayer::create("Error", "This option can only be used on <cy>Android</c>!", "OK")->show();
                                             #endif
                                         }
                                         ImGui::OpenPopup(name.c_str());

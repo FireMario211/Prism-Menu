@@ -7,9 +7,7 @@ using namespace geode::prelude;
 #include <Geode/modify/PlayerObject.hpp>
 #include <Geode/modify/HardStreak.hpp>
 #include <Geode/modify/GJBaseGameLayer.hpp>
-#ifndef GEODE_IS_MACOS
 #include <Geode/modify/CCDrawNode.hpp>
-#endif
 
 class $modify(PlayerObject) {
     bool isActuallyDart;
@@ -136,9 +134,9 @@ class $modify(GJBaseGameLayer) {
 #endif
 };
 
-#ifndef GEODE_IS_MACOS
 // Solid Wave Trail
 class $modify(CCDrawNode) {
+#ifndef GEODE_IS_MACOS // it keeps telling me "oh its void! not bool!"
     bool drawPolygon(CCPoint *p0, unsigned int p1, const ccColor4F &p2, float p3, const ccColor4F &p4) {
         if (!Hacks::isHackEnabled("Solid Wave Trail")) return CCDrawNode::drawPolygon(p0,p1,p2,p3,p4);
         if (p2.r == 1.F && p2.g == 1.F && p2.b == 1.F && p2.a != 1.F) return true; // tried doing just p2.a != 1.F but uh
@@ -146,5 +144,13 @@ class $modify(CCDrawNode) {
         this->setZOrder(-1); // ok but why
         return CCDrawNode::drawPolygon(p0,p1,p2,p3,p4);
     }
-};
+#else 
+    void drawPolygon(CCPoint *p0, unsigned int p1, const ccColor4F &p2, float p3, const ccColor4F &p4) {
+        if (!Hacks::isHackEnabled("Solid Wave Trail")) return CCDrawNode::drawPolygon(p0,p1,p2,p3,p4);
+        if (p2.r == 1.F && p2.g == 1.F && p2.b == 1.F && p2.a != 1.F) return; // tried doing just p2.a != 1.F but uh
+        this->setBlendFunc(CCSprite::create()->getBlendFunc());
+        this->setZOrder(-1); // ok but why
+        return CCDrawNode::drawPolygon(p0,p1,p2,p3,p4);
+    }
 #endif
+};

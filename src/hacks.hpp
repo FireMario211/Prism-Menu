@@ -327,7 +327,7 @@ class Hacks {
         if (!Hacks::isHackEnabled("Speedhack Audio")) {
             pitch = 1.0F;
         }
-#ifndef GEODE_IS_MACOS
+#ifndef GEODE_IS_MACOS // TODO: figure out why it turns to creepypasta when tuning down speedhack
         auto fmod = FMODAudioEngine::sharedEngine();
         FMOD_RESULT result; // ensuring
         FMOD::ChannelGroup* master_group = nullptr;

@@ -79,7 +79,9 @@ class $modify(GJGameLevel) {
 };
 
 // No Transition
+#ifndef GEODE_IS_MACOS
 class $modify(CCTransitionFade) {
+    // I still dont understand why this cant hooked on mac, so i resorted to manually hooking!
     bool initWithDuration(float t, cocos2d::CCScene* scene, cocos2d::ccColor3B const& color)  {
         if (!Hacks::isHackEnabled("No Transition") || Hacks::isHackEnabled("Enable Patching")) {
             return CCTransitionFade::initWithDuration(t, scene, color);
@@ -88,6 +90,26 @@ class $modify(CCTransitionFade) {
         }
     }
 };
+#else // mac
+// attempt to fix the hook not working
+CCTransitionFade* CCTransitionFade_Create(float t, cocos2d::CCScene* scene) {
+    if (!Hacks::isHackEnabled("No Transition") || Hacks::isHackEnabled("Enable Patching")) {
+        return CCTransitionFade::create(t, scene);
+    } else {
+        return CCTransitionFade::create(0.0F, scene);
+    }
+}
+
+$execute {
+    Mod::get()->hook(
+        reinterpret_cast<void*>(geode::base::get() + 0xd4dd0), // address
+        &CCTransitionFade_Create, // detour
+        "CCTransitionFade::create", // display name, shows up on the console
+        tulip::hook::TulipConvention::Stdcall // calling convention
+    );
+}
+#endif
+
 // Transparent BG
 class $modify(CCSprite) {
     bool isGradient;

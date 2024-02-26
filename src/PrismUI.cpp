@@ -352,11 +352,7 @@ void PrismUIButton::onBtn(CCObject* ret) {
         #ifdef GEODE_IS_ANDROID 
         VideoOptionsLayer::create()->show();
         #else 
-        #ifdef GEODE_IS_MACOS
-        VideoOptionsLayer::create()->show();
-        #else
-        FLAlertLayer::create("Error", "This option can only be used on <cy>Android</c> and <cy>Mac</c>!", "OK")->show();
-        #endif
+        FLAlertLayer::create("Error", "This option can only be used on <cy>Android</c>!", "OK")->show();
         #endif
     } else {
         // NO SPOILERS!

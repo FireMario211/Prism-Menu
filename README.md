@@ -10,6 +10,7 @@ A mod menu made in Geode for Geometry Dash
 - Added Japanese Translations. (bruh 1000 characters :()
 - Add Arabic translations (this ones gonna be hard)
 - Add credits screen for cocos2d ui
+- get fps bypass working on mac os
 - Allow changing the prism button icon (different colors, up to the server icon style)
 - Add a toggle to "Lock 2.21 icons"
 - Add "Transparent Lists" (look in https://discord.com/channels/911701438269386882/911702353546215524/1205501190025117779)
