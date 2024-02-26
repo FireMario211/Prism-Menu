@@ -46,6 +46,8 @@ matjson::Array Themes::getCurrentThemes() {
     return currentThemes;
 }
 
+#ifndef NO_IMGUI
+
 ImVec4 Themes::RGBAToImVec4(matjson::Value rgba) {
     float currentOpacity = Hacks::getHack("Menu Opacity")->value.floatValue;
     rgba = rgba.as_array();
@@ -67,36 +69,13 @@ ImU32 Themes::RGBAToImU32(matjson::Value rgba) {
         alpha
     );
 }
-
-void Themes::RGBAToCC(matjson::Value rgba, CCNodeRGBA* obj) {
-    float currentOpacity = Hacks::getHack("Menu Opacity")->value.floatValue;
-    rgba = rgba.as_array();
-    float alpha = rgba[3].as_double();
-    ccColor3B color;
-    color.r = rgba[0].as_double();
-    color.g = rgba[1].as_double();
-    color.b = rgba[2].as_double();
-    obj->setColor(color);
-    obj->setOpacity((alpha == -1) ? currentOpacity * 255.0F : alpha);
-}
-void Themes::RGBAToCC(matjson::Value rgba, CCLabelBMFont* obj) {
-    float currentOpacity = Hacks::getHack("Menu Opacity")->value.floatValue;
-    rgba = rgba.as_array();
-    float alpha = rgba[3].as_double();
-    ccColor3B color;
-    color.r = rgba[0].as_double();
-    color.g = rgba[1].as_double();
-    color.b = rgba[2].as_double();
-    obj->setColor(color);
-    obj->setOpacity((alpha == -1) ? currentOpacity * 255.0F : alpha);
-}
-
 void Themes::UpdateOpacity(matjson::Object theme) {
     ImGuiStyle& style = ImGui::GetStyle();
     style.Colors[ImGuiCol_WindowBg] = RGBAToImVec4(theme["BG"]);
     style.Colors[ImGuiCol_ChildBg] = RGBAToImVec4(theme["BG"]);
     style.Colors[ImGuiCol_PopupBg] = RGBAToImVec4(theme["BG"]);
 }
+
 
 // other funcs
 void Themes::LoadTheme(matjson::Object theme) {
@@ -218,3 +197,28 @@ void Themes::LoadTheme(matjson::Object theme) {
     "TextSelectedBg": [60, 55, 152, 255]
     */
 }
+#endif
+
+void Themes::RGBAToCC(matjson::Value rgba, CCNodeRGBA* obj) {
+    float currentOpacity = Hacks::getHack("Menu Opacity")->value.floatValue;
+    rgba = rgba.as_array();
+    float alpha = rgba[3].as_double();
+    ccColor3B color;
+    color.r = rgba[0].as_double();
+    color.g = rgba[1].as_double();
+    color.b = rgba[2].as_double();
+    obj->setColor(color);
+    obj->setOpacity((alpha == -1) ? currentOpacity * 255.0F : alpha);
+}
+void Themes::RGBAToCC(matjson::Value rgba, CCLabelBMFont* obj) {
+    float currentOpacity = Hacks::getHack("Menu Opacity")->value.floatValue;
+    rgba = rgba.as_array();
+    float alpha = rgba[3].as_double();
+    ccColor3B color;
+    color.r = rgba[0].as_double();
+    color.g = rgba[1].as_double();
+    color.b = rgba[2].as_double();
+    obj->setColor(color);
+    obj->setOpacity((alpha == -1) ? currentOpacity * 255.0F : alpha);
+}
+

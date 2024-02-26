@@ -345,7 +345,7 @@
         }
     },
     {
-        "Show tooltips": {
+        "Show Tooltips": {
             "name": "Araç İpuçlarını Göster",
             "desc": "Modların üzerine gelindiğinde araç ipuçlarının gösterilip gösterilmeyeceğini ayarlamanızı sağlar."
         }

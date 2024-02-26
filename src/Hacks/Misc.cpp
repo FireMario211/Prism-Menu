@@ -3,6 +3,8 @@
 using namespace geode::prelude;
 #include <Geode/modify/ShaderLayer.hpp>
 #include <Geode/modify/PlayLayer.hpp>
+#include <Geode/modify/CCDrawNode.hpp>
+#include <Geode/modify/LevelEditorLayer.hpp>
 
 // no create method?????????????
 class $modify(ShaderLayer) {
@@ -16,6 +18,85 @@ class $modify(ShaderLayer) {
 class $modify(PlayLayer) {
     void postUpdate(float dt) {
         if (Hacks::isHackEnabled("Disable Camera Effects")) PlayLayer::resetCamera();
+        /*char a[offsetof(GJBaseGameLayer, m_debugDrawNode)];
+        a = 1;
+        char b[offsetof(GJBaseGameLayer, m_isDebugDrawEnabled)];
+        b = 1;*/
         PlayLayer::postUpdate(dt);
     }
 };
+
+#ifndef GEODE_IS_MACOS // Show Hitboxes
+inline void showLevelEditorHitboxes(LevelEditorLayer* ptr, bool mode) {
+    GameManager::get()->setGameVariable("0045", mode);
+    ptr->m_isDebugDrawEnabled = mode;
+}
+
+void drawPlayerHitboxes(CCDrawNode* drawNode, PlayerObject* player) {
+    auto innerRect = player->getObjectRect(0.25f, 0.25f);
+    drawNode->drawRect(
+            CCPoint(innerRect.getMinX(), innerRect.getMinY()),
+            CCPoint(innerRect.getMaxX(), innerRect.getMaxY()),
+            ccColor4F(0.0f, 0.0f, 0.0f, 0.0f),
+            0.25f, ccColor4F(0.0f, 0.0f, 1.0f, 1.0f)
+    );
+    auto outerRect = player->getObjectRect();
+    drawNode->drawRect(
+            CCPoint(outerRect.getMinX(), outerRect.getMinY()),
+            CCPoint(outerRect.getMaxX(), outerRect.getMaxY()),
+            ccColor4F(0.0f, 0.0f, 0.0f, 0.0f),
+            0.25f, ccColor4F(1.0f, 0.0f, 0.0f, 1.0f)
+    );
+    drawNode->drawCircle(
+            CCPoint(outerRect.getMidX(), outerRect.getMidY()),
+            outerRect.getMaxX() - outerRect.getMidX(),
+            ccColor4F(0.0f, 0.0f, 0.0f, 0.0f),
+            0.25f, ccColor4F(1.0f, 0.2f, 0.2f, 1.0f),
+            1000
+    );
+}
+
+class $modify(LevelEditorLayer) {
+    bool lastShowHitboxes = false;
+    void updateVisibility(float p0) {
+        LevelEditorLayer::updateVisibility(p0);
+        bool showHitboxes = Hacks::isHackEnabled("Show Hitboxes");
+        if (showHitboxes) {
+            if (!m_isDebugDrawEnabled) showLevelEditorHitboxes(this, true);
+            drawPlayerHitboxes(m_debugDrawNode, m_player1);
+        }
+        else if (showHitboxes != m_fields->lastShowHitboxes)
+            showLevelEditorHitboxes(this, false);
+        m_fields->lastShowHitboxes = showHitboxes;
+    }
+};
+
+class $modify(PlayLayer) {
+    void updateVisibility(float p0) {
+        //log::info("{} or {}", sizeof(m_debugDrawNode), sizeof(*m_debugDrawNode));
+        //log::info("and {:#x}", offsetof(GJBaseGameLayer, m_debugDrawNode));
+        PlayLayer::updateVisibility(p0);
+        if (Hacks::isHackEnabled("Show Hitboxes") || (Hacks::isHackEnabled("Show Hitboxes on Death") && m_player1->m_isDead)) {
+            if (!m_debugDrawNode->isVisible()) m_debugDrawNode->setVisible(true);
+            PlayLayer::updateDebugDraw();
+            drawPlayerHitboxes(m_debugDrawNode, m_player1);
+        }
+        else if (m_debugDrawNode->isVisible() && !(m_isPracticeMode && m_isDebugDrawEnabled))
+            m_debugDrawNode->setVisible(false);
+    }
+};
+
+class $modify(CCDrawNode) {
+    bool drawPolygon(cocos2d::CCPoint* p0, unsigned int p1, const cocos2d::ccColor4F& p2,
+                     float stroke, const cocos2d::ccColor4F& p4) {
+        auto playLayer = PlayLayer::get();
+        auto editLayer = LevelEditorLayer::get();
+        GJBaseGameLayer* baseLayer = nullptr;
+        if (playLayer) baseLayer = typeinfo_cast<GJBaseGameLayer*>(playLayer);
+        else if (editLayer) baseLayer = typeinfo_cast<GJBaseGameLayer*>(editLayer);
+        if (baseLayer && this == baseLayer->m_debugDrawNode)
+            stroke *= Hacks::getHack("Hitbox Stroke")->value.floatValue;
+        return CCDrawNode::drawPolygon(p0, p1, p2, stroke, p4);
+    }
+};
+#endif

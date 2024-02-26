@@ -356,7 +356,7 @@ void PrismUIButton::onBtn(CCObject* ret) {
         #endif
     } else {
         // NO SPOILERS!
-        //GatoSim::onButton();
+        GatoSim::onButton();
     }
 }
 
@@ -453,9 +453,8 @@ void PrismUIButton::textChanged(CCTextInputNode* input) {
     auto max = m_hack->data.get<int>("max");
     if (m_hack->value.type == ValueType::Int) {
         int value = min;
-        try { // hA
-            value = std::stoi(input->getString());
-        } catch (const std::exception& e) {
+        std::istringstream iss(input->getString());
+        if (!(iss >> value)) {
             auto def = m_hack->data.get<int>("default");
             value = def;
         }
@@ -472,9 +471,8 @@ void PrismUIButton::textChanged(CCTextInputNode* input) {
         Hacks::Settings::setSettingValue(&settings, *m_hack, m_hack->value.intValue);
     } else { // assume float
         float value = min;
-        try { // hA
-            value = std::stof(input->getString());
-        } catch (const std::exception& e) {
+        std::istringstream iss(input->getString());
+        if (!(iss >> value)) {
             auto def = m_hack->data.get<float>("default");
             value = def;
         }

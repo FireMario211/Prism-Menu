@@ -12,7 +12,7 @@ export WINSDK_VER=10.0.22000
 export LLVM_VER=15
 export CLANG_VER=$LLVM_VER
 
-#export NO_IMGUI=1
+export NO_IMGUI=1
 
 # you can also use `-G Ninja` here
 #-DCMAKE_BUILD_TYPE=Release -B build-linux \

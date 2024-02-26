@@ -345,8 +345,8 @@
         }
     },
     {
-        "Show tooltips": {
-            "name": "Show tooltips",
+        "Show Tooltips": {
+            "name": "Show Tooltips",
             "desc": "Whether or not tooltips should be shown when hovering over mods."
         }
     },

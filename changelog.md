@@ -13,6 +13,7 @@
     - Fixed bug with Jump Hack not working when upside down.
     - Fixed issue with "Show Graphic Options" not working on ImGui.
     - Fixed issue with Accurate Percentage not working sometimes in Test Mode.
+    - Fixed issue where if you erase all numbers in an input, it will crash on Android.
 # v1.4.2
     - Fixed bug with No Mirror Transition & Instant Mirror Portal if "No Effect" is applied.
     - Fixed speedhack not syncing with gameplay correctly.

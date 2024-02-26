@@ -39,6 +39,7 @@ public:
       : SettingValue(key, modID), m_hackValues(hacks.m_hackValues) {}
 
     bool load(matjson::Value const& json) override {
+        // how this doesnt crash on android is beyond me
         try {
             //m_pos = static_cast<int>(json.as<int>());
             m_hackValues = json.as_array();

@@ -41,15 +41,14 @@
         "type": "bool"
     },
     {
-        "name": "Show Graphic Options",
-        "desc": "Shows you Geometry Dash's graphic options! Useful for Android as the option is normally not available.",
-        "opcodes": [],
-        "type": "button",
-        "default": "button"
-    },
-    {
         "name": "Show Hitboxes",
         "desc": "Show player, obstacle, and solid hitboxes.",
+        "opcodes": [],
+        "type": "bool"
+    },
+    {
+        "name": "Show Hitboxes on Death",
+        "desc": "Shows hitboxes when you die, and hides them when you respawn.",
         "opcodes": [],
         "type": "bool"
     },
@@ -63,9 +62,10 @@
         "default": 1
     },
     {
-        "name": "Show Hitboxes on Death",
-        "desc": "Shows hitboxes when you die, and hides them when you respawn.",
+        "name": "Show Graphic Options",
+        "desc": "Shows you Geometry Dash's graphic options! Useful for Android as the option is normally not available.",
         "opcodes": [],
-        "type": "bool"
+        "type": "button",
+        "default": "button"
     }
 ]
