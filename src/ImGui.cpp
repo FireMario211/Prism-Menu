@@ -336,6 +336,7 @@ class $modify(MenuLayer) {
                                 auto type = obj.get<std::string>("type");
                                 if (type == "button") {
                                     if (ImGui::Button(currentLanguage->name(name).c_str())) {
+                                        // TODO: move this to hacks.cpp
                                         if (name == "Restore Defaults") {
                                             Hacks::processJSON(true);
                                         } else if (name == "Import Theme") {
@@ -370,6 +371,8 @@ class $modify(MenuLayer) {
                                             #else 
                                             FLAlertLayer::create("Error", "This option can only be used on <cy>Android</c>!", "OK")->show();
                                             #endif
+                                        } else { // how will this happen
+                                            FLAlertLayer::create("unimplemented", "this button is not implemented", "okay")->show();
                                         }
                                         ImGui::OpenPopup(name.c_str());
 

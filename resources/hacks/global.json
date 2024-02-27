@@ -118,5 +118,12 @@
         "opcodes": [],
         "type": "button",
         "default": "a"
+    },
+    {
+        "name": "Uncomplete Level",
+        "desc": "Resets normal and practice percentages, and allows you to decrease your star count if you completed the level!",
+        "opcodes": [],
+        "type": "button",
+        "default": "button"
     }
 ]

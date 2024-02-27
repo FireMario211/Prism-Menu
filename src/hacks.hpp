@@ -122,6 +122,8 @@ class Hacks {
 
     static bool isAutoSafeModeActive();
 
+    static void resetLevel(LevelInfoLayer* levelInfoLayer, GJGameLevel* level);
+
     class Settings {
         public: 
             static bool settingContainsHack(const matjson::Array& objArr, const std::string& name);

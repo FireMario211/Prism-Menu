@@ -354,6 +354,13 @@ void PrismUIButton::onBtn(CCObject* ret) {
         #else 
         FLAlertLayer::create("Error", "This option can only be used on <cy>Android</c>!", "OK")->show();
         #endif
+    } else if (name == "Uncomplete Level") {
+        if (auto levelInfoLayer = typeinfo_cast<LevelInfoLayer*>(CCScene::get()->getChildByID("LevelInfoLayer"))) {
+            // i forgor why i didnt do this and did for loop
+            Hacks::resetLevel(levelInfoLayer, levelInfoLayer->m_level);
+        } else {
+            FLAlertLayer::create("Error", "You are not <cy>currently in the level page</c>! Please enter in a level page in order to <cg>reset the stats</c>.", "OK")->show();
+        }
     } else {
         // NO SPOILERS!
         GatoSim::onButton();
@@ -686,13 +693,11 @@ double calculateTextScale(const std::string& inputString, double minScale = 0.2,
 }
 
 void PrismUIButton::onInfoBtn(CCObject* ret) {
-    // will do other languages later, cyrillic is hard
-    // TODO: create custom FLAlertLayer but instead use the Prism font instead of bigFont.fnt
     HackItem* hack = static_cast<HackItem*>(static_cast<PrismUIButton*>(ret)->getUserData());
     auto currentLanguage = Lang::getLanguage();
     auto name = currentLanguage->name(hack->name);
     auto desc = currentLanguage->desc(hack->name, hack->desc);
-    auto flAlert = FLAlertLayer::create(name.c_str(), "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "OK");
+    auto flAlert = FLAlertLayer::create(name.c_str(), "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "OK"); // internal screaming
     TextArea* lines;
     CCLabelBMFont* title;
     for (int i = 0; i < flAlert->m_mainLayer->getChildrenCount(); i++) {
@@ -859,10 +864,12 @@ void PrismUI::onClose(cocos2d::CCObject* pSender) {
         #ifndef GEODE_IS_DESKTOP
         for (size_t i = 0; i < CCScene::get()->getChildrenCount(); i++) {
             auto obj = CCScene::get()->getChildren()->objectAtIndex(i);
+            if (i > 10) break;
             if (Utils::getNodeName(obj) == "PauseLayer") {
                 log::debug("Gave touch priority back to PauseLayer");
                 auto pauseLayer = static_cast<PauseLayer*>(obj);
                 cocos::handleTouchPriority(pauseLayer);
+                break;
             }
         }
         #endif

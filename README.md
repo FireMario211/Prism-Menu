@@ -3,7 +3,6 @@ A mod menu made in Geode for Geometry Dash
 
 # TODOs (Based on whats next)
 - Added Vietnamese Translations.
-- Add "uncomplete level" hack
 - Add a "First Start" menu when you install prism for the first time (Like, ask what language, theme, etc). Only do this when the user clicks on the prism button, and not show again after doing it unless they reset defaults.
 - Fix bug with input button not working for button position on android (ok why cant i reproduce this now wth)
 - Add a "Font Downloader" for languages like Japanese, Chinese, Arabic, etc

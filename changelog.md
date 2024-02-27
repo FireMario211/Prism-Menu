@@ -1,6 +1,7 @@
 # v1.5.0
     - Added Auto Safe Mode.
     - Added No Shaders.
+    - Added Uncomplete Level.
     - Allowed changing "percent digits".
     - Added Show Hitboxes.
     - Added Hitbox Stroke.
