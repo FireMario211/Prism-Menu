@@ -361,6 +361,8 @@ void PrismUIButton::onBtn(CCObject* ret) {
         } else {
             FLAlertLayer::create("Error", "You are not <cy>currently in the level page</c>! Please enter in a level page in order to <cg>reset the stats</c>.", "OK")->show();
         }
+    } else if (name == "mow.") {
+        FLAlertLayer::create("meow.", "coming soon... in a <cy>future update</c>", "cat")->show();
     } else {
         // NO SPOILERS!
         GatoSim::onButton();

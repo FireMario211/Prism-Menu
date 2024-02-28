@@ -121,7 +121,7 @@
     },
     {
         "name": "Uncomplete Level",
-        "desc": "Resets normal and practice percentages, and allows you to decrease your star count if you completed the level!",
+        "desc": "Resets normal and practice percentages, and allows you to decrease your star count if you completed the level! (This is unstable as of now)",
         "opcodes": [],
         "type": "button",
         "default": "button"

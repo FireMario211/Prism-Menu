@@ -54,7 +54,7 @@
     },
     {
         "name": "Hitbox Stroke",
-        "desc": "Stroke 'width' when drawing hitboxes",
+        "desc": "Stroke 'width' when drawing hitboxes.",
         "opcodes": [],
         "type": "float",
         "min": 0.1,

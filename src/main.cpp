@@ -155,10 +155,6 @@ CircleButtonSprite* createCheatIndicator(bool isHacking) {
     return cheatIndicator;
 }
 
-#ifndef GEODE_IS_MACOS
-
-#endif
-
 class $modify(PlayLayer) {
     float previousPositionX = 0.0F;
     GameObject* antiCheatObject; // removing after lol

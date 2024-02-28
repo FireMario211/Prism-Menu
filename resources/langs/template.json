@@ -461,5 +461,54 @@
             "name": "Solid Wave Trail",
             "desc": "Removes the blending of both icon colors on the wave trail."
         }
+    },
+
+    {
+        "Extra Percent Digits": {
+            "name": "Extra Percent Digits",
+            "desc": "Number of extra decimal digits to be displayed with Accurate Percentage."
+        }
+    },
+    {
+        "Uncomplete Level": {
+            "name": "Uncomplete Level",
+            "desc": "Resets normal and practice percentages, and allows you to decrease your star count if you completed the level!"
+        }
+    },
+    {
+        "No Shaders": {
+            "name": "No Shaders",
+            "desc": "Disables all camera shader effects."
+        }
+    },
+    {
+        "Disable Camera Effects": {
+            "name": "Disable Camera Effects",
+            "desc": "Disables any camera effects, and only focuses the camera on the player. This might break all gamemodes except Cube and Robot."
+        }
+    },
+    {
+        "Show Hitboxes": {
+            "name": "Show Hitboxes",
+            "desc": "Show player, obstacle, and solid hitboxes."
+        }
+    },
+    {
+        "Show Hitboxes on Death": {
+            "name": "Show Hitboxes on Death",
+            "desc": "Shows hitboxes when you die, and hides them when you respawn."
+        }
+    },
+    {
+        "Hitbox Stroke": {
+            "name": "Hitbox Stroke",
+            "desc": "Stroke 'width' when drawing hitboxes."
+        }
+    },
+    {
+        "Suicide": {
+            "name": "Suicide",
+            "desc": "Kills the player repeatedly."
+        }
     }
 ]

@@ -91,30 +91,32 @@ class $modify(GJGameLevel) {
 //GJGameLevel::savePercentage
 ////GJGameLevel::saveNewScore
 
+// sorry, some people are rushing me to release this, youll get your chance Mac OS users.
+#ifndef GEODE_IS_MACOS
 void proceedWithReset(LevelInfoLayer* levelInfoLayer, GJGameLevel* level, bool resetStars, bool resetCoins) {
     geode::createQuickPopup(
-            "Confirm",
-            fmt::format("Are you absolutely sure you want to <cr>reset stats</c> for <cy>{}</c>?\nYou <cr>cannot undo this</c> after it's done!", level->m_levelName),
-            "Cancel", "Im Sure",
+            "Final Warning",
+            fmt::format("Are you absolutely sure you want to <cr>reset stats</c> for <cy>{}</c>?\nYou <cr>cannot undo this</c> after it's done!\n\nPlease note that <cy>Uncomplete Level</c> is considered <cr>unstable</c>, meaning it may or may not work, or break something. Make sure to <cy>save backup</c> or save your local files before doing this. (you can blame the people who rushed me to work on this)", level->m_levelName),
+            "Cancel", "I am sure.",
         [level, levelInfoLayer, resetStars, resetCoins](auto, bool btn2) {
             if (btn2) {
                 auto GLM = GameLevelManager::sharedState();
                 auto GSM = GameStatsManager::sharedState();
-                CCArray* levelids = GSM->m_completedLevels->allKeys();
+                /*CCArray* levelids = GSM->m_completedLevels->allKeys();
                 CCObject* obj;
                 CCARRAY_FOREACH(levelids, obj) {
                     std::string levelid = (static_cast<CCString*>(obj))->getCString();
                     std::cout << levelid << std::endl;
                 }
+                // wth is trueString
                 std::cout << GSM->m_trueString->getCString() << std::endl;
-                std::cout << GSM->m_completedLevels->count() << std::endl;
-                //CCDictionary::setObject(GSM->m_completedLevels
+                std::cout << GSM->m_completedLevels->count() << std::endl;*/
                 if (level->m_normalPercent >= 100 && GSM->hasCompletedLevel(level)) {
                     int levelid = level->m_levelID;
                     GSM->setStat("4", GSM->getStat("4") - 1); // completed levels
                     GSM->m_completedLevels->removeObjectForKey(fmt::format("c_{}", levelid));
                     if (resetStars) {
-                        GSM->m_completedLevels->removeObjectForKey(fmt::format("unique_{}", levelid));
+                        //GSM->m_completedLevels->removeObjectForKey(fmt::format("unique_{}", levelid));
                         GSM->m_completedLevels->removeObjectForKey(fmt::format("star_{}", levelid));
                         GSM->m_completedLevels->removeObjectForKey(fmt::format("demon_{}", levelid));
                         if (level->isPlatformer()) {
@@ -134,18 +136,22 @@ void proceedWithReset(LevelInfoLayer* levelInfoLayer, GJGameLevel* level, bool r
                 level->m_newNormalPercent2 = 0;
                 level->m_isChkValid = 0;
                 level->m_chk = 0;
-                level->m_attempts = 0;
                 level->m_coinsVerified = 0;
                 GLM->deleteLevel(level);
                 levelInfoLayer->onBack(nullptr);
-                FLAlertLayer::create("yes", "ok", "ok")->show();
+                FLAlertLayer::create("Uncompleted Level", fmt::format("The level <cy>{}</c> ({}) has been reset!\nYou will need to download it again in order to play it.", level->m_levelName, level->m_levelID.value()), "OK")->show();
             }
         }
     );
     
 }
 
+#endif
+
 void Hacks::resetLevel(LevelInfoLayer* levelInfoLayer, GJGameLevel* level) {
+#ifdef GEODE_IS_MACOS 
+    FLAlertLayer::create("Notice", "This currently does not work on <cy>Mac OS</c>\n(you can blame the people who rushed me to work on this)")
+#else 
     if (level->m_dailyID > 0) {
         FLAlertLayer::create("Notice", "This currently does not work on <cy>daily</c> or <cy>weekly</c> levels.", "OK")->show();
         return;
@@ -169,7 +175,7 @@ void Hacks::resetLevel(LevelInfoLayer* levelInfoLayer, GJGameLevel* level) {
     } else {
         geode::createQuickPopup(
             "Confirm",
-            fmt::format("Are you sure you want to <cr>reset the stats</c> for <cy>{}</c>?\nThis will clear <cg>normal percentages</c>, <cy>attempts</c>, <cy>jumps</c>, etc...", level->m_levelName),
+            fmt::format("Are you sure you want to <cr>reset the stats</c> for <cy>{}</c>?\nThis will clear <cg>normal percentages</c>, <cy>attempts</c>, <cy>jumps</c>, etc...\n\nPlease note that <cy>Uncomplete Level</c> is considered <cr>unstable</c>, meaning it may or may not work, or break something. (you can blame the people who rushed me to work on this)", level->m_levelName),
             "No", "Yes",
             [level, levelInfoLayer](auto, bool btn2) {
                 if (btn2) { // yes
@@ -181,6 +187,8 @@ void Hacks::resetLevel(LevelInfoLayer* levelInfoLayer, GJGameLevel* level) {
                             [level, levelInfoLayer](auto, bool btn2) {
                                 if (btn2) {
                                     proceedWithReset(levelInfoLayer, level, level->m_stars > 0, level->m_coinsVerified > 0);
+                                } else {
+                                    proceedWithReset(levelInfoLayer, level, false, false);
                                 }
                             });
                     } else {
@@ -191,3 +199,4 @@ void Hacks::resetLevel(LevelInfoLayer* levelInfoLayer, GJGameLevel* level) {
         );
     }
 }
+#endif 
