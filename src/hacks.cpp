@@ -150,7 +150,7 @@ void proceedWithReset(LevelInfoLayer* levelInfoLayer, GJGameLevel* level, bool r
 
 void Hacks::resetLevel(LevelInfoLayer* levelInfoLayer, GJGameLevel* level) {
 #ifdef GEODE_IS_MACOS 
-    FLAlertLayer::create("Notice", "This currently does not work on <cy>Mac OS</c>\n(you can blame the people who rushed me to work on this)")
+    FLAlertLayer::create("Notice", "This currently does not work on <cy>Mac OS</c>\n(you can blame the people who rushed me to work on this)");
 #else 
     if (level->m_dailyID > 0) {
         FLAlertLayer::create("Notice", "This currently does not work on <cy>daily</c> or <cy>weekly</c> levels.", "OK")->show();
@@ -175,7 +175,7 @@ void Hacks::resetLevel(LevelInfoLayer* levelInfoLayer, GJGameLevel* level) {
     } else {
         geode::createQuickPopup(
             "Confirm",
-            fmt::format("Are you sure you want to <cr>reset the stats</c> for <cy>{}</c>?\nThis will clear <cg>normal percentages</c>, <cy>attempts</c>, <cy>jumps</c>, etc...\n\nPlease note that <cy>Uncomplete Level</c> is considered <cr>unstable</c>, meaning it may or may not work, or break something. (you can blame the people who rushed me to work on this)", level->m_levelName),
+            fmt::format("Are you sure you want to <cr>reset the stats</c> for <cy>{}</c>?\nThis will clear <cg>normal percentages</c>, <cy>attempts</c>, <cy>jumps</c>, etc...", level->m_levelName),
             "No", "Yes",
             [level, levelInfoLayer](auto, bool btn2) {
                 if (btn2) { // yes

@@ -5,7 +5,6 @@
 #include <Geode/utils/file.hpp>
 #include "PrismButton.hpp"
 #include "hacks.hpp"
-#include "Languages.hpp"
 #include "Themes.hpp"
 #include "PrismUI.hpp"
 #include "Utils.hpp"
@@ -15,8 +14,6 @@
 
 #include <iomanip>
 #include <string>
-#include <locale>
-#include <algorithm>
 
 using namespace geode::prelude;
 
@@ -181,7 +178,6 @@ class $modify(PlayLayer) {
     // Anticheat Bypass, Noclip, No Spikes, No Solids
     void destroyPlayer(PlayerObject *p0, GameObject *p1) {
         //bool m_isTestMode = *reinterpret_cast<bool*>(reinterpret_cast<uintptr_t>(this) + 0x413);
-        //std::cout << m_isTestMode << std::endl;
         if (Hacks::isHackEnabled("Enable Patching")) return PlayLayer::destroyPlayer(p0, p1);
         bool noclipDisabled = !Hacks::isHackEnabled("No Solids") && !Hacks::isHackEnabled("Noclip");
         if ((noclipDisabled && !Hacks::isHackEnabled("No Spikes"))) return PlayLayer::destroyPlayer(p0, p1);

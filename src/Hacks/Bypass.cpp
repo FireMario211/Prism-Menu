@@ -34,7 +34,6 @@ class $modify(GameStatsManager) {
     int getStat(char const* type) { // isnt this supposed to be int
         int ret = GameStatsManager::getStat(type);
         int typeInt = std::stoi(type);
-        //std::cout << fmt::format("type = {}, ret = {}", type, ret) << std::endl;
         if (typeInt == 8 && Hacks::isHackEnabled("Main Levels") && !Hacks::isHackEnabled("Enable Patching")) { // main level
             return 30;
         }

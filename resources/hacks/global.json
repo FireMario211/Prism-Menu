@@ -88,6 +88,13 @@
         "default": 4
     },
     {
+        "name": "Uncomplete Level",
+        "desc": "Resets normal and practice percentages, and allows you to decrease your star count if you completed the level! (This is unstable as of now)",
+        "opcodes": [],
+        "type": "button",
+        "default": "button"
+    },
+    {
         "name": "Speedhack",
         "desc": "Changes the speed of the game and audio.",
         "opcodes": [],
@@ -105,6 +112,7 @@
         "max": 1000,
         "default": 60
     },
+
     {
         "name": "Speedhack Audio",
         "desc": "Whether or not to also change the audio speed based on the speedhack value.",
@@ -118,12 +126,5 @@
         "opcodes": [],
         "type": "button",
         "default": "a"
-    },
-    {
-        "name": "Uncomplete Level",
-        "desc": "Resets normal and practice percentages, and allows you to decrease your star count if you completed the level! (This is unstable as of now)",
-        "opcodes": [],
-        "type": "button",
-        "default": "button"
     }
 ]

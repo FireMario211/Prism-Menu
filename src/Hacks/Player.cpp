@@ -94,7 +94,6 @@ class $modify(GJBaseGameLayer) {
     #ifndef GEODE_IS_MACOS
     // No Mirror Transition, Instant Mirror Portal
     void toggleFlipped(bool p0, bool p1) { // i spent a lot of time figuring out why CCActionTween wont hook, only to realize that p1 instantly transitions it
-        //std::cout << this->m_gameState.m_unk188 << std::endl;
         if (!Hacks::isHackEnabled("No Mirror Transition")) return GJBaseGameLayer::toggleFlipped(p0, (p1) ? p1 : Hacks::isHackEnabled("Instant Mirror Portal"));
     }
     #endif

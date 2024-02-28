@@ -355,7 +355,7 @@ void PrismUIButton::onBtn(CCObject* ret) {
         FLAlertLayer::create("Error", "This option can only be used on <cy>Android</c>!", "OK")->show();
         #endif
     } else if (name == "Uncomplete Level") {
-        if (auto levelInfoLayer = typeinfo_cast<LevelInfoLayer*>(CCScene::get()->getChildByID("LevelInfoLayer"))) {
+        if (auto levelInfoLayer = getChildOfType<LevelInfoLayer>(CCScene::get(), 0)) {
             // i forgor why i didnt do this and did for loop
             Hacks::resetLevel(levelInfoLayer, levelInfoLayer->m_level);
         } else {
@@ -510,7 +510,9 @@ void PrismUIButton::intChanged() {
 #endif 
         auto GM = GameManager::sharedState();
         GM->m_customFPSTarget = m_hack->value.intValue;
-        GM->setGameVariable("0116", true);
+        // they told me to try turning off vsync but it no work :(
+        // https://wyliemaster.github.io/gddocs/#/resources/client/gamesave/gv
+        GM->setGameVariable("0116", true); // gv_0116 	Use Custom FPS
         GM->updateCustomFPS();
     } else if (name == "Button Position X") {
         prismButton->setPositionX(m_hack->value.intValue);
