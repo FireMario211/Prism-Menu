@@ -150,7 +150,7 @@ void proceedWithReset(LevelInfoLayer* levelInfoLayer, GJGameLevel* level, bool r
 
 void Hacks::resetLevel(LevelInfoLayer* levelInfoLayer, GJGameLevel* level) {
 #ifdef GEODE_IS_MACOS 
-    FLAlertLayer::create("Notice", "This currently does not work on <cy>Mac OS</c>\n(you can blame the people who rushed me to work on this)");
+    FLAlertLayer::create("Notice", "This currently does not work on <cy>Mac OS</c>\n(you can blame the people who rushed me to work on this)", "OK")->show();
 #else 
     if (level->m_dailyID > 0) {
         FLAlertLayer::create("Notice", "This currently does not work on <cy>daily</c> or <cy>weekly</c> levels.", "OK")->show();
