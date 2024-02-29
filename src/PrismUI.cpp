@@ -68,7 +68,7 @@ int getYPosBasedOnCategory(int length) { // someone give me a proper math formul
         default: return 0;
     }*/
     if (length <= 8) return -100;
-    if (currentMenuIndexGD == 5) length += 1;
+    //if (currentMenuIndexGD == 5) length += 1;
     return (30 * length) - 350;
 }
 float getContentSizeBasedOnCategory(int length) { // someone give me a proper math formula ok thanks
@@ -90,7 +90,7 @@ float getContentSizeBasedOnCategory(int length) { // someone give me a proper ma
         default: return 320;
     }*/
     if (length <= 8) return 230;
-    if (currentMenuIndexGD == 5) length += 2;
+    if (currentMenuIndexGD == 5) length += 1;
     return (29 * length) - 7;
 }
 
@@ -600,8 +600,8 @@ void PrismUI::RegenCategory() {
             auto versionLabel = CCLabelBMFont::create("Unknown.", "PrismMenu.fnt"_spr);
             float indexY = (currentI * -28) + 310;
             createdByLabel->limitLabelWidth(150, 1.0F, .2F);
-            createdByLabel->setPosition({63, indexY});
-            versionLabel->setPosition({63, indexY + 15});
+            createdByLabel->setPosition({63, indexY + 15});
+            versionLabel->setPosition({63, indexY});
             Themes::RGBAToCC(GetTheme()["Text"], createdByLabel);
             Themes::RGBAToCC(GetTheme()["Text"], versionLabel);
             #ifndef DEV_BUILD

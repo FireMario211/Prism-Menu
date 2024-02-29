@@ -7,8 +7,9 @@
     - Added Hitbox Stroke.
     - Added Show Hitboxes on Death.
     - Added Suicide.
-    - Added Disable Camera Effects
+    - Added Disable Camera Effects.
     - Added Turkish Translations.
+    - Added Vietnamese Translations.
     - Fixed "Solid Wave Trail" not working for Mac OS.
     - Fixed "No Transition" not working for Mac OS.
     - Fixed bug with Jump Hack not working when upside down.

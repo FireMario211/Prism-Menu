@@ -30,8 +30,8 @@
         "opcodes": [],
         "type": "dropdown",
         "default": 0,
-        "values": ["English [100%]", "Français [70%]", "Português (Brasil) [100%]", "Deutsch [100%]", "Русский [100%]", "Čeština [100%]", "Indonesia [88%]", "Español [100%]", "Polskie [100%]", "Melayu [88%]", "Türkçe [90%]"],
-        "todovalues": ["日本語 [100%]", "Tiếng Việt [100%]"]
+        "values": ["English [100%]", "Français [60%]", "Português (Brasil) [100%]", "Deutsch [100%]", "Русский [100%]", "Čeština [100%]", "Indonesia [88%]", "Español [100%]", "Polskie [80%]", "Melayu [78%]", "Türkçe [90%]", "Tieng Viet [100%]"],
+        "todovalues": ["日本語 [100%]"]
     },
     {
         "name": "Theme",

@@ -198,5 +198,5 @@ void Hacks::resetLevel(LevelInfoLayer* levelInfoLayer, GJGameLevel* level) {
             }
         );
     }
-}
 #endif 
+}

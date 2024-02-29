@@ -6,17 +6,17 @@
     },
     {
         "¬ Player": {
-            "name": "¬ Người chơi"
+            "name": "¬ Nguoi choi"
         }
     },
     {
         "ª Bypass": {
-            "name": "ª Bẻ khoá"
+            "name": "ª Be khoa"
         }
     },
     {
         "« Creator": {
-            "name": "« Người sáng tạo"
+            "name": "« Nguoi sang tao"
         }
     },
     {
@@ -26,438 +26,489 @@
     },
     {
         "¶ Settings": {
-            "name": "¶ Cài đặt"
+            "name": "¶ Cai dat"
         }
     },
 
     {
         "Prism Menu by Firee": {
-            "name": "Prism Menu bởi Firee | Dịch bởi tienanh109 <3"
+            "name": "Prism Menu boi Firee | Dich boi tienanh109 <3"
         }
     },
 
+
+
     {
         "Anticheat Bypass": {
-            "name": "Bẻ khoá chống gian lận",
-            "desc": "Vô hiệu hóa tất cả các chống gian lận. [Cấp độ, Trình chỉnh sửa, v.v.]"
+            "name": "Be khoa chong gian lan",
+            "desc": "Vo hieu hoa tat ca cac chong gian lan. [Cap do, Trinh chinh sua, v.v.]"
         }
     },
     {
         "Practice Music": {
             "name": "Practice Music",
-            "desc": "Kích hoạt Practice Music miễn phí ngay cả khi nó bị khoá."
+            "desc": "Kich hoat Practice Music mien phi ngay ca khi no bi khoa."
         }
     },
     {
         "Safe Mode": {
-            "name": "Chế Độ An Toàn",
-            "desc": "Tạm dừng mọi tiến trình đang được thực hiện ở cấp độ."
+            "name": "Che Do An Toan",
+            "desc": "Tam dung moi tien trinh dang duoc thuc hien o cap do."
         }
     },
     {
         "Accurate Percentage": {
-            "name": "Tỷ lệ chính xác",
-            "desc": "Cho phép số thập phân trong tỷ lệ phần trăm cấp độ. [Vượt quá vị trí hàng nghìn]"
+            "name": "Ty le chinh xac",
+            "desc": "Cho phep so thap phan trong ty le phan tram cap do. [Vuot qua vi tri hang nghin]"
         }
     },
     {
         "Layout Mode": {
-            "name": "Chế độ bố cục",
-            "desc": "Loại bỏ tất cả các trang trí liên quan đến một cấp độ."
+            "name": "Che do bo cuc",
+            "desc": "Loai bo tat ca cac trang tri lien quan den mot cap do."
         }
     },
     {
         "No Transition": {
-            "name": "Không chuyển đổi",
-            "desc": "Rút ngắn thời gian chuyển cảnh xuống 0 giây."
+            "name": "Khong chuyen doi",
+            "desc": "Rut ngan thoi gian chuyen canh xuong 0 giay."
         }
     },
     {
         "Cheat Indicator": {
-            "name": "Chỉ báo gian lận",
-            "desc": "Hiển thị một biểu tượng để cho biết bạn có đang sử dụng các mod có thể bị coi là gian lận hay không!"
+            "name": "Chi bao gian lan",
+            "desc": "Hien thi mot bieu tuong de cho biet ban co dang su dung cac mod co the bi coi la gian lan hay khong!"
         }
     },
     {
         "Speedhack": {
-            "name": "Hack tốc độ",
-            "desc": "Thay đổi tốc độ của trò chơi và âm thanh."
+            "name": "Hack toc do",
+            "desc": "Thay doi toc do cua tro choi va am thanh."
         }
     },
     {
         "FPS Bypass": {
-            "name": "Bẻ Khoá FPS",
-            "desc": "Mở khóa FPS của bạn để cao hơn 60 hoặc tốc độ làm mới màn hình của bạn."
+            "name": "Be Khoa FPS",
+            "desc": "Mo khoa FPS cua ban de cao hon 60 hoac toc do lam moi man hinh cua ban."
         }
     },
     {
         "Reset Speedhack": {
-            "name": "Đặt lại hack tốc độ",
-            "desc": "Đặt lại speedhack trở lại bình thường."
+            "name": "Dat lai hack toc do",
+            "desc": "Dat lai speedhack tro lai binh thuong."
         }
     },
 
     {
         "Noclip": {
             "name": "Noclip",
-            "desc": "Làm cho người chơi bất khả chiến bại."
+            "desc": "Lam cho nguoi choi bat kha chien bai."
         }
     },
     {
         "No Spikes": {
-            "name": "Không có gai",
-            "desc": "Bỏ qua các vật thể nhọn."
+            "name": "Khong co gai",
+            "desc": "Bo qua cac vat the nhon."
         }
     },
     {
         "No Hitbox": {
-            "name": "Không có Hitbox",
-            "desc": "Vô hiệu hóa tất cả các hitbox đối tượng. Các đối tượng đặc biệt bị vô hiệu hóa."
+            "name": "Khong co Hitbox",
+            "desc": "Vo hieu hoa tat ca cac hitbox doi tuong. Cac doi tuong dac biet bi vo hieu hoa."
         }
     },
     {
         "No Solids": {
-            "name": "Không có chất rắn",
-            "desc": "Vô hiệu hóa hầu hết các hitbox vững chắc. Các đồ vật đặc biệt vẫn hoạt động."
+            "name": "Khong co chat ran",
+            "desc": "Vo hieu hoa hau het cac hitbox vung chac. Cac do vat dac biet van hoat dong."
         }
     },
     {
         "Everything Hurts": {
-            "name": "Mọi thứ đều đau đớn",
-            "desc": "Ôi trời...."
+            "name": "Moi thu deu dau don",
+            "desc": "Oi troi...."
         }
     },
     {
         "No Mirror Transition": {
-            "name": "Không có chuyển đổi gương",
-            "desc": "Ngăn chặn màn hình bị lật trên cổng gương."
+            "name": "Khong co chuyen doi guong",
+            "desc": "Ngan chan man hinh bi lat tren cong guong."
         }
     },
     {
         "Instant Mirror Portal": {
-            "name": "Cổng gương tức thì",
-            "desc": "Cổng đảo ngược bây giờ chuyển đổi ngay lập tức."
+            "name": "Cong guong tuc thi",
+            "desc": "Cong dao nguoc bay gio chuyen doi ngay lap tuc."
         }
     },
     {
         "Freeze Player": {
-            "name": "Người chơi đóng băng",
-            "desc": "Đóng băng người chơi trong lúc di chuyển."
+            "name": "Nguoi choi dong bang",
+            "desc": "Dong bang nguoi choi trong luc di chuyen."
         }
     },
     {
         "Jump Hack": {
-            "name": "Hack nhảy (Nhảy không khí)",
-            "desc": "Cho phép nhảy giữa không trung."
+            "name": "Hack nhay (Nhay khong khi)",
+            "desc": "Cho phep nhay giua khong trung."
         }
     },
     {
         "Instant Complete": {
-            "name": "Hoàn thành cấp độ ngay lập tức",
-            "desc": "Hoàn thành cấp độ ngay lập tức. (Không bật trong Trình chỉnh sửa)"
+            "name": "Hoan thanh cap do ngay lap tuc",
+            "desc": "Hoan thanh cap do ngay lap tuc. (Khong bat trong Trinh chinh sua)"
         }
     },
     {
         "Force Platformer Mode": {
-            "name": "Luôn luôn là chế độ Platformer",
-            "desc": "Buộc bạn phải ở chế độ platformer khi chơi một cấp độ."
+            "name": "Luon luon la che do Platformer",
+            "desc": "Buoc ban phai o che do platformer khi choi mot cap do."
         }
     },
     {
         "Change Gravity": {
-            "name": "Thay đổi trọng lực",
-            "desc": "Cho phép bạn thay đổi trọng lực khi nhảy hoặc rơi."
+            "name": "Thay doi trong luc",
+            "desc": "Cho phep ban thay doi trong luc khi nhay hoac roi."
         }
     },
     {
         "Gravity Value": {
-            "name": "Giá trị trọng lực",
-            "desc": "Giá trị trọng lực nên được đặt thành."
+            "name": "Gia tri trong luc",
+            "desc": "Gia tri trong luc nen duoc dat thanh."
         }
     },
 
     {
         "Icon Bypass": {
-            "name": "Mở khoá Biểu tượng",
-            "desc": "Mở khóa tất cả các biểu tượng."
+            "name": "Mo khoa Bieu tuong",
+            "desc": "Mo khoa tat ca cac bieu tuong."
         }
     },
     {
         "Text Length": {
-            "name": "Độ dài văn bản",
-            "desc": "Cho phép độ dài văn bản không giới hạn khi nhập văn bản."
+            "name": "Do dai van ban",
+            "desc": "Cho phep do dai van ban khong gioi han khi nhap van ban."
         }
     },
     {
         "Character Filter": {
-            "name": "Bộ lọc ký tự",
-            "desc": "Cho phép bạn nhập bất kỳ ký tự nào trong tất cả các kiểu nhập văn bản."
+            "name": "Bo loc ky tu",
+            "desc": "Cho phep ban nhap bat ky ky tu nao trong tat ca cac kieu nhap van ban."
         }
     },
     {
         "Slider Limit": {
-            "name": "Giới hạn thanh trượt",
-            "desc": "Cho phép kéo thanh trượt vượt quá giới hạn hiển thị."
+            "name": "Gioi han thanh truot",
+            "desc": "Cho phep keo thanh truot vuot qua gioi han hien thi."
         }
     },
     {
         "Main Levels": {
-            "name": "Cấp độ chính",
-            "desc": "Mở khóa các cấp độ quỷ bị khóa."
+            "name": "Cap do chinh",
+            "desc": "Mo khoa cac cap do quy bi khoa."
         }
     },
     {
         "Guard Vault": {
-            "name": "Hầm bảo vệ",
-            "desc": "Mở khóa hầm của người bảo vệ."
+            "name": "Ham bao ve",
+            "desc": "Mo khoa ham cua nguoi bao ve."
         }
     },
     {
         "Keymaster Vault": {
-            "name": "Bậc thầy chìa khoá Vault",
-            "desc": "Mở khóa kho tiền của keymaster."
+            "name": "Bac thay chia khoa Vault",
+            "desc": "Mo khoa kho tien cua keymaster."
         }
     },
     {
         "Treasure Room": {
-            "name": "Phòng Treasure",
-            "desc": "Mở khoá treasure room."
+            "name": "Phong Treasure",
+            "desc": "Mo khoa treasure room."
         }
     },
     {
         "Free Shop Items": {
-            "name": "Miễn phí vật phẩm ở cửa hàng",
-            "desc": "Cho phép mua tất cả các vật phẩm trong cửa hàng với 0 orbs mana."
+            "name": "Mien phi vat pham o cua hang",
+            "desc": "Cho phep mua tat ca cac vat pham trong cua hang voi 0 orbs mana."
         }
     },
     {
         "Gatekeeper Vault": {
-            "name": "Người gác cổng",
-            "desc": "Mở khóa hầm của Người gác cổng."
+            "name": "Nguoi gac cong",
+            "desc": "Mo khoa ham cua Nguoi gac cong."
         }
     },
     {
         "Backup Stars Limit": {
-            "name": "Giới hạn sao dự phòng",
-            "desc": "Cho phép bạn sao lưu dữ liệu, ngay cả với ít hơn 10 sao."
+            "name": "Gioi han sao du phong",
+            "desc": "Cho phep ban sao luu du lieu, ngay ca voi it hon 10 sao."
         }
     },
 
 
     {
         "Level Edit": {
-            "name": "Cấp độ Chỉnh sửa",
-            "desc": "Cho phép bạn chỉnh sửa ở mọi cấp độ, truy cập trình chỉnh sửa thông qua menu tạm dừng. (KHÔNG ỔN ĐỊNH)"
+            "name": "Cap do Chinh sua",
+            "desc": "Cho phep ban chinh sua o moi cap do, truy cap trinh chinh sua thong qua menu tam dung. (KHONG ON DINH)"
         }
     },
     {
         "Verify Hack": {
-            "name": "Gian lận xác minh",
-            "desc": "Cho phép bạn tải lên các cấp độ chưa được xác minh. Sẽ tự động thiết lập các cấp độ để được xác minh."
+            "name": "Gian lan xac minh",
+            "desc": "Cho phep ban tai len cac cap do chua duoc xac minh. Se tu dong thiet lap cac cap do de duoc xac minh."
         }
     },
     {
         "Copy Hack": {
-            "name": "Bẻ khoá sao chép ",
-            "desc": "Cho phép bạn sao chép mọi cấp độ mà không cần mật khẩu."
+            "name": "Be khoa sao chep ",
+            "desc": "Cho phep ban sao chep moi cap do ma khong can mat khau."
         }
     },
     {
         "No (C) Mark": {
-            "name": "Không có dấu (C)",
-            "desc": "Loại bỏ dấu (C) khi tải lên các cấp độ đã sao chép. Sẽ tự động thiết lập mức độ ban đầu."
+            "name": "Khong co dau (C)",
+            "desc": "Loai bo dau (C) khi tai len cac cap do da sao chep. Se tu dong thiet lap muc do ban dau."
         }
     },
     {
         "Hide Testmode": {
-            "name": "Ẩn chế độ kiểm tra",
-            "desc": "Ẩn văn bản 'Testmode' khi chơi với startpos."
+            "name": "An che do kiem tra",
+            "desc": "An van ban 'Testmode' khi choi voi startpos."
         }
     },
     {
         "Rotation Hack": {
             "name": "Hack xoay",
-            "desc": "Cho phép bạn xoay bất kỳ đối tượng nào. Chỉ hoạt động cục bộ."
+            "desc": "Cho phep ban xoay bat ky doi tuong nao. Chi hoat dong cuc bo."
         }
     },
     {
         "Default Song Bypass": {
-            "name": "Bẻ khoá bài hát mặc định",
-            "desc": "Cho phép bạn sử dụng các bài hát mặc định ẩn trong trình chỉnh sửa."
+            "name": "Be khoa bai hat mac dinh",
+            "desc": "Cho phep ban su dung cac bai hat mac dinh an trong trinh chinh sua."
         }
     },
 
     {
         "No Progress Bar": {
-            "name": "Không có thanh tiến trình",
-            "desc": "Loại bỏ thanh tiến trình! Tỷ lệ phần trăm vẫn sẽ được hiển thị."
+            "name": "Khong co thanh tien trinh",
+            "desc": "Loai bo thanh tien trinh! Ty le phan tram van se duoc hien thi."
         }
     },
     {
         "Progress Bar Position": {
-            "name": "Vị trí thanh tiến trình",
-            "desc": "Đặt vị trí của thanh tiến trình."
+            "name": "Vi tri thanh tien trinh",
+            "desc": "Dat vi tri cua thanh tien trinh."
         }
     },
     {
         "Hide Attempts": {
-            "name": "Ẩn Attempts",
-            "desc": "Nhãn Attempts có được hiển thị hay không khi chơi một cấp độ."
+            "name": "An Attempts",
+            "desc": "Nhan Attempts co duoc hien thi hay khong khi choi mot cap do."
         }
     },
     {
         "Attempt Opacity": {
-            "name": "Độ mờ của Attempts",
-            "desc": "Xác định mức độ mờ của nhãn Attempts."
+            "name": "Do mo cua Attempts",
+            "desc": "Xac dinh muc do mo cua nhan Attempts."
         }
     },
 
     {
         "Enable Patching": {
-            "name": "Kích hoạt tính năng vá lỗi",
-            "desc": "Thay đổi từ hooking sang patching. Điều này cũng cho phép kích hoạt nhiều bản hack hơn. Chỉ kích hoạt nếu cần thiết. [Chỉ dành cho Windows]"
+            "name": "Kich hoat tinh nang va loi",
+            "desc": "Thay doi tu hooking sang patching. Dieu nay cung cho phep kich hoat nhieu ban hack hon. Chi kich hoat neu can thiet. [Chi danh cho Windows]"
         }
     },
     {
         "Menu Opacity": {
-            "name": "Độ mờ của menu",
-            "desc": "Xác định độ mờ của menu."
+            "name": "Do mo cua menu",
+            "desc": "Xac dinh do mo cua menu."
         }
     },
     {
         "Theme": {
-            "name": "Chủ đề",
-            "desc": "Chọn chủ đề giao diện người dùng cho Menu Prism!"
+            "name": "Chu de",
+            "desc": "Chon chu de giao dien nguoi dung cho Menu Prism!"
         }
     },
     {
         "Import Theme": {
-            "name": "NHẬP chủ đề",
-            "desc": "Nhập một chủ đề! [tệp JSON]"
+            "name": "NHAP chu de",
+            "desc": "Nhap mot chu de! [tep JSON]"
         }
     },
     {
         "Live Theme Editing": {
-            "name": "Chỉnh sửa chủ đề trực tiếp",
-            "desc": "Điều này sẽ cho phép bạn chỉnh sửa chủ đề tùy chỉnh của mình trong khi xem các thay đổi trên màn hình! (Cảnh báo: Điều này có thể gây rò rỉ bộ nhớ.)"
+            "name": "Chinh sua chu de truc tiep",
+            "desc": "Dieu nay se cho phep ban chinh sua chu de tuy chinh cua minh trong khi xem cac thay doi tren man hinh! (Canh bao: Dieu nay co the gay ro ri bo nho.)"
         }
     },
     {
         "Show tooltips": {
-            "name": "Hiển thị chú giải công cụ",
-            "desc": "Chú giải công cụ có được hiển thị hay không khi di chuột qua mod."
+            "name": "Hien thi chu giai cong cu",
+            "desc": "Chu giai cong cu co duoc hien thi hay khong khi di chuot qua mod."
         }
     },
     {
         "Show Button": {
-            "name": "Nút hiển thị",
-            "desc": "Hiển thị nút để kích hoạt menu. Bạn nên bật tính năng này cho Android."
+            "name": "Nut hien thi",
+            "desc": "Hien thi nut de kich hoat menu. Ban nen bat tinh nang nay cho Android."
         }
     },
     {
         "Button Position X": {
-            "name": "Vị trí nút X",
-            "desc": "Vị trí X cho nút mở menu."
+            "name": "Vi tri nut X",
+            "desc": "Vi tri X cho nut mo menu."
         }
     },
     {
         "Button Position Y": {
-            "name": "Vị trí nút Y",
-            "desc": "Vị trí Y cho nút mở menu."
+            "name": "Vi tri nut Y",
+            "desc": "Vi tri Y cho nut mo menu."
         }
     },
     {
         "Language": {
-            "name": "Ngôn ngữ",
-            "desc": "Đặt ngôn ngữ cho Prism Menu!"
+            "name": "Ngon ngu",
+            "desc": "Dat ngon ngu cho Prism Menu!"
         }
     },
     {
         "Restore Defaults": {
-            "name": "Khôi phục mặc định",
-            "desc": "Vô hiệu hóa tất cả các mod và đặt lại mọi thứ về mặc định."
+            "name": "Khoi phuc mac dinh",
+            "desc": "Vo hieu hoa tat ca cac mod va dat lai moi thu ve mac dinh."
         }
     },
     {
         "Credits": {
-            "name": "Đóng Góp",
-            "desc": "Mọi người đã giúp đỡ mod!"
+            "name": "Dong Gop",
+            "desc": "Moi nguoi da giup do mod!"
         }
     },
     {
         "Thank you to Electrify (ES), Jouca (FR), dank_meme01, savvacorgi, МегаСвятой (RU), Gazonk (BR), huhnmitferrari (DE), and Ignis (CS) for translations!": {
-            "name": "Cảm ơn Electrify (ES), Jouca (FR), dank_meme01, savvacorgi, МегаСвятой (RU), Gazonk (BR), huhnmitferrari (DE) và Ignis (CS) vì đã dịch!"
+            "name": "Cam on Electrify (ES), Jouca (FR), dank_meme01, savvacorgi, МегаСвятой (RU), Gazonk (BR), huhnmitferrari (DE) va Ignis (CS) vi da dich!"
         }
     },
     {
         "And thank you for using the mod! I hope you enjoy using Prism Menu!": {
-            "name": "Và cảm ơn bạn đã sử dụng mod! Tôi hy vọng bạn thích sử dụng Prism Menu!"
+            "name": "Va cam on ban da su dung mod! Toi hy vong ban thich su dung Prism Menu!"
         }
     },
     {
         "Close Popup": {
-            "name": "Đóng cửa sổ nổi"
+            "name": "Dong cua so noi"
         }
     },
     {
         "Menu Scale": {
-            "name": "Kích thước menu",
-            "desc": "Quyết định kích thước của văn bản và các nút. (Sẽ yêu cầu khởi động lại trò chơi)"
+            "name": "Kich thuoc menu",
+            "desc": "Quyet dinh kich thuoc cua van ban va cac nut. (Se yeu cau khoi dong lai tro choi)"
         }
     },
 
     {
         "Show Hidden Objects": {
-            "name": "Hiển thị các đối tượng ẩn",
-            "desc": "Hiển thị tất cả các đối tượng ẩn. Điều này sẽ đặt lại màu chính của đối tượng. Điều này sẽ không hoạt động trên các đối tượng có thuộc tính \"Ẩn\". (Hữu ích với Chế độ bố cục)"
+            "name": "Hien thi cac doi tuong an",
+            "desc": "Hien thi tat ca cac doi tuong an. Dieu nay se dat lai mau chinh cua doi tuong. Dieu nay se khong hoat dong tren cac doi tuong co thuoc tinh \"An\". (Huu ich voi Che do bo cuc)"
         }
     },
     {
         "Transparent BG": {
-            "name": "Nền trong suốt",
-            "desc": "Tự động hoàn nguyên các màu đã thay đổi ở nền thành màu gốc."
+            "name": "Nen trong suot",
+            "desc": "Tu dong hoan nguyen cac mau da thay doi o nen thanh mau goc."
         }
     },
     {
         "Speedhack Audio": {
-            "name": "Hack tốc độ âm thanh",
-            "desc": "Có hay không thay đổi tốc độ âm thanh dựa trên giá trị speedhack."
+            "name": "Hack toc do am thanh",
+            "desc": "Co hay khong thay doi toc do am thanh dua tren gia tri speedhack."
         }
     },
     {
         "No Glow": {
-            "name": "Không viền sáng",
-            "desc": "Vô hiệu hóa ánh sáng trên tất cả các đối tượng."
+            "name": "Khong vien sang",
+            "desc": "Vo hieu hoa anh sang tren tat ca cac doi tuong."
         }
     },
     {
         "Noclip Accuracy": {
-            "name": "Độ chính xác của Noclip",
-            "desc": "Thông báo cho bạn mức độ chính xác của lần chạy noclip của bạn. (Sẽ không hoạt động nếu không bật Anticheat Bypass)"
+            "name": "Do chinh xac cua Noclip",
+            "desc": "Thong bao cho ban muc do chinh xac cua lan chay noclip cua ban. (Se khong hoat dong neu khong bat Anticheat Bypass)"
         }
     },
     {
         "Show Graphic Options": {
-            "name": "Hiển thị tùy chọn đồ họa",
-            "desc": "Hiển thị cho bạn các tùy chọn đồ họa của Geometry Dash! Hữu ích cho Android vì tùy chọn này thường không có sẵn."
+            "name": "Hien thi tuy chon do hoa",
+            "desc": "Hien thi cho ban cac tuy chon do hoa cua Geometry Dash! Huu ich cho Android vi tuy chon nay thuong khong co san."
         }
     },
     {
         "No Trail": {
-            "name": "Không có đường mòn",
-            "desc": "Vô hiệu hóa bất kỳ hiệu ứng dấu vết nào từ trình phát."
+            "name": "Khong co duong mon",
+            "desc": "Vo hieu hoa bat ky hieu ung dau vet nao tu trinh phat."
         }
     },
     {
         "No Wave Trail": {
-            "name": "Không có vệt sóng",
-            "desc": "Vô hiệu hóa dấu vết phía sau làn sóng."
+            "name": "Khong co vet song",
+            "desc": "Vo hieu hoa dau vet phia sau lan song."
         }
     },
     {
         "Solid Wave Trail": {
-            "name": "Đường mòn sóng Wave",
-            "desc": "Loại bỏ sự hòa trộn của cả hai màu biểu tượng trên vệt sóng."
+            "name": "Duong mon song Wave",
+            "desc": "Loai bo su hoa tron cua ca hai mau bieu tuong tren vet song."
+        }
+    },
+
+    {
+        "Extra Percent Digits": {
+            "name": "Chu so phan tram bo sung",
+            "desc": "So chu so thap phan bo sung se duoc hien thi voi. Ty le phan tram chinh xac."
+        }
+    },
+    {
+        "Uncomplete Level": {
+            "name": "Cap do chua hoan thanh",
+            "desc": "Dat lai ty le phan tram binh thuong va thuc hanh, dong thoi cho phep ban giam so sao neu ban hoan thanh cap do!"
+        }
+    },
+    {
+        "No Shaders": {
+            "name": "Khong co Shader",
+            "desc": "Tat tat ca cac hieu ung do bóng cua may anh."
+        }
+    },
+    {
+        "Disable Camera Effects": {
+            "name": "Tat hieu ung may anh",
+            "desc": "Vo hieu hoa moi hieu ung may anh va chi tap trung may anh vao trinh phat. Dieu nay co the pha vo tat ca cac che ao tro choi ngoai tru Cube va Robot."
+        }
+    },
+    {
+        "Show Hitboxes": {
+            "name": "Hien thi Hitbox",
+            "desc": "Hien thi nguoi choi, chuong ngai vat va hop sat thuong vung chac."
+        }
+    },
+    {
+        "Show Hitboxes on Death": {
+            "name": "Hien thi Hitbox khi chet",
+            "desc": "Hien thi cac hop sat thuong khi ban chet va an chung khi ban hoi sinh."
+        }
+    },
+    {
+        "Hitbox Stroke": {
+            "name": "Cu danh Hitbox",
+            "desc": "Vuot ve 'chieu rong' khi ve cac hop sat thuong."
+        }
+    },
+    {
+        "Suicide": {
+            "name": "Tu tu",
+            "desc": "Giet nguoi choi lien tuc."
         }
     }
 ]

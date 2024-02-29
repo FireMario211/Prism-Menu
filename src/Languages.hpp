@@ -42,14 +42,14 @@ class Lang {
                     case 9: // Malay
                         file = Hacks::readFile("malay.json");
                         break;
-                    case 10:
+                    case 10: // Turkish
                         file = Hacks::readFile("turkish.json");
                         break;
-                    case 11: // Japanese
-                        file = Hacks::readFile("japanese.json");
-                        break;
-                    case 12: // Vietnamese
+                    case 11: // Vietnamese
                         file = Hacks::readFile("vietnamese.json");
+                        break;
+                    case 12: // Japanese
+                        file = Hacks::readFile("japanese.json");
                         break;
                     default: // anything else should be discarded
                         langId = 0;

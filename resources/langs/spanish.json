@@ -464,5 +464,54 @@
             "name": "Trail sólida Del Wave",
             "desc": "Elimina la combinación de ambos colores de íconos en el Trail del Wave."
         }
+    },
+
+    {
+        "Extra Percent Digits": {
+            "name": "Dígitos de porcentaje adicionales",
+            "desc": "Número de dígitos decimales adicionales que se mostrarán con porcentaje preciso."
+        }
+    },
+    {
+        "Uncomplete Level": {
+            "name": "Nivel incompleto",
+            "desc": "¡Restablece los porcentajes normales y de práctica, y te permite disminuir tu conteo de estrellas si completaste el nivel!"
+        }
+    },
+    {
+        "No Shaders": {
+            "name": "Sin Shaders",
+            "desc": "Desactiva todos los efectos de Shader de  la cámara."
+        }
+    },
+    {
+        "Disable Camera Effects": {
+            "name": "Desactivar efectos de cámara",
+            "desc": "Desactiva cualquier efecto de la cámara y solo enfoca la cámara en el jugador. Esto podría romper todos los modos de juego excepto el Cubo y el Robot."
+        }
+    },
+   {
+        "Show Hitboxes": {
+            "name": "Mostrar Hitboxes",
+            "desc": "Muestra jugadores, obstáculos y hitboxes sólidos."
+        }
+    },
+    {
+        "Show Hitboxes on Death": {
+            "name": "Mostrar hitboxes al morir",
+            "desc": "Muestra hitboxes cuando mueres y los oculta cuando reapareces."
+        }
+    },
+    {
+        "Hitbox Stroke": {
+            "name": "Golpe de Hitboxes",
+            "desc": "Trazo 'ancho' al dibujar hitboxes."
+        }
+    },
+    {
+        "Suicide": {
+            "name": "Suicidio",
+            "desc": "Mata al jugador repetidamente."
+        }
     }
 ]

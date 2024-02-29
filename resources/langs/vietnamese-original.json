@@ -1,0 +1,512 @@
+[
+    {
+        "§ Global": {
+            "name": "§ Chung"
+        }
+    },
+    {
+        "¬ Player": {
+            "name": "¬ Người chơi"
+        }
+    },
+    {
+        "ª Bypass": {
+            "name": "ª Bẻ khoá"
+        }
+    },
+    {
+        "« Creator": {
+            "name": "« Người sáng tạo"
+        }
+    },
+    {
+        "··· Misc": {
+            "name": "··· Linh tinh"
+        }
+    },
+    {
+        "¶ Settings": {
+            "name": "¶ Cài đặt"
+        }
+    },
+
+    {
+        "Prism Menu by Firee": {
+            "name": "Prism Menu bởi Firee | Dịch bởi tienanh109 <3"
+        }
+    },
+
+    {
+        "Anticheat Bypass": {
+            "name": "Bẻ khoá chống gian lận",
+            "desc": "Vô hiệu hóa tất cả các chống gian lận. [Cấp độ, Trình chỉnh sửa, v.v.]"
+        }
+    },
+    {
+        "Practice Music": {
+            "name": "Practice Music",
+            "desc": "Kích hoạt Practice Music miễn phí ngay cả khi nó bị khoá."
+        }
+    },
+    {
+        "Safe Mode": {
+            "name": "Chế Độ An Toàn",
+            "desc": "Tạm dừng mọi tiến trình đang được thực hiện ở cấp độ."
+        }
+    },
+    {
+        "Accurate Percentage": {
+            "name": "Tỷ lệ chính xác",
+            "desc": "Cho phép số thập phân trong tỷ lệ phần trăm cấp độ. [Vượt quá vị trí hàng nghìn]"
+        }
+    },
+    {
+        "Layout Mode": {
+            "name": "Chế độ bố cục",
+            "desc": "Loại bỏ tất cả các trang trí liên quan đến một cấp độ."
+        }
+    },
+    {
+        "No Transition": {
+            "name": "Không chuyển đổi",
+            "desc": "Rút ngắn thời gian chuyển cảnh xuống 0 giây."
+        }
+    },
+    {
+        "Cheat Indicator": {
+            "name": "Chỉ báo gian lận",
+            "desc": "Hiển thị một biểu tượng để cho biết bạn có đang sử dụng các mod có thể bị coi là gian lận hay không!"
+        }
+    },
+    {
+        "Speedhack": {
+            "name": "Hack tốc độ",
+            "desc": "Thay đổi tốc độ của trò chơi và âm thanh."
+        }
+    },
+    {
+        "FPS Bypass": {
+            "name": "Bẻ Khoá FPS",
+            "desc": "Mở khóa FPS của bạn để cao hơn 60 hoặc tốc độ làm mới màn hình của bạn."
+        }
+    },
+    {
+        "Reset Speedhack": {
+            "name": "Đặt lại hack tốc độ",
+            "desc": "Đặt lại speedhack trở lại bình thường."
+        }
+    },
+
+    {
+        "Noclip": {
+            "name": "Noclip",
+            "desc": "Làm cho người chơi bất khả chiến bại."
+        }
+    },
+    {
+        "No Spikes": {
+            "name": "Không có gai",
+            "desc": "Bỏ qua các vật thể nhọn."
+        }
+    },
+    {
+        "No Hitbox": {
+            "name": "Không có Hitbox",
+            "desc": "Vô hiệu hóa tất cả các hitbox đối tượng. Các đối tượng đặc biệt bị vô hiệu hóa."
+        }
+    },
+    {
+        "No Solids": {
+            "name": "Không có chất rắn",
+            "desc": "Vô hiệu hóa hầu hết các hitbox vững chắc. Các đồ vật đặc biệt vẫn hoạt động."
+        }
+    },
+    {
+        "Everything Hurts": {
+            "name": "Mọi thứ đều đau đớn",
+            "desc": "Ôi trời...."
+        }
+    },
+    {
+        "No Mirror Transition": {
+            "name": "Không có chuyển đổi gương",
+            "desc": "Ngăn chặn màn hình bị lật trên cổng gương."
+        }
+    },
+    {
+        "Instant Mirror Portal": {
+            "name": "Cổng gương tức thì",
+            "desc": "Cổng đảo ngược bây giờ chuyển đổi ngay lập tức."
+        }
+    },
+    {
+        "Freeze Player": {
+            "name": "Người chơi đóng băng",
+            "desc": "Đóng băng người chơi trong lúc di chuyển."
+        }
+    },
+    {
+        "Jump Hack": {
+            "name": "Hack nhảy (Nhảy không khí)",
+            "desc": "Cho phép nhảy giữa không trung."
+        }
+    },
+    {
+        "Instant Complete": {
+            "name": "Hoàn thành cấp độ ngay lập tức",
+            "desc": "Hoàn thành cấp độ ngay lập tức. (Không bật trong Trình chỉnh sửa)"
+        }
+    },
+    {
+        "Force Platformer Mode": {
+            "name": "Luôn luôn là chế độ Platformer",
+            "desc": "Buộc bạn phải ở chế độ platformer khi chơi một cấp độ."
+        }
+    },
+    {
+        "Change Gravity": {
+            "name": "Thay đổi trọng lực",
+            "desc": "Cho phép bạn thay đổi trọng lực khi nhảy hoặc rơi."
+        }
+    },
+    {
+        "Gravity Value": {
+            "name": "Giá trị trọng lực",
+            "desc": "Giá trị trọng lực nên được đặt thành."
+        }
+    },
+
+    {
+        "Icon Bypass": {
+            "name": "Mở khoá Biểu tượng",
+            "desc": "Mở khóa tất cả các biểu tượng."
+        }
+    },
+    {
+        "Text Length": {
+            "name": "Độ dài văn bản",
+            "desc": "Cho phép độ dài văn bản không giới hạn khi nhập văn bản."
+        }
+    },
+    {
+        "Character Filter": {
+            "name": "Bộ lọc ký tự",
+            "desc": "Cho phép bạn nhập bất kỳ ký tự nào trong tất cả các kiểu nhập văn bản."
+        }
+    },
+    {
+        "Slider Limit": {
+            "name": "Giới hạn thanh trượt",
+            "desc": "Cho phép kéo thanh trượt vượt quá giới hạn hiển thị."
+        }
+    },
+    {
+        "Main Levels": {
+            "name": "Cấp độ chính",
+            "desc": "Mở khóa các cấp độ quỷ bị khóa."
+        }
+    },
+    {
+        "Guard Vault": {
+            "name": "Hầm bảo vệ",
+            "desc": "Mở khóa hầm của người bảo vệ."
+        }
+    },
+    {
+        "Keymaster Vault": {
+            "name": "Bậc thầy chìa khoá Vault",
+            "desc": "Mở khóa kho tiền của keymaster."
+        }
+    },
+    {
+        "Treasure Room": {
+            "name": "Phòng Treasure",
+            "desc": "Mở khoá treasure room."
+        }
+    },
+    {
+        "Free Shop Items": {
+            "name": "Miễn phí vật phẩm ở cửa hàng",
+            "desc": "Cho phép mua tất cả các vật phẩm trong cửa hàng với 0 orbs mana."
+        }
+    },
+    {
+        "Gatekeeper Vault": {
+            "name": "Người gác cổng",
+            "desc": "Mở khóa hầm của Người gác cổng."
+        }
+    },
+    {
+        "Backup Stars Limit": {
+            "name": "Giới hạn sao dự phòng",
+            "desc": "Cho phép bạn sao lưu dữ liệu, ngay cả với ít hơn 10 sao."
+        }
+    },
+
+
+    {
+        "Level Edit": {
+            "name": "Cấp độ Chỉnh sửa",
+            "desc": "Cho phép bạn chỉnh sửa ở mọi cấp độ, truy cập trình chỉnh sửa thông qua menu tạm dừng. (KHÔNG ỔN ĐỊNH)"
+        }
+    },
+    {
+        "Verify Hack": {
+            "name": "Gian lận xác minh",
+            "desc": "Cho phép bạn tải lên các cấp độ chưa được xác minh. Sẽ tự động thiết lập các cấp độ để được xác minh."
+        }
+    },
+    {
+        "Copy Hack": {
+            "name": "Bẻ khoá sao chép ",
+            "desc": "Cho phép bạn sao chép mọi cấp độ mà không cần mật khẩu."
+        }
+    },
+    {
+        "No (C) Mark": {
+            "name": "Không có dấu (C)",
+            "desc": "Loại bỏ dấu (C) khi tải lên các cấp độ đã sao chép. Sẽ tự động thiết lập mức độ ban đầu."
+        }
+    },
+    {
+        "Hide Testmode": {
+            "name": "Ẩn chế độ kiểm tra",
+            "desc": "Ẩn văn bản 'Testmode' khi chơi với startpos."
+        }
+    },
+    {
+        "Rotation Hack": {
+            "name": "Hack xoay",
+            "desc": "Cho phép bạn xoay bất kỳ đối tượng nào. Chỉ hoạt động cục bộ."
+        }
+    },
+    {
+        "Default Song Bypass": {
+            "name": "Bẻ khoá bài hát mặc định",
+            "desc": "Cho phép bạn sử dụng các bài hát mặc định ẩn trong trình chỉnh sửa."
+        }
+    },
+
+    {
+        "No Progress Bar": {
+            "name": "Không có thanh tiến trình",
+            "desc": "Loại bỏ thanh tiến trình! Tỷ lệ phần trăm vẫn sẽ được hiển thị."
+        }
+    },
+    {
+        "Progress Bar Position": {
+            "name": "Vị trí thanh tiến trình",
+            "desc": "Đặt vị trí của thanh tiến trình."
+        }
+    },
+    {
+        "Hide Attempts": {
+            "name": "Ẩn Attempts",
+            "desc": "Nhãn Attempts có được hiển thị hay không khi chơi một cấp độ."
+        }
+    },
+    {
+        "Attempt Opacity": {
+            "name": "Độ mờ của Attempts",
+            "desc": "Xác định mức độ mờ của nhãn Attempts."
+        }
+    },
+
+    {
+        "Enable Patching": {
+            "name": "Kích hoạt tính năng vá lỗi",
+            "desc": "Thay đổi từ hooking sang patching. Điều này cũng cho phép kích hoạt nhiều bản hack hơn. Chỉ kích hoạt nếu cần thiết. [Chỉ dành cho Windows]"
+        }
+    },
+    {
+        "Menu Opacity": {
+            "name": "Độ mờ của menu",
+            "desc": "Xác định độ mờ của menu."
+        }
+    },
+    {
+        "Theme": {
+            "name": "Chủ đề",
+            "desc": "Chọn chủ đề giao diện người dùng cho Menu Prism!"
+        }
+    },
+    {
+        "Import Theme": {
+            "name": "NHẬP chủ đề",
+            "desc": "Nhập một chủ đề! [tệp JSON]"
+        }
+    },
+    {
+        "Live Theme Editing": {
+            "name": "Chỉnh sửa chủ đề trực tiếp",
+            "desc": "Điều này sẽ cho phép bạn chỉnh sửa chủ đề tùy chỉnh của mình trong khi xem các thay đổi trên màn hình! (Cảnh báo: Điều này có thể gây rò rỉ bộ nhớ.)"
+        }
+    },
+    {
+        "Show tooltips": {
+            "name": "Hiển thị chú giải công cụ",
+            "desc": "Chú giải công cụ có được hiển thị hay không khi di chuột qua mod."
+        }
+    },
+    {
+        "Show Button": {
+            "name": "Nút hiển thị",
+            "desc": "Hiển thị nút để kích hoạt menu. Bạn nên bật tính năng này cho Android."
+        }
+    },
+    {
+        "Button Position X": {
+            "name": "Vị trí nút X",
+            "desc": "Vị trí X cho nút mở menu."
+        }
+    },
+    {
+        "Button Position Y": {
+            "name": "Vị trí nút Y",
+            "desc": "Vị trí Y cho nút mở menu."
+        }
+    },
+    {
+        "Language": {
+            "name": "Ngôn ngữ",
+            "desc": "Đặt ngôn ngữ cho Prism Menu!"
+        }
+    },
+    {
+        "Restore Defaults": {
+            "name": "Khôi phục mặc định",
+            "desc": "Vô hiệu hóa tất cả các mod và đặt lại mọi thứ về mặc định."
+        }
+    },
+    {
+        "Credits": {
+            "name": "Đóng Góp",
+            "desc": "Mọi người đã giúp đỡ mod!"
+        }
+    },
+    {
+        "Thank you to Electrify (ES), Jouca (FR), dank_meme01, savvacorgi, МегаСвятой (RU), Gazonk (BR), huhnmitferrari (DE), and Ignis (CS) for translations!": {
+            "name": "Cảm ơn Electrify (ES), Jouca (FR), dank_meme01, savvacorgi, МегаСвятой (RU), Gazonk (BR), huhnmitferrari (DE) và Ignis (CS) vì đã dịch!"
+        }
+    },
+    {
+        "And thank you for using the mod! I hope you enjoy using Prism Menu!": {
+            "name": "Và cảm ơn bạn đã sử dụng mod! Tôi hy vọng bạn thích sử dụng Prism Menu!"
+        }
+    },
+    {
+        "Close Popup": {
+            "name": "Đóng cửa sổ nổi"
+        }
+    },
+    {
+        "Menu Scale": {
+            "name": "Kích thước menu",
+            "desc": "Quyết định kích thước của văn bản và các nút. (Sẽ yêu cầu khởi động lại trò chơi)"
+        }
+    },
+
+    {
+        "Show Hidden Objects": {
+            "name": "Hiển thị các đối tượng ẩn",
+            "desc": "Hiển thị tất cả các đối tượng ẩn. Điều này sẽ đặt lại màu chính của đối tượng. Điều này sẽ không hoạt động trên các đối tượng có thuộc tính \"Ẩn\". (Hữu ích với Chế độ bố cục)"
+        }
+    },
+    {
+        "Transparent BG": {
+            "name": "Nền trong suốt",
+            "desc": "Tự động hoàn nguyên các màu đã thay đổi ở nền thành màu gốc."
+        }
+    },
+    {
+        "Speedhack Audio": {
+            "name": "Hack tốc độ âm thanh",
+            "desc": "Có hay không thay đổi tốc độ âm thanh dựa trên giá trị speedhack."
+        }
+    },
+    {
+        "No Glow": {
+            "name": "Không viền sáng",
+            "desc": "Vô hiệu hóa ánh sáng trên tất cả các đối tượng."
+        }
+    },
+    {
+        "Noclip Accuracy": {
+            "name": "Độ chính xác của Noclip",
+            "desc": "Thông báo cho bạn mức độ chính xác của lần chạy noclip của bạn. (Sẽ không hoạt động nếu không bật Anticheat Bypass)"
+        }
+    },
+    {
+        "Show Graphic Options": {
+            "name": "Hiển thị tùy chọn đồ họa",
+            "desc": "Hiển thị cho bạn các tùy chọn đồ họa của Geometry Dash! Hữu ích cho Android vì tùy chọn này thường không có sẵn."
+        }
+    },
+    {
+        "No Trail": {
+            "name": "Không có đường mòn",
+            "desc": "Vô hiệu hóa bất kỳ hiệu ứng dấu vết nào từ trình phát."
+        }
+    },
+    {
+        "No Wave Trail": {
+            "name": "Không có vệt sóng",
+            "desc": "Vô hiệu hóa dấu vết phía sau làn sóng."
+        }
+    },
+    {
+        "Solid Wave Trail": {
+            "name": "Đường mòn sóng Wave",
+            "desc": "Loại bỏ sự hòa trộn của cả hai màu biểu tượng trên vệt sóng."
+        }
+    },
+
+    {
+        "Extra Percent Digits": {
+            "name": "Chữ số phần trăm bổ sung",
+            "desc": "Số chữ số thập phân bổ sung sẽ được hiển thị với Tỷ lệ phần trăm chính xác."
+        }
+    },
+    {
+        "Uncomplete Level": {
+            "name": "Cấp độ chưa hoàn thành",
+            "desc": "Đặt lại tỷ lệ phần trăm bình thường và thực hành, đồng thời cho phép bạn giảm số sao nếu bạn hoàn thành cấp độ!"
+        }
+    },
+    {
+        "No Shaders": {
+            "name": "Không có Shader",
+            "desc": "Tắt tất cả các hiệu ứng đổ bóng của máy ảnh.."
+        }
+    },
+    {
+        "Disable Camera Effects": {
+            "name": "Tắt hiệu ứng máy ảnh",
+            "desc": "Vô hiệu hóa mọi hiệu ứng máy ảnh và chỉ tập trung máy ảnh vào trình phát. Điều này có thể phá vỡ tất cả các chế độ trò chơi ngoại trừ Cube và Robot."
+        }
+    },
+    {
+        "Show Hitboxes": {
+            "name": "Hiển thị Hitbox",
+            "desc": "Hiển thị người chơi, chướng ngại vật và hộp sát thương vững chắc."
+        }
+    },
+    {
+        "Show Hitboxes on Death": {
+            "name": "Hiển thị Hitbox khi chết",
+            "desc": "Hiển thị các hộp sát thương khi bạn chết và ẩn chúng khi bạn hồi sinh."
+        }
+    },
+    {
+        "Hitbox Stroke": {
+            "name": "Cú đánh Hitbox",
+            "desc": "Vuốt ve 'chiều rộng' khi vẽ các hộp sát thương."
+        }
+    },
+    {
+        "Suicide": {
+            "name": "Tự tử",
+            "desc": "Giết người chơi liên tục."
+        }
+    }
+]
