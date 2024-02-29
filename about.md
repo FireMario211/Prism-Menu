@@ -37,5 +37,6 @@ Press on the circle button located on the left corner, or press `Tab` to open th
 * olaf_294 - Translations for Polish
 * hori - Translations for Malay
 * slideglide - Translations for Turkish
+- [BinZ FAKE](https://youtube.com/@tienanh_90) - Translations for Vietnamese
 
 Send any suggestions or report any issues to the GitHub Repository or Discord Server. I hope you enjoy using the mod!
