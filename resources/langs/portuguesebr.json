@@ -447,5 +447,54 @@
             "name": "Trilha da Wave Sólida",
             "desc": "Remove o blending a trilha da wave."
         }
+    },
+
+    {
+        "Extra Percent Digits": {
+            "name": "Mais dígitos de porcentagem",
+            "desc": "Não presciso explicar"
+        }
+    },
+    {
+        "Uncomplete Level": {
+            "name": "Descompletar nível",
+            "desc": "Reseta o progresso do nível (normal, prática, recompensa, etc) use se vc hackeou o nível ou se é um bug e vc n zerou"
+        }
+    },
+    {
+        "No Shaders": {
+            "name": "Sem shader",
+            "desc": "remove os shaders, tipo, os efeitos do nivel"
+        }
+    },
+    {
+        "Disable Camera Effects": {
+            "name": "sem efeito de câmera",
+            "desc": "tira os efeito de câmera tipo estático e zoom"
+        }
+    },
+    {
+        "Show Hitboxes": {
+            "name": "hitboxes",
+            "desc": "¿tienes mod? ativa hitboxes (:<"
+        }
+    },
+    {
+        "Show Hitboxes on Death": {
+            "name": "hitboxes na morte",
+            "desc": "mostra as hitbox quando vc morre"
+        }
+    },
+    {
+        "Hitbox Stroke": {
+            "name": "Hitbox Stroke",
+            "desc": "não entedi oq isso faz ;-;"
+        }
+    },
+    {
+        "Suicide": {
+            "name": "Suicídio",
+            "desc": "emo"
+        }
     }
 ]

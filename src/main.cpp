@@ -165,6 +165,7 @@ class $modify(PlayLayer) {
     CCLabelBMFont* attemptLabel;
 
     bool isCheating = false;
+    bool hasEnabledSafe = false;
     
     // Anticheat Bypass
     bool initedDeath = false;
@@ -179,8 +180,19 @@ class $modify(PlayLayer) {
     void destroyPlayer(PlayerObject *p0, GameObject *p1) {
         //bool m_isTestMode = *reinterpret_cast<bool*>(reinterpret_cast<uintptr_t>(this) + 0x413);
         if (Hacks::isHackEnabled("Enable Patching")) return PlayLayer::destroyPlayer(p0, p1);
-        bool noclipDisabled = !Hacks::isHackEnabled("No Solids") && !Hacks::isHackEnabled("Noclip");
-        if ((noclipDisabled && !Hacks::isHackEnabled("No Spikes"))) return PlayLayer::destroyPlayer(p0, p1);
+        bool noclipDisabled = !Hacks::isHackEnabled("No Solids") && !Hacks::isHackEnabled("No Spikes") && !Hacks::isHackEnabled("Noclip");
+        if (noclipDisabled) return PlayLayer::destroyPlayer(p0, p1);
+        if (
+            !Hacks::isHackEnabled("Noclip") &&
+            Hacks::isHackEnabled("No Solids") &&
+            p1 != nullptr &&
+            p1->m_objectType != GameObjectType::CollisionObject
+        ) return PlayLayer::destroyPlayer(p0, p1);
+        if (
+            !Hacks::isHackEnabled("Noclip") &&
+            Hacks::isHackEnabled("No Spikes") &&
+            (p1 == nullptr || p1->m_objectType == GameObjectType::CollisionObject)
+        ) return PlayLayer::destroyPlayer(p0, p1);
         
         if (Hacks::isHackEnabled("Anticheat Bypass")) {
             if (!m_fields->initedDeath) {
@@ -321,9 +333,17 @@ class $modify(PlayLayer) {
         }
 #ifndef GEODE_IS_MACOS
         if (Hacks::isHackEnabled("Safe Mode") || Hacks::isAutoSafeModeActive()) {
+            if (!hasEnabledSafe) {
+                m_fields->previousTestMode = m_isTestMode;
+            }
             m_isTestMode = true;
+            m_fields->hasEnabledSafe = true;
         } else {
-            m_isTestMode = m_fields->previousTestMode;
+            if (hasEnabledSafe) {
+                m_isTestMode = m_fields->previousTestMode;
+            } else {
+                m_fields->previousTestMode = m_isTestMode;
+            }
         }
 #endif
         // whats the difference between m_fields and not using? i have no idea!

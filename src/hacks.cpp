@@ -97,9 +97,9 @@ void proceedWithReset(LevelInfoLayer* levelInfoLayer, GJGameLevel* level, bool r
     geode::createQuickPopup(
             "Final Warning",
             fmt::format("Are you absolutely sure you want to <cr>reset stats</c> for <cy>{}</c>?\nYou <cr>cannot undo this</c> after it's done!\n\nPlease note that <cy>Uncomplete Level</c> is considered <cr>unstable</c>, meaning it may or may not work, or break something. Make sure to <cy>save backup</c> or save your local files before doing this. (you can blame the people who rushed me to work on this)", level->m_levelName),
-            "Cancel", "I am sure.",
+            "I am sure.", "Cancel",
         [level, levelInfoLayer, resetStars, resetCoins](auto, bool btn2) {
-            if (btn2) {
+            if (!btn2) {
                 auto GLM = GameLevelManager::sharedState();
                 auto GSM = GameStatsManager::sharedState();
                 /*CCArray* levelids = GSM->m_completedLevels->allKeys();
@@ -141,7 +141,7 @@ void proceedWithReset(LevelInfoLayer* levelInfoLayer, GJGameLevel* level, bool r
                 levelInfoLayer->onBack(nullptr);
                 FLAlertLayer::create("Uncompleted Level", fmt::format("The level <cy>{}</c> ({}) has been reset!\nYou will need to download it again in order to play it.", level->m_levelName, level->m_levelID.value()), "OK")->show();
             }
-        }
+        }, true, true
     );
     
 }
@@ -165,20 +165,20 @@ void Hacks::resetLevel(LevelInfoLayer* levelInfoLayer, GJGameLevel* level) {
         geode::createQuickPopup(
             "Warning",
             "You have not <cy>completed the level</c>.\nAre you sure you want to <cr>reset the stats</c>?",
-            "No", "Yes",
+            "Yes", "No",
             [level, levelInfoLayer](auto, bool btn2) {
-                if (btn2) { // yes
+                if (!btn2) { // yes
                     proceedWithReset(levelInfoLayer, level, false, false);
                 }
-            }
+            }, true, true
         );
     } else {
         geode::createQuickPopup(
             "Confirm",
             fmt::format("Are you sure you want to <cr>reset the stats</c> for <cy>{}</c>?\nThis will clear <cg>normal percentages</c>, <cy>attempts</c>, <cy>jumps</c>, etc...", level->m_levelName),
-            "No", "Yes",
+            "Yes", "No",
             [level, levelInfoLayer](auto, bool btn2) {
-                if (btn2) { // yes
+                if (!btn2) { // yes
                     if (level->m_stars > 0) { // assume rated
                          geode::createQuickPopup(
                             "Confirm",
@@ -190,12 +190,12 @@ void Hacks::resetLevel(LevelInfoLayer* levelInfoLayer, GJGameLevel* level) {
                                 } else {
                                     proceedWithReset(levelInfoLayer, level, false, false);
                                 }
-                            });
+                            }, true, true);
                     } else {
                         proceedWithReset(levelInfoLayer, level, false, false);
                     }
                 }
-            }
+            }, true, true
         );
     }
 #endif 

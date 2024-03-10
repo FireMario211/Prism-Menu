@@ -73,4 +73,5 @@ class PrismUI : public FLAlertLayer {
         void updateLabel();
         static matjson::Object GetTheme();
         static PrismUI* create();
+        static void fixVSync();
 };

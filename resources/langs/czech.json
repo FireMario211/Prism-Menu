@@ -451,5 +451,53 @@
             "name": "Solidní Wave Trail",
             "desc": "Odstraní míchání obou barev ikony na wave trailu."
         }
+    },
+    {
+        "Extra Percent Digits": {
+            "name": "Více Číslic V Procentech",
+            "desc": "Kolik více desetinných číslic bude ukázáno s Přesnými Procenty."
+        }
+    },
+    {
+        "Uncomplete Level": {
+            "name": "Oddokončit Level",
+            "desc": "Resetuje normální a practice procenta a umožní ti snížit počet hvězd pokud si už level dokončil!"
+        }
+    },
+    {
+        "No Shaders": {
+            "name": "Žádné Shadery",
+            "desc": "Vypne všechny kamerové shader efekty."
+        }
+    },
+    {
+        "Disable Camera Effects": {
+            "name": "Vypnout Kamerové Efekty",
+            "desc": "Vypne všechny kamerové efekty a kamera bude pouze ukazovat na hráče. Může rozbít všechny gamemody kromě Cube a Robota."
+        }
+    },
+    {
+        "Show Hitboxes": {
+            "name": "Ukázat Hitboxy",
+            "desc": "Ukáže hitboxy hráče, překážek a solidních objektů."
+        }
+    },
+    {
+        "Show Hitboxes on Death": {
+            "name": "Ukázat Hitboxy Při Smrti",
+            "desc": "Ukáže hitboxy když zemřeš a schová je když se respawneš."
+        }
+    },
+    {
+        "Hitbox Stroke": {
+            "name": "Tloušťka Hitboxů",
+            "desc": "Změní tloušťku hitboxů."
+        }
+    },
+    {
+        "Suicide": {
+            "name": "Sebevražda",
+            "desc": "Opakovaně zabije hráče."
+        }
     }
 ]

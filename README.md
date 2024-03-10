@@ -2,13 +2,16 @@
 A mod menu made in Geode for Geometry Dash
 
 # TODOs (Based on whats next)
+- Fix bug with uncomplete level where it causes buttons to stop working
+- Fix "Uncomplete Level" not working in Gauntlets
+- Add Noclip Accuracy Flash (flashes screen red when hitting)
 - Add translations for "Uncomplete Level"
-- Added Vietnamese Translations.
 - Add a "First Start" menu when you install prism for the first time (Like, ask what language, theme, etc). Only do this when the user clicks on the prism button, and not show again after doing it unless they reset defaults.
-- Fix bug with input button not working for button position on android (ok why cant i reproduce this now wth)
+- Add instant respawn
 - Add a "Font Downloader" for languages like Japanese, Chinese, Arabic, etc
-- Added Japanese Translations. (bruh 1000 characters :()
+- Added Japanese Translations. (bruh 1000 characters :( actually 280 chars)
 - Add Arabic translations (this ones gonna be hard)
+- Added accents to Vietnamese Translations.
 - Add credits screen for cocos2d ui
 - get fps bypass working on mac os
 - Allow changing the prism button icon (different colors, up to the server icon style)
@@ -19,7 +22,6 @@ A mod menu made in Geode for Geometry Dash
 - Add to Misc category everything related to changing "Stats", basically allows you to edit your stats like mana, diamonds, etc. NOT ADDING STARS, DEMONS, AND OTHER FOR REASONS.
 - Add background-image for custom themes (note for me: look in https://discord.com/channels/@me/1156358012852776992/1172693426429505546)
 - Allow for dragging the button
-- Add "No Camera Movement" (basically removes all 2.2 camera stuff and only aims the camera at the player)
 - Add menu scale for the cocos ui
 - Add "Custom Object Bypass" (basically allows you to store more than 1000 objects in custom object)
 - (Possibly?) Fix FPS Bypass, or add "Show FPS" for Android users. (The func exists, just not visible to the end user lol)

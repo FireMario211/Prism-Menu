@@ -1,3 +1,10 @@
+# v1.5.1 
+    - Fixed bug with progress saving even in Test Mode.
+    - Fixed the ordering of the buttons for "Uncomplete Level".
+    - Updated Portuguese Translations.
+    - Updated Czech Translations.
+    - Fixed No Spikes.
+    - Fixed No Solids.
 # v1.5.0
     - Added Auto Safe Mode.
     - Added No Shaders.
