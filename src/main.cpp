@@ -122,6 +122,8 @@ class $modify(CCKeyboardDispatcher) {
 
 #include <Geode/modify/PlayLayer.hpp>
 #include <Geode/modify/PauseLayer.hpp>
+#include <Geode/modify/EditorUI.hpp>
+#include <Geode/modify/EditorPauseLayer.hpp>
 
 // showing the icon for android users lol
 class $modify(PauseLayer) {
@@ -140,6 +142,31 @@ class $modify(PauseLayer) {
         
     }
 };
+
+// hiding the icon in editor in case for some reason people dont know how to move the button (ITS IN SETTINGS)
+class $modify(EditorUI) {
+    bool init(LevelEditorLayer *editorLayer) {
+        if (prismButton != nullptr && Hacks::isHackEnabled("Show Button")) prismButton->setVisible(false);
+        return EditorUI::init(editorLayer);
+    }
+};
+
+class $modify(EditorPauseLayer) {
+    void customSetup() {
+        EditorPauseLayer::customSetup();
+        if (prismButton != nullptr && Hacks::isHackEnabled("Show Button")) {
+            prismButton->setVisible(true);
+            // yeah the issue is that touch priority is not too low, so button wont work 
+            // though im too lazy to have a check to see if player is currently in EditorPauseLayer or not and siwtching between -1024 and -128
+            // solution? tell the player to exit the editor!
+        }
+    }
+    void onResume(CCObject* sender) {
+        if (prismButton != nullptr && Hacks::isHackEnabled("Show Button")) prismButton->setVisible(false);
+        EditorPauseLayer::onResume(sender);
+    }
+};
+
 
 // TODO: Check Cheat Indicator position
 CircleButtonSprite* createCheatIndicator(bool isHacking) {

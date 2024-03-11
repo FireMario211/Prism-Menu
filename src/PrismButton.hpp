@@ -13,12 +13,15 @@ protected:
     float initialTouchY;
     float touchHoldTimer;
 
+    int currentTouchPrio;
+
     bool init(CCScene* p0) {
         if (!CCMenu::init())
             return false;
         HackItem* posX = Hacks::getHack("Button Position X");
         HackItem* posY = Hacks::getHack("Button Position Y");
         auto menuButton = createButton(this);
+        menuButton->setID("menu-button");
         this->addChild(menuButton);
         this->setPositionX(posX->value.intValue);
         this->setPositionY(posY->value.intValue);
@@ -29,6 +32,7 @@ protected:
         isTouchOnButton = false;
         touchHoldTimer = 0.0f;
         //this->scheduleUpdate();
+        currentTouchPrio = this->getTouchPriority();
         return true;
     }
 public:
@@ -121,6 +125,21 @@ public:
             showImGuiMenu = !showImGuiMenu;
         } else {
             PrismUI::create()->show();
+        }
+    }
+    void resetTouchPriority(bool alsoChild, bool force) {
+        cocos::handleTouchPriority(this, force);
+        if (alsoChild) {
+            if (auto menuItem = typeinfo_cast<CCMenuItemSpriteExtra*>(this->getChildByID("menu-button"))) {
+                cocos::handleTouchPriority(menuItem, force);
+            }
+        }
+    }
+    void switchTouchPrio() {
+        if (this->getTouchPriority() != currentTouchPrio) {
+            this->setTouchPriority(currentTouchPrio);
+        } else {
+            this->setTouchPriority(-1024);
         }
     }
 

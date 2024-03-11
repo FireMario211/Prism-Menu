@@ -2,12 +2,14 @@
 #thanks dank_meme01
 export NDK=/opt/android-ndk
 #export ANDROID_ABI=armeabi-v7a
-#ABIS=("armeabi-v7a" "arm64-v8a")
-ABIS=("arm64-v8a")
+ABIS=("armeabi-v7a" "arm64-v8a")
+#ABIS=("arm64-v8a")
 #ABIS=("armeabi-v7a")
 export MINSDKVERSION=24
 export GEODE_SDK=/home/fire/.geodenightly # remove when geode 2.0.0 is released
 export GEODE_BINDINGS_REPO_PATH=/home/fire/.geodebindings
+export NO_IMGUI=1
+
 
 mkdir -p build-android
 for ABI in "${ABIS[@]}"; do
