@@ -39,7 +39,7 @@ jobs:
         uses: geode-sdk/build-geode-mod@main
         with:
           sdk: nightly
-          #build-config: 'RelWithDebInfo'
+          build-config: 'RelWithDebInfo'
           combine: true
           target: ${{ matrix.config.target }}
 

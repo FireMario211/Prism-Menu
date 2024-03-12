@@ -1,4 +1,5 @@
 # v1.5.1 
+    - Made the Prism Button hidden if you are in the Editor.
     - Fixed bug with progress saving even in Test Mode.
     - Fixed the ordering of the buttons for "Uncomplete Level".
     - Updated Portuguese Translations.

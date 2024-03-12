@@ -39,6 +39,8 @@ A mod menu made in Geode for Geometry Dash
 - maybe switch to ArianaPro-Regular font? looks nice imo. make a font switcher
 - Add "Coin Finder" (look at https://discord.com/channels/1199008625683869787/1199008626451423275/1201272567244275903)
 
+note for me: maybe make server closed source or in a private repo, idk if people would really contribute towards it
+
 # a note for a certain somebody
 please credit me and ask before using my code, and **make sure it's open sourced**. I worked hard on this project and I don't want some of the features to have its code taken without me knowing.
 
