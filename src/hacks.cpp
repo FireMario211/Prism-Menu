@@ -1,5 +1,6 @@
 #include "hacks.hpp"
 #include "CustomSettings.hpp"
+#include "PrismUI.hpp"
 
 std::vector<HackItem> allHacks;
 
@@ -139,7 +140,7 @@ void proceedWithReset(LevelInfoLayer* levelInfoLayer, GJGameLevel* level, bool r
                 level->m_coinsVerified = 0;
                 GLM->deleteLevel(level);
                 levelInfoLayer->onBack(nullptr);
-                FLAlertLayer::create("Uncompleted Level", fmt::format("The level <cy>{}</c> ({}) has been reset!\nYou will need to download it again in order to play it.", level->m_levelName, level->m_levelID.value()), "OK")->show();
+                //FLAlertLayer::create("Uncompleted Level", fmt::format("The level <cy>{}</c> ({}) has been reset!\nYou will need to download it again in order to play it.", level->m_levelName, level->m_levelID.value()), "OK")->show();
             }
         }, true, true
     );
@@ -149,6 +150,10 @@ void proceedWithReset(LevelInfoLayer* levelInfoLayer, GJGameLevel* level, bool r
 #endif
 
 void Hacks::resetLevel(LevelInfoLayer* levelInfoLayer, GJGameLevel* level) {
+    auto prismUIExists = CCScene::get()->getChildByID("prism-menu");
+    if (prismUIExists != nullptr) {
+        static_cast<PrismUI*>(prismUIExists)->onClose(CCNode::create());
+    }
 #ifdef GEODE_IS_MACOS 
     FLAlertLayer::create("Notice", "This currently does not work on <cy>Mac OS</c>\n(you can blame the people who rushed me to work on this)", "OK")->show();
 #else 
