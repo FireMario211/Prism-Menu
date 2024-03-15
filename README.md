@@ -1,8 +1,12 @@
+<p align="center">
 # Prism-Menu
 A mod menu made in Geode for Geometry Dash
-
+![Last Commit](https://img.shields.io/github/last-commit/FireMario211/Prism-Menu)
+![GitHub Release](https://img.shields.io/github/v/release/FireMario211/Prism-Menu)
+![Downloads](https://img.shields.io/github/downloads/FireMario211/Prism-Menu/total)
+![Build Status](https://img.shields.io/github/actions/workflow/status/FireMario211/Prism-Menu/build)
+</p>
 # TODOs (Based on whats next)
-- Fix bug with uncomplete level where it causes buttons to stop working
 - Fix "Uncomplete Level" not working in Gauntlets
 - Add Noclip Accuracy Flash (flashes screen red when hitting)
 - Add translations for "Uncomplete Level"
