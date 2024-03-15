@@ -12,8 +12,10 @@ A mod menu made in Geode for Geometry Dash, made by [Firee](https://github.com/F
 **Prism Menu** is a Geode Mod that intends to be a free alternative to other mod menus, while also adding extra useful additions.
 ## ImGui Menu Style
 <p align="center"><img src="./resources/Screenshot1Big.png?raw=true" alt="Mod Example (ImGui)"/></p> 
+
 ## Geometry Dash Menu Style
 <p align="center"><img src="./resources/ScreenshotCocos.png?raw=true" alt="Mod Example (Cocos)"/></p>
+
 ---
 # Features 
 * **Tons of different mods**
