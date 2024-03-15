@@ -1,11 +1,13 @@
 <div align="center">
+
 # Prism-Menu
 A mod menu made in Geode for Geometry Dash
 
+<a href="https://discord.gg/pnD8cnwdhZ"><img src="https://img.shields.io/discord/1199008625683869787?color=7389D8&labelColor=6A7EC2&logo=discord&logoColor=FFFFFF" alt="Discord" /></a>
 ![Last Commit](https://img.shields.io/github/last-commit/FireMario211/Prism-Menu)
-![GitHub Release](https://img.shields.io/github/v/release/FireMario211/Prism-Menu)
 ![Downloads](https://img.shields.io/github/downloads/FireMario211/Prism-Menu/total)
-![Build Status](https://img.shields.io/github/actions/workflow/status/FireMario211/Prism-Menu/build)
+![GitHub Release](https://img.shields.io/github/v/release/FireMario211/Prism-Menu)
+![Build Status](https://github.com/FireMario211/Prism-Menu/actions/workflows/build.yml/badge.svg)
 </div>
 # TODOs (Based on whats next)
 - Fix "Uncomplete Level" not working in Gauntlets
