@@ -11,6 +11,8 @@ using namespace geode::prelude;
 #include <Geode/modify/CCScheduler.hpp>
 #include <Geode/modify/CCSprite.hpp>
 #include <Geode/modify/GJBaseGameLayer.hpp>
+#include <Geode/modify/CCApplication.hpp>
+
 
 // Practice Music
 class $modify(GameStatsManager) {

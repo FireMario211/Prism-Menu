@@ -1,7 +1,7 @@
 #pragma once
 #include <Geode/Geode.hpp>
 #include "hacks.hpp"
-#include "PrismUI.hpp"
+#include "UI/PrismUI.hpp"
 using namespace geode::prelude;
 class PrismButton : public CCMenu {
 protected:

@@ -2,7 +2,7 @@
 #include <Geode/Geode.hpp>
 #include <Geode/Bindings.hpp>
 #include <Geode/ui/TextInput.hpp>
-#include "Languages.hpp"
+#include "../Languages.hpp"
 // TODO: Use custom box texture with ->setColor
 
 using namespace geode::prelude;
@@ -41,7 +41,6 @@ class PrismUI : public FLAlertLayer {
     protected:
         // layer size is stored here
         cocos2d::CCSize m_pLrSize;
-        cocos2d::CCSize m_sScrLayerSize;
         cocos2d::extension::CCScale9Sprite* m_pBGSprite;
         cocos2d::extension::CCScale9Sprite* m_pNavigation;
         std::vector<cocos2d::extension::CCScale9Sprite*> m_pNavButtons;
@@ -65,6 +64,7 @@ class PrismUI : public FLAlertLayer {
 
         //void updateOpacity(CCObject*);
     public:
+        void toggleVisibility();
         virtual void onClose(cocos2d::CCObject*);
         static constexpr const float s_defWidth = 450.0f;
         static constexpr const float s_defHeight = 250.0f;

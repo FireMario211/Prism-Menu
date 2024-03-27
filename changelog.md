@@ -1,3 +1,5 @@
+# v1.6.0
+    - Allowed Noclip Accuracy to no longer require Anticheat Bypass to be enabled.
 # v1.5.1 
     - Made the Prism Button hidden if you are in the Editor.
     - Fixed bug with progress saving even in Test Mode.

@@ -1,11 +1,11 @@
 #include "PrismUI.hpp"
-#include "GatoSim.hpp"
-#include "Themes.hpp"
+#include "../Misc/GatoSim.hpp"
+#include "../Themes.hpp"
 #include <Geode/binding/ButtonSprite.hpp>
 #include <Geode/ui/TextArea.hpp>
 #include "Dropdown.h"
-#include "Utils.hpp"
-
+#include "../Utils.hpp"
+#include "CreditsMenu.hpp"
 
 int currentMenuIndexGD = 0;
 
@@ -347,7 +347,11 @@ void PrismUIButton::onBtn(CCObject* ret) {
         CCDirector::sharedDirector()->getScheduler()->setTimeScale(1.0F);
         prismUI->onClose(ret);
     } else if (name == "Credits") {
-        FLAlertLayer::create("Not working...yet.", "This will be added in a <cy>future update</c>!", "OK")->show();
+        //FLAlertLayer::create("Not working...yet.", "This will be added in a <cy>future update</c>!", "OK")->show();
+        auto creditsMenu1 = CreditsMenu::create(); // fix touch prio issue 
+        creditsMenu1->show();
+        //creditsMenu1->onClose(nullptr);
+        //CreditsMenu::create()->show();
     } else if (name == "Show Graphic Options") {
         #ifdef GEODE_IS_ANDROID 
         VideoOptionsLayer::create()->show();
@@ -361,7 +365,7 @@ void PrismUIButton::onBtn(CCObject* ret) {
         } else {
             FLAlertLayer::create("Error", "You are not <cy>currently in the level page</c>! Please enter in a level page in order to <cg>reset the stats</c>.", "OK")->show();
         }
-    } else if (name == "mow.") {
+    } else if (name == "mow..") {
         FLAlertLayer::create("meow.", "coming soon... in a <cy>future update</c>", "cat")->show();
     } else {
         // NO SPOILERS!
@@ -418,6 +422,11 @@ void PrismUIButton::onDropdownBtn(CCObject* sender) {
             currentThemeApplied = matjson::Array {};
         }
     }
+}
+
+void PrismUI::toggleVisibility() {
+    log::debug("Toggle PrismUI visible.");
+    this->setVisible(!this->isVisible());
 }
 
 void PrismUI::CreateHackItem(HackItem* hack) {
@@ -498,28 +507,98 @@ void PrismUIButton::textChanged(CCTextInputNode* input) {
         Hacks::Settings::setSettingValue(&settings, *m_hack, m_hack->value.floatValue);
     }
 }
+
+
+#ifdef GEODE_IS_ANDROID 
+#include <jni.h>
+//#include <Geode/cocos/platform/android/jni/JniHelper.h>
+#include "JniHelperExt.h"
+#include <Geode/modify/PlatformToolbox.hpp>
+/*
+class $modify(PlatformToolbox) {
+    int getDeviceRefreshRate() {
+        int result = PlatformToolbox::getDeviceRefreshRate();
+        log::info("the {}", result);
+        return result;
+    }
+};
+*/
+
+
+#endif
+
+
 void PrismUIButton::intChanged() {
     std::string name = m_hack->name;
     auto prismButton = CCScene::get()->getChildByID("prism-icon");
+    if (prismButton == nullptr) return;
     if (name == "FPS Bypass") {
         // from mats fps unlocker
         //Hacks::Settings::setSettingValue(&settings, *hack, hack->value.floatValue);
+        float intervalF = 1.0 / static_cast<double>(m_hack->value.intValue);
+        double interval = 1.0 / static_cast<double>(m_hack->value.intValue);
 #ifndef GEODE_IS_MACOS // crashes
         auto app = CCApplication::sharedApplication();
-        app->setAnimationInterval(1.0 / static_cast<double>(m_hack->value.intValue));
+        /////app->setAnimationInterval(interval);
 #endif 
-        auto GM = GameManager::sharedState();
+#ifdef GEODE_IS_ANDROID // attempt to fix using JNI because why not!
+  /*
+  piVar2 = (int *)cocos2d::JniHelper::getJavaVM();
+  (**(code **)(*piVar2 + 0x18))(piVar2,&local_28,0x10006);
+  p_Var3 = (_jmethodID *)
+           (**(code **)(*local_28 + 0x18))(local_28,"org/cocos2dx/lib/Cocos2dxRenderer");
+  uVar4 = (**(code **)(*local_28 + 0x1c4))(local_28,p_Var3,"setFpsChangerEnabled",&DAT_002702c4);
+  _JNIEnv::CallStaticVoidMethod((_jclass *)local_28,p_Var3,uVar4,param_3);
+*/
+        // dont ask
+        JniMethodInfoExt t;
+        log::info("set fps");
+        if (JniHelperExt::getStaticMethodInfo(t, "org/cocos2dx/lib/Cocos2dxRenderer", "setAnimationInterval", "(D)V")) {
+            log::info("step 1");
+            t.env->CallStaticObjectMethod(t.classID, t.methodID, interval);
+            log::info("step 2");
+        } else {
+            // do i do something here? or
+            log::error("Failed to retrieve Method Info");
+        }
+
+/*
+        log::info("set fps 2");
+        if (JniHelperExt::getStaticFieldInfo(t, "org/cocos2dx/lib/Cocos2dxRenderer", "sAnimationInterval", "J")) {
+            // Access the field ID
+            jfieldID fieldId = t.fieldID;
+
+            // Modify the sAnimationInterval variable
+            jlong newValue = interval; // New value you want to set
+            t.env->SetStaticLongField(t.classID, fieldId, newValue);
+        } else {
+            // do i do something here? or
+            log::error("Failed to retrieve Field Info");
+        }
+*/
+
+#endif 
+        /*////auto GM = GameManager::sharedState();
         GM->m_customFPSTarget = m_hack->value.intValue;
         // they told me to try turning off vsync but it no work :(
         // https://wyliemaster.github.io/gddocs/#/resources/client/gamesave/gv
         GM->setGameVariable("0116", true); // gv_0116 	Use Custom FPS
-        GM->updateCustomFPS();
+        // test!
+        //CCApplication::sharedApplication()->toggleVerticalSync(false);
+        GM->updateCustomFPS();*/////
     } else if (name == "Button Position X") {
         prismButton->setPositionX(m_hack->value.intValue);
     } else if (name == "Button Position Y") {
         prismButton->setPositionY(m_hack->value.intValue);
     }
 }
+
+#ifndef GEODE_IS_MACOS 
+void PrismUI::fixVSync() {
+    //CCDirector::sharedDirector()->getOpenGLView()
+    // some android logic idk
+}
+#endif
 
 void PrismUIButton::textInputOpened(CCTextInputNode* input) { // basically onIntBtn
     if (input->getString().size() == 0) return;

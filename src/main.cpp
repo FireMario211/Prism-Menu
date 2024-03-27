@@ -6,7 +6,7 @@
 #include "PrismButton.hpp"
 #include "hacks.hpp"
 #include "Themes.hpp"
-#include "PrismUI.hpp"
+#include "UI/PrismUI.hpp"
 #include "Utils.hpp"
 #include <Geode/Geode.hpp>
 //#include <geode.custom-keybinds/include/Keybinds.hpp>
@@ -183,7 +183,6 @@ class $modify(PlayLayer) {
     float previousPositionX = 0.0F;
     GameObject* antiCheatObject; // removing after lol
     CircleButtonSprite* cheatIndicator;
-    CCLabelBMFont* accuracyLabel;
     bool previousTestMode;
     CCNode* prismNode;
 
@@ -202,27 +201,14 @@ class $modify(PlayLayer) {
     int death = 0;
     float previousPlayerX = 0.0F;
     float previousDeathX = 0.0F;
+    CCLabelBMFont* accuracyLabel;
+    float flashOpacity = 1.0F;
+    CCSprite* flashNode;
 
     // Anticheat Bypass, Noclip, No Spikes, No Solids
     void destroyPlayer(PlayerObject *p0, GameObject *p1) {
-        //bool m_isTestMode = *reinterpret_cast<bool*>(reinterpret_cast<uintptr_t>(this) + 0x413);
-        if (Hacks::isHackEnabled("Enable Patching")) return PlayLayer::destroyPlayer(p0, p1);
-        bool noclipDisabled = !Hacks::isHackEnabled("No Solids") && !Hacks::isHackEnabled("No Spikes") && !Hacks::isHackEnabled("Noclip");
-        if (noclipDisabled) return PlayLayer::destroyPlayer(p0, p1);
-        if (
-            !Hacks::isHackEnabled("Noclip") &&
-            Hacks::isHackEnabled("No Solids") &&
-            p1 != nullptr &&
-            p1->m_objectType != GameObjectType::CollisionObject
-        ) return PlayLayer::destroyPlayer(p0, p1);
-        if (
-            !Hacks::isHackEnabled("Noclip") &&
-            Hacks::isHackEnabled("No Spikes") &&
-            (p1 == nullptr || p1->m_objectType == GameObjectType::CollisionObject)
-        ) return PlayLayer::destroyPlayer(p0, p1);
-        
-        if (Hacks::isHackEnabled("Anticheat Bypass")) {
-            if (!m_fields->initedDeath) {
+        bool instaRestart = Hacks::isHackEnabled("Instant Respawn");
+        if (!m_fields->initedDeath) {
             #if !defined(GEODE_IS_ANDROID64) && !defined(GEODE_IS_MACOS)
             if (m_fields->antiCheatObject == nullptr && p1 != nullptr && (
                 (p1->m_realXPosition == 0 && p1->m_realYPosition == p0->m_realYPosition) ||
@@ -252,20 +238,51 @@ class $modify(PlayLayer) {
                 //m_antiCheatObject = p1;
                 m_fields->initedDeath = true;*/
             #endif
-            }
+        }
+        //bool m_isTestMode = *reinterpret_cast<bool*>(reinterpret_cast<uintptr_t>(this) + 0x413);
+        if (Hacks::isHackEnabled("Enable Patching")) return PlayLayer::destroyPlayer(p0, p1);
+        bool noclipDisabled = !Hacks::isHackEnabled("No Solids") && !Hacks::isHackEnabled("No Spikes") && !Hacks::isHackEnabled("Noclip");
+        if (noclipDisabled) {
+            PlayLayer::destroyPlayer(p0, p1);
+            if (instaRestart) PlayLayer::delayedResetLevel();
+            return;
+        }
+        if (
+            !Hacks::isHackEnabled("Noclip") &&
+            Hacks::isHackEnabled("No Solids") &&
+            p1 != nullptr &&
+            p1->m_objectType != GameObjectType::CollisionObject
+        ) {
+            PlayLayer::destroyPlayer(p0, p1);
+            if (instaRestart) PlayLayer::delayedResetLevel();
+        }
+        if (
+            !Hacks::isHackEnabled("Noclip") &&
+            Hacks::isHackEnabled("No Spikes") &&
+            (p1 == nullptr || p1->m_objectType == GameObjectType::CollisionObject)
+        ) {
+            PlayLayer::destroyPlayer(p0, p1);
+            if (instaRestart) PlayLayer::delayedResetLevel();
+        }
+        if (Hacks::isHackEnabled("Anticheat Bypass")) {
             if (p1 == m_fields->antiCheatObject) { // nice AC robert
                 return PlayLayer::destroyPlayer(p0, p1);
             }
-            if (m_fields->accuracyLabel != nullptr) {
-                m_fields->accuracyLabel->setColor({255,0,0});
-            }
+        }
+        if (p1 != m_fields->antiCheatObject) {
+            if (Hacks::isHackEnabled("Suicide")) return PlayLayer::destroyPlayer(p0, p1);
             if (m_player1 != nullptr) {
                 if (m_player1->getPositionX() != m_fields->previousDeathX) {
                     m_fields->previousDeathX = m_player1->getPositionX();
                     m_fields->death += 1;
                 }
             }
-            if (Hacks::isHackEnabled("Suicide")) return PlayLayer::destroyPlayer(p0, p1);
+            if (m_fields->accuracyLabel != nullptr && m_fields->flashNode != nullptr) {
+                m_fields->accuracyLabel->setColor({255,0,0});
+                if (Hacks::isHackEnabled("Noclip Flash")) {
+                    m_fields->flashOpacity = 160.0F;
+                }
+            }
         }
     }
     // Instant Complete, Hide Testmode
@@ -324,6 +341,14 @@ class $modify(PlayLayer) {
         m_fields->accuracyLabel->setAlignment(CCTextAlignment::kCCTextAlignmentLeft);
         m_fields->accuracyLabel->setZOrder(1000);
         m_fields->accuracyLabel->setTag(10420); // prevent PlayLayer from interfering
+        m_fields->flashNode = CCSprite::create("square02b_001.png");
+        m_fields->flashNode->setScale(10);
+        m_fields->flashNode->setPosition(winSize / 2);
+        m_fields->flashNode->setZOrder(999);
+        m_fields->flashNode->setColor({255,0,0});
+        m_fields->flashNode->setOpacity(0);
+        m_fields->flashNode->setTag(10420);
+        m_fields->prismNode->addChild(m_fields->flashNode);
         m_fields->prismNode->addChild(m_fields->accuracyLabel);
         m_fields->prismNode->addChild(m_fields->cheatIndicator);
         this->addChild(m_fields->prismNode);
@@ -356,6 +381,11 @@ class $modify(PlayLayer) {
             m_fields->accuracyLabel->setVisible(Hacks::isHackEnabled("Noclip Accuracy"));
             if (m_fields->frame % 4 == 0) { // quarter step
                 m_fields->accuracyLabel->setColor({255,255,255});
+                if (m_fields->flashOpacity > 1.0F) {
+                    m_fields->flashOpacity -= 10.0F;
+                }
+                if (m_fields->flashOpacity <= 0.0F) m_fields->flashOpacity = 0.0F;
+                m_fields->flashNode->setOpacity(m_fields->flashOpacity);
             }
         }
 #ifndef GEODE_IS_MACOS

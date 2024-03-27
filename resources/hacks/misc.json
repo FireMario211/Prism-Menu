@@ -29,6 +29,12 @@
         "type": "bool"
     },
     {
+        "name": "No Pulse",
+        "desc": "Disables orbs and other related objects from pulsing on the music.",
+        "opcodes": [],
+        "type": "bool"
+    },
+    {
         "name": "Disable Camera Effects",
         "desc": "Disables any camera effects, and only focuses the camera on the player. This might break all gamemodes except Cube and Robot.",
         "opcodes": [],
@@ -37,6 +43,12 @@
     {
         "name": "Noclip Accuracy",
         "desc": "Informs you how accurate your noclip run is. (Will not work without Anticheat Bypass enabled)",
+        "opcodes": [],
+        "type": "bool"
+    },
+    {
+        "name": "Noclip Flash",
+        "desc": "Flashes the whole screen red instead of showing a label for your noclip accuracy.",
         "opcodes": [],
         "type": "bool"
     },

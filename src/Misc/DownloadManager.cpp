@@ -1,5 +1,6 @@
 // definitely not taken from GDUtils
 #include "DownloadManager.hpp"
+#include "../UI/PrismUI.hpp"
 
 bool BrownAlertDelegate::init(float _w, float _h, const char* _spr, const char* _title) {
     auto winSize = cocos2d::CCDirector::sharedDirector()->getWinSize();
@@ -50,6 +51,13 @@ bool BrownAlertDelegate::init(float _w, float _h, const char* _spr, const char* 
     this->setKeypadEnabled(true);
     this->setTouchEnabled(true);
 
+    //this->m_buttonMenu->setTouchPriority(-1001);
+    //this->setTouchPriority(-1002);
+    //cocos::handleTouchPriorityWith(this, -1001);
+
+    /*m_mainLayer->setTouchPriority(CCDirector::sharedDirector()->getTouchDispatcher()->getTargetPrio() - 3);
+    CCDirector::sharedDirector()->getTouchDispatcher()->registerForcePrio(this, 2);*/
+    //cocos::handleTouchPriority(m_buttonMenu);
     return true;
 }
 
@@ -63,6 +71,9 @@ void BrownAlertDelegate::keyDown(cocos2d::enumKeyCodes key) {
 }
 
 void BrownAlertDelegate::onClose(cocos2d::CCObject* pSender) {
+    if (auto prismMenu = typeinfo_cast<PrismUI*>(CCScene::get()->getChildByID("prism-menu"))) {
+        prismMenu->toggleVisibility();
+    }
     this->setKeyboardEnabled(false);
     this->removeFromParentAndCleanup(true);
 };

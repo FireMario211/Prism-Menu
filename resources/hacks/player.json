@@ -98,6 +98,24 @@
         "type": "bool"
     },
     {
+        "name": "No Wave Pulse",
+        "desc": "Prevents the wave from pulsing to the beat of the music.",
+        "opcodes": [],
+        "type": "bool"
+    },
+    {
+        "name": "Instant Respawn",
+        "desc": "Removes the delay when re-attempting the level.",
+        "opcodes": [],
+        "type": "bool"
+    },
+    {
+        "name": "No Death Effect",
+        "desc": "Removes explosion particles when a player dies.",
+        "opcodes": [],
+        "type": "bool"
+    },
+    {
         "name": "Change Gravity",
         "desc": "Allows you to change gravity when jumping or falling.",
         "opcodes": [],

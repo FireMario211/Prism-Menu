@@ -1,6 +1,6 @@
 #include "hacks.hpp"
 #include "CustomSettings.hpp"
-#include "PrismUI.hpp"
+#include "UI/PrismUI.hpp"
 
 std::vector<HackItem> allHacks;
 

@@ -14,6 +14,8 @@ project(PrismMenu VERSION 1.0.0)
 file(GLOB SOURCES
 	src/*.cpp
     src/Hacks/*.cpp
+    src/Misc/*.cpp
+    src/UI/*.cpp
 )
 
 # Set up the mod binary
@@ -34,6 +36,11 @@ if (NOT DEFINED ENV{GEODE_SDK})
 else()
     message(STATUS "Found Geode: $ENV{GEODE_SDK}")
 endif()
+
+#if (APPLE)
+#    target_sources(${PROJECT_NAME} INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/src/FPSFix.mm)
+#    set_source_files_properties(${CMAKE_CURRENT_SOURCE_DIR}/src/FPSFix.mm PROPERTIES SKIP_PRECOMPILE_HEADERS ON)
+#endif()
 
 set(IMGUI_VERSION "v1.90")
 if (NOT APPLE AND NOT DEFINED ENV{NO_IMGUI})

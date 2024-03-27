@@ -2,9 +2,9 @@
 // sorta fixed up because why do you need reinterpret_cast!? its unsafe!
 #pragma once
 #include "PrismUI.hpp"
-#include "Themes.hpp"
-#include "Utils.hpp"
-#include "hacks.hpp"
+#include "../Themes.hpp"
+#include "../Utils.hpp"
+#include "../hacks.hpp"
 using namespace geode::prelude;
 
 class Dropdown : public CCMenu {

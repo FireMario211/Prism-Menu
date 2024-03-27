@@ -3,7 +3,6 @@
 // windows only because i cant get this to work, actually im too lazy
 #include <Geode/Geode.hpp>
 using namespace geode::prelude;
-#include <fstream>
 
 class BrownAlertDelegate : public FLAlertLayer {
     protected:
@@ -19,7 +18,7 @@ class BrownAlertDelegate : public FLAlertLayer {
         );
         virtual void setup() = 0;
         virtual void keyDown(cocos2d::enumKeyCodes) override;
-
+    public:
         virtual void onClose(cocos2d::CCObject*);
 };
 
@@ -30,7 +29,7 @@ class ProgressBar : public CCNode {
         CCSprite* progressBar = CCSprite::create("sliderBar.png");
         bool init();
     public:
-        void testProgressbar();
+     void testProgressbar();
         virtual void setProgress(float percentage);
         static ProgressBar* create();
 };
