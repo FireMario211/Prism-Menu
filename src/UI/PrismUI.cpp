@@ -1,5 +1,5 @@
 #include "PrismUI.hpp"
-#include "../Misc/GatoSim.hpp"
+//#include "../Misc/GatoSim.hpp"
 #include "../Themes.hpp"
 #include <Geode/binding/ButtonSprite.hpp>
 #include <Geode/ui/TextArea.hpp>
@@ -369,7 +369,7 @@ void PrismUIButton::onBtn(CCObject* ret) {
         FLAlertLayer::create("meow.", "coming soon... in a <cy>future update</c>", "cat")->show();
     } else {
         // NO SPOILERS!
-        GatoSim::onButton();
+        //GatoSim::onButton();
     }
 }
 
