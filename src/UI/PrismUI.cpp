@@ -541,7 +541,7 @@ void PrismUIButton::intChanged() {
         auto app = CCApplication::sharedApplication();
         /////app->setAnimationInterval(interval);
 #endif 
-#ifdef GEODE_IS_ANDROID // attempt to fix using JNI because why not!
+#ifdef GEODE_IS_ANDROIDSPOILER // attempt to fix using JNI because why not!
   /*
   piVar2 = (int *)cocos2d::JniHelper::getJavaVM();
   (**(code **)(*piVar2 + 0x18))(piVar2,&local_28,0x10006);
