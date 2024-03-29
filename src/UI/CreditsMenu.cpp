@@ -35,7 +35,7 @@ std::vector<CreditUser> users = {
     {
         "TheSillyDoggo",
         5,
-        "Logo Base & Speedhack Code",
+        "Logo Base",
         { 125,125,255 },
         { 125,255,175 },
         { 255, 255, 255 },

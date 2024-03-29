@@ -10,7 +10,7 @@ It is not advised to change any of this, as it may cause your game to crash if y
 * `button` - A hack with no saving involved, since why would you need to. Anyways, this is usually used for functionality.
 
 # Format (Do not include //)
-```json
+```js
 [
     {
         "name": "Hack Name", // Name of the Hack
@@ -32,10 +32,11 @@ It is not advised to change any of this, as it may cause your game to crash if y
         "values": ["Value 1", "Value 2", "etc"] // Exclusive to dropdowns. Do not include this key if the type isn't a "dropdown".
     }
 ]
-```
+``` 
+Note that creating patches will disable saving the setting, meaning the user would have to enable it again. This is because Prism Menu **currently does not** have a check to see if hacks are enabled when Geometry Dash is launched, and to apply the patches.
 
 # Example 
-```json
+```js
 [
     {
         "name": "Backup Stars Limit",
