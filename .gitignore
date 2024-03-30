@@ -62,6 +62,8 @@ svgs/
 compile_commands.json
 resources/fontvers/
 
+tmp/
+
 notas.h
 resources/gatos/
 server/character.js
