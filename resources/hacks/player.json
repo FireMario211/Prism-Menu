@@ -2,17 +2,11 @@
     {
         "name": "Noclip",
         "desc": "Makes the player invincible.",
-        "opcodes": [
-            {"addr": "0x20A23C", "on": "E9 79 06 00 00", "off": "6A 14 8B CB FF"}
-        ],
         "type": "bool"
     },
     {
         "name": "No Spikes",
         "desc": "Ignores spike objects.",
-        "opcodes": [
-            {"addr": "0x205347", "on": "75", "off": "74"}
-        ],
         "type": "bool"
     },
     {
@@ -22,112 +16,101 @@
             {"addr": "0x20456D", "on": "B8 07 00 00 00 90", "off": "8B 83 00 03 00 00"}
         ],
         "type": "bool",
-        "winOnly": true
+        "platforms": []
     },
     {
         "name": "No Solids",
         "desc": "Disables most solid hitboxes. Special objects still work.",
-        "opcodes": [
-            {"addr": "0x20456D", "on": "B8 14 00 00 00 90", "off": "8B 83 00 03 00 00"}
-        ],
         "type": "bool"
     },
     {
         "name": "Suicide",
         "desc": "Kills the player repeatedly.",
-        "opcodes": [],
         "type": "bool"
     },
     {
         "name": "Freeze Player",
         "desc": "Freezes player movement.",
-        "opcodes": [
-            {"addr": "0x203519", "on": "90 90 90", "off": "50 FF D6"}
-        ],
         "type": "bool"
     },
     {
         "name": "No Mirror Transition",
         "desc": "Prevents the screen from being flipped upon a mirror portal.",
-        "opcodes": [],
         "type": "bool"
     },
     {
         "name": "Instant Mirror Portal",
         "desc": "Reverse portal now instantly switches.",
-        "opcodes": [],
         "type": "bool"
     },
     {
         "name": "Jump Hack",
         "desc": "Allows for jumping in mid-air.",
-        "opcodes": [
-            {"addr": "0x1E9141", "on": "01", "off": "00"},
-            {"addr": "0x1E9498", "on": "01", "off": "00"}
-        ],
         "type": "bool"
     },
     {
         "name": "Instant Complete",
         "desc": "Instantly completes the level. (Do not enable in the Editor)",
-        "opcodes": [],
         "type": "bool"
     },
     {
         "name": "Force Platformer Mode",
         "desc": "Forces you to be in platformer mode when playing a level.",
-        "opcodes": [],
-        "type": "bool"
+        "type": "bool",
+        "platforms": ["win", "android32", "android64"]
     },
     {
         "name": "No Trail",
         "desc": "Disables any trail effect from the player.",
-        "opcodes": [],
         "type": "bool"
     },
     {
         "name": "No Wave Trail",
         "desc": "Disables the trail behind the wave.",
-        "opcodes": [],
         "type": "bool"
     },
     {
         "name": "Solid Wave Trail",
         "desc": "Removes the blending of both icon colors on the wave trail.",
-        "opcodes": [],
         "type": "bool"
     },
-    {
-        "name": "No Wave Pulse",
-        "desc": "Prevents the wave from pulsing to the beat of the music.",
-        "opcodes": [],
-        "type": "bool"
-    },
+    
     {
         "name": "Instant Respawn",
         "desc": "Removes the delay when re-attempting the level.",
-        "opcodes": [],
         "type": "bool"
     },
     {
         "name": "No Death Effect",
         "desc": "Removes explosion particles when a player dies.",
-        "opcodes": [],
         "type": "bool"
+    },
+    {
+        "name": "No Wave Pulse",
+        "desc": "Prevents the wave from pulsing to the beat of the music.",
+        "type": "bool"
+    },
+    {
+        "name": "Wave Pulse Size",
+        "desc": "How big the pulse should be for the wave.",
+        "type": "float",
+        "min": 0,
+        "max": 10,
+        "default": 1
     },
     {
         "name": "Change Gravity",
         "desc": "Allows you to change gravity when jumping or falling.",
-        "opcodes": [],
-        "type": "bool"
+        "type": "bool",
+        "platforms": ["win", "android32", "android64"]
     },
     {
         "name": "Gravity Value",
         "desc": "The value the gravity should be set to.",
-        "opcodes": [],
         "type": "float",
         "min": -5,
         "max": 5,
-        "default": 1
+        "default": 1,
+        "platforms": ["win", "android32", "android64"]
     }
 ]

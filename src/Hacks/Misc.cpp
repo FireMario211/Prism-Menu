@@ -5,6 +5,7 @@ using namespace geode::prelude;
 #include <Geode/modify/PlayLayer.hpp>
 #include <Geode/modify/CCDrawNode.hpp>
 #include <Geode/modify/LevelEditorLayer.hpp>
+#include <Geode/modify/FMODAudioEngine.hpp>
 
 // no create method?????????????
 class $modify(ShaderLayer) {
@@ -75,6 +76,9 @@ class $modify(PlayLayer) {
     void updateVisibility(float p0) {
         //log::info("{} or {}", sizeof(m_debugDrawNode), sizeof(*m_debugDrawNode));
         //log::info("and {:#x}", offsetof(GJBaseGameLayer, m_debugDrawNode));
+        /*if (Hacks::isHackEnabled("No Pulse")) {
+            FMODAudioEngine::sharedEngine()->updateMetering();
+        }*/
         PlayLayer::updateVisibility(p0);
         if (Hacks::isHackEnabled("Show Hitboxes") || (Hacks::isHackEnabled("Show Hitboxes on Death") && m_player1->m_isDead)) {
             if (!m_debugDrawNode->isVisible()) m_debugDrawNode->setVisible(true);
@@ -97,6 +101,16 @@ class $modify(CCDrawNode) {
         if (baseLayer && this == baseLayer->m_debugDrawNode)
             stroke *= Hacks::getHack("Hitbox Stroke")->value.floatValue;
         return CCDrawNode::drawPolygon(p0, p1, p2, stroke, p4);
+    }
+};
+#endif
+
+// BROKEN ON ANDROID
+#ifdef GEODE_IS_WINDOWS
+class $modify(FMODAudioEngine) {
+    void updateMetering() {
+        //std::cout << "ok" << std::endl;
+        if (!Hacks::isHackEnabled("No Pulse")) FMODAudioEngine::updateMetering();
     }
 };
 #endif

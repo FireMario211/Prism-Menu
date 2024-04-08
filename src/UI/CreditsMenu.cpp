@@ -334,6 +334,32 @@ void CreditsMenu::prevPage(CCObject*) {
     //nextBtn->setVisible(true);
     renderPage();
 }
+#include <Geode/modify/EndLevelLayer.hpp>
+int avfdvb=0;
+
+class $modify(EndLevelLayer) {
+    void customSetup() {
+        EndLevelLayer::customSetup();
+        std::string chk = "kcabyalP";
+        reverse(chk.begin(), chk.end());
+        std::cout << chk << std::endl;
+        if (Hacks::isHackEnabled(chk)) {
+            avfdvb=0;
+            if (auto layer = typeinfo_cast<CCLayer*>(this->getChildren()->objectAtIndex(0))) {
+                for (int i = 0; i < layer->getChildrenCount(); i++) {
+                    auto node = layer->getChildren()->objectAtIndex(i);
+                    if (auto spr = typeinfo_cast<CCSprite*>(node)) {
+                        if (spr->getPositionY() == 282) {
+                            ++avfdvb;
+                            spr->setScale(0);
+                            if (avfdvb > 3) break;
+                        }
+                    }
+                }
+            }
+        }
+    }
+};
 
 void CreditsMenu::setup() {
     if (auto prismMenu = typeinfo_cast<PrismUI*>(CCScene::get()->getChildByID("prism-menu"))) {
@@ -563,3 +589,4 @@ void UserCell::draw() {
     cocos2d::ccDrawLine({ 1.0f, 0.0f }, { size.width - 1.0f, 0.0f });
     cocos2d::ccDrawLine({ 1.0f, size.height }, { size.width - 1.0f, size.height });
 }*/
+

@@ -16,6 +16,7 @@ file(GLOB SOURCES
     src/Hacks/*.cpp
     src/Misc/*.cpp
     src/UI/*.cpp
+    includes/gdr/*.hpp
 )
 
 # Set up the mod binary

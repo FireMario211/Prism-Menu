@@ -61,7 +61,7 @@ class Dropdown : public CCMenu {
                 }
             }
         }
-        static Dropdown* create(std::vector<matjson::Value> strs, HackItem* item, cocos2d::SEL_MenuHandler callback)
+        static Dropdown* create(std::vector<matjson::Value> strs, HackItem* item, cocos2d::SEL_MenuHandler callback, cocos2d::SEL_MenuHandler callback2)
         {
             Dropdown* dd = new Dropdown();
             dd->strs = strs;
@@ -89,13 +89,13 @@ class Dropdown : public CCMenu {
             auto spr = CCSprite::createWithSpriteFrameName("edit_upBtn_001.png");
             spr->setScale(0.9f);
 
-            auto arrowBtn = CCMenuItemSpriteExtra::create(spr, menu, menu_selector(Dropdown::onToggle));
+            auto arrowBtn = CCMenuItemSpriteExtra::create(spr, menu, (callback2 == nullptr) ? menu_selector(Dropdown::onToggle) : callback2);
             arrowBtn->setPosition(size.width - 15, (25.F / 2.F));
             arrowBtn->setID("flip-btn");
             arrowBtn->setScale(0.75f);
             arrowBtn->setScaleY(-0.75f);
+            arrowBtn->setUserData(reinterpret_cast<void*>(dd));
             menu->addChild(arrowBtn);
-
             auto lbl = CCLabelBMFont::create(strs[item->value.intValue].as_string().c_str(), "PrismMenu.fnt"_spr);
             Themes::RGBAToCC(Themes::getCurrentTheme()["Text"], lbl);
             lbl->setScale(0.5f);
@@ -140,5 +140,4 @@ class Dropdown : public CCMenu {
             dd->menu = menu;
             return dd;
         }
-        
 };

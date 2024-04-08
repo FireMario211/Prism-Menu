@@ -2,7 +2,7 @@
     {
         "name": "Anticheat Bypass",
         "desc": "Disables all anticheats. [Levels, Editor, etc]",
-        "opcodes": [
+        "opcodesold": [
             {"addr": "0x202AAA", "on": "EB 2E", "off": "74 2E" },
             {"addr": "0x15FC2E", "on": "EB", "off": "74" },
             {"addr": "0x20D3B3", "on": "90 90 90 90 90", "off": "E8 58 04 00 00"},
@@ -21,66 +21,51 @@
     {
         "name": "Practice Music",
         "desc": "Enables Practice Music even if it's locked.",
-        "opcodes": [],
         "type": "bool"
     },
     {
         "name": "Safe Mode",
         "desc": "Pauses any progress from being done on the level.",
-        "opcodes": [
-            {"addr": "0x20A3B2", "on": "E9 9A 01 00 00 90 90", "off": "80 BB 94 04 00 00 00"},
-            {"addr": "0x1FD40F", "on": "E9 13 06 00 00 90 90", "off": "83 B9 64 03 00 00 01"}
-        ],
         "type": "bool"
     },
     {
         "name": "Auto Safe Mode",
         "desc": "Prevents any progress from being made if certain cheats are enabled.",
-        "opcodes": [],
         "type": "bool"
     },
     {
         "name": "Layout Mode",
         "desc": "Removes all decoration associated with a level.",
-        "opcodes": [],
         "type": "bool"
     },
     {
         "name": "Show Hidden Objects",
         "desc": "Shows all hidden objects. This will reset the objects primary color. This will not work on objects with the \"Hide\" attribute. (Useful with Layout Mode)",
-        "opcodes": [],
         "type": "bool"
     },
     {
         "name": "No Transition",
         "desc": "Shorterns scene transition time to 0s.",
-        "opcodes": [
-            {"addr": "0xA5424", "cocos": true, "on": "90 90 90 90 90", "off": "F3 0F 10 45 08"}
-        ],
         "type": "bool"
     },
     {
         "name": "Cheat Indicator",
         "desc": "Shows an icon to tell whether or not you are using mods that may be considered cheating!",
-        "opcodes": [],
         "type": "bool"
     },
     {
         "name": "Transparent BG",
         "desc": "Automatically reverts colors changed in the background to be their original color.",
-        "opcodes": [],
         "type": "bool"
     },
     {
         "name": "Accurate Percentage",
         "desc": "Allows for decimals in the level percentage.",
-        "opcodes": [],
         "type": "bool"
     },
     {
         "name": "Extra Percent Digits",
         "desc": "Number of extra decimal digits to be displayed with Accurate Percentage.",
-        "opcodes": [],
         "type": "int",
         "min": 1,
         "max": 15,
@@ -90,40 +75,38 @@
     {
         "name": "Uncomplete Level",
         "desc": "Resets normal and practice percentages, and allows you to decrease your star count if you completed the level! (This is unstable as of now)",
-        "opcodes": [],
         "type": "button",
         "default": "button"
     },
     {
         "name": "Speedhack",
         "desc": "Changes the speed of the game and audio.",
-        "opcodes": [],
         "type": "float",
         "min": 0.01,
         "max": 10,
-        "default": 1
+        "default": 1,
+        "save": false
     },
     {
         "name": "FPS Bypass",
         "desc": "Unlocks your FPS to be higher than 60 or your monitor's refresh rate.",
-        "opcodes": [],
         "type": "int",
         "min": 1,
         "max": 1000,
-        "default": 60
+        "default": 60,
+        "platforms": ["win"]
     },
 
     {
         "name": "Speedhack Audio",
         "desc": "Whether or not to also change the audio speed based on the speedhack value.",
-        "opcodes": [],
         "type": "bool",
-        "default": true
+        "default": true,
+        "platforms": ["win","android32","android64"]
     },
     {
         "name": "Reset Speedhack",
         "desc": "Resets speedhack back to normal.",
-        "opcodes": [],
         "type": "button",
         "default": "a"
     }

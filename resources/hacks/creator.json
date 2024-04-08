@@ -2,45 +2,31 @@
     {
 	    "name": "Level Edit",
 	    "desc": "Lets you edit any level, access the editor through the pause menu. (UNSTABLE)",
-    	"opcodes": [
+    	"opcodesold": [
 	        {"addr": "0x1E4A32", "on": "90 90", "off": "75 6C"}
 	    ],
         "type": "bool",
-        "winOnly": true
+        "platforms": []
 	},
     {
 	    "name": "Verify Hack",
 	    "desc": "Lets you upload unverified levels. Will automatically set levels to be verified.",
-	    "opcodes": [
-	        {"addr": "0x71D48", "on": "EB", "off": "74"}
-	    ],
         "type": "bool"
 	},
     {
 	    "name": "Copy Hack",
 	    "desc": "Lets you copy any level, without a password.",
-	    "opcodes": [],
         "type": "bool"
 	},
     {
 	    "name": "No (C) Mark",
 	    "desc": "Removes the (C) mark when uploading copied levels. Will automatically set levels to be original.",
-	    "opcodes": [
-	        {"addr": "0xA6B8B", "on": "2B 87 CC 02 00 00", "off": "2B 87 D0 02 00 00"},
-		    {"addr": "0x70E87", "on": "EB 26", "off": "74 26"}
-	    ],
-        "type": "bool"
-	},
-    {
-	    "name": "Hide Testmode",
-	    "desc": "Hides the 'Testmode' text when playing with a startpos.",
-	    "opcodes": [],
         "type": "bool"
 	},
     {
 	    "name": "Rotation Hack",
 	    "desc": "Allows you to rotate any object. Only works locally.",
-        "opcodes": [
+        "opcodesold": [
             {"addr": "0x85CBC", "on": "B8 01 00 00 00 90", "off": "8B 80 00 03 00 00"},
             {"addr": "0x8BDDD", "on": "B8 01 00 00 00 90", "off": "8B 80 00 03 00 00"},
             {"addr": "0x8BE16", "on": "B8 01 00 00 00 90", "off": "8B 80 00 03 00 00"},
@@ -49,18 +35,18 @@
             {"addr": "0x20181E", "on": "B8 01 00 00 00 90", "off": "8B 83 00 03 00 00"}
         ],
         "type": "bool",
-        "winOnly": true
+        "platforms": []
 	},
     {
 	    "name": "Default Song Bypass",
 	    "desc": "Lets you use hidden default songs in the editor.",
-	    "opcodes": [
+	    "opcodesold": [
             {"addr": "0x174407", "on": "90 90", "off": "74 2F"},
             {"addr": "0x174411", "on": "90 90 90", "off": "0F 4F C6"},
             {"addr": "0x174456", "on": "90 90", "off": "74 2F"},
             {"addr": "0x174460", "on": "90 90 90", "off": "0F 4F C6"}
 	    ],
         "type": "bool",
-        "winOnly": true
+        "platforms": []
 	}
 ]

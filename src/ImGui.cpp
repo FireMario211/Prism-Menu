@@ -117,25 +117,28 @@ class $modify(MenuLayer) {
                     ImGui::PushFont(ImGui::GetIO().Fonts->Fonts[1]); // Change to a different font in the font atlas
 
                     ImGui::Spacing();
-                    ImGui::PushStyleVar(ImGuiStyleVar_ItemSpacing, ImVec2(12.0f, 13.0f));
+                    ///ImGui::PushStyleVar(ImGuiStyleVar_ItemSpacing, ImVec2(12.0f, 13.0f));
+                    ImGui::PushStyleVar(ImGuiStyleVar_ItemSpacing, ImVec2(12.0f, 10.0f));
                     ImGui::PushStyleVar(ImGuiStyleVar_FrameRounding, 12.0f);
                     // here we do a genius trick, please dont ask me how i did this! ok! this took forever to do
                     // chat jippity gave icon ideas, i designed the player!
                     // oh and PLEASE dont complain about it being misaligned in the center
                     float buttonWidth = (194 * frameSize.width) / 1366;
-                    float buttonHeight = (60 * frameSize.height) / 768;
+                    //float buttonHeight = (60 * frameSize.height) / 768;
+                    float buttonHeight = (55 * frameSize.height) / 768;
                     CreateButton(currentLanguage->name("§ Global").c_str(), 0, buttonWidth, buttonHeight);
                     CreateButton(currentLanguage->name("¬ Player").c_str(), 1, buttonWidth, buttonHeight);
                     CreateButton(currentLanguage->name("ª Bypass").c_str(), 2, buttonWidth, buttonHeight);
                     CreateButton(currentLanguage->name("« Creator").c_str(), 3, buttonWidth, buttonHeight);
-                    CreateButton(currentLanguage->name("··· Misc").c_str(), 4, buttonWidth, buttonHeight);
+                    CreateButton(currentLanguage->name("¦ Quartz Bot").c_str(), 4, buttonWidth, buttonHeight);
+                    CreateButton(currentLanguage->name("··· Misc").c_str(), 5, buttonWidth, buttonHeight);
 
-                    ImGui::Spacing();
+                    /*ImGui::Spacing();
                     ImGui::Spacing();
                     ImGui::PopStyleVar(2);
-                    ImGui::PushStyleVar(ImGuiStyleVar_FrameRounding, 12.0f);
+                    ImGui::PushStyleVar(ImGuiStyleVar_FrameRounding, 12.0f);*/
                     // ad "UI Labels"
-                    CreateButton(currentLanguage->name("¶ Settings").c_str(), 5, buttonWidth, buttonHeight);
+                    CreateButton(currentLanguage->name("¶ Settings").c_str(), 6, buttonWidth, buttonHeight);
                     ImGui::PopStyleVar();
                     ImGui::PopFont(); // Restore the old font
                     //ImGui::PushStyleVar(ImGuiStyleVar_ItemSpacing, ImVec2(12.0f, 15.0f));
@@ -164,10 +167,13 @@ class $modify(MenuLayer) {
                         case 3: // Creator
                             jsonArray = matjson::parse(Hacks::getCreatorHacks()).as_array();
                             break;
-                        case 4: // Misc
+                        case 4: // Bot
+                            ImGui::Text("This is currently not supported on ImGui.\nPlease switch to the GD Menu Style if you wish to use this.");
+                            break;
+                        case 5: // Misc
                             jsonArray = matjson::parse(Hacks::getMiscHacks()).as_array();
                             break;
-                        case 5: // Settings
+                        case 6: // Settings
                             jsonArray = matjson::parse(Hacks::getSettings()).as_array();
                             ImGui::Text("%s", currentLanguage->name("Prism Menu by Firee").c_str());
                             //const char* version = "V1.3.0 (Geode)";
@@ -195,14 +201,10 @@ class $modify(MenuLayer) {
                         const auto& obj = jsonArray[i];
                         std::string name = obj.get<std::string>("name");
                         std::string desc = obj.get<std::string>("desc");
-                        auto opcodes = obj.get<matjson::Array>("opcodes");
                         HackItem* hack = Hacks::getHack(name);
+                        if (hack == nullptr) continue;
+                        auto opcodes = hack->opcodes;
                         if (hack != nullptr) {
-                            if (obj.contains("winOnly")) {
-                                //#ifndef GEODE_IS_WINDOWS
-                                ImGui::BeginDisabled(true);
-                                //#endif
-                            }
                             if (obj.contains("win")) { // yeah idk what property okay
                                 #ifndef GEODE_IS_WINDOWS
                                 ImGui::BeginDisabled(true);
@@ -414,11 +416,6 @@ class $modify(MenuLayer) {
                                         ImGui::EndCombo();
                                     }
                                 }
-                            }
-                            if (obj.contains("winOnly")) {
-                                //#ifndef GEODE_IS_WINDOWS
-                                ImGui::EndDisabled();
-                                //#endif
                             }
                             if (obj.contains("win")) { // yeah idk what property okay
                                 #ifndef GEODE_IS_WINDOWS

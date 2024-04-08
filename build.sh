@@ -1,16 +1,17 @@
 #export GEODE_SDK=/home/fire/.geodenightly # remove when geode 2.0.0 is released
-export SPLAT_DIR=/home/fire/xwin/splat_dir
-export TOOLCHAIN_REPO=/home/fire/xwin/toolchain_repo
+export SPLAT_DIR=/home/fire/xwin/splat
+export TOOLCHAIN_REPO=/home/fire/xwin/toolchain
 export GEODE_BINDINGS_REPO_PATH=/home/fire/.geodebindings
 #export GEODE_GD_VERSION=2.200
 export LOCAL=1
 export HOST_ARCH=x86
 export MSVC_BASE=$SPLAT_DIR/crt
 export WINSDK_BASE=$SPLAT_DIR/sdk
-export WINSDK_VER=10.0.22000
+#export WINSDK_VER=10.0.22000
 # change this to your llvm version!!!
-export LLVM_VER=15
-export CLANG_VER=$LLVM_VER
+#export LLVM_VER=15
+#export LLVM_VER=17
+#export CLANG_VER=$LLVM_VER
 
 #export NO_IMGUI=1
 

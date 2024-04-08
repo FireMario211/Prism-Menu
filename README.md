@@ -53,6 +53,10 @@ Press on the circle button located on the left corner, or press `Tab` to open th
 * [BinZ FAKE](https://youtube.com/@tienanh_90) - Translations for Vietnamese
 * **All contributors that helped with Prism Menu!**
 
+# Libraries
+* [Goede SDK](https://github.com/geode-sdk/geode)
+* [GDReplay](https://github.com/maxnut/GDReplayFormat) - For Quartz
+
 # License
 This project is created by [Firee](https://github.com/FireMario211) under the [GNU General Public License v3.0](https://choosealicense.com/licenses/gpl-3.0/), read more by clicking on the highlighted name.
 

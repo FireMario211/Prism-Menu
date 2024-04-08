@@ -8,6 +8,7 @@ using namespace geode::prelude;
 #include <Geode/modify/HardStreak.hpp>
 #include <Geode/modify/GJBaseGameLayer.hpp>
 #include <Geode/modify/CCDrawNode.hpp>
+#include <Geode/modify/GJEffectManager.hpp>
 
 class $modify(PlayerObject) {
     bool isActuallyDart;
@@ -44,12 +45,20 @@ class $modify(PlayerObject) {
             m_gravityMod = gravityHack->value.floatValue;
         }
         if (Hacks::isHackEnabled("Instant Complete")) return;
+        /*log::info(fmt::format(
+            "HardStreak\n---\nx = {}, y = {}, m_waveSize = {}\nm_pulseSize = {}",
+            m_waveTrail->m_currentPoint.x,
+            m_waveTrail->m_currentPoint.y,
+            m_waveTrail->m_waveSize,
+            m_waveTrail->m_pulseSize
+        ));*/ 
         if (Hacks::isHackEnabled("Enable Patching") || !Hacks::isHackEnabled("Freeze Player")) return PlayerObject::update(dt);
     }
 
     void playerDestroyed(bool p0) {
         m_fields->was_platformer = this->m_isPlatformer;
-        PlayerObject::playerDestroyed(p0);
+        if (!Hacks::isHackEnabled("No Death Effect")) return PlayerObject::playerDestroyed(p0);
+        m_isDead = true;
     }
     void pushButton(PlayerButton p0) {
         if (p0 != PlayerButton::Jump) return PlayerObject::pushButton(p0);
@@ -72,6 +81,23 @@ class $modify(PlayerObject) {
         PlayerObject::activateStreak();
     }
 };
+
+
+// No Wave Pulse
+class $modify(HardStreak) {
+    void updateStroke(float dt) {
+        //log::info("HardStreak\n---\nm_waveSize = {}\nm_pulseSize = {}\nm_isSolid = {}", m_waveSize, m_pulseSize, m_isSolid);
+        if (Hacks::isHackEnabled("No Wave Pulse")) {
+            m_pulseSize = 1.24F;
+        }
+        auto wavePulseSize = Hacks::getHack("Wave Pulse Size");
+        if (wavePulseSize != nullptr) {
+            m_pulseSize *= wavePulseSize->value.floatValue;
+        }
+        HardStreak::updateStroke(dt);
+    }
+};
+
 
 // yeah no this will make the game lag
 class $modify(MenuGameLayer) {

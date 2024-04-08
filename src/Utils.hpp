@@ -25,6 +25,14 @@ class Utils {
         oss << std::fixed << std::setprecision(streamsize) << value;
         return oss.str();
     }
+    static bool arrayContainsString(const matjson::Array& arr, const std::string& str) {
+        return std::any_of(arr.begin(), arr.end(), [&](const matjson::Value& val) {
+            return val.as_string() == str;
+        });
+    }
+    static float getSliderValue(float current, float min, float max, bool inverse) {
+        return (inverse) ? (current * (max - min) + min) : (current - min) / (max - min);
+    }
     template<typename T>
     static std::vector<std::vector<T>> paginate(const std::vector<T>& arr, size_t size) {
         std::vector<std::vector<T>> paginated;

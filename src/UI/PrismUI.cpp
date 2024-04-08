@@ -1,11 +1,11 @@
 #include "PrismUI.hpp"
-//#include "../Misc/GatoSim.hpp"
+#include "../Misc/GatoSim.hpp"
 #include "../Themes.hpp"
-#include <Geode/binding/ButtonSprite.hpp>
 #include <Geode/ui/TextArea.hpp>
 #include "Dropdown.h"
 #include "../Utils.hpp"
 #include "CreditsMenu.hpp"
+#include "../Hacks/Quartz.hpp"
 
 int currentMenuIndexGD = 0;
 
@@ -68,7 +68,7 @@ int getYPosBasedOnCategory(int length) { // someone give me a proper math formul
         default: return 0;
     }*/
     if (length <= 8) return -100;
-    //if (currentMenuIndexGD == 5) length += 1;
+    if (currentMenuIndexGD == 6) return 120;
     return (30 * length) - 350;
 }
 float getContentSizeBasedOnCategory(int length) { // someone give me a proper math formula ok thanks
@@ -90,13 +90,11 @@ float getContentSizeBasedOnCategory(int length) { // someone give me a proper ma
         default: return 320;
     }*/
     if (length <= 8) return 230;
-    if (currentMenuIndexGD == 5) length += 1;
+    if (currentMenuIndexGD == 6) length += 1;
     return (29 * length) - 7;
 }
 
-float getSliderValue(float current, float min, float max, bool inverse) {
-    return (inverse) ? (current * (max - min) + min) : (current - min) / (max - min);
-}
+
 
 // since SimpleTextArea doesnt allow limitLabelWidth
 float calculateScale(const std::string& input, int charsBeforeShrink, float minScale, float maxScale) {
@@ -146,6 +144,7 @@ bool PrismUIButton::init(HackItem* hack) {
         m_input = TextInput::create(150.f, "...", "PrismMenu.fnt"_spr);
         m_input->setString(std::to_string(hack->value.intValue));
         m_input->setFilter("0123456789");
+        m_input->setMaxCharCount(20);
         m_input->setPositionX(37);
         
         auto incBtnSpr = cocos2d::extension::CCScale9Sprite::create("square02b_001.png", { 0.0f, 0.0f, 80.0f, 80.0f });
@@ -196,10 +195,11 @@ bool PrismUIButton::init(HackItem* hack) {
         );
         m_input->setFilter("0123456789.");
         m_input->setPositionX(21);
+        m_input->setMaxCharCount(20);
         label->setPositionX(190);
         m_slider = Slider::create(this, menu_selector(PrismUIButton::onFloatBtn), .6f);
         m_slider->setPositionX(122);
-        m_slider->setValue(getSliderValue(value, min, max, false));
+        m_slider->setValue(Utils::getSliderValue(value, min, max, false));
         menu->addChild(m_slider);
     } else if (hack->type == "dropdown" || hack->value.type == ValueType::Custom) {
         auto type = obj.get<std::string>("type");
@@ -230,12 +230,36 @@ bool PrismUIButton::init(HackItem* hack) {
             if (hack->name == "Theme") {
                 values = Themes::getCurrentThemes();
             }
-            auto dropdown = Dropdown::create(values, hack, menu_selector(PrismUIButton::onDropdownBtn));
+            Dropdown* dropdown;
+            label->setPositionX(180);
+            if (hack->name == "Macro") {
+                auto incBtnSpr = cocos2d::extension::CCScale9Sprite::create("square02b_001.png", { 0.0f, 0.0f, 80.0f, 80.0f });
+                incBtnSpr->setContentSize({ 50.0f, 50.0f });
+                Themes::RGBAToCC(PrismUI::GetTheme()["Button"], incBtnSpr);
+                incBtnSpr->setScale(.4F);
+
+                auto incBtnlabel = CCLabelBMFont::create("+", "PrismMenu.fnt"_spr);
+                Themes::RGBAToCC(PrismUI::GetTheme()["Text"], incBtnlabel);
+                incBtnlabel->setPosition({ incBtnSpr->getContentSize().width / 2, incBtnSpr->getContentSize().height / 2 });
+                incBtnSpr->addChild(incBtnlabel);
+                auto incBtn = CCMenuItemSpriteExtra::create(
+                    incBtnSpr,
+                    this,
+                    menu_selector(CreateMacroUI::onClick)
+                );
+                incBtn->setPositionX(185);
+                menu->addChild(incBtn);
+
+                label->setPositionX(205);
+
+                dropdown = Dropdown::create(values, hack, nullptr, menu_selector(SelectMacroUI::onClick));
+            } else {
+                dropdown = Dropdown::create(values, hack, menu_selector(PrismUIButton::onDropdownBtn), nullptr);
+            }
             dropdown->menu->setPosition({78, 0});
             dropdown->menu->setScale(.75F);
 
             //cocos::handleTouchPriority(dropdown->menu);
-            label->setPositionX(180);
             /*for (int i = 0; i < dropdown->menu->getChildrenCount(); i++) {
                 auto node = dropdown->menu->getChildren()->objectAtIndex(i);
                 if (typeinfo_cast<CCNode*>(node)) {
@@ -285,7 +309,7 @@ void PrismUIButton::onFloatBtn(CCObject* ret) {
     std::string name = m_hack->name;
     auto min = m_hack->data.get<int>("min");
     auto max = m_hack->data.get<int>("max");
-    float actualValue = getSliderValue(slider->getValue(), min, max, true);
+    float actualValue = Utils::getSliderValue(slider->getValue(), min, max, true);
     if (!name.starts_with("Button Position")) {
         m_hack->value.floatValue = actualValue;
     } else {
@@ -339,6 +363,30 @@ void PrismUIButton::onBtn(CCObject* ret) {
                 FLAlertLayer::create("Success!", "The <cy>theme</c> has successfully been imported! Restart your game to use it.", "OK")->show();
             }
         );
+    } else if (name == "Import Macro") {
+        geode::FileSetting::Filter filter;
+        filter.description = "Macro (*.gdr)";
+        filter.files.insert("*.gdr.json");
+        filter.files.insert("*.gdr");
+        file::pickFile(
+            file::PickMode::OpenFile,
+            {
+                dirs::getGameDir(),
+                { filter }
+            },
+            [&](ghc::filesystem::path path) {
+                auto saveDir = Mod::get()->getSaveDir().string();
+                if (!ghc::filesystem::exists(saveDir + "/macros")) {
+                    ghc::filesystem::create_directory(saveDir + "/macros");
+                }
+                auto savePath = saveDir + "/macros/" + path.filename().string();
+                if (ghc::filesystem::exists(savePath)) {
+                    ghc::filesystem::remove(savePath);
+                }
+                ghc::filesystem::copy_file(path, savePath); // why this crashes if a file already exists? idk
+                FLAlertLayer::create("Success!", "The <cy>macro</c> has successfully been imported!", "OK")->show();
+            }
+        );
     } else if (name == "Reset Speedhack") {
         HackItem* speedHack = Hacks::getHack("Speedhack");
         speedHack->value.floatValue = 1.0F;
@@ -347,7 +395,6 @@ void PrismUIButton::onBtn(CCObject* ret) {
         CCDirector::sharedDirector()->getScheduler()->setTimeScale(1.0F);
         prismUI->onClose(ret);
     } else if (name == "Credits") {
-        //FLAlertLayer::create("Not working...yet.", "This will be added in a <cy>future update</c>!", "OK")->show();
         auto creditsMenu1 = CreditsMenu::create(); // fix touch prio issue 
         creditsMenu1->show();
         //creditsMenu1->onClose(nullptr);
@@ -365,11 +412,23 @@ void PrismUIButton::onBtn(CCObject* ret) {
         } else {
             FLAlertLayer::create("Error", "You are not <cy>currently in the level page</c>! Please enter in a level page in order to <cg>reset the stats</c>.", "OK")->show();
         }
-    } else if (name == "mow..") {
+    } else if (name == "mow.") {
         FLAlertLayer::create("meow.", "coming soon... in a <cy>future update</c>", "cat")->show();
+    } else if (name == "Save") {
+        auto macroItem = Hacks::getHack("Macro");
+        if (macroItem != nullptr) {
+            std::string value = macroItem->data["values"].as_array()[0].as_string();
+            if (value != "None") {
+                if (MacroManager::exportMacro(value, current_macro)) {
+                    FLAlertLayer::create("Success!", "The macro has been <cy>exported</c>","OK")->show();
+                }
+            } else {
+                FLAlertLayer::create("Error", "You currently do not have a <cy>macro selected</c>.","OK")->show();
+            }
+        }
     } else {
         // NO SPOILERS!
-        //GatoSim::onButton();
+        ///GatoSim::onButton();
     }
 }
 
@@ -433,12 +492,14 @@ void PrismUI::CreateHackItem(HackItem* hack) {
     const auto& obj = hack->data;
     std::string name = hack->name;
     std::string desc = hack->desc;
-    auto opcodes = obj.get<matjson::Array>("opcodes");
-    if (!((Hacks::isHackEnabled("Enable Patching") && obj.contains("winOnly")) || !obj.contains("winOnly") || name == "Enable Patching")) return;
+    auto opcodes = hack->opcodes;
+    //if (!((Hacks::isHackEnabled("Enable Patching") && obj.contains("winOnly")) || !obj.contains("winOnly") || name == "Enable Patching")) return;
     auto btn = PrismUIButton::create(hack, m_currentLang.get());
     float indexY = (currentI * -28) + 310;
     // TODO: create custom sprite so people dont complain
-    auto infoSpr = CCSprite::createWithSpriteFrameName("GJ_infoIcon_001.png");
+    //auto infoSpr = CCSprite::createWithSpriteFrameName("GJ_infoIcon_001.png");
+    auto infoSpr = CCSprite::create("infoIcon.png"_spr);
+    Themes::RGBAToCC(GetTheme()["ButtonActive"], infoSpr);
     //infoSpr->setScale(.5F);
     auto infoBtn = CCMenuItemSpriteExtra::create(infoSpr, this, menu_selector(PrismUIButton::onInfoBtn));
     infoBtn->setUserData(reinterpret_cast<void*>(hack));
@@ -512,7 +573,7 @@ void PrismUIButton::textChanged(CCTextInputNode* input) {
 #ifdef GEODE_IS_ANDROID 
 #include <jni.h>
 //#include <Geode/cocos/platform/android/jni/JniHelper.h>
-#include "JniHelperExt.h"
+///#include "JniHelperExt.h"
 #include <Geode/modify/PlatformToolbox.hpp>
 /*
 class $modify(PlatformToolbox) {
@@ -637,10 +698,13 @@ void PrismUI::RegenCategory() {
         case 3: // Creator
             jsonArray = matjson::parse(Hacks::getCreatorHacks()).as_array();
             break;
-        case 4: // Misc
+        case 4: // Quartz (Bot)
+            jsonArray = matjson::parse(Hacks::getBotHacks()).as_array();
+            break;
+        case 5: // Misc
             jsonArray = matjson::parse(Hacks::getMiscHacks()).as_array();
             break;
-        case 5: { // Settings
+        case 6: { // Settings
             jsonArray = matjson::parse(Hacks::getSettings()).as_array();
             auto createdByLabel = CCLabelBMFont::create(m_currentLang->name("Prism Menu by Firee").c_str(), "PrismMenu.fnt"_spr);
             auto versionLabel = CCLabelBMFont::create("Unknown.", "PrismMenu.fnt"_spr);
@@ -698,23 +762,30 @@ void PrismUI::CreateButton(const char* name, int menuIndex) {
     auto menu = CCMenu::create();
     auto node = CCLayer::create();
 
+    float scale = 25.0F; // used to be 35.0F
     auto label = CCLabelBMFont::create(name, "PrismMenu.fnt"_spr);
     //label->addChild(invisBG);
-    label->limitLabelWidth(72, 1.0F, .2F);
+    //label->limitLabelWidth(72, 1.0F, .2F);
+    label->limitLabelWidth(72, 0.5F, .2F);
     auto button = CCMenuItemSpriteExtra::create(label, this, menu_selector(PrismUI::onSideButton));
-    button->setContentSize({90.0f, 35.0f});
-    label->setPosition({90.0f / 2, 35.0f / 2});
+    button->setContentSize({90.0f, scale});
+    label->setPosition({90.0f / 2, scale / 2});
     auto buttonBG = cocos2d::extension::CCScale9Sprite::create("square02b_001.png", { 0.0f, 0.0f, 80.0f, 80.0f });
-    buttonBG->setContentSize({ 90.0f, 35.0f });
+    buttonBG->setContentSize({ 90.0f, 35.0F }); // used to be scale
+    buttonBG->setScaleY(.83F);
     Themes::RGBAToCC(GetTheme()["Button"], buttonBG);
     Themes::RGBAToCC(GetTheme()["Text"], button);
     if (currentMenuIndexGD == menuIndex) {
         button->setColor({255,255,255});
         Themes::RGBAToCC(GetTheme()["ButtonActive"], buttonBG);
     }
-    //menu->addChild(buttonBG);
-    buttonBG->setPosition(-163, (menuIndex * -38) + 97);
-    button->setPosition(-163, (menuIndex * -38) + 97);
+    float offsetY = -(scale + 3.F); 
+    // because .9F scale 
+    offsetY -= 4.0F;
+    //float otherOffsetY = 97.F;
+    float otherOffsetY = 98.F;
+    buttonBG->setPosition(-163, (menuIndex * offsetY) + otherOffsetY);
+    button->setPosition(-163, (menuIndex * offsetY) + otherOffsetY);
     buttonBG->setID(fmt::format("prism-nav-bg-{}", menuIndex));
     button->setID(fmt::format("prism-nav-btn-{}", menuIndex));
     button->setUserData(button);
@@ -861,8 +932,9 @@ bool PrismUI::init(float _w, float _h) {
     CreateButton(m_currentLang->name("¬ Player").c_str(), 1);
     CreateButton(m_currentLang->name("ª Bypass").c_str(), 2);
     CreateButton(m_currentLang->name("« Creator").c_str(), 3);
-    CreateButton(m_currentLang->name("··· Misc").c_str(), 4);
-    CreateButton(m_currentLang->name("¶ Settings").c_str(), 5);
+    CreateButton(m_currentLang->name("¦ Quartz Bot").c_str(), 4);
+    CreateButton(m_currentLang->name("··· Misc").c_str(), 5);
+    CreateButton(m_currentLang->name("¶ Settings").c_str(), 6);
     Themes::RGBAToCC(GetTheme()["BG"], bg);
     Themes::RGBAToCC(GetTheme()["BG"], bgBehind);
     bgBehind->setColor({255, 255, 255});

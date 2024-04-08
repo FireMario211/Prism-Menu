@@ -16,6 +16,9 @@
 		"files": [
 			"resources/icon.png",
 			"resources/Screenshot1.png",
+            "resources/infoIcon-uhd.png",
+            "resources/infoIcon-hd.png",
+            "resources/infoIcon.png",
 			"resources/checkmark.png",
 			"resources/checkmark-hd.png",
 			"resources/checkmark-uhd.png",

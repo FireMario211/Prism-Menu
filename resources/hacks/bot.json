@@ -1,0 +1,50 @@
+[
+    {
+        "name": "Macro",
+        "desc": "Select a macro to record or play!",
+        "type": "dropdown",
+        "default": 0,
+        "values": ["None"],
+        "save": false
+    },
+    {
+        "name": "Record",
+        "desc": "Records the gemeplay to be played back. (This will reset the current inputs if you play a level and have a macro selected.)",
+        "type": "bool",
+        "save": false
+    },
+    {
+        "name": "Playback",
+        "desc": "Plays back the macro.",
+        "type": "bool",
+        "save": false
+    },
+    {
+        "name": "Macro Editor",
+        "desc": "Enter the macro editor. (Will not work properly with Record enabled)",
+        "type": "bool"
+    },
+    {
+        "name": "Frame Fix",
+        "desc": "Records the players every movement, including position when recording and playing back a macro. Do note that this option will increase the file size of the macro while recording.",
+        "type": "bool"
+    },
+    {
+        "name": "Fixed FPS",
+        "desc": "Attempts to make the replay \"accurate\" by locking the frames to the target framerate. This may look like the \"smooth fix\" option is enabled if the game is lagging.",
+        "type": "bool"
+    },
+    {
+        "name": "Import Macro",
+        "desc": "Imports a macro.",
+        "type": "button",
+        "default": "a"
+    },
+    {
+        "name": "Save",
+        "desc": "Saves the macro.",
+        "type": "button",
+        "default": "a"
+    }
+    
+]

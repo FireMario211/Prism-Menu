@@ -2,7 +2,6 @@
     {
         "name": "Progress Bar Position",
         "desc": "Sets the position of the progress bar.",
-        "opcodes": [],
         "type": "dropdown",
         "default": 0,
         "values": ["Top", "Bottom", "Left", "Right"]
@@ -10,7 +9,6 @@
     {
         "name": "Attempt Opacity",
         "desc": "Determines how opaque the attempt label should be.",
-        "opcodes": [],
         "type": "float",
         "min": 0,
         "max": 1,
@@ -19,65 +17,60 @@
     {
         "name": "No Glow",
         "desc": "Disables glow on all objects.",
-        "opcodes": [],
         "type": "bool"
     },
     {
         "name": "No Shaders",
         "desc": "Disables all camera shader effects.",
-        "opcodes": [],
         "type": "bool"
     },
     {
         "name": "No Pulse",
         "desc": "Disables orbs and other related objects from pulsing on the music.",
-        "opcodes": [],
-        "type": "bool"
+        "type": "bool",
+        "platforms": ["win"]
     },
     {
         "name": "Disable Camera Effects",
         "desc": "Disables any camera effects, and only focuses the camera on the player. This might break all gamemodes except Cube and Robot.",
-        "opcodes": [],
         "type": "bool"
     },
     {
         "name": "Noclip Accuracy",
         "desc": "Informs you how accurate your noclip run is. (Will not work without Anticheat Bypass enabled)",
-        "opcodes": [],
         "type": "bool"
     },
     {
         "name": "Noclip Flash",
         "desc": "Flashes the whole screen red instead of showing a label for your noclip accuracy.",
-        "opcodes": [],
         "type": "bool"
     },
     {
         "name": "Show Hitboxes",
         "desc": "Show player, obstacle, and solid hitboxes.",
-        "opcodes": [],
-        "type": "bool"
+        "type": "bool",
+        "platforms": ["win", "android32", "android64"]
     },
     {
         "name": "Show Hitboxes on Death",
         "desc": "Shows hitboxes when you die, and hides them when you respawn.",
-        "opcodes": [],
-        "type": "bool"
+        "type": "bool",
+        "platforms": ["win", "android32", "android64"]
     },
     {
         "name": "Hitbox Stroke",
         "desc": "Stroke 'width' when drawing hitboxes.",
-        "opcodes": [],
         "type": "float",
         "min": 0.1,
         "max": 10,
-        "default": 1
+        "default": 1,
+        "platforms": ["win", "android32", "android64"]
     },
     {
         "name": "Show Graphic Options",
         "desc": "Shows you Geometry Dash's graphic options! Useful for Android as the option is normally not available.",
-        "opcodes": [],
         "type": "button",
-        "default": "button"
+        "default": "button",
+        "platforms": ["android32", "android64"]
     }
 ]

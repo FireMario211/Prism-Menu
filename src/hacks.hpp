@@ -3,9 +3,9 @@
 #define HACKS_HPP
 
 #include "CustomSettings.hpp"
+#include "Utils.hpp"
 #include <Geode/utils/general.hpp>
 #include <Geode/Geode.hpp>
-#include <algorithm>
 
 #ifdef GEODE_IS_WINDOWS
 #include <Geode/platform/windows.hpp>
@@ -71,6 +71,8 @@ struct HackItem {
     bool focused = false;
 };
 
+
+
 extern std::vector<HackItem> allHacks; // this fixes everything.
 
 class Hacks {
@@ -115,6 +117,7 @@ class Hacks {
             "Instant Mirror Portal",
             "Show Hitboxes",
             "No Shaders",
+            "Playback",
             "Disable Camera Effects"
         };
     }
@@ -154,8 +157,9 @@ class Hacks {
         auto hackValues = Mod::get()->getSavedValue<SettingHackStruct>("values");
         auto settings = hackValues.m_hackValues;
         
-        for (size_t x = 0; x < 6; x++) {
+        for (size_t x = 0; x < 7; x++) {
             std::vector<matjson::Value> jsonArray;
+            bool ignoreSave = false;
             switch (x) {
                 case 0: // Global
                     jsonArray = matjson::parse(Hacks::getGlobalHacks()).as_array();
@@ -169,16 +173,59 @@ class Hacks {
                 case 3: // Creator
                     jsonArray = matjson::parse(Hacks::getCreatorHacks()).as_array();
                     break;
-                case 4: // Misc
+                case 4: // Bot
+                    jsonArray = matjson::parse(Hacks::getBotHacks()).as_array();
+                    break;
+                case 5: // Misc
                     jsonArray = matjson::parse(Hacks::getMiscHacks()).as_array();
                     break;
-                case 5: // Settings
+                case 6: // Settings
                     jsonArray = matjson::parse(Hacks::getSettings()).as_array();
                     break;
             }
             for (size_t y = 0; y < jsonArray.size(); ++y) {
                 const auto& obj = jsonArray[y];
                 auto name = obj.get<std::string>("name");
+                matjson::Array opcodes;
+                if (obj.contains("platforms")) {
+                    auto platforms = obj.get<matjson::Array>("platforms");
+                    #ifdef GEODE_IS_WINDOWS 
+                    if (!Utils::arrayContainsString(platforms, "win")) continue;
+                    #endif
+                    #ifdef GEODE_IS_MACOS
+                    if (!Utils::arrayContainsString(platforms, "mac")) continue;
+                    #endif
+                    #ifdef GEODE_IS_ANDROID32
+                    if (!Utils::arrayContainsString(platforms, "android32")) continue;
+                    #endif
+                    #ifdef GEODE_IS_ANDROID64
+                    if (!Utils::arrayContainsString(platforms, "android64")) continue;
+                    #endif
+                    #ifdef GEODE_IS_IOS
+                    if (!Utils::arrayContainsString(platforms, "ios")) continue;
+                    #endif
+                }
+                if (obj.contains("opcodes")) {
+                    auto opcodeObj = obj.get<matjson::Object>("opcodes");
+                    #ifdef GEODE_IS_WINDOWS 
+                    if (opcodeObj.contains("win")) opcodes = opcodeObj["win"].as_array();
+                    #endif
+                    #ifdef GEODE_IS_MACOS
+                    if (opcodeObj.contains("mac")) opcodes = opcodeObj["mac"].as_array();
+                    #endif
+                    #ifdef GEODE_IS_ANDROID32
+                    if (opcodeObj.contains("android32")) opcodes = opcodeObj["android32"].as_array();
+                    #endif
+                    #ifdef GEODE_IS_ANDROID64
+                    if (opcodeObj.contains("android64")) opcodes = opcodeObj["android64"].as_array();
+                    #endif
+                    #ifdef GEODE_IS_IOS
+                    if (opcodeObj.contains("ios")) opcodes = opcodeObj["ios"].as_array();
+                    #endif
+                }
+                if (obj.contains("save") && obj.get<bool>("save") == false) {
+                    ignoreSave = true;
+                }
                 if (!obj.contains("default")) {
                     /*allHacks.push_back({
                         false,
@@ -194,14 +241,16 @@ class Hacks {
                         obj.get<std::string>("name"),
                         obj.get<std::string>("desc"),
                         obj.get<std::string>("type"),
-                        obj.get<matjson::Array>("opcodes"),
+                        opcodes,
                         false
                     };
                     item.data = obj;
-                    if (Hacks::Settings::settingContainsHack(settings, name) && !reset) {
-                        item.value = Hacks::Settings::getSettingValue(settings, name).as_bool();
-                    } else {
-                        Hacks::Settings::setSettingValue(&hackValues, item, false);
+                    if (!ignoreSave) {
+                        if (Hacks::Settings::settingContainsHack(settings, name) && !reset) {
+                            item.value = Hacks::Settings::getSettingValue(settings, name).as_bool();
+                        } else {
+                            Hacks::Settings::setSettingValue(&hackValues, item, false);
+                        }
                     }
                     allHacks.push_back(item);
                 } else {
@@ -209,28 +258,28 @@ class Hacks {
                     bool settingExists = false;
                     HackValue value(new HackValue(false));
                     if (type == "bool") {
-                        if (Hacks::Settings::settingContainsHack(settings, name) && !reset) {
+                        if (!ignoreSave && Hacks::Settings::settingContainsHack(settings, name) && !reset) {
                             value = Hacks::Settings::getSettingValue(settings, name).as_bool();
                             settingExists = true;
                         } else {
                             value = HackValue(obj.get<bool>("default"));
                         }
                     } else if (type == "int" || type == "dropdown") {
-                        if (Hacks::Settings::settingContainsHack(settings, name) && !reset) {
+                        if (!ignoreSave && Hacks::Settings::settingContainsHack(settings, name) && !reset) {
                             value = Hacks::Settings::getSettingValue(settings, name).as_int();
                             settingExists = true;
                         } else {
                             value = HackValue(obj.get<int>("default"));
                         }
                     } else if (type == "float") {
-                        if (Hacks::Settings::settingContainsHack(settings, name) && !reset) {
+                        if (!ignoreSave && Hacks::Settings::settingContainsHack(settings, name) && !reset) {
                             value = static_cast<float>(Hacks::Settings::getSettingValue(settings, name).as_double());
                             settingExists = true;
                         } else {
                             value = HackValue(static_cast<float>(obj.get<double>("default")));
                         }
                     } else if (type == "string") {
-                        if (Hacks::Settings::settingContainsHack(settings, name) && !reset) {
+                        if (!ignoreSave && Hacks::Settings::settingContainsHack(settings, name) && !reset) {
                             std::string val = Hacks::Settings::getSettingValue(settings, name).as_string();
                             char* charVal = new char[val.length() + 1];
                             std::strcpy(charVal, val.c_str());
@@ -250,11 +299,11 @@ class Hacks {
                         obj.get<std::string>("name"),
                         obj.get<std::string>("desc"),
                         obj.get<std::string>("type"),
-                        obj.get<matjson::Array>("opcodes"),
+                        opcodes,
                         value
                     };
                     item.data = obj;
-                    if (!settingExists) {
+                    if (!settingExists && !ignoreSave) {
                         // i dont know any other way ok
                         if (type == "bool") {
                             Hacks::Settings::setSettingValue(&hackValues, item, item.value.boolValue);
@@ -271,7 +320,6 @@ class Hacks {
             }
         }
     }
-    #ifdef GEODE_IS_WINDOWS
     static void applyPatches(std::string name, matjson::Array const& opcodes, bool isEnabled) {
         // chat jippity
         for (const auto& opcode : opcodes) {
@@ -285,12 +333,14 @@ class Hacks {
             }
             // ooo reinterpret_cast so bad!!!
             if (opcode.contains("cocos")) {
+#ifdef GEODE_IS_WINDOWS // everything else is statically linked!
                 if (Mod::get()->patch(
                     reinterpret_cast<void*>(base::getCocos() + std::stoul(addrStr, nullptr, 16)),
                     bytes
                 ).has_error()) {
                     log::error("Something went wrong when trying to patch \"{}\"", name);
                 }
+#endif
             } else {
                 if (Mod::get()->patch(
                     reinterpret_cast<void*>(base::get() + std::stoul(addrStr, nullptr, 16)),
@@ -301,7 +351,6 @@ class Hacks {
             }
         }
     }
-    #endif
     static std::string getGlobalHacks() {
         return readFile("global.json");
     }
@@ -317,6 +366,9 @@ class Hacks {
     }
     static std::string getMiscHacks() {
         return readFile("misc.json");
+    }
+    static std::string getBotHacks() {
+        return readFile("bot.json");
     }
     static std::string getSettings() {
         return readFile("settings.json");
