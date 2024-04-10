@@ -42,14 +42,15 @@ Note that creating patches will disable saving the setting, meaning the user wou
         "name": "Backup Stars Limit",
         "desc": "Lets you backup data, even with less than 10 stars.",
         "opcodes": {
-            "win": [{"addr": "0x57c8e", "on": "EB 52", "off": "7D 52"}] // JMP short +0x52
-            "android32": [{"addr": "0x448116", "on": "16 D0", "off": "16 DC"}] // BEQ (why is base 0x10000)
+            "win": [{"addr": "0x57c8e", "on": "EB 52", "off": "7D 52"}], // JMP short +0x52
+            "android32": [{"addr": "0x448116", "on": "16 D0", "off": "16 DC"}], // BEQ (why is base 0x10000)
             "android64": [{"addr": "0x8181f0", "on": "00 05 00 54", "off": "0C 05 00 54"}], // B.EQ
             "mac": [{"addr": "0xc8d09", "on": "75 4D", "off": "7F 4D"}], // JNZ
             "ios": [{"addr": "0x16cee4", "on": "20 03 00 54", "off": "2C 03 00 54"}] // B.EQ
         },
         // no "platforms" key, since we assume it's supported for all platforms
-        "type": "bool"
+        "type": "bool",
+        "save": false // Since it is a "patch" (and patch saving isnt implemented), we will assume this wont be enabled on startup.
     }
 ]
 ```
