@@ -58,7 +58,7 @@ Press on the circle button located on the left corner, or press `Tab` to open th
 * **All contributors that helped with Prism Menu!**
 
 # Libraries
-* [Goede SDK](https://github.com/geode-sdk/geode)
+* [Geode SDK](https://github.com/geode-sdk/geode)
 * [GDReplay](https://github.com/maxnut/GDReplayFormat) - For Quartz
 
 # License
