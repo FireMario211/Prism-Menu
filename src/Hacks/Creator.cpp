@@ -16,10 +16,12 @@ class $modify(EditLevelLayer) {
             this->m_level->m_isVerified = true;
             //this->m_level->m_isVerified = isVerified;
         }
+#if 0
         if (Hacks::isHackEnabled("No (C) Mark")) {
             auto isVerified = this->m_level->m_originalLevel;
             this->m_level->m_originalLevel = true;
         }
+#endif
         EditLevelLayer::onShare(sender);
     }
 };

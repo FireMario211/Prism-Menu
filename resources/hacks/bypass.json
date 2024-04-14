@@ -81,10 +81,15 @@
     {
         "name": "Backup Stars Limit",
         "desc": "Lets you backup data, even with less than 10 stars.",
-        "opcodesold": [
-            {"addr": "0x3928E", "on": "EB 3E", "off": "7D 3E"}
-        ],
+        "opcodes": {
+            "win": [{"addr": "0x57c8e", "on": "EB 52", "off": "7D 52"}],
+            "android32": [{"addr": "0x448116", "on": "16 D0", "off": "16 DC"}],
+            "android64": [{"addr": "0x8181f0", "on": "00 05 00 54", "off": "0C 05 00 54"}],
+            "mac": [{"addr": "0xc8d09", "on": "75 4D", "off": "7F 4D"}],
+            "ios": [{"addr": "0x16cee4", "on": "20 03 00 54", "off": "2C 03 00 54"}]
+        },
         "type": "bool",
+        "save": false,
         "platforms": []
     }
 ]

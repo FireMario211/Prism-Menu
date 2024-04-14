@@ -88,7 +88,8 @@
     {
         "name": "No Wave Pulse",
         "desc": "Prevents the wave from pulsing to the beat of the music.",
-        "type": "bool"
+        "type": "bool",
+        "platforms": ["win", "android32", "android64"]
     },
     {
         "name": "Wave Pulse Size",
@@ -96,7 +97,8 @@
         "type": "float",
         "min": 0,
         "max": 10,
-        "default": 1
+        "default": 1,
+        "platforms": ["win", "android32", "android64"]
     },
     {
         "name": "Change Gravity",

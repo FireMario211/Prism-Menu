@@ -41,7 +41,8 @@
     {
         "name": "Show Hidden Objects",
         "desc": "Shows all hidden objects. This will reset the objects primary color. This will not work on objects with the \"Hide\" attribute. (Useful with Layout Mode)",
-        "type": "bool"
+        "type": "bool",
+        "platforms": ["win", "android32", "android64"]
     },
     {
         "name": "No Transition",
@@ -54,14 +55,10 @@
         "type": "bool"
     },
     {
-        "name": "Transparent BG",
-        "desc": "Automatically reverts colors changed in the background to be their original color.",
-        "type": "bool"
-    },
-    {
         "name": "Accurate Percentage",
         "desc": "Allows for decimals in the level percentage.",
-        "type": "bool"
+        "type": "bool",
+        "platforms": ["win", "android32", "android64"]
     },
     {
         "name": "Extra Percent Digits",
@@ -70,7 +67,8 @@
         "min": 1,
         "max": 15,
         "step": 1,
-        "default": 4
+        "default": 4,
+        "platforms": ["win", "android32", "android64"]
     },
     {
         "name": "Uncomplete Level",
@@ -95,6 +93,14 @@
         "max": 1000,
         "default": 60,
         "platforms": ["win"]
+    },
+    {
+        "name": "TPS Bypass",
+        "desc": "Changes the \"Physics FPS\" of the game to be higher or lower than the default. (240)",
+        "type": "int",
+        "min": 1,
+        "max": 10000,
+        "default": 240
     },
 
     {

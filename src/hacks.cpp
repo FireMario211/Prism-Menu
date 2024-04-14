@@ -27,6 +27,7 @@ matjson::Value Hacks::Settings::getSettingValue(const matjson::Array& objArr, co
 }
 
 void Hacks::Settings::setSettingValue(SettingHackStruct* settings, const HackItem& item, const matjson::Value& value) {
+    if (item.data.contains("save") && item.data.get<bool>("save") == false) return;
     auto array = settings->m_hackValues;
     auto name = item.name;
     auto it = std::find_if(array.begin(), array.end(), [name](const matjson::Value& obj) {
@@ -48,6 +49,7 @@ void Hacks::Settings::setSettingValue(SettingHackStruct* settings, const HackIte
 bool Hacks::isCheating() {
     auto cheats = Hacks::getCheats();
     if (Hacks::getHack("Speedhack")->value.floatValue != 1.0f) return true;
+    if (Hacks::getHack("TPS Bypass")->value.intValue > 360) return true; // demon list does not allow anything higher!
     bool cheating = false;
     for (const auto& cheat : cheats) {
         if (Hacks::isHackEnabled(cheat)) {
@@ -204,4 +206,94 @@ void Hacks::resetLevel(LevelInfoLayer* levelInfoLayer, GJGameLevel* level) {
         );
     }
 #endif 
+}
+
+int global_timestamp = 0;
+
+#include <Geode/modify/PlayLayer.hpp>
+// src/Hacks/PhysicsBypass.cpp
+class $modify(PlayLayer) {
+    bool init(GJGameLevel *level, bool useReplay, bool dontCreateObjects) {
+        if (!PlayLayer::init(level, useReplay, dontCreateObjects)) return false;
+        global_timestamp = level->m_timestamp;
+        return true;
+    }
+};
+
+/*
+#include <Geode/modify/GJBaseGameLayer.hpp>
+class $modify(GJBaseGameLayer) {
+    float getModifiedDelta(float dt) {
+        log::debug("the dt is {}", dt);
+        return GJBaseGameLayer::getModifiedDelta(dt);
+    }
+};
+*/
+bool hasChangedTPS = false;
+
+void Hacks::setTPS(int tps) {
+    // im actually too lazy to hook GJBaseGameLayer::update and do the calculations, ok!?
+    if (tps != 240 && !hasChangedTPS) {
+        hasChangedTPS = true;
+    }
+    if (!hasChangedTPS) return;
+    float value = 1.0f / (float)tps;
+    uint8_t bytes[sizeof(float)];
+    std::memcpy(bytes, &value, sizeof(float));
+    std::vector<uint8_t> bytesVec(bytes, bytes + sizeof(float));
+#if defined(GEODE_IS_WINDOWS) // why is windows the only one with 1 addr!?
+    uintptr_t addr1 = 0x49D548;
+    uintptr_t addr2 = 0x0;
+#elif defined(GEODE_IS_ANDROID32)
+    uintptr_t addr2 = 0x457eb8; // double
+    uintptr_t addr1 = 0x457ec4; // float
+#elif defined(GEODE_IS_ANDROID64)
+    uintptr_t addr1 = 0x8335c8; // float
+    uintptr_t addr2 = 0x8335c0; // double
+#elif defined(GEODE_IS_MACOS)
+    uintptr_t addr2 = 0x7e9c60; // double
+    uintptr_t addr1 = 0x7e9ac0; // float
+#endif 
+// sorry ios!
+    auto patches = Mod::get()->getPatches();
+    auto patch1 = std::find_if(patches.begin(), patches.end(), [addr1](Patch* const patch) {
+        return patch->getAddress() == base::get() + addr1;
+    });
+    if (patch1 != patches.end()) {
+        (void)(*patch1)->updateBytes(bytesVec);
+    } else {
+        auto res1 = Mod::get()->patch(reinterpret_cast<void*>(base::get() + addr1), bytesVec);
+        if (res1.has_error()) {
+            log::error("[1] Something went wrong when trying to patch TPS Bypass | {}", res1.error());
+        }
+    }
+    //
+    
+    if (addr2 != 0x0) {
+        double value2 = 1.0f / (double)tps;
+        uint8_t bytes2[sizeof(double)];
+        std::memcpy(bytes2, &value2, sizeof(double));
+        std::vector<uint8_t> bytesVec2(bytes2, bytes2 + sizeof(double));
+        auto patch2 = std::find_if(patches.begin(), patches.end(), [addr2](Patch* const patch) {
+            return patch->getAddress() == base::get() + addr2;
+        });
+        if (patch2 != patches.end()) {
+            (void)(*patch2)->updateBytes(bytesVec2);
+        } else {
+            auto res2 = Mod::get()->patch(reinterpret_cast<void*>(base::get() + addr2), bytesVec2);
+            if (res2.has_error()) {
+                log::error("[2] Something went wrong when trying to patch TPS Bypass | {}", res2.error());
+            }
+        }
+    }
+    log::debug("Changed TPS to {}", tps);
+
+    // oh and uhh, this is expanded from gdmo ok. please dont hurt me maxnut
+    // src/Hacks/PhysicsBypass.cpp
+    if (PlayLayer::get() != nullptr && PlayLayer::get()->m_level->m_timestamp > 0) {
+        float timestampMultiplier = (tps / 240.f);
+		float stepsMultiplier = (global_timestamp * timestampMultiplier) / PlayLayer::get()->m_level->m_timestamp;
+		PlayLayer::get()->m_level->m_timestamp = global_timestamp * timestampMultiplier;
+		PlayLayer::get()->m_gameState.m_unk1f8 *= stepsMultiplier;
+    }
 }

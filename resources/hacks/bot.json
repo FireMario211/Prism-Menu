@@ -31,7 +31,7 @@
     },
     {
         "name": "Fixed FPS",
-        "desc": "Attempts to make the replay \"accurate\" by locking the frames to the target framerate. This may look like the \"smooth fix\" option is enabled if the game is lagging.",
+        "desc": "Locks the frames to the target framerate of the macro. This may look like the \"smooth fix\" option is enabled if the game is lagging.",
         "type": "bool"
     },
     {
@@ -41,7 +41,7 @@
         "default": "a"
     },
     {
-        "name": "Save",
+        "name": "Save Macro",
         "desc": "Saves the macro.",
         "type": "button",
         "default": "a"

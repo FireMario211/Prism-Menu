@@ -1,11 +1,12 @@
 #include "PrismUI.hpp"
-//#include "../Misc/GatoSim.hpp"
+#include "../Misc/GatoSim.hpp"
 #include "../Themes.hpp"
 #include <Geode/ui/TextArea.hpp>
 #include "Dropdown.h"
 #include "../Utils.hpp"
 #include "CreditsMenu.hpp"
 #include "../Hacks/Quartz.hpp"
+#include <cstring> 
 
 int currentMenuIndexGD = 0;
 
@@ -129,13 +130,6 @@ bool PrismUIButton::init(HackItem* hack) {
         );
         //checkbox->setUserData(reinterpret_cast<void*>(hack));
         menu->addChild(checkbox);
-        if (obj.contains("win")) {
-            #ifndef GEODE_IS_WINDOWS
-            checkbox->setEnabled(false);
-            #endif
-        } else if (name == "Enable Patching") {
-            checkbox->setEnabled(false);
-        }
     } else if (hack->value.type == ValueType::Int && hack->type != "dropdown" && !name.starts_with("Button Position")) {
         auto min = obj.get<int>("min");
         auto max = obj.get<int>("max");
@@ -301,6 +295,9 @@ void PrismUIButton::onBoolBtn(CCObject* ret) {
     if (name == "Instant Complete" && m_hack->value.boolValue) {
         FLAlertLayer::create(nullptr, "Cheater!", "Just a warning, you will be <cr>banned off leaderboards</c> if you use this on rated levels. Consider this your <cy>warning</c>.", "OK", nullptr)->show();
     }
+    if (!m_hack->opcodes.empty()) {
+        Hacks::applyPatches(name, m_hack->opcodes, m_hack->value.boolValue);
+    }
 }
 
 void PrismUIButton::onFloatBtn(CCObject* ret) {
@@ -414,7 +411,7 @@ void PrismUIButton::onBtn(CCObject* ret) {
         }
     } else if (name == "mow.") {
         FLAlertLayer::create("meow.", "coming soon... in a <cy>future update</c>", "cat")->show();
-    } else if (name == "Save") {
+    } else if (name == "Save Macro") {
         auto macroItem = Hacks::getHack("Macro");
         if (macroItem != nullptr) {
             std::string value = macroItem->data["values"].as_array()[0].as_string();
@@ -618,6 +615,8 @@ void PrismUIButton::intChanged() {
         prismButton->setPositionX(m_hack->value.intValue);
     } else if (name == "Button Position Y") {
         prismButton->setPositionY(m_hack->value.intValue);
+    } else if (name == "TPS Bypass") {
+        Hacks::setTPS(m_hack->value.intValue);
     }
 }
 

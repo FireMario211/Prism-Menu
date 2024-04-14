@@ -6,6 +6,7 @@
 #include "Utils.hpp"
 #include <Geode/utils/general.hpp>
 #include <Geode/Geode.hpp>
+#include <algorithm>
 
 #ifdef GEODE_IS_WINDOWS
 #include <Geode/platform/windows.hpp>
@@ -331,22 +332,50 @@ class Hacks {
             while (hexStream >> std::setw(2) >> byteStr) {
                 bytes.push_back(static_cast<uint8_t>(std::stoul(byteStr, nullptr, 16)));
             }
+
+            // because stupid ownership!
+            auto patches = Mod::get()->getPatches();
+            auto patch = std::find_if(patches.begin(), patches.end(), [addrStr, opcode](Patch* const patch) {
+                auto aBase = base::get();
+                #ifdef GEODE_IS_WINDOWS
+                if (opcode.contains("cocos")) aBase = base::getCocos();
+                #endif
+                return patch->getAddress() == aBase + std::stoul(addrStr, nullptr, 16);
+            });
+            if (patch != patches.end()) {
+                auto res = (*patch)->updateBytes(bytes);
+                if (res.has_error()) {
+                    log::error("Something went wrong when trying to patch \"{}\" | {}", name, res.error());
+                } else {
+                    log::info("[{}] Patch {} with addr {}", ((isEnabled) ? "+" : "-"), name, addrStr);
+                }
+                return;
+            }
+
             // ooo reinterpret_cast so bad!!!
             if (opcode.contains("cocos")) {
 #ifdef GEODE_IS_WINDOWS // everything else is statically linked!
-                if (Mod::get()->patch(
+                auto res = Mod::get()->patch(
                     reinterpret_cast<void*>(base::getCocos() + std::stoul(addrStr, nullptr, 16)),
                     bytes
-                ).has_error()) {
-                    log::error("Something went wrong when trying to patch \"{}\"", name);
+                );
+                if (res.has_error()) {
+                    log::error("Something went wrong when trying to patch \"{}\" | {}", name, res.error());
+                } else {
+                    res.unwrap()->setAutoEnable(false);
+                    log::info("[{}] Patch {} with addr {}", ((isEnabled) ? "+" : "-"), name, addrStr);
                 }
 #endif
             } else {
-                if (Mod::get()->patch(
+                auto res = Mod::get()->patch(
                     reinterpret_cast<void*>(base::get() + std::stoul(addrStr, nullptr, 16)),
                     bytes
-                ).has_error()) {
-                    log::error("Something went wrong when trying to patch \"{}\"", name);
+                );
+                if (res.has_error()) {
+                    log::error("Something went wrong when trying to patch \"{}\" | {}", name, res.error());
+                } else {
+                    res.unwrap()->setAutoEnable(false);
+                    log::info("[{}] Patch {} with addr {}", ((isEnabled) ? "+" : "-"), name, addrStr);
                 }
             }
         }
@@ -377,6 +406,15 @@ class Hacks {
         return readFile("themes.json");
     }
     // other hacks 
+    static void setTPS(int tps);
+    static void setTPS() {
+        auto hack = Hacks::getHack("TPS Bypass");
+        if (hack != nullptr) {
+            setTPS(hack->value.intValue);
+        } else {
+            Hacks::setTPS(240);
+        }
+    }
     static void setPitch(float pitch) {
         if (!Hacks::isHackEnabled("Speedhack Audio")) {
             pitch = 1.0F;

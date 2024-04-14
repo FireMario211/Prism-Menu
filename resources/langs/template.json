@@ -20,6 +20,11 @@
         }
     },
     {
+        "¦ Quartz Bot": {
+            "name": "¦ Quartz Bot"
+        }
+    },
+    {
         "··· Misc": {
             "name": "··· Misc"
         }
@@ -315,12 +320,6 @@
     },
 
     {
-        "Enable Patching": {
-            "name": "Enable Patching",
-            "desc": "Changes from hooking to patching. This also allows more hacks to be enabled. Only enable if necessary. [Windows Only]"
-        }
-    },
-    {
         "Menu Opacity": {
             "name": "Menu Opacity",
             "desc": "Determines how opaque the menu should be."
@@ -509,6 +508,97 @@
         "Suicide": {
             "name": "Suicide",
             "desc": "Kills the player repeatedly."
+        }
+    },
+
+    {
+        "TPS Bypass": {
+            "name": "TPS Bypass",
+            "desc": "Changes the \"Physics FPS\" of the game to be higher or lower than the default. (240)"
+        }
+    },
+    {
+        "Macro": {
+            "name": "Macro",
+            "desc": "Select a macro to record or play!"
+        }
+    },
+    {
+        "Record": {
+            "name": "Record",
+            "desc": "Records the gemeplay to be played back. (This will reset the current inputs if you play a level and have a macro selected.)"
+        }
+    },
+    {
+        "Playback": {
+            "name": "Playback",
+            "desc": "Plays back the macro."
+        }
+    },
+    {
+        "Macro Editor": {
+            "name": "Macro Editor",
+            "desc": "Enter the macro editor. (Will not work properly with Record enabled)"
+        }
+    },
+    {
+        "Frame Fix": {
+            "name": "Frame Fix",
+            "desc": "Records the players every movement, including position when recording and playing back a macro. Do note that this option will increase the file size of the macro while recording."
+        }
+    },
+    {
+        "Fixed FPS": {
+            "name": "Fixed FPS",
+            "desc": "Locks the frames to the target framerate of the macro. This may look like the \"smooth fix\" option is enabled if the game is lagging."
+        }
+    },
+    {
+        "Import Macro": {
+            "name": "Import Macro",
+            "desc": "Imports a macro."
+        }
+    },
+    {
+        "Save Macro": {
+            "name": "Save Macro",
+            "desc": "Saves the macro."
+        }
+    },
+    {
+        "No Pulse": {
+            "name": "No Pulse",
+            "desc": "Disables orbs and other related objects from pulsing on the music."
+        }
+    },
+    {
+        "Noclip Flash": {
+            "name": "Noclip Flash",
+            "desc": "Flashes the whole screen red instead of showing a label for your noclip accuracy."
+        }
+    },
+    {
+        "Instant Respawn": {
+            "name": "Instant Respawn",
+            "desc": "Removes the delay when re-attempting the level."
+        }
+    },
+    {
+        "No Death Effect": {
+            "name": "No Death Effect",
+            "desc": "Removes explosion particles when a player dies."
+        }
+    },
+    {
+        "No Wave Pulse": {
+            "name": "No Wave Pulse",
+            "desc": "Prevents the wave from pulsing to the beat of the music."
+        }
+    },
+    {
+        "Wave Pulse Size": {
+            "name": "Wave Pulse Size",
+            "desc": "How big the pulse should be for the wave."
         }
     }
 ]

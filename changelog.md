@@ -1,5 +1,17 @@
 # v1.6.0
+    - Added TPS Bypass (for all platforms)
     - Allowed Noclip Accuracy to no longer require Anticheat Bypass to be enabled.
+    - Added No Death Effect.
+    - Added Instant Respawn.
+    - Added No Wave Pulse.
+    - Added Noclip Flash.
+    - Added Wave Pulse Size.
+    - Changed Info Button to be colored based on the theme.
+    - Removed "Enable Patching".
+    - Removed "Transparent BG". (Was causing lag, also there are alternative mods available)
+    - Refactored hack json files.
+    - Fixed No Death Effect not working with Hitbox on Death.
+    - Fixed startpos showing progress (again)
 # v1.5.1 
     - Made the Prism Button hidden if you are in the Editor.
     - Fixed bug with progress saving even in Test Mode.

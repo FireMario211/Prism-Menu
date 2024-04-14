@@ -21,7 +21,8 @@
     {
 	    "name": "No (C) Mark",
 	    "desc": "Removes the (C) mark when uploading copied levels. Will automatically set levels to be original.",
-        "type": "bool"
+        "type": "bool",
+        "platforms": []
 	},
     {
 	    "name": "Rotation Hack",

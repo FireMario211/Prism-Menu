@@ -24,12 +24,9 @@ for i in range(char2nr('A'), char2nr('Z'))
   call append(line("."), printf("{'%c', cocos2d::KEY_%c},", i, i))
 endfor
 */
-
 PrismButton* prismButton;
 
 bool firstLoad = false;
-// early load is amazing!
-
 class $modify(MenuLayer) {
     bool init() {
         if (!MenuLayer::init()) return false;
@@ -183,7 +180,6 @@ class $modify(PlayLayer) {
     float previousPositionX = 0.0F;
     GameObject* antiCheatObject; // removing after lol
     CircleButtonSprite* cheatIndicator;
-    bool previousTestMode;
     CCNode* prismNode;
 
     CCSprite* progressBar;
@@ -191,7 +187,8 @@ class $modify(PlayLayer) {
     CCLabelBMFont* attemptLabel;
 
     bool isCheating = false;
-    bool hasEnabledSafe = false;
+    bool hasSetTestMode = false;
+    bool previousTestMode;
     
     // Anticheat Bypass
     bool initedDeath = false;
@@ -240,7 +237,6 @@ class $modify(PlayLayer) {
             #endif
         }
         //bool m_isTestMode = *reinterpret_cast<bool*>(reinterpret_cast<uintptr_t>(this) + 0x413);
-        if (Hacks::isHackEnabled("Enable Patching")) return PlayLayer::destroyPlayer(p0, p1);
         bool noclipDisabled = !Hacks::isHackEnabled("No Solids") && !Hacks::isHackEnabled("No Spikes") && !Hacks::isHackEnabled("Noclip");
         if (noclipDisabled) {
             PlayLayer::destroyPlayer(p0, p1);
@@ -372,7 +368,7 @@ class $modify(PlayLayer) {
             if (Hacks::isHackEnabled("Suicide")) return PlayLayer::destroyPlayer(m_player1, nullptr);
             if (m_player1->getPositionX() != m_fields->previousPlayerX) {
                 m_fields->previousPlayerX = m_player1->getPositionX();
-                m_fields->frame += 1;
+                m_fields->frame++;
             }
         }
         if (m_fields->accuracyLabel != nullptr) {
@@ -389,17 +385,15 @@ class $modify(PlayLayer) {
             }
         }
 #ifndef GEODE_IS_MACOS
-        if (Hacks::isHackEnabled("Safe Mode") || Hacks::isAutoSafeModeActive()) {
-            if (!hasEnabledSafe) {
-                m_fields->previousTestMode = m_isTestMode;
-            }
-            m_isTestMode = true;
-            m_fields->hasEnabledSafe = true;
-        } else {
-            if (hasEnabledSafe) {
-                m_isTestMode = m_fields->previousTestMode;
+        if (!m_fields->hasSetTestMode) {
+            m_fields->hasSetTestMode = true;
+            m_fields->previousTestMode = m_isTestMode;
+        }
+        if (m_fields->hasSetTestMode) {
+            if (Hacks::isHackEnabled("Safe Mode") || Hacks::isAutoSafeModeActive()) {
+                m_isTestMode = true;
             } else {
-                m_fields->previousTestMode = m_isTestMode;
+                m_isTestMode = m_fields->previousTestMode;
             }
         }
 #endif
@@ -426,10 +420,9 @@ class $modify(PlayLayer) {
             // funny message
 
             // Don't show if any form of safe mode is enabled, it gets VERY annoying otherwise
-            if (!(Hacks::isHackEnabled("Safe Mode") || Hacks::isHackEnabled("Auto Safe Mode"))) FLAlertLayer::create(nullptr, "Cheater!", "Just a warning, you will be <cr>banned off leaderboards</c> if you use this on rated levels. Consider this your <cy>warning</c>.", "OK", nullptr)->show();
+            //if (!(Hacks::isHackEnabled("Safe Mode") || Hacks::isHackEnabled("Auto Safe Mode"))) FLAlertLayer::create(nullptr, "Cheater!", "Just a warning, you will be <cr>banned off leaderboards</c> if you use this on rated levels. Consider this your <cy>warning</c>.", "OK", nullptr)->show();
         }
         float attemptOpacity = Hacks::getHack("Attempt Opacity")->value.floatValue;
-        //if (!Hacks::isHackEnabled("Hide Attempts") && attemptOpacity == 1.0F) return PlayLayer::postUpdate(p0);
         int currentPosition = Hacks::getHack("Progress Bar Position")->value.intValue;
         // stop dynamic_cast abuse
         auto node = typeinfo_cast<CCNode*>(this->getChildren()->objectAtIndex(0));
@@ -504,7 +497,7 @@ class $modify(PlayLayer) {
     }
 #endif
     void levelComplete() {
-        if (!(Hacks::isHackEnabled("Safe Mode") || Hacks::isAutoSafeModeActive()) || Hacks::isHackEnabled("Enable Patching")) return PlayLayer::levelComplete();
+        if (!(Hacks::isHackEnabled("Safe Mode") || Hacks::isAutoSafeModeActive())) return PlayLayer::levelComplete();
         PlayLayer::resetLevel(); // haha
     }
 };
@@ -514,7 +507,7 @@ class $modify(PlayLayer) {
     // Accurate Percentage
 
     /\*void levelComplete() {
-        if (!Hacks::isHackEnabled("Safe Mode") || Hacks::isHackEnabled("Enable Patching")) return PlayLayer::levelComplete();
+        if (!Hacks::isHackEnabled("Safe Mode")) return PlayLayer::levelComplete();
         PlayLayer::resetLevel(); // haha
     }
     void showNewBest(bool p0, int p1, int p2, bool p3, bool p4, bool p5) {

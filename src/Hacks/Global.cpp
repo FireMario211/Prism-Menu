@@ -39,7 +39,7 @@ class $modify(CCScheduler) {
         if (speedhack->value.floatValue == 1.0F && !current_macro.isEnabled) return CCScheduler::update(dt);
         float speedHackValue = stof(Utils::setPrecision(speedhack->value.floatValue, 3));
         dt *= speedHackValue; // def not copied!
-        if (current_macro.isEnabled) { 
+        if (current_macro.isEnabled && PlayLayer::get() != nullptr) { 
             float dt2 = (1.f / current_macro.framerate);
             auto startTime = std::chrono::high_resolution_clock::now();
             int mult = static_cast<int>((dt + current_macro.loaf)/dt2);  
@@ -101,7 +101,7 @@ class $modify(GameObject) {
 // Safe Mode (a just incase)
 class $modify(GJGameLevel) {
     void savePercentage(int p0, bool p1, int p2, int p3, bool p4) {
-        if (!(Hacks::isHackEnabled("Safe Mode") || Hacks::isAutoSafeModeActive()) || Hacks::isHackEnabled("Enable Patching")) {
+        if (!(Hacks::isHackEnabled("Safe Mode") || Hacks::isAutoSafeModeActive())) {
             GJGameLevel::savePercentage(p0, p1, p2, p3, p4);
         }
     }
@@ -130,6 +130,7 @@ CCTransitionFade* CCTransitionFade_Create(float t, cocos2d::CCScene* scene) {
 }
 
 $execute {
+    //(void)
     Mod::get()->hook(
         reinterpret_cast<void*>(geode::base::get() + 0xd4dd0), // address
         &CCTransitionFade_Create, // detour
@@ -138,26 +139,6 @@ $execute {
     );
 }
 #endif
-
-// Transparent BG
-class $modify(CCSprite) {
-    bool isGradient;
-    bool initWithFile(char const* name) {
-        if (!CCSprite::initWithFile(name)) return false;
-        if (!Hacks::isHackEnabled("Transparent BG")) return true;
-        if (!strcmp(name, "GJ_gradientBG.png")) {
-            m_fields->isGradient = true;
-        }
-        return true;
-    }
-    void setColor(const ccColor3B& color) {
-        CCSprite::setColor(color);
-        if (!Hacks::isHackEnabled("Transparent BG")) return;
-        if (m_fields->isGradient) {
-            CCSprite::setColor({255,255,255});
-        }
-    }
-};
 
 // Physics Bypass (TPS)
 // dVar3 = 0.004166666883975267;

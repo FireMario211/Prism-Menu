@@ -25,6 +25,10 @@ A mod menu made in Geode for Geometry Dash, made by [Firee](https://github.com/F
     * Currently, there are 2 themes available: `Future Dark`, `Light`, & `Catppuccin`, but you can create your own theme and share it with others on the Discord Server, or (in the future) in the game itself!
 * **Multi-Language Support**
     * Prism Menu supports more languages than **English,** it supports **Spanish**, **French**, **Portuguese** (Brazilian), **German**, **Russian**, **Czech**, and many more! Thanks to the translators!
+* **Replay Bot** (Quartz)
+    * Prism Menu comes with a bot known as **Quartz!** (QBot or Quartz Bot)
+    * **Quartz** supports GDR (GD Replay Format), meaning you can use your pre-existing macros on it.
+    * **Quartz** also comes with a **Macro Editor**, making the recording process easier incase you made a mistake!
 * **Cross Platform**
     * Prism Menu is available on `Windows`, `Mac`, and `Android`!
     * Soon, it may also be available on `iOS`!

@@ -404,5 +404,108 @@
             "name": "Skala Menu",
             "desc": "Tentukan saiz teks dan butang yang sepatutnya. (Memerlukan pemulaan semula permainan)"
         }
+    },
+    {
+        "Show Hidden Objects": {
+            "name": "Tunjukkan Objek Tersembunyi",
+            "desc": "Menunjukkan semua objek tersembunyi.  Ini akan menetapkan semula warna utama objek. Ini tidak akan berfungsi pada objek dengan atribut \"Sembunyikan\".  (Berguna dengan Mod Layout)"
+        }
+    },
+    {
+        "Transparent BG": {
+            "name": "Latar Belakang Telus",
+            "desc": "Secara automatik mengembalikan warna yang ditukar di latar belakang menjadi warna asalnya."
+        }
+    },
+    {
+        "Speedhack Audio": {
+            "name": "Kelajuan Audio",
+            "desc": "Sama ada mahu menukar kelajuan audio berdasarkan nilai kelajuan lalai."
+        }
+    },
+    {
+        "No Glow": {
+            "name": "Tiada Cahaya",
+            "desc": "Melumpuhkan cahaya pada semua objek."
+        }
+    },
+    {
+        "Noclip Accuracy": {
+            "name": "Rakaman Tepat Tanpa Klip",
+            "desc": "Memaklumkan anda betapa tepat larian tanpa klip anda. (Tidak akan berfungsi tanpa Pintasan Anti Menipu didayakan)"
+        }
+    },
+    {
+        "Show Graphic Options": {
+            "name": "Tunjukkan Tetapan Grafik",
+            "desc": "Menunjukkan kepada anda pilihan grafik Geometry Dash! Berguna untuk Android kerana pilihan itu biasanya tidak tersedia."
+        }
+    },
+    {
+        "No Trail": {
+            "name": "Tanpa Jejak",
+            "desc": "Melumpuhkan sebarang jejak daripada pemain."
+        }
+    },
+    {
+        "No Wave Trail": {
+            "name": "Tanpa Ekor Wave",
+            "desc": "Melumpuhkan ekor mod Wave daripada pemain."
+        }
+    },
+    {
+        "Solid Wave Trail": {
+            "name": "Ekor Wave Tebal",
+            "desc": "Mengalih keluar gabungan kedua-dua warna ikon pada ekor mod Wave."
+        }
+    },
+
+    {
+        "Extra Percent Digits": {
+            "name": "Digit Peratus Tambahan",
+            "desc": "Bilangan digit perpuluhan tambahan untuk dipaparkan dengan Peratusan Tepat."
+        }
+    },
+    {
+        "Uncomplete Level": {
+            "name": "Tahap Tidak Lengkap",
+            "desc": "Menetapkan semula peratusan biasa dan latihan, dan membolehkan anda mengurangkan kiraan bintang anda jika anda melengkapkan tahap!"
+        }
+    },
+    {
+        "No Shaders": {
+            "name": "Tanpa Shader",
+            "desc": "Lumpuhkan semua kesan shader kamera."
+        }
+    },
+    {
+        "Disable Camera Effects": {
+            "name": "Lumpuhkan Efek Kamera",
+            "desc": "Melumpuhkan sebarang kesan kamera dan hanya memfokuskan kamera pada pemain. Ini mungkin merosakkan semua mod permainan kecuali Kiub dan Robot."
+        }
+    },
+    {
+        "Show Hitboxes": {
+            "name": "Tunjukkan Hitbox",
+            "desc": "Tunjukkan hitbox pemain, halangan dan kotak pepejal."
+        }
+    },
+    {
+        "Show Hitboxes on Death": {
+            "name": "Tunjukkan Hitbox Ketika Mati",
+            "desc": "Menunjukkan hitbox apabila anda mati, dan menyembunyikannya apabila anda dihidupkan semula."
+        }
+    },
+    {
+        "Hitbox Stroke": {
+            "name": "Lukis Hitbox",
+            "desc": "Ukur 'lebar' apabila melukis hitbox."
+        }
+    },
+    {
+        "Suicide": {
+            "name": "Bunuh Diri",
+            "desc": "Membunuh pemain berulang kali."
+        }
     }
 ]

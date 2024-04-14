@@ -13,6 +13,10 @@ This mod menu also provides unique features not present in most mod menus, here 
 ![Theme Example](firee.PrismMenu/Screenshot2.png)
 ## Multi-Language Support
 * Prism Menu supports more languages than **English,** it supports **Spanish**, **French**, **Portuguese** (Brazilian), **German**, **Russian**, **Czech**, and many more!
+## Replay Bot (Quartz)
+* Prism Menu comes with a bot known as **Quartz!** (QBot or Quartz Bot)
+* **Quartz** supports GDR (GD Replay Format), meaning you can use your pre-existing macros on it.
+* **Quartz** also comes with a **Macro Editor**, making the recording process easier incase you made a mistake!
 ## Cross Platform
 * Prism Menu is available on `Windows`, `Mac`, and `Android`!
 ---

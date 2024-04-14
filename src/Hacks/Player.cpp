@@ -52,7 +52,7 @@ class $modify(PlayerObject) {
             m_waveTrail->m_waveSize,
             m_waveTrail->m_pulseSize
         ));*/ 
-        if (Hacks::isHackEnabled("Enable Patching") || !Hacks::isHackEnabled("Freeze Player")) return PlayerObject::update(dt);
+        if (!Hacks::isHackEnabled("Freeze Player")) return PlayerObject::update(dt);
     }
 
     void playerDestroyed(bool p0) {
@@ -84,6 +84,7 @@ class $modify(PlayerObject) {
 
 
 // No Wave Pulse
+#ifndef GEODE_IS_MACOS
 class $modify(HardStreak) {
     void updateStroke(float dt) {
         //log::info("HardStreak\n---\nm_waveSize = {}\nm_pulseSize = {}\nm_isSolid = {}", m_waveSize, m_pulseSize, m_isSolid);
@@ -97,7 +98,7 @@ class $modify(HardStreak) {
         HardStreak::updateStroke(dt);
     }
 };
-
+#endif
 
 // yeah no this will make the game lag
 class $modify(MenuGameLayer) {
