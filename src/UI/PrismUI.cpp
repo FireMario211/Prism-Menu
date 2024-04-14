@@ -1,5 +1,7 @@
 #include "PrismUI.hpp"
+#ifdef DEV_BUILD
 #include "../Misc/GatoSim.hpp"
+#endif
 #include "../Themes.hpp"
 #include <Geode/ui/TextArea.hpp>
 #include "Dropdown.h"
