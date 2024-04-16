@@ -32,7 +32,8 @@
         "TableBorderLight": [0, 0, 0, 0],
         "TableRowBg": [30, 34, 38, 128],
         "TableRowBgAlt": [25, 27, 31, 128],
-        "TextSelectedBg": [60, 55, 152, 255]
+        "TextSelectedBg": [60, 55, 152, 255],
+        "InfoButton": [60, 55, 152, 255]
     },
     "Light": {
         "Credits": "By Firee",
@@ -67,7 +68,8 @@
         "TableBorderLight": [0, 0, 0, 0],
         "TableRowBg": [225, 225, 225, 128],
         "TableRowBgAlt": [225, 225, 225, 128],
-        "TextSelectedBg": [60, 55, 152, 255]
+        "TextSelectedBg": [60, 55, 152, 255],
+        "InfoButton": [100, 100, 100, 255]
     },
     "Catppuccin (Macchiato)": {
         "Credits": "https://github.com/catppuccin/catppuccin",
@@ -104,6 +106,7 @@
         "TableBorderLight": [0, 0, 0, 0],
         "TableRowBg": [30, 32, 48, 191],
         "TableRowBgAlt": [30, 32, 48, 191],
-        "TextSelectedBg": [198, 160, 246, 255]
+        "TextSelectedBg": [198, 160, 246, 255],
+        "InfoButton": [184, 130, 255, 255]
     }
 }

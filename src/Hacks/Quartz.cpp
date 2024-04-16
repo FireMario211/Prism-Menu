@@ -125,12 +125,20 @@ bool MacroItemCell::init(SelectMacroUI* list, MacroFile item) {
     menu->setAnchorPoint({.5f, .5f});
     this->addChild(menu);
     
+    
     auto nameLbl = CCLabelBMFont::create(item.name.c_str(), "bigFont.fnt");
     nameLbl->limitLabelWidth(180, 1.0F, 0.2F);
     nameLbl->setPositionX(-65);
     menu->addChild(nameLbl);
-    auto selectBtn = CCMenuItemSpriteExtra::create(ButtonSprite::create("Select"), this, menu_selector(MacroItemCell::onSelect));
-    selectBtn->setPositionX(80);
+    if (m_file.macro.invalid) {
+        auto errorBtn = CCMenuItemSpriteExtra::create(CCSprite::createWithSpriteFrameName("GJ_deleteIcon_001.png"), this, menu_selector(MacroItemCell::onError));
+        errorBtn->setPositionX(80);
+        menu->addChild(errorBtn);
+    } else {
+        auto selectBtn = CCMenuItemSpriteExtra::create(ButtonSprite::create("Select"), this, menu_selector(MacroItemCell::onSelect));
+        selectBtn->setPositionX(80);
+        menu->addChild(selectBtn);
+    }
 
     auto trashBtn = CCMenuItemSpriteExtra::create(
         CCSprite::createWithSpriteFrameName("GJ_resetBtn_001.png"),
@@ -151,9 +159,12 @@ bool MacroItemCell::init(SelectMacroUI* list, MacroFile item) {
 
     menu->addChild(infoBtn);
 
-    menu->addChild(selectBtn);
     menu->updateLayout();
     return true;
+}
+
+void MacroItemCell::onError(CCObject*) {
+    FLAlertLayer::create("Error", "This macro could <cr>not be loaded!</c>\nThis may be because the macro <cg>is corrupted</c>, has <cg>invalid formatting</c>, or <cy>another reason</c>.", "OK")->show();
 }
 
 void MacroItemCell::onTrash(CCObject*) {
@@ -468,6 +479,7 @@ class $modify(QuartzPlayLayer, PlayLayer) {
                     current_macro.isEnabled = true;
                     if (Hacks::isHackEnabled("Record")) {
                         current_macro.inputs = {};
+                        current_macro.duration = 0.F;
                         current_macro.levelInfo.name = m_level->m_levelName;
                         current_macro.levelInfo.id = m_level->m_levelID;
                         current_macro.ldm = m_level->m_lowDetailModeToggled;
@@ -494,7 +506,7 @@ class $modify(QuartzPlayLayer, PlayLayer) {
         }
         m_fields->buttons = CCMenu::create();
         m_fields->started = true;
-        m_fields->m_slider = Slider::create(this, menu_selector(QuartzPlayLayer::onSliderSelect), 1.5f);
+        m_fields->m_slider = Slider::create(this, menu_selector(QuartzPlayLayer::onSliderSelect), 1.4f);
         m_fields->m_slider->setValue(0);
         m_fields->m_slider->setPositionY(60);
         m_fields->frameLabel = CCLabelBMFont::create("0/0", "chatFont.fnt");
@@ -763,11 +775,11 @@ class $modify(QuartzPlayLayer, PlayLayer) {
         });
         if (input_player != m_fields->player_frames.end()) {
             m_fields->bot_frame = input_player->frame;
-#ifdef GEODE_IS_WINDOWS
+            #ifdef GEODE_IS_WINDOWS
             m_gameState.m_unk1f8 = m_fields->bot_frame;
-#else
+            #else
             m_gameState.m_unk1f8 = m_fields->bot_frame * 1000;
-#endif
+            #endif
             if (input_player2 != m_fields->player_frames.end()) {
                 UpdatePlayer(m_player2, *input_player2);
                 GJBaseGameLayer::handleButton(input_player2->isHolding, input_player2->buttonHold, true);
@@ -929,9 +941,14 @@ class $modify(GJBaseGameLayer) {
             }
             if (playLayer->m_fields->lastInputFrame != 0 && playLayer->m_fields->bot_frame > playLayer->m_fields->lastInputFrame) {
                 playLayer->m_fields->lastInputFrame++;
-                current_macro.duration = playLayer->m_fields->lastInputFrame;
             }
-            if (!m_player1->m_isDead && m_player1->m_position != m_player1->m_startPosition) {
+            bool checkIfMoved = false;
+            if (m_level->isPlatformer()) {
+                checkIfMoved = true;
+            } else {
+                checkIfMoved = m_player1->m_position != m_player1->m_startPosition;
+            }
+            if (!m_player1->m_isDead && checkIfMoved) {
                 if (!playLayer->m_fields->player2Visible && (playLayer->m_fields->inputStateBtn1_p2 != nullptr && playLayer->m_fields->inputStateBtn2_p2 != nullptr)) {
                     playLayer->m_fields->inputStateBtn1_p2->setVisible(false);
                     playLayer->m_fields->inputStateBtn2_p2->setVisible(false);
@@ -1061,16 +1078,20 @@ class $modify(GJBaseGameLayer) {
                         }
                         if (((player1 && input1->frameFix.fix) || (player2 && input2->frameFix.fix)) && Hacks::isHackEnabled("Frame Fix")) {
                             if (player1) {
+                                /*if (input1->frameFix.player2) {
+                                    UpdatePlayerType(m_player2, input1->frameFix, input1->frameFix.type);
+                                } else {
+                                    UpdatePlayerType(m_player1, input1->frameFix, input1->frameFix.type);
+                                }*/ 
+                                if (!input1->frameFix.player2) {
+                                    UpdatePlayerType(m_player1, input1->frameFix, input1->frameFix.type);
+                                }
+                            }
+                            if (player2) {
                                 if (input2->frameFix.player2) {
                                     UpdatePlayerType(m_player2, input2->frameFix, input2->frameFix.type);
                                 } else {
                                     UpdatePlayerType(m_player1, input2->frameFix, input2->frameFix.type);
-                                }
-                            } else if (player2) {
-                                if (input1->frameFix.player2) {
-                                    UpdatePlayerType(m_player2, input1->frameFix, input2->frameFix.type);
-                                } else {
-                                    UpdatePlayerType(m_player1, input1->frameFix, input2->frameFix.type);
                                 }
                             }
                         }
@@ -1125,10 +1146,17 @@ class $modify(GJBaseGameLayer) {
             auto playLayer = static_cast<QuartzPlayLayer*>(QuartzPlayLayer::get());
             QuartzInput input(playLayer->m_fields->bot_frame, button, !player1, push);
             if (Hacks::isHackEnabled("Frame Fix")) {
-                PlayerFrame frameFixed = PlayerToFrame(m_player1, playLayer->m_fields->bot_frame, !player1, push, button);
-                frameFixed.fix = true;
-                frameFixed.type = MacroType::QUARTZ;
-                input.frameFix = frameFixed;
+                if (player1) {
+                    PlayerFrame frameFixed = PlayerToFrame(m_player1, playLayer->m_fields->bot_frame, !player1, push, button);
+                    frameFixed.fix = true;
+                    frameFixed.type = MacroType::QUARTZ;
+                    input.frameFix = frameFixed;
+                } else {
+                    PlayerFrame frameFixed = PlayerToFrame(m_player2, playLayer->m_fields->bot_frame, !player1, push, button);
+                    frameFixed.fix = true;
+                    frameFixed.type = MacroType::QUARTZ;
+                    input.frameFix = frameFixed;
+                }
             }
             if (push) {
                 std::cout << "[HOLD] ";

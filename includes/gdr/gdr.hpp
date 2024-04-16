@@ -2,6 +2,7 @@
 #pragma once
 #include <vector>
 #include "json.hpp"
+#include <Geode/Geode.hpp>
 
 namespace gdr {
 
@@ -68,7 +69,7 @@ class Replay {
 	std::string author;
 	std::string description;
 
-	float duration;
+	float duration = 0.0F;
 	float gameVersion;
 	float version = 1.0;
 
@@ -83,6 +84,8 @@ class Replay {
 	Level levelInfo;
 
 	std::vector<InputType> inputs;
+
+    bool invalid = false;
 
 	uint32_t frameForTime(double time)
 	{
@@ -102,9 +105,20 @@ class Replay {
 		json replayJson;
 
         if (!isJson) {
-			replayJson = json::from_msgpack(data);
+			replayJson = json::from_msgpack(data, true, false);
+            if (replayJson.is_discarded()) {
+                geode::log::error("Invalid GDR file found, marking as invalid.");
+                replay.invalid = true;
+                return replay;
+            }
 		} else {
-			replayJson = json::parse(data);
+            if (!json::accept(data)) {
+                geode::log::error("Invalid GDR.JSON file found, marking as invalid.");
+                replay.invalid = true;
+                return replay;
+            } else {
+			    replayJson = json::parse(data);
+            }
 		}
 
 		replay.gameVersion = replayJson["gameVersion"];

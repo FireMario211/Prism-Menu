@@ -8,7 +8,6 @@
 #include "../Utils.hpp"
 #include "CreditsMenu.hpp"
 #include "../Hacks/Quartz.hpp"
-#include <cstring> 
 
 int currentMenuIndexGD = 0;
 
@@ -498,7 +497,7 @@ void PrismUI::CreateHackItem(HackItem* hack) {
     // TODO: create custom sprite so people dont complain
     //auto infoSpr = CCSprite::createWithSpriteFrameName("GJ_infoIcon_001.png");
     auto infoSpr = CCSprite::create("infoIcon.png"_spr);
-    Themes::RGBAToCC(GetTheme()["ButtonActive"], infoSpr);
+    Themes::RGBAToCC(GetTheme()["InfoButton"], infoSpr);
     //infoSpr->setScale(.5F);
     auto infoBtn = CCMenuItemSpriteExtra::create(infoSpr, this, menu_selector(PrismUIButton::onInfoBtn));
     infoBtn->setUserData(reinterpret_cast<void*>(hack));
@@ -583,11 +582,7 @@ class $modify(PlatformToolbox) {
     }
 };
 */
-
-
 #endif
-
-
 void PrismUIButton::intChanged() {
     std::string name = m_hack->name;
     auto prismButton = CCScene::get()->getChildByID("prism-icon");
@@ -602,7 +597,39 @@ void PrismUIButton::intChanged() {
         /////app->setAnimationInterval(interval);
 #endif 
 #ifdef GEODE_IS_ANDROIDSPOILER // attempt to fix using JNI because why not!
+  /*
+  piVar2 = (int *)cocos2d::JniHelper::getJavaVM();
+  (**(code **)(*piVar2 + 0x18))(piVar2,&local_28,0x10006);
+  p_Var3 = (_jmethodID *)
+           (**(code **)(*local_28 + 0x18))(local_28,"org/cocos2dx/lib/Cocos2dxRenderer");
+  uVar4 = (**(code **)(*local_28 + 0x1c4))(local_28,p_Var3,"setFpsChangerEnabled",&DAT_002702c4);
+  _JNIEnv::CallStaticVoidMethod((_jclass *)local_28,p_Var3,uVar4,param_3);
+*/
+        // dont ask
+/*
+        JniMethodInfoExt t;
+        log::info("set fps");
+        if (JniHelperExt::getStaticMethodInfo(t, "org/cocos2dx/lib/Cocos2dxRenderer", "setAnimationInterval", "(D)V")) {
+            t.env->CallStaticObjectMethod(t.classID, t.methodID, interval);
+        } else {
+            // do i do something here? or
+            log::error("Failed to retrieve Method Info");
+        }
 
+
+        log::info("set fps 2");
+        if (JniHelperExt::getStaticFieldInfo(t, "org/cocos2dx/lib/Cocos2dxRenderer", "sAnimationInterval", "J")) {
+            // Access the field ID
+            jfieldID fieldId = t.fieldID;
+
+            // Modify the sAnimationInterval variable
+            jlong newValue = interval; // New value you want to set
+            t.env->SetStaticLongField(t.classID, fieldId, newValue);
+        } else {
+            // do i do something here? or
+            log::error("Failed to retrieve Field Info");
+        }
+*/
 
 #endif 
         /*////auto GM = GameManager::sharedState();
@@ -699,9 +726,16 @@ void PrismUI::RegenCategory() {
         case 3: // Creator
             jsonArray = matjson::parse(Hacks::getCreatorHacks()).as_array();
             break;
-        case 4: // Quartz (Bot)
+        case 4: { // Quartz (Bot)
             jsonArray = matjson::parse(Hacks::getBotHacks()).as_array();
+            auto label = CCLabelBMFont::create("Quartz is in beta! Recording may be inaccurate!", "PrismMenu.fnt"_spr);
+            label->limitLabelWidth(150, 1.0F, .2F);
+            Themes::RGBAToCC(GetTheme()["Text"], label);
+            m_content->addChild(label);
+            label->setPosition({76, 326});
+            //currentI++;
             break;
+        }
         case 5: // Misc
             jsonArray = matjson::parse(Hacks::getMiscHacks()).as_array();
             break;

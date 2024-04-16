@@ -167,7 +167,7 @@ class MacroManager {
             if (ghc::filesystem::exists(savePath)) return false;
             QuartzMacro macro;
             macro.author = GJAccountManager::sharedState()->m_username;
-            //macro.author = "FireeDev";
+            macro.author = "FireeDev";
             macro.description = desc;
             macro.framerate = intFPS;
             macro.levelInfo.name = "";
@@ -210,6 +210,18 @@ class MacroManager {
             }
         }
         static bool exportMacro(std::string file, QuartzMacro macro) {
+            if (macro.inputs.size() > 0) {
+                auto max_it = std::max_element(macro.inputs.begin(), macro.inputs.end(), [](const QuartzInput& inputA, const QuartzInput& inputB) {
+                    return inputA.frame < inputB.frame;
+                });
+                if (max_it != macro.inputs.end()) {
+                    int lastFrame = max_it->frame;
+                    log::info("Macro saved with {} inputs, and the last frame: {}", macro.inputs.size(), lastFrame);
+                    macro.duration = lastFrame;
+                }
+            } else {
+                log::warn("Macro was saved with no inputs!");
+            }
             auto saveDir = Mod::get()->getSaveDir().string();
             if (!ghc::filesystem::exists(saveDir + "/macros")) {
                 ghc::filesystem::create_directory(saveDir + "/macros");
@@ -295,6 +307,7 @@ class MacroItemCell : public CCLayer { //TableViewCell {
         void onSelect(CCObject*);
         void onInfo(CCObject*);
         void onTrash(CCObject*);
+        void onError(CCObject*);
     public:
         static MacroItemCell* create(SelectMacroUI* list, MacroFile m_file);
 };

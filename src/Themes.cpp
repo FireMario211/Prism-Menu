@@ -33,9 +33,14 @@ matjson::Object Themes::getCurrentTheme() {
         // custom themes!
         auto saveDir = Mod::get()->getSaveDir().string();
         valueStr = valueStr.substr(0, valueStr.length() - 9); // remove the (Custom)
-        auto themeData = Hacks::readFile(saveDir + "/themes/" + valueStr + ".json", true);
-        if (themeData == "{}") return themes["Future Dark"].as_object();
-        return matjson::parse(themeData).as_object();
+        auto themeDataStr = Hacks::readFile(saveDir + "/themes/" + valueStr + ".json", true);
+        if (themeDataStr == "{}") return themes["Future Dark"].as_object();
+        auto themeData = matjson::parse(themeDataStr).as_object();
+        if (themeData["Version"] != "1.6.0") {
+            themeData["InfoButton"] = themeData["ButtonActive"];
+        }
+        return themeData;
+        //ButtonActive
     } else {
         if (!themes.contains(valueStr)) return themes["Future Dark"].as_object();
         return themes[valueStr].as_object();
