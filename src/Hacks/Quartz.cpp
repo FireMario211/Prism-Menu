@@ -912,6 +912,7 @@ class $modify(QuartzPlayLayer, PlayLayer) {
         }
 		PlayLayer::storeCheckpoint(p0);
 	}
+#ifndef GEODE_IS_MACOS
     void loadFromCheckpoint(CheckpointObject* p0) {
         if (m_fields->replay) {
             RecreateInputState(1, false, false);
@@ -971,7 +972,7 @@ class $modify(QuartzPlayLayer, PlayLayer) {
 		PlayLayer::loadFromCheckpoint(p0);
 	}
 };
-
+#endif
 // int m_unk1f8; // used in PlayLayer::getCurrentPercent
 
 class $modify(GJBaseGameLayer) {
