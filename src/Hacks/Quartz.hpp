@@ -167,7 +167,7 @@ class MacroManager {
             if (ghc::filesystem::exists(savePath)) return false;
             QuartzMacro macro;
             macro.author = GJAccountManager::sharedState()->m_username;
-            macro.author = "FireeDev";
+            //macro.author = "FireeDev";
             macro.description = desc;
             macro.framerate = intFPS;
             macro.levelInfo.name = "";
