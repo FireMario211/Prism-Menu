@@ -34,8 +34,8 @@ int syncCooldown = 0;
 class $modify(CCScheduler) {
     void update(float dt) {
         HackItem* speedhack = Hacks::getHack("Speedhack");
-        speedhack->value.floatValue = std::max(speedhack->value.floatValue, 0.01f);
         if (speedhack == nullptr) return CCScheduler::update(dt);
+        speedhack->value.floatValue = std::max(speedhack->value.floatValue, 0.01f);
         if (speedhack->value.floatValue == 1.0F && !current_macro.isEnabled) return CCScheduler::update(dt);
         float speedHackValue = stof(Utils::setPrecision(speedhack->value.floatValue, 3));
         dt *= speedHackValue; // def not copied!

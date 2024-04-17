@@ -1,4 +1,6 @@
-name: Build Geode Mod
+# because for WHATEVER REASON, loadFromCheckpoint is either tail call optimized or idk
+
+name: Build Geode Mod (Mac OS)
 
 on:
   workflow_dispatch:
@@ -13,16 +15,8 @@ jobs:
       fail-fast: false
       matrix:
         config:
-        - name: Windows
-          os: windows-latest
-
-        - name: Android32
-          os: ubuntu-latest
-          target: Android32
-
-        - name: Android64
-          os: ubuntu-latest
-          target: Android64
+        - name: macOS
+          os: macos-latest
         
     name: ${{ matrix.config.name }}
     runs-on: ${{ matrix.config.os }}
@@ -35,8 +29,7 @@ jobs:
       - name: Build the mod
         uses: geode-sdk/build-geode-mod@main
         with:
-          build-config: 'RelWithDebInfo'
-          export-pdb: true
+          build-config: 'Release'
           combine: true
           target: ${{ matrix.config.target }}
 

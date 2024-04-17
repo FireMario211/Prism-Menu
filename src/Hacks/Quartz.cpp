@@ -401,6 +401,10 @@ void UpdatePlayerType(PlayerObject* player, PlayerFrame frame, MacroType type) {
 
 bool STOPTIME = false;
 
+bool stillHolding1 = false;
+bool stillHolding2 = false;
+bool hadHeld = false;
+
 class $modify(QuartzPlayLayer, PlayLayer) {
     float bot_frame_dt = 0.F;
     int bot_frame = 0;
@@ -484,7 +488,13 @@ class $modify(QuartzPlayLayer, PlayLayer) {
                         current_macro.levelInfo.id = m_level->m_levelID;
                         current_macro.ldm = m_level->m_lowDetailModeToggled;
                     } else if (Hacks::isHackEnabled("Playback")) {
-                        m_fields->lastInputFrame = current_macro.inputs[current_macro.inputs.size() - 1].frame; 
+                        if (current_macro.inputs.size() == 0) {
+                            current_macro.isEnabled = false;
+                            m_fields->started = false;
+                            FLAlertLayer::create("Error", "You are attempting to <cy>playback a macro</c> that <cr>has no inputs!</c>\nConsider <cy>recording the macro</c> to play it back!", "OK")->show();
+                        } else {
+                            m_fields->lastInputFrame = current_macro.inputs[current_macro.inputs.size() - 1].frame; 
+                        }
                     }
                     Hacks::setTPS(current_macro.framerate);
                 } else {
@@ -864,6 +874,8 @@ class $modify(QuartzPlayLayer, PlayLayer) {
         } else {
             Hacks::setTPS();
         }
+        /*stillHolding1 = false;
+        stillHolding2 = false;*/
         PlayLayer::resetLevel();
     }
     void postUpdate(float dt) {
@@ -915,6 +927,45 @@ class $modify(QuartzPlayLayer, PlayLayer) {
                     }
                 }
                 m_fields->bot_frame = lastFrame;
+                if ((stillHolding1 || stillHolding2) && !hadHeld) {
+                    bool player2Vis = m_player2 != nullptr && m_player2->isRunning();
+                    QuartzInput input1;
+                    QuartzInput input2;
+                    bool hasReld1 = false;
+                    bool hasReld2 = false;
+                    if (stillHolding1 && !player2Vis) {
+                        input1 = QuartzInput(lastFrame + 1, 1, false, false);
+                        hasReld1 = true;
+                    } else if (stillHolding1 && !stillHolding2 && player2Vis) {
+                        input2 = QuartzInput(lastFrame + 1, 1, true, false);
+                        //hadHeld = false;
+                        hasReld2 = true;
+                    } else if (stillHolding1 && stillHolding2 && player2Vis) {
+                        input1 = QuartzInput(lastFrame + 1, 1, false, false);
+                        input2 = QuartzInput(lastFrame + 1, 1, true, false);
+                        hasReld1 = true;
+                        hasReld2 = true;
+                    }
+                    if (hasReld1 || hasReld2) {
+                        if (Hacks::isHackEnabled("Frame Fix")) {
+                            if (hasReld1) {
+                                PlayerFrame frameFixed = PlayerToFrame(m_player1, lastFrame + 1, false, false, 1);
+                                frameFixed.fix = true;
+                                frameFixed.type = MacroType::QUARTZ;
+                                input1.frameFix = frameFixed;
+                            }
+                            if (hasReld2) {
+                                PlayerFrame frameFixed = PlayerToFrame(m_player2, lastFrame + 1, true, false, 1);
+                                frameFixed.fix = true;
+                                frameFixed.type = MacroType::QUARTZ;
+                                input2.frameFix = frameFixed;
+                            }
+                        }
+                        if (hasReld1) current_macro.inputs.push_back(input1);
+                        if (hasReld2) current_macro.inputs.push_back(input2);
+                        log::debug("Fix Release Input at frame {}", lastFrame);
+                    }
+                }
             }
         }
 		PlayLayer::loadFromCheckpoint(p0);
@@ -930,6 +981,10 @@ class $modify(GJBaseGameLayer) {
         float currentFPS = 1.F / realDt;
         float macroFPS = current_macro.framerate;
         if (PlayLayer::get() != nullptr) {
+            /*if (lastFrameChanged != m_gameState.m_unk1f8) {
+                lastFrameChanged = m_gameState.m_unk1f8;
+                std::cout << stillHolding << " " << m_gameState.m_unk1f8 << std::endl;
+            }*/
             auto playLayer = static_cast<QuartzPlayLayer*>(QuartzPlayLayer::get());
             if (!playLayer->m_fields->started || !playLayer->m_fields->playLayerPostUpdate) return GJBaseGameLayer::update(realDt);
             playLayer->m_fields->replay = Hacks::isHackEnabled("Playback") || Hacks::isHackEnabled("Record");
@@ -1141,6 +1196,8 @@ class $modify(GJBaseGameLayer) {
     }
     void handleButton(bool push, int button, bool player1) {
         //if (STOPTIME) return;
+        if (player1) stillHolding1 = push;
+        if (!player1) stillHolding2 = push;
         GJBaseGameLayer::handleButton(push,button,player1);
         if (PlayLayer::get() != nullptr && Hacks::isHackEnabled("Record")) {
             auto playLayer = static_cast<QuartzPlayLayer*>(QuartzPlayLayer::get());
@@ -1158,14 +1215,22 @@ class $modify(GJBaseGameLayer) {
                     input.frameFix = frameFixed;
                 }
             }
-            if (push) {
-                std::cout << "[HOLD] ";
-            } else {
-                std::cout << "[RELEASE] ";
-            }
-            std::cout << playLayer->m_fields->bot_frame_dt << "|" << playLayer->m_fields->bot_frame << "|1" << std::endl;
+            // geode needs to stop logging this in the .txt files
+            log::debug("[{}] Frame {}", (push) ? "HOLD" : "RELEASE", playLayer->m_fields->bot_frame);
             current_macro.inputs.push_back(input);
         }
+    }
+};
+
+// robert, why do you handle the handleButton func when the player holds, but dont handle it when the player doesnt? you make no sense!
+class $modify(PlayerObject) {
+    void pushButton(PlayerButton p0) {
+        hadHeld = true;
+        PlayerObject::pushButton(p0);
+    }
+    void releaseButton(PlayerButton p0) {
+        hadHeld = false;
+        PlayerObject::releaseButton(p0);
     }
 };
 

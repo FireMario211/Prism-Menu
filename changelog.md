@@ -1,4 +1,5 @@
 # v1.6.0
+    - Added Quartz Bot (A replay bot)
     - Added TPS Bypass (for all platforms)
     - Allowed Noclip Accuracy to no longer require Anticheat Bypass to be enabled.
     - Added No Death Effect.
