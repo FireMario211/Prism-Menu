@@ -971,8 +971,8 @@ class $modify(QuartzPlayLayer, PlayLayer) {
         }
 		PlayLayer::loadFromCheckpoint(p0);
 	}
-};
 #endif
+};
 // int m_unk1f8; // used in PlayLayer::getCurrentPercent
 
 class $modify(GJBaseGameLayer) {
