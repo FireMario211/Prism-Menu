@@ -492,6 +492,7 @@ class $modify(QuartzPlayLayer, PlayLayer) {
                             current_macro.isEnabled = false;
                             m_fields->started = false;
                             FLAlertLayer::create("Error", "You are attempting to <cy>playback a macro</c> that <cr>has no inputs!</c>\nConsider <cy>recording the macro</c> to play it back!", "OK")->show();
+                            return;
                         } else {
                             m_fields->lastInputFrame = current_macro.inputs[current_macro.inputs.size() - 1].frame; 
                         }

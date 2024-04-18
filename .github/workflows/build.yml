@@ -15,6 +15,9 @@ jobs:
         config:
         - name: Windows
           os: windows-latest
+        
+        - name: macOS
+          os: macos-latest
 
         - name: Android32
           os: ubuntu-latest

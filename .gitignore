@@ -58,6 +58,8 @@ build-android/
 build-android-old/
 build-androidold.sh
 build-linux-deb/
+build-noimgui/
+build-noimgui.sh
 svgs/
 compile_commands.json
 resources/fontvers/
