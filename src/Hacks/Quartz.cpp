@@ -1249,7 +1249,7 @@ class $modify(EndLevelLayer) {
                         auto node = layer->getChildren()->objectAtIndex(i);
                         if (auto spr = typeinfo_cast<CCSprite*>(node)) {
                             if (spr->getPositionY() == 235.F) {
-                                spr->setScaleX(0.7F);
+                                spr->setScaleX(0.9F);
                                 break;
                             }
                         }
