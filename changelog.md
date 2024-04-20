@@ -1,3 +1,13 @@
+# v1.6.3 
+    - Fixed issue where macros with no input would crash.
+    - Fixed issue with Uncomplete Level not working in ImGui style.
+    - Updated Turkish Translations.
+    - Updated Russian Translations.
+    - Removed ImGui support for Android (because it's not good!)
+# v1.6.2
+    - Removed loadFromCheckpoint hook that caused Mac OS to crash (sorry Mac users :<)
+# v1.6.1
+    - Fixed Macro Author name
 # v1.6.0
     - Added Quartz Bot (A replay bot)
     - Added TPS Bypass (for all platforms)

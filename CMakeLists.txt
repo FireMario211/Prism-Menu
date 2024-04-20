@@ -27,7 +27,7 @@ if (DEFINED ENV{LOCAL})
     add_definitions(-DDEV_BUILD)
 endif()
 
-if (DEFINED ENV{NO_IMGUI} OR APPLE)
+if (DEFINED ENV{NO_IMGUI} OR APPLE OR ANDROID)
     message("Not compiling with ImGui")
     add_definitions(-DNO_IMGUI)
 endif()

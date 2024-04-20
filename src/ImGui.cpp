@@ -373,6 +373,12 @@ class $modify(MenuLayer) {
                                             #else 
                                             FLAlertLayer::create("Error", "This option can only be used on <cy>Android</c>!", "OK")->show();
                                             #endif
+                                        } else if (name == "Uncomplete Level") {
+                                            if (auto levelInfoLayer = getChildOfType<LevelInfoLayer>(CCScene::get(), 0)) {
+                                                Hacks::resetLevel(levelInfoLayer, levelInfoLayer->m_level);
+                                            } else {
+                                                FLAlertLayer::create("Error", "You are not <cy>currently in the level page</c>! Please enter in a level page in order to <cg>reset the stats</c>.", "OK")->show();
+                                            }
                                         } else { // how will this happen
                                             FLAlertLayer::create("unimplemented", "this button is not implemented", "okay")->show();
                                         }

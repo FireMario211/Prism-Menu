@@ -600,5 +600,11 @@
             "name": "Wave Pulse Size",
             "desc": "How big the pulse should be for the wave."
         }
+    },
+    {
+        "Auto Safe Mode": {
+            "name": "Auto Safe Mode",
+            "desc": "Prevents any progress from being made if certain cheats are enabled."
+        }
     }
 ]
