@@ -21,7 +21,8 @@
     {
         "name": "Practice Music",
         "desc": "Enables Practice Music even if it's locked.",
-        "type": "bool"
+        "type": "bool",
+        "platforms": []
     },
     {
         "name": "Safe Mode",
