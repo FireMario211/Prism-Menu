@@ -4,6 +4,7 @@
     - Updated Turkish Translations.
     - Updated Russian Translations.
     - Removed ImGui support for Android (because it's not good!)
+    - Disabled Practice Music Hack as it caused some things to be unlocked that shouldn't have been unlocked
 # v1.6.2
     - Removed loadFromCheckpoint hook that caused Mac OS to crash (sorry Mac users :<)
 # v1.6.1
