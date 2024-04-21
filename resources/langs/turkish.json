@@ -64,7 +64,7 @@
     {
         "Auto Safe Mode": {
             "name": "Otomatik Güvenli Mod",
-            "desc": "Bazı hileler açık olduğu takdirde yapılan tüm ilerlemeleri durdurur."
+            "desc": "Hile olarak kabul edilen modlar etkinken yapılan tüm ilerlemeleri durdurur."
             }
     },
     {
@@ -149,7 +149,7 @@
     {
         "Instant Mirror Portal": {
             "name": "Anında Ayna Portalı",
-            "desc": "RTers portal artık anında geçiş yapıyor."
+            "desc": "Ters portal artık anında geçiş yapıyor."
         }
     },
     {
@@ -580,7 +580,7 @@
     {
         "Noclip Flash": {
             "name": "Noclip Flaş",
-            "desc": "Noclip doğruluğunuz için bir etiket göstermek yerine tüm ekranı kırmızı renkte yanıp söner."
+            "desc": "Noclip doğruluğunuz için bir etiket göstermek yerine tüm ekranı kırmızı renkte yakıp söndürür."
         }
     },
     {
