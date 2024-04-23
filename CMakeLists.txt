@@ -43,30 +43,6 @@ endif()
 #    set_source_files_properties(${CMAKE_CURRENT_SOURCE_DIR}/src/FPSFix.mm PROPERTIES SKIP_PRECOMPILE_HEADERS ON)
 #endif()
 
-if (APPLE AND GEODE_TARGET_PLATFORM STREQUAL "iOS")
-    # -DGEODE_TARGET_PLATFORM=iOS -DCMAKE_SYSTEM_NAME=iOS \
-    # -DCURL_LIBRARY=/Users/fire/Downloads/curl.xcframework/ios-arm64/curl.framework/curl \
-    # -DCURL_INCLUDE_DIR=/Users/fire/Downloads/curl.xcframework/ios-arm64/curl.framework/Headers
-    set(CMAKE_OSX_ARCHITECTURES arm64)
-    set(CMAKE_OSX_DEPLOYMENT_TARGET "14.0")
-    set(CMAKE_SYSTEM_NAME "iOS")
-    execute_process(COMMAND xcrun --show-sdk-path --sdk iphoneos
-    OUTPUT_VARIABLE GEODE_IOS_SDK
-        OUTPUT_STRIP_TRAILING_WHITESPACE
-    )
-    target_link_libraries(${PROJECT_NAME}
-        "-framework OpenGLES"
-        "-framework GLKit"
-        "-framework UIKit"
-        "-framework WebKit"
-        "-framework AVFoundation"
-        "-framework CoreFoundation"
-        "-framework Foundation"
-        "-framework CoreGraphics"
-        ${CURL_LIBRARIES}
-    )
-endif()
-
 set(IMGUI_VERSION "v1.90")
 if (NOT APPLE AND NOT DEFINED ENV{NO_IMGUI})
     CPMAddPackage("gh:matcool/gd-imgui-cocos#5bc72d6") # specify a commit!

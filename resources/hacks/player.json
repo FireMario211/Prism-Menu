@@ -31,12 +31,14 @@
     {
         "name": "Freeze Player",
         "desc": "Freezes player movement.",
-        "type": "bool"
+        "type": "bool",
+        "platforms": ["win", "android32", "android64"]
     },
     {
         "name": "No Mirror Transition",
         "desc": "Prevents the screen from being flipped upon a mirror portal.",
-        "type": "bool"
+        "type": "bool",
+        "platforms": ["win", "android32", "android64"]
     },
     {
         "name": "Instant Mirror Portal",
@@ -46,7 +48,8 @@
     {
         "name": "Jump Hack",
         "desc": "Allows for jumping in mid-air.",
-        "type": "bool"
+        "type": "bool",
+        "platforms": ["win", "android32", "android64"]
     },
     {
         "name": "Instant Complete",

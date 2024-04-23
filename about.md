@@ -10,6 +10,7 @@ This mod menu also provides unique features not present in most mod menus, here 
 ## Custom Themes
 * You can use the set themes present here, or create/import your own theme!
 * Currently, there are 2 themes available: `Future Dark`, `Light`, & `Catppuccin`, but you can create your own theme and share it with others!
+
 ![Theme Example](firee.PrismMenu/Screenshot2.png)
 ## Multi-Language Support
 * Prism Menu supports more languages than **English,** it supports **Spanish**, **French**, **Portuguese** (Brazilian), **German**, **Russian**, **Czech**, and many more!

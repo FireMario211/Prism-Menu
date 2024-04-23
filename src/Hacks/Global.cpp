@@ -66,7 +66,7 @@ class $modify(CCScheduler) {
     }
 };
 
-#ifndef GEODE_IS_MACOS
+#if !defined(GEODE_IS_MACOS) && !defined(GEODE_IS_IOS)
 class $modify(PlayLayer) {
     // No Glow, Show Hidden Objects
     void addObject(GameObject* obj) {

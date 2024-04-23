@@ -416,7 +416,7 @@ class Hacks {
         }
     }
     static void setPitch(float pitch) {
-#ifndef GEODE_IS_MACOS // TODO: figure out why it turns to creepypasta when tuning down speedhack
+#if !defined(GEODE_IS_MACOS) && !defined(GEODE_IS_IOS) // TODO: figure out why it turns to creepypasta when tuning down speedhack
         if (!Hacks::isHackEnabled("Speedhack Audio")) {
             pitch = 1.0F;
         }

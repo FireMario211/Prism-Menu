@@ -27,7 +27,7 @@ class $modify(PlayLayer) {
     }
 };
 
-#ifndef GEODE_IS_MACOS // Show Hitboxes
+#if !defined(GEODE_IS_MACOS) && !defined(GEODE_IS_IOS) // Show Hitboxes
 inline void showLevelEditorHitboxes(LevelEditorLayer* ptr, bool mode) {
     GameManager::get()->setGameVariable("0045", mode);
     ptr->m_isDebugDrawEnabled = mode;

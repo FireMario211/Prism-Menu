@@ -180,6 +180,16 @@ void MacroItemCell::onTrash(CCObject*) {
                     if (ghc::filesystem::exists(savePath)) {
                         if (ghc::filesystem::remove(savePath)) {
                             FLAlertLayer::create("Success!", "Successfully deleted the macro.", "OK")->show();
+                            m_list->m_dropdown->lbl->setString("None");
+                            HackItem* item = Hacks::getHack("Macro");
+                            if (item == nullptr) {
+                                log::error("Couldn't find hack item \"Macro\"");
+                            } else {
+                                matjson::Array arr;
+                                arr.push_back("None");
+                                item->data["values"] = arr;
+                                changedMacro = false;
+                            }
                             m_list->onClose(nullptr);
                         }
                     }
@@ -494,6 +504,9 @@ class $modify(QuartzPlayLayer, PlayLayer) {
                             FLAlertLayer::create("Error", "You are attempting to <cy>playback a macro</c> that <cr>has no inputs!</c>\nConsider <cy>recording the macro</c> to play it back!", "OK")->show();
                             return;
                         } else {
+                            std::sort(current_macro.inputs.begin(), current_macro.inputs.end(), [](const QuartzInput& a, const QuartzInput& b) {
+                                return a.frame < b.frame;
+                            });
                             m_fields->lastInputFrame = current_macro.inputs[current_macro.inputs.size() - 1].frame; 
                         }
                     }

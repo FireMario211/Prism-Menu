@@ -206,7 +206,7 @@ class $modify(PlayLayer) {
     void destroyPlayer(PlayerObject *p0, GameObject *p1) {
         bool instaRestart = Hacks::isHackEnabled("Instant Respawn");
         if (!m_fields->initedDeath) {
-            #if !defined(GEODE_IS_ANDROID64) && !defined(GEODE_IS_MACOS)
+            #if !defined(GEODE_IS_ANDROID64) && !defined(GEODE_IS_MACOS) && !defined(GEODE_IS_IOS)
             if (m_fields->antiCheatObject == nullptr && p1 != nullptr && (
                 (p1->m_realXPosition == 0 && p1->m_realYPosition == p0->m_realYPosition) ||
                 (p1->m_realXPosition == 0 && p1->m_realYPosition == p0->m_realYPosition) // todo, get player pos during PlayLayer::init
@@ -301,7 +301,7 @@ class $modify(PlayLayer) {
                 break;
             }*\/
         }*/
-        #ifndef GEODE_IS_MACOS
+        #if !defined(GEODE_IS_MACOS) && !defined(GEODE_IS_IOS)
         m_fields->previousTestMode = m_isTestMode;
         #endif
         if (Hacks::isHackEnabled("Level Edit")) {
@@ -319,10 +319,11 @@ class $modify(PlayLayer) {
                 }
             }
         }
+#if 0
         if (Hacks::isHackEnabled("Practice Music")) {
             GameStatsManager::sharedState()->toggleEnableItem(UnlockType::GJItem, 17, true);
         }
-
+#endif
         auto winSize = CCDirector::sharedDirector()->getWinSize();
         m_fields->prismNode = CCNode::create();
         m_fields->prismNode->setTag(10420);
@@ -384,7 +385,7 @@ class $modify(PlayLayer) {
                 m_fields->flashNode->setOpacity(m_fields->flashOpacity);
             }
         }
-#ifndef GEODE_IS_MACOS
+#if !defined(GEODE_IS_MACOS) && !defined(GEODE_IS_IOS)
         if (!m_fields->hasSetTestMode) {
             m_fields->hasSetTestMode = true;
             m_fields->previousTestMode = m_isTestMode;
@@ -483,7 +484,7 @@ class $modify(PlayLayer) {
     }
     
     // Accurate Percentage
-#ifndef GEODE_IS_MACOS
+#if !defined(GEODE_IS_MACOS) && !defined(GEODE_IS_IOS)
     void updateProgressbar() {
         PlayLayer::updateProgressbar();
         if (Hacks::isHackEnabled("Accurate Percentage")) {

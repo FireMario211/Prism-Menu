@@ -12,7 +12,7 @@ using namespace geode::prelude;
 
 class $modify(PlayerObject) {
     bool isActuallyDart;
-#ifndef GEODE_IS_MACOS // for whatever reason, fields arent found!
+#if !defined(GEODE_IS_MACOS) && !defined(GEODE_IS_IOS) // for whatever reason, fields arent found!
     // No Solids
     /*
      * +       bool collidedWithObject(float, GameObject*, cocos2d::CCRect, bool) = win 0x2cc450;
@@ -84,7 +84,7 @@ class $modify(PlayerObject) {
 
 
 // No Wave Pulse
-#ifndef GEODE_IS_MACOS
+#if !defined(GEODE_IS_MACOS) && !defined(GEODE_IS_IOS)
 class $modify(HardStreak) {
     void updateStroke(float dt) {
         //log::info("HardStreak\n---\nm_waveSize = {}\nm_pulseSize = {}\nm_isSolid = {}", m_waveSize, m_pulseSize, m_isSolid);
@@ -118,7 +118,7 @@ class $modify(MenuGameLayer) {
 
 
 class $modify(GJBaseGameLayer) {
-    #ifndef GEODE_IS_MACOS
+    #if !defined(GEODE_IS_MACOS) && !defined(GEODE_IS_IOS)
     // No Mirror Transition, Instant Mirror Portal
     void toggleFlipped(bool p0, bool p1) { // i spent a lot of time figuring out why CCActionTween wont hook, only to realize that p1 instantly transitions it
         if (!Hacks::isHackEnabled("No Mirror Transition")) return GJBaseGameLayer::toggleFlipped(p0, (p1) ? p1 : Hacks::isHackEnabled("Instant Mirror Portal"));

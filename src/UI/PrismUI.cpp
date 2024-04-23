@@ -757,16 +757,12 @@ void PrismUI::RegenCategory() {
 
             #ifdef GEODE_IS_WINDOWS
                 versionLabel->setString(fmt::format("{} - Windows", version).c_str());
-            #else // why does android not like elif
-            #ifdef GEODE_IS_ANDROID
+            #elif defined(GEODE_IS_ANDROID) // why does android not like elif
                 versionLabel->setString(fmt::format("{} - Android", version).c_str());
-            #else 
-            #ifdef GEODE_IS_MACOS
+            #elif defined(GEODE_IS_MACOS)
                 versionLabel->setString(fmt::format("{} - Mac OS", version).c_str());
-            #else 
+            #else // TODO: when camila releases iCreate on geode, add iOS
                 versionLabel->setString(fmt::format("{} - HOW by Spu7nix", version).c_str());
-            #endif
-            #endif
             #endif
             versionLabel->limitLabelWidth(150, 1.0F, .2F);
             m_content->addChild(createdByLabel);

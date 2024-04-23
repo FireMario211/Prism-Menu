@@ -95,7 +95,7 @@ class $modify(GJGameLevel) {
 ////GJGameLevel::saveNewScore
 
 // sorry, some people are rushing me to release this, youll get your chance Mac OS users.
-#ifndef GEODE_IS_MACOS
+#if !defined(GEODE_IS_MACOS) && !defined(GEODE_IS_IOS)
 void proceedWithReset(LevelInfoLayer* levelInfoLayer, GJGameLevel* level, bool resetStars, bool resetCoins) {
     geode::createQuickPopup(
             "Final Warning",
@@ -156,8 +156,8 @@ void Hacks::resetLevel(LevelInfoLayer* levelInfoLayer, GJGameLevel* level) {
     if (prismUIExists != nullptr) {
         static_cast<PrismUI*>(prismUIExists)->onClose(CCNode::create());
     }
-#ifdef GEODE_IS_MACOS 
-    FLAlertLayer::create("Notice", "This currently does not work on <cy>Mac OS</c>\n(you can blame the people who rushed me to work on this)", "OK")->show();
+#if defined(GEODE_IS_MACOS) || defined(GEODE_IS_IOS)
+    FLAlertLayer::create("Notice", "This currently does not work on <cy>Mac OS</c> and <cy>iOS</c>\n(you can blame the people who rushed me to work on this)", "OK")->show();
 #else 
     if (level->m_dailyID > 0) {
         FLAlertLayer::create("Notice", "This currently does not work on <cy>daily</c> or <cy>weekly</c> levels.", "OK")->show();
@@ -253,7 +253,11 @@ void Hacks::setTPS(int tps) {
 #elif defined(GEODE_IS_MACOS)
     uintptr_t addr2 = 0x7e9c60; // double
     uintptr_t addr1 = 0x7e9ac0; // float
-#endif 
+#elif defined(GEODE_IS_IOS)
+    // TODO: do later!
+    uintptr_t addr1 = 0x0;
+    uintptr_t addr2 = 0x0;
+#endif
 // sorry ios!
     auto patches = Mod::get()->getPatches();
     auto patch1 = std::find_if(patches.begin(), patches.end(), [addr1](Patch* const patch) {
