@@ -296,7 +296,6 @@ class SelectMacroUI : public FLAlertLayer {
 
 class MacroItemCell : public CCLayer { //TableViewCell {
     protected:
-        bool hasGottenFirstPet = 0;
         float m_fWidth;
         float m_fHeight;
         CCMenu* menu;

@@ -15,18 +15,17 @@ using namespace geode::prelude;
 #include <Geode/modify/CCApplication.hpp>
 
 // Practice Music
-#if 0
 class $modify(GameStatsManager) {
     bool isItemUnlocked(UnlockType p0, int p1) {
-        if (p0 != UnlockType::GJItem && p1 != 17) return GameStatsManager::isItemUnlocked(p0,p1);
-        if (Hacks::isHackEnabled("Practice Music")) {
+        // did i seriously not see this, all i changed was && to || hA!
+        if (p0 != UnlockType::GJItem || p1 != 17) return GameStatsManager::isItemUnlocked(p0,p1);
+        if (Hacks::isHackEnabled("Practice Music") && p1 == 17) {
             return true;
         } else {
             return GameStatsManager::isItemUnlocked(p0,p1);
         }
     }
 };
-#endif
 
 // *coding sounds* creditos a sillydoggo para esto https://github.com/TheSillyDoggo/GeodeMenu/blob/38ef8f48a3d52b1eefb09ee29dd5b985928edfd2/src/Hacks/Speedhack.cpp
 // y xdbot

@@ -319,11 +319,9 @@ class $modify(PlayLayer) {
                 }
             }
         }
-#if 0
         if (Hacks::isHackEnabled("Practice Music")) {
             GameStatsManager::sharedState()->toggleEnableItem(UnlockType::GJItem, 17, true);
         }
-#endif
         auto winSize = CCDirector::sharedDirector()->getWinSize();
         m_fields->prismNode = CCNode::create();
         m_fields->prismNode->setTag(10420);
