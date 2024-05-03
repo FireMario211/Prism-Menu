@@ -1,6 +1,6 @@
 {
 	"geode": "2.0.0-beta.24",
-	"version": "v1.6.3",
+	"version": "v1.6.4",
 	"gd": {
 		"win": "2.204",
 		"mac": "2.200",
@@ -16,9 +16,9 @@
 		"files": [
 			"resources/icon.png",
 			"resources/Screenshot1.png",
-            "resources/infoIcon-uhd.png",
-            "resources/infoIcon-hd.png",
-            "resources/infoIcon.png",
+			"resources/infoIcon-uhd.png",
+			"resources/infoIcon-hd.png",
+			"resources/infoIcon.png",
 			"resources/checkmark.png",
 			"resources/checkmark-hd.png",
 			"resources/checkmark-uhd.png",
@@ -30,15 +30,15 @@
 			"resources/hacks/*.json",
 			"resources/langs/*.json"
 		],
-        "fonts": {
-            "PrismMenu": {
-                "path": "resources/PrismMenu.otf",
-                "size": 128,
-                "charset": "21-383,460-513,535-540,561-564,578-581,898-1500,7681-7930,26085,26412,35486"
-            }
-        }
+		"fonts": {
+			"PrismMenu": {
+				"path": "resources/PrismMenu.otf",
+				"size": 128,
+				"charset": "21-383,460-513,535-540,561-564,578-581,898-1500,7681-7930,26085,26412,35486"
+			}
+		}
 	},
-    	"settings": {
+	"settings": {
 		"values": {
 			"name": "Hack Values",
 			"description": "NONE",
