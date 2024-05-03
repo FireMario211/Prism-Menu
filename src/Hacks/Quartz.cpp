@@ -568,23 +568,37 @@ class $modify(QuartzPlayLayer, PlayLayer) {
         m_fields->prevBtn->setPosition({-40, 25});
         m_fields->nextBtn->setPosition({40, 25});
 
+
+        auto relSpr = CCSprite::create("GJ_button_01.png");
+        auto relTxt = CCLabelBMFont::create("Rel", "bigFont.fnt");
+        relTxt->setScale(.55F);
+        relTxt->setAnchorPoint({0, 0});
+        relTxt->setPosition({4, 12});
+        relSpr->addChild(relTxt);
+        auto holdSpr = CCSprite::create("GJ_button_06.png");
+        auto holdTxt = CCLabelBMFont::create("Hold", "bigFont.fnt");
+        holdTxt->setScale(.4F);
+        holdTxt->setAnchorPoint({0, 0});
+        holdTxt->setPosition({4, 14});
+        holdSpr->addChild(holdTxt);
+
         m_fields->inputStateBtn1_p1 = CCMenuItemSpriteExtra::create(
-            CCSprite::create("GJ_button_01.png"),
+            relSpr,
             this,
             menu_selector(QuartzPlayLayer::markInputP1)
         );
         m_fields->inputStateBtn2_p1 = CCMenuItemSpriteExtra::create(
-            CCSprite::create("GJ_button_06.png"),
+            holdSpr,
             this,
             menu_selector(QuartzPlayLayer::markInputP1)
         );
         m_fields->inputStateBtn1_p2 = CCMenuItemSpriteExtra::create(
-            CCSprite::create("GJ_button_01.png"),
+            relSpr,
             this,
             menu_selector(QuartzPlayLayer::markInputP2)
         );
         m_fields->inputStateBtn2_p2 = CCMenuItemSpriteExtra::create(
-            CCSprite::create("GJ_button_06.png"),
+            holdSpr,
             this,
             menu_selector(QuartzPlayLayer::markInputP2)
         );
@@ -608,9 +622,9 @@ class $modify(QuartzPlayLayer, PlayLayer) {
         m_fields->buttons->addChild(m_fields->inputStateBtn2_p2);
         m_uiLayer->addChild(m_fields->buttons);
         m_fields->buttons->setPositionY(0);
-        //GJ_playEditorBtn_001.png
-        //GJ_stopEditorBtn_001.png
-        //m_fields->playPauseBtn
+
+
+        // TODO: add advance and prev frame for +5 and -5, oh and also allow clearing from right or clearing a section
     }
 
     void markInputP1(CCObject*) {
@@ -749,10 +763,7 @@ class $modify(QuartzPlayLayer, PlayLayer) {
             }
         }
         STOPTIME = false;
-        std::string fpsToStr = CCDirector::sharedDirector()->m_pszFPS;
-        int frameRate = std::stoi(fpsToStr.substr(fpsToStr.find(":") + 2));
         GJBaseGameLayer::update(1.F / current_macro.framerate);
-        //GJBaseGameLayer::update(1.F / frameRate);
         STOPTIME = true;
         log::debug("[-] Frame {}", m_fields->bot_frame);
     }
@@ -816,8 +827,6 @@ class $modify(QuartzPlayLayer, PlayLayer) {
             }
         }
         STOPTIME = false;
-        std::string fpsToStr = CCDirector::sharedDirector()->m_pszFPS;
-        int frameRate = std::stoi(fpsToStr.substr(fpsToStr.find(":") + 2));
         GJBaseGameLayer::update(1.F / current_macro.framerate);
         STOPTIME = true;
         log::debug("[+] Frame {}", m_fields->bot_frame);
@@ -857,10 +866,7 @@ class $modify(QuartzPlayLayer, PlayLayer) {
             UpdatePlayer(m_player1, *input_player);
         }
         STOPTIME = false;
-        std::string fpsToStr = CCDirector::sharedDirector()->m_pszFPS;
-        int frameRate = std::stoi(fpsToStr.substr(fpsToStr.find(":") + 2));
         GJBaseGameLayer::update(1.F / current_macro.framerate);
-        //GJBaseGameLayer::update(1.F / frameRate);
         STOPTIME = true;
     }
 
@@ -1011,6 +1017,8 @@ class $modify(GJBaseGameLayer) {
             }
             if (playLayer->m_fields->lastInputFrame != 0 && playLayer->m_fields->bot_frame > playLayer->m_fields->lastInputFrame) {
                 playLayer->m_fields->lastInputFrame++;
+            } else if (playLayer->m_fields->lastInputFrame == 0 && Hacks::isHackEnabled("Record")) {
+                playLayer->m_fields->lastInputFrame = playLayer->m_fields->bot_frame + 1; // does + 2 even matter? it gets reset anyways!
             }
             bool checkIfMoved = false;
             if (m_level->isPlatformer()) {

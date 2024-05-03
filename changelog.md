@@ -1,3 +1,8 @@
+# v1.6.4 
+    - Added indicators for the hold/release button
+    - Added Practice Music Hack back (a silly mistake I made with the if condition)
+    - Fix last frame not recalculated after you finish recording.
+    - (hopefully) Fix the issues with Macro Editor frame buttons not working
 # v1.6.3
     - Fixed issue where macros with no input would crash.
     - Fixed issue with Uncomplete Level not working in ImGui style.
