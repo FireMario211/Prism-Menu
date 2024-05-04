@@ -1,0 +1,604 @@
+[
+    {
+        "§ Global": {
+            "name": "§ Γενικά"
+        }
+    },
+    {
+        "¬ Player": {
+            "name": "¬ Παίκτης"
+        }
+    },
+    {
+        "ª Bypass": {
+            "name": "ª Πρόσβαση"
+        }
+    },
+    {
+        "« Creator": {
+            "name": "«Δημιουργός "
+        }
+    },
+    {
+        "¦ Quartz Bot": {
+            "name": "¦ Quartz Bot"
+        }
+    },
+    {
+        "··· Misc": {
+            "name": "··· Άλλα"
+        }
+    },
+    {
+        "¶ Settings": {
+            "name": "¶ Ρυθμίσεις"
+        }
+    },
+
+    {
+        "Prism Menu by Firee": {
+            "name": "Prism Menu από Firee"
+        }
+    },
+
+
+
+    {
+        "Anticheat Bypass": {
+            "name": "Κατάργηση Anti-Cheat",
+            "desc": "Καταργεί όλα τα anticheats. [Επίπεδα, Δημιουργός, κλπ.]"
+        }
+    },
+    {
+        "Practice Music": {
+            "name": "Μουσικη Εξάσκησης",
+            "desc": "Ξεκλειδώνει Μουσική Εξάσκησης ακόμα και αν είναι κλειδωμένη."
+        }
+    },
+    {
+        "Safe Mode": {
+            "name": "Λειτουργεία Ασφάλειας",
+            "desc": "Σταματάει να γίνεται πρόοδος σε ένα επίπεδο  ."
+        }
+    },
+    {
+        "Accurate Percentage": {
+            "name": "Ακριβές Ποσοστό",
+            "desc": "Αφήνει να υπάρχουν δεκαδικοί αριθμοί στο ποσοστό ενός επιπέδου. [Beyond thousandths place]"
+        }
+    },
+    {
+        "Layout Mode": {
+            "name": "Διαγραφή Διακόσμησης",
+            "desc": "Διαγράφει όλη την διακόσμηση από ένα επίπεδο ."
+        }
+    },
+    {
+        "No Transition": {
+            "name": "Γρήγορη Αλλαγη Σκηνών",
+            "desc": "Αλλάζει την διάρκεια όταν αλλάζει σηκηνή σε 0 δευτερόλεπτα."
+        }
+    },
+    {
+        "Cheat Indicator": {
+            "name": "Δείκτης Κλεψιάς",
+            "desc": "Δείχνει ένα είκονακι για να βλέπεις πότε χρεισημοποιείς τροποποιήσεις που θεωρούνται κλέψιμο. "
+        }
+    },
+    {
+        "Speedhack": {
+            "name": "Αλλαγή ταχύτητας",
+            "desc": "Αλλάζει την ταχύτητα του παιχνιδιού και της μουσικής."
+        }
+    },
+    {
+        "FPS Bypass": {
+            "name": "Ξεκλείδωμα FPS",
+            "desc": "Ξεκλειδώνει το FPS για να είναι μεγαλύτερο από 60."
+        }
+    },
+    {
+        "Reset Speedhack": {
+            "name": "Επαναφορά Speedhack",
+            "desc": "Επαναφέρει το speedhack σε νορμάλ ταχύτητα."
+        }
+    },
+
+    {
+        "Noclip": {
+            "name": "Αήττητος",
+            "desc": "Κάνει τον μαίχτη ανίκητο."
+        }
+    },
+    {
+        "No Spikes": {
+            "name": "Οχι Aγκάθια",
+            "desc": "Κάνει τον παίχτη ανίκητο μόνο σε αγγάθια."
+        }
+    },
+    {
+        "No Hitbox": {
+            "name": "Οχι Hitbox",
+            "desc": "Καταργεί ολα τα hitbox σε ένα επίπεδο."
+        }
+    },
+    {
+        "No Solids": {
+            "name": "Όχι στερεά",
+            "desc": "Καταργεί τα hitbox όλων των στερεών αντικειμένων."
+        }
+    },
+    {
+        "Everything Hurts": {
+            "name": "Τα πάντα πονάνε",
+            "desc": "Αουτς."
+        }
+    },
+    {
+        "No Mirror Transition": {
+            "name": "Οχι καθρέυτης",
+            "desc": "Σταματάει την οθόνη από το να καθρευτίζεται σε ένα πόρταλ καθρεύτη."
+        }
+    },
+    {
+        "Instant Mirror Portal": {
+            "name": "Άμεσoς καθρευτισμός",
+            "desc": "Ο καθρευτισμός σε ένα πόρταλ καθρεύτη τώρα γίνεται αμέσως."
+        }
+    },
+    {
+        "Freeze Player": {
+            "name": "Παγωμένος παίχτης",
+            "desc": "Παγώνει τον παίχτη."
+        }
+    },
+    {
+        "Jump Hack": {
+            "name": "Άπειρα πηδήματα",
+            "desc": "Allows for jumping in mid-air."
+        }
+    },
+    {
+        "Instant Complete": {
+            "name": "Άμεση ολοκλήρωση",
+            "desc": "Άμεση ολοκλήρωση ενός επιπέδου. (Do not enable in the Editor)"
+        }
+    },
+    {
+        "Force Platformer Mode": {
+            "name": "Aναγκαστικό Platformer Mode",
+            "desc": "Αναγκάζει platformer mode όταν παίζεται ένα επίπεδο."
+        }
+    },
+    {
+        "Change Gravity": {
+            "name": "Αλλαγή βαρύτητας",
+            "desc": "Αφήνει να αλλάξεις βαρύτητα."
+        }
+    },
+    {
+        "Gravity Value": {
+            "name": "Ποσοστό βαρύτητας",
+            "desc": "Το ποσοστό βαρύτητας"
+        }
+    },
+
+    {
+        "Icon Bypass": {
+            "name": "Ξεκλείδωμα εικονιδίων",
+            "desc": "Ξεκλειδώνει όλα τα εικονίδια."
+        }
+    },
+    {
+        "Text Length": {
+            "name": "Απειρο κείμενο",
+            "desc": "Αφήνει για άπειρο κείμενο στην εισαγωγή κειμένου."
+        }
+    },
+    {
+        "Character Filter": {
+            "name": "Φίλτρο Χαρακτήρων",
+            "desc": "Αφήνει για όλους τους χαρακτήρες κειμένου στην εισαγωγή κειμένου."
+        }
+    },
+    {
+        "Slider Limit": {
+            "name": "Slider Limit",
+            "desc": "Lets sliders be dragged beyond the visible limit."
+        }
+    },
+    {
+        "Main Levels": {
+            "name": "Κύρια επίπεδα",
+            "desc": "Ξεκλειδώνει όλα τα κύρια επίπεδα."
+        }
+    },
+    {
+        "Guard Vault": {
+            "name": "Ξεκλείδωμα θησαυροφυλάκιου",
+            "desc": "Unlocks the guard's vault."
+        }
+    },
+    {
+        "Keymaster Vault": {
+            "name": "Keymaster Vault",
+            "desc": "Unlocks the keymaster's vault."
+        }
+    },
+    {
+        "Treasure Room": {
+            "name": "Δωμάτιο Θησαυρών",
+            "desc": "Ξεκλειδώνει το δωμάτιο θησαυρών."
+        }
+    },
+    {
+        "Free Shop Items": {
+            "name": "Δωρεάν αντικείμενα αγωράς",
+            "desc": "Αφήνει όλα τα αντικείμενα του μαγαζιού να μπορούν να αγωραστούν για 0 mana orbs."
+        }
+    },
+    {
+        "Gatekeeper Vault": {
+            "name": "Θυσαυροφυλάκιο θυρωρού",
+            "desc": "Ξεκλειδώνει το θησαυροφυλάκιο του θυρωρού."
+        }
+    },
+    {
+        "Backup Stars Limit": {
+            "name": "Backup Stars Limit",
+            "desc": "Lets you backup data, even with less than 10 stars."
+        }
+    },
+
+
+    {
+        "Level Edit": {
+            "name": "Level Edit",
+            "desc": "Lets you edit any level, access the editor through the pause menu. (UNSTABLE)"
+        }
+    },
+    {
+        "Verify Hack": {
+            "name": "Verify Hack",
+            "desc": "Lets you upload unverified levels. Will automatically set levels to be verified."
+        }
+    },
+    {
+        "Copy Hack": {
+            "name": "Copy Hack",
+            "desc": "Lets you copy any level, without a password."
+        }
+    },
+    {
+        "No (C) Mark": {
+            "name": "No (C) Mark",
+            "desc": "Removes the (C) mark when uploading copied levels. Will automatically set levels to be original."
+        }
+    },
+    {
+        "Hide Testmode": {
+            "name": "Hide Testmode",
+            "desc": "Hides the 'Testmode' text when playing with a startpos."
+        }
+    },
+    {
+        "Rotation Hack": {
+            "name": "Rotation Hack",
+            "desc": "Allows you to rotate any object. Only works locally."
+        }
+    },
+    {
+        "Default Song Bypass": {
+            "name": "Default Song Bypass",
+            "desc": "Lets you use hidden default songs in the editor."
+        }
+    },
+
+    {
+        "No Progress Bar": {
+            "name": "No Progress Bar",
+            "desc": "Removes the progress bar! The precentage will still be shown."
+        }
+    },
+    {
+        "Progress Bar Position": {
+            "name": "Progress Bar Position",
+            "desc": "Sets the position of the progress bar."
+        }
+    },
+    {
+        "Hide Attempts": {
+            "name": "Hide Attempts",
+            "desc": "Whether or not the attempt label should be shown when playing a level."
+        }
+    },
+    {
+        "Attempt Opacity": {
+            "name": "Attempt Opacity",
+            "desc": "Determines how opaque the attempt label should be."
+        }
+    },
+
+    {
+        "Menu Opacity": {
+            "name": "Menu Opacity",
+            "desc": "Determines how opaque the menu should be."
+        }
+    },
+    {
+        "Theme": {
+            "name": "Theme",
+            "desc": "Select the UI theme for Prism Menu!"
+        }
+    },
+    {
+        "Import Theme": {
+            "name": "Import Theme",
+            "desc": "Imports a theme! [JSON file]"
+        }
+    },
+    {
+        "Live Theme Editing": {
+            "name": "Live Theme Editing",
+            "desc": "This will allow you to edit your custom theme while seeing changes on screen! (Warning: This may cause a memory leak.)"
+        }
+    },
+    {
+        "Show Tooltips": {
+            "name": "Show Tooltips",
+            "desc": "Whether or not tooltips should be shown when hovering over mods."
+        }
+    },
+    {
+        "Show Button": {
+            "name": "Show Button",
+            "desc": "Shows the button to activate the menu. It's recommended to keep this enabled for Android."
+        }
+    },
+    {
+        "Button Position X": {
+            "name": "Button Position X",
+            "desc": "The X position for the button to open the menu."
+        }
+    },
+    {
+        "Button Position Y": {
+            "name": "Button Position Y",
+            "desc": "The Y position for the button to open the menu."
+        }
+    },
+    {
+        "Language": {
+            "name": "Language",
+            "desc": "Sets the language for Prism Menu!"
+        }
+    },
+    {
+        "Restore Defaults": {
+            "name": "Restore Defaults",
+            "desc": "Disables all mods and resets everything to default."
+        }
+    },
+    {
+        "Credits": {
+            "name": "Credits",
+            "desc": "People who have helped with the mod!"
+        }
+    },
+    {
+        "Thank you to Electrify (ES), Jouca (FR), dank_meme01, savvacorgi, МегаСвятой (RU), Gazonk (BR), huhnmitferrari (DE), and Ignis (CS) for translations!": {
+            "name": "Thank you to Electrify (ES), Jouca (FR), dank_meme01, savvacorgi, МегаСвятой (RU), Gazonk (BR), huhnmitferrari (DE), and Ignis (CS) for translations!"
+        }
+    },
+    {
+        "And thank you for using the mod! I hope you enjoy using Prism Menu!": {
+            "name": "And thank you for using the mod! I hope you enjoy using Prism Menu!"
+        }
+    },
+    {
+        "Close Popup": {
+            "name": "Close Popup"
+        }
+    },
+    {
+        "Menu Scale": {
+            "name": "Menu Scale",
+            "desc": "Decides how big the text and buttons should be. (Will require restarting the game)"
+        }
+    },
+
+    {
+        "Show Hidden Objects": {
+            "name": "Show Hidden Objects",
+            "desc": "Shows all hidden objects. This will reset the objects primary color. This will not work on objects with the \"Hide\" attribute. (Useful with Layout Mode)"
+        }
+    },
+    {
+        "Transparent BG": {
+            "name": "Transparent BG",
+            "desc": "Automatically reverts colors changed in the background to be their original color."
+        }
+    },
+    {
+        "Speedhack Audio": {
+            "name": "Speedhack Audio",
+            "desc": "Whether or not to also change the audio speed based on the speedhack value."
+        }
+    },
+    {
+        "No Glow": {
+            "name": "No Glow",
+            "desc": "Disables glow on all objects."
+        }
+    },
+    {
+        "Noclip Accuracy": {
+            "name": "Noclip Accuracy",
+            "desc": "Informs you how accurate your noclip run is. (Will not work without Anticheat Bypass enabled)"
+        }
+    },
+    {
+        "Show Graphic Options": {
+            "name": "Show Graphic Options",
+            "desc": "Shows you Geometry Dash's graphic options! Useful for Android as the option is normally not available."
+        }
+    },
+    {
+        "No Trail": {
+            "name": "No Trail",
+            "desc": "Disables any trail effect from the player."
+        }
+    },
+    {
+        "No Wave Trail": {
+            "name": "No Wave Trail",
+            "desc": "Disables the trail behind the wave."
+        }
+    },
+    {
+        "Solid Wave Trail": {
+            "name": "Solid Wave Trail",
+            "desc": "Removes the blending of both icon colors on the wave trail."
+        }
+    },
+
+    {
+        "Extra Percent Digits": {
+            "name": "Extra Percent Digits",
+            "desc": "Number of extra decimal digits to be displayed with Accurate Percentage."
+        }
+    },
+    {
+        "Uncomplete Level": {
+            "name": "Uncomplete Level",
+            "desc": "Resets normal and practice percentages, and allows you to decrease your star count if you completed the level!"
+        }
+    },
+    {
+        "No Shaders": {
+            "name": "No Shaders",
+            "desc": "Disables all camera shader effects."
+        }
+    },
+    {
+        "Disable Camera Effects": {
+            "name": "Disable Camera Effects",
+            "desc": "Disables any camera effects, and only focuses the camera on the player. This might break all gamemodes except Cube and Robot."
+        }
+    },
+    {
+        "Show Hitboxes": {
+            "name": "Show Hitboxes",
+            "desc": "Show player, obstacle, and solid hitboxes."
+        }
+    },
+    {
+        "Show Hitboxes on Death": {
+            "name": "Show Hitboxes on Death",
+            "desc": "Shows hitboxes when you die, and hides them when you respawn."
+        }
+    },
+    {
+        "Hitbox Stroke": {
+            "name": "Hitbox Stroke",
+            "desc": "Stroke 'width' when drawing hitboxes."
+        }
+    },
+    {
+        "Suicide": {
+            "name": "Suicide",
+            "desc": "Kills the player repeatedly."
+        }
+    },
+
+    {
+        "TPS Bypass": {
+            "name": "TPS Bypass",
+            "desc": "Changes the \"Physics FPS\" of the game to be higher or lower than the default. (240)"
+        }
+    },
+    {
+        "Macro": {
+            "name": "Macro",
+            "desc": "Select a macro to record or play!"
+        }
+    },
+    {
+        "Record": {
+            "name": "Record",
+            "desc": "Records the gemeplay to be played back. (This will reset the current inputs if you play a level and have a macro selected.)"
+        }
+    },
+    {
+        "Playback": {
+            "name": "Playback",
+            "desc": "Plays back the macro."
+        }
+    },
+    {
+        "Macro Editor": {
+            "name": "Macro Editor",
+            "desc": "Enter the macro editor. (Will not work properly with Record enabled)"
+        }
+    },
+    {
+        "Frame Fix": {
+            "name": "Frame Fix",
+            "desc": "Records the players every movement, including position when recording and playing back a macro. Do note that this option will increase the file size of the macro while recording."
+        }
+    },
+    {
+        "Fixed FPS": {
+            "name": "Fixed FPS",
+            "desc": "Locks the frames to the target framerate of the macro. This may look like the \"smooth fix\" option is enabled if the game is lagging."
+        }
+    },
+    {
+        "Import Macro": {
+            "name": "Import Macro",
+            "desc": "Imports a macro."
+        }
+    },
+    {
+        "Save Macro": {
+            "name": "Save Macro",
+            "desc": "Saves the macro."
+        }
+    },
+    {
+        "No Pulse": {
+            "name": "No Pulse",
+            "desc": "Disables orbs and other related objects from pulsing on the music."
+        }
+    },
+    {
+        "Noclip Flash": {
+            "name": "Noclip Flash",
+            "desc": "Flashes the whole screen red instead of showing a label for your noclip accuracy."
+        }
+    },
+    {
+        "Instant Respawn": {
+            "name": "Instant Respawn",
+            "desc": "Removes the delay when re-attempting the level."
+        }
+    },
+    {
+        "No Death Effect": {
+            "name": "No Death Effect",
+            "desc": "Removes explosion particles when a player dies."
+        }
+    },
+    {
+        "No Wave Pulse": {
+            "name": "No Wave Pulse",
+            "desc": "Prevents the wave from pulsing to the beat of the music."
+        }
+    },
+    {
+        "Wave Pulse Size": {
+            "name": "Wave Pulse Size",
+            "desc": "How big the pulse should be for the wave."
+        }
+    }
+]
