@@ -44,7 +44,7 @@
     },
     {
         "Practice Music": {
-            "name": "Practice Music",
+            "name": "Mở khoá Practice Music",
             "desc": "Kích hoạt Practice Music miễn phí ngay cả khi nó bị khoá."
         }
     },
@@ -507,6 +507,108 @@
         "Suicide": {
             "name": "Tự tử",
             "desc": "Giết người chơi liên tục."
+        }
+    },
+        {
+        "¦ Quartz Bot": {
+            "name": "¦ Quartz Bot"
+        }
+    },
+
+    {
+        "TPS Bypass": {
+            "name": "Bẻ khoá TPS",
+            "desc": "Đổi \"Physics FPS\" của trò chơi cao hơn hoặc thấp hơn mặc định. (240)"
+        }
+    },
+    {
+        "Macro": {
+            "name": "Bản ghi Macro",
+            "desc": "Chọn macros để ghi hoặc phát macros"
+        }
+    },
+    {
+        "Record": {
+            "name": "Ghi",
+            "desc": "Ghi lại gemeplay để phát lại. (Điều này sẽ đặt lại các đầu vào hiện tại nếu bạn chơi một cấp độ và chọn macro.)"
+        }
+    },
+    {
+        "Playback": {
+            "name": "Phát lại",
+            "desc": "Chơi macro bạn đã chọn."
+        }
+    },
+    {
+        "Macro Editor": {
+            "name": "Trình chỉnh sửa Macro",
+            "desc": "Vào trình chỉnh sửa Macro. (Sẽ không hoạt động bình thường khi đang ghi)"
+        }
+    },
+    {
+        "Frame Fix": {
+            "name": "Sửa khung hình",
+            "desc": "Ghi lại mọi chuyển động của người chơi, bao gồm cả vị trí khi ghi và phát lại macro. Xin lưu ý rằng tùy chọn này sẽ tăng kích thước tệp của macro trong khi ghi."
+        }
+    },
+    {
+        "Fixed FPS": {
+            "name": "Sửa FPS",
+            "desc": "Khóa các khung theo tốc độ khung hình mục tiêu của macro. Điều này có vẻ giống như tùy chọn \"sửa lỗi mượt mà\" được bật nếu trò chơi bị lag."
+        }
+    },
+    {
+        "Import Macro": {
+            "name": "Nhập Macro",
+            "desc": "Nhập 1 bản ghi macro."
+        }
+    },
+    {
+        "Save Macro": {
+            "name": "Lưu Macro",
+            "desc": "Lưu bản ghi macro."
+        }
+    },
+    {
+        "No Pulse": {
+            "name": "Không Pulse",
+            "desc": "Vô hiệu hóa các quả cầu và các vật thể liên quan khác phát xung theo nhạc."
+        }
+    },
+    {
+        "Noclip Flash": {
+            "name": "Đèn nháy Noclip",
+            "desc": "Nhấp nháy toàn bộ màn hình màu đỏ thay vì hiển thị nhãn để đảm bảo độ chính xác của noclip của bạn."
+        }
+    },
+    {
+        "Instant Respawn": {
+            "name": "Hồi sinh tức thì",
+            "desc": "Loại bỏ độ trễ khi thử lại cấp độ."
+        }
+    },
+    {
+        "No Death Effect": {
+            "name": "Không có hiệu ứng khi chết",
+            "desc": "Loại bỏ các hạt nổ khi người chơi chết."
+        }
+    },
+    {
+        "No Wave Pulse": {
+            "name": "Không Wave Pulse",
+            "desc": "Ngăn chặn sóng đập theo nhịp nhạc."
+        }
+    },
+    {
+        "Wave Pulse Size": {
+            "name": "Kích thước Wave Pulse",
+            "desc": "Xung phải lớn như thế nào đối với sóng."
+        }
+    },
+    {
+        "Auto Safe Mode": {
+            "name": "Chế độ an toàn tự động",
+            "desc": "Ngăn chặn bất kỳ tiến trình nào được thực hiện nếu một số mánh gian lận nhất định được kích hoạt."
         }
     }
 ]
