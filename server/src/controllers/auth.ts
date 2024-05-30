@@ -25,7 +25,7 @@ export async function createUser(name: string, hashIP: string): Promise<User | n
     return new Promise((resolve, reject) => {
         return getUser(hashIP).then(user => {
             if (user != null) return reject("Already created an account.");
-            resolve();
+            resolve(user);
         }).catch(reject);
     })
 }
