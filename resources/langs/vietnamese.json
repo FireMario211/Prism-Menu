@@ -32,11 +32,9 @@
 
     {
         "Prism Menu by Firee": {
-            "name": "Prism Menu boi Firee | Dich boi tienanh109 <3"
+            "name": "Prism Menu boi Firee"
         }
     },
-
-
 
     {
         "Anticheat Bypass": {
@@ -46,7 +44,7 @@
     },
     {
         "Practice Music": {
-            "name": "Practice Music",
+            "name": "Mo khoa Practice Music",
             "desc": "Kich hoat Practice Music mien phi ngay ca khi no bi khoa."
         }
     },
@@ -95,7 +93,7 @@
     {
         "Reset Speedhack": {
             "name": "Dat lai hack toc do",
-            "desc": "Dat lai speedhack tro lai binh thuong."
+            "desc": "Dat lai hack toc do tro lai binh thuong."
         }
     },
 
@@ -303,7 +301,7 @@
     },
     {
         "Hide Attempts": {
-            "name": "An Attempts",
+            "name": "An Attempt",
             "desc": "Nhan Attempts co duoc hien thi hay khong khi choi mot cap do."
         }
     },
@@ -388,7 +386,7 @@
     },
     {
         "Thank you to Electrify (ES), Jouca (FR), dank_meme01, savvacorgi, МегаСвятой (RU), Gazonk (BR), huhnmitferrari (DE), and Ignis (CS) for translations!": {
-            "name": "Cam on Electrify (ES), Jouca (FR), dank_meme01, savvacorgi, МегаСвятой (RU), Gazonk (BR), huhnmitferrari (DE) va Ignis (CS) vi da dich!"
+            "name": "Cam on Electrify (ES), Jouca (FR), dank_meme01, savvacorgi, МегаСвятой (RU), Gazonk (BR), tienanh109 (VI) , huhnmitferrari (DE) va Ignis (CS) vi da dich!"
         }
     },
     {
@@ -466,7 +464,7 @@
     {
         "Extra Percent Digits": {
             "name": "Chu so phan tram bo sung",
-            "desc": "So chu so thap phan bo sung se duoc hien thi voi. Ty le phan tram chinh xac."
+            "desc": "So chu so thap phan bo sung se duoc hien thi voi Ty le phan tram chinh xac."
         }
     },
     {
@@ -478,13 +476,13 @@
     {
         "No Shaders": {
             "name": "Khong co Shader",
-            "desc": "Tat tat ca cac hieu ung do bóng cua may anh."
+            "desc": "Tat tat ca cac hieu ung do bong cua may anh.."
         }
     },
     {
         "Disable Camera Effects": {
             "name": "Tat hieu ung may anh",
-            "desc": "Vo hieu hoa moi hieu ung may anh va chi tap trung may anh vao trinh phat. Dieu nay co the pha vo tat ca cac che ao tro choi ngoai tru Cube va Robot."
+            "desc": "Vo hieu hoa moi hieu ung may anh va chi tap trung may anh vao trinh phat. Dieu nay co the pha vo tat ca cac che do tro choi ngoai tru Cube va Robot."
         }
     },
     {
@@ -509,6 +507,108 @@
         "Suicide": {
             "name": "Tu tu",
             "desc": "Giet nguoi choi lien tuc."
+        }
+    },
+        {
+        "¦ Quartz Bot": {
+            "name": "¦ Quartz Bot"
+        }
+    },
+
+    {
+        "TPS Bypass": {
+            "name": "Be khoa TPS",
+            "desc": "Doi \"Physics FPS\" cua tro choi cao hon hoac thap hon mac dinh. (240)"
+        }
+    },
+    {
+        "Macro": {
+            "name": "Ban ghi Macro",
+            "desc": "Chon macros de ghi hoac phat macros"
+        }
+    },
+    {
+        "Record": {
+            "name": "Ghi",
+            "desc": "Ghi lai gemeplay de phat lai. (Dieu nay se dat lai cac dau vao hien tai neu ban choi mot cap do va chon macro.)"
+        }
+    },
+    {
+        "Playback": {
+            "name": "Phat lai",
+            "desc": "Choi macro ban da chon."
+        }
+    },
+    {
+        "Macro Editor": {
+            "name": "Trinh chinh sua Macro",
+            "desc": "Vao trinh chinh sua Macro. (Se khong hoat dong binh thuong khi dang ghi)"
+        }
+    },
+    {
+        "Frame Fix": {
+            "name": "Sua khung hinh",
+            "desc": "Ghi lai moi chuyen dong cua nguoi choi, bao gom ca vi tri khi ghi va phat lai macro. Xin luu y rang tuy chon nay se tang kich thuoc tep cua macro trong khi ghi."
+        }
+    },
+    {
+        "Fixed FPS": {
+            "name": "Sua FPS",
+            "desc": "Khoa cac khung theo toc do khung hinh muc tieu cua macro. Dieu nay co ve giong nhu tuy chon \"sua loi muot ma\" duoc bat neu tro choi bi lag."
+        }
+    },
+    {
+        "Import Macro": {
+            "name": "Nhap Macro",
+            "desc": "Nhap 1 ban ghi macro."
+        }
+    },
+    {
+        "Save Macro": {
+            "name": "Luu Macro",
+            "desc": "Luu ban ghi macro."
+        }
+    },
+    {
+        "No Pulse": {
+            "name": "Khong Pulse",
+            "desc": "Vo hieu hoa cac qua cau va cac vat the lien quan khac phat xung theo nhac."
+        }
+    },
+    {
+        "Noclip Flash": {
+            "name": "Den nhay Noclip",
+            "desc": "Nhap nhay toan bo man hinh mau do thay vi hien thi nhan de dam bao do chinh xac cua noclip cua ban."
+        }
+    },
+    {
+        "Instant Respawn": {
+            "name": "Hoi sinh tuc thi",
+            "desc": "Loai bo do tre khi thu lai cap do."
+        }
+    },
+    {
+        "No Death Effect": {
+            "name": "Khong co hieu ung khi chet",
+            "desc": "Loai bo cac hat no khi nguoi choi chet."
+        }
+    },
+    {
+        "No Wave Pulse": {
+            "name": "Khong Wave Pulse",
+            "desc": "Ngan chan song dap theo nhip nhac."
+        }
+    },
+    {
+        "Wave Pulse Size": {
+            "name": "Kich thuoc Wave Pulse",
+            "desc": "Xung phai lon nhu the nao doi voi song."
+        }
+    },
+    {
+        "Auto Safe Mode": {
+            "name": "Che do an toan tu dong",
+            "desc": "Ngan chan bat ky tien trinh nao duoc thuc hien neu mot so manh gian lan nhat dinh duoc kich hoat."
         }
     }
 ]
