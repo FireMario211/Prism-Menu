@@ -32,7 +32,7 @@
 
     {
         "Prism Menu by Firee": {
-            "name": "Prism Menu bởi Firee | Dịch bởi tienanh109 <3"
+            "name": "Prism Menu bởi Firee"
         }
     },
 
@@ -93,7 +93,7 @@
     {
         "Reset Speedhack": {
             "name": "Đặt lại hack tốc độ",
-            "desc": "Đặt lại speedhack trở lại bình thường."
+            "desc": "Đặt lại hack tốc độ trở lại bình thường."
         }
     },
 
@@ -301,7 +301,7 @@
     },
     {
         "Hide Attempts": {
-            "name": "Ẩn Attempts",
+            "name": "Ẩn Attempt",
             "desc": "Nhãn Attempts có được hiển thị hay không khi chơi một cấp độ."
         }
     },
@@ -386,7 +386,7 @@
     },
     {
         "Thank you to Electrify (ES), Jouca (FR), dank_meme01, savvacorgi, МегаСвятой (RU), Gazonk (BR), huhnmitferrari (DE), and Ignis (CS) for translations!": {
-            "name": "Cảm ơn Electrify (ES), Jouca (FR), dank_meme01, savvacorgi, МегаСвятой (RU), Gazonk (BR), huhnmitferrari (DE) và Ignis (CS) vì đã dịch!"
+            "name": "Cảm ơn Electrify (ES), Jouca (FR), dank_meme01, savvacorgi, МегаСвятой (RU), Gazonk (BR), tienanh109 (VI) , huhnmitferrari (DE) và Ignis (CS) vì đã dịch!"
         }
     },
     {
