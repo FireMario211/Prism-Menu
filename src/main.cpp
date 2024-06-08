@@ -59,13 +59,16 @@ bool restoreOldFiles() {
 
     if (std::filesystem::exists(oldSave) && std::filesystem::is_directory(oldSave)) {
         log::debug("AIR DETECTED. copying files from firee.PrismMenu to firee.prism");
-        // 3. Copy files from save_backup to saveDir
         std::filesystem::copy(oldSave, currentSave, std::filesystem::copy_options::overwrite_existing | std::filesystem::copy_options::recursive);
 
-        // 4. Rename save_backup to save_backup.complete
         std::filesystem::path newBackupDir = parentDir / (oldSave.filename().string() + ".old");
-        std::filesystem::rename(oldSave, newBackupDir);
 
+#ifdef GEODE_IS_ANDROID // stupid android and their "OH YOU DONT HAVE PERMISSION TO RENAME"
+        std::filesystem::copy(oldSave, newBackupDir, std::filesystem::copy_options::recursive);
+        std::filesystem::remove_all(oldSave);
+#else 
+        std::filesystem::rename(oldSave, newBackupDir);
+#endif
         return true;
     } else {
         // assuming new instance

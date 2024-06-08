@@ -3,7 +3,7 @@
     - Added Ukrainian translations (Thank you Lancelot!)
     - Added CBF warning 
     - Added Custom Object Bypass (Only on Windows)
-    - Fixed Noclip Accuracy from going to the negatives.
+    - Fixed Noclip Accuracy from going to the negatives. (On Windows)
     - Temporarily removed No Pulse
     - Removed Anticheat Bypass (since its useless now)
     - (hopefully) Fix issues with Android on playing back a macro.

@@ -62,7 +62,8 @@
             ]
         },
         "type": "bool",
-        "save": false
+        "save": false,
+        "platforms": ["win"]
     },
     {
 	    "name": "No (C) Mark",

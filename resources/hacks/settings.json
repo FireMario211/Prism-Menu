@@ -46,8 +46,7 @@
         "name": "Menu Keybind",
         "desc": "The keybind for opening the Prism Menu UI!",
         "type": "char",
-        "default": "[Tab]",
-        "platforms": ["win", "mac"]
+        "default": "[Tab]"
     },
     {
         "name": "Button Position X",

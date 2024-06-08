@@ -819,11 +819,7 @@ class $modify(QuartzPlayLayer, PlayLayer) {
         });
         if (input_player != m_fields->player_frames.end()) {
             m_fields->bot_frame = input_player->frame;
-            #ifdef GEODE_IS_WINDOWS
             m_gameState.m_currentProgress = m_fields->bot_frame;
-            #else
-            m_gameState.m_currentProgress = m_fields->bot_frame * 1000;
-            #endif
             if (input_player2 != m_fields->player_frames.end()) {
                 UpdatePlayer(m_player2, *input_player2);
                 GJBaseGameLayer::handleButton(input_player2->isHolding, input_player2->buttonHold, true);
@@ -859,11 +855,7 @@ class $modify(QuartzPlayLayer, PlayLayer) {
         });
         if (input_player != m_fields->player_frames.end()) {
             m_fields->bot_frame = input_player->frame;
-#ifdef GEODE_IS_WINDOWS
             m_gameState.m_currentProgress = m_fields->bot_frame;
-#else
-            m_gameState.m_currentProgress = m_fields->bot_frame * 1000;
-#endif
             if (input_player2 != m_fields->player_frames.end()) {
                 UpdatePlayer(m_player2, *input_player2);
                 GJBaseGameLayer::handleButton(input_player2->isHolding, input_player2->buttonHold, true);
@@ -1060,11 +1052,7 @@ class $modify(GJBaseGameLayer) {
                     }
                 } else {*/
                     ///playLayer->m_fields->bot_frame += addDt;
-                    #ifdef GEODE_IS_WINDOWS 
                     playLayer->m_fields->bot_frame = m_gameState.m_currentProgress;
-                    #else
-                    playLayer->m_fields->bot_frame = m_gameState.m_currentProgress / 1000;
-                    #endif 
                 //}
                 if (Hacks::isHackEnabled("Fixed FPS")) {
                     dt = fixedDt;

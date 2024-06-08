@@ -19,6 +19,6 @@ cmake -DCMAKE_TOOLCHAIN_FILE=$NDK/build/cmake/android.toolchain.cmake -DANDROID_
 cmake --build build-android/$ABI --config RelWithDebInfo
 if [[ $ABI == "arm64-v8a" ]] ;then
     echo "pushing"
-    adb push ./build-android/arm64-v8a/firee.PrismMenu.geode /sdcard/Android/media/com.geode.launcher/game/geode/mods
+    adb push ./build-android/arm64-v8a/firee.prism.geode /sdcard/Android/media/com.geode.launcher/game/geode/mods
 fi
 done
