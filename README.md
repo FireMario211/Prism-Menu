@@ -71,3 +71,7 @@ note for me: maybe make server closed source or in a private repo, idk if people
 
 # a note for a certain somebody
 please credit me and ask before using my code, and **make sure it's open sourced**. I worked hard on this project and I don't want some of the features to have its code taken without me knowing.
+
+# a small todo for me
+- Added Rotation Hack (Only on Windows & Android)
+- Added Default Song Bypass (Only on Windows & Android)

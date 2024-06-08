@@ -459,5 +459,54 @@
             "name": "Jednolity Wave Trail",
             "desc": "Wyłącza mieszanie obu kolorów gracza na Wave Trail."
         }
+    },
+
+    {
+        "Extra Percent Digits": {
+            "name": "Dodatkowe liczby dziesiętne",
+            "desc": "Ilość  liczb dziesiętnych które zostają pokazywane przy użyciu dokładnych procentów "
+        }
+    },
+    {
+        "Uncomplete Level": {
+            "name": "Zresetuj kompletację",
+            "desc": "Resetuje normalne i ćwiczeniowe procenty i pozwala obniżenie liczby gwiazd po przejściu poziomu."
+        }
+    },
+    {
+        "No Shaders": {
+            "name": "Wyłącz shadery",
+            "desc": "Wyłącza wszystkie shadery."
+        }
+    },
+    {
+        "Disable Camera Effects": {
+            "name": "Wyłącz efekty kamerowe",
+            "desc": "Wyłącza wszystkie efekty kamery i fokusuje ją na gracza. To ustawienie może zepsuć wszystkie tryby, oprócz kwadratu i robotu."
+        }
+    },
+    {
+        "Show Hitboxes": {
+            "name": "Pokazuj hitboxy",
+            "desc": "Pokazuj hitboxy gracza, obiektów i kolców."
+        }
+    },
+    {
+        "Show Hitboxes on Death": {
+            "name": "Pokazuj hitboxy przy ukłuciu",
+            "desc": "Włącza hitboxy przy ukłuciu, wyłącza je po restarcie."
+        }
+    },
+    {
+        "Hitbox Stroke": {
+            "name": "Grubość hitboxów",
+            "desc": "'Długość' pokazanych hitboxów."
+        }
+    },
+    {
+        "Suicide": {
+            "name": "Samobójstwo",
+            "desc": "Zabija gracza bez przerywania."
+        }
     }
 ]

@@ -55,6 +55,12 @@
         }
     },
     {
+        "Auto Safe Mode": {
+            "name": "Che do an toan tu dong",
+            "desc": "Ngan chan bat ky tien trinh nao duoc thuc hien neu mot so manh gian lan nhat dinh duoc kich hoat."
+        }
+    },
+    {
         "Accurate Percentage": {
             "name": "Ty le chinh xac",
             "desc": "Cho phep so thap phan trong ty le phan tram cap do. [Vuot qua vi tri hang nghin]"

@@ -55,6 +55,12 @@
         }
     },
     {
+        "Auto Safe Mode": {
+            "name": "Chế độ an toàn tự động",
+            "desc": "Ngăn chặn bất kỳ tiến trình nào được thực hiện nếu một số mánh gian lận nhất định được kích hoạt."
+        }
+    },
+    {
         "Accurate Percentage": {
             "name": "Tỷ lệ chính xác",
             "desc": "Cho phép số thập phân trong tỷ lệ phần trăm cấp độ. [Vượt quá vị trí hàng nghìn]"

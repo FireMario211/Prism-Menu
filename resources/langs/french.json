@@ -50,7 +50,7 @@
     },
     {
         "Safe Mode": {
-            "name": "Mode Safe",
+            "name": "Mode Sûr",
             "desc": "Interrompt toute progression dans le niveau."
         }
     },
@@ -391,6 +391,61 @@
         "Menu Scale": {
             "name": "Menu Échelle",
             "desc": "Décide de la taille du texte et des boutons. (Nécessite de redémarrer le jeu)"
+        }
+    },
+
+    {
+        "Show Hidden Objects": {
+            "name": "Montrer les Objets Cahcés",
+            "desc": "Montre tous les objets cachés. Ceci réinitialisera les objets à la couleur d'origine. Ceci ne marchera pas sur les objets avec l'attribution \"Hide\". (Utile avec le mode layout)"
+        }
+    },
+    {
+        "Transparent BG": {
+            "name": "Arrière-plan transparent",
+            "desc": "Les couleurs modifiées de arrière-plan sont automatiquement ramenées à leur couleur d'origine."
+        }
+    },
+    {
+        "Speedhack Audio": {
+            "name": "Speedhack de l'Audio",
+            "desc": "Vous permet d'accorder, ou non, la vitesse de l'audio à la valeur du speedhack."
+        }
+    },
+    {
+        "No Glow": {
+            "name": "Pas de Glow",
+            "desc": "Désactive le glow sur tous les objets."
+        }
+    },
+    {
+        "Noclip Accuracy": {
+            "name": "Précision du Noclip",
+            "desc": "Vous informe à quel point votre run en Noclip est précise. (Ne marche qu'avec l'Anticheat Bypass actif)"
+        }
+    },
+    {
+        "Show Graphic Options": {
+            "name": "Montrer les Options Graphiques",
+            "desc": "Vous montre les options graphiques de Geometry Dash ! Utile sous Android car l'option n'est normalement pas disponible."
+        }
+    },
+    {
+        "No Trail": {
+            "name": "Pas de Traînée",
+            "desc": "Désactive les effets de traînée (trail) du jouer."
+        }
+    },
+    {
+        "No Wave Trail": {
+            "name": "Pas de Wave Trail",
+            "desc": "Désactive la traînée (trail) derrière l'icône de la Wave."
+        }
+    },
+    {
+        "Solid Wave Trail": {
+            "name": "Wave Trail Solide",
+            "desc": "Enlève le mélange des couleurs sur la traînée (trail) de la Wave."
         }
     }
 ]

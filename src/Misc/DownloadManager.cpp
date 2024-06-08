@@ -34,20 +34,21 @@ bool BrownAlertDelegate::init(float _w, float _h, const char* _spr, const char* 
     setup();
     this->registerWithTouchDispatcher();
     
-    auto closeSpr = cocos2d::CCSprite::createWithSpriteFrameName("GJ_closeBtn_001.png");
-    closeSpr->setScale(1.0f);
+    if (showCloseBtn) {
+        auto closeSpr = cocos2d::CCSprite::createWithSpriteFrameName("GJ_closeBtn_001.png");
+        closeSpr->setScale(1.0f);
 
-    auto closeBtn = CCMenuItemSpriteExtra::create(
-        closeSpr,
-        this,
-        (cocos2d::SEL_MenuHandler)&BrownAlertDelegate::onClose
-    );
-    closeBtn->setUserData(reinterpret_cast<void*>(this));
+        auto closeBtn = CCMenuItemSpriteExtra::create(
+            closeSpr,
+            this,
+            (cocos2d::SEL_MenuHandler)&BrownAlertDelegate::onClose
+        );
+        closeBtn->setUserData(reinterpret_cast<void*>(this));
 
-    this->m_buttonMenu->addChild(closeBtn);
+        this->m_buttonMenu->addChild(closeBtn);
 
-    closeBtn->setPosition( - _w / 2, _h / 2 );
-
+        closeBtn->setPosition( - _w / 2, _h / 2 );
+    }
     this->setKeypadEnabled(true);
     this->setTouchEnabled(true);
 
@@ -153,7 +154,7 @@ void DownloadManager::setup() {
     setTouchEnabled(true);
 
     // def not copied from geode hahahaha
-
+/*
     web::AsyncWebRequest()
         .join("download-langs")
         .fetch(this->m_sUrl)
@@ -170,6 +171,7 @@ void DownloadManager::setup() {
         .progress([](auto&, double now, double total) {
             progress_func(NULL, total, now, 0.0, 0.0);
         });
+        */
 }
 
 DownloadManager* DownloadManager::create(const char* url, const char* destination, cocos2d::SEL_MenuHandler selector) {

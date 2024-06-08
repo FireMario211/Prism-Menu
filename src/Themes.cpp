@@ -9,7 +9,7 @@ void Themes::addToCurrentThemes() {
     auto themeArray = hack->data.get<matjson::Array>("values");
     auto saveDir = Mod::get()->getSaveDir().string();
     auto array = hack->data.get<matjson::Array>("values");
-    if (ghc::filesystem::exists(saveDir + "/themes")) {
+    if (std::filesystem::exists(saveDir + "/themes")) {
         for (const auto & entry : std::filesystem::directory_iterator(saveDir + "/themes")) {
             if (entry.path().extension() == ".json") {
                 auto name = entry.path().filename().string();

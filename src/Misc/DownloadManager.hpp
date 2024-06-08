@@ -9,7 +9,7 @@ class BrownAlertDelegate : public FLAlertLayer {
         // layer size is stored here
         cocos2d::CCSize m_pLrSize;
         cocos2d::extension::CCScale9Sprite* m_pBGSprite;
-
+        bool showCloseBtn = true;
         virtual bool init(
             float width,
             float height,

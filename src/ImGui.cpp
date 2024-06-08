@@ -1,3 +1,4 @@
+#include <Geode/utils/file.hpp>
 #include <Geode/modify/MenuLayer.hpp>
 #ifndef NO_IMGUI
 #include <imgui-cocos.hpp>
@@ -178,9 +179,9 @@ class $modify(MenuLayer) {
                             ImGui::Text("%s", currentLanguage->name("Prism Menu by Firee").c_str());
                             //const char* version = "V1.3.0 (Geode)";
                             #ifdef GITHUB_ACTIONS
-                            auto version = fmt::format("{} (Geode)", Mod::get()->getVersion().toString());
+                            auto version = fmt::format("{} (Geode)", Mod::get()->getVersion());
                             #else 
-                            auto version = fmt::format("{}-Dev (Geode)", Mod::get()->getVersion().toString());
+                            auto version = fmt::format("{}-Dev (Geode)", Mod::get()->getVersion());
                             #endif
                            #ifdef GEODE_IS_WINDOWS
                             ImGui::Text("%s - Windows", version.c_str());
@@ -210,7 +211,7 @@ class $modify(MenuLayer) {
                                 ImGui::BeginDisabled(true);
                                 #endif
                             }
-                            if (hack->value.type == ValueType::Int && hack->type != "dropdown") {
+                            if (hack->value.type == ValueType::Int && hack->type != "dropdown" && hack->type != "char") {
                                 auto min = obj.get<int>("min");
                                 auto max = obj.get<int>("max");
                                 int step = (obj.contains("step")) ? obj.get<int>("step") : 5;
@@ -311,7 +312,7 @@ class $modify(MenuLayer) {
                                         }
                                     }
                                 }
-                            } else if (hack->value.type == ValueType::Char) {
+                            } else if (false) {//(hack->value.type == ValueType::Char) {
                                 /*auto oldValue = hack->value.charValue;
                                 if (ImGui::InputTextWithHint(currentLanguage->name(name).c_str(), "C", hack->value.charValue, 2, ImGuiInputTextFlags_EnterReturnsTrue)) {
                                     if (name == "Open Menu Keybind") {
@@ -351,12 +352,12 @@ class $modify(MenuLayer) {
                                                     dirs::getGameDir(),
                                                     { filter }
                                                 },
-                                                [&](ghc::filesystem::path path) {
+                                                [&](std::filesystem::path path) {
                                                     auto saveDir = Mod::get()->getSaveDir().string();
-                                                    if (!ghc::filesystem::exists(saveDir + "/themes")) {
-                                                        ghc::filesystem::create_directory(saveDir + "/themes");
+                                                    if (!std::filesystem::exists(saveDir + "/themes")) {
+                                                        std::filesystem::create_directory(saveDir + "/themes");
                                                     }
-                                                    ghc::filesystem::copy_file(path, saveDir + "/themes/" + path.filename().string());
+                                                    std::filesystem::copy_file(path, saveDir + "/themes/" + path.filename().string());
                                                     //ImGui::OpenPopup("Success");
                                                     FLAlertLayer::create("Success!", "The <cy>theme</c> has successfully been imported! Restart your game to use it.", "OK")->show();
                                                 }

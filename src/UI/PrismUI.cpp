@@ -1,4 +1,5 @@
 #include "PrismUI.hpp"
+#include <Geode/utils/file.hpp>
 #ifdef DEV_BUILD
 #include "../Misc/GatoSim.hpp"
 #endif
@@ -70,7 +71,7 @@ int getYPosBasedOnCategory(int length) { // someone give me a proper math formul
         default: return 0;
     }*/
     if (length <= 8) return -100;
-    if (currentMenuIndexGD == 6) return 120;
+    if (currentMenuIndexGD == 6) return 145;
     return (30 * length) - 350;
 }
 float getContentSizeBasedOnCategory(int length) { // someone give me a proper math formula ok thanks
@@ -131,7 +132,7 @@ bool PrismUIButton::init(HackItem* hack) {
         );
         //checkbox->setUserData(reinterpret_cast<void*>(hack));
         menu->addChild(checkbox);
-    } else if (hack->value.type == ValueType::Int && hack->type != "dropdown" && !name.starts_with("Button Position")) {
+    } else if (hack->value.type == ValueType::Int && hack->type != "dropdown" && hack->type != "char" && !name.starts_with("Button Position")) {
         auto min = obj.get<int>("min");
         auto max = obj.get<int>("max");
         label->limitLabelWidth(120, 0.5F, .1F);
@@ -178,6 +179,33 @@ bool PrismUIButton::init(HackItem* hack) {
         menu->addChild(decBtn);
 
         label->setPositionX(140);
+    } else if (hack->value.type == ValueType::Int && hack->type == "char") {
+        label->limitLabelWidth(120, 0.5F, .1F);
+        m_input = TextInput::create(150.f, "...", "PrismMenu.fnt"_spr);
+        m_input->setString(Utils::enumKeyToString(static_cast<cocos2d::enumKeyCodes>(hack->value.intValue)));
+        m_input->setCommonFilter(CommonFilter::Any);
+        m_input->setMaxCharCount(1);
+        m_input->setPositionX(37);
+        label->setPositionX(117);
+
+        auto changeBtnSpr = cocos2d::extension::CCScale9Sprite::create("square02b_001.png", { 0.0f, 0.0f, 80.0f, 80.0f });
+        changeBtnSpr->setContentSize({ 50.0f, 50.0f });
+        Themes::RGBAToCC(PrismUI::GetTheme()["Button"], changeBtnSpr);
+        changeBtnSpr->setScale(.4F);
+
+        auto changeBtnlabel = CCLabelBMFont::create("=", "PrismMenu.fnt"_spr);
+        Themes::RGBAToCC(PrismUI::GetTheme()["Text"], changeBtnlabel);
+        changeBtnlabel->setPosition({ changeBtnSpr->getContentSize().width / 2, changeBtnSpr->getContentSize().height / 2 });
+        
+        changeBtnSpr->addChild(changeBtnlabel);
+
+        auto changeBtn = CCMenuItemSpriteExtra::create(
+            changeBtnSpr,
+            this,
+            menu_selector(PrismUIButton::onCharBtn)
+        );
+        changeBtn->setPositionX(100);
+        menu->addChild(changeBtn);
     } else if (hack->value.type == ValueType::Float || name.starts_with("Button Position")) {
         auto value = (name.starts_with("Button Position")) ? hack->value.intValue : hack->value.floatValue;
 
@@ -293,12 +321,83 @@ void PrismUIButton::onBoolBtn(CCObject* ret) {
             prismButton->setVisible(m_hack->value.boolValue);
         }
     }
+    if (name == "Record" && m_hack->value.boolValue && Loader::get()->isModLoaded("syzzi.click_between_frames")) {
+        FLAlertLayer::create("Warning!", "<cg>Recording</c> a macro may not work properly with the <cy>Click Between Frames</c> mod!\nConsider <cr>disabling</c> the mod to be able to properly record a macro.", "OK")->show();
+    }
+    if (name == "Playback" && m_hack->value.boolValue && Loader::get()->isModLoaded("syzzi.click_between_frames")) {
+        FLAlertLayer::create("Warning!", "<cg>Playing back</c> a macro may not work properly with the <cy>Click Between Frames</c> mod!\nConsider <cr>disabling</c> the mod to be able to properly playback a macro, else inputs will <cr>not work</c>.", "OK")->show();
+    }
     if (name == "Instant Complete" && m_hack->value.boolValue) {
         FLAlertLayer::create(nullptr, "Cheater!", "Just a warning, you will be <cr>banned off leaderboards</c> if you use this on rated levels. Consider this your <cy>warning</c>.", "OK", nullptr)->show();
     }
     if (!m_hack->opcodes.empty()) {
         Hacks::applyPatches(name, m_hack->opcodes, m_hack->value.boolValue);
     }
+}
+
+
+CharUI* CharUI::create(PrismUIButton* button) {
+    auto pRet = new CharUI();
+    if (pRet) {
+        pRet->m_prismButton = button;
+        if (pRet->init(CharUI::s_defWidth, CharUI::s_defHeight)) {
+            pRet->autorelease();
+            return pRet;
+        }
+    }
+    CC_SAFE_DELETE(pRet);
+    return nullptr;
+};
+
+void CharUI::keyDown(cocos2d::enumKeyCodes key) {
+    //keyPressed(key);
+    if (key == cocos2d::enumKeyCodes::KEY_Escape)
+        return;
+    if (key == cocos2d::enumKeyCodes::KEY_Tab)
+        return;
+    if (key == cocos2d::enumKeyCodes::KEY_Space)
+        return;
+    return FLAlertLayer::keyDown(key);
+}
+
+void CharUI::keyPressed(cocos2d::enumKeyCodes key) {
+    m_currentKey = key;
+    m_currentKeyLbl->setString(Utils::enumKeyToString(m_currentKey).c_str());
+}
+
+void CharUI::setup() {
+    if (auto prismMenu = typeinfo_cast<PrismUI*>(CCScene::get()->getChildByID("prism-menu"))) {
+        prismMenu->toggleVisibility();
+    }
+    this->setID("prism-charui");
+    auto title = CCLabelBMFont::create("Press a key.", "PrismMenu.fnt"_spr);
+    title->limitLabelWidth(160, 1.0F, 0.2F);
+    title->setPositionY((s_defHeight / 3));
+    m_currentKey = static_cast<cocos2d::enumKeyCodes>(m_prismButton->getHack()->value.intValue);
+    m_currentKeyLbl = CCLabelBMFont::create(Utils::enumKeyToString(m_currentKey).c_str(), "bigFont.fnt");
+    m_currentKeyLbl->limitLabelWidth(150, 1.0F, 0.2F);
+    auto confirmBtn = CCMenuItemSpriteExtra::create(
+        ButtonSprite::create("Confirm"),
+        this,
+        menu_selector(CharUI::onConfirm)
+    );
+    confirmBtn->setPositionY(-(s_defHeight / 3));
+    this->m_buttonMenu->addChild(title);
+    this->m_buttonMenu->addChild(m_currentKeyLbl);
+    this->m_buttonMenu->addChild(confirmBtn);
+}
+
+void CharUI::onConfirm(CCObject*) {
+    auto settings = Mod::get()->getSavedValue<SettingHackStruct>("values");
+    auto m_hack = m_prismButton->getHack();
+    m_hack->value.intValue = static_cast<int>(m_currentKey);
+    Hacks::Settings::setSettingValue(&settings, *m_hack, m_hack->value.intValue);
+    m_prismButton->getInputNode()->setString(Utils::enumKeyToString(m_currentKey).c_str());
+    onClose(nullptr);
+}
+
+void PrismUIButton::onCharBtn(CCObject* ret) {
+    CharUI::create(this)->show();
 }
 
 void PrismUIButton::onFloatBtn(CCObject* ret) {
@@ -335,6 +434,7 @@ void PrismUIButton::onBtn(CCObject* ret) {
     std::string name = m_hack->name;
     auto prismUI = static_cast<PrismUI*>(CCScene::get()->getChildByID("prism-menu"));
     if (name == "Restore Defaults") {
+        Mod::get()->setSettingValue("skip-intro", false);
         Hacks::processJSON(true);
         prismUI->onClose(ret);
         //GatoSim::onButton();
@@ -348,16 +448,16 @@ void PrismUIButton::onBtn(CCObject* ret) {
                 dirs::getGameDir(),
                 { filter }
             },
-            [&](ghc::filesystem::path path) {
+            [&](std::filesystem::path path) {
                 auto saveDir = Mod::get()->getSaveDir().string();
-                if (!ghc::filesystem::exists(saveDir + "/themes")) {
-                    ghc::filesystem::create_directory(saveDir + "/themes");
+                if (!std::filesystem::exists(saveDir + "/themes")) {
+                    std::filesystem::create_directory(saveDir + "/themes");
                 }
                 auto savePath = saveDir + "/themes/" + path.filename().string();
-                if (ghc::filesystem::exists(savePath)) {
-                    ghc::filesystem::remove(savePath);
+                if (std::filesystem::exists(savePath)) {
+                    std::filesystem::remove(savePath);
                 }
-                ghc::filesystem::copy_file(path, savePath); // why this crashes if a file already exists? idk
+                std::filesystem::copy_file(path, savePath); // why this crashes if a file already exists? idk
                 FLAlertLayer::create("Success!", "The <cy>theme</c> has successfully been imported! Restart your game to use it.", "OK")->show();
             }
         );
@@ -372,16 +472,16 @@ void PrismUIButton::onBtn(CCObject* ret) {
                 dirs::getGameDir(),
                 { filter }
             },
-            [&](ghc::filesystem::path path) {
+            [&](std::filesystem::path path) {
                 auto saveDir = Mod::get()->getSaveDir().string();
-                if (!ghc::filesystem::exists(saveDir + "/macros")) {
-                    ghc::filesystem::create_directory(saveDir + "/macros");
+                if (!std::filesystem::exists(saveDir + "/macros")) {
+                    std::filesystem::create_directory(saveDir + "/macros");
                 }
                 auto savePath = saveDir + "/macros/" + path.filename().string();
-                if (ghc::filesystem::exists(savePath)) {
-                    ghc::filesystem::remove(savePath);
+                if (std::filesystem::exists(savePath)) {
+                    std::filesystem::remove(savePath);
                 }
-                ghc::filesystem::copy_file(path, savePath); // why this crashes if a file already exists? idk
+                std::filesystem::copy_file(path, savePath); // why this crashes if a file already exists? idk
                 FLAlertLayer::create("Success!", "The <cy>macro</c> has successfully been imported!", "OK")->show();
             }
         );
@@ -526,9 +626,9 @@ void PrismUIButton::textChanged(CCTextInputNode* input) {
     const auto& obj = m_hack->data;
     auto settings = Mod::get()->getSavedValue<SettingHackStruct>("values");
     std::string name = m_hack->name;
-    auto min = m_hack->data.get<int>("min");
-    auto max = m_hack->data.get<int>("max");
-    if (m_hack->value.type == ValueType::Int) {
+    if (m_hack->type == "int") {
+        auto min = m_hack->data.get<int>("min");
+        auto max = m_hack->data.get<int>("max");
         int value = min;
         std::istringstream iss(input->getString());
         if (!(iss >> value)) {
@@ -546,7 +646,9 @@ void PrismUIButton::textChanged(CCTextInputNode* input) {
             m_hack->value.intValue = value;
         }
         Hacks::Settings::setSettingValue(&settings, *m_hack, m_hack->value.intValue);
-    } else { // assume float
+    } else if (m_hack->type == "float") { // assume float
+        auto min = m_hack->data.get<int>("min");
+        auto max = m_hack->data.get<int>("max");
         float value = min;
         std::istringstream iss(input->getString());
         if (!(iss >> value)) {
@@ -662,6 +764,11 @@ void PrismUIButton::textInputOpened(CCTextInputNode* input) { // basically onInt
     Themes::RGBAToCC(PrismUI::GetTheme()["Text"], input->m_placeholderLabel);
 }
 
+
+bool PrismUIButton::allowTextInput(CCTextInputNode*) {
+    return m_hack->type != "char";
+}
+
 void PrismUIButton::textInputClosed(CCTextInputNode* input) { // basically onIntBtn
     if (input->getString().size() == 0) return;
     editedInputNode = false;
@@ -677,7 +784,7 @@ void PrismUIButton::textInputClosed(CCTextInputNode* input) { // basically onInt
             CCDirector::sharedDirector()->getScheduler()->setTimeScale(m_hack->value.floatValue);
 #endif
         }
-    } else {
+    } else if (m_hack->type == "int") {
         input->setString(std::to_string(m_hack->value.intValue));
         intChanged();
     }
@@ -750,9 +857,9 @@ void PrismUI::RegenCategory() {
             Themes::RGBAToCC(GetTheme()["Text"], createdByLabel);
             Themes::RGBAToCC(GetTheme()["Text"], versionLabel);
             #ifndef DEV_BUILD
-            auto version = fmt::format("{} (Geode)", Mod::get()->getVersion().toString());
+            auto version = fmt::format("{} (Geode)", Mod::get()->getVersion());
             #else 
-            auto version = fmt::format("{}-Dev (Geode)", Mod::get()->getVersion().toString());
+            auto version = fmt::format("{}-Dev (Geode)", Mod::get()->getVersion());
             #endif
 
             #ifdef GEODE_IS_WINDOWS

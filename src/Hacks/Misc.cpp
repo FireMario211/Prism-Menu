@@ -58,7 +58,9 @@ void drawPlayerHitboxes(CCDrawNode* drawNode, PlayerObject* player) {
 }
 
 class $modify(LevelEditorLayer) {
-    bool lastShowHitboxes = false;
+    struct Fields {
+        bool lastShowHitboxes = false;
+    };
     void updateVisibility(float p0) {
         LevelEditorLayer::updateVisibility(p0);
         bool showHitboxes = Hacks::isHackEnabled("Show Hitboxes");
@@ -106,7 +108,8 @@ class $modify(CCDrawNode) {
 #endif
 
 // BROKEN ON ANDROID
-#ifdef GEODE_IS_WINDOWS
+//#ifdef GEODE_IS_WINDOWS
+#if 0
 class $modify(FMODAudioEngine) {
     void updateMetering() {
         //std::cout << "ok" << std::endl;
@@ -114,3 +117,4 @@ class $modify(FMODAudioEngine) {
     }
 };
 #endif
+//#endif

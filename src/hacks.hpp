@@ -33,7 +33,6 @@ enum class ValueType {
     Bool,
     Float,
     Int,
-    Char,
     Custom
 };
 
@@ -44,7 +43,6 @@ struct HackValue {
         bool boolValue;
         float floatValue;
         int intValue;
-        char* charValue;
         HackValue* customValue;
     };
 
@@ -53,8 +51,6 @@ struct HackValue {
     HackValue(float value) : type(ValueType::Float), floatValue(value) {}
 
     HackValue(int value) : type(ValueType::Int), intValue(value) {}
-
-    HackValue(char* value) : type(ValueType::Char), charValue(value) {}
 
     HackValue(HackValue* value) : type(ValueType::Custom), customValue(value) {}
 };
@@ -279,7 +275,7 @@ class Hacks {
                         } else {
                             value = HackValue(static_cast<float>(obj.get<double>("default")));
                         }
-                    } else if (type == "string") {
+                    } else if (type == "char") { /* else if (type == "string") {
                         if (!ignoreSave && Hacks::Settings::settingContainsHack(settings, name) && !reset) {
                             std::string val = Hacks::Settings::getSettingValue(settings, name).as_string();
                             char* charVal = new char[val.length() + 1];
@@ -291,6 +287,15 @@ class Hacks {
                             char* charVal = new char[val.length() + 1];
                             std::strcpy(charVal, val.c_str());
                             value = HackValue(charVal);
+                        }
+                    } */
+                        //
+                        //
+                        if (!ignoreSave && Hacks::Settings::settingContainsHack(settings, name) && !reset) {
+                            value = Hacks::Settings::getSettingValue(settings, name).as_int();
+                            settingExists = true;
+                        } else {
+                            value = HackValue(static_cast<int>(Utils::keyToEnumKey(obj.get<std::string>("default"))));
                         }
                     } else {
                         value = HackValue(new HackValue(false));
@@ -309,8 +314,8 @@ class Hacks {
                         if (type == "bool") {
                             Hacks::Settings::setSettingValue(&hackValues, item, item.value.boolValue);
                         } else if (type == "string") {
-                            Hacks::Settings::setSettingValue(&hackValues, item, std::string(item.value.charValue));
-                        } else if (type == "int" || type == "dropdown") {
+                            //Hacks::Settings::setSettingValue(&hackValues, item, std::string(item.value.charValue));
+                        } else if (type == "int" || type == "dropdown" || type == "char") {
                             Hacks::Settings::setSettingValue(&hackValues, item, item.value.intValue);
                         } else if (type == "float") {
                             Hacks::Settings::setSettingValue(&hackValues, item, item.value.floatValue);
@@ -347,9 +352,9 @@ class Hacks {
                 if (res.has_error()) {
                     log::error("Something went wrong when trying to patch \"{}\" | {}", name, res.error());
                 } else {
-                    log::info("[{}] Patch {} with addr {}", ((isEnabled) ? "+" : "-"), name, addrStr);
+                    log::info("[Exists] [{}] Patch {} with addr {}", ((isEnabled) ? "+" : "-"), name, addrStr);
                 }
-                return;
+                continue;
             }
 
             // ooo reinterpret_cast so bad!!!

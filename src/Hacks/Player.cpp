@@ -1,5 +1,4 @@
 #include "../hacks.hpp"
-#include "../Utils.hpp"
 #include <Geode/Geode.hpp>
 using namespace geode::prelude;
 
@@ -11,6 +10,7 @@ using namespace geode::prelude;
 #include <Geode/modify/GJEffectManager.hpp>
 
 class $modify(PlayerObject) {
+    struct Fields {
     bool isActuallyDart;
 #if !defined(GEODE_IS_MACOS) && !defined(GEODE_IS_IOS) // for whatever reason, fields arent found!
     // No Solids
@@ -24,6 +24,7 @@ class $modify(PlayerObject) {
         return false;
     }*/
     bool was_platformer;
+    };
     /*bool collidedWithObject(float fl, GameObject* obj,  cocos2d::CCRect p0, bool p1) {
         return PlayerObject::collidedWithObject(fl, obj, p0, p1);
     }*/
@@ -67,6 +68,8 @@ class $modify(PlayerObject) {
         if (!Hacks::isHackEnabled("Enable Patching") && Hacks::isHackEnabled("Jump Hack")) PlayerObject::boostPlayer(boost); // idk if i should make this customizable
         PlayerObject::pushButton(p0);
     }
+    #else 
+    };
     #endif
     void toggleDartMode(bool p0, bool p1) {
         // this is the fix until someone actually creates pads for android32 and android64, because i cant use m_isDart
@@ -102,7 +105,9 @@ class $modify(HardStreak) {
 
 // yeah no this will make the game lag
 class $modify(MenuGameLayer) {
-    int frame = 0;
+    struct Fields {
+        int frame = 0;
+    };
     void update(float dt) {
         if (Hacks::isHackEnabled("Suicide")) {
             m_fields->frame++;

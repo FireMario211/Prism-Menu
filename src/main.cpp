@@ -4,6 +4,7 @@
 #include "CustomSettings.hpp"
 #include <Geode/utils/file.hpp>
 #include "PrismButton.hpp"
+#include "UI/Intro.hpp"
 #include "hacks.hpp"
 #include "Themes.hpp"
 #include "UI/PrismUI.hpp"
@@ -12,6 +13,7 @@
 //#include <geode.custom-keybinds/include/Keybinds.hpp>
 //using namespace keybinds;
 
+#include <filesystem>
 #include <iomanip>
 #include <string>
 
@@ -30,15 +32,6 @@ bool firstLoad = false;
 class $modify(MenuLayer) {
     bool init() {
         if (!MenuLayer::init()) return false;
-        /*auto username = static_cast<CCLabelBMFont*>(this->getChildByID("player-username"));
-        if (username != nullptr) {
-            auto normal = CCSprite::createWithSpriteFrameName("difficulty_02_btn_001.png");
-            normal->setPosition({44,91});
-            normal->setScale(2.0F);
-            this->addChild(normal);
-            username->setString("FIRE IN THE HOLE");
-        }*/
-        // lmao
         HackItem* posX = Hacks::getHack("Button Position X");
         HackItem* posY = Hacks::getHack("Button Position Y");
         auto mainMenu = static_cast<CCMenu*>(this->getChildByID("bottom-menu"));
@@ -55,6 +48,31 @@ class $modify(MenuLayer) {
     }
 };
 
+bool restoreOldFiles() {
+    auto currentSave = Mod::get()->getSaveDir();
+    auto parentDir = currentSave.parent_path();
+    auto oldSave = parentDir / "firee.PrismMenu";
+    if (oldSave.filename().string().find(".old") != std::string::npos) {
+        log::info("Files already restored. Consider deleting the \"firee.PrismMenu.old\" directory in your saves to remove this message.");
+        return false;
+    }
+
+    if (std::filesystem::exists(oldSave) && std::filesystem::is_directory(oldSave)) {
+        log::debug("AIR DETECTED. copying files from firee.PrismMenu to firee.prism");
+        // 3. Copy files from save_backup to saveDir
+        std::filesystem::copy(oldSave, currentSave, std::filesystem::copy_options::overwrite_existing | std::filesystem::copy_options::recursive);
+
+        // 4. Rename save_backup to save_backup.complete
+        std::filesystem::path newBackupDir = parentDir / (oldSave.filename().string() + ".old");
+        std::filesystem::rename(oldSave, newBackupDir);
+
+        return true;
+    } else {
+        // assuming new instance
+        return false;
+    }
+}
+
 // maybe this will fix the issue
 $execute {
     SettingHackStruct val { matjson::Array() };
@@ -62,8 +80,15 @@ $execute {
 }
 
 $on_mod(Loaded) {
+    if (restoreOldFiles()) {
+        log::debug("Mod ID save migration complete");
+        if (Mod::get()->loadData().isOk()) {
+            log::debug("loaded old data");
+        }
+    }
     Hacks::processJSON(false);
     Themes::addToCurrentThemes();
+    Mod::get()->setSettingValue("skip-intro", false); // TODO: remove after intro update
     //auto getKeybindHack = Hacks::getHack("Open Menu Keybind");
     //char inputKeybind = 'C';
     //if (getKeybindHack != nullptr) inputKeybind = *(getKeybindHack->value.charValue);
@@ -90,25 +115,41 @@ $on_mod(Loaded) {
 #include <Geode/modify/CCKeyboardDispatcher.hpp>
 class $modify(CCKeyboardDispatcher) {
     bool dispatchKeyboardMSG(enumKeyCodes key, bool down, bool arr) {
-        if (down && (key == KEY_Tab)) {
-            auto prismButton = typeinfo_cast<PrismButton*>(CCScene::get()->getChildByID("prism-icon"));
-            HackItem* menuStyle = Hacks::getHack("Menu-Style");
-            #ifdef NO_IMGUI 
-            menuStyle->value.intValue = 1;
-            #else
-            if (prismButton == nullptr) return true;
-            #endif
-            if (menuStyle->value.intValue == 0) { // imgui
-                prismButton->showImGuiMenu = !prismButton->showImGuiMenu;
+        //if (down && (static_cast<int>(key) == 18)) {//(key == KEY_Tab)) {
+        if (down) {
+            if (auto charUI = typeinfo_cast<CharUI*>(CCScene::get()->getChildByID("prism-charui"))) {
+                charUI->keyPressed(key);
             } else {
-                auto prismUIExists = CCScene::get()->getChildByID("prism-menu");
-                if (prismUIExists == nullptr) {
-                    PrismUI::create()->show();
-                } else {
-                    static_cast<PrismUI*>(prismUIExists)->onClose(CCNode::create());
+                HackItem* keybind = Hacks::getHack("Menu Keybind");
+                int currentKeyID = (keybind != nullptr) ? keybind->value.intValue : 9;
+                if (static_cast<int>(key) == currentKeyID) {
+                    auto prismButton = typeinfo_cast<PrismButton*>(CCScene::get()->getChildByID("prism-icon"));
+                    HackItem* menuStyle = Hacks::getHack("Menu-Style");
+                    #ifdef NO_IMGUI 
+                    menuStyle->value.intValue = 1;
+                    #else
+                    if (prismButton == nullptr) return true;
+                    #endif
+                    if (menuStyle->value.intValue == 0) { // imgui
+                        prismButton->showImGuiMenu = !prismButton->showImGuiMenu;
+                    } else {
+                        //if (Mod::get()->getSettingValue<bool>("skip-intro")) {
+                            auto prismUIExists = CCScene::get()->getChildByID("prism-menu");
+                            if (prismUIExists != nullptr && prismUIExists->isVisible() == false) return true;
+                            if (prismUIExists == nullptr) {
+                                PrismUI::create()->show();
+                            } else {
+                                static_cast<PrismUI*>(prismUIExists)->onClose(CCNode::create());
+                            }
+                        /*} else {
+                            if (CCScene::get()->getChildByID("prism-intro") == nullptr) {
+                                IntroUI::create()->show();
+                            }
+                        }*/
+                    }
+                    return true;
                 }
             }
-            return true;
         }
         return CCKeyboardDispatcher::dispatchKeyboardMSG(key, down, arr);
     }
@@ -118,6 +159,7 @@ class $modify(CCKeyboardDispatcher) {
 // i completely wasted my time writing this whole patch script, and i kinda want android + mac support soooo
 
 #include <Geode/modify/PlayLayer.hpp>
+#include <Geode/modify/GJBaseGameLayer.hpp>
 #include <Geode/modify/PauseLayer.hpp>
 #include <Geode/modify/EditorUI.hpp>
 #include <Geode/modify/EditorPauseLayer.hpp>
@@ -176,31 +218,34 @@ CircleButtonSprite* createCheatIndicator(bool isHacking) {
     return cheatIndicator;
 }
 
-class $modify(PlayLayer) {
-    float previousPositionX = 0.0F;
-    GameObject* antiCheatObject; // removing after lol
-    CircleButtonSprite* cheatIndicator;
-    CCNode* prismNode;
+class $modify(PrismPlayLayer, PlayLayer) {
+    struct Fields {
+        float previousPositionX = 0.0F;
+        GameObject* antiCheatObject; // removing after lol
+        CircleButtonSprite* cheatIndicator;
+        CCNode* prismNode;
 
-    CCSprite* progressBar;
-    CCLabelBMFont* percentLabel;
-    CCLabelBMFont* attemptLabel;
+        CCSprite* progressBar;
+        CCLabelBMFont* percentLabel;
+        CCLabelBMFont* attemptLabel;
 
-    bool isCheating = false;
-    bool hasSetTestMode = false;
-    bool previousTestMode;
-    
-    // Anticheat Bypass
-    bool initedDeath = false;
+        bool isCheating = false;
+        bool hasSetTestMode = false;
+        bool previousTestMode;
+        
+        // Anticheat Bypass
+        bool initedDeath = false;
 
-    // Noclip Accuracy
-    int frame = 0;
-    int death = 0;
-    float previousPlayerX = 0.0F;
-    float previousDeathX = 0.0F;
-    CCLabelBMFont* accuracyLabel;
-    float flashOpacity = 1.0F;
-    CCSprite* flashNode;
+        // Noclip Accuracy
+        int frame = 0;
+        int playerFrame = 0;
+        int death = 0;
+        float previousPlayerX = 0.0F;
+        float previousDeathX = 0.0F;
+        CCLabelBMFont* accuracyLabel;
+        float flashOpacity = 1.0F;
+        CCSprite* flashNode;
+    };
 
     // Anticheat Bypass, Noclip, No Spikes, No Solids
     void destroyPlayer(PlayerObject *p0, GameObject *p1) {
@@ -260,17 +305,15 @@ class $modify(PlayLayer) {
             PlayLayer::destroyPlayer(p0, p1);
             if (instaRestart) PlayLayer::delayedResetLevel();
         }
-        if (Hacks::isHackEnabled("Anticheat Bypass")) {
-            if (p1 == m_fields->antiCheatObject) { // nice AC robert
-                return PlayLayer::destroyPlayer(p0, p1);
-            }
+        if (p1 == m_fields->antiCheatObject) { // nice AC robert
+            return PlayLayer::destroyPlayer(p0, p1);
         }
         if (p1 != m_fields->antiCheatObject) {
             if (Hacks::isHackEnabled("Suicide")) return PlayLayer::destroyPlayer(p0, p1);
             if (m_player1 != nullptr) {
                 if (m_player1->getPositionX() != m_fields->previousDeathX) {
                     m_fields->previousDeathX = m_player1->getPositionX();
-                    m_fields->death += 1;
+                    m_fields->death++;
                 }
             }
             if (m_fields->accuracyLabel != nullptr && m_fields->flashNode != nullptr) {
@@ -353,11 +396,13 @@ class $modify(PlayLayer) {
         if (prismButton != nullptr && Hacks::isHackEnabled("Show Button")) prismButton->setVisible(true); // look at this
         m_fields->initedDeath = false;
         m_fields->frame = 0;
+        m_fields->playerFrame = 0;
         m_fields->death = 0;
         PlayLayer::onQuit();
     }
     void resetLevel() {
         m_fields->frame = 0;
+        m_fields->playerFrame = 0;
         m_fields->death = 0;
         PlayLayer::resetLevel();
     }
@@ -367,8 +412,9 @@ class $modify(PlayLayer) {
             if (Hacks::isHackEnabled("Suicide")) return PlayLayer::destroyPlayer(m_player1, nullptr);
             if (m_player1->getPositionX() != m_fields->previousPlayerX) {
                 m_fields->previousPlayerX = m_player1->getPositionX();
-                m_fields->frame++;
+                m_fields->playerFrame++;
             }
+            m_fields->frame++;
         }
         if (m_fields->accuracyLabel != nullptr) {
             float accuracy = ((static_cast<float>(m_fields->frame - m_fields->death)) / static_cast<float>(m_fields->frame)) * 100; // for some reason this doesnt work on android, like it goes in the negatives
@@ -500,6 +546,17 @@ class $modify(PlayLayer) {
         PlayLayer::resetLevel(); // haha
     }
 };
+
+/*
+class $modify(GJBaseGameLayer) {
+    void update(float dt) {
+        GJBaseGameLayer::update(dt);
+        if (PlayLayer::get() != nullptr) {
+            auto playLayer = static_cast<PrismPlayLayer*>(PlayLayer::get());
+        }
+    }
+};
+*/
 
 /*
 class $modify(PlayLayer) {

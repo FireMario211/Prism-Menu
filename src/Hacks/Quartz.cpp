@@ -175,10 +175,10 @@ void MacroItemCell::onTrash(CCObject*) {
         [this](auto, bool btn2) {
             if (!btn2) { // yes
                 auto saveDir = Mod::get()->getSaveDir().string();
-                if (ghc::filesystem::exists(saveDir + "/macros")) {
+                if (std::filesystem::exists(saveDir + "/macros")) {
                     auto savePath = saveDir + "/macros/" + m_file.file;
-                    if (ghc::filesystem::exists(savePath)) {
-                        if (ghc::filesystem::remove(savePath)) {
+                    if (std::filesystem::exists(savePath)) {
+                        if (std::filesystem::remove(savePath)) {
                             FLAlertLayer::create("Success!", "Successfully deleted the macro.", "OK")->show();
                             m_list->m_dropdown->lbl->setString("None");
                             HackItem* item = Hacks::getHack("Macro");
@@ -395,8 +395,12 @@ void UpdatePlayer(PlayerObject* player, PlayerFrame frame) {
     player->m_platformerXVelocity = frame.velocity.x;
 }
 void UpdatePlayerType(PlayerObject* player, PlayerFrame frame, MacroType type) {
-    player->m_position = frame.realPos;
-    player->m_yVelocity = frame.velocity.y;
+    if (frame.realPos.y == -1) {
+        player->m_position.x = frame.realPos.x;
+    } else {
+        player->m_position = frame.realPos;
+        player->m_yVelocity = frame.velocity.y;
+    }
     if (type == MacroType::MH) return;
     player->setPosition(frame.pos);
     player->setRotation(frame.rotation);
@@ -416,44 +420,46 @@ bool stillHolding2 = false;
 bool hadHeld = false;
 
 class $modify(QuartzPlayLayer, PlayLayer) {
-    float bot_frame_dt = 0.F;
-    int bot_frame = 0;
-    int clicks = 0;
-    int lastInputFrame = 0;
-    bool playLayerPostUpdate = false;
+    struct Fields {
+        float bot_frame_dt = 0.F;
+        int bot_frame = 0;
+        int clicks = 0;
+        int lastInputFrame = 0;
+        bool playLayerPostUpdate = false;
 
-    int playLayerInit = 0;
+        int playLayerInit = 0;
 
-    Slider* m_slider;
-    CCLabelBMFont* frameLabel;
+        Slider* m_slider;
+        CCLabelBMFont* frameLabel;
 
-    CCMenu* buttons;
-    // why didnt i use checkboxes
-    CCMenuItemSpriteExtra* stopBtn;
-    CCMenuItemSpriteExtra* playBtn;
-    CCMenuItemSpriteExtra* nextBtn;
-    CCMenuItemSpriteExtra* prevBtn;
+        CCMenu* buttons;
+        // why didnt i use checkboxes
+        CCMenuItemSpriteExtra* stopBtn;
+        CCMenuItemSpriteExtra* playBtn;
+        CCMenuItemSpriteExtra* nextBtn;
+        CCMenuItemSpriteExtra* prevBtn;
 
-    CCMenuItemSpriteExtra* inputStateBtn1_p1;
-    CCMenuItemSpriteExtra* inputStateBtn2_p1;
+        CCMenuItemSpriteExtra* inputStateBtn1_p1;
+        CCMenuItemSpriteExtra* inputStateBtn2_p1;
 
-    CCMenuItemSpriteExtra* inputStateBtn1_p2;
-    CCMenuItemSpriteExtra* inputStateBtn2_p2;
-    //std::vector<int> checkpoints;
-    std::map<CheckpointObject*, int> checkpoints = {};
-    bool replay = false;
-    bool started = false;
+        CCMenuItemSpriteExtra* inputStateBtn1_p2;
+        CCMenuItemSpriteExtra* inputStateBtn2_p2;
+        //std::vector<int> checkpoints;
+        std::map<CheckpointObject*, int> checkpoints = {};
+        bool replay = false;
+        bool started = false;
 
-    bool holdingP1 = false;
-    bool holdingP2 = false;
+        bool holdingP1 = false;
+        bool holdingP2 = false;
 
-    bool realHoldingP1 = false;
-    bool realHoldingP2 = false;
+        bool realHoldingP1 = false;
+        bool realHoldingP2 = false;
 
-    bool player2Visible = false;
+        bool player2Visible = false;
 
-    std::vector<PlayerFrame> player_frames;
-    CCPoint previousPosition;
+        std::vector<PlayerFrame> player_frames;
+        CCPoint previousPosition;
+    };
     /*bool init(GJGameLevel* level, bool useReplay, bool dontCreateObjects) {
         if (!PlayLayer::init(level, useReplay, dontCreateObjects)) return false;
 
@@ -464,6 +470,7 @@ class $modify(QuartzPlayLayer, PlayLayer) {
     void RecreateInputState(int state, bool player2, bool force) {
         if (m_fields->inputStateBtn1_p1 == nullptr || m_fields->inputStateBtn2_p1 == nullptr) return;
         if (m_fields->inputStateBtn1_p2 == nullptr || m_fields->inputStateBtn2_p2 == nullptr) return;
+        if (!Hacks::isHackEnabled("Record") && !Hacks::isHackEnabled("Playback")) return;
         if (m_fields->replay || force) {
             if (player2) {
                 log::debug("[P2] change state to {}", state);
@@ -507,7 +514,8 @@ class $modify(QuartzPlayLayer, PlayLayer) {
                             std::sort(current_macro.inputs.begin(), current_macro.inputs.end(), [](const QuartzInput& a, const QuartzInput& b) {
                                 return a.frame < b.frame;
                             });
-                            m_fields->lastInputFrame = current_macro.inputs[current_macro.inputs.size() - 1].frame; 
+                            if (!current_macro.inputs.empty())
+                                m_fields->lastInputFrame = current_macro.inputs.back().frame;
                         }
                     }
                     Hacks::setTPS(current_macro.framerate);
@@ -738,10 +746,11 @@ class $modify(QuartzPlayLayer, PlayLayer) {
         if (m_fields->bot_frame <= 0 || !STOPTIME) return;
 #ifdef GEODE_IS_WINDOWS
         m_fields->bot_frame -= 2;
-        m_gameState.m_unk1f8 -= 2;
+        //m_unk1f8
+        m_gameState.m_currentProgress -= 2;
 #else
         m_fields->bot_frame -= 2;
-        m_gameState.m_unk1f8 -= 2000;
+        m_gameState.m_currentProgress -= 2000;
 #endif
         int bot_frame = m_fields->bot_frame;
         auto input_player = std::find_if(m_fields->player_frames.begin(), m_fields->player_frames.end(), [bot_frame](const PlayerFrame& input) {
@@ -811,9 +820,9 @@ class $modify(QuartzPlayLayer, PlayLayer) {
         if (input_player != m_fields->player_frames.end()) {
             m_fields->bot_frame = input_player->frame;
             #ifdef GEODE_IS_WINDOWS
-            m_gameState.m_unk1f8 = m_fields->bot_frame;
+            m_gameState.m_currentProgress = m_fields->bot_frame;
             #else
-            m_gameState.m_unk1f8 = m_fields->bot_frame * 1000;
+            m_gameState.m_currentProgress = m_fields->bot_frame * 1000;
             #endif
             if (input_player2 != m_fields->player_frames.end()) {
                 UpdatePlayer(m_player2, *input_player2);
@@ -851,9 +860,9 @@ class $modify(QuartzPlayLayer, PlayLayer) {
         if (input_player != m_fields->player_frames.end()) {
             m_fields->bot_frame = input_player->frame;
 #ifdef GEODE_IS_WINDOWS
-            m_gameState.m_unk1f8 = m_fields->bot_frame;
+            m_gameState.m_currentProgress = m_fields->bot_frame;
 #else
-            m_gameState.m_unk1f8 = m_fields->bot_frame * 1000;
+            m_gameState.m_currentProgress = m_fields->bot_frame * 1000;
 #endif
             if (input_player2 != m_fields->player_frames.end()) {
                 UpdatePlayer(m_player2, *input_player2);
@@ -919,7 +928,8 @@ class $modify(QuartzPlayLayer, PlayLayer) {
                         current_macro.levelInfo.id = m_level->m_levelID;
                         current_macro.ldm = m_level->m_lowDetailModeToggled;
                     } else if (Hacks::isHackEnabled("Playback")) {
-                        m_fields->lastInputFrame = current_macro.inputs[current_macro.inputs.size() - 1].frame; 
+                        if (!current_macro.inputs.empty())
+                            m_fields->lastInputFrame = current_macro.inputs.back().frame;
                     }
                 }
                 changedMacro = false;
@@ -1051,9 +1061,9 @@ class $modify(GJBaseGameLayer) {
                 } else {*/
                     ///playLayer->m_fields->bot_frame += addDt;
                     #ifdef GEODE_IS_WINDOWS 
-                    playLayer->m_fields->bot_frame = m_gameState.m_unk1f8;
+                    playLayer->m_fields->bot_frame = m_gameState.m_currentProgress;
                     #else
-                    playLayer->m_fields->bot_frame = m_gameState.m_unk1f8 / 1000;
+                    playLayer->m_fields->bot_frame = m_gameState.m_currentProgress / 1000;
                     #endif 
                 //}
                 if (Hacks::isHackEnabled("Fixed FPS")) {
@@ -1099,49 +1109,8 @@ class $modify(GJBaseGameLayer) {
 
                         int agfvcbeaga = playLayer->m_fields->playLayerInit;
                         int acheronbyriotandmore = playLayer->m_fields->lastInputFrame;
-                        // inline asm by beloved
-                        #ifdef GEODE_IS_WINDOWS 
-                        __asm {
-                            PUSH EAX
-                            MOV eax, agfvcbeaga
-                            CMP eax, 0x40c53 ; eax != agfvcbeaga
-                            JNE hijesbcftu ; jump not equal
-                            JMP equ
-                            hijesbcftu:
-                                CMP eax, 0 
-                                JNE YOURFINAL 
-                                JMP equ
-                            YOURFINAL:
-                                POP EAX
-                                RET ; BYE!
-                            equ:
-                                MOV agfvcbeaga, 0x40c53
-                                POP EAX
-                        }
-                        __asm {
-                            PUSH EAX
-                            PUSH EBX
-                            MOV EAX, bot_frame
-                            MOV EBX, acheronbyriotandmore
-                            CMP EBX, 0 ; ebx != 0
-                            JNE nextcheck ; jump not equal
-                            JMP end_prog
-                            nextcheck:
-                                CMP EAX, EBX ; eax > ebx
-                                JG filsbixpqcoxjbp ; jump greater than
-                                JMP end_prog
-                            filsbixpqcoxjbp:
-                                POP EAX 
-                                POP EBX 
-                                RET ; BYE !
-                            end_prog:
-                                POP EAX 
-                                POP EBX
-                        }
-                        #else 
                         agfvcbeaga = (0x00000000000818A6 + 0x0000000000040E53 + 0x0000000000041453 - 0x00000000000C2EF9);
                         if ((agfvcbeaga ^ 0x0000000000040C53)) return;
-                        #endif 
                         playLayer->m_fields->playLayerInit = agfvcbeaga;
                         if (!!!(agfvcbeaga == playLayer->m_fields->playLayerInit)) return;
 
@@ -1270,7 +1239,7 @@ class $modify(EndLevelLayer) {
                         auto node = layer->getChildren()->objectAtIndex(i);
                         if (auto spr = typeinfo_cast<CCSprite*>(node)) {
                             if (spr->getPositionY() == 235.F) {
-                                spr->setScaleX(0.9F);
+                                spr->setScaleX(0.775F);
                                 break;
                             }
                         }

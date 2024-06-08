@@ -1,5 +1,6 @@
 #pragma once
 #include <Geode/Geode.hpp>
+#include "UI/Intro.hpp"
 #include "hacks.hpp"
 #include "UI/PrismUI.hpp"
 using namespace geode::prelude;
@@ -125,6 +126,11 @@ public:
             showImGuiMenu = !showImGuiMenu;
         } else {
             PrismUI::create()->show();
+            /*if (Mod::get()->getSettingValue<bool>("skip-intro")) {
+                PrismUI::create()->show();
+            } else {
+                IntroUI::create()->show();
+            }*/
         }
     }
     void resetTouchPriority(bool alsoChild, bool force) {

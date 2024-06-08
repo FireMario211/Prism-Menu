@@ -241,22 +241,25 @@ void Hacks::setTPS(int tps) {
     uint8_t bytes[sizeof(float)];
     std::memcpy(bytes, &value, sizeof(float));
     std::vector<uint8_t> bytesVec(bytes, bytes + sizeof(float));
+    
 #if defined(GEODE_IS_WINDOWS) // why is windows the only one with 1 addr!?
-    uintptr_t addr1 = 0x49D548;
+    uintptr_t addr1 = 0x5ec6d0;
     uintptr_t addr2 = 0x0;
 #elif defined(GEODE_IS_ANDROID32)
-    uintptr_t addr2 = 0x457eb8; // double
-    uintptr_t addr1 = 0x457ec4; // float
+    uintptr_t addr1 = 0x45ce44; // float 
+    uintptr_t addr2 = 0x45ce38; // double
 #elif defined(GEODE_IS_ANDROID64)
-    uintptr_t addr1 = 0x8335c8; // float
-    uintptr_t addr2 = 0x8335c0; // double
-#elif defined(GEODE_IS_MACOS)
-    uintptr_t addr2 = 0x7e9c60; // double
-    uintptr_t addr1 = 0x7e9ac0; // float
+    uintptr_t addr1 = 0x8384c0; // float
+    uintptr_t addr2 = 0x8384b8; // double
+#elif defined(GEODE_IS_INTEL_MAC)
+    uintptr_t addr2 = 0x7e9c60; // double TODO
+    uintptr_t addr1 = 0x7e9ac0; // float TODO
+#elif defined(GEODE_IS_ARM_MAC)
+    uintptr_t addr2 = 0x7e9c60; // double TODO
+    uintptr_t addr1 = 0x7e9ac0; // float TODO
 #elif defined(GEODE_IS_IOS)
-    // TODO: do later!
-    uintptr_t addr1 = 0x0;
-    uintptr_t addr2 = 0x0;
+    uintptr_t addr1 = 0x6426ec;
+    uintptr_t addr2 = 0x642b60;
 #endif
 // sorry ios!
     auto patches = Mod::get()->getPatches();
@@ -298,6 +301,6 @@ void Hacks::setTPS(int tps) {
         float timestampMultiplier = (tps / 240.f);
 		float stepsMultiplier = (global_timestamp * timestampMultiplier) / PlayLayer::get()->m_level->m_timestamp;
 		PlayLayer::get()->m_level->m_timestamp = global_timestamp * timestampMultiplier;
-		PlayLayer::get()->m_gameState.m_unk1f8 *= stepsMultiplier;
+		PlayLayer::get()->m_gameState.m_currentProgress *= stepsMultiplier;
     }
 }

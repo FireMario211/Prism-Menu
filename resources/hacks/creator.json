@@ -19,6 +19,52 @@
         "type": "bool"
 	},
     {
+        "name": "Custom Object Bypass",
+        "desc": "Allows you to go beyond the 1000 object limit for custom objects.",
+        "type": "bool",
+        "opcodes": {
+            "win": [
+                {"addr": "0xe0577", "on": "3d 00 00 00 00", "off": "3d e8 03 00 00"},
+                {"addr": "0xe057c", "on": "0f 85 3f 01 00 00", "off": "0f 86 3f 01 00 00", "instruction": "JNZ"},
+
+                {"addr": "0xe0702", "on": "c7 c0 01 00 00 00", "off": "ff 15 c8 22 40 00"},
+
+                {"addr": "0xe08f0", "on": "3d 00 00 00 00", "off": "3d e8 03 00 00"},
+                {"addr": "0xe08f5", "on": "0f 84 ec 00 00 00", "off": "0f 87 ec 00 00 00", "instruction": "JZ"}
+            ],
+            "winold": [
+                {"addr": "0xa820f", "on": "3d ff ff ff ff", "off": "3d e8 03 00 00"},
+                {"addr": "0xa82ad", "on": "3d ff ff ff ff", "off": "3d c8 00 00 00"}
+            ],
+            "macold2.200": [
+                {"addr": "0x3425e", "on": "b8 01 00 00 00", "off": "e8 3d f5 6a 00"},
+                {"addr": "0x342c3", "on": "b8 01 00 00 00", "off": "e8 08 6c 2b 00"},
+                {"addr": "0x345be", "on": "b8 01 00 00 00", "off": "e8 dd f1 6a 00"}
+            ],
+            "android32": [
+                {"addr": "0x3934fa", "on": "b0 f1 00 0f", "off": "b0 f5 7a 7f", "why": "WHY IS THIS THE ONLY ONE WHERE I CANT JUST MOV THE REGISTER, its too small to patch aaaaAAAAAAAAAA"},
+                {"addr": "0x3934fe", "on": "3a d9", "off": "3a d8"},
+
+                {"addr": "0x39350e", "on": "27 e0", "off": "27 d9"},
+
+                {"addr": "0x39363a", "on": "b0 f1 00 0f", "off": "b0 f5 7a 7f"},
+                {"addr": "0x39363e", "on": "c2 d9", "off": "c2 d8"}
+            ],
+            "android64": [
+                {"addr": "0x6a1a24", "on": "20 00 80 52", "off": "56 d4 0f 94", "instruction": "mov w0, #1"},
+                {"addr": "0x69d2ec", "on": "20 00 80 52", "off": "a4 d3 0f 94"},
+                {"addr": "0x6a1b00", "on": "20 00 80 52", "off": "ef c0 0f 94"}
+            ],
+            "iosold2.200": [
+                {"addr": "0x3e4cf8", "on": "20 00 80 52", "off": "2f b4 f9 97"},
+                {"addr": "0x3e4d9c", "on": "20 00 80 52", "off": "7a e9 00 94"},
+                {"addr": "0x3e4edc", "on": "20 00 80 52", "off": "b6 b3 f9 97"}
+            ]
+        },
+        "type": "bool",
+        "save": false
+    },
+    {
 	    "name": "No (C) Mark",
 	    "desc": "Removes the (C) mark when uploading copied levels. Will automatically set levels to be original.",
         "type": "bool",
@@ -27,27 +73,88 @@
     {
 	    "name": "Rotation Hack",
 	    "desc": "Allows you to rotate any object. Only works locally.",
-        "opcodesold": [
-            {"addr": "0x85CBC", "on": "B8 01 00 00 00 90", "off": "8B 80 00 03 00 00"},
-            {"addr": "0x8BDDD", "on": "B8 01 00 00 00 90", "off": "8B 80 00 03 00 00"},
-            {"addr": "0x8BE16", "on": "B8 01 00 00 00 90", "off": "8B 80 00 03 00 00"},
-            {"addr": "0xECA3D", "on": "B8 01 00 00 00 90", "off": "8B 87 00 03 00 00"},
-            {"addr": "0xEE5A9", "on": "B8 01 00 00 00 90", "off": "8B 86 00 03 00 00"},
-            {"addr": "0x20181E", "on": "B8 01 00 00 00 90", "off": "8B 83 00 03 00 00"}
-        ],
+        "opcodes": {
+            "win": [
+                {"addr": "0xc85f9", "on": "b8 01 00 00 00 90", "off": "8b 88 1c 03 00 00", "stupid inline func": "really"},
+                {"addr": "0xd18e0", "on": "b8 01 00 00 00 90", "off": "8b 88 1c 03 00 00"},
+                {"addr": "0xd191e", "on": "b8 01 00 00 00 90", "off": "8b 88 1c 03 00 00"},
+                {"addr": "0x141fe7", "on": "b8 01 00 00 00 90", "off": "8b 86 1c 03 00 00"},
+
+                {"addr": "0x1412b6", "on": "b8 01 00 00 00 90", "off": "8b 86 1c 03 00 00"},
+                {"addr": "0x13f2f9", "on": "b8 01 00 00 00 90", "off": "8b 87 1c 03 00 00"},
+                {"addr": "0x13f411", "on": "b8 01 00 00 00 90", "off": "8b 87 1c 03 00 00"},
+                {"addr": "0x1bd918", "on": "b8 01 00 00 00 90", "off": "8b 82 1c 03 00 00"}
+            ],
+            "android32": [
+                {"addr": "0x346e74", "on": "00 bf", "off": "19 2b"},
+                {"addr": "0x346e76", "on": "00 bf", "off": "06 d8"},
+                {"addr": "0x346e78", "on": "00 bf 00 bf", "off": "00 fa 03 f1"},
+                {"addr": "0x346e7c", "on": "00 bf", "off": "02 4b"},
+                {"addr": "0x346e7e", "on": "00 bf", "off": "0b 40"},
+                {"addr": "0x346e80", "on": "00 bf", "off": "0b b1"},
+                {"addr": "0x346e82", "on": "00 bf 00 bf", "off": "92 f8 12 04"}
+            ],
+            "android64": [
+                {"addr": "0x62c5ec", "on": "1f 20 03 d5", "off": "3f 54 00 71"},
+                {"addr": "0x62c5f0", "on": "1f 20 03 d5", "off": "c0 00 00 54"},
+                {"addr": "0x62c5f4", "on": "1f 20 03 d5", "off": "3f 64 00 71"},
+                {"addr": "0x62c5f8", "on": "1f 20 03 d5", "off": "80 00 00 54"},
+                {"addr": "0x62c5fc", "on": "1f 20 03 d5", "off": "61 00 00 34"}
+            ],
+            "ios": [
+                {"addr": "0x264e2c", "on": "1f 20 03 d5", "off": "3f 54 00 71"},
+                {"addr": "0x264e30", "on": "1f 20 03 d5", "off": "09 20 c9 1a"},
+                {"addr": "0x264e34", "on": "1f 20 03 d5", "off": "2a 00 80 52"},
+                {"addr": "0x264e38", "on": "1f 20 03 d5", "off": "0a 44 a0 72"},
+                {"addr": "0x264e3c", "on": "1f 20 03 d5", "off": "29 01 0a 0a"},
+                {"addr": "0x264e40", "on": "1f 20 03 d5", "off": "24 99 40 7a"},
+                {"addr": "0x264e44", "on": "04 00 00 14", "off": "80 00 00 54"}
+            ]
+        },
         "type": "bool",
+        "save": false,
+        "platformsold": ["win", "android32", "android64", "ios"],
         "platforms": []
 	},
     {
 	    "name": "Default Song Bypass",
 	    "desc": "Lets you use hidden default songs in the editor.",
-	    "opcodesold": [
-            {"addr": "0x174407", "on": "90 90", "off": "74 2F"},
-            {"addr": "0x174411", "on": "90 90 90", "off": "0F 4F C6"},
-            {"addr": "0x174456", "on": "90 90", "off": "74 2F"},
-            {"addr": "0x174460", "on": "90 90 90", "off": "0F 4F C6"}
-	    ],
+        "opcodes": {
+            "win": [
+                {"addr": "0x266beb", "on": "90 90 90", "off": "83 f8 16", "atodo": "MoreSearchLayer::audioNext %02d: %s"},
+                {"addr": "0x266bee", "on": "90 90", "off": "74 2e"},
+                {"addr": "0x266bfd", "on": "90 90 90", "off": "0f 4f c1"},
+
+                {"addr": "0x92276", "on": "90 90 90", "off": "83 f8 15"},
+                {"addr": "0x92279", "on": "90 90", "off": "74 24"},
+
+                {"addr": "0x92283", "on": "90 90 90 90 90", "off": "ba 15 00 00 00"},
+                {"addr": "0x92288", "on": "90 90", "off": "3b c2"},
+                {"addr": "0x9228a", "on": "90 90 90", "off": "0f 4f c2"}
+            ],
+            "android32": [
+                {"addr": "0x39991c", "on": "00 bf", "off": "16 28"},
+                {"addr": "0x3998e2", "on": "00 bf", "off": "16 21"},
+                {"addr": "0x3998e4", "on": "00 bf", "off": "0d 46"},
+
+                {"addr": "0x44241e", "on": "15 2a", "off": "15 29"},
+
+                {"addr": "0x44240c", "on": "09 00", "off": "15 21"}
+            ],
+            "android64": [
+                {"addr": "0x6ac9c0", "on": "1f 20 03 d5", "off": "1f 58 00 71"},
+                {"addr": "0x6ac9c8", "on": "1f 20 03 d5", "off": "c0 00 00 54"},
+
+                {"addr": "0x6ac96c", "on": "f3 03 01 2a", "off": "d3 02 80 52"},
+
+                {"addr": "0x80b328", "on": "e3 03 01 2a", "off": "a3 02 80 52"},
+                {"addr": "0x80b34c", "on": "1f 20 03 d5", "off": "3f 54 00 71"},
+                {"addr": "0x80b350", "on": "1f 20 03 d5", "off": "60 00 00 54"}
+            ]
+        },
         "type": "bool",
+        "save": false,
+        "platformsold": ["win", "android32", "android64"],
         "platforms": []
 	}
 ]

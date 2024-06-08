@@ -3,7 +3,7 @@
 A mod that intends to be a free alternative to other mod menus, while also adding extra useful additions. (Press `Tab` to open menu)
 [Support Discord Server](https://discord.gg/pnD8cnwdhZ)
 
-![Mod Example](firee.PrismMenu/Screenshot1.png)
+![Mod Example](firee.prism/Screenshot1.png)
 This mod menu also provides unique features not present in most mod menus, here are a few examples.
 ## Tons of different mods
 * Prism Menu by default comes with a lot of mods / hacks that are in most mod menus! While the current amount is low, I plan on adding more as I update this mod.
@@ -11,7 +11,7 @@ This mod menu also provides unique features not present in most mod menus, here 
 * You can use the set themes present here, or create/import your own theme!
 * Currently, there are 2 themes available: `Future Dark`, `Light`, & `Catppuccin`, but you can create your own theme and share it with others!
 
-![Theme Example](firee.PrismMenu/Screenshot2.png)
+![Theme Example](firee.prism/Screenshot2.png)
 ## Multi-Language Support
 * Prism Menu supports more languages than **English,** it supports **Spanish**, **French**, **Portuguese** (Brazilian), **German**, **Russian**, **Czech**, and many more!
 ## Replay Bot (Quartz)

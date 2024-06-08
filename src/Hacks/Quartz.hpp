@@ -146,7 +146,7 @@ struct QuartzMacro : gdr::Replay<QuartzMacro, QuartzInput> {
 struct MacroFile {
     std::string file;
     std::string name;
-    ghc::filesystem::path path;
+    std::filesystem::path path;
     QuartzMacro macro;
 };
 
@@ -158,13 +158,13 @@ class MacroManager {
         static bool createMacro(std::string name, std::string desc, std::string fps, bool isJSON) {
             int intFPS = std::stoi(fps);
             auto saveDir = Mod::get()->getSaveDir().string();
-            if (!ghc::filesystem::exists(saveDir + "/macros")) {
-                ghc::filesystem::create_directory(saveDir + "/macros");
+            if (!std::filesystem::exists(saveDir + "/macros")) {
+                std::filesystem::create_directory(saveDir + "/macros");
             }
             auto savePath = saveDir + "/macros/" + name + ".gdr";
-            if (ghc::filesystem::exists(savePath)) return false;
+            if (std::filesystem::exists(savePath)) return false;
             if (isJSON) savePath = savePath + ".json";
-            if (ghc::filesystem::exists(savePath)) return false;
+            if (std::filesystem::exists(savePath)) return false;
             QuartzMacro macro;
             macro.author = GJAccountManager::sharedState()->m_username;
             //macro.author = "FireeDev";
@@ -190,7 +190,7 @@ class MacroManager {
         }
         static QuartzMacro getMacro(std::string name) {
             auto saveDir = Mod::get()->getSaveDir().string();
-            if (ghc::filesystem::exists(saveDir + "/macros")) {
+            if (std::filesystem::exists(saveDir + "/macros")) {
                 auto savePath = saveDir + "/macros/" + name;
                 std::ifstream f(savePath, std::ios::binary);
 
@@ -223,11 +223,11 @@ class MacroManager {
                 log::warn("Macro was saved with no inputs!");
             }
             auto saveDir = Mod::get()->getSaveDir().string();
-            if (!ghc::filesystem::exists(saveDir + "/macros")) {
-                ghc::filesystem::create_directory(saveDir + "/macros");
+            if (!std::filesystem::exists(saveDir + "/macros")) {
+                std::filesystem::create_directory(saveDir + "/macros");
             }
             auto savePath = saveDir + "/macros/" + file;
-            if (!ghc::filesystem::exists(savePath)) return false;
+            if (!std::filesystem::exists(savePath)) return false;
             std::ofstream f(savePath, std::ios::binary);
             auto data = macro.exportData(file.ends_with(".gdr.json"));
 
@@ -237,10 +237,10 @@ class MacroManager {
         }
         static std::vector<MacroFile> getMacros() {
             auto saveDir = Mod::get()->getSaveDir().string();
-            if (!ghc::filesystem::exists(saveDir + "/macros")) return {};
+            if (!std::filesystem::exists(saveDir + "/macros")) return {};
             std::vector<MacroFile> macros;
-            for (const auto& entry : ghc::filesystem::directory_iterator(saveDir + "/macros")) {
-                if (ghc::filesystem::is_regular_file(entry)) {
+            for (const auto& entry : std::filesystem::directory_iterator(saveDir + "/macros")) {
+                if (std::filesystem::is_regular_file(entry)) {
                     // remove the .gdr or .gdr.json 
                     std::string fileNameFull = entry.path().filename().string();
                     std::string fileName = entry.path().filename().string();

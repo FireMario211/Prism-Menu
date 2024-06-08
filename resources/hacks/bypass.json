@@ -72,7 +72,7 @@
         "name": "Free Shop Items",
         "desc": "Allows all shop items to be bought for 0 mana orbs. (Do note this will increase your current mana orbs to 1000000)",
         "opcodesold": [
-            {"addr": "0xF33BB", "on": "8B 93 10 01 00 00", "off": "8B 93 14 01 00 00"},
+            {"addr": "0x16a18b", "on": "8b 83 2c 01 00 00", "off": "8b 83 30 01 00 00"},
             {"addr": "0x14B339", "on": "2B B3 10 01 00 00", "off": "2B B3 14 01 00 00"}
         ],
         "type": "bool",

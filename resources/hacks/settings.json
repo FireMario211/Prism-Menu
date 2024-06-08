@@ -20,8 +20,8 @@
         "desc": "Sets the language for Prism Menu!",
         "type": "dropdown",
         "default": 0,
-        "values": ["English [100%]", "Français [60%]", "Português (Brasil) [100%]", "Deutsch [100%]", "Русский [100%]", "Čeština [100%]", "Indonesia [88%]", "Español [100%]", "Polskie [80%]", "Melayu [78%]", "Türkçe [90%]", "Tieng Viet [100%]"],
-        "todovalues": ["日本語 [100%]"]
+        "values": ["English", "Français", "Português (Brasil)", "Deutsch", "Русский", "Čeština", "Indonesia", "Español", "Polskie", "Melayu", "Türkçe", "Tieng Viet", "Українська"],
+        "todovalues": ["Ελληνική","日本語"]
     },
     {
         "name": "Theme",
@@ -41,6 +41,13 @@
         "desc": "Shows the button to activate the menu. It's recommended to keep this enabled for Android.",
         "type": "bool",
         "default": true
+    },
+    {
+        "name": "Menu Keybind",
+        "desc": "The keybind for opening the Prism Menu UI!",
+        "type": "char",
+        "default": "[Tab]",
+        "platforms": ["win", "mac"]
     },
     {
         "name": "Button Position X",

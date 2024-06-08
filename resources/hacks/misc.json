@@ -28,7 +28,7 @@
         "name": "No Pulse",
         "desc": "Disables orbs and other related objects from pulsing on the music.",
         "type": "bool",
-        "platforms": ["win"]
+        "platforms": []
     },
     {
         "name": "Disable Camera Effects",
@@ -71,6 +71,6 @@
         "desc": "Shows you Geometry Dash's graphic options! Useful for Android as the option is normally not available.",
         "type": "button",
         "default": "button",
-        "platforms": ["android32", "android64"]
+        "platforms": ["android32", "android64", "ios"]
     }
 ]

@@ -1,5 +1,6 @@
 #pragma once
 #include <Geode/Geode.hpp>
+#include "../Misc/DownloadManager.hpp"
 #include <Geode/Bindings.hpp>
 #include <Geode/ui/TextInput.hpp>
 #include "../Languages.hpp"
@@ -7,7 +8,7 @@
 
 using namespace geode::prelude;
 
-class PrismUIButton : public CCNode, public TextInputDelegate {
+class PrismUIButton : public CCNode, public TextInputDelegate, public CCKeyboardDelegate {
     protected:
         CCMenu* menu;
         HackItem* m_hack;
@@ -20,9 +21,11 @@ class PrismUIButton : public CCNode, public TextInputDelegate {
         void intChanged();
         void onIncBtn(CCObject*);
         void onDecBtn(CCObject*);
+        void onCharBtn(CCObject*);
         void textChanged(CCTextInputNode* input) override;
         void textInputOpened(CCTextInputNode* input) override;
         void textInputClosed(CCTextInputNode* input) override;
+        bool allowTextInput(CCTextInputNode*) override;
         void onFloatBtn(CCObject*);
         void onBtn(CCObject*);
         void onDropdownBtn(CCObject*);
@@ -36,6 +39,25 @@ class PrismUIButton : public CCNode, public TextInputDelegate {
         void onInfoBtn(CCObject*);
         static PrismUIButton* create(HackItem* hack, Lang* lang);
 };
+
+
+class CharUI : public BrownAlertDelegate {
+    protected:
+        float m_fWidth = s_defWidth;
+        CCLabelBMFont* m_currentKeyLbl;
+        cocos2d::enumKeyCodes m_currentKey;
+        float m_fHeight = s_defHeight;
+        virtual void keyDown(cocos2d::enumKeyCodes) override;
+        PrismUIButton* m_prismButton;
+        virtual void setup() override;
+    public:
+        void keyPressed(cocos2d::enumKeyCodes);
+        void onConfirm(CCObject*);
+        static constexpr const float s_defWidth = 250.0f;
+        static constexpr const float s_defHeight = 140.0f;
+        static CharUI* create(PrismUIButton* button);
+};
+
 
 class PrismUI : public FLAlertLayer {
     protected:
