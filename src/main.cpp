@@ -52,7 +52,8 @@ bool restoreOldFiles() {
     auto currentSave = Mod::get()->getSaveDir();
     auto parentDir = currentSave.parent_path();
     auto oldSave = parentDir / "firee.PrismMenu";
-    if (oldSave.filename().string().find(".old") != std::string::npos) {
+    auto oldoldSave = parentDir / "firee.PrismMenu.old";
+    if (std::filesystem::exists(oldoldSave) && std::filesystem::is_directory(oldoldSave)) {
         log::info("Files already restored. Consider deleting the \"firee.PrismMenu.old\" directory in your saves to remove this message.");
         return false;
     }
@@ -240,10 +241,7 @@ class $modify(PrismPlayLayer, PlayLayer) {
         bool initedDeath = false;
 
         // Noclip Accuracy
-        int frame = 0;
-        int playerFrame = 0;
         int death = 0;
-        float previousPlayerX = 0.0F;
         float previousDeathX = 0.0F;
         CCLabelBMFont* accuracyLabel;
         float flashOpacity = 1.0F;
@@ -398,32 +396,21 @@ class $modify(PrismPlayLayer, PlayLayer) {
     void onQuit() {
         if (prismButton != nullptr && Hacks::isHackEnabled("Show Button")) prismButton->setVisible(true); // look at this
         m_fields->initedDeath = false;
-        m_fields->frame = 0;
-        m_fields->playerFrame = 0;
         m_fields->death = 0;
         PlayLayer::onQuit();
     }
     void resetLevel() {
-        m_fields->frame = 0;
-        m_fields->playerFrame = 0;
         m_fields->death = 0;
         PlayLayer::resetLevel();
     }
     void postUpdate(float p0) {
         PlayLayer::postUpdate(p0);
-        if (m_player1 != nullptr) {
-            if (Hacks::isHackEnabled("Suicide")) return PlayLayer::destroyPlayer(m_player1, nullptr);
-            if (m_player1->getPositionX() != m_fields->previousPlayerX) {
-                m_fields->previousPlayerX = m_player1->getPositionX();
-                m_fields->playerFrame++;
-            }
-            m_fields->frame++;
-        }
+        if (m_player1 != nullptr && Hacks::isHackEnabled("Suicide")) return PlayLayer::destroyPlayer(m_player1, nullptr);
         if (m_fields->accuracyLabel != nullptr) {
-            float accuracy = ((static_cast<float>(m_fields->frame - m_fields->death)) / static_cast<float>(m_fields->frame)) * 100; // for some reason this doesnt work on android, like it goes in the negatives
+            float accuracy = ((static_cast<float>(m_gameState.m_currentProgress - m_fields->death)) / static_cast<float>(m_gameState.m_currentProgress)) * 100; // for some reason this doesnt work on android, like it goes in the negatives
             m_fields->accuracyLabel->setString(fmt::format("{}%", Utils::setPrecision(accuracy, 2)).c_str());
             m_fields->accuracyLabel->setVisible(Hacks::isHackEnabled("Noclip Accuracy"));
-            if (m_fields->frame % 4 == 0) { // quarter step
+            if (m_gameState.m_currentProgress % 4 == 0) { // quarter step
                 m_fields->accuracyLabel->setColor({255,255,255});
                 if (m_fields->flashOpacity > 1.0F) {
                     m_fields->flashOpacity -= 10.0F;
@@ -463,7 +450,7 @@ class $modify(PrismPlayLayer, PlayLayer) {
                 m_fields->prismNode->addChild(m_fields->cheatIndicator);
             }
         }
-        if (Hacks::isHackEnabled("Instant Complete") && m_fields->frame < 5) {
+        if (Hacks::isHackEnabled("Instant Complete") && m_gameState.m_currentProgress < 5) {
             log::debug("CRIMINAL… criminal… criminal… criminal…");
             // funny message
 

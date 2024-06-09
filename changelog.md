@@ -1,3 +1,6 @@
+# v1.7.1 
+    - Fixed Noclip Accuracy for all platforms
+    - (hopefully) Fix the crash issue if someone has an old Prism Menu instance
 # v1.7.0 
     - Allowed changing the keybind
     - Added Ukrainian translations (Thank you Lancelot!)
