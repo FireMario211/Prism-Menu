@@ -1,3 +1,6 @@
+# v1.7.2 
+    - Update to support Geode Alpha 3
+    - Change about.md
 # v1.7.1 
     - Fixed Noclip Accuracy for all platforms
     - (hopefully) Fix the crash issue if someone has an old Prism Menu instance

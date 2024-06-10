@@ -1,6 +1,6 @@
 {
-	"geode": "3.0.0-alpha.1",
-	"version": "v1.7.1",
+	"geode": "3.0.0-alpha.2",
+	"version": "v1.7.2",
 	"gd": {
 		"win": "2.206",
 		"mac": "2.206",
@@ -44,12 +44,12 @@
 		}
 	},
 	"settings": {
-		"skip-intro": {
-            		"name": "Skip Introduction",
-            		"description": "Skips the introduction from being shown.",
-            		"type": "bool",
-            		"default": false
-        	},
+ 	 	"skip-intro": {
+    		"name": "Skip Introduction",
+    		"description": "Skips the introduction from being shown.",
+    		"type": "bool",
+    		"default": false
+ 		},
 		"values": {
 			"name": "Hack Values",
 			"description": "NONE",
