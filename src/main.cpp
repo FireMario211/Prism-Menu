@@ -32,10 +32,9 @@ bool firstLoad = false;
 class $modify(MenuLayer) {
     bool init() {
         if (!MenuLayer::init()) return false;
+        if (firstLoad) return true;
         HackItem* posX = Hacks::getHack("Button Position X");
         HackItem* posY = Hacks::getHack("Button Position Y");
-        auto mainMenu = static_cast<CCMenu*>(this->getChildByID("bottom-menu"));
-        if (firstLoad) return true;
         firstLoad = true;
         log::info("Prism Menu loaded! Enjoy the mod.");
         #ifndef GEODE_IS_MACOS
