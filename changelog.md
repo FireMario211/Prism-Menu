@@ -1,5 +1,9 @@
+# v1.7.3 
+    - Update Russian translations 
+    - Update Turkish translations
+    - Update Vietnamese translations
 # v1.7.2 
-    - Update to support Geode Alpha 3
+    - Update to support Geode Alpha 2
     - Change about.md
 # v1.7.1 
     - Fixed Noclip Accuracy for all platforms

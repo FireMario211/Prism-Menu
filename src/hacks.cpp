@@ -99,7 +99,7 @@ class $modify(GJGameLevel) {
 void proceedWithReset(LevelInfoLayer* levelInfoLayer, GJGameLevel* level, bool resetStars, bool resetCoins) {
     geode::createQuickPopup(
             "Final Warning",
-            fmt::format("Are you absolutely sure you want to <cr>reset stats</c> for <cy>{}</c>?\nYou <cr>cannot undo this</c> after it's done!\n\nPlease note that <cy>Uncomplete Level</c> is considered <cr>unstable</c>, meaning it may or may not work, or break something. Make sure to <cy>save backup</c> or save your local files before doing this. (you can blame the people who rushed me to work on this)", level->m_levelName),
+            fmt::format("Are you absolutely sure you want to <cr>reset stats</c> for <cy>{}</c>?\nYou <cr>cannot undo this</c> after it's done!\n\nPlease note that <cy>Uncomplete Level</c> is considered <cr>unstable</c>, meaning it may or may not work, or break something. Make sure to <cy>save backup</c> or backup your local save files before doing this.", level->m_levelName),
             "I am sure.", "Cancel",
         [level, levelInfoLayer, resetStars, resetCoins](auto, bool btn2) {
             if (!btn2) {
@@ -157,7 +157,7 @@ void Hacks::resetLevel(LevelInfoLayer* levelInfoLayer, GJGameLevel* level) {
         static_cast<PrismUI*>(prismUIExists)->onClose(CCNode::create());
     }
 #if defined(GEODE_IS_MACOS) || defined(GEODE_IS_IOS)
-    FLAlertLayer::create("Notice", "This currently does not work on <cy>Mac OS</c> and <cy>iOS</c>\n(you can blame the people who rushed me to work on this)", "OK")->show();
+    FLAlertLayer::create("Notice", "This currently does not work on <cy>Mac OS</c> and <cy>iOS</c>", "OK")->show();
 #else 
     if (level->m_dailyID > 0) {
         FLAlertLayer::create("Notice", "This currently does not work on <cy>daily</c> or <cy>weekly</c> levels.", "OK")->show();

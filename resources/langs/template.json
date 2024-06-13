@@ -606,5 +606,17 @@
             "name": "Auto Safe Mode",
             "desc": "Prevents any progress from being made if certain cheats are enabled."
         }
+    },
+    {
+        "Custom Object Bypass": {
+            "name": "Custom Object Bypass",
+            "desc": "Allows you to go beyond the 1000 object limit for custom objects."
+        }
+    },
+    {
+        "Menu Keybind": {
+            "name": "Menu Keybind",
+            "desc": "The keybind for opening the Prism Menu UI!"
+        }
     }
 ]

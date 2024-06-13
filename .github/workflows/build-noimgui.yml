@@ -2,7 +2,6 @@ name: Build Geode Mod (No ImGui)
 
 on:
   workflow_dispatch:
-  pull_request:
   push:
     branches:
       - "main"

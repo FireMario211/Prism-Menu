@@ -31,5 +31,5 @@ cmake \
    -DGEODE_DISABLE_FMT_CONSTEVAL=1 -G Ninja
 
 cmake --build build-linux-deb --config RelWithDebInfo
-# /SDrive/Users/Fire/Desktop/Restoration/ClarifyGDPS V.1.3/GDGeode-2.204
+# /SDrive/Users/Fire/Desktop/Restoration/ClarifyGDPS V.1.3/GDGeode-2.206
 cp build-linux-deb/firee.prism.geode "/SDrive/Users/Fire/Desktop/Restoration/ClarifyGDPS V.1.3/GDGeode-2.206/geode/mods/firee.prism.geode"
