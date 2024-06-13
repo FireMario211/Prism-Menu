@@ -602,14 +602,12 @@
         }
     },
     {
-        "Wave Pulse Size": {
-            "name": "Dalga İzi Boyutu",
-            "desc": "Dalga izinin ne kadar büyük olacağını ayarlar."
-        },
         "Custom Object Bypass": {
             "name": "Özel Obje Bypass",
             "desc": "Özel objeler için 1000 obje sınırının ötesine geçmenizi sağlar."
-        },
+        }
+    },
+    {
         "Menu Keybind": {
             "name": "Menü Tuş Bağlantısı",
             "desc": "Prism Menu kullanıcı arayüzünü açmak için tuş bağlantısı!"
