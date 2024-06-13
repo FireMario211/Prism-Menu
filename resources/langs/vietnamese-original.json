@@ -616,5 +616,17 @@
             "name": "Chế độ an toàn tự động",
             "desc": "Ngăn chặn bất kỳ tiến trình nào được thực hiện nếu một số mánh gian lận nhất định được kích hoạt."
         }
-    }
+    },
+    {
+        "Custom Object Bypass": {
+            "name": "Bỏ qua đối tượng tùy chỉnh",
+            "desc": "Cho phép bạn vượt quá giới hạn 1000 đối tượng cho các đối tượng tùy chỉnh."
+        }
+    },
+    {
+        "Menu Keybind": {
+            "name": "Liên kết phím menu",
+            "desc": "Tổ hợp phím để mở giao diện người dùng Prism Menu! "
+        }
+    } 
 ]
