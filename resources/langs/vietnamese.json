@@ -616,5 +616,17 @@
             "name": "Che do an toan tu dong",
             "desc": "Ngan chan bat ky tien trinh nao duoc thuc hien neu mot so manh gian lan nhat dinh duoc kich hoat."
         }
-    }
+    },
+    {
+        "Custom Object Bypass": {
+            "name": "Bo qua doi tuong tuy chinh",
+            "desc": "Cho phep ban vuot qua gioi han 1000 doi tuong cho cac doi tuong tuy chinh."
+        }
+    },
+    {
+        "Menu Keybind": {
+            "name": "Lien ket phim menu",
+            "desc": "To hop phim de mo giao dien nguoi dung cua Prism Menu! "
+        }
+    } 
 ]
