@@ -476,7 +476,7 @@
     },
     {
         "Uncomplete Level": {
-            "name": "Seviye İlerlemelerini Sıfırla",
+            "name": "Seviye İlerlemesini Sıfırla",
             "desc": "Normal ve pratik yüzdelerini sıfırlar ve seviyeyi tamamladıysanız yıldız sayısını azaltmasını sağlar!"
         }
     },
@@ -586,7 +586,7 @@
     {
         "Instant Respawn": {
             "name": "Anında Yeniden Canlanma",
-            "desc": "Seviyeyi yeniden denerken gecikmeyi kaldırır."
+            "desc": "Yeniden canlanma süresini 0s olarak değiştirir."
         }
     },
     {
@@ -602,6 +602,12 @@
         }
     },
     {
+        "Wave Pulse Size": {
+            "name": "Dalga İzi Boyutu",
+            "desc": "Dalga izinin ne kadar büyük olacağını ayarlar."
+        }
+    },
+    {
         "Custom Object Bypass": {
             "name": "Özel Obje Bypass",
             "desc": "Özel objeler için 1000 obje sınırının ötesine geçmenizi sağlar."
@@ -613,4 +619,4 @@
             "desc": "Prism Menu kullanıcı arayüzünü açmak için tuş bağlantısı!"
         }
     }
-]
+]    
