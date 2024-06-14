@@ -442,6 +442,8 @@ void PrismUIButton::onBtn(CCObject* ret) {
         geode::FileSetting::Filter filter;
         filter.description = "Theme (*.json)";
         filter.files.insert("*.json");
+        FLAlertLayer::create("Error", "Please wait until a <cy>future update</c> for this to be fixed.", "OK")->show();
+#if 0
         file::pickFile(
             file::PickMode::OpenFile,
             {
@@ -461,11 +463,14 @@ void PrismUIButton::onBtn(CCObject* ret) {
                 FLAlertLayer::create("Success!", "The <cy>theme</c> has successfully been imported! Restart your game to use it.", "OK")->show();
             }
         );
+#endif
     } else if (name == "Import Macro") {
         geode::FileSetting::Filter filter;
         filter.description = "Macro (*.gdr)";
         filter.files.insert("*.gdr.json");
         filter.files.insert("*.gdr");
+        FLAlertLayer::create("Error", "Please wait until a <cy>future update</c> for this to be fixed.", "OK")->show();
+#if 0
         file::pickFile(
             file::PickMode::OpenFile,
             {
@@ -485,6 +490,7 @@ void PrismUIButton::onBtn(CCObject* ret) {
                 FLAlertLayer::create("Success!", "The <cy>macro</c> has successfully been imported!", "OK")->show();
             }
         );
+#endif
     } else if (name == "Reset Speedhack") {
         HackItem* speedHack = Hacks::getHack("Speedhack");
         speedHack->value.floatValue = 1.0F;

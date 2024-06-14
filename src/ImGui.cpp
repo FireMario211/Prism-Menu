@@ -346,6 +346,7 @@ class $modify(MenuLayer) {
                                             geode::FileSetting::Filter filter;
                                             filter.description = "Theme (*.json)";
                                             filter.files.insert("*.json");
+#if 0
                                             file::pickFile(
                                                 file::PickMode::OpenFile,
                                                 {
@@ -362,6 +363,7 @@ class $modify(MenuLayer) {
                                                     FLAlertLayer::create("Success!", "The <cy>theme</c> has successfully been imported! Restart your game to use it.", "OK")->show();
                                                 }
                                             );
+#endif
                                         } else if (name == "Reset Speedhack") {
                                             HackItem* speedHack = Hacks::getHack("Speedhack");
                                             speedHack->value.floatValue = 1.0F;
