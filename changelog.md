@@ -1,4 +1,6 @@
-# v1.7.3 
+# v1.7.4
+    - Update to support Goede Beta 1
+# v1.7.3
     - Update Russian translations 
     - Update Turkish translations
     - Update Vietnamese translations

@@ -1,6 +1,6 @@
 {
-	"geode": "3.0.0-alpha.2",
-	"version": "v1.7.3",
+	"geode": "3.0.0-beta.1",
+	"version": "v1.7.4",
 	"gd": {
 		"win": "2.206",
 		"mac": "2.206",
