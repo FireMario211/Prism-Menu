@@ -633,7 +633,7 @@
     },
     {
         "No Rotate": {
-            "name": "Döndürmeyi Kaldır",
+            "name": "Dönmeyi Engelle",
             "desc": "Oyuncunun zıplarken veya düşerken dönmesini engeller."
         }
     }
