@@ -440,7 +440,7 @@
     {
         "Noclip Accuracy": {
             "name": "Noclip Doğruluğu",
-            "desc": "Noclip etkinken seviyeyi ne kadar doğru oynadığınızı size bildirir. (Anti-Hile Baypas etkinleştirilmeden çalışmaz)"
+            "desc": "Noclip etkinken seviyeyi ne kadar doğru oynadığınızı size bildirir."
         }
     },
     {
