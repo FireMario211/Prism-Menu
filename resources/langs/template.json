@@ -627,7 +627,7 @@
     },
     {
         "Hide Player": {
-            "name": "Hide Level",
+            "name": "Hide Player",
             "desc": "Hides the player. (Requires playing the level again)"
         }
     },
