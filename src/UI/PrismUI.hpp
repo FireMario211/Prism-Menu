@@ -1,6 +1,7 @@
 #pragma once
 #include <Geode/Geode.hpp>
 #include "../Misc/DownloadManager.hpp"
+#include <Geode/loader/Event.hpp>
 #include <Geode/Bindings.hpp>
 #include <Geode/ui/TextInput.hpp>
 #include "../Languages.hpp"
@@ -8,8 +9,11 @@
 
 using namespace geode::prelude;
 
+using FileEvent = Task<Result<std::filesystem::path>>;
+
 class PrismUIButton : public CCNode, public TextInputDelegate, public CCKeyboardDelegate {
     protected:
+        EventListener<FileEvent> m_listener;
         CCMenu* menu;
         HackItem* m_hack;
         Slider* m_slider;

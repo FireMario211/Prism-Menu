@@ -83,6 +83,14 @@ class $modify(PlayerObject) {
         if (m_fields->isActuallyDart && Hacks::isHackEnabled("No Wave Trail")) return;
         PlayerObject::activateStreak();
     }
+    void setRotation(float p0) {
+        if (Hacks::isHackEnabled("No Rotate")) return PlayerObject::setRotation(0);
+        PlayerObject::setRotation(p0);
+    }
+    void setVisible(bool p0) {
+        if (Hacks::isHackEnabled("Hide Player")) return PlayerObject::setVisible(false);
+        PlayerObject::setVisible(p0);
+    }
 };
 
 

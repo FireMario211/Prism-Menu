@@ -433,7 +433,7 @@
     {
         "Noclip Accuracy": {
             "name": "Dokładność Noclip",
-            "desc": "Pokazuje, z jaką dokładnością przechodzisz poziom z użyciem Noclip (Nie działa bez opcji Wyłącz Anticheat)"
+            "desc": "Pokazuje, z jaką dokładnością przechodzisz poziom z użyciem Noclip."
         }
     },
     {

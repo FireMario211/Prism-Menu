@@ -442,55 +442,59 @@ void PrismUIButton::onBtn(CCObject* ret) {
         geode::FileSetting::Filter filter;
         filter.description = "Theme (*.json)";
         filter.files.insert("*.json");
-        FLAlertLayer::create("Error", "Please wait until a <cy>future update</c> for this to be fixed.", "OK")->show();
-#if 0
-        file::pickFile(
-            file::PickMode::OpenFile,
-            {
-                dirs::getGameDir(),
-                { filter }
-            },
-            [&](std::filesystem::path path) {
-                auto saveDir = Mod::get()->getSaveDir().string();
-                if (!std::filesystem::exists(saveDir + "/themes")) {
-                    std::filesystem::create_directory(saveDir + "/themes");
+
+        m_listener.bind([] (FileEvent::Event* e) {
+            if (e->getValue()) {
+                if (e->getValue()->isOk()) {
+                    auto path = e->getValue()->unwrap();
+                    auto saveDir = Mod::get()->getSaveDir().string();
+                    if (!std::filesystem::exists(saveDir + "/themes")) {
+                        std::filesystem::create_directory(saveDir + "/themes");
+                    }
+                    auto savePath = saveDir + "/themes/" + path.filename().string();
+                    if (std::filesystem::exists(savePath)) {
+                        std::filesystem::remove(savePath);
+                    }
+                    std::filesystem::copy_file(path, savePath); // why this crashes if a file already exists? idk
+                    FLAlertLayer::create("Success!", "The <cy>theme</c> has successfully been imported! Restart your game to use it.", "OK")->show();
+                } else {
+                    log::error("Something went wrong when picking files: {}", e->getValue()->err());
                 }
-                auto savePath = saveDir + "/themes/" + path.filename().string();
-                if (std::filesystem::exists(savePath)) {
-                    std::filesystem::remove(savePath);
-                }
-                std::filesystem::copy_file(path, savePath); // why this crashes if a file already exists? idk
-                FLAlertLayer::create("Success!", "The <cy>theme</c> has successfully been imported! Restart your game to use it.", "OK")->show();
+            } else {
+                log::error("Something went wrong when picking files: Value is empty.");
             }
-        );
-#endif
+        });
+
+        m_listener.setFilter(file::pick(file::PickMode::OpenFile, { dirs::getGameDir(), { filter }}));
+
     } else if (name == "Import Macro") {
         geode::FileSetting::Filter filter;
         filter.description = "Macro (*.gdr)";
         filter.files.insert("*.gdr.json");
         filter.files.insert("*.gdr");
-        FLAlertLayer::create("Error", "Please wait until a <cy>future update</c> for this to be fixed.", "OK")->show();
-#if 0
-        file::pickFile(
-            file::PickMode::OpenFile,
-            {
-                dirs::getGameDir(),
-                { filter }
-            },
-            [&](std::filesystem::path path) {
-                auto saveDir = Mod::get()->getSaveDir().string();
-                if (!std::filesystem::exists(saveDir + "/macros")) {
-                    std::filesystem::create_directory(saveDir + "/macros");
+
+        m_listener.bind([] (FileEvent::Event* e) {
+            if (e->getValue()) {
+                if (e->getValue()->isOk()) {
+                    auto path = e->getValue()->unwrap();
+                    auto saveDir = Mod::get()->getSaveDir().string();
+                    if (!std::filesystem::exists(saveDir + "/macros")) {
+                        std::filesystem::create_directory(saveDir + "/macros");
+                    }
+                    auto savePath = saveDir + "/macros/" + path.filename().string();
+                    if (std::filesystem::exists(savePath)) {
+                        std::filesystem::remove(savePath);
+                    }
+                    std::filesystem::copy_file(path, savePath); // why this crashes if a file already exists? idk
+                    FLAlertLayer::create("Success!", "The <cy>macro</c> has successfully been imported!", "OK")->show();
+                } else {
+                    log::error("Something went wrong when picking files: {}", e->getValue()->err());
                 }
-                auto savePath = saveDir + "/macros/" + path.filename().string();
-                if (std::filesystem::exists(savePath)) {
-                    std::filesystem::remove(savePath);
-                }
-                std::filesystem::copy_file(path, savePath); // why this crashes if a file already exists? idk
-                FLAlertLayer::create("Success!", "The <cy>macro</c> has successfully been imported!", "OK")->show();
+            } else {
+                log::error("Something went wrong when picking files: Value is empty.");
             }
-        );
-#endif
+        });
+        m_listener.setFilter(file::pick(file::PickMode::OpenFile, { dirs::getGameDir(), { filter }}));
     } else if (name == "Reset Speedhack") {
         HackItem* speedHack = Hacks::getHack("Speedhack");
         speedHack->value.floatValue = 1.0F;

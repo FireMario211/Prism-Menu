@@ -52,7 +52,7 @@
             ],
             "android64": [
                 {"addr": "0x6a1a24", "on": "20 00 80 52", "off": "56 d4 0f 94", "instruction": "mov w0, #1"},
-                {"addr": "0x69d2ec", "on": "20 00 80 52", "off": "a4 d3 0f 94"},
+                {"addr": "0x6a1cec", "on": "20 00 80 52", "off": "a4 d3 0f 94"},
                 {"addr": "0x6a1b00", "on": "20 00 80 52", "off": "ef c0 0f 94"}
             ],
             "iosold2.200": [
@@ -63,7 +63,7 @@
         },
         "type": "bool",
         "save": false,
-        "platforms": ["win"]
+        "platforms": ["win", "android32", "android64"]
     },
     {
 	    "name": "No (C) Mark",

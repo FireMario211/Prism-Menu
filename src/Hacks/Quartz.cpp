@@ -6,11 +6,8 @@
 #include <Geode/modify/PlayerObject.hpp>
 #include <Geode/modify/GJBaseGameLayer.hpp>
 #include <Geode/modify/EndLevelLayer.hpp>
-
 // yes this code is messy, ill move it later
-
 bool changedMacro = false;
-
 bool SelectMacroUI::init(float _w, float _h, Dropdown* dropdown) {
     if (auto prismMenu = typeinfo_cast<PrismUI*>(CCScene::get()->getChildByID("prism-menu"))) {
         prismMenu->toggleVisibility();
@@ -363,6 +360,23 @@ CreateMacroUI* CreateMacroUI::create() {
 // sorry, too lazy to figure out how to get the class out
 QuartzMacro current_macro;
 
+std::vector<QuartzInput> fixInputs(const std::vector<QuartzInput>& inputs) {
+    if (inputs.size() <= 1) {
+        return inputs;
+    }
+
+    std::vector<QuartzInput> filteredInputs;
+    filteredInputs.push_back(inputs[0]);
+
+    for (size_t i = 1; i < inputs.size(); ++i) {
+        if (inputs[i].down != inputs[i-1].down) {
+            filteredInputs.push_back(inputs[i]);
+        }
+    }
+
+    return filteredInputs;
+}
+
 // could probably make a ctor but too lazy!
 PlayerFrame PlayerToFrame(PlayerObject* player, int frameNum, bool player2, bool isHolding, int buttonID) {
     PlayerFrame frame;
@@ -425,6 +439,7 @@ class $modify(QuartzPlayLayer, PlayLayer) {
         int bot_frame = 0;
         int clicks = 0;
         int lastInputFrame = 0;
+        int previousFrame = 0;
         bool playLayerPostUpdate = false;
 
         int playLayerInit = 0;
@@ -454,6 +469,8 @@ class $modify(QuartzPlayLayer, PlayLayer) {
 
         bool realHoldingP1 = false;
         bool realHoldingP2 = false;
+        bool changedInputP1 = false;
+        bool changedInputP2 = false;
 
         bool player2Visible = false;
 
@@ -514,8 +531,10 @@ class $modify(QuartzPlayLayer, PlayLayer) {
                             std::sort(current_macro.inputs.begin(), current_macro.inputs.end(), [](const QuartzInput& a, const QuartzInput& b) {
                                 return a.frame < b.frame;
                             });
-                            if (!current_macro.inputs.empty())
+                            if (!current_macro.inputs.empty()) {
+                                //current_macro.inputs = fixInputs(current_macro.inputs);
                                 m_fields->lastInputFrame = current_macro.inputs.back().frame;
+                            }
                         }
                     }
                     Hacks::setTPS(current_macro.framerate);
@@ -643,6 +662,7 @@ class $modify(QuartzPlayLayer, PlayLayer) {
         if (input != current_macro.inputs.end()) {
             m_fields->holdingP1 = false;
             input->down = !input->down;
+            m_fields->changedInputP1 = input->down;
             log::debug("[P1] Change {} to {}", m_fields->bot_frame, input->down);
             GJBaseGameLayer::handleButton(input->down, input->button, true);
             RecreateInputState((input->down) ? 2 : 1, false, false);
@@ -651,8 +671,7 @@ class $modify(QuartzPlayLayer, PlayLayer) {
             auto insertPos = std::find_if(current_macro.inputs.begin(), current_macro.inputs.end(), [bot_frame](const QuartzInput& input) {
                 return input.frame > bot_frame && input.player2 == false;
             });
-
-            // Insert the new element at the desired position
+            m_fields->changedInputP1 = newInput.down;
             log::debug("[P1] Insert new frame at {}", m_fields->bot_frame);
             current_macro.inputs.insert(insertPos, newInput);
             GJBaseGameLayer::handleButton(newInput.down, newInput.button, true);
@@ -697,6 +716,7 @@ class $modify(QuartzPlayLayer, PlayLayer) {
         if (input != current_macro.inputs.end()) {
             m_fields->holdingP2 = false;
             input->down = !input->down;
+            m_fields->changedInputP2 = input->down;
             log::debug("[P2] Change {} to {}", m_fields->bot_frame, input->down);
             GJBaseGameLayer::handleButton(input->down, input->button, false);
             RecreateInputState((input->down) ? 2 : 1, true, false);
@@ -705,8 +725,7 @@ class $modify(QuartzPlayLayer, PlayLayer) {
             auto insertPos = std::find_if(current_macro.inputs.begin(), current_macro.inputs.end(), [bot_frame](const QuartzInput& input) {
                 return input.frame > bot_frame && input.player2 == true;
             });
-
-            // Insert the new element at the desired position
+            m_fields->changedInputP2 = newInput.down;
             log::debug("[P2] Insert new frame at {}", m_fields->bot_frame);
             current_macro.inputs.insert(insertPos, newInput);
             GJBaseGameLayer::handleButton(newInput.down, newInput.button, false);
@@ -744,14 +763,9 @@ class $modify(QuartzPlayLayer, PlayLayer) {
 
     void prevFrame(CCObject*) {
         if (m_fields->bot_frame <= 0 || !STOPTIME) return;
-#ifdef GEODE_IS_WINDOWS
         m_fields->bot_frame -= 2;
         //m_unk1f8
         m_gameState.m_currentProgress -= 2;
-#else
-        m_fields->bot_frame -= 2;
-        m_gameState.m_currentProgress -= 2000;
-#endif
         int bot_frame = m_fields->bot_frame;
         auto input_player = std::find_if(m_fields->player_frames.begin(), m_fields->player_frames.end(), [bot_frame](const PlayerFrame& input) {
             return input.frame == bot_frame && input.player2 == false;
@@ -762,12 +776,20 @@ class $modify(QuartzPlayLayer, PlayLayer) {
         if (input_player != m_fields->player_frames.end() || input_player2 != m_fields->player_frames.end()) {
             if (input_player2 != m_fields->player_frames.end()) {
                 UpdatePlayer(m_player2, *input_player2);
-                GJBaseGameLayer::handleButton(input_player2->isHolding, input_player2->buttonHold, true);
+
+                m_fields->changedInputP2 = (m_fields->changedInputP2 != input_player2->isHolding);
+                if (m_fields->changedInputP2) {
+                    GJBaseGameLayer::handleButton(input_player2->isHolding, input_player2->buttonHold, true);
+                }
                 RecreateInputState((input_player2->isHolding) ? 2 : 1, true, false);
             }
             if (input_player != m_fields->player_frames.end()) {
                 UpdatePlayer(m_player1, *input_player);
-                GJBaseGameLayer::handleButton(input_player->isHolding, input_player->buttonHold, false);
+
+                m_fields->changedInputP1 = (m_fields->changedInputP1 != input_player->isHolding);
+                if (m_fields->changedInputP1) {
+                    GJBaseGameLayer::handleButton(input_player->isHolding, input_player->buttonHold, false);
+                }
                 RecreateInputState((input_player->isHolding) ? 2 : 1, true, false);
             }
         }
@@ -777,7 +799,8 @@ class $modify(QuartzPlayLayer, PlayLayer) {
         log::debug("[-] Frame {}", m_fields->bot_frame);
     }
     void nextFrame(CCObject*) {
-        if (m_fields->bot_frame >= m_fields->lastInputFrame || !STOPTIME) return;
+        //if (m_fields->bot_frame >= m_fields->lastInputFrame || !STOPTIME) return;
+        if (!STOPTIME) return;
         /*int bot_frame = m_fields->bot_frame;
         auto input_player = std::find_if(m_fields->player_frames.begin(), m_fields->player_frames.end(), [bot_frame](const PlayerFrame& input) {
             return input.frame == bot_frame && input.player2 == false;
@@ -808,7 +831,6 @@ class $modify(QuartzPlayLayer, PlayLayer) {
             GJBaseGameLayer::update(1.F / frameRate);
         }
         //STOPTIME = true;*/ 
-        if (m_fields->bot_frame >= m_fields->lastInputFrame || !STOPTIME) return;
         int bot_frame = m_fields->bot_frame + 1;
         //std::cout << fmt::format("frame {} populated {}", bot_frame, m_fields->player_frames.size()) << std::endl;
         auto input_player = std::find_if(m_fields->player_frames.begin(), m_fields->player_frames.end(), [bot_frame](const PlayerFrame& input) {
@@ -822,12 +844,18 @@ class $modify(QuartzPlayLayer, PlayLayer) {
             m_gameState.m_currentProgress = m_fields->bot_frame;
             if (input_player2 != m_fields->player_frames.end()) {
                 UpdatePlayer(m_player2, *input_player2);
-                GJBaseGameLayer::handleButton(input_player2->isHolding, input_player2->buttonHold, true);
+                m_fields->changedInputP2 = (m_fields->changedInputP2 != input_player2->isHolding);
+                if (m_fields->changedInputP2) {
+                    GJBaseGameLayer::handleButton(input_player2->isHolding, input_player2->buttonHold, true);
+                }
                 RecreateInputState((input_player2->isHolding) ? 2 : 1, true, false);
             }
             if (input_player != m_fields->player_frames.end()) {
                 UpdatePlayer(m_player1, *input_player);
-                GJBaseGameLayer::handleButton(input_player->isHolding, input_player->buttonHold, false);
+                m_fields->changedInputP1 = (m_fields->changedInputP1 != input_player->isHolding);
+                if (m_fields->changedInputP1) {
+                    GJBaseGameLayer::handleButton(input_player->isHolding, input_player->buttonHold, false);
+                }
                 RecreateInputState((input_player->isHolding) ? 2 : 1, true, false);
             }
         }
@@ -874,6 +902,7 @@ class $modify(QuartzPlayLayer, PlayLayer) {
     void onQuit() {
         m_fields->bot_frame_dt = 0.F;
         m_fields->bot_frame = 0;
+        m_fields->previousFrame = 0;
         current_macro.loaf = 0.0F;
         current_macro.isEnabled = false;
         m_fields->playLayerPostUpdate = false;
@@ -884,6 +913,7 @@ class $modify(QuartzPlayLayer, PlayLayer) {
         if (m_fields->checkpoints.size() == 0 || !m_isPracticeMode) {
             m_fields->bot_frame_dt = 0.F;
             m_fields->bot_frame = 0;
+            m_fields->previousFrame = 0;
             m_fields->checkpoints.clear();
             RecreateInputState(1, false, false);
             RecreateInputState(1, true, false);
@@ -913,6 +943,7 @@ class $modify(QuartzPlayLayer, PlayLayer) {
                     current_macro.isEnabled = true;
                     changedMacro = false;
                     m_fields->bot_frame = 0;
+                    m_fields->previousFrame = 0;
                     PlayLayer::resetLevel();
                     if (Hacks::isHackEnabled("Record")) {
                         current_macro.inputs = {};
@@ -1102,8 +1133,26 @@ class $modify(GJBaseGameLayer) {
                         playLayer->m_fields->playLayerInit = agfvcbeaga;
                         if (!!!(agfvcbeaga == playLayer->m_fields->playLayerInit)) return;
 
-                        if (player1) GJBaseGameLayer::handleButton(input1->down, input1->button, !input1->player2);
-                        if (player2) GJBaseGameLayer::handleButton(input2->down, input2->button, !input2->player2);
+                        if (playLayer->m_fields->previousFrame != playLayer->m_fields->bot_frame) {
+                            if (player1) {
+                                playLayer->m_fields->changedInputP1 = (playLayer->m_fields->changedInputP1 != input1->down);
+                            }
+                            if (player2) {
+                                playLayer->m_fields->changedInputP2 = (playLayer->m_fields->changedInputP2 != input2->down);
+                            }
+                        }
+                        //if (player1) log::debug("ok {} - {} ({},{})", playLayer->m_fields->realChangedInputP1,input1->down, playLayer->m_fields->bot_frame,playLayer->m_fields->previousFrame);
+                        if (player1) {
+                            //log::info("updated");
+                            GJBaseGameLayer::handleButton(input1->down, input1->button, !input1->player2);
+                            playLayer->m_fields->changedInputP1 = input1->down;
+                        }
+                        if (player2) {
+                            GJBaseGameLayer::handleButton(input2->down, input2->button, !input2->player2);
+                            playLayer->m_fields->changedInputP2 = input2->down;
+                        }
+                        
+                        playLayer->m_fields->previousFrame = playLayer->m_fields->bot_frame;
                         if (player1) playLayer->m_fields->player_frames.push_back(PlayerToFrame(m_player1, playLayer->m_fields->bot_frame, false, input1->down, input1->button));
                         //(m_player2 != nullptr && (m_player2->getPositionX() != 0 && m_player2->m_position.x != 0)
                         if (playLayer->m_fields->player2Visible) {

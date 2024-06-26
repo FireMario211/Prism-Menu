@@ -75,6 +75,12 @@ class $modify(PlayLayer) {
             obj->m_isHide = false;
             if (obj->m_objectID == 1007) return;
         }
+        if (Hacks::isHackEnabled("Layout Mode") || Hacks::isHackEnabled("Hide Level")) {
+            // probably a bad idea!
+            std::unordered_set<int> colorTriggers = { 221, 743, 744, 899, 900, 915, 1006 };
+            
+            if (colorTriggers.find(obj->m_objectID) != colorTriggers.end()) return;
+        }
         if (Hacks::isHackEnabled("No Glow")) {
             obj->m_hasNoGlow = true;
         }
@@ -82,15 +88,12 @@ class $modify(PlayLayer) {
     }
 };
 
-
-// Layout Mode
+// Layout Mode, Hide Level
 class $modify(GameObject) {
     void setVisible(bool v) {
+        if (Hacks::isHackEnabled("Hide Level") && m_objectID != 0) return GameObject::setVisible(false);
         if (!Hacks::isHackEnabled("Layout Mode")) return GameObject::setVisible(v);
-        //m_hasGroupParent == 0
-        std::vector<int> outerPortal = {};
-        //i really dont want to have to check every single object id
-        if (m_objectType == GameObjectType::Decoration && m_objectID != 44) { // 44 being practice mode checkpoint, because thats a "decoration"
+        if (m_objectType == GameObjectType::Decoration && m_objectID != 44 && m_objectID != 38 && m_objectID != 749 && m_objectID != 747) { // 44 being practice mode checkpoint, because thats a "decoration"
             GameObject::setVisible(false);
         } else {
             GameObject::setVisible(v);

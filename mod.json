@@ -1,6 +1,6 @@
 {
-	"geode": "3.0.0-beta.1",
-	"version": "v1.7.4",
+	"geode": "3.1.1",
+	"version": "v1.8.0",
 	"gd": {
 		"win": "2.206",
 		"mac": "2.206",
@@ -18,7 +18,6 @@
     "tags": ["cheats", "gameplay", "utility", "customization"],
 	"resources": {
 		"files": [
-			"resources/icon.png",
 			"resources/Screenshot1.png",
 			"resources/checkmark.png",
 			"resources/checkmark-hd.png",
@@ -32,7 +31,8 @@
 			"resources/langs/*.json"
 		],
 		"sprites": [
-			"resources/infoIcon.png"
+			"resources/infoIcon.png",
+            "resources/icon.png"
 		],
 		"fonts": {
 			"PrismMenu": {
@@ -50,6 +50,12 @@
     		"type": "bool",
     		"default": false
  		},
+        "hide-button": {
+            "name": "Force Hide Button",
+            "description": "Hides the button in any menu and pause menu. (Requires restart)",
+            "type": "bool",
+            "default": false
+        },
 		"values": {
 			"name": "Hack Values",
 			"description": "NONE",

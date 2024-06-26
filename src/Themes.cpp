@@ -84,27 +84,44 @@ void Themes::UpdateOpacity(matjson::Object theme) {
 
 // other funcs
 void Themes::LoadTheme(matjson::Object theme) {
-    // Future Dark style by rewrking from ImThemes
+    auto lang = Hacks::getHack("Language");
+    if (!Hacks::isHackEnabled("Live Theme Editing")) log::debug("Themes::LoadTheme - Start");
+    ImVector<ImWchar> ranges;
     ImGuiStyle& style = ImGui::GetStyle();
     ImGuiIO& io = ImGui::GetIO();
-    ImFontGlyphRangesBuilder builder;
+    if (lang != nullptr && lang->value.intValue != 0) {
+        // Future Dark style by rewrking from ImThemes
+        ImFontGlyphRangesBuilder builder;
 
-    // probably a bad idea to loop 127 times every frame, but this will only happen if the user has like "Live Theme Editing" enabled
-    // Add Czech character ranges manually
-    for (int i = 0x0100; i <= 0x017F; ++i) { // Czech characters in Unicode range
-        builder.AddChar(i);
+        // probably a bad idea to loop 127 times every frame, but this will only happen if the user has like "Live Theme Editing" enabled
+        // Add Czech character ranges manually
+        
+        if (!Hacks::isHackEnabled("Live Theme Editing")) log::debug("Themes::LoadTheme - Setup Builder");
+
+        for (int i = 0x0100; i <= 0x017F; ++i) { // Czech characters in Unicode range
+            builder.AddChar(i);
+        }
+
+        if (!Hacks::isHackEnabled("Live Theme Editing")) log::debug("Themes::LoadTheme - Add Czech characters");
+
+        builder.AddRanges(io.Fonts->GetGlyphRangesCyrillic()); // russian chars
+
+        if (!Hacks::isHackEnabled("Live Theme Editing")) log::debug("Themes::LoadTheme - Add Cyrillic characters");
+        builder.AddRanges(io.Fonts->GetGlyphRangesVietnamese()); // vietnamese chars
+        if (!Hacks::isHackEnabled("Live Theme Editing")) log::debug("Themes::LoadTheme - Add Vietnamese characters");
+        //builder.AddRanges(io.Fonts->GetGlyphRangesJapanese()); // JP chars
+        if (!Hacks::isHackEnabled("Live Theme Editing")) log::debug("Themes::LoadTheme - Add Japanese characters");
+        builder.BuildRanges(&ranges);
+        if (!Hacks::isHackEnabled("Live Theme Editing")) log::debug("Themes::LoadTheme - Build ranges");
     }
-
-    builder.AddRanges(io.Fonts->GetGlyphRangesCyrillic()); // russian chars
-    builder.AddRanges(io.Fonts->GetGlyphRangesVietnamese()); // vietnamese chars
-    //builder.AddRanges(io.Fonts->GetGlyphRangesJapanese()); // JP chars
-    ImVector<ImWchar> ranges;
-    builder.BuildRanges(&ranges);
     std::string fontName = (Mod::get()->getResourcesDir() / "PrismMenu.otf").string();
     //std::string fontName = (Mod::get()->getResourcesDir() / "Hack-Regular.ttf").string();
     float menuScale = Hacks::getHack("Menu Scale")->value.floatValue;
+
     io.Fonts->AddFontFromFileTTF(fontName.c_str(), theme["FontSize"].as_int() * menuScale, NULL, ranges.Data);
+    if (!Hacks::isHackEnabled("Live Theme Editing")) log::debug("Themes::LoadTheme - Add FontSize TTF");
     io.Fonts->AddFontFromFileTTF(fontName.c_str(), theme["IconSize"].as_int() * menuScale, NULL, ranges.Data);
+    if (!Hacks::isHackEnabled("Live Theme Editing")) log::debug("Themes::LoadTheme - Add IconSize TTF");
 
     style.Alpha = 1.0f;
     style.DisabledAlpha = 1.0f;
@@ -201,6 +218,7 @@ void Themes::LoadTheme(matjson::Object theme) {
     "TableRowBgAlt": [25, 27, 31, 128],
     "TextSelectedBg": [60, 55, 152, 255]
     */
+    if (!Hacks::isHackEnabled("Live Theme Editing")) log::debug("Themes::LoadTheme - Loaded Theme!");
 }
 #endif
 

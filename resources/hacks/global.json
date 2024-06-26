@@ -46,6 +46,11 @@
         "platforms": ["win", "android32", "android64"]
     },
     {
+        "name": "Hide Level",
+        "desc": "Hides all objects in the level.",
+        "type": "bool"
+    },
+    {
         "name": "No Transition",
         "desc": "Shorterns scene transition time to 0s.",
         "type": "bool"

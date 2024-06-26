@@ -45,7 +45,7 @@ endif()
 
 set(IMGUI_VERSION "v1.90")
 if (NOT APPLE AND NOT DEFINED ENV{NO_IMGUI})
-    CPMAddPackage("gh:matcool/gd-imgui-cocos#5bc72d6") # specify a commit!
+    CPMAddPackage("gh:matcool/gd-imgui-cocos#09a9555") # specify a commit!
     target_link_libraries(${PROJECT_NAME} imgui-cocos)
 endif()
 

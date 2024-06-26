@@ -439,7 +439,7 @@
     {
         "Noclip Accuracy": {
             "name": "Độ chính xác của Noclip",
-            "desc": "Thông báo cho bạn mức độ chính xác của lần chạy noclip của bạn. (Sẽ không hoạt động nếu không bật Anticheat Bypass)"
+            "desc": "Thông báo cho bạn mức độ chính xác của lần chạy noclip của bạn."
         }
     },
     {

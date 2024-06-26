@@ -417,6 +417,9 @@ class $modify(MenuLayer) {
                                                 if (name == "Menu-Style") {
                                                     prismButton->showImGuiMenu = !prismButton->showImGuiMenu;
                                                 }
+                                                if (name == "Language") {
+                                                    Themes::LoadTheme(Themes::getCurrentTheme());
+                                                }
                                             }
                                             // Set the initial focus when opening the combo (scrolling + keyboard navigation focus)
                                             if (isSelected)

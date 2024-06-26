@@ -1,4 +1,4 @@
-export GEODE_SDK=/home/fire/.geodenightly # remove when geode 2.0.0 is released
+#export GEODE_SDK=/home/fire/.geodenightly # remove when geode 2.0.0 is released
 export SPLAT_DIR=/home/fire/xwin/splat
 export TOOLCHAIN_REPO=/home/fire/xwin/toolchain
 export GEODE_BINDINGS_REPO_PATH=/home/fire/.geodebindings

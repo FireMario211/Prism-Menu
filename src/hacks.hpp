@@ -108,6 +108,7 @@ class Hacks {
             "Jump Hack",
             "Layout Mode",
             "Show Hidden Objects",
+            "Hide Level",
             "Change Gravity",
             "Force Platformer Mode",
             "No Mirror Transition",

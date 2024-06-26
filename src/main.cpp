@@ -20,6 +20,7 @@
 using namespace geode::prelude;
 
 #include <Geode/modify/MenuLayer.hpp>
+#include <Geode/modify/GameManager.hpp>
 
 /*
 for i in range(char2nr('A'), char2nr('Z'))
@@ -29,9 +30,29 @@ endfor
 PrismButton* prismButton;
 
 bool firstLoad = false;
+bool removeMe = false;
+
+class $modify(GameManager) {
+    void reloadAll(bool switchingModes, bool toFullscreen, bool borderless, bool unused) {
+        if (prismButton != nullptr) {
+            SceneManager::get()->forget(prismButton);
+            // yeah this seems safe, definitely wont be a problem in the future
+            delete prismButton;
+            //prismButton->release();
+        }
+        GameManager::reloadAll(switchingModes, toFullscreen, borderless, unused);
+        removeMe = true;
+    }
+};
+
 class $modify(MenuLayer) {
     bool init() {
         if (!MenuLayer::init()) return false;
+        if (removeMe) {
+            firstLoad = false;
+            removeMe = false;
+        }
+
         if (firstLoad) return true;
         HackItem* posX = Hacks::getHack("Button Position X");
         HackItem* posY = Hacks::getHack("Button Position Y");
@@ -40,6 +61,7 @@ class $modify(MenuLayer) {
         #ifndef GEODE_IS_MACOS
         prismButton = PrismButton::create(CCScene::get());
         prismButton->setVisible(Hacks::isHackEnabled("Show Button"));
+        if (Mod::get()->getSettingValue<bool>("hide-button")) prismButton->setVisible(false);
         prismButton->setID("prism-icon");
         SceneManager::get()->keepAcrossScenes(prismButton);
         #endif
@@ -171,14 +193,16 @@ class $modify(CCKeyboardDispatcher) {
 class $modify(PauseLayer) {
     void customSetup() {
         PauseLayer::customSetup();
-        for (size_t i = 0; i < this->getChildrenCount(); i++) {
-            auto obj = this->getChildren()->objectAtIndex(i);
-            if (Utils::getNodeName(obj) == "cocos2d::CCMenu") {
-                auto menu = static_cast<CCMenu*>(obj);
-                auto button = PrismButton::createButton(this);
-                button->setPositionX(-240);
-                menu->addChild(button);
-                break;
+        if (!Mod::get()->getSettingValue<bool>("hide-button")) {
+            for (size_t i = 0; i < this->getChildrenCount(); i++) {
+                auto obj = this->getChildren()->objectAtIndex(i);
+                if (Utils::getNodeName(obj) == "cocos2d::CCMenu") {
+                    auto menu = static_cast<CCMenu*>(obj);
+                    auto button = PrismButton::createButton(this);
+                    button->setPositionX(-240);
+                    menu->addChild(button);
+                    break;
+                }
             }
         }
         
@@ -375,7 +399,7 @@ class $modify(PrismPlayLayer, PlayLayer) {
         m_fields->accuracyLabel->setPosition({36, winSize.height - 35});
         m_fields->accuracyLabel->setScale(0.5F);
         m_fields->accuracyLabel->setOpacity(255 / 2);
-        m_fields->accuracyLabel->setVisible(Hacks::isHackEnabled("Noclip Accuracy"));
+        m_fields->accuracyLabel->setVisible(Hacks::isHackEnabled("Noclip Accuracy") && (Hacks::isHackEnabled("Noclip") || Hacks::isHackEnabled("No Solids") || Hacks::isHackEnabled("No Spikes")));
         m_fields->accuracyLabel->setAlignment(CCTextAlignment::kCCTextAlignmentLeft);
         m_fields->accuracyLabel->setZOrder(1000);
         m_fields->accuracyLabel->setTag(10420); // prevent PlayLayer from interfering
@@ -408,7 +432,7 @@ class $modify(PrismPlayLayer, PlayLayer) {
         if (m_fields->accuracyLabel != nullptr) {
             float accuracy = ((static_cast<float>(m_gameState.m_currentProgress - m_fields->death)) / static_cast<float>(m_gameState.m_currentProgress)) * 100; // for some reason this doesnt work on android, like it goes in the negatives
             m_fields->accuracyLabel->setString(fmt::format("{}%", Utils::setPrecision(accuracy, 2)).c_str());
-            m_fields->accuracyLabel->setVisible(Hacks::isHackEnabled("Noclip Accuracy"));
+            m_fields->accuracyLabel->setVisible(Hacks::isHackEnabled("Noclip Accuracy") && (Hacks::isHackEnabled("Noclip") || Hacks::isHackEnabled("No Solids") || Hacks::isHackEnabled("No Spikes")));
             if (m_gameState.m_currentProgress % 4 == 0) { // quarter step
                 m_fields->accuracyLabel->setColor({255,255,255});
                 if (m_fields->flashOpacity > 1.0F) {

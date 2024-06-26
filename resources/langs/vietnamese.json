@@ -439,7 +439,7 @@
     {
         "Noclip Accuracy": {
             "name": "Do chinh xac cua Noclip",
-            "desc": "Thong bao cho ban muc do chinh xac cua lan chay noclip cua ban. (Se khong hoat dong neu khong bat Anticheat Bypass)"
+            "desc": "Thong bao cho ban muc do chinh xac cua lan chay noclip cua ban."
         }
     },
     {

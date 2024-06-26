@@ -63,8 +63,18 @@
         "platforms": ["win", "android32", "android64"]
     },
     {
+        "name": "Hide Player",
+        "desc": "Hides the player. (Requires playing the level again)",
+        "type": "bool"
+    },
+    {
         "name": "No Trail",
         "desc": "Disables any trail effect from the player.",
+        "type": "bool"
+    },
+    {
+        "name": "No Rotate",
+        "desc": "Freezes the player from rotating when jumping, or falling.",
         "type": "bool"
     },
     {

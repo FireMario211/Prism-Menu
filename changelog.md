@@ -1,5 +1,18 @@
+# v1.8.0
+    - Added "Hide Level"
+    - Added "Hide Player"
+    - Added "No Rotate"
+    - Added importing functionality back
+    - "Noclip Accuracy" now only shows if Noclip is enabled
+    - Allowed the next frame button to work even at the end of the frame (Macro Editor)
+    - Fixed bug with the Prism Button bugging out if you switch between windowed and full screen
+    - Fixed a bug with the previous frame button going to the negatives on Android
+    - Added a geode setting to "Force Hide Button"
+    - Added "Custom Object Bypass" for Android
+    - (hopefully) Fixed the hold bug when using Macro Editor
+    - (hopefully) Fixed the ImGui font issue
 # v1.7.4
-    - Update to support Goede Beta 1
+    - Update to support Geode Beta 1
 # v1.7.3
     - Update Russian translations 
     - Update Turkish translations

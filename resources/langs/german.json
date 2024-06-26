@@ -433,7 +433,7 @@
     {
         "Noclip Accuracy": {
             "name": "Noclip Übereinstimmung",
-            "desc": "Sagt dir wie genau dein Noclip run war. (Wird nicht ohne aktiviertem Anticheat Bypass funktionieren)."
+            "desc": "Sagt dir wie genau dein Noclip run war."
         }
     },
     {

@@ -434,7 +434,7 @@
     {
         "Noclip Accuracy": {
             "name": "Noclip Accuracy",
-            "desc": "Informs you how accurate your noclip run is. (Will not work without Anticheat Bypass enabled)"
+            "desc": "Informs you how accurate your noclip run is."
         }
     },
     {

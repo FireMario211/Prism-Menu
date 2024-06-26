@@ -421,7 +421,7 @@
     {
         "Noclip Accuracy": {
             "name": "Précision du Noclip",
-            "desc": "Vous informe à quel point votre run en Noclip est précise. (Ne marche qu'avec l'Anticheat Bypass actif)"
+            "desc": "Vous informe à quel point votre run en Noclip est précise."
         }
     },
     {

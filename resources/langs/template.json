@@ -434,7 +434,7 @@
     {
         "Noclip Accuracy": {
             "name": "Noclip Accuracy",
-            "desc": "Informs you how accurate your noclip run is. (Will not work without Anticheat Bypass enabled)"
+            "desc": "Informs you how accurate your noclip run is."
         }
     },
     {
@@ -617,6 +617,24 @@
         "Menu Keybind": {
             "name": "Menu Keybind",
             "desc": "The keybind for opening the Prism Menu UI!"
+        }
+    },
+    {
+        "Hide Level": {
+            "name": "Hide Level",
+            "desc": "Hides all objects in the level."
+        }
+    },
+    {
+        "Hide Player": {
+            "name": "Hide Level",
+            "desc": "Hides the player. (Requires playing the level again)"
+        }
+    },
+    {
+        "No Rotate": {
+            "name": "No Rotate",
+            "desc": "Freezes the player from rotating when jumping, or falling."
         }
     }
 ]
