@@ -618,5 +618,23 @@
             "name": "Menü Tuş Bağlantısı",
             "desc": "Prism Menu kullanıcı arayüzünü açmak için tuş bağlantısı!"
         }
+    },
+    {
+        "Hide Level": {
+            "name": "Seviyeyi Gizle",
+            "desc": "Seviyedeki tüm objeleri gizler."
+        }
+    },
+    {
+        "Hide Player": {
+            "name": "Oyuncuyu Gizle",
+            "desc": "Oyuncuyu gizler. (Seviyeyi kapatıp yeniden açarak tekrar oynamayı gerektirir)"
+        }
+    },
+    {
+        "No Rotate": {
+            "name": "Dönmeyi Engelle",
+            "desc": "Oyuncunun zıplarken veya düşerken dönmesini engeller."
+        }
     }
 ]
