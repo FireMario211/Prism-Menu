@@ -628,5 +628,23 @@
             "name": "Lien ket phim menu",
             "desc": "To hop phim de mo giao dien nguoi dung cua Prism Menu! "
         }
-    } 
+    },
+    {
+        "Hide Level": {
+            "name": "An cap do",
+            "desc": "An tat ca vat the o cap do ban choi"
+        }
+    },
+    {
+        "Hide Player": {
+            "name": "An nguoi choi",
+            "desc": "An nguoi choi (Yeu cau choi lai cap do)"
+        }
+    },
+    {
+        "No Rotate": {
+            "name": "Khong xoay",
+            "desc": "Lam nguoi choi khong bi xoay khi ket thuc hoac dang choi"
+        }
+    }
 ]

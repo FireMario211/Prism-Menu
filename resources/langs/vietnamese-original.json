@@ -628,5 +628,23 @@
             "name": "Liên kết phím menu",
             "desc": "Tổ hợp phím để mở giao diện người dùng Prism Menu! "
         }
-    } 
+    },
+    {
+        "Hide Level": {
+            "name": "Ẩn cấp độ",
+            "desc": "Ẩn tất cả vật thể khỏi cấp độ bạn chơi."
+        }
+    },
+    {
+        "Hide Player": {
+            "name": "Ẩn người chơi",
+            "desc": "Ẩn người chơi. (Yêu cầu chơi lại cấp độ)"
+        }
+    },
+    {
+        "No Rotate": {
+            "name": "Không xoay",
+            "desc": "Giúp người chơi không bị xoay khi nhảy hoặc rơi."
+        }
+    }
 ]
