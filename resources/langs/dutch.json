@@ -1,0 +1,640 @@
+[
+    {
+        "§ Global": {
+            "name": "§ Globaal"
+        }
+    },
+    {
+        "¬ Player": {
+            "name": "¬ Speler"
+        }
+    },
+    {
+        "ª Bypass": {
+            "name": "ª Bypass"
+        }
+    },
+    {
+        "« Creator": {
+            "name": "« Bouwer"
+        }
+    },
+    {
+        "¦ Quartz Bot": {
+            "name": "¦ Quartz Bot"
+        }
+    },
+    {
+        "··· Misc": {
+            "name": "··· Allerlei"
+        }
+    },
+    {
+        "¶ Settings": {
+            "name": "¶ Instellingen"
+        }
+    },
+
+    {
+        "Prism Menu by Firee": {
+            "name": "Prism Menu door Firee"
+        }
+    },
+
+
+
+    {
+        "Anticheat Bypass": {
+            "name": "Anticheat Bypass",
+            "desc": "Schakelt alle anticheats uit. [Levels, Editor, etc.]"
+        }
+    },
+    {
+        "Practice Music": {
+            "name": "Practice Muziek",
+            "desc": "Schakelt muziek in Practice mode in, ook als dit vergrendeld is."
+        }
+    },
+    {
+        "Safe Mode": {
+            "name": "Veilige Modus",
+            "desc": "Stopt alle voortgang in een level."
+        }
+    },
+    {
+        "Accurate Percentage": {
+            "name": "Nauwkeurig Percentage",
+            "desc": "Staat decimalen in het percentage toe. [Tot voorbij de duizendste plaats]"
+        }
+    },
+    {
+        "Layout Mode": {
+            "name": "Layout Modus",
+            "desc": "Verwijdert elk object gerelateerd tot decoratie in een level."
+        }
+    },
+    {
+        "No Transition": {
+            "name": "Geen Overgangen",
+            "desc": "Kort de tijd van overgangen op het scherm in tot 0s."
+        }
+    },
+    {
+        "Cheat Indicator": {
+            "name": "Cheat Indicator",
+            "desc": "Laat een lampje zien dat aangaat als je modificaties gebruikt die als cheats worden gezien!"
+        }
+    },
+    {
+        "Speedhack": {
+            "name": "Snelheidshack",
+            "desc": "Past de snelheid van het spel en geluid aan."
+        }
+    },
+    {
+        "FPS Bypass": {
+            "name": "FPS Bypass",
+            "desc": "Ontgrendelt je FPS zodat dit hoger kan zijn dan 60 of de verversingssnelheid van je monitor."
+        }
+    },
+    {
+        "Reset Speedhack": {
+            "name": "Snelheidshacks Resetten",
+            "desc": "Reset de snelheidshacks terug naar de standaardwaarde."
+        }
+    },
+
+    {
+        "Noclip": {
+            "name": "Noclip",
+            "desc": "Maak de speler onschendbaar."
+        }
+    },
+    {
+        "No Spikes": {
+            "name": "Geen Spikes",
+            "desc": "Negeer objecten als spikes."
+        }
+    },
+    {
+        "No Hitbox": {
+            "name": "Geen Hitbox",
+            "desc": "Zet alle hitboxes van objecten uit. Speciale objecten worden uitgeschakeld."
+        }
+    },
+    {
+        "No Solids": {
+            "name": "Geen Soliden",
+            "desc": "Zet de hitboxes van solide objecten als blokken uit. Speciale objecten werken nog steeds."
+        }
+    },
+    {
+        "Everything Hurts": {
+            "name": "Alles doet zeer",
+            "desc": "Au."
+        }
+    },
+    {
+        "No Mirror Transition": {
+            "name": "Geen mirror-portal-effect",
+            "desc": "Zorgt ervoor dat het scherm niet omdraait bij een mirror-portal."
+        }
+    },
+    {
+        "Instant Mirror Portal": {
+            "name": "Directe Mirror Portal",
+            "desc": "De mirror-portal draait je scherm meteen om, dus zonder animatie."
+        }
+    },
+    {
+        "Freeze Player": {
+            "name": "Bevries Speler",
+            "desc": "Bevriest de beweging van de speler."
+        }
+    },
+    {
+        "Jump Hack": {
+            "name": "Spring Hacks",
+            "desc": "Staat springen midden in de lucht toe."
+        }
+    },
+    {
+        "Instant Complete": {
+            "name": "Meteen Voltooien",
+            "desc": "Haal het level meteen. (Zet niet aan in de editor)"
+        }
+    },
+    {
+        "Force Platformer Mode": {
+            "name": "Forceer de Platformer Modus",
+            "desc": "Dwingt je in de Platformer Modus te zijn als je in een level gaat."
+        }
+    },
+    {
+        "Change Gravity": {
+            "name": "Verander Zwaartekracht",
+            "desc": "Staat je toe de zwaardekracht aan te passen als je valt of springt."
+        }
+    },
+    {
+        "Gravity Value": {
+            "name": "Zwaartekrachtswaarde",
+            "desc": "Pas de waarde van hoe sterk de zwaartekracht is aan."
+        }
+    },
+
+    {
+        "Icon Bypass": {
+            "name": "Icon Bypass",
+            "desc": "Ontgrendel alle icons."
+        }
+    },
+    {
+        "Text Length": {
+            "name": "Lengte Tekst",
+            "desc": "Staat oneindige lengte van tekst in invoervelden toe."
+        }
+    },
+    {
+        "Character Filter": {
+            "name": "Karakter Filter",
+            "desc": "Staat je toe elk karakter in te voeren in invoervelden."
+        }
+    },
+    {
+        "Slider Limit": {
+            "name": "Schuiflimiet",
+            "desc": "Staat je toe schuifregelaars te verslepen tot buiten het normale limiet."
+        }
+    },
+    {
+        "Main Levels": {
+            "name": "Main Levels",
+            "desc": "Ontgrendelt de demon levels."
+        }
+    },
+    {
+        "Guard Vault": {
+            "name": "Guard Kluis",
+            "desc": "Ontgrendel de kluis van de Guard."
+        }
+    },
+    {
+        "Keymaster Vault": {
+            "name": "Keymaster Kluis",
+            "desc": "Ontgrendel de kluis van de Keymaster."
+        }
+    },
+    {
+        "Treasure Room": {
+            "name": "Schatkamer",
+            "desc": "Ontgrendel de schatkamer."
+        }
+    },
+    {
+        "Free Shop Items": {
+            "name": "Gratis Winkel Items",
+            "desc": "Staat je toe items van winkels te kopen voor 0 mana orbs."
+        }
+    },
+    {
+        "Gatekeeper Vault": {
+            "name": "Gatekeeper Kluis",
+            "desc": "Ontgrendel de kluis van de Gatekeeper."
+        }
+    },
+    {
+        "Backup Stars Limit": {
+            "name": "Backup Sterrenlimiet",
+            "desc": "Staat je toe een backup te maken van je data, zelfs met minder dan 10 sterren."
+        }
+    },
+
+
+    {
+        "Level Edit": {
+            "name": "Level Edit",
+            "desc": "Staat je toe elk level aan te passen, krijg toegang tot de editor via het pauzemenu. (ONSTABIEL)"
+        }
+    },
+    {
+        "Verify Hack": {
+            "name": "Verifieerhack",
+            "desc": "Staat je toe levels te uploaden zonder ze te verifiëren. Zet levels automatisch op geverifiëerd."
+        }
+    },
+    {
+        "Copy Hack": {
+            "name": "Kopiehack",
+            "desc": "Laat je een level kopiëren zonder wachtwoord."
+        }
+    },
+    {
+        "No (C) Mark": {
+            "name": "Geen (C) Symbool",
+            "desc": "Verwijdert het (C) symbool als je gekopiëerde levels uploadt. Zal levels automatisch op origineel zetten."
+        }
+    },
+    {
+        "Hide Testmode": {
+            "name": "Testmodus verbergen",
+            "desc": "Verbergt de 'testmode' tekst als je met een startpositie speelt."
+        }
+    },
+    {
+        "Rotation Hack": {
+            "name": "Rotatiehack",
+            "desc": "Zorgt ervoor dat je elk object kan draaien. Werkt alleen lokaal."
+        }
+    },
+    {
+        "Default Song Bypass": {
+            "name": "Staandaard Lied Bypass",
+            "desc": "Staat je toe verborgen liedjes te zien in de editor."
+        }
+    },
+
+    {
+        "No Progress Bar": {
+            "name": "Geen voortgangsbalk",
+            "desc": "Verwijdert de voortgangsbalk! Het percentage zal nog steeds zichtbaar zijn."
+        }
+    },
+    {
+        "Progress Bar Position": {
+            "name": "Voortgangsbalk Positie",
+            "desc": "Stel de positie van de voortgangsbalk in."
+        }
+    },
+    {
+        "Hide Attempts": {
+            "name": "Pogingen Verbergen",
+            "desc": "Of de pogingen wel of niet getoond moeten worden als je een level speelt."
+        }
+    },
+    {
+        "Attempt Opacity": {
+            "name": "Doorzichtigheid Pogingslabel",
+            "desc": "Bepaalt hoe doorzichtig het pogingslabel moet zijn."
+        }
+    },
+
+    {
+        "Menu Opacity": {
+            "name": "Doorzichtigheid Menu",
+            "desc": "Bepaalt hoe doorzichtig het menu moet zijn."
+        }
+    },
+    {
+        "Theme": {
+            "name": "Thema",
+            "desc": "Kies het thema van de interface van het Prism Menu!"
+        }
+    },
+    {
+        "Import Theme": {
+            "name": "Thema Importeren",
+            "desc": "Importeert een thema! [JSON bestand]"
+        }
+    },
+    {
+        "Live Theme Editing": {
+            "name": "Live Thema Aanpassen",
+            "desc": "Staat je toe wijzigingen meteen op het scherm te zien als je het thema aanpast. (Waarschuwing: Dit kan een geheugenlek veroorzaken.)"
+        }
+    },
+    {
+        "Show Tooltips": {
+            "name": "Laat Tooltips Zien",
+            "desc": "Of tooltips wel of niet getoond moeten worden als je met de cursor over een mod beweegt."
+        }
+    },
+    {
+        "Show Button": {
+            "name": "Toon Knop",
+            "desc": "Toon de knop om het menu te openen. Het is aanbevolen deze optie aan te laten voor Android."
+        }
+    },
+    {
+        "Button Position X": {
+            "name": "X Positie Knop",
+            "desc": "De X-positie van de knop om het menu te openen."
+        }
+    },
+    {
+        "Button Position Y": {
+            "name": "Y Positie Knop",
+            "desc": "De Y-positie van de knop om het menu te openen."
+        }
+    },
+    {
+        "Language": {
+            "name": "Taal",
+            "desc": "Stelt de taal in van Prism Menu!"
+        }
+    },
+    {
+        "Restore Defaults": {
+            "name": "Standaardinstellingen Herstellen",
+            "desc": "Schakel alle mods uit en zet alles naar de standaardgegevens."
+        }
+    },
+    {
+        "Credits": {
+            "name": "Credits",
+            "desc": "Mensen die meegeholpen hebben aan Prism Menu!"
+        }
+    },
+    {
+        "Thank you to Electrify (ES), Jouca (FR), dank_meme01, savvacorgi, МегаСвятой (RU), Gazonk (BR), huhnmitferrari (DE), and Ignis (CS) for translations!": {
+            "name": "Dank aan Electrify (ES), Jouca (FR), dank_meme01, savvacorgi, МегаСвятой (RU), Gazonk (BR), huhnmitferrari (DE), Sh4keDash (NL), and Ignis (CS) voor de vertalingen!"
+        }
+    },
+    {
+        "And thank you for using the mod! I hope you enjoy using Prism Menu!": {
+            "name": "En dank je voor het gebruiken van de mod! We hopen dat je geniet van het gebruiken van Prism Menu!"
+        }
+    },
+    {
+        "Close Popup": {
+            "name": "Pop-up Sluiten"
+        }
+    },
+    {
+        "Menu Scale": {
+            "name": "Menu Schaal",
+            "desc": "Beslist hoe groot de tekst en knoppen zullen zijn. (Start het spel opnieuw op om wijzigingen te zien)"
+        }
+    },
+
+    {
+        "Show Hidden Objects": {
+            "name": "Laat Verborgen Objecten Zien",
+            "desc": "Laat alle verborgen objecten zien. Dit stelt de primaire kleur van het object opnieuw in. Dit werkt niet met objecten met het \"Hide\" attribuut. (Handig met Layout-modus)"
+        }
+    },
+    {
+        "Transparent BG": {
+            "name": "Transparante Achtergrond",
+            "desc": "Verandert aangepaste kleuren van de achtergrond automatisch terug naar hun originele kleur."
+        }
+    },
+    {
+        "Speedhack Audio": {
+            "name": "Snelheidshack Geluid",
+            "desc": "Of het geluid ook aangepast moet worden met de waarde van Snelheidshack."
+        }
+    },
+    {
+        "No Glow": {
+            "name": "Geen Glow",
+            "desc": "Zet de glow van objecten uit."
+        }
+    },
+    {
+        "Noclip Accuracy": {
+            "name": "Noclip Nauwkeurigheid",
+            "desc": "Laat je zien hoe nauwkeurig je noclip is."
+        }
+    },
+    {
+        "Show Graphic Options": {
+            "name": "Laat Grafische Opties Zien",
+            "desc": "Laat je de grafische opties van Geometry Dash zien! Handig voor Android omdat deze optie daar normaal niet zichtbaar is."
+        }
+    },
+    {
+        "No Trail": {
+            "name": "Geen Trail",
+            "desc": "Zet elk trail-effect van de speler uit."
+        }
+    },
+    {
+        "No Wave Trail": {
+            "name": "Geen Wave Trail",
+            "desc": "Zet de trail achter de wave uit."
+        }
+    },
+    {
+        "Solid Wave Trail": {
+            "name": "Solide Wave Trail",
+            "desc": "Verwijdert het samenblenden van de twee kleuren van de speler bij de trail van de wave."
+        }
+    },
+
+    {
+        "Extra Percent Digits": {
+            "name": "Extra Percentage Cijfers",
+            "desc": "Het aantal extra decimalen die getoond moeten worden bij Nauwkeurig Percentage."
+        }
+    },
+    {
+        "Uncomplete Level": {
+            "name": "Onvoltooi Level",
+            "desc": "Reset de percentages van het level, en laat je je behaalde sterren weghalen van het level! Handig als je een level per ongeluk haalt."
+        }
+    },
+    {
+        "No Shaders": {
+            "name": "Geen Shaders",
+            "desc": "Zet alle shader-effects van de camera uit."
+        }
+    },
+    {
+        "Disable Camera Effects": {
+            "name": "Zet camera-effecten uit",
+            "desc": "Zet camera-effecten uit, en focus alleen op de speler. Dit kan alle gamemodes breken behalve de Cube en de Robot"
+        }
+    },
+    {
+        "Show Hitboxes": {
+            "name": "Laat Hitboxes zien",
+            "desc": "Laat speler-, obstakel-, en solide hitboxes zien."
+        }
+    },
+    {
+        "Show Hitboxes on Death": {
+            "name": "Laat Hitboxes Zien Bij Doodgaan",
+            "desc": "Laat speler-, obstakel-, en solide hitboxes zien als je doodgaat, en laat ze weer verdwijnen als je respawnt."
+        }
+    },
+    {
+        "Hitbox Stroke": {
+            "name": "Hitbox Stroke",
+            "desc": "De 'breedte' van de randen als hitboxes getekend worden."
+        }
+    },
+    {
+        "Suicide": {
+            "name": "Suicide",
+            "desc": "Vermoordt de speler de hele tijd."
+        }
+    },
+
+    {
+        "TPS Bypass": {
+            "name": "TPS Bypass",
+            "desc": "Verandert de \"Physics FPS\" om lager of hoger te zijn dan de standaard. (240)"
+        }
+    },
+    {
+        "Macro": {
+            "name": "Macro",
+            "desc": "Kies een macro om op te nemen of af te spelen!"
+        }
+    },
+    {
+        "Record": {
+            "name": "Opnemen",
+            "desc": "Neemt gameplay op om opnieuw afgespeeld te worden. (Dit zal de huidige inputs resetten als een level afgespeeld wordt.)"
+        }
+    },
+    {
+        "Playback": {
+            "name": "Afspelen",
+            "desc": "Speel de macro af."
+        }
+    },
+    {
+        "Macro Editor": {
+            "name": "Macro Editor",
+            "desc": "Start de macro-editor. (Zal niet normaal functioneren als opnemen aan staat)"
+        }
+    },
+    {
+        "Frame Fix": {
+            "name": "Frame Fix",
+            "desc": "Neem elke beweging van de speler op, ook de positie van de speler bij het opnemen en afspelen van de macro. Let wel dat deze optie de grootte van het bestand zal vergroten tijdens het opnemen."
+        }
+    },
+    {
+        "Fixed FPS": {
+            "name": "Vaste FPS",
+            "desc": "Zal de framerate vast zetten op de waarde van de macro. Dit kan lijken op wanneer de \"smooth fix\" optie aanstaat als het spel lagt."
+        }
+    },
+    {
+        "Import Macro": {
+            "name": "Macro Importeren",
+            "desc": "Importeer een macro."
+        }
+    },
+    {
+        "Save Macro": {
+            "name": "Macro Opslaan",
+            "desc": "Sla de macro op."
+        }
+    },
+    {
+        "No Pulse": {
+            "name": "Geen Pulse",
+            "desc": "Stopt orbs en andere gerelateerde objecten te pulsen bij de muziek."
+        }
+    },
+    {
+        "Noclip Flash": {
+            "name": "Noclip Flash",
+            "desc": "Flasht het hele scherm rood in plaats van het laten zien van het label van de Noclip Nauwkeurigheid."
+        }
+    },
+    {
+        "Instant Respawn": {
+            "name": "Directe Respawn",
+            "desc": "Verwijdert de vertraging als je het level opnieuw probeert."
+        }
+    },
+    {
+        "No Death Effect": {
+            "name": "Geen Death Effect",
+            "desc": "Verwijdert de explosie-particles als de speler doodgaat."
+        }
+    },
+    {
+        "No Wave Pulse": {
+            "name": "Geen Wave Pulse",
+            "desc": "Zorgt ervoor dat de wave niet pulst tot de beat van de muziek."
+        }
+    },
+    {
+        "Wave Pulse Size": {
+            "name": "Wave Pulse Grootte",
+            "desc": "Hoe groot de pulse van de wave moet zijn."
+        }
+    },
+    {
+        "Auto Safe Mode": {
+            "name": "Auto Veilige Modus",
+            "desc": "Zorgt ervoor dat voortgang niet gemaakt kan worden als bepaalde cheats aan staan."
+        }
+    },
+    {
+        "Custom Object Bypass": {
+            "name": "Custom Object Bypass",
+            "desc": "Zorgt ervoor dat je voorbij het limiet van 1000 objecten kan gaan bij Custom Objects."
+        }
+    },
+    {
+        "Menu Keybind": {
+            "name": "Menu Sneltoets",
+            "desc": "De sneltoets om het Prism Menu te openen!"
+        }
+    },
+    {
+        "Hide Level": {
+            "name": "Laat Level Verdwijnen",
+            "desc": "Laat alle objecten in een level verdwijnen."
+        }
+    },
+    {
+        "Hide Player": {
+            "name": "Laat Speler Verdwijnen",
+            "desc": "Laat de speler verdwijnen. (Speel het level opnieuw om dit aan te zetten)"
+        }
+    },
+    {
+        "No Rotate": {
+            "name": "Geen Rotatie",
+            "desc": "Forceer de speler om niet rond te draaien bij springen of vallen."
+        }
+    }
+]
