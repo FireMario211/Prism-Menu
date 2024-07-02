@@ -519,8 +519,8 @@
 
     {
         "TPS Bypass": {
-            "name": "SBT Baypas",
-            "desc": "Oyunun \"Fizik FPS (Saniye Başına Kare)\" değerini varsayılandan daha yüksek veya daha düşük olacak şekilde değiştirir. (SBT = Saniye Başına Tik) (240)"
+            "name": "TPS Baypas",
+            "desc": "Oyunun \"Fizik FPS (Saniye Başına Kare)\" değerini varsayılandan daha yüksek veya daha düşük olacak şekilde değiştirir. (TPS = Saniye Başına Tik) (240)"
         }
     },
     {
