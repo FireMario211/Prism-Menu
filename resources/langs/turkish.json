@@ -315,7 +315,7 @@
     {
         "Hide Attempts": {
             "name": "Deneme Etiketini Gizle",
-            "desc": "Seviyedeki deneme sayınızı gösteren etiketi gizler."
+            "desc": "Seviyeyi oynarken deneme sayınızı gösteren etiketi gizler."
         }
     },
     {
