@@ -149,7 +149,7 @@
     {
         "Instant Mirror Portal": {
             "name": "Anında Ayna Portalı",
-            "desc": "Ters portal artık anında geçiş yapıyor."
+            "desc": "Ayna portalına geçiş yaparken yaşanan animasyonu 0s olarak kısaltır."
         }
     },
     {
