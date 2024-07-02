@@ -321,7 +321,7 @@
     {
         "Attempt Opacity": {
             "name": "Deneme Etiketi Opaklığı",
-            "desc": "Deneme sayınızı gösteren etiken ne kadar opak olması gerektiğini ayarlamanızı sağlar."
+            "desc": "Deneme sayınızı gösteren etiketin ne kadar opak olması gerektiğini ayarlamanızı sağlar."
         }
     },
 
