@@ -81,8 +81,8 @@
     },
     {
         "No Transition": {
-            "name": "Sahne Geçişini Kaldır",
-            "desc": "Sahne geçiş süresini 0s olarak kısaltır."
+            "name": "Menü Sahne Geçişini Kaldır",
+            "desc": "Menüler arası geçiş yaparken yaşanan animasyonu kaldırır, bu sayede menüye anında geçiş yapar."
         }
     },
     {
