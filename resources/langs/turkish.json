@@ -592,7 +592,7 @@
     {
         "No Death Effect": {
             "name": "Ölüm Efektini Kaldır",
-            "desc": "Oyuncu öldüğünde çıkan patlama efekti ve parçacıklarını kaldırır."
+            "desc": "Oyuncu öldüğünde çıkan patlama efekti ve parçacıkları kaldırır."
         }
     },
     {
