@@ -315,20 +315,20 @@
     {
         "Hide Attempts": {
             "name": "Deneme Etiketini Gizle",
-            "desc": "Bir seviye oynatılırken deneme etiketinin gösterilip gösterilmeyeceğini ayarlar."
+            "desc": "Seviyedeki deneme sayınızı gösteren etiketi gizler."
         }
     },
     {
         "Attempt Opacity": {
             "name": "Deneme Etiketi Opaklığı",
-            "desc": "Deneme etiketinin ne kadar opak olması gerektiğini belirler."
+            "desc": "Deneme sayınızı gösteren etiken ne kadar opak olması gerektiğini ayarlamanızı sağlar."
         }
     },
 
     {
         "Menu Opacity": {
             "name": "Menü Opaklığı",
-            "desc": "Menünün ne kadar opak olması gerektiğini belirler."
+            "desc": "Menünün ne kadar opak olması gerektiğini ayarlamanızı sağlar."
         }
     },
     {
