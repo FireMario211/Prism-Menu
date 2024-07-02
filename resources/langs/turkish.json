@@ -433,7 +433,7 @@
     },
     {
         "No Glow": {
-            "name": "Parıltıları Kaldır",
+            "name": "Parıltıları (Glow) Kaldır",
             "desc": "Tüm nesnelerde olan parıltıları (glow) kaldırır."
         }
     },
