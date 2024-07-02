@@ -1,7 +1,7 @@
 [
     {
         "§ Global": {
-            "name": "§ Evrensel"
+            "name": "§ Küresel"
         }
     },
     {
@@ -52,7 +52,7 @@
     {
         "Practice Music": {
             "name": "Pratik Modda Seviye Müziği",
-            "desc": "Kilitli olsa bile pratik modda seviyenin kullandığı müziği kullanmanızı sağlar."
+            "desc": "Pratik modda seviyenin kullandığı müziği özellik sizde kilitli olursa olsun duymanızı sağlar."
         }
     },
     {
@@ -81,14 +81,14 @@
     },
     {
         "No Transition": {
-            "name": "Sahne Geçişini Kaldır",
-            "desc": "Sahne geçiş süresini 0 saniyeye kısaltır."
+            "name": "Menü Sahne Geçişini Kaldır",
+            "desc": "Menüler arası geçiş yaparken yaşanan animasyonu kaldırır, bu sayede menüye anında geçiş yapar."
         }
     },
     {
         "Cheat Indicator": {
             "name": "Hile Göstergesi",
-            "desc": "Hile olarak kabul edilebilecek modları kullanıp kullanmadığınızı anlamak için bir simge gösterir!"
+            "desc": "Hile olarak kabul edilen modları kullanıp kullanmadığınızı anlamak için bir simge gösterir!"
         }
     },
     {
@@ -99,14 +99,14 @@
     },
     {
         "FPS Bypass": {
-            "name": "Kare Hızı Baypas",
-            "desc": "Kare hızının 60'tan fazla olmasını veya monitörünüzün yenileme hızı olmasını sağlar."
+            "name": "FPS Baypas",
+            "desc": "FPS'inizin 60'tan fazla olmasını veya monitörünüzün yenileme hızı olmasını sağlar. (FPS = Saniye Başına Kare)"
         }
     },
     {
         "Reset Speedhack": {
             "name": "Hız Hilesini Sıfırla",
-            "desc": "Hız hilesini normale geri çevirir."
+            "desc": "Hız hilesinin hızını normal hıza geri çevirir."
         }
     },
 
@@ -131,7 +131,7 @@
     {
         "No Solids": {
             "name": "Katı Maddeleri Kaldır",
-            "desc": "Çoğu katı vuruş kutusunu kaldırır. Özel nesneler hala çalışır."
+            "desc": "Çoğu katı maddelerin vuruş kutusunu kaldırır. Özel nesneler hala çalışır."
         }
     },
     {
@@ -149,7 +149,7 @@
     {
         "Instant Mirror Portal": {
             "name": "Anında Ayna Portalı",
-            "desc": "Ters portal artık anında geçiş yapıyor."
+            "desc": "Ayna portalına geçiş yaparken yaşanan animasyonu 0s'ye kısaltır."
         }
     },
     {
@@ -167,13 +167,13 @@
     {
         "Instant Complete": {
             "name": "Anında Tamamla",
-            "desc": "Seviyeyi anında tamamlar. (Editörde etkinleştirmeden sakının)"
+            "desc": "Seviyeyi anında tamamlar. (Editör'de etkinleştirmeden sakının)"
         }
     },
     {
         "Force Platformer Mode": {
             "name": "Platformer Modunu Zorla",
-            "desc": "Bir seviye oynarken sizi platformer modunda olmaya zorlar."
+            "desc": "Klasik oyun modunda olan seviyelerde platformer modunu zorlar."
         }
     },
     {
@@ -266,7 +266,7 @@
     {
         "Verify Hack": {
             "name": "Doğrulama Hilesi",
-            "desc": "Doğrulanmamış seviyeleri yüklemenizi sağlar. Seviyeleri otomatik olarak doğrulanacak şekilde ayarlar."
+            "desc": "Doğrulanmamış seviyeleri yüklemenizi sağlar. Seviyeleri otomatik olarak doğrulanmış olarak ayarlar."
         }
     },
     {
@@ -296,7 +296,7 @@
     {
         "Default Song Bypass": {
             "name": "Varsayılan Şarkı Baypas",
-            "desc": "Editörde gizli varsayılan şarkıları kullanmanızı sağlar."
+            "desc": "Editör'de gizli olan varsayılan şarkıları kullanmanızı sağlar."
         }
     },
 
@@ -315,20 +315,20 @@
     {
         "Hide Attempts": {
             "name": "Deneme Etiketini Gizle",
-            "desc": "Bir seviye oynatılırken deneme etiketinin gösterilip gösterilmeyeceğini ayarlar."
+            "desc": "Seviyeyi oynarken deneme sayınızı gösteren etiketi gizler."
         }
     },
     {
         "Attempt Opacity": {
             "name": "Deneme Etiketi Opaklığı",
-            "desc": "Deneme etiketinin ne kadar opak olması gerektiğini belirler."
+            "desc": "Deneme sayınızı gösteren etiketin ne kadar opak olması gerektiğini ayarlamanızı sağlar."
         }
     },
 
     {
         "Menu Opacity": {
             "name": "Menü Opaklığı",
-            "desc": "Menünün ne kadar opak olması gerektiğini belirler."
+            "desc": "Menünün ne kadar opak olması gerektiğini ayarlamanızı sağlar."
         }
     },
     {
@@ -346,7 +346,7 @@
     {
         "Live Theme Editing": {
             "name": "Canlı Tema Düzenleme",
-            "desc": "Bu, değişiklikleri ekranda görürken özel temanızı düzenlemenize olanak tanır! (Uyarı: Bu bir bellek sızıntısına neden olabilir.)"
+            "desc": "Bu özellik, değişiklikleri ekranda görürken özel temanızı düzenlemenize olanak tanır! (Uyarı: Bu özellik bir bellek sızıntısına neden olabilir.)"
         }
     },
     {
@@ -358,7 +358,7 @@
     {
         "Show Button": {
             "name": "Düğmeyi Göster",
-            "desc": "Menüyü etkinleştirmek için düğmeyi gösterir. Android için bunu etkin tutmanız önerilir."
+            "desc": "Menüyü açmak için bir düğme gösterir. Android için bunu etkin tutmanız önerilir."
         }
     },
     {
@@ -388,17 +388,17 @@
     {
         "Credits": {
             "name": "Katkıda Bulunanlar",   
-            "desc": "Mod ile ilgili yardımcı olan kimseler!"
+            "desc": "Modla yardımcı olan kişiler!"
         }
     },
     {
         "Thank you to Electrify (ES), Jouca (FR), dank_meme01, savvacorgi, МегаСвятой (RU), Gazonk (BR), huhnmitferrari (DE), and Ignis (CS) for translations!": {
-            "name": "Çeviriler için Electrify (ES), Jouca (FR), dank_meme01, savvacorgi, МегаСвятой (RU), Gazonk (BR), huhnmitferrari (DE) ve Ignis'e (CS) teşekkür ederiz!"
+            "name": "Çeviriler için Electrify (ES), Jouca (FR), dank_meme01, savvacorgi, МегаСвятой (RU), Gazonk (BR), huhnmitferrari (DE) ve Ignis (CS)'e teşekkür ederiz!"
         }
     },
     {
         "And thank you for using the mod! I hope you enjoy using Prism Menu!": {
-            "name": "Ve modu kullandığın için teşekkür ederim! Umarım Prism Menu'yü kullanmaktan keyif alıyorsundur!"
+            "name": "Ve modu kullandığınız için teşekkür ederim! Umarım Prism Menu'yü kullanmaktan keyif alırsınız!"
         }
     },
     {
@@ -409,14 +409,14 @@
     {
         "Menu Scale": {
             "name": "Menü Ölçeği",
-            "desc": "Metin ve düğmelerin ne kadar büyük olması gerektiğine karar verir. (Oyunu yeniden başlatmayı gerektirir)"
+            "desc": "Metin ve düğmelerin büyüklüğünü ayarlamanızı sağlar. (Oyunu yeniden başlatmayı gerektirir)"
         }
     },
 
     {
         "Show Hidden Objects": {
             "name": "Gizli Nesneleri Göster",
-            "desc": "Tüm gizli nesneleri gösterir. Bu, nesnelerin ana rengini sıfırlayacaktır. Bu işlem \"Hide\" özelliğine sahip nesnelerde çalışmaz. (Düzen/Layout Modu ile kullanışlıdır)"
+            "desc": "Tüm gizli nesneleri gösterir. Bu özellik objelerin ana rengini sıfırlayacaktır. Bu özellik, \"Hide\" özelliğine sahip nesnelerde çalışmaz. (Düzen/Layout Modu ile kullanışlıdır)"
         }
     },
     {
@@ -428,19 +428,19 @@
     {
         "Speedhack Audio": {
             "name": "Ses Hız Hilesi",
-            "desc": "Hız hilesi değerine bağlı olarak ses hızının da değiştirilip değiştirilmeyeceği."
+            "desc": "Hız hilesi değerine bağlı olarak ses hızının da değişmesini ayarlamanızı sağlar."
         }
     },
     {
         "No Glow": {
-            "name": "Parıltıları Kaldır",
-            "desc": "Tüm nesnelerde olan parıltıları kaldırır."
+            "name": "Parıltıları (Glow) Kaldır",
+            "desc": "Tüm nesnelerde olan parıltıları (glow) kaldırır."
         }
     },
     {
         "Noclip Accuracy": {
             "name": "Noclip Doğruluğu",
-            "desc": "Noclip etkinken seviyeyi ne kadar doğru oynadığınızı size bildirir."
+            "desc": "Noclip etkinken seviyeyi ne kadar doğru oynadığınızı göstermek için ekranda bir yüzde etiketi gösterir ve her objelerin içinden geçtiğinizde yüzde azalır."
         }
     },
     {
@@ -452,19 +452,19 @@
     {
         "No Trail": {
             "name": "İzi Kaldır",
-            "desc": "Oyuncudan gelen herhangi bir iz efektini kaldırır."
+            "desc": "Oyuncudan gelen herhangi bir iz (trail) efektini kaldırır."
         }
     },
     {
         "No Wave Trail": {
-            "name": "Dalga İzini Kaldır",
-            "desc": "Dalganın arkasındaki izi kaldırır."
+            "name": "Wave İzini Kaldır",
+            "desc": "Wave'in arkasındaki izi kaldırır."
         }
     },
     {
         "Solid Wave Trail": {
-            "name": "Katı Dalga İzi",
-            "desc": "Dalga izi üzerindeki her iki simge renginin karışımını kaldırır."
+            "name": "Katı Wave İzi",
+            "desc": "Wave'in izindeki iki ikon renk karışımını kaldırır ve yerine ikonunuzun birincil rengine değiştirir."
         }
     },
 
@@ -476,20 +476,20 @@
     },
     {
         "Uncomplete Level": {
-            "name": "Seviye İlerlemesini Sıfırla",
-            "desc": "Normal ve pratik yüzdelerini sıfırlar ve seviyeyi tamamladıysanız yıldız sayısını azaltmasını sağlar!"
+            "name": "Seviyenin İlerlemelerini Sıfırla",
+            "desc": "Normal ve pratik modunda seviyede yaptığınız ilerlemeleri sıfırlar ve seviyeyi tamamladıysanız seviyeden aldığınız yıldızı hesabınızdan kaldırmanızı sağlar!"
         }
     },
     {
         "No Shaders": {
-            "name": "Gölgelendiricileri Kaldır",
-            "desc": "Tüm kamera gölgelendirici efektlerini devre dışı bırakır."
+            "name": "Shaderları Kaldır",
+            "desc": "Tüm kamera shader (gölgelendirici) efektlerini devre dışı bırakır."
         }
     },
     {
         "Disable Camera Effects": {
             "name": "Kamera Efektlerini Devre Dışı Bırak",
-            "desc": "Tüm kamera efektlerini devre dışı bırakır ve kamerayı yalnızca oyuncuya odaklar. Bu, Küp ve Robot hariç tüm oyun modlarını bozabilir."
+            "desc": "Tüm kamera efektlerini devre dışı bırakır ve kamerayı yalnızca oyuncuya odaklar. Bu özellik Cube ve Robot hariç tüm oyun modlarını bozabilir."
         }
     },
     {
@@ -507,20 +507,20 @@
     {
         "Hitbox Stroke": {
             "name": "Vuruş Kutusu Darbesi",
-            "desc": "Vuruş kutularını çizerken darbe 'genişliği'."
+            "desc": "Vuruş kutularını çizerken 'darbe genişliği'."
         }
     },
     {
         "Suicide": {
             "name": "İntihar",
-            "desc": "Oyuncuyu tekrar tekrar öldürür."
+            "desc": "Oyuncuyu özellik açık olduğu sürece sürekli öldürür."
         }
     },
 
     {
         "TPS Bypass": {
-            "name": "SBT Baypas",
-            "desc": "Oyunun \"Fizik Kare Hızı\" değerini varsayılandan daha yüksek veya daha düşük olacak şekilde değiştirir. (SBT = Saniye Başına Tik) (240)"
+            "name": "TPS Baypas",
+            "desc": "Oyunun \"Fizik FPS (Saniye Başına Kare)\" değerini varsayılandan daha yüksek veya daha düşük olacak şekilde değiştirir. (TPS = Saniye Başına Tik) (240)"
         }
     },
     {
@@ -532,7 +532,7 @@
     {
         "Record": {
             "name": "Kayıt Al",
-            "desc": "Oynatılacak oynanışı kayıt alır. (Bu, bir seviye oynarsanız ve bir makro seçiliyse mevcut girişleri sıfırlayacaktır.)"
+            "desc": "Oynatılacak oynanışı (gameplay) kayıt alır. (Bu özellik, bir seviye oynarsanız ve bir makro seçiliyse mevcut girişleri sıfırlayacaktır.)"
         }
     },
     {
@@ -544,7 +544,7 @@
     {
         "Macro Editor": {
             "name": "Makro Editörü",
-            "desc": "Makro editörüne girin. (Kayıt Al etkinken düzgün bir şekilde çalışmayacaktır.)"
+            "desc": "Makro editörüne giriş yapın. (Kayıt Al etkinken düzgün bir şekilde çalışmayacaktır.)"
         }
     },
     {
@@ -555,8 +555,8 @@
     },
     {
         "Fixed FPS": {
-            "name": "Düzeltilmiş Kare Hızı",
-            "desc": "Kareleri makronun hedef kare hızına kilitler. Bu, oyun gecikiyorsa \"pürüzsüz düzeltme (smooth fix)\" seçeneği etkinleştirilmiş gibi görünebilir."
+            "name": "Düzeltilmiş FPS",
+            "desc": "Kareleri makronun hedef kare hızına kilitler. Bu, oyun gecikiyorsa \"pürüzsüz düzeltme (smooth fix)\" seçeneği etkinleştirilmiş gibi görünebilir. (FPS = Saniye Başına Kare)"
         }
     },
     {
@@ -573,8 +573,8 @@
     },
     {
         "No Pulse": {
-            "name": "Titreşmeyi Kaldır",
-            "desc": "Kürelerin ve diğer ilgili nesnelerin müzikte titreşmesini devre dışı bırakır."
+            "name": "Titreşmeyi Durdur",
+            "desc": "Kürelerin ve diğer ilgili nesnelerin müziğin ritmine göre titreşmesini durdurur."
         }
     },
     {
@@ -592,25 +592,25 @@
     {
         "No Death Effect": {
             "name": "Ölüm Efektini Kaldır",
-            "desc": "Bir oyuncu öldüğünde patlama parçacıklarını kaldırır."
+            "desc": "Oyuncu öldüğünde çıkan patlama efekti ve parçacıkları kaldırır."
         }
     },
     {
         "No Wave Pulse": {
-            "name": "Dalga Titreşmesini Kaldır",
-            "desc": "Dalganın müziğin ritmine göre titreşmesini önler."
+            "name": "Wave Titreşmesini Durdur",
+            "desc": "Wave'in müziğin ritmine göre titreşmesini durdurur."
         }
     },
     {
         "Wave Pulse Size": {
-            "name": "Dalga İzi Boyutu",
-            "desc": "Dalga izinin ne kadar büyük olacağını ayarlar."
+            "name": "Wave İzi Boyutu",
+            "desc": "Wave izinin boyutunu ayarlamınızı sağlar."
         }
     },
     {
         "Custom Object Bypass": {
             "name": "Özel Obje Bypass",
-            "desc": "Özel objeler için 1000 obje sınırının ötesine geçmenizi sağlar."
+            "desc": "Editör'de özel objeler için 1000 obje sınırının ötesine geçmenizi sağlar."
         }
     },
     {
@@ -622,19 +622,19 @@
     {
         "Hide Level": {
             "name": "Seviyeyi Gizle",
-            "desc": "Seviyedeki tüm objeleri gizler."
+            "desc": "Seviyedeki tüm objeleri görünmez yaparak gizler."
         }
     },
     {
         "Hide Player": {
             "name": "Oyuncuyu Gizle",
-            "desc": "Oyuncuyu gizler. (Seviyeyi kapatıp yeniden açarak tekrar oynamayı gerektirir)"
+            "desc": "Oyuncunun ikonunu görünmez yaparak gizler. (Seviyeyi kapatıp yeniden açarak tekrar oynamayı gerektirir)"
         }
     },
     {
         "No Rotate": {
-            "name": "Dönmeyi Engelle",
-            "desc": "Oyuncunun zıplarken veya düşerken dönmesini engeller."
+            "name": "Dönme Animasyonunu Kaldır",
+            "desc": "Oyuncunun zıplarken veya düşerken dönme animasyonunu kaldırır."
         }
     }
 ]
