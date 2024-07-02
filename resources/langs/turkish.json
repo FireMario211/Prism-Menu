@@ -106,7 +106,7 @@
     {
         "Reset Speedhack": {
             "name": "Hız Hilesini Sıfırla",
-            "desc": "Hız hilesini normale geri çevirir."
+            "desc": "Hız hilesinin hızını normal hıza geri çevirir."
         }
     },
 
@@ -149,7 +149,7 @@
     {
         "Instant Mirror Portal": {
             "name": "Anında Ayna Portalı",
-            "desc": "Ayna portalına geçiş yaparken yaşanan animasyonu 0s olarak kısaltır."
+            "desc": "Ayna portalına geçiş yaparken yaşanan animasyonu 0s'ye kısaltır."
         }
     },
     {
@@ -296,7 +296,7 @@
     {
         "Default Song Bypass": {
             "name": "Varsayılan Şarkı Baypas",
-            "desc": "Editörde gizli olan varsayılan şarkıları kullanmanızı sağlar."
+            "desc": "Editör'de gizli olan varsayılan şarkıları kullanmanızı sağlar."
         }
     },
 
@@ -409,14 +409,14 @@
     {
         "Menu Scale": {
             "name": "Menü Ölçeği",
-            "desc": "Metin ve düğmelerin ne kadar büyük olması gerektiğine karar verir. (Oyunu yeniden başlatmayı gerektirir)"
+            "desc": "Metin ve düğmelerin büyüklüğünü ayarlamanızı sağlar. (Oyunu yeniden başlatmayı gerektirir)"
         }
     },
 
     {
         "Show Hidden Objects": {
             "name": "Gizli Nesneleri Göster",
-            "desc": "Tüm gizli nesneleri gösterir. Bu, nesnelerin ana rengini sıfırlayacaktır. Bu işlem \"Hide\" özelliğine sahip nesnelerde çalışmaz. (Düzen/Layout Modu ile kullanışlıdır)"
+            "desc": "Tüm gizli nesneleri gösterir. Bu özellik objelerin ana rengini sıfırlayacaktır. Bu özellik, \"Hide\" özelliğine sahip nesnelerde çalışmaz. (Düzen/Layout Modu ile kullanışlıdır)"
         }
     },
     {
@@ -458,13 +458,13 @@
     {
         "No Wave Trail": {
             "name": "Wave İzini Kaldır",
-            "desc": "Wave arkasındaki izi kaldırır."
+            "desc": "Wave'in arkasındaki izi kaldırır."
         }
     },
     {
         "Solid Wave Trail": {
             "name": "Katı Wave İzi",
-            "desc": "Wave izindeki iki ikon renk karışımını kaldırır ve yerine ikonunuzun birincil rengine değiştirir."
+            "desc": "Wave'in izindeki iki ikon renk karışımını kaldırır ve yerine ikonunuzun birincil rengine değiştirir."
         }
     },
 
@@ -573,8 +573,8 @@
     },
     {
         "No Pulse": {
-            "name": "Titreşmeyi Kaldır",
-            "desc": "Kürelerin ve diğer ilgili nesnelerin müziğin ritmine göre titreşmesini devre dışı bırakır."
+            "name": "Titreşmeyi Durdur",
+            "desc": "Kürelerin ve diğer ilgili nesnelerin müziğin ritmine göre titreşmesini durdurur."
         }
     },
     {
@@ -597,8 +597,8 @@
     },
     {
         "No Wave Pulse": {
-            "name": "Wave Titreşmesini Kaldır",
-            "desc": "Wave'in müziğin ritmine göre titreşmesini önler."
+            "name": "Wave Titreşmesini Durdur",
+            "desc": "Wave'in müziğin ritmine göre titreşmesini durdurur."
         }
     },
     {
