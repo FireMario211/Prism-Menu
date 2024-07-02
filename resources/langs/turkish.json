@@ -464,7 +464,7 @@
     {
         "Solid Wave Trail": {
             "name": "Katı Wave İzi",
-            "desc": "Wave izi üzerindeki her iki simge renginin karışımını kaldırır."
+            "desc": "Wave izindeki iki ikon renk karışımını kaldırır ve yerine ikonunuzun birincil rengine değiştirir."
         }
     },
 
