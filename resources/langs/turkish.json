@@ -173,7 +173,7 @@
     {
         "Force Platformer Mode": {
             "name": "Platformer Modunu Zorla",
-            "desc": "Bir seviyeyi oynarken klasik modda bile sizi platformer modunda olmaya zorlar."
+            "desc": "Klasik oyun modunda olan seviyelerde platformer modunu zorlar."
         }
     },
     {
