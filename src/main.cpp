@@ -32,6 +32,9 @@ PrismButton* prismButton;
 bool firstLoad = false;
 bool removeMe = false;
 
+#if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_MACOS)
+#if 0 // temp disabled until i can figure out why texture loader no work
+// for some reason the GEODE_IS_DESKTOP def isnt present???
 class $modify(GameManager) {
     void reloadAll(bool switchingModes, bool toFullscreen, bool borderless, bool unused) {
         if (prismButton != nullptr) {
@@ -44,6 +47,9 @@ class $modify(GameManager) {
         removeMe = true;
     }
 };
+#endif
+// also for some reason this causes texture loader to not work!
+#endif
 
 class $modify(MenuLayer) {
     bool init() {
@@ -142,6 +148,7 @@ class $modify(CCKeyboardDispatcher) {
     bool dispatchKeyboardMSG(enumKeyCodes key, bool down, bool arr) {
         //if (down && (static_cast<int>(key) == 18)) {//(key == KEY_Tab)) {
         if (down) {
+            if (CCScene::get() == nullptr) return CCKeyboardDispatcher::dispatchKeyboardMSG(key, down, arr);
             if (auto charUI = typeinfo_cast<CharUI*>(CCScene::get()->getChildByID("prism-charui"))) {
                 charUI->keyPressed(key);
             } else {
@@ -277,8 +284,8 @@ class $modify(PrismPlayLayer, PlayLayer) {
         if (!m_fields->initedDeath) {
             #if !defined(GEODE_IS_ANDROID64) && !defined(GEODE_IS_MACOS) && !defined(GEODE_IS_IOS)
             if (m_fields->antiCheatObject == nullptr && p1 != nullptr && (
-                (p1->m_realXPosition == 0 && p1->m_realYPosition == p0->m_realYPosition) ||
-                (p1->m_realXPosition == 0 && p1->m_realYPosition == p0->m_realYPosition) // todo, get player pos during PlayLayer::init
+                (p1->m_positionX == 0 && p1->m_positionY == p0->m_positionY) ||
+                (p1->m_positionX == 0 && p1->m_positionY == p0->m_positionY) // todo, get player pos during PlayLayer::init
             )) { // thank you whamer100
                 m_fields->antiCheatObject = p1;
                 m_fields->initedDeath = true;

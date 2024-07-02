@@ -1,6 +1,6 @@
 {
 	"geode": "3.1.1",
-	"version": "v1.8.0",
+	"version": "v1.8.1",
 	"gd": {
 		"win": "2.206",
 		"mac": "2.206",
@@ -10,6 +10,7 @@
 	"name": "Prism Menu",
 	"developer": "Firee",
 	"description": "A cross-platform mod menu for Geode.",
+    "repository": "https://github.com/FireMario211/Prism-Menu",
 	"early-load": true,
     "links": {
 		"community": "https://discord.gg/pnD8cnwdhZ",

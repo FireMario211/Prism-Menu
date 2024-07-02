@@ -27,7 +27,6 @@ class $modify(PlayLayer) {
     }
 };
 
-#if !defined(GEODE_IS_MACOS) && !defined(GEODE_IS_IOS) // Show Hitboxes
 inline void showLevelEditorHitboxes(LevelEditorLayer* ptr, bool mode) {
     GameManager::get()->setGameVariable("0045", mode);
     ptr->m_isDebugDrawEnabled = mode;
@@ -38,21 +37,21 @@ void drawPlayerHitboxes(CCDrawNode* drawNode, PlayerObject* player) {
     drawNode->drawRect(
             CCPoint(innerRect.getMinX(), innerRect.getMinY()),
             CCPoint(innerRect.getMaxX(), innerRect.getMaxY()),
-            ccColor4F(0.0f, 0.0f, 0.0f, 0.0f),
-            0.25f, ccColor4F(0.0f, 0.0f, 1.0f, 1.0f)
+            {0.0f, 0.0f, 0.0f, 0.0f},
+            0.25f, {0.0f, 0.0f, 1.0f, 1.0f}
     );
     auto outerRect = player->getObjectRect();
     drawNode->drawRect(
             CCPoint(outerRect.getMinX(), outerRect.getMinY()),
             CCPoint(outerRect.getMaxX(), outerRect.getMaxY()),
-            ccColor4F(0.0f, 0.0f, 0.0f, 0.0f),
-            0.25f, ccColor4F(1.0f, 0.0f, 0.0f, 1.0f)
+            {0.0f, 0.0f, 0.0f, 0.0f},
+            0.25f, {1.0f, 0.0f, 0.0f, 1.0f}
     );
     drawNode->drawCircle(
             CCPoint(outerRect.getMidX(), outerRect.getMidY()),
             outerRect.getMaxX() - outerRect.getMidX(),
-            ccColor4F(0.0f, 0.0f, 0.0f, 0.0f),
-            0.25f, ccColor4F(1.0f, 0.2f, 0.2f, 1.0f),
+            {0.0f, 0.0f, 0.0f, 0.0f},
+            0.25f, {1.0f, 0.2f, 0.2f, 1.0f},
             1000
     );
 }
@@ -105,7 +104,6 @@ class $modify(CCDrawNode) {
         return CCDrawNode::drawPolygon(p0, p1, p2, stroke, p4);
     }
 };
-#endif
 
 // BROKEN ON ANDROID
 //#ifdef GEODE_IS_WINDOWS

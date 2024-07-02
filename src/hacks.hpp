@@ -104,6 +104,8 @@ class Hacks {
             "No Spikes",
             "No Hitbox",
             "No Solids",
+            "No Rotate",
+            "Hide Player",
             "Freeze Player",
             "Jump Hack",
             "Layout Mode",

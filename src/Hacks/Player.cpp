@@ -12,7 +12,6 @@ using namespace geode::prelude;
 class $modify(PlayerObject) {
     struct Fields {
     bool isActuallyDart;
-#if !defined(GEODE_IS_MACOS) && !defined(GEODE_IS_IOS) // for whatever reason, fields arent found!
     // No Solids
     /*
      * +       bool collidedWithObject(float, GameObject*, cocos2d::CCRect, bool) = win 0x2cc450;
@@ -68,9 +67,6 @@ class $modify(PlayerObject) {
         if (!Hacks::isHackEnabled("Enable Patching") && Hacks::isHackEnabled("Jump Hack")) PlayerObject::boostPlayer(boost); // idk if i should make this customizable
         PlayerObject::pushButton(p0);
     }
-    #else 
-    };
-    #endif
     void toggleDartMode(bool p0, bool p1) {
         // this is the fix until someone actually creates pads for android32 and android64, because i cant use m_isDart
         m_fields->isActuallyDart = p0;
@@ -84,18 +80,17 @@ class $modify(PlayerObject) {
         PlayerObject::activateStreak();
     }
     void setRotation(float p0) {
-        if (Hacks::isHackEnabled("No Rotate")) return PlayerObject::setRotation(0);
+        if (p0 == 0.F || Hacks::isHackEnabled("No Rotate")) return PlayerObject::setRotation(0);
         PlayerObject::setRotation(p0);
     }
     void setVisible(bool p0) {
-        if (Hacks::isHackEnabled("Hide Player")) return PlayerObject::setVisible(false);
-        PlayerObject::setVisible(p0);
+        if (!p0) return PlayerObject::setVisible(p0);
+        PlayerObject::setVisible(!Hacks::isHackEnabled("Hide Player"));
     }
 };
 
 
 // No Wave Pulse
-#if !defined(GEODE_IS_MACOS) && !defined(GEODE_IS_IOS)
 class $modify(HardStreak) {
     void updateStroke(float dt) {
         //log::info("HardStreak\n---\nm_waveSize = {}\nm_pulseSize = {}\nm_isSolid = {}", m_waveSize, m_pulseSize, m_isSolid);
@@ -109,7 +104,6 @@ class $modify(HardStreak) {
         HardStreak::updateStroke(dt);
     }
 };
-#endif
 
 // yeah no this will make the game lag
 class $modify(MenuGameLayer) {
@@ -131,12 +125,10 @@ class $modify(MenuGameLayer) {
 
 
 class $modify(GJBaseGameLayer) {
-    #if !defined(GEODE_IS_MACOS) && !defined(GEODE_IS_IOS)
     // No Mirror Transition, Instant Mirror Portal
     void toggleFlipped(bool p0, bool p1) { // i spent a lot of time figuring out why CCActionTween wont hook, only to realize that p1 instantly transitions it
         if (!Hacks::isHackEnabled("No Mirror Transition")) return GJBaseGameLayer::toggleFlipped(p0, (p1) ? p1 : Hacks::isHackEnabled("Instant Mirror Portal"));
     }
-    #endif
 #if 0
     void update(float dt) {
         /*
@@ -175,7 +167,6 @@ class $modify(GJBaseGameLayer) {
 
 // Solid Wave Trail
 class $modify(CCDrawNode) {
-#ifndef GEODE_IS_MACOS // it keeps telling me "oh its void! not bool!"
     bool drawPolygon(CCPoint *p0, unsigned int p1, const ccColor4F &p2, float p3, const ccColor4F &p4) {
         if (!Hacks::isHackEnabled("Solid Wave Trail")) return CCDrawNode::drawPolygon(p0,p1,p2,p3,p4);
         if (p2.r == 1.F && p2.g == 1.F && p2.b == 1.F && p2.a != 1.F) return true; // tried doing just p2.a != 1.F but uh
@@ -183,13 +174,4 @@ class $modify(CCDrawNode) {
         this->setZOrder(-1); // ok but why
         return CCDrawNode::drawPolygon(p0,p1,p2,p3,p4);
     }
-#else 
-    void drawPolygon(CCPoint *p0, unsigned int p1, const ccColor4F &p2, float p3, const ccColor4F &p4) {
-        if (!Hacks::isHackEnabled("Solid Wave Trail")) return CCDrawNode::drawPolygon(p0,p1,p2,p3,p4);
-        if (p2.r == 1.F && p2.g == 1.F && p2.b == 1.F && p2.a != 1.F) return; // tried doing just p2.a != 1.F but uh
-        this->setBlendFunc(CCSprite::create()->getBlendFunc());
-        this->setZOrder(-1); // ok but why
-        return CCDrawNode::drawPolygon(p0,p1,p2,p3,p4);
-    }
-#endif
 };

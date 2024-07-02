@@ -513,5 +513,35 @@
             "name": "Suicidio",
             "desc": "Mata al jugador repetidamente."
         }
+    },
+    {
+        "Custom Object Bypass": {
+            "name": "Bypass de objetos personalizados",
+            "desc": "Le permite ir más allá del límite de 1000 objetos para objetos personalizados."
+        }
+    },
+    {
+        "Menu Keybind": {
+            "name": "Combinación de teclas del menú",
+            "desc": "¡La combinación de teclas para abrir la interfaz de usuario del menú Prism!"
+        }
+    },
+    {
+        "Hide Level": {
+            "name": "Ocultar nivel",
+            "desc": "Oculta todos los objetos del nivel."
+        }
+    },
+    {
+        "Hide Player": {
+            "name": "Ocultar jugador",
+            "desc": "Oculta al jugador. (Requiere volver a jugar el nivel)"
+        }
+    },
+    {
+        "No Rotate": {
+            "name": "Sin rotar",
+            "desc": "Impide que el jugador gire al saltar o caer."
+        }
     }
 ]

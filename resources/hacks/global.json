@@ -42,8 +42,7 @@
     {
         "name": "Show Hidden Objects",
         "desc": "Shows all hidden objects. This will reset the objects primary color. This will not work on objects with the \"Hide\" attribute. (Useful with Layout Mode)",
-        "type": "bool",
-        "platforms": ["win", "android32", "android64"]
+        "type": "bool"
     },
     {
         "name": "Hide Level",

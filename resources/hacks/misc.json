@@ -48,14 +48,12 @@
     {
         "name": "Show Hitboxes",
         "desc": "Show player, obstacle, and solid hitboxes.",
-        "type": "bool",
-        "platforms": ["win", "android32", "android64"]
+        "type": "bool"
     },
     {
         "name": "Show Hitboxes on Death",
         "desc": "Shows hitboxes when you die, and hides them when you respawn.",
-        "type": "bool",
-        "platforms": ["win", "android32", "android64"]
+        "type": "bool"
     },
     {
         "name": "Hitbox Stroke",
@@ -63,8 +61,7 @@
         "type": "float",
         "min": 0.1,
         "max": 10,
-        "default": 1,
-        "platforms": ["win", "android32", "android64"]
+        "default": 1
     },
     {
         "name": "Show Graphic Options",

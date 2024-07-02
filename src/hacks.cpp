@@ -208,6 +208,7 @@ void Hacks::resetLevel(LevelInfoLayer* levelInfoLayer, GJGameLevel* level) {
 #endif 
 }
 
+/*
 int global_timestamp = 0;
 
 #include <Geode/modify/PlayLayer.hpp>
@@ -219,6 +220,7 @@ class $modify(PlayLayer) {
         return true;
     }
 };
+*/
 
 /*
 #include <Geode/modify/GJBaseGameLayer.hpp>
@@ -298,6 +300,8 @@ void Hacks::setTPS(int tps) {
     // oh and uhh, this is expanded from gdmo ok. please dont hurt me maxnut
     // src/Hacks/PhysicsBypass.cpp
     if (PlayLayer::get() != nullptr && PlayLayer::get()->m_level->m_timestamp > 0) {
+        int global_timestamp = PlayLayer::get()->m_level->m_timestamp; // temp solution
+
         float timestampMultiplier = (tps / 240.f);
 		float stepsMultiplier = (global_timestamp * timestampMultiplier) / PlayLayer::get()->m_level->m_timestamp;
 		PlayLayer::get()->m_level->m_timestamp = global_timestamp * timestampMultiplier;

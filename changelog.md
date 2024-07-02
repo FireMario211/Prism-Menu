@@ -1,3 +1,12 @@
+# v1.8.1 
+    - Added Mac Support
+    - Added "No Rotate" to the cheat list
+    - Updated Turkish Translations
+    - Updated Vietnamese Translations
+    - Updated Spanish Translations
+    - Updated Ukrainian Translations
+    - Updated Russian Translations
+    - Revert "Fixed bug with the Prism Button bugging out if you switch between windowed and full screen"
 # v1.8.0
     - Added "Hide Level"
     - Added "Hide Player"
