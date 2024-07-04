@@ -41,7 +41,7 @@ Press on the circle button located on the left corner, or press `Tab` to open th
     - Current workaround is to downgrade to the v1.7.4 version of Prism Menu.
    - [Download link for v1.7.4](https://github.com/FireMario211/Prism-Menu/releases/download/v1.7.4/firee.prism.geode)
 - Most likely in platformer, Macro Editor has a bug where the hold button clicks really fast
-   - [Video of the bug](https://prism.tixte.co/hold.mp4)
+   - [Video of the bug](https://prism.tixte.co/hold.mp4) (volume warning)
 - Frame Fix may teleport the player to random positions
    - This depends on whether the player died in practice mode and cause an "inaccuracy"
 - Macro Editor may not show the changes real time
