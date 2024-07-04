@@ -9,8 +9,10 @@ body:
       description: "What you used to run Geode and the mod."
       options:
         - "Windows"
-        - "Android"
-        - "Mac OS"
+        - "Android 32"
+        - "Android 64"
+        - "Mac OS (Intel)"
+        - "Mac OS (M1)"
     validations:
       required: true
   - type: input
