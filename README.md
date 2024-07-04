@@ -37,9 +37,10 @@ A mod menu made in Geode for Geometry Dash, made by [Firee](https://github.com/F
 Press on the circle button located on the left corner, or press `Tab` to open the menu!
 
 # Known issues
-
 - Entering a level can crash your game on Android32 in v1.8.0
-- Most likely in platformer, Macro Editor has a bug where the hold button clicks really fast [(Video showing the bug)](https://cdn.discordapp.com/attachments/1238460218673991772/1238460733113765888/lv_0_20240510185506.mp4).
+- Most likely in platformer, Macro Editor has a bug where the hold button clicks really fast. [(Video showing the bug, volume warning)](https://cdn.discordapp.com/attachments/1238460218673991772/1238460733113765888/lv_0_20240510185506.mp4)
+- Frame Fix teleports the player to random positions
+- Macro Editor may not show changes real time.
 # Credits 
 * [Firee](https://youtube.com/@gdfiree) - Developer
 * [TheSillyDoggo](https://github.com/TheSillyDoggo) - Mod Logo Base & Speedhack code
