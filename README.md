@@ -9,7 +9,7 @@ A mod menu made in Geode for Geometry Dash, made by [Firee](https://github.com/F
 ![Build Status](https://github.com/FireMario211/Prism-Menu/actions/workflows/build.yml/badge.svg)
 </div>
 
-**Prism Menu** is a Geode Mod that intends to be a free alternative to other mod menus, while also adding extra useful additions.
+**Prism Menu** is a Geode mod that intends to be a free alternative to other mod menus, while also adding extra useful additions.
 ## ImGui Menu Style
 <p align="center"><img src="./resources/Screenshot1Big.png?raw=true" alt="Mod Example (ImGui)"/></p> 
 
@@ -36,6 +36,10 @@ A mod menu made in Geode for Geometry Dash, made by [Firee](https://github.com/F
 # How to use 
 Press on the circle button located on the left corner, or press `Tab` to open the menu!
 
+# Known issues
+
+- Entering a level can crash your game on Android32 in v1.8.0
+- Most likely in platformer, Macro Editor has a bug where the hold button clicks really fast [(Video showing the bug)](https://cdn.discordapp.com/attachments/1238460218673991772/1238460733113765888/lv_0_20240510185506.mp4).
 # Credits 
 * [Firee](https://youtube.com/@gdfiree) - Developer
 * [TheSillyDoggo](https://github.com/TheSillyDoggo) - Mod Logo Base & Speedhack code
