@@ -217,6 +217,7 @@ class $modify(PauseLayer) {
 };
 
 // hiding the icon in editor in case for some reason people dont know how to move the button (ITS IN SETTINGS)
+#ifndef GEODE_IS_MACOS
 class $modify(EditorUI) {
     bool init(LevelEditorLayer *editorLayer) {
         if (prismButton != nullptr && Hacks::isHackEnabled("Show Button")) prismButton->setVisible(false);
@@ -239,7 +240,7 @@ class $modify(EditorPauseLayer) {
         EditorPauseLayer::onResume(sender);
     }
 };
-
+#endif
 
 // TODO: Check Cheat Indicator position
 CircleButtonSprite* createCheatIndicator(bool isHacking) {

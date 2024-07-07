@@ -82,7 +82,8 @@
     {
         "name": "Solid Wave Trail",
         "desc": "Removes the blending of both icon colors on the wave trail.",
-        "type": "bool"
+        "type": "bool",
+        "platforms": ["win","android32","android64"]
     },
     
     {

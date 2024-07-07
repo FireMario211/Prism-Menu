@@ -165,6 +165,7 @@ class $modify(GJBaseGameLayer) {
 #endif
 };
 
+#ifndef GEODE_IS_MACOS
 // Solid Wave Trail
 class $modify(CCDrawNode) {
     bool drawPolygon(CCPoint *p0, unsigned int p1, const ccColor4F &p2, float p3, const ccColor4F &p4) {
@@ -175,3 +176,4 @@ class $modify(CCDrawNode) {
         return CCDrawNode::drawPolygon(p0,p1,p2,p3,p4);
     }
 };
+#endif
