@@ -6,7 +6,7 @@
     },
     {
         "¬ Player": {
-            "name": "¬ Pemain"
+            "name": "¬ Player"
         }
     },
     {
@@ -17,6 +17,11 @@
     {
         "« Creator": {
             "name": "« Kreator"
+        }
+    },
+    {
+        "¦ Quartz Bot": {
+            "name": "¦ Quartz Bot"
         }
     },
     {
@@ -41,49 +46,49 @@
     {
         "Anticheat Bypass": {
             "name": "Anticheat Bypass",
-            "desc": "Menonaktifkan semua anticheats. [Levels, Editor, dll]"
+            "desc": "Menonaktifkan anticheat. [Levels, Editor, dll]"
         }
     },
     {
         "Practice Music": {
             "name": "Practice Music",
-            "desc": "Mengaktifkan Practice Music meskipun terkunci."
+            "desc": "Mengaktifkan Practice Music walaupun terkunci."
         }
     },
     {
         "Safe Mode": {
-            "name": "Mode Aman",
-            "desc": "Menjeda kemajuan apa pun yang sedang dilakukan pada level tersebut."
+            "name": "Safe Mode",
+            "desc": "Menghentikan semua progress dari semua level."
         }
     },
     {
         "Accurate Percentage": {
             "name": "Persentase Akurat",
-            "desc": "Memungkinkan desimal dalam persentase level. [Melampaui tempat seperseribu]"
+            "desc": "Memungkinkan desimal dalam persentase Level. [Melampaui tempat seperseribu]"
         }
     },
     {
         "Layout Mode": {
-            "name": "Mode Tata Letak",
+            "name": "Layout Mode",
             "desc": "Menghapus semua dekorasi yang terkait dengan level."
         }
     },
     {
         "No Transition": {
-            "name": "Tidak Ada Transisi",
-            "desc": "Mempersingkat waktu transisi adegan menjadi 0 detik."
+            "name": "Tanpa Transisi",
+            "desc": "Mempersingkat waktu transisi menjadi 0 detik."
         }
     },
     {
         "Cheat Indicator": {
             "name": "Indikator Cheat",
-            "desc": "Menampilkan ikon untuk mengetahui apakah Anda menggunakan mod yang mungkin dianggap curang atau tidak!"
+            "desc": "Menampilkan tanda untuk mengetahui apakah Anda menggunakan mod yang mungkin dianggap curang atau tidak!"
         }
     },
     {
         "Speedhack": {
             "name": "Speedhack",
-            "desc": "Mengubah kecepatan permainan dan audio."
+            "desc": "Mengubah kecepatan game dan audio."
         }
     },
     {
@@ -94,7 +99,7 @@
     },
     {
         "Reset Speedhack": {
-            "name": "Menyetel ulang Speedhack",
+            "name": "Reset Speedhack",
             "desc": "Menyetel ulang speedhack kembali normal."
         }
     },
@@ -102,72 +107,72 @@
     {
         "Noclip": {
             "name": "Noclip",
-            "desc": "Membuat pemain menjadi tak terkalahkan [Tembus jir]."
+            "desc": "Membuat player tembus pada objek apapun."
         }
     },
     {
         "No Spikes": {
-            "name": "Tidak Ada Spike",
+            "name": "Tidak ada Spikes",
             "desc": "Mengabaikan objek lonjakan."
         }
     },
     {
         "No Hitbox": {
-            "name": "Tidak Ada Hitbox",
+            "name": "Tidak ada Hitbox",
             "desc": "Menonaktifkan semua hitbox objek. Objek khusus dinonaktifkan."
         }
     },
     {
         "No Solids": {
-            "name": "Tidak Solid",
-            "desc": "Menonaktifkan sebagian besar hitbox solid. Benda khusus masih berfungsi."
+            "name": "Tidak ada Padatan",
+            "desc": "Menonaktifkan sebagian besar hitbox padat. Benda khusus masih berfungsi."
         }
     },
     {
         "Everything Hurts": {
             "name": "Semuanya menyakitkan",
-            "desc": "Aduhai."
+            "desc": "Aduh."
         }
     },
     {
         "No Mirror Transition": {
-            "name": "Tidak Ada Transisi Mirror",
-            "desc": "Mencegah layar terbalik pada portal mirror."
+            "name": "Tidak Ada Transisi Cermin",
+            "desc": "Mencegah layar terbalik pada portal cermin."
         }
     },
     {
         "Instant Mirror Portal": {
-            "name": "Portal Mirror Instan",
-            "desc": "Portal berbalik secara langsung beralih."
+            "name": "Portal Cermin Instan",
+            "desc": "Portal terbalik sekarang langsung beralih."
         }
     },
     {
         "Freeze Player": {
-            "name": "Bekukan Pemain",
-            "desc": "Membekukan pergerakan pemain."
+            "name": "Bekukan Player",
+            "desc": "Menghentikan pergerakan player"
         }
     },
     {
         "Jump Hack": {
-            "name": "Lompat Bebas",
-            "desc": "Memungkinkan untuk melompat di udara [Menuju tak terbatas dan melampauinya!]"
+            "name": "Jump Hack",
+            "desc": "Memungkinkan untuk melompat di udara."
         }
     },
     {
         "Instant Complete": {
-            "name": "Selesai Instan",
+            "name": "Selesai Seketika",
             "desc": "Selesaikan level secara instan. (Jangan aktifkan di Editor)"
         }
     },
     {
         "Force Platformer Mode": {
-            "name": "Memaksa Mode Platformer",
-            "desc": "Memaksa Anda berada dalam Mode Platformer saat memainkan suatu level."
+            "name": "Paksa Platformer Mode",
+            "desc": "Memaksa Anda berada dalam mode platformer saat memainkan suatu level."
         }
     },
     {
         "Change Gravity": {
-            "name": "Merubah gravitasi",
+            "name": "Mengubah Gravitasi",
             "desc": "Memungkinkan Anda mengubah gravitasi saat melompat atau jatuh."
         }
     },
@@ -181,7 +186,7 @@
     {
         "Icon Bypass": {
             "name": "Ikon Bypass",
-            "desc": "Membuka kunci semua ikon."
+            "desc": "Membuka semua ikon."
         }
     },
     {
@@ -198,26 +203,26 @@
     },
     {
         "Slider Limit": {
-            "name": "Batas Penggeser",
+            "name": "Slider Limit",
             "desc": "Memungkinkan penggeser diseret melampaui batas yang terlihat."
         }
     },
     {
         "Main Levels": {
             "name": "Level Utama",
-            "desc": "Membuka kunci level demon yang terkunci."
+            "desc": "Membuka kunci demon level."
         }
     },
     {
         "Guard Vault": {
             "name": "Guard Vault",
-            "desc": "Membuka kunci Guard Vault."
+            "desc": "Membuka kunci guard's vault."
         }
     },
     {
         "Keymaster Vault": {
             "name": "Keymaster Vault",
-            "desc": "Membuka kunci keymaster vault."
+            "desc": "Membuka kunci keymaster's vault."
         }
     },
     {
@@ -228,52 +233,52 @@
     },
     {
         "Free Shop Items": {
-            "name": "Barang Toko Menjadi Gratis",
+            "name": "Item Toko Gratis",
             "desc": "Mengizinkan semua item toko dibeli seharga 0 orb mana."
         }
     },
     {
         "Gatekeeper Vault": {
             "name": "Gatekeeper Vault",
-            "desc": "Membuka kunci Gatekeeper vault."
+            "desc": "Membuka kunci Gatekeeper's vault."
         }
     },
     {
         "Backup Stars Limit": {
-            "name": "Batas Stars Cadangan",
-            "desc": "Memungkinkan Anda mencadangkan data, bahkan dengan kurang dari 10 stars."
+            "name": "Backup Stars Limit",
+            "desc": "Memungkinkan Anda mencadangkan data, bahkan dengan kurang dari 10 bintang."
         }
     },
 
 
     {
         "Level Edit": {
-            "name": "Edit Level",
+            "name": " Edit Level",
             "desc": "Memungkinkan Anda mengedit level mana pun, mengakses editor melalui menu pause. (TIDAK STABIL)"
         }
     },
     {
         "Verify Hack": {
-            "name": "Verifikasi Hack",
+            "name": "Verify Hack",
             "desc": "Memungkinkan Anda mengunggah level yang belum diverifikasi. Secara otomatis akan mengatur level untuk diverifikasi."
         }
     },
     {
         "Copy Hack": {
-            "name": "Salin Hack",
+            "name": "Copy Hack",
             "desc": "Memungkinkan Anda menyalin level apa pun, tanpa kata sandi."
         }
     },
     {
         "No (C) Mark": {
-            "name": "Tidak Ada Tanda (C)",
-            "desc": "Menghapus tanda (C) saat mengunggah level yang disalin. Secara otomatis akan mengatur level menjadi asli."
-        }    
+            "name": "Tidak ada Tanda (C)",
+            "desc": "Removes the (C) mark when Menghapus tanda (C) saat mengunggah level yang disalin. Secara otomatis akan mengatur level menjadi original."
+        }
     },
     {
         "Hide Testmode": {
-            "name": "Menghilangkan Tanda Testmode",
-            "desc": "Menyembunyikan teks 'Testmode' saat bermain dengan startpos."
+            "name": "Sembunyikan Testmode",
+            "desc": "Sembunyikan 'Testmode' teks ketika Anda bermain dengan startpos."
         }
     },
     {
@@ -284,15 +289,15 @@
     },
     {
         "Default Song Bypass": {
-            "name": "Lagu Default Bypass",
+            "name": "Default Song Bypass",
             "desc": "Memungkinkan Anda menggunakan lagu default tersembunyi di editor."
         }
     },
 
     {
         "No Progress Bar": {
-            "name": "Tidak Ada Progress Bar",
-            "desc": "Menghapus bilah kemajuan! Persentasenya akan tetap ditampilkan."
+            "name": "Tidak ada Progress Bar",
+            "desc": "Menghapus progress bar! Persentasenya akan tetap ditampilkan."
         }
     },
     {
@@ -303,23 +308,17 @@
     },
     {
         "Hide Attempts": {
-            "name": "Tidak Ada Tanda Attempts",
-            "desc": "Apakah label percobaan harus ditampilkan saat memainkan suatu level atau tidak."
+            "name": "Sembunyikan Attempts",
+            "desc": "Apakah tanda attempt harus ditampilkan saat memainkan suatu level atau tidak."
         }
     },
     {
         "Attempt Opacity": {
             "name": "Attempt Opacity",
-            "desc": "Menentukan seberapa buram label percobaan seharusnya."
+            "desc": "Menentukan seberapa buram tanda attempt seharusnya."
         }
     },
 
-    {
-        "Enable Patching": {
-            "name": "Memungkinkan Patching",
-            "desc": "Perubahan dari hooking ke patching. Ini juga memungkinkan lebih banyak hack diaktifkan. Aktifkan hanya jika perlu. [Khusus Windows]"
-        }
-    },
     {
         "Menu Opacity": {
             "name": "Menu Opacity",
@@ -335,17 +334,17 @@
     {
         "Import Theme": {
             "name": "Impor Tema",
-            "desc": "Impor tema! [JSON file]"
+            "desc": "Impor sebuah tema! [JSON file]"
         }
     },
     {
         "Live Theme Editing": {
             "name": "Pengeditan Tema Langsung",
-            "desc": "Ini akan memungkinkan Anda untuk mengedit tema khusus Anda sambil melihat perubahan di layar! (Peringatan: Hal ini dapat menyebabkan kebocoran memori.)"
+            "desc": "Ini akan memungkinkan Anda untuk mengedit tema khusus Anda sambil melihat perubahan di layar! (Peringatan: Ini dapat menyebabkan kebocoran memori.)"
         }
     },
     {
-        "Show tooltips": {
+        "Show Tooltips": {
             "name": "Tampilkan Tooltips",
             "desc": "Apakah tooltip harus ditampilkan atau tidak saat mengarahkan kursor ke mod."
         }
@@ -376,7 +375,7 @@
     },
     {
         "Restore Defaults": {
-            "name": "Mengembalikan Pengaturan Default",
+            "name": "Restore Defaults",
             "desc": "Menonaktifkan semua mod dan mengatur ulang semuanya ke default."
         }
     },
@@ -388,12 +387,12 @@
     },
     {
         "Thank you to Electrify (ES), Jouca (FR), dank_meme01, savvacorgi, МегаСвятой (RU), Gazonk (BR), huhnmitferrari (DE), and Ignis (CS) for translations!": {
-            "name": "Terimakasih Electrify (ES), Jouca (FR), dank_meme01, savvacorgi, МегаСвятой (RU), Gazonk (BR), huhnmitferrari (DE), and Ignis (CS) untuk terjemahan!"
+            "name": "Terima kasih Electrify (ES), Jouca (FR), dank_meme01, savvacorgi, МегаСвятой (RU), Gazonk (BR), huhnmitferrari (DE), Ignis (CS), dan Rza9X (ID) untuk terjemahannya!"
         }
     },
     {
         "And thank you for using the mod! I hope you enjoy using Prism Menu!": {
-            "name": "Dan terima kasih telah menggunakan mod! Saya harap Anda menikmati penggunaan Prism Menu!"
+            "name": "And thank you for using the mod! I hope you enjoy using Prism Menu!"
         }
     },
     {
@@ -403,8 +402,239 @@
     },
     {
         "Menu Scale": {
-            "name": "Menu Skala",
+            "name": "Menu Scale",
             "desc": "Memutuskan seberapa besar teks dan tombol seharusnya. (Akan memerlukan memulai ulang permainan)"
+        }
+    },
+
+    {
+        "Show Hidden Objects": {
+            "name": "Tampilkan Objek Tersembunyi",
+            "desc": "Menampilkan semua objek tersembunyi. Ini akan mengatur ulang warna utama objek. Ini tidak akan berfungsi pada objek dengan atribut \"Hide\". (Berguna dengan Mode Layout)"
+        }
+    },
+    {
+        "Transparent BG": {
+            "name": "Transparasi BG",
+            "desc": "Secara otomatis mengembalikan warna yang diubah di latar belakang menjadi warna aslinya."
+        }
+    },
+    {
+        "Speedhack Audio": {
+            "name": "Speedhack Audio",
+            "desc": "Apakah akan mengubah kecepatan audio juga berdasarkan nilai speedhack."
+        }
+    },
+    {
+        "No Glow": {
+            "name": "Tidak ada Glow",
+            "desc": "Menonaktifkan glow pada semua objek."
+        }
+    },
+    {
+        "Noclip Accuracy": {
+            "name": "Akurasi Noclip",
+            "desc": "Memberi tahu Anda seberapa akurat proses noclip Anda."
+        }
+    },
+    {
+        "Show Graphic Options": {
+            "name": "Tampilkan Graphic Options",
+            "desc": "Shows you Geometry Dash's graphic options! Useful for Android as the option is normally not available."
+        }
+    },
+    {
+        "No Trail": {
+            "name": "Tidak ada Trail",
+            "desc": "Menonaktifkan efek trail apa pun dari pemain."
+        }
+    },
+    {
+        "No Wave Trail": {
+            "name": "Tidak ada Trail Wave",
+            "desc": "Menonaktifkan trail di belakang wave."
+        }
+    },
+    {
+        "Solid Wave Trail": {
+            "name": "Trail Wave Padat",
+            "desc": "Menghapus pencampuran kedua warna ikon pada trail wave."
+        }
+    },
+
+    {
+        "Extra Percent Digits": {
+            "name": "Digit Persen Ekstra",
+            "desc": "Jumlah digit desimal tambahan yang akan ditampilkan dengan Persentase Akurat."
+        }
+    },
+    {
+        "Uncomplete Level": {
+            "name": "Uncomplete Level",
+            "desc": "Menyetel ulang persentase normal dan practice, dan memungkinkan Anda mengurangi jumlah bintang jika Anda menyelesaikan level!"
+        }
+    },
+    {
+        "No Shaders": {
+            "name": "Tidak ada Shaders",
+            "desc": "Menonaktifkan semua efek shader kamera."
+        }
+    },
+    {
+        "Disable Camera Effects": {
+            "name": "Menonaktifkan Efek Kamera",
+            "desc": "Nonaktifkan semua efek kamera, dan hanya fokuskan kamera pada pemutar. Ini mungkin merusak semua mode permainan kecuali Cube dan Robot."
+        }
+    },
+    {
+        "Show Hitboxes": {
+            "name": "Tampilkan Hitboxes",
+            "desc": "Tampilkan pemain, rintangan, dan solid hitboxes."
+        }
+    },
+    {
+        "Show Hitboxes on Death": {
+            "name": "Tampilkan Hitboxes ketika Mati",
+            "desc": "Menampilkan hitbox saat Anda mati, dan menyembunyikannya saat Anda muncul kembali."
+        }
+    },
+    {
+        "Hitbox Stroke": {
+            "name": "Hitbox Stroke",
+            "desc": "Stroke 'lebar' saat menggambar hitbox."
+        }
+    },
+    {
+        "Suicide": {
+            "name": "Bunuh Diri",
+            "desc": "Membunuh pemain berulang kali."
+        }
+    },
+
+    {
+        "TPS Bypass": {
+            "name": "TPS Bypass",
+            "desc": "Mengubah \"Physics FPS\" game menjadi lebih tinggi atau lebih rendah dari default. (240)"
+        }
+    },
+    {
+        "Macro": {
+            "name": "Makro",
+            "desc": "Pilih makro untuk direkam atau diputar!"
+        }
+    },
+    {
+        "Record": {
+            "name": "Rekam",
+            "desc": "Merekam gemeplay yang akan diputar ulang. (Ini akan mengatur ulang input saat ini jika Anda memainkan level dan memilih makro.)"
+        }
+    },
+    {
+        "Playback": {
+            "name": "Pemutaran",
+            "desc": "Memutar ulang makro"
+        }
+    },
+    {
+        "Macro Editor": {
+            "name": "Editor Makro",
+            "desc": "Masuk ke editor makro. (Tidak akan berfungsi dengan baik jika Rekam diaktifkan)"
+        }
+    },
+    {
+        "Frame Fix": {
+            "name": "Frame Fix",
+            "desc": "Merekam setiap gerakan pemain, termasuk posisi saat merekam dan memutar ulang makro. Perhatikan bahwa opsi ini akan meningkatkan ukuran file makro saat merekam."
+        }
+    },
+    {
+        "Fixed FPS": {
+            "name": "Fixed FPS",
+            "desc": "Mengunci frame ke framerate target makro. Ini mungkin terlihat seperti opsi \"smooth fix\" diaktifkan jika game mengalami kelambatan."
+        }
+    },
+    {
+        "Import Macro": {
+            "name": "Impor Makro",
+            "desc": "Impor hasil makro."
+        }
+    },
+    {
+        "Save Macro": {
+            "name": "Simpan Makro",
+            "desc": "Simpan hasil makro."
+        }
+    },
+    {
+        "No Pulse": {
+            "name": "Tidak ada Pulse",
+            "desc": "Menonaktifkan bola dan objek terkait lainnya agar tidak berdenyut pada musik."
+        }
+    },
+    {
+        "Noclip Flash": {
+            "name": "Noclip Flash",
+            "desc": "Membuat seluruh layar berkedip merah alih-alih menampilkan tanda keakuratan noclip Anda."
+        }
+    },
+    {
+        "Instant Respawn": {
+            "name": "Respawn Instan",
+            "desc": "Menghilangkan penundaan saat mencoba kembali level tersebut.."
+        }
+    },
+    {
+        "No Death Effect": {
+            "name": "Tidak ada Efek Mati",
+            "desc": "Menghilangkan partikel ledakan saat pemain mati."
+        }
+    },
+    {
+        "No Wave Pulse": {
+            "name": "Tidak ada Pulse Wave",
+            "desc": "Mencegah wave berdenyut mengikuti irama musik."
+        }
+    },
+    {
+        "Wave Pulse Size": {
+            "name": "Ukuran Pulse Wave",
+            "desc": "Seberapa besar denyut wave tersebut."
+        }
+    },
+    {
+        "Auto Safe Mode": {
+            "name": "Auto Safe Mode",
+            "desc": "Mencegah kemajuan apa pun jika cheat tertentu diaktifkan."
+        }
+    },
+    {
+        "Custom Object Bypass": {
+            "name": "Kostum Objek Bypass",
+            "desc": "Memungkinkan Anda melampaui batas 1000 objek untuk objek khusus."
+        }
+    },
+    {
+        "Menu Keybind": {
+            "name": "Menu Keybind",
+            "desc": "Pengikat tombol untuk membuka UI Prism Menu!"
+        }
+    },
+    {
+        "Hide Level": {
+            "name": "Sembunyikan Level",
+            "desc": "Menyembunyikan semua objek di level tersebut."
+        }
+    },
+    {
+        "Hide Player": {
+            "name": "Sembunyikan Player",
+            "desc": "Menyembunyikan player. (Membutuhkan memainkan level lagi)"
+        }
+    },
+    {
+        "No Rotate": {
+            "name": "Tidak ada Rotasi",
+            "desc": "Membekukan pemain agar tidak berputar saat melompat, atau terjatuh."
         }
     }
 ]
