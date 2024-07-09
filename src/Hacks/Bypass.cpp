@@ -4,7 +4,6 @@ using namespace geode::prelude;
 
 #include <Geode/modify/GameManager.hpp>
 #include <Geode/modify/CCTextInputNode.hpp>
-#include <Geode/modify/EditorUI.hpp>
 
 // Icon Bypass
 class $modify(GameManager) {

@@ -65,6 +65,7 @@ class $modify(CCScheduler) {
     }
 };
 
+#ifndef GEODE_IS_MACOS
 class $modify(PlayLayer) {
     // No Glow, Show Hidden Objects
     void addObject(GameObject* obj) {
@@ -99,6 +100,7 @@ class $modify(GameObject) {
         }
     }
 };
+#endif
 
 // Safe Mode (a just incase)
 class $modify(GJGameLevel) {

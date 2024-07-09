@@ -193,8 +193,6 @@ class $modify(CCKeyboardDispatcher) {
 #include <Geode/modify/PlayLayer.hpp>
 #include <Geode/modify/GJBaseGameLayer.hpp>
 #include <Geode/modify/PauseLayer.hpp>
-#include <Geode/modify/EditorUI.hpp>
-#include <Geode/modify/EditorPauseLayer.hpp>
 
 // showing the icon for android users lol
 class $modify(PauseLayer) {
@@ -218,6 +216,10 @@ class $modify(PauseLayer) {
 
 // hiding the icon in editor in case for some reason people dont know how to move the button (ITS IN SETTINGS)
 #ifndef GEODE_IS_MACOS
+
+#include <Geode/modify/EditorUI.hpp>
+#include <Geode/modify/EditorPauseLayer.hpp>
+
 class $modify(EditorUI) {
     bool init(LevelEditorLayer *editorLayer) {
         if (prismButton != nullptr && Hacks::isHackEnabled("Show Button")) prismButton->setVisible(false);
