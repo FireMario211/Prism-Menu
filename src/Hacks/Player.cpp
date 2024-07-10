@@ -9,6 +9,7 @@ using namespace geode::prelude;
 #include <Geode/modify/CCDrawNode.hpp>
 #include <Geode/modify/GJEffectManager.hpp>
 
+#ifndef GEODE_IS_MACOS
 class $modify(PlayerObject) {
     struct Fields {
     bool isActuallyDart;
@@ -79,16 +80,17 @@ class $modify(PlayerObject) {
         if (m_fields->isActuallyDart && Hacks::isHackEnabled("No Wave Trail")) return;
         PlayerObject::activateStreak();
     }
+#ifndef GEODE_IS_ANDROID32
     void setRotation(float p0) {
         if (p0 == 0.F || Hacks::isHackEnabled("No Rotate")) return PlayerObject::setRotation(0);
         PlayerObject::setRotation(p0);
     }
+#endif
     void setVisible(bool p0) {
         if (!p0) return PlayerObject::setVisible(p0);
         PlayerObject::setVisible(!Hacks::isHackEnabled("Hide Player"));
     }
 };
-
 
 // No Wave Pulse
 class $modify(HardStreak) {
@@ -104,6 +106,7 @@ class $modify(HardStreak) {
         HardStreak::updateStroke(dt);
     }
 };
+#endif
 
 // yeah no this will make the game lag
 class $modify(MenuGameLayer) {

@@ -72,7 +72,8 @@
     {
         "name": "No Rotate",
         "desc": "Freezes the player from rotating when jumping, or falling.",
-        "type": "bool"
+        "type": "bool",
+        "platforms": ["win", "android64", "mac"]
     },
     {
         "name": "No Wave Trail",

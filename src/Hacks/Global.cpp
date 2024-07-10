@@ -30,6 +30,7 @@ class $modify(GameStatsManager) {
 // *coding sounds* creditos a sillydoggo para esto https://github.com/TheSillyDoggo/GeodeMenu/blob/38ef8f48a3d52b1eefb09ee29dd5b985928edfd2/src/Hacks/Speedhack.cpp
 // y xdbot
 
+#ifndef GEODE_IS_MACOS
 int syncCooldown = 0;
 
 class $modify(CCScheduler) {
@@ -65,7 +66,6 @@ class $modify(CCScheduler) {
     }
 };
 
-#ifndef GEODE_IS_MACOS
 class $modify(PlayLayer) {
     // No Glow, Show Hidden Objects
     void addObject(GameObject* obj) {
