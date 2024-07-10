@@ -62,7 +62,8 @@
     {
         "name": "Hide Player",
         "desc": "Hides the player. (Requires playing the level again)",
-        "type": "bool"
+        "type": "bool",
+        "platforms": ["win", "android64", "mac"]
     },
     {
         "name": "No Trail",

@@ -85,11 +85,11 @@ class $modify(PlayerObject) {
         if (p0 == 0.F || Hacks::isHackEnabled("No Rotate")) return PlayerObject::setRotation(0);
         PlayerObject::setRotation(p0);
     }
-#endif
     void setVisible(bool p0) {
         if (!p0) return PlayerObject::setVisible(p0);
         PlayerObject::setVisible(!Hacks::isHackEnabled("Hide Player"));
     }
+#endif
 };
 
 // No Wave Pulse
