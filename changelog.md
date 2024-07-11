@@ -1,3 +1,7 @@
+# v1.8.2 
+    - Removed "No Transition" as it's not required anymore.
+    - Disabled Solid Wave Trail for Mac as it caused issues.
+    - (hopefully) Fixed both M1 Mac and Android32 issues.
 # v1.8.1 
     - Added Mac Support
     - Added "No Rotate" to the cheat list

@@ -56,7 +56,6 @@ void drawPlayerHitboxes(CCDrawNode* drawNode, PlayerObject* player) {
     );
 }
 
-#ifndef GEODE_IS_MACOS
 class $modify(LevelEditorLayer) {
     struct Fields {
         bool lastShowHitboxes = false;
@@ -73,7 +72,6 @@ class $modify(LevelEditorLayer) {
         m_fields->lastShowHitboxes = showHitboxes;
     }
 };
-#endif
 
 class $modify(PlayLayer) {
     void updateVisibility(float p0) {

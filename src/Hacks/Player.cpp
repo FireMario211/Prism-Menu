@@ -9,7 +9,6 @@ using namespace geode::prelude;
 #include <Geode/modify/CCDrawNode.hpp>
 #include <Geode/modify/GJEffectManager.hpp>
 
-#ifndef GEODE_IS_MACOS
 class $modify(PlayerObject) {
     struct Fields {
     bool isActuallyDart;
@@ -106,7 +105,6 @@ class $modify(HardStreak) {
         HardStreak::updateStroke(dt);
     }
 };
-#endif
 
 // yeah no this will make the game lag
 class $modify(MenuGameLayer) {

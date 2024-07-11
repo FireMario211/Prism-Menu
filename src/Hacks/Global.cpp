@@ -7,7 +7,6 @@ using namespace geode::prelude;
 #include <Geode/modify/PlayLayer.hpp>
 #include <Geode/modify/GameObject.hpp>
 #include <Geode/modify/GJGameLevel.hpp>
-#include <Geode/modify/CCTransitionFade.hpp>
 #include <Geode/modify/FMODAudioEngine.hpp>
 #include <Geode/modify/CCScheduler.hpp>
 #include <Geode/modify/CCSprite.hpp>
@@ -30,7 +29,6 @@ class $modify(GameStatsManager) {
 // *coding sounds* creditos a sillydoggo para esto https://github.com/TheSillyDoggo/GeodeMenu/blob/38ef8f48a3d52b1eefb09ee29dd5b985928edfd2/src/Hacks/Speedhack.cpp
 // y xdbot
 
-#ifndef GEODE_IS_MACOS
 int syncCooldown = 0;
 
 class $modify(CCScheduler) {
@@ -100,24 +98,12 @@ class $modify(GameObject) {
         }
     }
 };
-#endif
 
 // Safe Mode (a just incase)
 class $modify(GJGameLevel) {
     void savePercentage(int p0, bool p1, int p2, int p3, bool p4) {
         if (!(Hacks::isHackEnabled("Safe Mode") || Hacks::isAutoSafeModeActive())) {
             GJGameLevel::savePercentage(p0, p1, p2, p3, p4);
-        }
-    }
-};
-
-// No Transition
-class $modify(CCTransitionFade) {
-    bool initWithDuration(float t, cocos2d::CCScene* scene, cocos2d::ccColor3B const& color)  {
-        if (!Hacks::isHackEnabled("No Transition") || Hacks::isHackEnabled("Enable Patching")) {
-            return CCTransitionFade::initWithDuration(t, scene, color);
-        } else {
-            return CCTransitionFade::initWithDuration(0.0F, scene, color);
         }
     }
 };

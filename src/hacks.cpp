@@ -167,6 +167,10 @@ void Hacks::resetLevel(LevelInfoLayer* levelInfoLayer, GJGameLevel* level) {
         FLAlertLayer::create("Notice", "This currently does not work on <cy>Platformer Levels</c>\nThis will be implemented in a future update.", "OK")->show();
         return;
     }
+    if (level->m_gauntletLevel || level->m_gauntletLevel2) {
+        FLAlertLayer::create("Notice", "This currently does not work on <cy>Gauntlet Levels</c>\nThis will be implemented in a future update.", "OK")->show();
+        return;
+    }
     // up to 3
     if (level->m_normalPercent < 100) {
         geode::createQuickPopup(

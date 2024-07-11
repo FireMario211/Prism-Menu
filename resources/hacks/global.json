@@ -50,11 +50,6 @@
         "type": "bool"
     },
     {
-        "name": "No Transition",
-        "desc": "Shorterns scene transition time to 0s.",
-        "type": "bool"
-    },
-    {
         "name": "Cheat Indicator",
         "desc": "Shows an icon to tell whether or not you are using mods that may be considered cheating!",
         "type": "bool"
