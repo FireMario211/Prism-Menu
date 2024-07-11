@@ -292,6 +292,17 @@ std::vector<CreditUser> users = {
         true,
         "",
         14199510
+    },
+    {
+        "DarkKing",
+        134,
+        "Proofreader (TR)",
+        { 0,0,255 },
+        { 255,0,0 },
+        { 113,0,255 },
+        true,
+        "",
+        14199510
     }
 
 };
