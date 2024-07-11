@@ -211,9 +211,9 @@ std::vector<CreditUser> users = {
         "slideglide",
         98,
         "Translator (TR)",
-        { 125,127,255 },
+        { 192,255,160 },
         { 255, 255, 255 },
-        { 0,0,0 },
+        { 192,255,160 },
         false,
         "",
         26979350
