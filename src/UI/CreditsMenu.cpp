@@ -295,11 +295,11 @@ std::vector<CreditUser> users = {
     },
     {
         "DarkKing",
-        134,
+        1,
         "Proofreader (TR)",
         { 0,0,255 },
-        { 255,0,0 },
-        { 113,0,255 },
+        { 0,0,0 },
+        { 0,0,255 },
         true,
         "",
         19331971
