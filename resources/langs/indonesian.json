@@ -6,7 +6,7 @@
     },
     {
         "¬ Player": {
-            "name": "¬ Player"
+            "name": "¬ Pemain"
         }
     },
     {
@@ -64,7 +64,7 @@
     {
         "Accurate Percentage": {
             "name": "Persentase Akurat",
-            "desc": "Memungkinkan desimal dalam persentase Level. [Melampaui tempat seperseribu]"
+            "desc": "Memungkinkan desimal dalam persentase level. [Melampaui tempat seperseribu]"
         }
     },
     {
@@ -99,7 +99,7 @@
     },
     {
         "Reset Speedhack": {
-            "name": "Reset Speedhack",
+            "name": "Menyetel ulang Speedhack",
             "desc": "Menyetel ulang speedhack kembali normal."
         }
     },
@@ -107,7 +107,7 @@
     {
         "Noclip": {
             "name": "Noclip",
-            "desc": "Membuat player tembus pada objek apapun."
+            "desc": "Membuat pemain menjadi tak terkalahkan."
         }
     },
     {
@@ -154,7 +154,7 @@
     },
     {
         "Jump Hack": {
-            "name": "Jump Hack",
+            "name": "Lompat Bebas",
             "desc": "Memungkinkan untuk melompat di udara."
         }
     },
@@ -203,7 +203,7 @@
     },
     {
         "Slider Limit": {
-            "name": "Slider Limit",
+            "name": "Batas Penggeser",
             "desc": "Memungkinkan penggeser diseret melampaui batas yang terlihat."
         }
     },
@@ -253,7 +253,7 @@
 
     {
         "Level Edit": {
-            "name": " Edit Level",
+            "name": "Edit Level",
             "desc": "Memungkinkan Anda mengedit level mana pun, mengakses editor melalui menu pause. (TIDAK STABIL)"
         }
     },
@@ -272,7 +272,7 @@
     {
         "No (C) Mark": {
             "name": "Tidak ada Tanda (C)",
-            "desc": "Removes the (C) mark when Menghapus tanda (C) saat mengunggah level yang disalin. Secara otomatis akan mengatur level menjadi original."
+            "desc": "Menghapus tanda (C) saat mengunggah level yang disalin. Secara otomatis akan mengatur level menjadi."
         }
     },
     {
@@ -375,7 +375,7 @@
     },
     {
         "Restore Defaults": {
-            "name": "Restore Defaults",
+            "name": "Mengembalikan Pengaturan Default",
             "desc": "Menonaktifkan semua mod dan mengatur ulang semuanya ke default."
         }
     },

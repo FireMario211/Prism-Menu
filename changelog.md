@@ -1,4 +1,6 @@
-# v1.8.2 
+# v1.8.2
+    - Updated Dutch Translations
+    - Updated Indonesian Translations.
     - Removed "No Transition" as it's not required anymore.
     - Disabled Solid Wave Trail for Mac as it caused issues.
     - (hopefully) Fixed both M1 Mac and Android32 issues.
