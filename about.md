@@ -42,6 +42,7 @@ Press on the circle button located on the left corner, or press `Tab` to open th
 * olaf_294 - Translations for Polish
 * hori - Translations for Malay
 * slideglide - Translations for Turkish
+* DarkKing - Proofreading for Turkish
 * [tienanh109](https://youtube.com/@tienanh_90) - Translations for Vietnamese
 * WALVe - Translations for French
 
