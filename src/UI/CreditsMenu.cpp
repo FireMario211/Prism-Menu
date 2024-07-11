@@ -211,10 +211,10 @@ std::vector<CreditUser> users = {
         "slideglide",
         98,
         "Translator (TR)",
-        { 125,127,255 },
+        { 192,255,160 },
         { 255, 255, 255 },
-        { 0,0,0 },
-        false,
+        { 192,255,160 },
+        true,
         "",
         26979350
     },
@@ -292,6 +292,17 @@ std::vector<CreditUser> users = {
         true,
         "",
         14199510
+    },
+    {
+        "DarkKing",
+        1,
+        "Proofreader (TR)",
+        { 0,0,0 },
+        { 255,0,0 },
+        { 255,0,0 },
+        true,
+        "",
+        19331971
     }
 
 };
