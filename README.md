@@ -52,6 +52,7 @@ Press on the circle button located on the left corner, or press `Tab` to open th
 * [ItzLucasOG](https://twitter.com/ItzLucasOG) - Translations for Spanish
 * Hero - Translations for Spanish
 * [Jouca](https://twitter.com/JoucaJouca) - Translations for French
+* [Rexosouli](https://discord.com/users/805514311547748403) - Proofreading for French
 * [dankmeme01](https://github.com/dankmeme01) - Proofreading for Russian
 * MegaSa1nt - Translations for Russian
 * savvacorgi - Translations for Russian
