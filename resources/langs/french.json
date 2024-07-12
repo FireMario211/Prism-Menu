@@ -50,8 +50,8 @@
     },
     {
         "Safe Mode": {
-            "name": "Mode Sûr",
-            "desc": "Interrompt toute progression dans le niveau."
+            "name": "Mode Sécurisé",
+            "desc": "Interrompre toute progression dans le niveau."
         }
     },
     {
@@ -94,7 +94,7 @@
     {
         "Noclip": {
             "name": "Noclip",
-            "desc": "Faire que le joueur soit invincible."
+            "desc": "Faire en sorte que le joueur soit invincible."
         }
     },
     {
@@ -118,7 +118,7 @@
     {
         "Everything Hurts": {
             "name": "Tout fait mal",
-            "desc": "Ouch."
+            "desc": "Aïe."
         }
     },
     {
@@ -147,7 +147,7 @@
     },
     {
         "Instant Complete": {
-            "name": "Intante Complétion",
+            "name": "Complétion Instantanée",
             "desc": "Termine instantanément le niveau. (Ne pas l'activer dans l'éditeur)."
         }
     },
@@ -159,7 +159,7 @@
     },
     {
         "Change Gravity": {
-            "name": "Change la Gravité",
+            "name": "Changer la Gravité",
             "desc": "Permet de modifier la gravité lors d'un saut ou d'une chute."
         }
     },
@@ -173,7 +173,7 @@
     {
         "Icon Bypass": {
             "name": "Icone Bypass",
-            "desc": "Débloque toutes les icônes."
+            "desc": "Débloque tout les icônes."
         }
     },
     {
@@ -240,7 +240,7 @@
 
     {
         "Level Edit": {
-            "name": "Édition de Niveau",
+            "name": "Éditeur de Niveau",
             "desc": "Permet d'éditer n'importe quel niveau, d'accéder à l'éditeur par le menu pause. (PAS STABLE)"
         }
     },
@@ -253,7 +253,7 @@
     {
         "Copy Hack": {
             "name": "Hack de Copie",
-            "desc": "Vous laisse copier un niveau, même sans mot de passe."
+            "desc": "Vous permet de copier un niveau, même sans mot de passe."
         }
     },
     {
@@ -276,7 +276,7 @@
     },
     {
         "Default Song Bypass": {
-            "name": "Bypass de son par défaut",
+            "name": "Bypass de musique par défaut",
             "desc": "Permet d'utiliser les sons cachées par défaut dans l'éditeur."
         }
     },
@@ -297,13 +297,13 @@
     {
         "Enable Patching": {
             "name": "Activer le Patching",
-            "desc": "Passage du hooking au patching. Cela permet également d'activer davantage de hacks. N'activez que si nécessaire. [Windows uniquement]"
+            "desc": "Passage du hooking au patching. Cela permet également d'activer davantage de hacks. Activez que si nécessaire. [Windows uniquement]"
         }
     },
     {
         "Menu Opacity": {
             "name": "Opacité du Menu",
-            "desc": "Détermine le degré d'opacité du menu."
+            "desc": "Détermine le degré de l'opacité du menu."
         }
     },
     {
@@ -320,13 +320,13 @@
     },
     {
         "Live Theme Editing": {
-            "name": "Édition en direct du thème",
+            "name": "Éditeur en direct du thème",
             "desc": "Cela vous permettra de modifier votre thème personnalisé tout en voyant les changements à l'écran ! (Attention : cela peut provoquer une fuite de mémoire)."
         }
     },
     {
         "Show Tooltips": {
-            "name": "Afficher les infobulles",
+            "name": "Afficher les infobulles", 
             "desc": "Affichage ou non d'une infobulle au survol d'un mod."
         }
     },
@@ -350,7 +350,7 @@
     },
     {
         "Language": {
-            "name": "Langage",
+            "name": "Langue",
             "desc": "Définit la langue de Prism Menu !"
         }
     },
@@ -389,14 +389,14 @@
     },
     {
         "Menu Scale": {
-            "name": "Menu Échelle",
+            "name": "Échelle Du Menu",
             "desc": "Décide de la taille du texte et des boutons. (Nécessite de redémarrer le jeu)"
         }
     },
 
     {
         "Show Hidden Objects": {
-            "name": "Montrer les Objets Cahcés",
+            "name": "Montrer les Objets Cachés",
             "desc": "Montre tous les objets cachés. Ceci réinitialisera les objets à la couleur d'origine. Ceci ne marchera pas sur les objets avec l'attribution \"Hide\". (Utile avec le mode layout)"
         }
     },
@@ -414,8 +414,8 @@
     },
     {
         "No Glow": {
-            "name": "Pas de Glow",
-            "desc": "Désactive le glow sur tous les objets."
+            "name": "Pas de Brillance",
+            "desc": "Désactive la Brillance sur tous les objets."
         }
     },
     {
@@ -427,24 +427,24 @@
     {
         "Show Graphic Options": {
             "name": "Montrer les Options Graphiques",
-            "desc": "Vous montre les options graphiques de Geometry Dash ! Utile sous Android car l'option n'est normalement pas disponible."
+            "desc": "Vous montre les options graphiques de Geometry Dash ! Utile sous Android car l'option est normalement pas disponible."
         }
     },
     {
         "No Trail": {
             "name": "Pas de Traînée",
-            "desc": "Désactive les effets de traînée (trail) du jouer."
+            "desc": "Désactive les effets de traînée (trail) du joueur."
         }
     },
     {
         "No Wave Trail": {
-            "name": "Pas de Wave Trail",
+            "name": "Pas de traînée du Wave",
             "desc": "Désactive la traînée (trail) derrière l'icône de la Wave."
         }
     },
     {
         "Solid Wave Trail": {
-            "name": "Wave Trail Solide",
+            "name": "Traînée du Wave Solide",
             "desc": "Enlève le mélange des couleurs sur la traînée (trail) de la Wave."
         }
     }
