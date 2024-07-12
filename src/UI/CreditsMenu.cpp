@@ -303,6 +303,17 @@ std::vector<CreditUser> users = {
         true,
         "",
         19331971
+    },
+    {
+        "Rexosouli",
+        35,
+        "Proofreader (FR)",
+        { 0,200,255 },
+        { 0,0,0 },
+        { 0,0,0 },
+        false,
+        "https://discord.com/users/805514311547748403",
+        19331971
     }
 
 };
