@@ -313,7 +313,7 @@ std::vector<CreditUser> users = {
         { 0,255,255 },
         true,
         "https://discord.com/users/805514311547748403",
-        19331971
+        18038950
     }
 
 };
