@@ -309,9 +309,9 @@ std::vector<CreditUser> users = {
         35,
         "Proofreader (FR)",
         { 0,200,255 },
-        { 0,0,0 },
-        { 0,0,0 },
-        false,
+        { 0,255,255 },
+        { 0,255,255 },
+        true,
         "https://discord.com/users/805514311547748403",
         19331971
     }
