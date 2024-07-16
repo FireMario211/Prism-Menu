@@ -519,7 +519,7 @@
     {
         "Record": {
             "name": "Filmer",
-            "desc": "Filme le gamepkay pour que sa sois rejoué. (Cela va réinitialiser contributions courante si vous jouez un niveau avec une Macro sélectionnée.)"
+            "desc": "Filme le gameplay pour que sa sois rejoué. (Cela va réinitialiser contributions courante si vous jouez un niveau avec une Macro sélectionnée.)"
         }
     },
     {
