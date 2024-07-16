@@ -1,9 +1,11 @@
 # Prism Menu
-**By [Firee](user:6253758)**
-A mod that intends to be a <cy>free alternative</c> to other mod menus, while also adding <cp>extra useful additions.</cp> (Press `Tab` to open menu)
+
+A cross-platform mod menu made by [Firee](user:6253758) that intends to be a <cy>free alternative</c> to other mod menus, while also adding <cp>extra useful additions.</cp> (Press `Tab` to open menu)
+
 [Support Discord Server](https://discord.gg/pnD8cnwdhZ)
 
 ![Mod Example](firee.prism/Screenshot1.png)
+
 This mod menu also provides unique features not present in most mod menus, here are a few examples.
 ## Tons of different mods
 * Prism Menu by default comes with <cy>a lot of mods / hacks</c> that are in most mod menus! While the current amount is low, I plan on adding more as I update this mod.
