@@ -1,7 +1,7 @@
 [
     {
         "§ Global": {
-            "name": "§ Globale"
+            "name": "§ Global"
         }
     },
     {
@@ -20,13 +20,18 @@
         }
     },
     {
+        "¦ Quartz Bot": {
+            "name": "¦ Quartz Bot"
+        }
+    },
+    {
         "··· Misc": {
             "name": "··· Divers"
         }
     },
     {
         "¶ Settings": {
-            "name": "¶ Configurations"
+            "name": "¶ Paramètres"
         }
     },
 
@@ -36,322 +41,336 @@
         }
     },
 
+
+
     {
         "Anticheat Bypass": {
             "name": "Anticheat Bypass",
-            "desc": "Désactiver tout les anticheats. [Niveaux, Éditeur, ect]"
+            "desc": "Désactive tous les anticheats du jeu. [Niveaux, Éditeur, etc...]"
         }
     },
     {
         "Practice Music": {
             "name": "Musique Practice",
-            "desc": "Activer la musique du Practice même si vérouillé."
+            "desc": "Permet d'écouter la musique du niveau en Practice Mode, même si l'option est vérouillée."
         }
     },
     {
         "Safe Mode": {
             "name": "Mode Sécurisé",
-            "desc": "Interrompre toute progression dans le niveau."
+            "desc": "Empêche toute progression sur un niveau d'être enregistrée."
         }
     },
     {
         "Accurate Percentage": {
-            "name": "Pourcentage Exact",
-            "desc": "Permet de prendre en compte les décimales dans le pourcentage de niveau. [Au-delà de la place des millièmes]"
+            "name": "Pourcentage Précis",
+            "desc": "Permet de prendre en compte les décimales dans le pourcentage d'un niveau. [Au-delà des millièmes]"
         }
     },
     {
         "Layout Mode": {
             "name": "Mode Layout",
-            "desc": "Supprimer toutes les décorations associées à ce niveau."
+            "desc": "Enlève tous les objets décoratifs du niveau."
         }
     },
     {
         "No Transition": {
             "name": "Aucune Transition",
-            "desc": "Raccourcit le temps de transition de la scène à 0s."
+            "desc": "Enlève le temps de transition entre les scènes du jeu."
         }
     },
     {
         "Cheat Indicator": {
-            "name": "Indicateur de Triche",
-            "desc": "Affiche une icône pour indiquer si vous utilisez ou non des mods qui peuvent être considérés comme de la triche !"
+            "name": "Indicateur de triche",
+            "desc": "Affiche une icône indiquant si vous utilisez ou non des mods qui pourraient vous donner un avantage sur les autres joueurs !"
         }
     },
     {
         "Speedhack": {
             "name": "Speedhack",
-            "desc": "Change la vitesse du jeu et de l'audio."
+            "desc": "Change la vitesse du jeu et de la musique."
         }
     },
     {
         "FPS Bypass": {
             "name": "FPS Bypass",
-            "desc": "Débloque vos FPS pour qu'il soit supérieur à 60 ou à la fréquence de rafraîchissement de votre moniteur."
+            "desc": "Débloque la limite de FPS du jeu, vous permettant d'avoir une fréquence de rafraîchissement supérieur à 60 ou à celle de votre moniteur."
+        }
+    },
+    {
+        "Reset Speedhack": {
+            "name": "Réinitialiser le Speedhack",
+            "desc": "Remet la vitesse du jeu à la normale."
         }
     },
 
     {
         "Noclip": {
             "name": "Noclip",
-            "desc": "Faire en sorte que le joueur soit invincible."
+            "desc": "Rends le joueur invincible."
         }
     },
     {
         "No Spikes": {
-            "name": "Aucun Spikes",
-            "desc": "Ignorer tout les objects spikes."
+            "name": "Pas de spikes",
+            "desc": "Rends le joueur immunisé aux spikes."
         }
     },
     {
         "No Hitbox": {
-            "name": "Aucune Hitbox",
-            "desc": "Désactive toutes les hitboxes. Les objets spéciaux sont désactivés."
+            "name": "Pas d'hitboxes",
+            "desc": "Désactive l'hitbox de tous les objets. Les objets spéciaux seront désactivés."
         }
     },
     {
         "No Solids": {
-            "name": "Aucun Solides",
-            "desc": "Désactive la plupart des hitboxes solides. Les objets spéciaux fonctionnent toujours."
+            "name": "Pas de solides",
+            "desc": "Désactive l'hitbox de la plupart des objets solides. Les objets spéciaux fonctionneront toujours."
         }
     },
     {
         "Everything Hurts": {
-            "name": "Tout fait mal",
+            "name": "Tout fait mail",
             "desc": "Aïe."
         }
     },
     {
         "No Mirror Transition": {
-            "name": "Aucune Transition Miroir",
-            "desc": "Empêche le retournement de l'écran sur un portail miroir."
+            "name": "Pas de transition mirroir",
+            "desc": "Empêche l'écran d'être retourné à l'entrée d'un portail mirroir."
         }
     },
     {
         "Instant Mirror Portal": {
-            "name": "Portail miroir instantané",
-            "desc": "Le portail inversé bascule désormais instantanément."
+            "name": "Portail mirroir instantané",
+            "desc": "Rends l'effet de retournement d'écran en entrant dans un portail mirroir instantané."
         }
     },
     {
         "Freeze Player": {
-            "name": "Gèle le joueur",
-            "desc": "Bloque les mouvements du joueur."
+            "name": "Geler le joueur",
+            "desc": "Empêche le joueur de bouger."
         }
     },
     {
         "Jump Hack": {
             "name": "Jump Hack",
-            "desc": "Permet de sauter en l'air."
+            "desc": "Permet au joueur de sauter en l'air."
         }
     },
     {
         "Instant Complete": {
-            "name": "Complétion Instantanée",
-            "desc": "Termine instantanément le niveau. (Ne pas l'activer dans l'éditeur)."
+            "name": "Complétion instantanée",
+            "desc": "Complète un niveau instantanément. (Ne pas activer dans l'éditeur)"
         }
     },
     {
         "Force Platformer Mode": {
             "name": "Forcer le mode Plateforme",
-            "desc": "Vous oblige à être en mode plateforme lorsque vous jouez un niveau."
+            "desc": "Force le joueur à être dans le mode Plateforme dans un niveau."
         }
     },
     {
         "Change Gravity": {
-            "name": "Changer la Gravité",
-            "desc": "Permet de modifier la gravité lors d'un saut ou d'une chute."
+            "name": "Changer la gravité",
+            "desc": "Permet de changer la gravité lors d'un saut ou d'une chute."
         }
     },
     {
         "Gravity Value": {
-            "name": "Valeur de la Gravité",
+            "name": "Valeur de la gravité",
             "desc": "La valeur à laquelle la gravité doit être fixée."
         }
     },
 
     {
         "Icon Bypass": {
-            "name": "Icone Bypass",
-            "desc": "Débloque tout les icônes."
+            "name": "Icon Bypass",
+            "desc": "Débloque toutes les icônes."
         }
     },
     {
         "Text Length": {
-            "name": "Taille du Texte",
-            "desc": "Permet une longueur de texte illimitée dans les entrées de texte."
+            "name": "Désactiver la limite de texte",
+            "desc": "Enlève la limite de longeur de texte dans les entrées de texte."
         }
     },
     {
         "Character Filter": {
-            "name": "Filter de Caractère",
-            "desc": "Permet de saisir n'importe quel caractère dans toutes les entrées de texte."
+            "name": "Désactiver le filtre de charactères",
+            "desc": "Permet de saisir n'importe quel charactères dans les entrées de texte."
         }
     },
     {
         "Slider Limit": {
-            "name": "Limite du curseur",
-            "desc": "Permet de faire glisser les curseurs au-delà de la limite visible."
+            "name": "Désactiver la limite des curseurs",
+            "desc": "Permet de faire glisser les curseurs au-délà de leurs limite."
         }
     },
     {
         "Main Levels": {
-            "name": "Niveaux Principaux",
-            "desc": "Débloque tous les niveaux démons principaux."
+            "name": "Débloquer les niveaux démons officiels",
+            "desc": "Débloque les niveaux démons officiels. "
         }
     },
     {
         "Guard Vault": {
-            "name": "Guard Vault",
-            "desc": "Déverrouille le Guard vault."
+            "name": "Débloquer la Guard Vault",
+            "desc": "Débloque la Guard Vault."
         }
     },
     {
         "Keymaster Vault": {
-            "name": "Keymaster Vault",
-            "desc": "Déverrouille le keymaster Vault."
+            "name": "Débloquer le Keymaster Vault",
+            "desc": "Débloque le keymaster's vault."
         }
     },
     {
         "Treasure Room": {
-            "name": "Treasure Room",
-            "desc": "Déverrouille la treasure room."
+            "name": "Débloquer la Treasure Room",
+            "desc": "Débloque la treasure room."
         }
     },
     {
         "Free Shop Items": {
-            "name": "Articles gratuits de la boutique",
-            "desc": "Permet d'acheter tous les objets de la boutique pour 0 orbe."
+            "name": "Items des boutiques gratuits",
+            "desc": "Rends tous les items de toutes les boutiques gratuits."
         }
     },
     {
         "Gatekeeper Vault": {
-            "name": "Gatekeeper Vault",
-            "desc": "Déverrouille le Gatekeeper Vault."
+            "name": "Débloquer le Gatekeeper Vault",
+            "desc": "Débloque le Gatekeeper's vault."
         }
     },
     {
         "Backup Stars Limit": {
-            "name": "Limite d'étoiles pour la sauvegarde",
-            "desc": "Permet de sauvegarder des données, même avec moins de 10 étoiles."
+            "name": "Enlever la limite d'étoile",
+            "desc": "Permet de sauvegarder vos données même si vous avez moins do 10 étoiles."
         }
     },
 
 
     {
         "Level Edit": {
-            "name": "Éditeur de Niveau",
-            "desc": "Permet d'éditer n'importe quel niveau, d'accéder à l'éditeur par le menu pause. (PAS STABLE)"
+            "name": "Éditeur de niveau",
+            "desc": "Permet d'éditer n'importe quel niveau, accédez à l'éditeur dans le menu de pause. (INSTABLE)"
         }
     },
     {
         "Verify Hack": {
-            "name": "Hack de Vérification",
-            "desc": "Permet de mettre en ligne des niveaux non vérifiés. Les niveaux sont automatiquement vérifiés."
+            "name": "Verify Hack",
+            "desc": "Permet d'uploader des niveaux non vérifiés."
         }
     },
     {
         "Copy Hack": {
-            "name": "Hack de Copie",
-            "desc": "Vous permet de copier un niveau, même sans mot de passe."
+            "name": "Copy Hack",
+            "desc": "Permet de copier n'importe quel niveau, sans mot de passe."
         }
     },
     {
         "No (C) Mark": {
-            "name": "Aucun Marqueur (C)",
-            "desc": "Supprime la marque (C) lors du téléchargement de niveaux copiés. Les niveaux seront automatiquement définis comme étant des niveaux originaux."
+            "name": "Pas de marque (C)",
+            "desc": "Enlève la marque (C) lors de l'upload d'un niveau copié."
         }
     },
     {
         "Hide Testmode": {
             "name": "Cacher le Testmode",
-            "desc": "Cacher le texte 'Testmode' en jouant à un niveau avec une startpos."
+            "desc": "Cache le texte \"Testmode\" dans un niveau avec une Startpos"
         }
     },
     {
         "Rotation Hack": {
-            "name": "Hack de Rotation",
-            "desc": "Permet de faire pivoter n'importe quel objet. Ne fonctionne que localement."
+            "name": "Rotation Hack",
+            "desc": "Permet de pivoter n'importe quel objet. Ne marche que localement."
         }
     },
     {
         "Default Song Bypass": {
-            "name": "Bypass de musique par défaut",
-            "desc": "Permet d'utiliser les sons cachées par défaut dans l'éditeur."
+            "name": "Bypass de musiques par défaut",
+            "desc": "Permet d'utiliser des sons cachés dans l'éditeur"
         }
     },
 
     {
+        "No Progress Bar": {
+            "name": "Pas de barre de progression",
+            "desc": "Enlève la barre de progression ! Le pourcentage sera toujours affiché."
+        }
+    },
+    {
         "Progress Bar Position": {
-            "name": "Position de la Barre de Progression",
-            "desc": "Définit la position de la barre de progression."
+            "name": "Position de la barre de progression",
+            "desc": "Permet de changer la position de la barre de progression."
+        }
+    },
+    {
+        "Hide Attempts": {
+            "name": "Cacher les tentatives",
+            "desc": "Permet de montrer ou non les tentatives dans un niveau"
         }
     },
     {
         "Attempt Opacity": {
-            "name": "Opacité de la Tentative",
-            "desc": "Détermine le degré d'opacité de l'étiquette de la tentative."
+            "name": "Opacité du texte de tentatives",
+            "desc": "Détermine l'opacité du texte des tentatives."
         }
     },
 
     {
-        "Enable Patching": {
-            "name": "Activer le Patching",
-            "desc": "Passage du hooking au patching. Cela permet également d'activer davantage de hacks. Activez que si nécessaire. [Windows uniquement]"
-        }
-    },
-    {
         "Menu Opacity": {
-            "name": "Opacité du Menu",
-            "desc": "Détermine le degré de l'opacité du menu."
+            "name": "Opacité du menu",
+            "desc": "Détermine l'opacité du menu."
         }
     },
     {
         "Theme": {
             "name": "Thème",
-            "desc": "Sélectionnez le thème de l'interface utilisateur pour Prism Menu !"
+            "desc": "Séléctionner le thème de l'interface de Prism Menu !"
         }
     },
     {
         "Import Theme": {
-            "name": "Importer des Thèmes",
-            "desc": "Importe un thème ! [Fichier JSON]"
+            "name": "Importer un thème",
+            "desc": "Importe un thème ! [fichier JSON]"
         }
     },
     {
         "Live Theme Editing": {
-            "name": "Éditeur en direct du thème",
-            "desc": "Cela vous permettra de modifier votre thème personnalisé tout en voyant les changements à l'écran ! (Attention : cela peut provoquer une fuite de mémoire)."
+            "name": "Édition du thème en direct",
+            "desc": "Permet d'éditer un thème personalisé tout en voyant les changements sur l'écran ! (Avertissement: Cela pourrait causer une fuite de mémoire.)"
         }
     },
     {
         "Show Tooltips": {
-            "name": "Afficher les infobulles", 
-            "desc": "Affichage ou non d'une infobulle au survol d'un mod."
+            "name": "Montrer les infobulles",
+            "desc": "Permet d'afficher ou non des infobulles en survolant les mods."
         }
     },
     {
         "Show Button": {
-            "name": "Afficher le Bouton",
-            "desc": "Affiche le bouton permettant d'activer le menu. Il est recommandé de laisser cette option activée pour Android."
+            "name": "Show Button",
+            "desc": "Shows the button to activate the menu. It's recommended to keep this enabled for Android."
         }
     },
     {
         "Button Position X": {
-            "name": "Position X du Bouton",
-            "desc": "La position X du bouton pour ouvrir le menu."
+            "name": "Position X du bouton",
+            "desc": "La position X où le bouton pour ouvrir le menu sera situé."
         }
     },
     {
         "Button Position Y": {
-            "name": "Position Y du Bouton",
-            "desc": "La position Y du bouton pour ouvrir le menu."
+            "name": "Position du bouton Y",
+            "desc": "La position Y où le bouton pour ouvrir le menu sera situé."
         }
     },
     {
         "Language": {
-            "name": "Langue",
-            "desc": "Définit la langue de Prism Menu !"
+            "name": "Langage",
+            "desc": "Définir la langue dans laquelle Prism Menu sera affiché."
         }
     },
     {
@@ -368,84 +387,254 @@
     },
     {
         "Thank you to Electrify (ES), Jouca (FR), dank_meme01, savvacorgi, МегаСвятой (RU), Gazonk (BR), huhnmitferrari (DE), and Ignis (CS) for translations!": {
-            "name": "Merci à Electrify (ES), Jouca (FR), dank_meme01, savvacorgi, МегаСвятой (RU), Gazonk (BR), huhnmitferrari (DE), et Ignis (CS) pour les traductions !"
+            "name": "Merci à Electrify (ES), Jouca (FR), M336 (FR) dank_meme01, savvacorgi, МегаСвятой (RU), Gazonk (BR), huhnmitferrari (DE), et Ignis (CS) pour les traductions !"
         }
     },
     {
         "And thank you for using the mod! I hope you enjoy using Prism Menu!": {
-            "name": "Et merci d'avoir utilisé le mod ! J'espère que vous apprécierez Prism Menu !"
+            "name": "Et merci d'utiliser le mod ! J'espère que vous appréciez Prism Menu !"
         }
     },
     {
         "Close Popup": {
-            "name": "Fermer la boite de dialogue"
-        }
-    },
-    {
-        "Reset Speedhack": {
-            "name": "Réinitialiser Speedhack",
-            "desc": "Réinitialise le speedhack à la normale."
+            "name": "Fermer la boîte de dialogue"
         }
     },
     {
         "Menu Scale": {
-            "name": "Échelle Du Menu",
-            "desc": "Décide de la taille du texte et des boutons. (Nécessite de redémarrer le jeu)"
+            "name": "Taille du Menu",
+            "desc": "Permet de définir la taille du texte et des boutons. (Nécessite un redémarrage du jeu)"
         }
     },
 
     {
         "Show Hidden Objects": {
-            "name": "Montrer les Objets Cachés",
-            "desc": "Montre tous les objets cachés. Ceci réinitialisera les objets à la couleur d'origine. Ceci ne marchera pas sur les objets avec l'attribution \"Hide\". (Utile avec le mode layout)"
+            "name": "Montrer les objets cachés",
+            "desc": "Montre tous les objets cachés. Cela réinitialisera la couleur principal de tous les objets. Ce mod ne marchera pas avec les objets ayant l'attribut \"Hide\". (Utile avec le Mode Layout)"
         }
     },
     {
         "Transparent BG": {
             "name": "Arrière-plan transparent",
-            "desc": "Les couleurs modifiées de arrière-plan sont automatiquement ramenées à leur couleur d'origine."
+            "desc": "Réinitialise la couleur de l'arrière-plan à sa valeur initiale."
         }
     },
     {
         "Speedhack Audio": {
-            "name": "Speedhack de l'Audio",
-            "desc": "Vous permet d'accorder, ou non, la vitesse de l'audio à la valeur du speedhack."
+            "name": "Speedhack Audio",
+            "desc": "Permet d'affecter ou non la vitesse de la musique lors de l'utilisation du \"Speedhack\"."
         }
     },
     {
         "No Glow": {
-            "name": "Pas de Brillance",
-            "desc": "Désactive la Brillance sur tous les objets."
+            "name": "Pas de brillance",
+            "desc": "Désactive la brillance de tous les objets."
         }
     },
     {
         "Noclip Accuracy": {
-            "name": "Précision du Noclip",
-            "desc": "Vous informe à quel point votre run en Noclip est précise."
+            "name": "Précision Noclip",
+            "desc": "Vous informe de la précision de votre complétion en Noclip."
         }
     },
     {
         "Show Graphic Options": {
-            "name": "Montrer les Options Graphiques",
-            "desc": "Vous montre les options graphiques de Geometry Dash ! Utile sous Android car l'option est normalement pas disponible."
+            "name": "Montrer les options Graphiques",
+            "desc": "Affiche les options graphiques de Geometry Dash ! Utile pour Android comme l'option n'y est pas disponible."
         }
     },
     {
         "No Trail": {
-            "name": "Pas de Traînée",
-            "desc": "Désactive les effets de traînée (trail) du joueur."
+            "name": "Pas de traînée",
+            "desc": "Désactive tous les effets de trainée (trail) du joueur."
         }
     },
     {
         "No Wave Trail": {
-            "name": "Pas de traînée du Wave",
-            "desc": "Désactive la traînée (trail) derrière l'icône de la Wave."
+            "name": "Pas de Wave Trail",
+            "desc": "Désactive tous les effets de trainée (trail) en mode Wave du joueur."
         }
     },
     {
         "Solid Wave Trail": {
-            "name": "Traînée du Wave Solide",
-            "desc": "Enlève le mélange des couleurs sur la traînée (trail) de la Wave."
+            "name": "Wave Trail Solide",
+            "desc": "Enlève le mélange de couleurs des icônes sur la traînée (trail) en mode Wave du joueur."
+        }
+    },
+
+    {
+        "Extra Percent Digits": {
+            "name": "Nombre de décimaux en plus dans le pourcentage",
+            "desc": "Nombre de décimaux à afficher dans le pourcentage avec \"Pourcentage Précis\"."
+        }
+    },
+    {
+        "Uncomplete Level": {
+            "name": "Décompléter un niveau",
+            "desc": "Réinitialise le pourcentage en mode Normal et en mode practice, et vous permet de diminuer votre nombre d'étoiles si vous avez complété le niveau !"
+        }
+    },
+    {
+        "No Shaders": {
+            "name": "Pas de shaders",
+            "desc": "Désactive tous les effets de shaders."
+        }
+    },
+    {
+        "Disable Camera Effects": {
+            "name": "Désactiver les effets de caméra",
+            "desc": "Désactive tous les effets de caméra, et ne concentre la caméra que sur le joueur. Ce mod peut casser tous les modes de jeu, mis à part le mode Cube et le mode Robot."
+        }
+    },
+    {
+        "Show Hitboxes": {
+            "name": "Montrer les hitboxes",
+            "desc": "Montrer les hitboxes des joueurs, des obstacles et des objets solides."
+        }
+    },
+    {
+        "Show Hitboxes on Death": {
+            "name": "Montrer les hitboxes à la mort",
+            "desc": "Montrer les hitboxes quand vous mourrez, et les cachent lorsque vous réapparaissait."
+        }
+    },
+    {
+        "Hitbox Stroke": {
+            "name": "Largeur des hitboxes",
+            "desc": "Définir la largeur des hitboxes."
+        }
+    },
+    {
+        "Suicide": {
+            "name": "Suicide",
+            "desc": "Tue le joueur instantanément."
+        }
+    },
+
+    {
+        "TPS Bypass": {
+            "name": "TPS Bypass",
+            "desc": "Change les \"FPS des physiques\" du jeu pour être supérieur ou inférieur à la valeur par défaut. (240)"
+        }
+    },
+    {
+        "Macro": {
+            "name": "Macro",
+            "desc": "Séléctionner une macro à enregistrer ou à jouer !"
+        }
+    },
+    {
+        "Record": {
+            "name": "Record",
+            "desc": "Enregistre le gameplay pour qu'il soit rejouer. (Si une macro existante est séléctionnée, cela effacera le gameplay de celle-ci.)"
+        }
+    },
+    {
+        "Playback": {
+            "name": "Jouer",
+            "desc": "Joue la macro enregistrée."
+        }
+    },
+    {
+        "Macro Editor": {
+            "name": "Éditeur de macro",
+            "desc": "Entrer dans l'éditeur de macro. (Ne marchera pas correctement avec l'option d'Enregistrement activé)"
+        }
+    },
+    {
+        "Frame Fix": {
+            "name": "Frame Fix",
+            "desc": "Enregistre tous les mouvements du joueur, y compris sa position lors de l'enregistrement et lors de la lecture de la macro. Veuillez noter que cette option augmentera la taille de la macro lors de l'enregistrement."
+        }
+    },
+    {
+        "Fixed FPS": {
+            "name": "FPS Fixés",
+            "desc": "Fixe les FPS du jeu aux FPS utilisés pour enregistrer la macro. Cela peut ressembler à l'option \"smooth fix\" si le jeu lag."
+        }
+    },
+    {
+        "Import Macro": {
+            "name": "Importer une Macro",
+            "desc": "Importe une macro."
+        }
+    },
+    {
+        "Save Macro": {
+            "name": "Enregistrer la Macro",
+            "desc": "Enregistre la macro."
+        }
+    },
+    {
+        "No Pulse": {
+            "name": "Pas de pulsation",
+            "desc": "Empêche les orbes et autres objets similaires de bouger avec la musique."
+        }
+    },
+    {
+        "Noclip Flash": {
+            "name": "Noclip Flash",
+            "desc": "Teinte tout l'écran en rouge à la place de montrer votre précision en noclip lors d'une mort."
+        }
+    },
+    {
+        "Instant Respawn": {
+            "name": "Réapparition Instantanée",
+            "desc": "Permet au joueur de réapparaître instantanément à sa mort."
+        }
+    },
+    {
+        "No Death Effect": {
+            "name": "Pas d'effet de mort",
+            "desc": "Enlève les particules d'explosion lors de la mort du joueur."
+        }
+    },
+    {
+        "No Wave Pulse": {
+            "name": "Pas de pulsations en mode Wave",
+            "desc": "Empêche le joueur en mode Wave de bouger avec la musique."
+        }
+    },
+    {
+        "Wave Pulse Size": {
+            "name": "Taille de la pulsation en mode Wave",
+            "desc": "Permet de définir la taille de la pulsation du joueur en mode Wave."
+        }
+    },
+    {
+        "Auto Safe Mode": {
+            "name": "Mode Sécurisé Automatique",
+            "desc": "Empêche toute progression sur un niveau d'être enregistrée si un mod de triche est activé."
+        }
+    },
+    {
+        "Custom Object Bypass": {
+            "name": "Bypass de la limite d'objets personalisés",
+            "desc": "Permet d'enregistrer des objets personalisés au-delà de la limite de 1000 objets."
+        }
+    },
+    {
+        "Menu Keybind": {
+            "name": "Raccourci pour accéder au menu",
+            "desc": "Le raccourci clavier qui vous permet d'ouvrir l'interface Prism !"
+        }
+    },
+    {
+        "Hide Level": {
+            "name": "Hide Level",
+            "desc": "Hides all objects in the level."
+        }
+    },
+    {
+        "Hide Player": {
+            "name": "Cacher le joueur",
+            "desc": "Cache le joueur. (Nécessite un relancement du niveau)"
+        }
+    },
+    {
+        "No Rotate": {
+            "name": "Pas de rotation",
+            "desc": "Empêche le joueur de pivoter lors d'un saut ou d'une chute."
         }
     }
 ]
