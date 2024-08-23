@@ -636,5 +636,181 @@
             "name": "Pas de rotation",
             "desc": "Empêche le joueur de pivoter lors d'un saut ou d'une chute."
         }
+    },
+
+    {
+        "Extra Percent Digits": {
+            "name": "Chiffres de pourcentage supplémentaires",
+            "desc": "Nombre de chiffres décimaux supplémentaires à afficher avec un pourcentage précis."
+        }
+    },
+    {
+        "Uncomplete Level": {
+            "name": "Niveau incomplet",
+            "desc": "Réinitialise les pourcentages normaux, de pratice, et vous permet de diminuer votre nombre d'étoiles si vous avez terminé le niveau !"
+        }
+    },
+    {
+        "No Shaders": {
+            "name": "Aucun shader",
+            "desc": "Désactive tous les effets de shader de caméra."
+        }
+    },
+    {
+        "Disable Camera Effects": {
+            "name": "Désactiver les effets de la caméra",
+            "desc": "Désactive tous les effets de caméra et concentre uniquement la caméra sur le joueur. Cela pourrait casser tous les modes d'icônes sauf Cube et Robot."
+        }
+    },
+    {
+        "Show Hitboxes": {
+            "name": "Afficher les hitbox",
+            "desc": "Afficher les hitbox du joueur, des obstacles et des solides."
+        }
+    },
+    {
+        "Show Hitboxes on Death": {
+            "name": "Afficher les hitbox en mourant",
+            "desc": "Affiche les hitbox lorsque vous mourez et les masque lorsque vous réapparaissez."
+        }
+    },
+    {
+        "Hitbox Stroke": {
+            "name": "Coup de hitbox",
+            "desc": "Largeur du trait lors du dessin des hitbox."
+        }
+    },
+    {
+        "Suicide": {
+            "name": "Suicide",
+            "desc": "Tue le joueur à plusieurs reprises."
+        }
+    },
+
+    {
+        "TPS Bypass": {
+            "name": "TPS Bypass",
+            "desc": "Modifie le \"FPS physique\" du jeu pour qu'il soit supérieur ou inférieur à la valeur par défaut. (240)"
+        }
+    },
+    {
+        "Macro": {
+            "name": "Macro",
+            "desc": "Choisis une Macro pour filmer ou jouer !"
+        }
+    },
+    {
+        "Record": {
+            "name": "Filmer",
+            "desc": "Filme le gameplay pour que sa sois rejoué. (Cela va réinitialiser contributions courante si vous jouez un niveau avec une Macro sélectionnée.)"
+        }
+    },
+    {
+        "Playback": {
+            "name": "Rejouer",
+            "desc": "Rejoue la Macro."
+        }
+    },
+    {
+        "Macro Editor": {
+            "name": "Éditeur de Macro",
+            "desc": "Entrer dans l'éduteur de Macro (Cela ne vas pas marcher proprement si la fonction filmer est activée.)"
+        }
+    },
+    {
+        "Frame Fix": {
+            "name": "Correction du Cadre",
+            "desc": "Enregistre chaque mouvement du joueur, y compris sa position lors de l'enregistrement et de la lecture d'une macro. Notez que cette option augmentera la taille du fichier de la macro lors de l'enregistrement."
+        }
+    },
+    {
+        "Fixed FPS": {
+            "name": "Fixer FPS",
+            "desc": "Verrouille les images sur la fréquence d'images cible de la macro. Cela peut ressembler à l'option \"smooth fix\" qui est activée si le jeu bug."
+        }
+    },
+    {
+        "Import Macro": {
+            "name": "Importer Une Macro",
+            "desc": "Importe une Macro."
+        }
+    },
+    {
+        "Save Macro": {
+            "name": "Sauvegarder La Macro",
+            "desc": "Sauvegarde la Macro."
+        }
+    },
+    {
+        "No Pulse": {
+            "name": "Pas de Pulsations",
+            "desc": "Empêche les orbes et autres objets associés de pulser sur la musique."
+        }
+    },
+    {
+        "Noclip Flash": {
+            "name": "Noclip Flash",
+            "desc": "Fait clignoter tout l'écran en rouge au lieu d'afficher une étiquette pour la précision de votre noclip."
+        }
+    },
+    {
+        "Instant Respawn": {
+            "name": "Réapparition Instantanée",
+            "desc": "Retire le délai de réapparition pour rejouer au niveau."
+        }
+    },
+    {
+        "No Death Effect": {
+            "name": "Pas d'effet de mort",
+            "desc": "Retire l'explosion de particules quand un joueur meurt."
+        }
+    },
+    {
+        "No Wave Pulse": {
+            "name": "Pas de Wave Pulse",
+            "desc": "Empêche la wave de pulser au rythme de la musique."
+        }
+    },
+    {
+        "Wave Pulse Size": {
+            "name": "Taille de la Wave Pulse",
+            "desc": "Quelle doit être la taille de pulsations pour la Wave."
+        }
+    },
+    {
+        "Auto Safe Mode": {
+            "name": "Mode Sécurisé Automatique",
+            "desc": "Empêche toute progression si certaines options de triche sont activées."
+        }
+    },
+    {
+        "Custom Object Bypass": {
+            "name": "Bypass d'objet customisé",
+            "desc": "Permet d'aller au-delà de la limite de 1000 objets pour les objets personnalisés."
+        }
+    },
+    {
+        "Menu Keybind": {
+            "name": "Raccourci des touches de menu",
+            "desc": "Le raccourci pour ouvrir l'interface utilisateur du menu Prism!"
+        }
+    },
+    {
+        "Hide Level": {
+            "name": "Cacher le niveau",
+            "desc": "Cache tout les objets dans le niveau."
+        }
+    },
+    {
+        "Hide Player": {
+            "name": "Cacher Le Joueur",
+            "desc": "Cache le joueur. (Nécessite de rejouer le niveau)"
+        }
+    },
+    {
+        "No Rotate": {
+            "name": "Pas de Rotation",
+            "desc": "Empêche le joueur de tourner lorsqu'il saute ou tombe."
+        }
     }
 ]

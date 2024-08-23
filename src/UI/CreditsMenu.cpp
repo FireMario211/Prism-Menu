@@ -305,6 +305,17 @@ std::vector<CreditUser> users = {
         19331971
     },
     {
+        "april",
+        98,
+        "Translator (IT)",
+        { 125, 125, 255 },
+        { 225, 219, 255 },
+        { 125, 125, 255 },
+        true,
+        "",
+        25221134
+    },
+    {
         "Rexosouli",
         35,
         "Proofreader (FR)",
@@ -314,6 +325,28 @@ std::vector<CreditUser> users = {
         true,
         "https://discord.com/users/805514311547748403",
         18038950
+    },
+    {
+        "HiimAndrewYT",
+        111,
+        "Translator (RO)",
+        { 0, 255, 0 },
+        { 0, 255, 255 },
+        { 0,0,0 },
+        false,
+        "https://youtube.com/@MyNamesAndrew",
+        26767554
+    },
+    {
+        "M336",
+        35,
+        "Translator (FR)",
+        { 0, 0, 0 },
+        { 255, 0, 0 },
+        { 255, 0, 0 },
+        true,
+        "https://www.youtube.com/channel/UC__S0detWlP2mWrsXMkkvFg",
+        24710147
     }
 
 };
@@ -386,7 +419,6 @@ class $modify(EndLevelLayer) {
         EndLevelLayer::customSetup();
         std::string chk = "kcabyalP";
         reverse(chk.begin(), chk.end());
-        std::cout << chk << std::endl;
         if (Hacks::isHackEnabled(chk)) {
             avfdvb=0;
             if (auto layer = typeinfo_cast<CCLayer*>(this->getChildren()->objectAtIndex(0))) {

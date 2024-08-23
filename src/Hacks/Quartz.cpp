@@ -9,8 +9,10 @@
 // yes this code is messy, ill move it later
 bool changedMacro = false;
 bool SelectMacroUI::init(float _w, float _h, Dropdown* dropdown) {
-    if (auto prismMenu = typeinfo_cast<PrismUI*>(CCScene::get()->getChildByID("prism-menu"))) {
-        prismMenu->toggleVisibility();
+    if (CCScene::get() != nullptr) {
+        if (auto prismMenu = typeinfo_cast<PrismUI*>(CCScene::get()->getChildByID("prism-menu"))) {
+            prismMenu->toggleVisibility();
+        }
     }
     auto winSize = cocos2d::CCDirector::sharedDirector()->getWinSize();
     if (!this->initWithColor({ 0, 0, 0, 105 })) return false;
@@ -75,8 +77,10 @@ void SelectMacroUI::keybackClicked() {
 };
 
 void SelectMacroUI::onClose(cocos2d::CCObject*) {
-    if (auto prismMenu = typeinfo_cast<PrismUI*>(CCScene::get()->getChildByID("prism-menu"))) {
-        prismMenu->toggleVisibility();
+    if (CCScene::get() != nullptr) {
+        if (auto prismMenu = typeinfo_cast<PrismUI*>(CCScene::get()->getChildByID("prism-menu"))) {
+            prismMenu->toggleVisibility();
+        }
     }
     this->removeFromParentAndCleanup(true);
 };
@@ -237,8 +241,10 @@ void MacroItemCell::draw() {
 }
 
 void CreateMacroUI::setup() {
-    if (auto prismMenu = typeinfo_cast<PrismUI*>(CCScene::get()->getChildByID("prism-menu"))) {
-        prismMenu->toggleVisibility();
+    if (CCScene::get() != nullptr) {
+        if (auto prismMenu = typeinfo_cast<PrismUI*>(CCScene::get()->getChildByID("prism-menu"))) {
+            prismMenu->toggleVisibility();
+        }
     }
     auto winSize = CCDirector::sharedDirector()->getWinSize();
 
@@ -359,6 +365,7 @@ CreateMacroUI* CreateMacroUI::create() {
 
 // sorry, too lazy to figure out how to get the class out
 QuartzMacro current_macro;
+int keepSpeedhackUntilFrame = -1;
 
 std::vector<QuartzInput> fixInputs(const std::vector<QuartzInput>& inputs) {
     if (inputs.size() <= 1) {
@@ -373,7 +380,6 @@ std::vector<QuartzInput> fixInputs(const std::vector<QuartzInput>& inputs) {
             filteredInputs.push_back(inputs[i]);
         }
     }
-
     return filteredInputs;
 }
 
@@ -432,6 +438,58 @@ bool STOPTIME = false;
 bool stillHolding1 = false;
 bool stillHolding2 = false;
 bool hadHeld = false;
+bool macroSpeedhack = false;
+
+bool GotoFrameUI::setup() {
+    auto winSize = CCDirector::sharedDirector()->getWinSize();
+    auto cSize = m_size;
+    this->setTitle("Goto Frame");
+    
+    auto infoSpr = CCSprite::createWithSpriteFrameName("GJ_infoIcon_001.png");
+    auto infoBtn = CCMenuItemSpriteExtra::create(
+        infoSpr,
+        this,
+        menu_selector(GotoFrameUI::onInfoBtn)
+    );
+    m_buttonMenu->addChildAtPosition(infoBtn, Anchor::TopRight);
+
+    auto frameLabel = CCLabelBMFont::create("Frame", "bigFont.fnt");
+    frameLabel->setScale(.75F);
+    m_frame = TextInput::create(150.f, "Frame...", "bigFont.fnt");
+    m_frame->setMaxCharCount(50);
+    m_frame->setCommonFilter(CommonFilter::Uint);
+
+    auto gotoBtn = CCMenuItemSpriteExtra::create(
+        ButtonSprite::create("Go to Frame"),
+        this,
+        menu_selector(GotoFrameUI::gotoFrameBtn)
+    );
+
+    m_buttonMenu->addChildAtPosition(frameLabel, Anchor::Center, {0, 35});
+    m_buttonMenu->addChildAtPosition(m_frame, Anchor::Center);
+    m_buttonMenu->addChildAtPosition(gotoBtn, Anchor::Bottom, {0, 40});
+    
+    STOPTIME = true;
+    return true;
+}
+
+bool ClearFramesUI::setup() {
+    auto winSize = CCDirector::sharedDirector()->getWinSize();
+    auto cSize = m_size;
+    this->setTitle("Clear Frames");
+    
+    auto infoSpr = CCSprite::createWithSpriteFrameName("GJ_infoIcon_001.png");
+    auto infoBtn = CCMenuItemSpriteExtra::create(
+        infoSpr,
+        this,
+        menu_selector(ClearFramesUI::onInfoBtn)
+    );
+    m_buttonMenu->addChildAtPosition(infoBtn, Anchor::TopRight);
+    
+    //m_buttonMenu->addChildAtPosition(slider, Anchor::Center, {0, -40});
+
+    return true;
+}
 
 class $modify(QuartzPlayLayer, PlayLayer) {
     struct Fields {
@@ -452,7 +510,7 @@ class $modify(QuartzPlayLayer, PlayLayer) {
         CCMenuItemSpriteExtra* stopBtn;
         CCMenuItemSpriteExtra* playBtn;
         CCMenuItemSpriteExtra* nextBtn;
-        CCMenuItemSpriteExtra* prevBtn;
+        CCMenuItemToggler* speedhackBtn;
 
         CCMenuItemSpriteExtra* inputStateBtn1_p1;
         CCMenuItemSpriteExtra* inputStateBtn2_p1;
@@ -573,7 +631,7 @@ class $modify(QuartzPlayLayer, PlayLayer) {
             this,
             menu_selector(QuartzPlayLayer::nextFrame)
         );
-        m_fields->prevBtn = CCMenuItemSpriteExtra::create(
+        auto prevBtn = CCMenuItemSpriteExtra::create(
             prevArrow,
             this,
             menu_selector(QuartzPlayLayer::prevFrame)
@@ -592,7 +650,7 @@ class $modify(QuartzPlayLayer, PlayLayer) {
 
         m_fields->playBtn->setPositionY(25);
         m_fields->stopBtn->setPositionY(m_fields->playBtn->getPositionY());
-        m_fields->prevBtn->setPosition({-40, 25});
+        prevBtn->setPosition({-40, 25});
         m_fields->nextBtn->setPosition({40, 25});
 
 
@@ -639,7 +697,48 @@ class $modify(QuartzPlayLayer, PlayLayer) {
         m_fields->inputStateBtn2_p2->setVisible(false);
         RecreateInputState(1, false, true);
         RecreateInputState(1, true, true);
-        m_fields->buttons->addChild(m_fields->prevBtn);
+
+        // what was i thinking, i couldve just create this as a ButtonSprite but ok
+        auto clearSpr = CCSprite::create("GJ_button_03.png");
+        auto clearTxt = CCLabelBMFont::create("Clear", "bigFont.fnt");
+        clearTxt->setScale(.3F);
+        clearTxt->setAnchorPoint({0, 0});
+        clearTxt->setPosition({4, 15});
+        clearSpr->addChild(clearTxt);
+
+        auto gotoSpr = CCSprite::create("GJ_button_05.png");
+        auto gotoTxt = CCLabelBMFont::create("Goto", "bigFont.fnt");
+        gotoTxt->setScale(.4F);
+        gotoTxt->setAnchorPoint({0, 0});
+        gotoTxt->setPosition({3, 14});
+        gotoSpr->addChild(gotoTxt);
+
+        auto gotoBtn = CCMenuItemSpriteExtra::create(
+            gotoSpr,
+            this,
+            menu_selector(QuartzPlayLayer::gotoBtn)
+        );
+        auto clearBtn = CCMenuItemSpriteExtra::create(
+            clearSpr,
+            this,
+            menu_selector(QuartzPlayLayer::clearBtn)
+        );
+
+        gotoBtn->setPosition({80, 25});
+        clearBtn->setPosition({125, 25});
+
+        auto clockSprGreen = CircleButtonSprite::create(CCSprite::createWithSpriteFrameName("GJ_timeIcon_001.png"));
+        clockSprGreen->setScale(0.75F);
+        auto clockSprRed = CircleButtonSprite::create(CCSprite::createWithSpriteFrameName("GJ_timeIcon_001.png"), CircleBaseColor::Pink);
+        clockSprRed->setScale(0.75F);
+        m_fields->speedhackBtn = CCMenuItemToggler::create(
+            clockSprGreen,
+            clockSprRed,
+            this,
+            menu_selector(QuartzPlayLayer::onSpeedhackBtn)
+        );
+        m_fields->speedhackBtn->setPosition({-85, 25});
+        m_fields->buttons->addChild(prevBtn);
         m_fields->buttons->addChild(m_fields->nextBtn);
         m_fields->buttons->addChild(m_fields->playBtn);
         m_fields->buttons->addChild(m_fields->stopBtn);
@@ -647,11 +746,30 @@ class $modify(QuartzPlayLayer, PlayLayer) {
         m_fields->buttons->addChild(m_fields->inputStateBtn2_p1);
         m_fields->buttons->addChild(m_fields->inputStateBtn1_p2);
         m_fields->buttons->addChild(m_fields->inputStateBtn2_p2);
+        m_fields->buttons->addChild(gotoBtn);
+        //m_fields->buttons->addChild(clearBtn); // TODO: do this later
+        m_fields->buttons->addChild(m_fields->speedhackBtn);
+        m_fields->buttons->setID("macro-editor"_spr);
+        m_fields->buttons->setVisible(Hacks::isHackEnabled("Macro Editor"));
         m_uiLayer->addChild(m_fields->buttons);
         m_fields->buttons->setPositionY(0);
 
-
         // TODO: add advance and prev frame for +5 and -5, oh and also allow clearing from right or clearing a section
+    }
+
+    void gotoBtn(CCObject*) {
+        GotoFrameUI::create()->show();
+    }
+    void clearBtn(CCObject*) {
+        ClearFramesUI::create()->show();
+    }
+    void onSpeedhackBtn(CCObject*) {
+        macroSpeedhack = !macroSpeedhack; 
+        if (auto speedhack = Hacks::getHack("Speedhack")) {
+            // TODO: make this customizable in a future update
+            speedhack->value.floatValue = (macroSpeedhack) ? 0.25F : 1.0F;
+            Hacks::setPitch(speedhack->value.floatValue);
+        }
     }
 
     void markInputP1(CCObject*) {
@@ -740,31 +858,11 @@ class $modify(QuartzPlayLayer, PlayLayer) {
                 m_fields->player_frames.pop_back();
             }
         }
-        /*
-        auto input = std::find_if(current_macro.inputs.begin(), current_macro.inputs.end(), [this, bot_frame](QuartzInput input) {
-            bool condition = input.frame == bot_frame && input.player2 == false;
-            if (condition) {
-                input.down = !input.down;
-                RecreateInputState((input.down) ? 2 : 1, false);
-            }
-            return condition;
-        });
-        if (input == current_macro.inputs.end()) {
-            QuartzInput newInput(bot_frame, 1, false, true);
-            auto insertPos = std::find_if(current_macro.inputs.begin(), current_macro.inputs.end(), [bot_frame](const QuartzInput& input) {
-                return input.frame > bot_frame;
-            });
-
-            // Insert the new element at the desired position
-            current_macro.inputs.insert(insertPos, newInput);
-            RecreateInputState(2, false);
-        }*/
     }
 
     void prevFrame(CCObject*) {
         if (m_fields->bot_frame <= 0 || !STOPTIME) return;
         m_fields->bot_frame -= 2;
-        //m_unk1f8
         m_gameState.m_currentProgress -= 2;
         int bot_frame = m_fields->bot_frame;
         auto input_player = std::find_if(m_fields->player_frames.begin(), m_fields->player_frames.end(), [bot_frame](const PlayerFrame& input) {
@@ -794,43 +892,13 @@ class $modify(QuartzPlayLayer, PlayLayer) {
             }
         }
         STOPTIME = false;
-        GJBaseGameLayer::update(1.F / current_macro.framerate);
+        GJBaseGameLayer::processCommands(1.F / current_macro.framerate);
         STOPTIME = true;
         log::debug("[-] Frame {}", m_fields->bot_frame);
     }
     void nextFrame(CCObject*) {
         //if (m_fields->bot_frame >= m_fields->lastInputFrame || !STOPTIME) return;
         if (!STOPTIME) return;
-        /*int bot_frame = m_fields->bot_frame;
-        auto input_player = std::find_if(m_fields->player_frames.begin(), m_fields->player_frames.end(), [bot_frame](const PlayerFrame& input) {
-            return input.frame == bot_frame && input.player2 == false;
-        });
-        auto input_player2 = std::find_if(m_fields->player_frames.begin(), m_fields->player_frames.end(), [bot_frame](const PlayerFrame& input) {
-            return input.frame == bot_frame && input.player2 == true;
-        });
-        if (input_player != m_fields->player_frames.end()) {
-            if (input_player2 != m_fields->player_frames.end()) {
-                UpdatePlayer(m_player2, *input_player2);
-                GJBaseGameLayer::handleButton(input_player2->isHolding, input_player2->buttonHold, true);
-                RecreateInputState((input_player2->isHolding) ? 2 : 1, true);
-            } else {
-                GJBaseGameLayer::handleButton(input_player->isHolding, input_player->buttonHold, false);
-                RecreateInputState((input_player->isHolding) ? 2 : 1, true);
-            }
-            UpdatePlayer(m_player1, *input_player);
-        }
-        STOPTIME = false;
-        std::string fpsToStr = CCDirector::sharedDirector()->m_pszFPS;
-        int frameRate = std::stoi(fpsToStr.substr(fpsToStr.find(":") + 2));
-
-        framesBeforeSTOP = 1;
-        if (Hacks::isHackEnabled("Frame Fix")) {
-            GJBaseGameLayer::update(1.F / current_macro.framerate);
-        } else {
-            // ok but why!? sorry i dont know how to fix this stupid issue.
-            GJBaseGameLayer::update(1.F / frameRate);
-        }
-        //STOPTIME = true;*/ 
         int bot_frame = m_fields->bot_frame + 1;
         //std::cout << fmt::format("frame {} populated {}", bot_frame, m_fields->player_frames.size()) << std::endl;
         auto input_player = std::find_if(m_fields->player_frames.begin(), m_fields->player_frames.end(), [bot_frame](const PlayerFrame& input) {
@@ -860,7 +928,7 @@ class $modify(QuartzPlayLayer, PlayLayer) {
             }
         }
         STOPTIME = false;
-        GJBaseGameLayer::update(1.F / current_macro.framerate);
+        GJBaseGameLayer::processCommands(1.F / current_macro.framerate);
         STOPTIME = true;
         log::debug("[+] Frame {}", m_fields->bot_frame);
     }
@@ -895,7 +963,7 @@ class $modify(QuartzPlayLayer, PlayLayer) {
             UpdatePlayer(m_player1, *input_player);
         }
         STOPTIME = false;
-        GJBaseGameLayer::update(1.F / current_macro.framerate);
+        GJBaseGameLayer::processCommands(1.F / current_macro.framerate);
         STOPTIME = true;
     }
 
@@ -965,21 +1033,22 @@ class $modify(QuartzPlayLayer, PlayLayer) {
         }
 		PlayLayer::storeCheckpoint(p0);
 	}
-#ifndef GEODE_IS_MACOS
     void loadFromCheckpoint(CheckpointObject* p0) {
         if (m_fields->replay) {
             RecreateInputState(1, false, false);
             RecreateInputState(1, true, false);
-            if (m_fields->checkpoints.size() > 0 && m_fields->checkpoints.contains(p0)) {
+            // COMO NO ME
+            if (m_fields->checkpoints.size() > 0 && m_fields->checkpoints.contains(p0) && Hacks::isHackEnabled("Record")) {
                 int lastFrame = m_fields->checkpoints[p0];
-                for (int i = m_fields->bot_frame; i > lastFrame; i--) {
-                    auto input = std::find_if(current_macro.inputs.begin(), current_macro.inputs.end(), [i](const QuartzInput& input) {
-                        return input.frame == i;
-                    });
-                    if (input != current_macro.inputs.end()) {
-                        current_macro.inputs.pop_back();
+                std::erase_if(current_macro.inputs, [lastFrame](const QuartzInput& input) {
+                    if (input.frame > lastFrame) {
+                        log::debug("Deleted input at frame {}", input.frame);
+                        return true;
+                    } else {
+                        return false;
                     }
-                }
+                });
+                log::info("Removed all inputs after frame {}", lastFrame);
                 m_fields->bot_frame = lastFrame;
                 if ((stillHolding1 || stillHolding2) && !hadHeld) {
                     bool player2Vis = m_player2 != nullptr && m_player2->isRunning();
@@ -1024,23 +1093,18 @@ class $modify(QuartzPlayLayer, PlayLayer) {
         }
 		PlayLayer::loadFromCheckpoint(p0);
 	}
-#endif
 };
 // int m_unk1f8; // used in PlayLayer::getCurrentPercent
 
-class $modify(GJBaseGameLayer) {
-    void update(float realDt) {
+class $modify(QuartzGJBGL, GJBaseGameLayer) {
+    void processCommands(float realDt) {
         if (STOPTIME) return;
-        //int currentFPS = std::round((1.F / realDt));
+        if (!Hacks::isHackEnabled("Playback") && !Hacks::isHackEnabled("Record") && !Hacks::isHackEnabled("Macro Editor")) return GJBaseGameLayer::processCommands(realDt);
         float currentFPS = 1.F / realDt;
         float macroFPS = current_macro.framerate;
         if (PlayLayer::get() != nullptr) {
-            /*if (lastFrameChanged != m_gameState.m_unk1f8) {
-                lastFrameChanged = m_gameState.m_unk1f8;
-                std::cout << stillHolding << " " << m_gameState.m_unk1f8 << std::endl;
-            }*/
             auto playLayer = static_cast<QuartzPlayLayer*>(QuartzPlayLayer::get());
-            if (!playLayer->m_fields->started || !playLayer->m_fields->playLayerPostUpdate) return GJBaseGameLayer::update(realDt);
+            if (!playLayer->m_fields->started || !playLayer->m_fields->playLayerPostUpdate) return GJBaseGameLayer::processCommands(realDt);
             playLayer->m_fields->replay = Hacks::isHackEnabled("Playback") || Hacks::isHackEnabled("Record");
             float dt = realDt;
             playLayer->m_fields->previousPosition = m_player1->getPosition();
@@ -1066,31 +1130,24 @@ class $modify(GJBaseGameLayer) {
                 }
                 playLayer->m_fields->bot_frame_dt += dt;
                 float addDt = dt * macroFPS;
-                // attempt to fix the "lag" frame issue
                 float fixedDt = 1.0 / macroFPS;
-                /*if (dt * macroFPS != 1.0F && m_fields->bot_frame != 0 && m_fields->bot_frame_dt != 0.0F) {
-                    int framesLost = static_cast<int>(m_fields->bot_frame_dt / fixedDt);
-                    m_fields->bot_frame_dt -= framesLost * fixedDt; // Subtract the time corresponding to the framesLost
-                    log::debug("on frame {}, advance by {} frames. ({})", m_fields->bot_frame, framesLost, framesLost * fixedDt);
-                    if (m_fields->bot_frame > framesLost) {
-                        if ((framesLost * fixedDt) > 1.0F) {
-                            m_fields->bot_frame += static_cast<int>((framesLost * fixedDt));
-                        } else {
-                            m_fields->bot_frame += framesLost;
-                        }
-                    } else {
-                        m_fields->bot_frame = framesLost;
-                    }
-                } else {*/
-                    ///playLayer->m_fields->bot_frame += addDt;
-                    playLayer->m_fields->bot_frame = m_gameState.m_currentProgress;
-                //}
+                playLayer->m_fields->bot_frame = m_gameState.m_currentProgress;
                 if (Hacks::isHackEnabled("Fixed FPS")) {
                     dt = fixedDt;
                 }
+                if (m_gameState.m_currentProgress >= keepSpeedhackUntilFrame && keepSpeedhackUntilFrame != -1) {
+                    macroSpeedhack = false;
+                    keepSpeedhackUntilFrame = -1;
+                    STOPTIME = true;
+                    playLayer->m_fields->playBtn->setVisible(STOPTIME);
+                    playLayer->m_fields->stopBtn->setVisible(!STOPTIME);
+                    if (auto speedhack = Hacks::getHack("Speedhack")) {
+                        speedhack->value.floatValue = 1.0F;
+                        Hacks::setPitch(speedhack->value.floatValue);
+                    }
+                }
                 playLayer->m_fields->frameLabel->setString(fmt::format("{}/{} ({}/{})", playLayer->m_fields->bot_frame, playLayer->m_fields->lastInputFrame, currentFPS, macroFPS, dt).c_str());
                 playLayer->m_fields->m_slider->setValue(Utils::getSliderValue(playLayer->m_fields->bot_frame, 0, playLayer->m_fields->lastInputFrame, false));
-                ///std::cout << m_fields->bot_frame << "/" << m_fields->lastInputFrame << std::endl;
                 if (Hacks::isHackEnabled("Playback")) {
                     //if (current_macro.inputs.size() > m_fields->bot_frame) {
                     int bot_frame = playLayer->m_fields->bot_frame;
@@ -1111,20 +1168,6 @@ class $modify(GJBaseGameLayer) {
                     if (input1 != current_macro.inputs.end() || input2 != current_macro.inputs.end()) {
                         bool player1 = input1 != current_macro.inputs.end();
                         bool player2 = input2 != current_macro.inputs.end();
-                    //if (matchingInputs.size() > 0) {
-                        //std::cout << m_fields->bot_frame_dt << "|" << m_fields->bot_frame << "|" << input->down << std::endl;
-                        
-                        unsigned char huqbbodem[] = {
-                            0x0f, 0x84, 0xf9, 0xfe, 0xff, 0xff,
-                            0x8b, 0x7e, 0x08,             // MOV EDI, dword ptr [ESI + local_c8]
-                            0x89, 0xf9,                   // MOV this, EDI
-                            0xe8, 0xe4, 0xae, 0xff, 0xff, // CALL 
-                            0xc7, 0x80, 0x94, 0x2f, 0x00, 0x00, 0x53, 0x0c, 0x04, 0x00, // MOV dword ptr [EAX + 0x2f94],0x40c53
-                            0x89, 0xf9,                   // MOV this, EDI
-                            0xe8, 0xd3, 0xae, 0xff, 0xff,  // CALL 
-                            0x81, 0xb8, 0x94, 0x2f, 0x00, 0x00, 0x53, 0x0c, 0x04, 0x00, // CMP dword ptr [EAX + 0x2f94],0x40c53
-                            0x8b, 0x4e, 0x04 //MOV this,dword ptr [ESI + local_cc]
-                        };
 
                         int agfvcbeaga = playLayer->m_fields->playLayerInit;
                         int acheronbyriotandmore = playLayer->m_fields->lastInputFrame;
@@ -1141,9 +1184,7 @@ class $modify(GJBaseGameLayer) {
                                 playLayer->m_fields->changedInputP2 = (playLayer->m_fields->changedInputP2 != input2->down);
                             }
                         }
-                        //if (player1) log::debug("ok {} - {} ({},{})", playLayer->m_fields->realChangedInputP1,input1->down, playLayer->m_fields->bot_frame,playLayer->m_fields->previousFrame);
                         if (player1) {
-                            //log::info("updated");
                             GJBaseGameLayer::handleButton(input1->down, input1->button, !input1->player2);
                             playLayer->m_fields->changedInputP1 = input1->down;
                         }
@@ -1218,9 +1259,9 @@ class $modify(GJBaseGameLayer) {
                     }
                 } 
             }
-            GJBaseGameLayer::update(dt);
+            GJBaseGameLayer::processCommands(dt);
         } else {
-            GJBaseGameLayer::update(realDt);
+            GJBaseGameLayer::processCommands(realDt);
         }
     }
     void handleButton(bool push, int button, bool player1) {
@@ -1250,6 +1291,25 @@ class $modify(GJBaseGameLayer) {
         }
     }
 };
+
+void GotoFrameUI::gotoFrameBtn(CCObject*) {
+    onClose(nullptr);
+    if (PlayLayer::get() != nullptr) {
+        auto playLayer = static_cast<QuartzPlayLayer*>(QuartzPlayLayer::get());
+        int value = std::stoi(m_frame->getInputNode()->getString());
+        if (value == 0) return playLayer->resetLevel();
+        if (value > playLayer->m_fields->lastInputFrame) value = playLayer->m_fields->lastInputFrame;
+        if (playLayer->m_fields->bot_frame > value) playLayer->resetLevel();
+        if (auto speedhack = Hacks::getHack("Speedhack")) {
+            keepSpeedhackUntilFrame = value;
+            macroSpeedhack = false;
+            STOPTIME = false;
+            speedhack->value.floatValue = 10.0F;
+            Hacks::setPitch(speedhack->value.floatValue);
+        }
+    }
+}
+
 
 // robert, why do you handle the handleButton func when the player holds, but dont handle it when the player doesnt? you make no sense!
 class $modify(PlayerObject) {

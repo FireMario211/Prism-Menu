@@ -19,6 +19,8 @@ protected:
     bool init(CCScene* p0) {
         if (!CCMenu::init())
             return false;
+        if (!p0)
+            return false;
         HackItem* posX = Hacks::getHack("Button Position X");
         HackItem* posY = Hacks::getHack("Button Position Y");
         auto menuButton = createButton(this);

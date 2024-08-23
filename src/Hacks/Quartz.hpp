@@ -348,3 +348,58 @@ class CreateMacroUI : public BrownAlertDelegate {
         static constexpr const float s_defHeight = 200.0f;
         static CreateMacroUI* create();
 };
+
+
+// i forgot geode popups existed, maybe i should migrate to them
+class GotoFrameUI : public geode::Popup<> {
+protected:
+    TextInput* m_frame;
+    bool setup() override;
+    void onInfoBtn(CCObject*) {
+        FLAlertLayer::create(
+            "About",
+            "This will <cy>advance</c> to whichever frame you want to go to!\nPlease note that <cr>this may cause lag</c>, as it will reset the level and <cy>speed up</c> the game to reach the frame.\n\nMake sure you have <cy>Noclip</c> enabled if the macro <cr>is inaccurate</c>.",
+            "OK"
+        )->show();
+    }
+    void gotoFrameBtn(CCObject*);
+
+public:
+    static GotoFrameUI* create() {
+        auto ret = new GotoFrameUI();
+        if (ret->initAnchored(240.f, 160.f)) {
+            ret->autorelease();
+            return ret;
+        }
+
+        delete ret;
+        return nullptr;
+    }
+};
+
+class ClearFramesUI : public geode::Popup<> {
+protected:
+    bool setup() override;
+    void onInfoBtn(CCObject*) {
+        FLAlertLayer::create(
+            nullptr,
+            "About",
+            "This menu can <cy>clear</c> two frames!\nThe <cl>Select Left</c> button will set the <cp>Right Frame Selection</c> to the <cy>current frame</c> you are on, and the <cp>Left Frame Selection</c> to <cy>0</c>\nThe <cl>Select Right</c> button will set the <cp>Left Frame Selection</c> to the <cy>current frame</c> you are on, and the <cp>Right Frame Selection</c> to <cy>the maximum inputs</c>.\nThe <cg>indicator</c> on the top shows your current selection based on the <cy>input selections</c> you set.",
+            "OK",
+            nullptr,
+            350.0F
+        )->show();
+    }
+
+public:
+    static ClearFramesUI* create() {
+        auto ret = new ClearFramesUI();
+        if (ret->initAnchored(240.f, 160.f)) {
+            ret->autorelease();
+            return ret;
+        }
+
+        delete ret;
+        return nullptr;
+    }
+};

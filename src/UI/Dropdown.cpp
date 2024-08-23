@@ -130,8 +130,10 @@ Dropdown* Dropdown::create(std::vector<matjson::Value> strs, HackItem *item, coc
 bool DropdownPopup::init(std::vector<matjson::Value> strs, HackItem* item) {
     m_hack = item;
     m_values = strs;
-    if (auto prismMenu = typeinfo_cast<PrismUI*>(CCScene::get()->getChildByID("prism-menu"))) {
-        prismMenu->toggleVisibility();
+    if (CCScene::get() != nullptr) {
+        if (auto prismMenu = typeinfo_cast<PrismUI*>(CCScene::get()->getChildByID("prism-menu"))) {
+            prismMenu->toggleVisibility();
+        }
     }
     auto winSize = CCDirector::sharedDirector()->getWinSize();
     auto title = "Select Language";

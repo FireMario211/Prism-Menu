@@ -5,6 +5,7 @@
 #include "CustomSettings.hpp"
 #include "Utils.hpp"
 #include <Geode/utils/general.hpp>
+#include <Geode/loader/Hook.hpp>
 #include <Geode/Geode.hpp>
 #include <algorithm>
 
@@ -86,6 +87,30 @@ class Hacks {
             return "{}";
         }
     }
+    class Patching {
+        public:
+        // sorry dank idk a solution!
+        static geode::Result<> withProtectedMemory(ptrdiff_t offset, const std::vector<uint8_t>& bytes) {
+#ifdef GEODE_IS_WINDOWS
+        DWORD oldProtect;
+        void* address = reinterpret_cast<void*>(geode::base::get() + offset);
+
+        if (VirtualProtect(address, bytes.size(), PAGE_READWRITE, &oldProtect)) {
+            //callback(address);
+            //THIS IS WHY WE CANT HAVE NICE THINGS, also im doing this because geodes patching is STUPID! keeps saying overlaps this overlaps that, and i cant even updateeBytes!
+            if (!WriteProcessMemory(GetCurrentProcess(), reinterpret_cast<void*>(geode::base::get() + offset), bytes.data(), bytes.size(), nullptr)) {
+                return Err("Failed to write memory, aborting.");
+            }
+            VirtualProtect(address, bytes.size(), oldProtect, &oldProtect);
+        } else {
+            return Err("Failed to write memory.");
+        }
+
+        return Ok();
+#endif
+        return Err("withProtectedMemory unimplemented");
+        }
+    };
     static std::string readFile(const std::string& filename, bool) {
         std::string filePath = filename;
         std::ifstream file(filePath);
@@ -118,7 +143,8 @@ class Hacks {
             "Show Hitboxes",
             "No Shaders",
             "Playback",
-            "Disable Camera Effects"
+            "Disable Camera Effects",
+            "Auto Clicker"
         };
     }
     static bool isCheating();

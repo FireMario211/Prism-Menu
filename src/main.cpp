@@ -65,11 +65,13 @@ class $modify(MenuLayer) {
         firstLoad = true;
         log::info("Prism Menu loaded! Enjoy the mod.");
         #ifndef GEODE_IS_MACOS
-        prismButton = PrismButton::create(CCScene::get());
-        prismButton->setVisible(Hacks::isHackEnabled("Show Button"));
-        if (Mod::get()->getSettingValue<bool>("hide-button")) prismButton->setVisible(false);
-        prismButton->setID("prism-icon");
-        SceneManager::get()->keepAcrossScenes(prismButton);
+        if (auto scene = CCScene::get()) {
+            prismButton = PrismButton::create(scene);
+            prismButton->setVisible(Hacks::isHackEnabled("Show Button"));
+            if (Mod::get()->getSettingValue<bool>("hide-button")) prismButton->setVisible(false);
+            prismButton->setID("prism-icon");
+            SceneManager::get()->keepAcrossScenes(prismButton);
+        }
         #endif
         return true;
     }
@@ -218,7 +220,7 @@ class $modify(PauseLayer) {
 #ifndef GEODE_IS_MACOS
 
 #include <Geode/modify/EditorUI.hpp>
-#include <Geode/modify/EditorPauseLayer.hpp>
+#include <Geode/modify/EditLevelLayer.hpp>
 
 class $modify(EditorUI) {
     bool init(LevelEditorLayer *editorLayer) {
@@ -227,19 +229,13 @@ class $modify(EditorUI) {
     }
 };
 
-class $modify(EditorPauseLayer) {
-    void customSetup() {
-        EditorPauseLayer::customSetup();
+class $modify(EditLevelLayer) {
+    bool init(GJGameLevel* p0) {
+        if (!EditLevelLayer::init(p0)) return false;
         if (prismButton != nullptr && Hacks::isHackEnabled("Show Button")) {
             prismButton->setVisible(true);
-            // yeah the issue is that touch priority is not too low, so button wont work 
-            // though im too lazy to have a check to see if player is currently in EditorPauseLayer or not and siwtching between -1024 and -128
-            // solution? tell the player to exit the editor!
         }
-    }
-    void onResume(CCObject* sender) {
-        if (prismButton != nullptr && Hacks::isHackEnabled("Show Button")) prismButton->setVisible(false);
-        EditorPauseLayer::onResume(sender);
+        return true;
     }
 };
 #endif
@@ -277,7 +273,7 @@ class $modify(PrismPlayLayer, PlayLayer) {
         int death = 0;
         float previousDeathX = 0.0F;
         CCLabelBMFont* accuracyLabel;
-        float flashOpacity = 1.0F;
+        float flashOpacity = 0.0F;
         CCSprite* flashNode;
     };
 
@@ -445,7 +441,7 @@ class $modify(PrismPlayLayer, PlayLayer) {
             m_fields->accuracyLabel->setVisible(Hacks::isHackEnabled("Noclip Accuracy") && (Hacks::isHackEnabled("Noclip") || Hacks::isHackEnabled("No Solids") || Hacks::isHackEnabled("No Spikes")));
             if (m_gameState.m_currentProgress % 4 == 0) { // quarter step
                 m_fields->accuracyLabel->setColor({255,255,255});
-                if (m_fields->flashOpacity > 1.0F) {
+                if (m_fields->flashOpacity > 0.0F) {
                     m_fields->flashOpacity -= 10.0F;
                 }
                 if (m_fields->flashOpacity <= 0.0F) m_fields->flashOpacity = 0.0F;

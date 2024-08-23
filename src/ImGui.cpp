@@ -80,6 +80,7 @@ class $modify(MenuLayer) {
         ImGuiCocos::get().setup([] {
             Themes::LoadTheme(Themes::getCurrentTheme());
         }).draw([] {
+            if (CCScene::get() == nullptr) return;
             auto prismButton = typeinfo_cast<PrismButton*>(CCScene::get()->getChildByID("prism-icon"));
             if (prismButton == nullptr) return;
             if (prismButton->showImGuiMenu) {

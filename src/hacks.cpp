@@ -1,5 +1,6 @@
 #include "hacks.hpp"
 #include "CustomSettings.hpp"
+#include "Geode/utils/Result.hpp"
 #include "UI/PrismUI.hpp"
 
 std::vector<HackItem> allHacks;
@@ -49,7 +50,7 @@ void Hacks::Settings::setSettingValue(SettingHackStruct* settings, const HackIte
 bool Hacks::isCheating() {
     auto cheats = Hacks::getCheats();
     if (Hacks::getHack("Speedhack")->value.floatValue != 1.0f) return true;
-    if (Hacks::getHack("TPS Bypass")->value.intValue > 360) return true; // demon list does not allow anything higher!
+    //if (Hacks::getHack("TPS Bypass")->value.intValue > 360) return true; // demon list does not allow anything higher!
     bool cheating = false;
     for (const auto& cheat : cheats) {
         if (Hacks::isHackEnabled(cheat)) {
@@ -152,6 +153,7 @@ void proceedWithReset(LevelInfoLayer* levelInfoLayer, GJGameLevel* level, bool r
 #endif
 
 void Hacks::resetLevel(LevelInfoLayer* levelInfoLayer, GJGameLevel* level) {
+    if (CCScene::get() == nullptr) return;
     auto prismUIExists = CCScene::get()->getChildByID("prism-menu");
     if (prismUIExists != nullptr) {
         static_cast<PrismUI*>(prismUIExists)->onClose(CCNode::create());
@@ -236,18 +238,12 @@ class $modify(GJBaseGameLayer) {
 };
 */
 bool hasChangedTPS = false;
-
 void Hacks::setTPS(int tps) {
     // im actually too lazy to hook GJBaseGameLayer::update and do the calculations, ok!?
     if (tps != 240 && !hasChangedTPS) {
         hasChangedTPS = true;
     }
     if (!hasChangedTPS) return;
-    float value = 1.0f / (float)tps;
-    uint8_t bytes[sizeof(float)];
-    std::memcpy(bytes, &value, sizeof(float));
-    std::vector<uint8_t> bytesVec(bytes, bytes + sizeof(float));
-    
 #if defined(GEODE_IS_WINDOWS) // why is windows the only one with 1 addr!?
     uintptr_t addr1 = 0x5ec6d0;
     uintptr_t addr2 = 0x0;
@@ -269,15 +265,33 @@ void Hacks::setTPS(int tps) {
 #endif
 // sorry ios!
     auto patches = Mod::get()->getPatches();
-    auto patch1 = std::find_if(patches.begin(), patches.end(), [addr1](Patch* const patch) {
-        return patch->getAddress() == base::get() + addr1;
-    });
-    if (patch1 != patches.end()) {
-        (void)(*patch1)->updateBytes(bytesVec);
-    } else {
-        auto res1 = Mod::get()->patch(reinterpret_cast<void*>(base::get() + addr1), bytesVec);
-        if (res1.has_error()) {
-            log::error("[1] Something went wrong when trying to patch TPS Bypass | {}", res1.error());
+    if (addr1 != 0x0) {
+        float value = 1.0f / (float)tps;
+        uint8_t bytes[sizeof(float)];
+        std::memcpy(bytes, &value, sizeof(float));
+        std::vector<uint8_t> bytesVec(bytes, bytes + sizeof(float));
+        auto patch1 = std::find_if(patches.begin(), patches.end(), [addr1](Patch* const patch) {
+            return patch->getAddress() == base::get() + addr1;
+        });
+#ifndef GEODE_IS_WINDOWS
+        if (patch1 != patches.end()) {
+            (void)(*patch1)->updateBytes(bytesVec);
+#else 
+        if (false) {
+#endif
+        } else {
+            auto res1 = Mod::get()->patch(reinterpret_cast<void*>(base::get() + addr1), bytesVec);
+            if (res1.has_error() && res1.unwrapErr().find("Unable to write to memory") != std::string::npos) {
+                #ifdef GEODE_IS_WINDOWS 
+                // stupid dumb
+                auto protRes = Hacks::Patching::withProtectedMemory(addr1, bytesVec);
+                if (!protRes) {
+                    log::error("[1] Something went wrong when trying to patch TPS Bypass with protecetd memory | {}", protRes.unwrapErr());
+                }
+                #endif
+            } else if (res1.has_error()) {
+                log::error("[1] Something went wrong when trying to patch TPS Bypass | {}", res1.error());
+            }
         }
     }
     //

@@ -123,5 +123,19 @@
         "min": -5,
         "max": 5,
         "default": 1
+    },
+    {
+        "name": "Auto Clicker",
+        "desc": "Automatically clicks for you.",
+        "type": "bool"
+    },
+    {
+        "name": "Clicks per second",
+        "desc": "The amount of times the auto clicker should click every second.",
+        "type": "int",
+        "min": 1,
+        "max": 240,
+        "step": 1,
+        "default": 5
     }
 ]
