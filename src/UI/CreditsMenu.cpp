@@ -305,14 +305,14 @@ std::vector<CreditUser> users = {
         19331971
     },
     {
-        "april",
+        "AprilWaterfalls",
         98,
         "Translator (IT)",
         { 125, 125, 255 },
         { 225, 219, 255 },
         { 125, 125, 255 },
         true,
-        "",
+        "https://x.com/aprilwaterfalls",
         25221134
     },
     {
@@ -347,8 +347,18 @@ std::vector<CreditUser> users = {
         true,
         "https://www.youtube.com/channel/UC__S0detWlP2mWrsXMkkvFg",
         24710147
+    },
+    {
+        "ItzRatchett",
+        275,
+        "Proofreader (PT)",
+        { 125, 0, 255 },
+        { 0, 255, 255 },
+        { 0, 255, 0 },
+        true,
+        "",
+        28982364
     }
-
 };
 
 void CreditsMenu::renderPage() {

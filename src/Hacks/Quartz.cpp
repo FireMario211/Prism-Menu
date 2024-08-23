@@ -892,7 +892,7 @@ class $modify(QuartzPlayLayer, PlayLayer) {
             }
         }
         STOPTIME = false;
-        GJBaseGameLayer::processCommands(1.F / current_macro.framerate);
+        GJBaseGameLayer::update(1.F / current_macro.framerate);
         STOPTIME = true;
         log::debug("[-] Frame {}", m_fields->bot_frame);
     }
@@ -928,7 +928,7 @@ class $modify(QuartzPlayLayer, PlayLayer) {
             }
         }
         STOPTIME = false;
-        GJBaseGameLayer::processCommands(1.F / current_macro.framerate);
+        GJBaseGameLayer::update(1.F / current_macro.framerate);
         STOPTIME = true;
         log::debug("[+] Frame {}", m_fields->bot_frame);
     }
@@ -963,7 +963,7 @@ class $modify(QuartzPlayLayer, PlayLayer) {
             UpdatePlayer(m_player1, *input_player);
         }
         STOPTIME = false;
-        GJBaseGameLayer::processCommands(1.F / current_macro.framerate);
+        GJBaseGameLayer::update(1.F / current_macro.framerate);
         STOPTIME = true;
     }
 
@@ -1042,7 +1042,7 @@ class $modify(QuartzPlayLayer, PlayLayer) {
                 int lastFrame = m_fields->checkpoints[p0];
                 std::erase_if(current_macro.inputs, [lastFrame](const QuartzInput& input) {
                     if (input.frame > lastFrame) {
-                        log::debug("Deleted input at frame {}", input.frame);
+                        //log::debug("Deleted input at frame {}", input.frame);
                         return true;
                     } else {
                         return false;
@@ -1097,6 +1097,10 @@ class $modify(QuartzPlayLayer, PlayLayer) {
 // int m_unk1f8; // used in PlayLayer::getCurrentPercent
 
 class $modify(QuartzGJBGL, GJBaseGameLayer) {
+    void update(float dt) {
+        if (STOPTIME) return;
+        GJBaseGameLayer::update(dt);
+    }
     void processCommands(float realDt) {
         if (STOPTIME) return;
         if (!Hacks::isHackEnabled("Playback") && !Hacks::isHackEnabled("Record") && !Hacks::isHackEnabled("Macro Editor")) return GJBaseGameLayer::processCommands(realDt);

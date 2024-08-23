@@ -138,7 +138,7 @@ class $modify(PlayerHacks, GJBaseGameLayer) {
         GJBaseGameLayer::processCommands(dt);
         if (Hacks::isHackEnabled("Auto Clicker")) {
             m_fields->timer += dt;
-            int value = (Hacks::getHack("Clicks per second") != nullptr) ? Hacks::getHack("Clicks per second")->value.intValue : 1;
+            int value = ((Hacks::getHack("Clicks per second") != nullptr) ? Hacks::getHack("Clicks per second")->value.intValue : 1) * 2;
             if (m_fields->timer >= (1.0F / (float)value)) {
                 m_fields->down = !m_fields->down;
                 GJBaseGameLayer::handleButton(m_fields->down, 1, true);
