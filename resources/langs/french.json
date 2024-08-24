@@ -651,7 +651,7 @@
     {
         "Clicks per second": {
             "name": "Clicks par seconde",
-            "desc": "The amount of times the auto clicker should click every second. Le nombre de fois que l'Auto Clicker doit cliquer chaque seconde."
+            "desc": "Le nombre de fois que l'Auto Clicker doit cliquer chaque seconde."
         }
     }
 ] 
