@@ -621,8 +621,8 @@
     },
     {
         "Hide Level": {
-            "name": "Hide Level",
-            "desc": "Hides all objects in the level."
+            "name": "Cacher le niveau",
+            "desc": "Cache tous les objets dans un niveau."
         }
     },
     {
