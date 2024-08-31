@@ -526,7 +526,7 @@
     {
         "Record": {
             "name": "Record",
-            "desc": "Records the gemeplay to be played back. (This will reset the current inputs if you play a level and have a macro selected.)"
+            "desc": "Records the gameplay to be played back. (This will reset the current inputs if you play a level and have a macro selected.)"
         }
     },
     {
@@ -635,6 +635,31 @@
         "No Rotate": {
             "name": "No Rotate",
             "desc": "Freezes the player from rotating when jumping, or falling."
+        }
+    },
+
+    {
+        "Low FPS Pause": {
+            "name": "Low FPS Pause",
+            "desc": "Automatically pauses the game when FPS drops to a specific value."
+        }
+    },
+    {
+        "Pause below FPS": {
+            "name": "Pause below FPS",
+            "desc": "The minimum FPS before the game automatically pauses."
+        }
+    },
+    {
+        "Auto Clicker": {
+            "name": "Auto Clicker",
+            "desc": "Automatically clicks for you."
+        }
+    },
+    {
+        "Clicks per second": {
+            "name": "Clicks per second",
+            "desc": "The amount of times the auto clicker should click every second."
         }
     }
 ]

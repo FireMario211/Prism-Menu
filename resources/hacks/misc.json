@@ -64,6 +64,19 @@
         "default": 1
     },
     {
+        "name": "Low FPS Pause",
+        "desc": "Automatically pauses the game when FPS drops to a specific value.",
+        "type": "bool"
+    },
+    {
+        "name": "Pause below FPS",
+        "desc": "The minimum FPS before the game automatically pauses.",
+        "type": "int",
+        "min": 1,
+        "max": 360,
+        "default": 10
+    },
+    {
         "name": "Show Graphic Options",
         "desc": "Shows you Geometry Dash's graphic options! Useful for Android as the option is normally not available.",
         "type": "button",

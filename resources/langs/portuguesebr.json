@@ -1,7 +1,7 @@
 [
     {
         "§ Global": {
-            "name": "§ Global"
+            "name": "§ Geral"
         }
     },
     {
@@ -16,12 +16,12 @@
     },
     {
         "« Creator": {
-            "name": "« Criador"
+            "name": "« Criação"
         }
     },
     {
         "··· Misc": {
-            "name": "··· Outros"
+            "name": "··· Miscelâneos"
         }
     },
     {
@@ -32,38 +32,38 @@
 
     {
         "Prism Menu by Firee": {
-            "name": "Prism Menu por Firee"
+            "name": "Prism Menu criado pelo Firee"
         }
     },
 
     {
         "Anticheat Bypass": {
-            "name": "Remover Anticheat",
-            "desc": "Remove todos os anticheats, duh. [Níveis, Editor, etc]"
+            "name": "Desativa o Anticheat",
+            "desc": "Desativa o Anticheat, duh. [Níveis, Editor, etc]"
         }
     },
     {
         "Practice Music": {
-            "name": "Música no modo de praticar",
+            "name": "Música do modo de Pratica",
             "desc": "Remove a música do modo de prática e muda pela música normal."
         }
     },
     {
         "Safe Mode": {
             "name": "Modo Seguro",
-            "desc": "Remove progresso em níveis."
+            "desc": "Remove qualquer progresso novo em níveis."
         }
     },
     {
         "Accurate Percentage": {
             "name": "Porcentagem Prescisa",
-            "desc": "Em vez de 3%, tipo 3.462123%"
+            "desc": "Em vez de 3%, vai meio que ficar 3.462123%"
         }
     },
     {
         "Layout Mode": {
             "name": "Modo de layout",
-            "desc": "Remove toda decoração."
+            "desc": "Remove toda decoração do nível."
         }
     },
     {
@@ -81,32 +81,32 @@
     {
         "Speedhack": {
             "name": "Speedhack",
-            "desc": "Faz tudo ficar devagar ou rápido."
+            "desc": "Muda a velocidade do jogo."
         }
     },
     {
         "FPS Bypass": {
             "name": "Sem limite de FPS",
-            "desc": "Remove o limite de 60FPS, meio inútil da 2.2 mas sei lá."
+            "desc": "Remove o limite de 60FPS (inútil)."
         }
     },
     {
         "Reset Speedhack": {
             "name": "Resetar Speedhack",
-            "desc": "Reseta a velocidade do jogo."
+            "desc": "Reseta a velocidade do jogo para o normal."
         }
     },
 
     {
         "Noclip": {
             "name": "Noclip",
-            "desc": "Você não morre."
+            "desc": "Você pode atravessar qualquer coisa sem levar dano"
         }
     },
     {
         "No Spikes": {
             "name": "Sem espinhos",
-            "desc": "Ignora o dano dos espinhos ou triângulos."
+            "desc": "Ignora o dano dos espinhos."
         }
     },
     {
@@ -117,26 +117,26 @@
     },
     {
         "No Solids": {
-            "name": "Sem sólidos",
-            "desc": "Eu realmente tenho que explicar isso?"
+            "name": "Sem blocos",
+            "desc": "Você atravessa blocos apenas."
         }
     },
     {
         "Everything Hurts": {
             "name": "Tudo te mata",
-            "desc": "Sim ô Einstein, tudo te mata."
+            "desc": "Sim Alberto Estênio, tudo te mata."
         }
     },
     {
         "No Mirror Transition": {
-            "name": "Sem portal espelho",
+            "name": "Ignorar o portal de espelho",
             "desc": "eu ODEIO portal espelho!!"
         }
     },
     {
         "Instant Mirror Portal": {
-            "name": "Portal espelho instantâneo",
-            "desc": "remove a transição do portal espelho."
+            "name": "Efeito espelho instantâneo",
+            "desc": "Remove a transição do portal espelho."
         }
     },
     {
@@ -159,14 +159,14 @@
     },
     {
         "Force Platformer Mode": {
-            "name": "Platformer forçado",
-            "desc": "te força a ficar em platformer em qualquer nível."
+            "name": "Forçar o modo Plataforma",
+            "desc": "Força o jogo a ficar no modo plataforma em qualquer nível."
         }
     },
     {
         "Change Gravity": {
             "name": "Mudar gravidade",
-            "desc": "Te deixa mudar gravidade enquanto pula e cai. (de cabeça para baixo e normal)"
+            "desc": "Te deixa mudar gravidade em qualquer momento (de cabeça para baixo e normal)"
         }
     },
     {
@@ -178,55 +178,55 @@
 
     {
         "Icon Bypass": {
-            "name": "Desbloquear ícones",
-            "desc": "._."
+            "name": "Desbloquear todos ícones",
+            "desc": "ICON HACK UHUUUUU EU AMOOO .-."
         }
     },
     {
         "Text Length": {
-            "name": "Tamanho de texto",
-            "desc": "Pode fazer texto muito longoooooooooooooooooooooooooooooooooo."
+            "name": "Sem limite para tamanho de texto",
+            "desc": "Pode fazer texto muito longoooooooooooooooooooooooooooooooooo. (você não consegue postar níveis com um texto muito longo, ok?)"
         }
     },
     {
         "Character Filter": {
             "name": "Qualquer letra",
-            "desc": "Pode usar tipo !$;\"+#! em níveis e tal."
+            "desc": "Pode usar tipo !$;\"+#! em níveis e tal. (você não consegue postar níveis com letras estranhas, ok?)"
         }
     },
     {
         "Slider Limit": {
-            "name": "Limite de slider",
-            "desc": "Desbloqueia os sliders."
+            "name": "Sem limite para deslizar",
+            "desc": "Deslizar ;-;"
         }
     },
     {
         "Main Levels": {
-            "name": "Níveis principais",
-            "desc": "Seja desbloqueado, demonho do capeta!."
+            "name": "Desbloquear os níveis secretos",
+            "desc": "Seja desbloqueado, demonho do capeta!"
         }
     },
     {
         "Guard Vault": {
-            "name": "Guarda dos códigos",
+            "name": "Guarda dos códigos 1",
             "desc": "Desbloqueia o cofre."
         }
     },
     {
         "Keymaster Vault": {
-            "name": "Cofre do keymaster",
-            "desc": "Desbloqueia o cofre do keymaster."
+            "name": "Guarda dos códigos 2",
+            "desc": "Desbloqueia outro cofre."
         }
     },
     {
         "Treasure Room": {
-            "name": "Sala de tesouro",
-            "desc": "desbloqueia a sala do tesouro."
+            "name": "Desbloquear os tesouros",
+            "desc": "desbloqueia os tesouros"
         }
     },
     {
         "Free Shop Items": {
-            "name": "Items da loja",
+            "name": "Items da loja de graça",
             "desc": "Sílvio Santos simulator."
         }
     },
@@ -238,52 +238,52 @@
     },
     {
         "Backup Stars Limit": {
-            "name": "Limite para salvar",
-            "desc": "Deixa você salvar com menos de dez moedas."
+            "name": "Sem limite de estrelas para salvar",
+            "desc": "Deixa você salvar com menos de dez estrelas."
         }
     },
 
 
     {
         "Level Edit": {
-            "name": "Editar nível",
-            "desc": "Deixa você editar qualquer nível (MEIO BUGADO)"
+            "name": "Editar qualquer nível",
+            "desc": "Deixa você editar qualquer nível em qualquer lugar (MEIO BUGADO PRA CARAMBA)"
         }
     },
     {
         "Verify Hack": {
-            "name": "Verificar automáticamente",
-            "desc": "Bem simples, não prescisa mais verificar"
+            "name": "Verificar os níveis automáticamente",
+            "desc": "Verifica os níveis automaticamente"
         }
     },
     {
         "Copy Hack": {
-            "name": "Copiar",
-            "desc": "Pode copiar qualquer nível."
+            "name": "Copiar qualquer nível",
+            "desc": "Pode copiar qualquer nível. (ODEIO SENHAS)"
         }
     },
     {
         "No (C) Mark": {
-            "name": "Remover marca de cópia",
-            "desc": "Remove a marca de cópia quando postar níveis copiádos, seu roubão."
+            "name": "Remover a marca de cópia",
+            "desc": "Remove a marca de cópia quando postar níveis cópiados, seu petista."
         }
     },
     {
         "Hide Testmode": {
-            "name": "Remover testmode",
-            "desc": "Remove a marca da Start Pos."
+            "name": "Remover a marca d'água do testmode",
+            "desc": "Remove a marca do Start Pos."
         }
     },
     {
         "Rotation Hack": {
-            "name": "Qualquer rotação",
-            "desc": "Pode virar qualquer objeto de qualquer jeito. só funciona localmente, não salva nem posta."
+            "name": "Virar qualquer objeto",
+            "desc": "Pode virar qualquer objeto de qualquer jeito. só funciona no editor, não funciona em jogo."
         }
     },
     {
         "Default Song Bypass": {
             "name": "Músicas escondidas",
-            "desc": "Pode usar músicas como The Challenge e as do GD World que normalmente não pode usar."
+            "desc": "Pode usar músicas como a do The Challenge e as do outros jogos, que normalmente não podemos usar."
         }
     },
 
@@ -315,18 +315,18 @@
     {
         "Theme": {
             "name": "Tema",
-            "desc": "Seleciona o tema para o menu Prisma!"
+            "desc": "Tema do menu!"
         }
     },
     {
         "Import Theme": {
             "name": "Importar tema",
-            "desc": "Importa um tema [JSON]"
+            "desc": "Importa um tema (No formato [JSON])"
         }
     },
     {
         "Live Theme Editing": {
-            "name": "Editar Tema",
+            "name": "Editar Tema ao Vivo",
             "desc": "Editar o tema do Prism enquanto você vê como fica (pode crashar)"
         }
     },
@@ -374,12 +374,12 @@
     },
     {
         "Thank you to Electrify (ES), Jouca (FR), dank_meme01, savvacorgi, МегаСвятой (RU), Gazonk (BR), huhnmitferrari (DE), and Ignis (CS) for translations!": {
-            "name": "Obrigado a Electrify (ES), Jouca (FR), dank_meme01, savvacorgi, МегаСвятой (RU), Gazonk (BR), huhnmitferrari (DE), e Ignis (CS) Por traduções!"
+            "name": "Obrigado a Electrify (ES), Jouca (FR), dank_meme01, savvacorgi, МегаСвятой (RU), Ratchet (BR), huhnmitferrari (DE), e Ignis (CS) pelas traduções!"
         }
     },
     {
         "And thank you for using the mod! I hope you enjoy using Prism Menu!": {
-            "name": "E obrigado a você por usar por usar o menu! Espero que você gostou de usar o menu!"
+            "name": "E obrigado a você por usar o menu! Espero que você gostou de usar o Prism!"
         }
     },
     {
@@ -408,8 +408,8 @@
     },
     {
         "Speedhack Audio": {
-            "name": "Áudio do Speedhack",
-            "desc": "Muda a velocidade da música dependendo no speedhack."
+            "name": "Sincronizar áudio com speedhack",
+            "desc": "Sincroniza velocidade da música junto com o speedhack."
         }
     },
     {
@@ -420,81 +420,81 @@
     },
     {
         "Noclip Accuracy": {
-            "name": "Porcentagem do Noclip",
-            "desc": "Prescisa do bypass de anticheat"
+            "name": "Precisão do Noclip",
+            "desc": "Informa o quão preciso sua jogada noclip está."
         }
     },
     {
         "Show Graphic Options": {
             "name": "Mostrar Opçōes de Gráficos",
-            "desc": "sim"
+            "desc": "Mostra as opções de gráficos, utíl para dispositivos Android, que por padrão não está hábilitado"
         }
     },
     {
         "No Trail": {
             "name": "Sem Trilhas",
-            "desc": "remove a trilha do jogador."
+            "desc": "Remove a trilha do jogador."
         }
     },
     {
         "No Wave Trail": {
             "name": "Sem Trilha da Wave",
-            "desc": "adivinha"
+            "desc": "Remove a Trilha da Wave."
         }
     },
     {
         "Solid Wave Trail": {
             "name": "Trilha da Wave Sólida",
-            "desc": "Remove o blending a trilha da wave."
+            "desc": "Remove a harmonização da trilha da wave."
         }
     },
 
     {
         "Extra Percent Digits": {
             "name": "Mais dígitos de porcentagem",
-            "desc": "Não presciso explicar"
+            "desc": "Número de dígitos decimais extras a serem exibidos com porcentagem precisa"
         }
     },
     {
         "Uncomplete Level": {
             "name": "Descompletar nível",
-            "desc": "Reseta o progresso do nível (normal, prática, recompensa, etc) use se vc hackeou o nível ou se é um bug e vc n zerou"
+            "desc": "Reseta o progresso do nível (normal, prática, recompensa, tudo.)"
         }
     },
     {
         "No Shaders": {
             "name": "Sem shader",
-            "desc": "remove os shaders, tipo, os efeitos do nivel"
+            "desc": "Remove os shaders (Recomendado para dispositivos fracos)."
         }
     },
     {
         "Disable Camera Effects": {
-            "name": "sem efeito de câmera",
-            "desc": "tira os efeito de câmera tipo estático e zoom"
+            "name": "Desabilitar Efeitos de Câmera",
+            "desc": "Tira os efeito de câmera tipo estática, zoom, rotate e etc."
         }
     },
     {
         "Show Hitboxes": {
-            "name": "hitboxes",
-            "desc": "¿tienes mod? ativa hitboxes (:<"
+            "name": "Mostrar as Hitboxes",
+            "desc": "Mostra as hitboxes do nível"
         }
     },
     {
         "Show Hitboxes on Death": {
-            "name": "hitboxes na morte",
-            "desc": "mostra as hitbox quando vc morre"
+            "name": "Mostrar as Hitboxes na Morte",
+            "desc": "Mostra as hitboxes quando o jogador morre"
         }
     },
     {
         "Hitbox Stroke": {
-            "name": "Hitbox Stroke",
-            "desc": "não entedi oq isso faz ;-;"
+            "name": "Largura das Hitboxes",
+            "desc": "Traça a 'largura' ao desenhar as hitboxes."
         }
     },
     {
         "Suicide": {
             "name": "Suicídio",
-            "desc": "emo"
+            "desc": "Faz o jogador morrer instantâneamente (útil para conseguir icons que requerem várias tentativa, Caso queria isso use o Speedhack no talo que ajuda também)."
         }
     }
 ]

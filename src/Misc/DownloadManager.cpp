@@ -72,8 +72,10 @@ void BrownAlertDelegate::keyDown(cocos2d::enumKeyCodes key) {
 }
 
 void BrownAlertDelegate::onClose(cocos2d::CCObject* pSender) {
-    if (auto prismMenu = typeinfo_cast<PrismUI*>(CCScene::get()->getChildByID("prism-menu"))) {
-        prismMenu->toggleVisibility();
+    if (CCScene::get() != nullptr) {
+        if (auto prismMenu = typeinfo_cast<PrismUI*>(CCScene::get()->getChildByID("prism-menu"))) {
+            prismMenu->toggleVisibility();
+        }
     }
     this->setKeyboardEnabled(false);
     this->removeFromParentAndCleanup(true);

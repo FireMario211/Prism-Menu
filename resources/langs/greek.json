@@ -526,7 +526,7 @@
     {
         "Record": {
             "name": "Record",
-            "desc": "Records the gemeplay to be played back. (This will reset the current inputs if you play a level and have a macro selected.)"
+            "desc": "Records the gameplay to be played back. (This will reset the current inputs if you play a level and have a macro selected.)"
         }
     },
     {

@@ -64,7 +64,7 @@ class $modify(PlayerObject) {
         if (p0 != PlayerButton::Jump) return PlayerObject::pushButton(p0);
         float boost = 10.0F;
         boost = (m_isUpsideDown) ? -boost : boost;
-        if (!Hacks::isHackEnabled("Enable Patching") && Hacks::isHackEnabled("Jump Hack")) PlayerObject::boostPlayer(boost); // idk if i should make this customizable
+        if (Hacks::isHackEnabled("Jump Hack")) PlayerObject::boostPlayer(boost); // idk if i should make this customizable
         PlayerObject::pushButton(p0);
     }
     void toggleDartMode(bool p0, bool p1) {
@@ -125,10 +125,26 @@ class $modify(MenuGameLayer) {
 };
 
 
-class $modify(GJBaseGameLayer) {
+class $modify(PlayerHacks, GJBaseGameLayer) {
+    struct Fields {
+        float timer = 0;
+        bool down = false;
+    };
     // No Mirror Transition, Instant Mirror Portal
     void toggleFlipped(bool p0, bool p1) { // i spent a lot of time figuring out why CCActionTween wont hook, only to realize that p1 instantly transitions it
         if (!Hacks::isHackEnabled("No Mirror Transition")) return GJBaseGameLayer::toggleFlipped(p0, (p1) ? p1 : Hacks::isHackEnabled("Instant Mirror Portal"));
+    }
+    void processCommands(float dt) {
+        GJBaseGameLayer::processCommands(dt);
+        if (Hacks::isHackEnabled("Auto Clicker")) {
+            m_fields->timer += dt;
+            int value = ((Hacks::getHack("Clicks per second") != nullptr) ? Hacks::getHack("Clicks per second")->value.intValue : 1) * 2;
+            if (m_fields->timer >= (1.0F / (float)value)) {
+                m_fields->down = !m_fields->down;
+                GJBaseGameLayer::handleButton(m_fields->down, 1, true);
+                m_fields->timer = 0.0F;
+            }
+        }
     }
 #if 0
     void update(float dt) {

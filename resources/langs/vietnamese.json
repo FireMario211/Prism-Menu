@@ -536,7 +536,7 @@
     {
         "Record": {
             "name": "Ghi",
-            "desc": "Ghi lai gemeplay de phat lai. (Dieu nay se dat lai cac dau vao hien tai neu ban choi mot cap do va chon macro.)"
+            "desc": "Ghi lai gameplay de phat lai. (Dieu nay se dat lai cac dau vao hien tai neu ban choi mot cap do va chon macro.)"
         }
     },
     {
@@ -645,6 +645,30 @@
         "No Rotate": {
             "name": "Khong xoay",
             "desc": "Lam nguoi choi khong bi xoay khi ket thuc hoac dang choi"
+        }
+    },
+    {
+        "Low FPS Pause": {
+            "name": "Dung cap do khi FPS thap",
+            "desc": "Tu đong tam dung tro choi khi FPS giam xuong mot gia tri cu the."
+        }
+    },
+    {
+        "Pause below FPS": {
+            "name": "Tam dung duoi FPS",
+            "desc": "FPS toi thieu truoc khi tro choi tu đong tam dung."
+        }
+    },
+    {
+        "Auto Clicker": {
+            "name": "Tu dong nhap chuot",
+            "desc": "Tu dong nhap chuot cho ban."
+        }
+    },
+    {
+        "Clicks per second": {
+            "name": "Nhap chuot moi giay (hay la chi so CPS)",
+            "desc": "So lan ma trinh nhap tu đong phai nhap moi giay."
         }
     }
 ]

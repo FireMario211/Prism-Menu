@@ -92,7 +92,7 @@
         "min": 1,
         "max": 1000,
         "default": 60,
-        "platforms": ["win"]
+        "platforms": []
     },
     {
         "name": "TPS Bypass",

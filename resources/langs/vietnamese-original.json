@@ -536,7 +536,7 @@
     {
         "Record": {
             "name": "Ghi",
-            "desc": "Ghi lại gemeplay để phát lại. (Điều này sẽ đặt lại các đầu vào hiện tại nếu bạn chơi một cấp độ và chọn macro.)"
+            "desc": "Ghi lại gameplay để phát lại. (Điều này sẽ đặt lại các đầu vào hiện tại nếu bạn chơi một cấp độ và chọn macro.)"
         }
     },
     {
@@ -645,6 +645,30 @@
         "No Rotate": {
             "name": "Không xoay",
             "desc": "Giúp người chơi không bị xoay khi nhảy hoặc rơi."
+        }
+    },
+    {
+        "Low FPS Pause": {
+            "name": "Dừng cấp độ khi FPS thấp",
+            "desc": "Tự động tạm dừng trò chơi khi FPS giảm xuống một giá trị cụ thể."
+        }
+    },
+    {
+        "Pause below FPS": {
+            "name": "Tạm dừng dưới FPS",
+            "desc": "FPS tối thiểu trước khi trò chơi tự động tạm dừng.."
+        }
+    },
+    {
+        "Auto Clicker": {
+            "name": "Tự động nhấp chuột",
+            "desc": "Tự động nhấp chuột cho bạn."
+        }
+    },
+    {
+        "Clicks per second": {
+            "name": "Nhấp chuột mỗi giây (hay là chỉ số CPS)",
+            "desc": "Số lần mà trình nhấp tự động phải nhấp mỗi giây."
         }
     }
 ]

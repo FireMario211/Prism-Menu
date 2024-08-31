@@ -51,11 +51,16 @@ class Lang {
                     case 12: // Ukrainian
                         file = Hacks::readFile("ukrainian.json");
                         break;
-
-                    case 13: // Greek
+                    case 13: // Italian
+                        file = Hacks::readFile("italian.json");
+                        break;
+                    case 14: // Romanian
+                        file = Hacks::readFile("romanian.json");
+                        break;
+                    case 15: // Greek
                         file = Hacks::readFile("greek.json");
                         break;
-                    case 14: // Japanese
+                    case 16: // Japanese
                         file = Hacks::readFile("japanese.json");
                         break;
                     default: // anything else should be discarded

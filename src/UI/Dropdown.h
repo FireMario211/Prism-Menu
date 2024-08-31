@@ -31,8 +31,10 @@ class DropdownPopup : public FLAlertLayer {
         };
     public:
         virtual void onClose(cocos2d::CCObject*) {
-            if (auto prismMenu = typeinfo_cast<PrismUI*>(CCScene::get()->getChildByID("prism-menu"))) {
-                prismMenu->toggleVisibility();
+            if (CCScene::get() != nullptr) {
+                if (auto prismMenu = typeinfo_cast<PrismUI*>(CCScene::get()->getChildByID("prism-menu"))) {
+                    prismMenu->toggleVisibility();
+                }
             }
             this->removeFromParentAndCleanup(true);
         };

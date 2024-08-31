@@ -20,7 +20,7 @@
         "desc": "Sets the language for Prism Menu!",
         "type": "dropdown",
         "default": 0,
-        "values": ["English", "Français", "Português (Brasil)", "Deutsch", "Русский", "Čeština", "Indonesia", "Español", "Polskie", "Melayu", "Türkçe", "Tieng Viet", "Українська"],
+        "values": ["English", "Français", "Português (Brasil)", "Deutsch", "Русский", "Čeština", "Indonesia", "Español", "Polskie", "Melayu", "Türkçe", "Tieng Viet", "Українська","Italiano","Română"],
         "todovalues": ["Ελληνική","日本語"]
     },
     {

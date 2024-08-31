@@ -316,9 +316,11 @@ void PrismUIButton::onBoolBtn(CCObject* ret) {
         Hacks::Settings::setSettingValue(&settings, *m_hack, m_hack->value.boolValue);
     }
     if (name == "Show Button") {
-        auto prismButton = CCScene::get()->getChildByID("prism-icon");
-        if (prismButton != nullptr) {
-            prismButton->setVisible(m_hack->value.boolValue);
+        if (CCScene::get() != nullptr) {
+            auto prismButton = CCScene::get()->getChildByID("prism-icon");
+            if (prismButton != nullptr && PlayLayer::get() == nullptr) {
+                prismButton->setVisible(m_hack->value.boolValue);
+            }
         }
     }
     if (name == "Record" && m_hack->value.boolValue && Loader::get()->isModLoaded("syzzi.click_between_frames")) {
@@ -366,8 +368,10 @@ void CharUI::keyPressed(cocos2d::enumKeyCodes key) {
 }
 
 void CharUI::setup() {
-    if (auto prismMenu = typeinfo_cast<PrismUI*>(CCScene::get()->getChildByID("prism-menu"))) {
-        prismMenu->toggleVisibility();
+    if (CCScene::get() != nullptr) {
+        if (auto prismMenu = typeinfo_cast<PrismUI*>(CCScene::get()->getChildByID("prism-menu"))) {
+            prismMenu->toggleVisibility();
+        }
     }
     this->setID("prism-charui");
     auto title = CCLabelBMFont::create("Press a key.", "PrismMenu.fnt"_spr);
@@ -432,6 +436,8 @@ void PrismUIButton::onFloatBtn(CCObject* ret) {
 void PrismUIButton::onBtn(CCObject* ret) {
     auto settings = Mod::get()->getSavedValue<SettingHackStruct>("values");
     std::string name = m_hack->name;
+
+    if (CCScene::get() == nullptr) return;
     auto prismUI = static_cast<PrismUI*>(CCScene::get()->getChildByID("prism-menu"));
     if (name == "Restore Defaults") {
         Mod::get()->setSettingValue("skip-intro", false);
@@ -908,7 +914,6 @@ void PrismUI::RegenCategory() {
 void PrismUI::CreateButton(const char* name, int menuIndex) {
     auto winSize = cocos2d::CCDirector::sharedDirector()->getWinSize();
     auto menu = CCMenu::create();
-    auto node = CCLayer::create();
 
     float scale = 25.0F; // used to be 35.0F
     auto label = CCLabelBMFont::create(name, "PrismMenu.fnt"_spr);

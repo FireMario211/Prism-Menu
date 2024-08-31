@@ -1,3 +1,21 @@
+# v1.9.0
+    - Added Auto Clicker
+    - Added Low FPS Pause
+    - Added Speedhack Button in Macro Editor
+    - Added a goto frame button in Macro Editor
+    - (hopefully) Fixed Quartz issues
+    - Added Italian Translations (Thanks april!)
+    - Added Romanian Translations (Thanks hiimmrandrew!)
+    - Fixed issue with frames being removed when not recording and using and Practice Mode
+    - Fixed the button from being shown if you toggle Show Button while in a level
+    - Allowed any TPS to be set without it being considered cheating
+    - Fixed tint issue with Noclip Flash if you have a high gamma monitor
+    - Fixed any CCScene related issue
+    - Fixed TPS not working properly
+    - Changed the Prism Button to not show in Editor at all
+    - Updated French Translations
+    - Updated Portuguese Translations
+    - Made Layout Mode not work in Editor
 # v1.8.2
     - Updated Dutch Translations
     - Updated Indonesian Translations.

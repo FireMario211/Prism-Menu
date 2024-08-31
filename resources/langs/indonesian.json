@@ -526,7 +526,7 @@
     {
         "Record": {
             "name": "Rekam",
-            "desc": "Merekam gemeplay yang akan diputar ulang. (Ini akan mengatur ulang input saat ini jika Anda memainkan level dan memilih makro.)"
+            "desc": "Merekam gameplay yang akan diputar ulang. (Ini akan mengatur ulang input saat ini jika Anda memainkan level dan memilih makro.)"
         }
     },
     {

@@ -1,0 +1,639 @@
+[
+    {
+        "§ Global": {
+            "name": "§ Global"
+        }
+    },
+    {
+        "¬ Player": {
+            "name": "¬ Jucător"
+        }
+    },
+    {
+        "ª Bypass": {
+            "name": "ª Ocolire"
+        }
+    },
+    {
+        "« Creator": {
+            "name": "« Autor"
+        }
+    },
+    {
+        "¦ Quartz Bot": {
+            "name": "¦ Quartz"
+        }
+    },
+    {
+        "··· Misc": {
+            "name": "··· Altele"
+        }
+    },
+    {
+        "¶ Settings": {
+            "name": "¶ Setări"
+        }
+    },
+
+    {
+        "Prism Menu by Firee": {
+            "name": "Meniu Prism făcut de Firee"
+        }
+    },
+
+
+
+    {
+        "Anticheat Bypass": {
+            "name": "Ocolire Anticheat",
+            "desc": "Dezactivează toate Anticheat-urile. [Niveluri, Editor, etc]"
+        }
+    },
+    {
+        "Practice Music": {
+            "name": "Muzică Antrenare",
+            "desc": "Permite Muzică în modul de antrenare chiar dacă este blocat."
+        }
+    },
+    {
+        "Safe Mode": {
+            "name": "Modul în siguranță",
+            "desc": "Nu salvează niciun progres făcut pe un nivel."
+        }
+    },
+    {
+        "Accurate Percentage": {
+            "name": "Procente Exacte",
+            "desc": "Permite numere zecimale în procentele nivelului. [Dincolo de mii]"
+        }
+    },
+    {
+        "Layout Mode": {
+            "name": "Modul Schemă",
+            "desc": "Elimină toate decorațiunile asociate cu un nivel."
+        }
+    },
+    {
+        "No Transition": {
+            "name": "Fără Tranziții",
+            "desc": "Scurtează timpul tranziției scenei la 0s."
+        }
+    },
+    {
+        "Cheat Indicator": {
+            "name": "Indicator Trișare",
+            "desc": "Arată o iconiță care determină dacă tu folosești moduri care sunt considerate a trișat!"
+        }
+    },
+    {
+        "Speedhack": {
+            "name": "Viteza jocului",
+            "desc": "Schimbă viteza jocului și a sunetului."
+        }
+    },
+    {
+        "FPS Bypass": {
+            "name": "Ocolire Limită FPS",
+            "desc": "Dă voie ca FPS-ul tău să fie mai mare decât 60 sau rata de împrospătare a monitorului tău."
+        }
+    },
+    {
+        "Reset Speedhack": {
+            "name": "Resetează viteza jocului",
+            "desc": "Resetează speedhack înapoi la viteza obișnuită."
+        }
+    },
+
+    {
+        "Noclip": {
+            "name": "Noclip",
+            "desc": "Face jucătorul invincibil."
+        }
+    },
+    {
+        "No Spikes": {
+            "name": "Fără Țepi",
+            "desc": "Ignoră țepii."
+        }
+    },
+    {
+        "No Hitbox": {
+            "name": "Fără Hitbox",
+            "desc": "Dezactivează toate hitbox-urile nivelului. Obiectele speciale sunt dezactivate."
+        }
+    },
+    {
+        "No Solids": {
+            "name": "Fără Obiecte Solide",
+            "desc": "Dezactivează majoritatea hitbox-urile ale obiectelor solide. Obiectele speciale mai merg."
+        }
+    },
+    {
+        "Everything Hurts": {
+            "name": "Totul ",
+            "desc": "Aauu."
+        }
+    },
+    {
+        "No Mirror Transition": {
+            "name": "Fără Tranziții pe portale oglindă",
+            "desc": "Previne ecranul de a fi răsturnat la un portal oglindă."
+        }
+    },
+    {
+        "Instant Mirror Portal": {
+            "name": "Transiție instantă pe portaluri oglindă",
+            "desc": "Portaluri oglindă se schimbă instant."
+        }
+    },
+    {
+        "Freeze Player": {
+            "name": "Îngheață jucătorul",
+            "desc": "Îngheață mișcări a jucătorului."
+        }
+    },
+    {
+        "Jump Hack": {
+            "name": "Hack sărire",
+            "desc": "Permite să sari în aer."
+        }
+    },
+    {
+        "Instant Complete": {
+            "name": "Completare Instantă",
+            "desc": "Completează nivelul instant. (Nu porni în timp ce ești în Editor)"
+        }
+    },
+    {
+        "Force Platformer Mode": {
+            "name": "Forțează Modul Platformer",
+            "desc": "Te forțează să fii în modul Platformer când te joci un nivel."
+        }
+    },
+    {
+        "Change Gravity": {
+            "name": "Schimbă Gravitația",
+            "desc": "Îți dă voie să schimbi gravitația când sari sau cazi."
+        }
+    },
+    {
+        "Gravity Value": {
+            "name": "Valoarea Gravitației",
+            "desc": "Valoarea gravitației care trebuie pusă."
+        }
+    },
+
+    {
+        "Icon Bypass": {
+            "name": "Ocolire Iconițe",
+            "desc": "Deblochează toate iconițele."
+        }
+    },
+    {
+        "Text Length": {
+            "name": "Lungimea Textului",
+            "desc": "Dă voie ca lungimea textului să fie infinită în introduceri de text."
+        }
+    },
+    {
+        "Character Filter": {
+            "name": "Filtru Caractere",
+            "desc": "Permite să introduci orice caracter în toate introducerile de text."
+        }
+    },
+    {
+        "Slider Limit": {
+            "name": "Limită Slider",
+            "desc": "Dă voie ca slider-uri să fie trase dincolo de limita vizibilă."
+        }
+    },
+    {
+        "Main Levels": {
+            "name": "Nivelurile Principale",
+            "desc": "Deblochează demon-uri blocate din nivelurile principale."
+        }
+    },
+    {
+        "Guard Vault": {
+            "name": "Cufărul paznicului",
+            "desc": "Deblochează cufărul paznicului."
+        }
+    },
+    {
+        "Keymaster Vault": {
+            "name": "Cufărul Keymaster-ului",
+            "desc": "Deblochează Cufărul Keymaster-ului."
+        }
+    },
+    {
+        "Treasure Room": {
+            "name": "Camera Comorilor",
+            "desc": "Deblochează Camera Comorilor."
+        }
+    },
+    {
+        "Free Shop Items": {
+            "name": "Articole Gratuite din Magazin",
+            "desc": "Permite ca toate articolele magazinelor să fie cumpărate pentru 0 mana."
+        }
+    },
+    {
+        "Gatekeeper Vault": {
+            "name": "Seiful Portarului",
+            "desc": "Deblochează Seiful Portarului."
+        }
+    },
+    {
+        "Backup Stars Limit": {
+            "name": "Limită Backup Stele",
+            "desc": "Dă voie să faci backup la date, chiar și cu mai puțin de 10 stele."
+        }
+    },
+
+
+    {
+        "Level Edit": {
+            "name": "Editare Nivel",
+            "desc": "Dă voie să editezi orice nivel, sau să accesezi editorul prin meniul de pauză. (INSTABIL)"
+        }
+    },
+    {
+        "Verify Hack": {
+            "name": "Hack de Verificare",
+            "desc": "Dă voie să publici nivele neverificate. Va seta nivelele că sunt verificate automat."
+        }
+    },
+    {
+        "Copy Hack": {
+            "name": "Hack de Copiere",
+            "desc": "Dă voie să copiezi orice nivel, fără parolă."
+        }
+    },
+    {
+        "No (C) Mark": {
+            "name": "Fără Marcaj (C)",
+            "desc": "Eliminează marca (C) când publici nivele copiate. Va seta automat nivelul la original."
+        }
+    },
+    {
+        "Hide Testmode": {
+            "name": "Ascunde Modul de Testare",
+            "desc": "Ascunde textul Testmode când joci cu Poziție de Pornire (startpos)."
+        }
+    },
+    {
+        "Rotation Hack": {
+            "name": "Hack Rotație",
+            "desc": "Dă voie să rotești orice obiect. Merge numai local."
+        }
+    },
+    {
+        "Default Song Bypass": {
+            "name": "Bypass al Muzicii Implicite",
+            "desc": "Dă voie să folosești cântece implicite ascunse în editor."
+        }
+    },
+
+    {
+        "No Progress Bar": {
+            "name": "Fără Bară de Progres",
+            "desc": "Elimină bara de progres! Procentele vor fi afișate."
+        }
+    },
+    {
+        "Progress Bar Position": {
+            "name": "Poziție Bară de Progres",
+            "desc": "Setează poziția barei de progres."
+        }
+    },
+    {
+        "Hide Attempts": {
+            "name": "Ascunde Încercările",
+            "desc": "Ascunde încercările când joci un nivel."
+        }
+    },
+    {
+        "Attempt Opacity": {
+            "name": "Transparență Încercare",
+            "desc": "Determină transparența textului de încercare."
+        }
+    },
+
+    {
+        "Menu Opacity": {
+            "name": "Determină cât de opac ar trebui să fie meniul."
+        }
+    },
+    {
+        "Theme": {
+            "name": "Temă",
+            "desc": "Selectează tema UI pentru Meniul Prism!"
+        }
+    },
+    {
+        "Import Theme": {
+            "name": "Importă Temă",
+            "desc": "Importă o temă! [fișier JSON]"
+        }
+    },
+    {
+        "Live Theme Editing": {
+            "name": "Editarea Temei Live",
+            "desc": "Îți va da voie să-ți editezi tema ta customizată în timp ce vezi schimbări pe ecran! (Avertizare: Ar putea să cauzeze o scurgere de memorie.)"
+        }
+    },
+    {
+        "Show Tooltips": {
+            "name": "Arată Sfaturile Instrumentelor",
+            "desc": "Arată sfaturi ale instrumentelor când treci cu mouse-ul peste mod-uri."
+        }
+    },
+    {
+        "Show Button": {
+            "name": "Arată Butonul",
+            "desc": "Arată butonul pentru activarea meniului. E recomandat să ții această setare pornită pentru Android."
+        }
+    },
+    {
+        "Button Position X": {
+            "name": "Poziția X a Butonului",
+            "desc": "Poziția X a butonului de a deschide meniul."
+        }
+    },
+    {
+        "Button Position Y": {
+            "name": "Poziția Y a Butonului",
+            "desc": "Poziția Y a butonului de a deschide meniul."
+        }
+    },
+    {
+        "Language": {
+            "name": "Limbă",
+            "desc": "Setează limba pentru Meniul Prism!"
+        }
+    },
+    {
+        "Restore Defaults": {
+            "name": "Restabilire Setările de Bază",
+            "desc": "Oprește toate mod-urile și resetează totul la setările implicite."
+        }
+    },
+    {
+        "Credits": {
+            "name": "Credite",
+            "desc": "Oameni care au ajutat cu mod-ul!"
+        }
+    },
+    {
+        "Thank you to Electrify (ES), Jouca (FR), dank_meme01, savvacorgi, МегаСвятой (RU), Gazonk (BR), huhnmitferrari (DE), and Ignis (CS) for translations!": {
+            "name": "Thank you to Electrify (ES), Jouca (FR), dank_meme01, savvacorgi, МегаСвятой (RU), Gazonk (BR), huhnmitferrari (DE), and Ignis (CS) for translations!"
+        }
+    },
+    {
+        "And thank you for using the mod! I hope you enjoy using Prism Menu!": {
+            "name": "And thank you for using the mod! I hope you enjoy using Prism Menu!"
+        }
+    },
+    {
+        "Close Popup": {
+            "name": "Închide Pop-up"
+        }
+    },
+    {
+        "Menu Scale": {
+            "name": "Scara Meniului",
+            "desc": "Setează cât de mare textul și butoanele ar trebui să fie. (Jocul va trebui restartat)"
+        }
+    },
+
+    {
+        "Show Hidden Objects": {
+            "name": "Arată Obiecte Ascunse",
+            "desc": "Arată toate obiectele ascunse. Aceasta va reseta culoarea principală a obiectelor. Nu va merge pe obiecte cu atributul \"Hide\". (Folositor cu Modul Aspect)"
+        }
+    },
+    {
+        "Transparent BG": {
+            "name": "Fundal Transparent",
+            "desc": "Revin automat culorile changed schimbate în fundalul nivelului ca să fie culoarea lor originală."
+        }
+    },
+    {
+        "Speedhack Audio": {
+            "name": "Încetinește Sunetul",
+            "desc": "Încetinește sunetul bazat pe valoarea speedhack."
+        }
+    },
+    {
+        "No Glow": {
+            "name": "Fără Străluciri",
+            "desc": "Oprește străluciri pe toate obiectele."
+        }
+    },
+    {
+        "Noclip Accuracy": {
+            "name": "Precizie Noclip",
+            "desc": "Te informează cât de precisă este încercarea ta noclip."
+        }
+    },
+    {
+        "Show Graphic Options": {
+            "name": "Arată Opțiuni Grafice",
+            "desc": "Îți arată opțiunile grafice al jocului! Folositor pentru Android din cauza că implicit, opțiunea nu este valabilă."
+        }
+    },
+    {
+        "No Trail": {
+            "name": "Fără Urme",
+            "desc": "Oprește orice efect de urme de la jucător."
+        }
+    },
+    {
+        "No Wave Trail": {
+            "name": "Fără Urme Wave",
+            "desc": "Oprește efectul de urme în spatele wave."
+        }
+    },
+    {
+        "Solid Wave Trail": {
+            "name": "Urmă Wave Solidă",
+            "desc": "Elimină amestecarea a cele două culori wave pe urma wave."
+        }
+    },
+
+    {
+        "Extra Percent Digits": {
+            "name": "Numere în Plus la Procente",
+            "desc": "Adaugă numere în plus la procente cu mod-ul Procente Exacte."
+        }
+    },
+    {
+        "Uncomplete Level": {
+            "name": "Incompletează Nivelul",
+            "desc": "Resetează procentele pe modul normal și practice, și îți dă voie să-ți scazi numărul tău de stele dacă ai completat nivelul!"
+        }
+    },
+    {
+        "No Shaders": {
+            "name": "Fără shadere",
+            "desc": "Oprește toate efectele shader a camerei."
+        }
+    },
+    {
+        "Disable Camera Effects": {
+            "name": "Oprește Efectele ale Camerei",
+            "desc": "Oprește orice efecte ale camerei, și concentrează camera numai pe jucător. Ar putea strica toate modurile de joc în afară de Cub și Robot."
+        }
+    },
+    {
+        "Show Hitboxes": {
+            "name": "Arată Hitbox-urile",
+            "desc": "Arată hitbox-urile ale jucătorului, obstacolelor, și ale obiectelor solide."
+        }
+    },
+    {
+        "Show Hitboxes on Death": {
+            "name": "Arată Hitbox-urile la Moarte",
+            "desc": "Arată hitbox-urile când mori, și le ascunde când te respawnezi."
+        }
+    },
+    {
+        "Hitbox Stroke": {
+            "name": "Lățime Hitbox",
+            "desc": "Lățimea Hitbox-ului în timpul desenării hitbox."
+        }
+    },
+    {
+        "Suicide": {
+            "name": "Sinucide",
+            "desc": "Omoară jucătorul repetat."
+        }
+    },
+
+    {
+        "TPS Bypass": {
+            "name": "Ocolire TPS",
+            "desc": "Schimbă \"FPS a Fizicii\" a jocului ca să fie mai ridicat sau mai jos decât valoarea implicită. (240)"
+        }
+    },
+    {
+        "Macro": {
+            "name": "Macro",
+            "desc": "Selectează un macro ca să înregistrezi sau să joci!"
+        }
+    },
+    {
+        "Record": {
+            "name": "Înregistrează",
+            "desc": "Records gameplay-ul pentru a fi redat. (Aceasta va reseta apăsările curente dacă joci un nivel și ai un macro selectat.)"
+        }
+    },
+    {
+        "Playback": {
+            "name": "Redare",
+            "desc": "Redă înapoi macro-ul înregistrat."
+        }
+    },
+    {
+        "Macro Editor": {
+            "name": "Editor Macro",
+            "desc": "Intră in Editorul de Macro. (Nu va funcționa normal cu Înregistrează pornit.)"
+        }
+    },
+    {
+        "Frame Fix": {
+            "name": "Repararea Cadrelor",
+            "desc": "Înregistrează fiecare mișcare a jucătorului, inclusiv poziția când înregistrezi și redai înapoi un macro. Reține că această opțiune va crește marimea fișierului a macro-ului în timp ce înregistrezi."
+        }
+    },
+    {
+        "Fixed FPS": {
+            "name": "FPS Fixat",
+            "desc": "Blochează cadreele la rata de cadre țintă. S-ar putea că opțiunea \"smooth fix\" este pornită dacă jocul dă lag."
+        }
+    },
+    {
+        "Import Macro": {
+            "name": "Importă Macro",
+            "desc": "Importă un Macro."
+        }
+    },
+    {
+        "Save Macro": {
+            "name": "Salvează Macro",
+            "desc": "Salvează Macro-ul."
+        }
+    },
+    {
+        "No Pulse": {
+            "name": "Fără Pulsuri",
+            "desc": "Oprește orb-uri și alte obiecte înrudite de a pulsa în ritmul muzicii."
+        }
+    },
+    {
+        "Noclip Flash": {
+            "name": "Bliț Noclip",
+            "desc": "Face tot ecranul roșu când mori în loc de a-ți arăta textul pentru precizia ta noclip."
+        }
+    },
+    {
+        "Instant Respawn": {
+            "name": "Respawn Instant",
+            "desc": "Te respawnează instant."
+        }
+    },
+    {
+        "No Death Effect": {
+            "name": "Fără Efect de Moarte",
+            "desc": "Ascunde particulele exploziei când jucătorul moare."
+        }
+    },
+    {
+        "No Wave Pulse": {
+            "name": "Fără Puls Wave",
+            "desc": "Previne ca modul wave să pulseze pe ritmul muzicii."
+        }
+    },
+    {
+        "Wave Pulse Size": {
+            "name": "Mărime Puls Wave",
+            "desc": "Cât de mare pulsul ar trebui să fie pentru modul wave."
+        }
+    },
+    {
+        "Auto Safe Mode": {
+            "name": "Mod în Siguranță Automat",
+            "desc": "Previne orice progres de a fi făcut dacă hack-uri sunt pornite."
+        }
+    },
+    {
+        "Custom Object Bypass": {
+            "name": "Ocolire Obiecte Personalizate",
+            "desc": "Îți dă voie să treci de limita de 1000 de obiecte pentru obiecte personalizate."
+        }
+    },
+    {
+        "Menu Keybind": {
+            "name": "Keybind Meniu",
+            "desc": "Keybind-ul pentru a deschide meniul Prism!"
+        }
+    },
+    {
+        "Hide Level": {
+            "name": "Ascunde Nivelul",
+            "desc": "Ascunde toate obiectele în nivel."
+        }
+    },
+    {
+        "Hide Player": {
+            "name": "Ascunde Jucătorul",
+            "desc": "Ascunde jucătorul. (Cere să joci nivelul din nou)"
+        }
+    },
+    {
+        "No Rotate": {
+            "name": "Fără Rotație",
+            "desc": "Oprește rotația jucătorului când sare sau cade."
+        }
+    }
+]

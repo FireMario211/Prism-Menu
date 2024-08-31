@@ -6,6 +6,7 @@ using namespace geode::prelude;
 #include <Geode/modify/CCDrawNode.hpp>
 #include <Geode/modify/LevelEditorLayer.hpp>
 #include <Geode/modify/FMODAudioEngine.hpp>
+#include <Geode/modify/GJBaseGameLayer.hpp>
 
 // no create method?????????????
 class $modify(ShaderLayer) {
@@ -24,6 +25,24 @@ class $modify(PlayLayer) {
         char b[offsetof(GJBaseGameLayer, m_isDebugDrawEnabled)];
         b = 1;*/
         PlayLayer::postUpdate(dt);
+    }
+};
+
+class $modify(MiscHacks, GJBaseGameLayer) {
+    void update(float dt) {
+        GJBaseGameLayer::update(dt);
+        if (Hacks::isHackEnabled("Low FPS Pause") && dt > 0) {
+            if (auto playLayer = PlayLayer::get()) {
+                int value = (Hacks::getHack("Pause below FPS") != nullptr) ? Hacks::getHack("Pause below FPS")->value.intValue : 1;
+                // probably a better way to do this
+                float fpsFloat = (1.0F / dt);
+                auto fps = static_cast<int>(fpsFloat);
+                if (fps <= value) {
+                    log::info("Automatically paused at {} FPS. (Minimum: {})", fps, value);
+                    playLayer->pauseGame(true);
+                }
+            }
+        }
     }
 };
 
