@@ -37,7 +37,7 @@
 
     {
         "Prism Menu by Firee": {
-            "name": "Meniu Prism de Firee"
+            "name": "Meniu Prism făcut de Firee"
         }
     },
 
@@ -57,8 +57,8 @@
     },
     {
         "Safe Mode": {
-            "name": "Mod Sigur",
-            "desc": "Blochează orice progres să fie făcut pe nivel."
+            "name": "Modul în siguranță",
+            "desc": "Nu salvează niciun progres făcut pe un nivel."
         }
     },
     {
@@ -69,7 +69,7 @@
     },
     {
         "Layout Mode": {
-            "name": "Mod Aspect",
+            "name": "Modul Schemă",
             "desc": "Elimină toate decorațiunile asociate cu un nivel."
         }
     },
@@ -87,7 +87,7 @@
     },
     {
         "Speedhack": {
-            "name": "Speedhack",
+            "name": "Viteza jocului",
             "desc": "Schimbă viteza jocului și a sunetului."
         }
     },
@@ -99,7 +99,7 @@
     },
     {
         "Reset Speedhack": {
-            "name": "Resetează Speedhack",
+            "name": "Resetează viteza jocului",
             "desc": "Resetează speedhack înapoi la viteza obișnuită."
         }
     },
@@ -136,13 +136,13 @@
     },
     {
         "No Mirror Transition": {
-            "name": "Fără Tranziții ale Unui Portal Oglindă",
+            "name": "Fără Tranziții pe portale oglindă",
             "desc": "Previne ecranul de a fi răsturnat la un portal oglindă."
         }
     },
     {
         "Instant Mirror Portal": {
-            "name": "Portal Oglindă Instant",
+            "name": "Transiție instantă pe portaluri oglindă",
             "desc": "Portaluri oglindă se schimbă instant."
         }
     },
@@ -154,7 +154,7 @@
     },
     {
         "Jump Hack": {
-            "name": "Hack De A Sări",
+            "name": "Hack sărire",
             "desc": "Permite să sari în aer."
         }
     },
@@ -289,7 +289,7 @@
     },
     {
         "Default Song Bypass": {
-            "name": "Bypass al Cântecului Implicit",
+            "name": "Bypass al Muzicii Implicite",
             "desc": "Dă voie să folosești cântece implicite ascunse în editor."
         }
     },
@@ -314,8 +314,8 @@
     },
     {
         "Attempt Opacity": {
-            "name": "Attempt Opacity",
-            "desc": "Determines how opaque the attempt label should be."
+            "name": "Transparență Încercare",
+            "desc": "Determină transparența textului de încercare."
         }
     },
 
@@ -420,7 +420,7 @@
     },
     {
         "Speedhack Audio": {
-            "name": "Speedhack Audio",
+            "name": "Încetinește Sunetul",
             "desc": "Încetinește sunetul bazat pe valoarea speedhack."
         }
     },
@@ -548,7 +548,7 @@
     },
     {
         "Fixed FPS": {
-            "name": "FPS Reparat",
+            "name": "FPS Fixat",
             "desc": "Blochează cadreele la rata de cadre țintă. S-ar putea că opțiunea \"smooth fix\" este pornită dacă jocul dă lag."
         }
     },
@@ -566,7 +566,7 @@
     },
     {
         "No Pulse": {
-            "name": "Fără Puls",
+            "name": "Fără Pulsuri",
             "desc": "Oprește orb-uri și alte obiecte înrudite de a pulsa în ritmul muzicii."
         }
     },
@@ -602,7 +602,7 @@
     },
     {
         "Auto Safe Mode": {
-            "name": "Mod Sigur Automat",
+            "name": "Mod în Siguranță Automat",
             "desc": "Previne orice progres de a fi făcut dacă hack-uri sunt pornite."
         }
     },
