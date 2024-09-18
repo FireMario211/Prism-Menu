@@ -172,15 +172,8 @@ class MacroManager {
             macro.framerate = intFPS;
             macro.levelInfo.name = "";
             macro.levelInfo.id = 0;
-            #ifdef GEODE_IS_WINDOWS
-            macro.gameVersion = 2.204;
-            #endif
-            #if defined(GEODE_IS_ANDROID) || defined(GEODE_IS_IOS)
-            macro.gameVersion = 2.205;
-            #endif
-            #ifdef GEODE_IS_MACOS
-            macro.gameVersion = 2.200;
-            #endif
+
+            macro.gameVersion = 2.206;
             std::ofstream f(savePath, std::ios::binary);
             auto data = macro.exportData(isJSON);
 

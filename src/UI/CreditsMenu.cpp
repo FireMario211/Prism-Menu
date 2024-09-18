@@ -318,7 +318,7 @@ std::vector<CreditUser> users = {
     {
         "Rexosouli",
         35,
-        "Proofreader (FR)",
+        "Translator (FR)",
         { 0,200,255 },
         { 0,255,255 },
         { 0,255,255 },

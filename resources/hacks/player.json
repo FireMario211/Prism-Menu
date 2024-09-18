@@ -56,8 +56,7 @@
     {
         "name": "Force Platformer Mode",
         "desc": "Forces you to be in platformer mode when playing a level.",
-        "type": "bool",
-        "platforms": ["win", "android32", "android64"]
+        "type": "bool"
     },
     {
         "name": "Hide Player",

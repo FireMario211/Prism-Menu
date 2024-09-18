@@ -1,3 +1,10 @@
+# v1.9.1
+    - Fixed bug with Noclip Accuracy continuing even after the level is completed
+    - Added more mac hacks
+    - Updated Russian Translations
+    - Updated Romanian Translations
+    - Updated Turkish Translations
+    - Updated French Translations
 # v1.9.0
     - Added Auto Clicker
     - Added Low FPS Pause
