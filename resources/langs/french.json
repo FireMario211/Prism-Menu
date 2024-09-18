@@ -621,8 +621,8 @@
     },
     {
         "Hide Level": {
-            "name": "Hide Level",
-            "desc": "Hides all objects in the level."
+            "name": "Cacher le niveau",
+            "desc": "Cache tous les objets dans un niveau."
         }
     },
     {
@@ -811,6 +811,30 @@
         "No Rotate": {
             "name": "Pas de Rotation",
             "desc": "Empêche le joueur de tourner lorsqu'il saute ou tombe."
+        }
+    },
+    {
+        "Low FPS Pause": {
+            "name": "Pause en cas de faible FPS",
+            "desc": "Met le jeu en pause si vos FPS dÃ©cendent en dessous d'une certaine valeur."
+        }
+    },
+    {
+        "Pause below FPS": {
+            "name": "Pause en dessous d'un certain FPS",
+            "desc": "Le nombre minimum de FPS avant que le jeu ne se mette automatiquement en pause."
+        }
+    },
+    {
+        "Auto Clicker": {
+            "name": "Auto Clicker",
+            "desc": "Clique automatiquement pour vous."
+        }
+    },
+    {
+        "Clicks per second": {
+            "name": "Clics par seconde",
+            "desc": "Le nombre de clics que l'Auto Clicker devra faire par seconde."
         }
     }
 ]
