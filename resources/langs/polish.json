@@ -571,7 +571,7 @@
     {
         "Clicks per second": {
             "name": "Kliknięcia na sekundę",
-            "desc": "Liczba kliknięć auto clickera na sekundę"
+            "desc": " Liczba kliknięć Którą auto clicker ma kliknąć na sekundę"
         }
     }
 ]
