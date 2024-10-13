@@ -358,6 +358,17 @@ std::vector<CreditUser> users = {
         true,
         "",
         28982364
+    },
+    {
+        "Pan Polak",
+        379,
+        "Translator (PL)",
+        { 255, 255, 255 },
+        { 0, 255, 255 },
+        { 255, 255, 255 },
+        true,
+        "",
+        20527327
     }
 };
 
