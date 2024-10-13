@@ -561,5 +561,17 @@
             "name": "Zapisz Makro",
             "desc": "Zapisuje Makro"
         }
+    },
+    {
+        "Auto Clicker": {
+            "name": "Automatyczny klikacz",
+            "desc": "Automatycznie Klika za ciebie"
+        }
+    },
+    {
+        "Clicks per second": {
+            "name": "Kliknięcia na sekundę",
+            "desc": "Liczba kliknięć auto clickera na sekundę"
+        }
     }
 ]
