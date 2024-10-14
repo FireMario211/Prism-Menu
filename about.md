@@ -43,6 +43,7 @@ Press on the circle button located on the left corner, or press `Tab` to open th
 * [RzaIX](https://twitter.com/RzaIX_) - Translations for Indonesian
 * KONDIROTSU - Translations for Polish
 * olaf_294 - Translations for Polish
+* Pan Polak - Translations for Polish
 * hori - Translations for Malay
 * slideglide - Translations for Turkish
 * DarkKing - Proofreading for Turkish

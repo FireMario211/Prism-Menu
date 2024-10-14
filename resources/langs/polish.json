@@ -20,6 +20,11 @@
         }
     },
     {
+        "¦ Quartz Bot": {
+            "name": "¦ Quartz Bot"
+        }
+    },
+    {
         "··· Misc": {
             "name": "··· Inne"
         }
@@ -507,6 +512,66 @@
         "Suicide": {
             "name": "Samobójstwo",
             "desc": "Zabija gracza bez przerywania."
+        }
+    },
+    {
+        "Macro": {
+            "name": "Makro",
+            "desc": "Wybierz Makro Które chcesz Nagrać Lub Odtworzyć!"
+        }
+    },
+    {
+        "Record": {
+            "name": "Nagraj",
+            "desc": "Nagrywa Rozrywkę Którą potem możesz odtworzyć (To Zresetuje Wejścia Jeśli wejdziesz w poziom i masz wybrane makro)"
+        }
+    },
+    {
+        "Playback": {
+            "name": "Odtwórz",
+            "desc": "Odtwarza Makro Spowrotem"
+        }
+    },
+    {
+        "Macro Editor": {
+            "name": "Edytor Makro",
+            "desc": "Wejdź w Edytor Makra. (Nie Będzie dobrze działać jeśli masz włączone nagrywanie makra)"
+        }
+    },
+    {
+        "Frame Fix": {
+            "name": "Naprawa Klatek",
+            "desc": "Nagrywa Każdy ruch gracza, łącznie z pozycją jeśli nagrywasz i odtwarzasz makro spowrotem. Ale może to zwiększyć rozmiar makra podczas nagrywania"
+        }
+    },
+    {
+        "Fixed FPS": {
+            "name": "Naprawione Klatki",
+            "desc": "Blokuje Klatki do Celowanej liczby klatek na sekundę makra. To może wyglądać jak \"smooth fix\" opcja jest włączona jeśli gra się zacina"
+        }
+    },
+    {
+        "Import Macro": {
+            "name": "Importuj Makro",
+            "desc": "Importuje Makro"
+        }
+    },
+    {
+        "Save Macro": {
+            "name": "Zapisz Makro",
+            "desc": "Zapisuje Makro"
+        }
+    },
+    {
+        "Auto Clicker": {
+            "name": "Automatyczny klikacz",
+            "desc": "Automatycznie Klika za ciebie"
+        }
+    },
+    {
+        "Clicks per second": {
+            "name": "Kliknięcia na sekundę",
+            "desc": " Liczba kliknięć Którą auto clicker ma kliknąć na sekundę"
         }
     }
 ]
