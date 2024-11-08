@@ -57,11 +57,11 @@ class Lang {
                     case 14: // Romanian
                         file = Hacks::readFile("romanian.json");
                         break;
-                    case 15: // Greek
-                        file = Hacks::readFile("greek.json");
-                        break;
-                    case 16: // Japanese
+                    case 15: // Japanese
                         file = Hacks::readFile("japanese.json");
+                        break;
+                    case 16: // Greek
+                        file = Hacks::readFile("greek.json");
                         break;
                     default: // anything else should be discarded
                         langId = 0;
@@ -92,5 +92,8 @@ class Lang {
             auto obj = this->find(key);
             if (obj == nullptr) return key;
             return obj.get<std::string>("desc");
+        }
+        int getLangID() {
+            return langId;
         }
 };

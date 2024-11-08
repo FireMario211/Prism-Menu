@@ -1,3 +1,10 @@
+# v1.9.2 
+    - Updated to Geode 3.9.0
+    - Added Japanese Translations
+    - Fixed Noclip Flash
+    - Updated Turkish Translations
+    - Updated French Translations
+    - Updated Polish Translations
 # v1.9.1
     - Fixed bug with Noclip Accuracy continuing even after the level is completed
     - Added more mac hacks

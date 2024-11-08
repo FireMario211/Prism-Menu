@@ -108,8 +108,10 @@ bool restoreOldFiles() {
 
 // maybe this will fix the issue
 $execute {
-    SettingHackStruct val { matjson::Array() };
-    Mod::get()->addCustomSetting<SettingHackValue>("values", val);
+    auto ret = Mod::get()->registerCustomSettingType("hack-values", &SettingHackValue::parse);
+    if (!ret) {
+        log::error("Unable to register setting type: {}", ret.unwrapErr());
+    }
 }
 
 $on_mod(Loaded) {
@@ -431,6 +433,10 @@ class $modify(PrismPlayLayer, PlayLayer) {
     void resetLevel() {
         m_fields->death = 0;
         m_fields->hasCompletedLevel = false;
+        if (m_fields->accuracyLabel != nullptr && m_fields->flashNode != nullptr) {
+            m_fields->flashOpacity = 0.0F;
+            m_fields->flashNode->setOpacity(m_fields->flashOpacity);
+        }
         PlayLayer::resetLevel();
     }
     void postUpdate(float p0) {

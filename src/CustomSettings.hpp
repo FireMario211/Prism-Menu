@@ -31,7 +31,48 @@ struct matjson::Serialize<SettingHackStruct> {
 
 class SettingHackValue;
 
-class SettingHackValue : public SettingValue {
+// im laughing, it wont compile if i put the struct SettingHackValue, but it will if i just do matjson::Array, hahahaHAHAHAHA
+class SettingHackValue : public SettingBaseValueV3<matjson::Array> {
+protected:
+    // unsure if this is necessary...
+    matjson::Array m_hackValues;
+public:
+    static Result<std::shared_ptr<SettingHackValue>> parse(std::string const& key, std::string const& modID, matjson::Value const& json) {
+        auto res = std::make_shared<SettingHackValue>();
+        auto root = checkJson(json, "SettingHackValue");
+        res->parseBaseProperties(key, modID, root);
+        root.checkUnknownKeys();
+        return root.ok(res);
+    }
+    SettingNodeV3* createNode(float width) override;
+};
+
+template <>
+struct geode::SettingTypeForValueType<SettingHackStruct> {
+    using SettingType = SettingHackValue;
+};
+
+class SettingHackNode : public SettingValueNodeV3<SettingHackValue> {
+protected:
+    bool init(std::shared_ptr<SettingHackValue> setting, float width) {
+        if (!SettingValueNodeV3::init(setting, width))
+            return false;
+        return true;
+    }
+public:
+    static SettingHackNode* create(std::shared_ptr<SettingHackValue> setting, float width) {
+        auto ret = new SettingHackNode();
+        if (ret && ret->init(setting, width)) {
+            ret->autorelease();
+            return ret;
+        }
+        CC_SAFE_DELETE(ret);
+        return nullptr;
+    }
+};
+
+/*
+class SettingHackValue : public SettingBaseValueV3<SettingHackStruct> {
 protected:
     matjson::Array m_hackValues;
 public:
@@ -55,6 +96,8 @@ public:
         return { m_hackValues };
     }
 };
+
+
 
 template<>
 struct SettingValueSetter<SettingHackStruct> {
@@ -107,4 +150,6 @@ public:
         return nullptr;
     }
 };
+
+*/
 #endif

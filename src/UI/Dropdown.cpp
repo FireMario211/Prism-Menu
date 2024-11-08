@@ -35,16 +35,25 @@ void Dropdown::onToggle(CCObject* sender) {
             };
             auto pMenu = prismUIButton->getMenu();
             if (pHack->type == "bool") {
-                static_cast<CCMenuItemToggler*>(pMenu->getChildren()->objectAtIndex(1))->setEnabled(!expanded);
+                if (auto menuItem = pMenu->getChildByType<CCMenuItemToggler>(0)) {
+                    menuItem->setEnabled(!expanded);
+                }
             } else if (pHack->type == "button") {
-                static_cast<CCMenuItemSpriteExtra*>(pMenu->getChildren()->objectAtIndex(0))->setEnabled(!expanded);
+                if (auto menuItem = pMenu->getChildByType<CCMenuItemSpriteExtra>(0)) {
+                    menuItem->setEnabled(!expanded);
+                }
             } else if (pHack->type == "float" || pHack->name.starts_with("Button Pos")) {
                 prismUIButton->getInputNode()->setEnabled(!expanded);
                 prismUIButton->getSlider()->getThumb()->setEnabled(!expanded);
-                static_cast<CCMenuItemSpriteExtra*>(pMenu->getChildren()->objectAtIndex(0))->setEnabled(!expanded);
+                if (auto menuItem = pMenu->getChildByType<CCMenuItemSpriteExtra>(0)) {
+                    menuItem->setEnabled(!expanded);
+                }
             } else if (pHack->type == "dropdown") {
-                auto otherDDMenu = static_cast<CCMenu*>(pMenu->getChildren()->objectAtIndex(1));
-                static_cast<CCMenuItemSpriteExtra*>(otherDDMenu->getChildByID("flip-btn"))->setEnabled(!expanded);
+                if (auto otherDDMenu = pMenu->getChildByType<CCMenu>(0)) {
+                    if (auto flipBtn = typeinfo_cast<CCMenuItemSpriteExtra*>(otherDDMenu->getChildByID("flip-btn"))) {
+                        flipBtn->setEnabled(!expanded);
+                    }
+                }
             }
         }
     }

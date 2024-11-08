@@ -9,6 +9,7 @@
 #include "../Utils.hpp"
 #include "CreditsMenu.hpp"
 #include "../Hacks/Quartz.hpp"
+//#include "../Misc/Label.hpp"
 
 int currentMenuIndexGD = 0;
 
@@ -118,6 +119,7 @@ bool PrismUIButton::init(HackItem* hack) {
     //auto opcodes = obj.get<matjson::Array>("opcodes");
     this->m_hack = hack;
     auto label = CCLabelBMFont::create(currentLanguage->name(name).c_str(), "PrismMenu.fnt"_spr);
+    //auto label = Label::create(currentLanguage->name(name).c_str(), "NotoSansJP-Regular.ttf"_spr);
     Themes::RGBAToCC(PrismUI::GetTheme()["Text"], label);
     label->setAnchorPoint({0.0F, 0.5F});
     label->limitLabelWidth(150, 0.5F, .2F);
@@ -437,8 +439,9 @@ void PrismUIButton::onBtn(CCObject* ret) {
     auto settings = Mod::get()->getSavedValue<SettingHackStruct>("values");
     std::string name = m_hack->name;
 
-    if (CCScene::get() == nullptr) return;
-    auto prismUI = static_cast<PrismUI*>(CCScene::get()->getChildByID("prism-menu"));
+    auto scene = CCScene::get();
+    if (!scene) return;
+    auto prismUI = static_cast<PrismUI*>(scene->getChildByID("prism-menu"));
     if (name == "Restore Defaults") {
         Mod::get()->setSettingValue("skip-intro", false);
         Hacks::processJSON(true);
@@ -520,7 +523,7 @@ void PrismUIButton::onBtn(CCObject* ret) {
         FLAlertLayer::create("Error", "This option can only be used on <cy>Android</c>!", "OK")->show();
         #endif
     } else if (name == "Uncomplete Level") {
-        if (auto levelInfoLayer = getChildOfType<LevelInfoLayer>(CCScene::get(), 0)) {
+        if (auto levelInfoLayer = scene->getChildByType<LevelInfoLayer>(0)) {
             // i forgor why i didnt do this and did for loop
             Hacks::resetLevel(levelInfoLayer, levelInfoLayer->m_level);
         } else {
