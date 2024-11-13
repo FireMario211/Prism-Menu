@@ -82,4 +82,4 @@ Send any suggestions or report any issues to this GitHub Repository or Discord S
 note for me: maybe make server closed source or in a private repo, idk if people would really contribute towards it
 
 # a note for a certain somebody
-please credit me and ask before using my code, and **make sure it's open sourced**. I worked hard on this project and I don't want some of the features to have its code taken without me knowing.
+please credit me and read the license before using my code, and **make sure it's open sourced**. I worked hard on this project and I don't want some of the features to have its code taken without me knowing.
