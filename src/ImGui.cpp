@@ -63,7 +63,8 @@ void CreateButton(const char* name, int menuIndex, float buttonWidth, float butt
     };
     if (currentMenuIndex == menuIndex) {
         ImGui::EndDisabled();
-        ImGui::PopStyleColor(2);
+        //ImGui::PopStyleColor(2);
+        ImGui::PopStyleColor();
     }
     //ImGui::PushStyleColor();
 }
@@ -158,25 +159,25 @@ class $modify(MenuLayer) {
                     std::vector<matjson::Value> jsonArray;
                     switch (currentMenuIndex) {
                         case 0: // Global 
-                            jsonArray = matjson::parse(Hacks::getGlobalHacks()).as_array();
+                            jsonArray = matjson::parse(Hacks::getGlobalHacks()).unwrapOrDefault().asArray().unwrapOrDefault();
                             break;
                         case 1: // Player
-                            jsonArray = matjson::parse(Hacks::getPlayerHacks()).as_array();
+                            jsonArray = matjson::parse(Hacks::getPlayerHacks()).unwrapOrDefault().asArray().unwrapOrDefault();
                             break;
                         case 2: // Bypass
-                            jsonArray = matjson::parse(Hacks::getBypassHacks()).as_array();
+                            jsonArray = matjson::parse(Hacks::getBypassHacks()).unwrapOrDefault().asArray().unwrapOrDefault();
                             break;
                         case 3: // Creator
-                            jsonArray = matjson::parse(Hacks::getCreatorHacks()).as_array();
+                            jsonArray = matjson::parse(Hacks::getCreatorHacks()).unwrapOrDefault().asArray().unwrapOrDefault();
                             break;
                         case 4: // Bot
                             ImGui::Text("This is currently not supported on ImGui.\nPlease switch to the GD Menu Style if you wish to use this.");
                             break;
                         case 5: // Misc
-                            jsonArray = matjson::parse(Hacks::getMiscHacks()).as_array();
+                            jsonArray = matjson::parse(Hacks::getMiscHacks()).unwrapOrDefault().asArray().unwrapOrDefault();
                             break;
                         case 6: // Settings
-                            jsonArray = matjson::parse(Hacks::getSettings()).as_array();
+                            jsonArray = matjson::parse(Hacks::getSettings()).unwrapOrDefault().asArray().unwrapOrDefault();
                             ImGui::Text("%s", currentLanguage->name("Prism Menu by Firee").c_str());
                             //const char* version = "V1.3.0 (Geode)";
                             #ifdef GITHUB_ACTIONS
@@ -199,10 +200,11 @@ class $modify(MenuLayer) {
                     ImGui::Spacing();
                     ImGui::PushStyleVar(ImGuiStyleVar_ItemSpacing, ImVec2(8.0f, 8.0f));
                     auto settings = Mod::get()->getSavedValue<SettingHackStruct>("values");
+                    matjson::Value val = 0;
                     for (size_t i = 0; i < jsonArray.size(); i++) {
                         const auto& obj = jsonArray[i];
-                        std::string name = obj.get<std::string>("name");
-                        std::string desc = obj.get<std::string>("desc");
+                        std::string name = obj.get("name").unwrapOr("Name").asString().unwrapOrDefault();
+                        std::string desc = obj.get("desc").unwrapOr("Desc").asString().unwrapOrDefault();
                         HackItem* hack = Hacks::getHack(name);
                         if (hack == nullptr) continue;
                         auto opcodes = hack->opcodes;
@@ -213,9 +215,9 @@ class $modify(MenuLayer) {
                                 #endif
                             }
                             if (hack->value.type == ValueType::Int && hack->type != "dropdown" && hack->type != "char") {
-                                auto min = obj.get<int>("min");
-                                auto max = obj.get<int>("max");
-                                int step = (obj.contains("step")) ? obj.get<int>("step") : 5;
+                                int min = obj.get("min").unwrapOr(val).asInt().unwrapOrDefault();
+                                int max = obj.get("min").unwrapOr(val).asInt().unwrapOrDefault();
+                                int step = (obj.contains("step")) ? obj.get("step").unwrapOr(val).asInt().unwrapOrDefault() : 5;
                                 int oldValue = hack->value.intValue;
                                 if (ImGui::InputInt(currentLanguage->name(name).c_str(), &hack->value.intValue, step, 100, ImGuiInputTextFlags_EnterReturnsTrue)) {
                                     if (min > hack->value.intValue || hack->value.intValue > max) {
@@ -248,8 +250,8 @@ class $modify(MenuLayer) {
                                     }
                                 }
                             } else if (hack->value.type == ValueType::Float) {
-                                auto min = obj.get<float>("min");
-                                auto max = obj.get<float>("max");
+                                int min = obj.get("min").unwrapOr(val).asInt().unwrapOrDefault();
+                                int max = obj.get("min").unwrapOr(val).asInt().unwrapOrDefault();
                                 if (!editingMode.isEditing || editingMode.name != name.c_str()) {
                                     if (ImGui::SliderFloat(currentLanguage->name(name).c_str(), &hack->value.floatValue, min, max, "%.3f", ImGuiSliderFlags_NoInput)) {
                                         if (name == "Speedhack") {
@@ -298,6 +300,7 @@ class $modify(MenuLayer) {
                             } else if (hack->value.type == ValueType::Bool) {
                                 if ((Hacks::isHackEnabled("Enable Patching") && obj.contains("winOnly")) || !obj.contains("winOnly") || name == "Enable Patching") {
                                     if (ImGui::Checkbox(currentLanguage->name(name).c_str(), &hack->value.boolValue)) {
+#if 0
                                         Hacks::Settings::setSettingValue(&settings, *hack, hack->value.boolValue);
                                         if (name == "Show Button") {
                                             auto prismButton = CCScene::get()->getChildByID("prism-icon");
@@ -311,6 +314,7 @@ class $modify(MenuLayer) {
                                             Hacks::applyPatches(name, opcodes, hack->value.boolValue);
                                             #endif
                                         }
+#endif
                                     }
                                 }
                             } else if (false) {//(hack->value.type == ValueType::Char) {
@@ -337,16 +341,14 @@ class $modify(MenuLayer) {
                                     }
                                 }*/
                             } else if (hack->type == "dropdown" || hack->value.type == ValueType::Custom) {
-                                auto type = obj.get<std::string>("type");
+                                auto type = obj.get("type").unwrapOr(val).asString().unwrapOrDefault();
                                 if (type == "button") {
                                     if (ImGui::Button(currentLanguage->name(name).c_str())) {
                                         // TODO: move this to hacks.cpp
                                         if (name == "Restore Defaults") {
                                             Hacks::processJSON(true);
                                         } else if (name == "Import Theme") {
-                                            geode::FileSetting::Filter filter;
-                                            filter.description = "Theme (*.json)";
-                                            filter.files.insert("*.json");
+
 #if 0
                                             file::pickFile(
                                                 file::PickMode::OpenFile,
@@ -406,15 +408,15 @@ class $modify(MenuLayer) {
                                     }
 
                                 } else if (type == "dropdown") {
-                                    auto values = obj.get<matjson::Array>("values");
+                                    auto values = obj.get("values").unwrapOr(val).asArray().unwrapOr(std::vector<matjson::Value> {});
                                     if (hack->name == "Theme") {
                                         values = Themes::getCurrentThemes();
                                     }
                                     int selectedIndex = hack->value.intValue;
-                                    if (ImGui::BeginCombo(currentLanguage->name(name).c_str(), values[selectedIndex].as_string().c_str())) {
+                                    if (ImGui::BeginCombo(currentLanguage->name(name).c_str(), values[selectedIndex].asString().unwrapOrDefault().c_str())) {
                                         for (size_t i = 0; i < values.size(); i++) {
                                             const bool isSelected = (selectedIndex == i);
-                                            if (ImGui::Selectable(values[i].as_string().c_str(), isSelected)) {
+                                            if (ImGui::Selectable(values[i].asString().unwrapOrDefault().c_str(), isSelected)) {
                                                 hack->value.intValue = i;
                                                 Hacks::Settings::setSettingValue(&settings, *hack, hack->value.intValue);
                                                 if (name == "Menu-Style") {

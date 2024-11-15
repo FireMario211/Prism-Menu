@@ -26,8 +26,8 @@ namespace Themes {
     // TODO: reduce this
     ImVec4 RGBAToImVec4(matjson::Value rgba);
     ImU32 RGBAToImU32(matjson::Value rgba);
-    void UpdateOpacity(matjson::Object theme);
-    void LoadTheme(matjson::Object theme);
+    void UpdateOpacity(matjson::Value theme);
+    void LoadTheme(matjson::Value theme);
     #endif
     void RGBAToCC(matjson::Value rgba, CCNodeRGBA* obj);
     void RGBAToCC(matjson::Value rgba, CCLabelBMFont* obj);

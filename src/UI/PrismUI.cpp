@@ -476,7 +476,6 @@ void PrismUIButton::onBtn(CCObject* ret) {
                 )->show();
             }
         });
-
     } else if (name == "Import Macro") {
 
         file::pick(file::PickMode::OpenFile, file::FilePickOptions {

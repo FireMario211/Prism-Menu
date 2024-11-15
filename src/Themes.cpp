@@ -63,26 +63,28 @@ std::vector<matjson::Value> Themes::getCurrentThemes() {
 
 ImVec4 Themes::RGBAToImVec4(matjson::Value rgba) {
     float currentOpacity = Hacks::getHack("Menu Opacity")->value.floatValue;
-    rgba = rgba.as_array();
-    float alpha = rgba[3].as_double();
+    std::vector<matjson::Value> emptyArray;
+    rgba = rgba.asArray().unwrapOr(emptyArray);
+    float alpha = rgba[3].asDouble().unwrapOrDefault();
     return ImVec4(
-        rgba[0].as_double() / 255.0F,
-        rgba[1].as_double() / 255.0F,
-        rgba[2].as_double() / 255.0F,
+        rgba[0].asDouble().unwrapOrDefault() / 255.0F,
+        rgba[1].asDouble().unwrapOrDefault() / 255.0F,
+        rgba[2].asDouble().unwrapOrDefault() / 255.0F,
         (alpha == -1) ? currentOpacity : alpha / 255.0F
     );
 }
 ImU32 Themes::RGBAToImU32(matjson::Value rgba) {
-    rgba = rgba.as_array();
-    float alpha = rgba[3].as_double();
+    std::vector<matjson::Value> emptyArray;
+    rgba = rgba.asArray().unwrapOr(emptyArray);
+    float alpha = rgba[3].asDouble().unwrapOrDefault();
     return IM_COL32(
-        rgba[0].as_double(),
-        rgba[1].as_double(),
-        rgba[2].as_double(),
+        rgba[0].asDouble().unwrapOrDefault(),
+        rgba[1].asDouble().unwrapOrDefault(),
+        rgba[2].asDouble().unwrapOrDefault(),
         alpha
     );
 }
-void Themes::UpdateOpacity(matjson::Object theme) {
+void Themes::UpdateOpacity(matjson::Value theme) {
     ImGuiStyle& style = ImGui::GetStyle();
     style.Colors[ImGuiCol_WindowBg] = RGBAToImVec4(theme["BG"]);
     style.Colors[ImGuiCol_ChildBg] = RGBAToImVec4(theme["BG"]);
@@ -91,7 +93,7 @@ void Themes::UpdateOpacity(matjson::Object theme) {
 
 
 // other funcs
-void Themes::LoadTheme(matjson::Object theme) {
+void Themes::LoadTheme(matjson::Value theme) {
     auto lang = Hacks::getHack("Language");
     if (!Hacks::isHackEnabled("Live Theme Editing")) log::debug("Themes::LoadTheme - Start");
     ImVector<ImWchar> ranges;
@@ -126,15 +128,15 @@ void Themes::LoadTheme(matjson::Object theme) {
     //std::string fontName = (Mod::get()->getResourcesDir() / "Hack-Regular.ttf").string();
     float menuScale = Hacks::getHack("Menu Scale")->value.floatValue;
 
-    io.Fonts->AddFontFromFileTTF(fontName.c_str(), theme["FontSize"].as_int() * menuScale, NULL, ranges.Data);
+    io.Fonts->AddFontFromFileTTF(fontName.c_str(), theme["FontSize"].asInt().unwrapOrDefault() * menuScale, NULL, ranges.Data);
     if (!Hacks::isHackEnabled("Live Theme Editing")) log::debug("Themes::LoadTheme - Add FontSize TTF");
-    io.Fonts->AddFontFromFileTTF(fontName.c_str(), theme["IconSize"].as_int() * menuScale, NULL, ranges.Data);
+    io.Fonts->AddFontFromFileTTF(fontName.c_str(), theme["IconSize"].asInt().unwrapOrDefault() * menuScale, NULL, ranges.Data);
     if (!Hacks::isHackEnabled("Live Theme Editing")) log::debug("Themes::LoadTheme - Add IconSize TTF");
 
     style.Alpha = 1.0f;
     style.DisabledAlpha = 1.0f;
     style.WindowPadding = ImVec2(12.0f, 12.0f);
-    style.WindowRounding = theme["WindowRounding"].as_int();
+    style.WindowRounding = theme["WindowRounding"].asInt().unwrapOrDefault();
     style.WindowBorderSize = 0.0f;
     style.WindowMinSize = ImVec2(20.0f, 20.0f);
     style.WindowTitleAlign = ImVec2(0.5f, 0.5f);
@@ -199,7 +201,7 @@ void Themes::LoadTheme(matjson::Object theme) {
     style.Colors[ImGuiCol_TableRowBg] = RGBAToImVec4(theme["TableRowBg"]);
     style.Colors[ImGuiCol_TableRowBgAlt] = RGBAToImVec4(theme["TableRowBgAlt"]);
     style.Colors[ImGuiCol_TextSelectedBg] = RGBAToImVec4(theme["TextSelectedBg"]);
-    style.Colors[ImGuiCol_ModalWindowDimBg] = RGBAToImVec4(matjson::parse("[73, 77, 100, 128]"));
+    style.Colors[ImGuiCol_ModalWindowDimBg] = RGBAToImVec4(matjson::parse("[73, 77, 100, 128]").unwrapOrDefault());
     /*
             "Text": [255, 255, 255, 255],
     "TextDisabled": [70, 81, 115, 255],
