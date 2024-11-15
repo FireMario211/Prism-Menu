@@ -1,53 +1,61 @@
 #include "Themes.hpp"
 #include "hacks.hpp"
 
-matjson::Array currentThemes;
+std::vector<matjson::Value> currentThemes;
 
 void Themes::addToCurrentThemes() {
     HackItem* hack = Hacks::getHack("Theme");
     if (hack == nullptr) return;
-    auto themeArray = hack->data.get<matjson::Array>("values");
-    auto saveDir = Mod::get()->getSaveDir().string();
-    auto array = hack->data.get<matjson::Array>("values");
-    if (std::filesystem::exists(saveDir + "/themes")) {
-        for (const auto & entry : std::filesystem::directory_iterator(saveDir + "/themes")) {
-            if (entry.path().extension() == ".json") {
-                auto name = entry.path().filename().string();
-                name = name.substr(0, name.length() - 5); // remove the .json
-                array.push_back(name + " (Custom)");
+    auto themeArrayRes = hack->data.get("values");
+    std::vector<matjson::Value> emptyArray;
+    if (themeArrayRes.isOk()) {
+        auto themeArray = themeArrayRes.unwrap().asArray().unwrapOr(emptyArray);
+        auto saveDir = Mod::get()->getSaveDir().string();
+        auto arrayRes = hack->data.get("values");
+        if (arrayRes.isOk()) {
+            auto array = arrayRes.unwrap().asArray().unwrapOr(emptyArray);
+            if (std::filesystem::exists(saveDir + "/themes")) {
+                for (const auto & entry : std::filesystem::directory_iterator(saveDir + "/themes")) {
+                    if (entry.path().extension() == ".json") {
+                        auto name = entry.path().filename().string();
+                        name = name.substr(0, name.length() - 5); // remove the .json
+                        array.push_back(name + " (Custom)");
+                    }
+                }
             }
+            currentThemes = array;
+
         }
     }
-    currentThemes = array;
 }
 
-matjson::Object Themes::getCurrentTheme() {
-    auto themes = matjson::parse(Hacks::getThemes()).as_object();
+matjson::Value Themes::getCurrentTheme() {
+    auto themes = matjson::parse(Hacks::getThemes()).unwrapOrDefault();
     HackItem* hack = Hacks::getHack("Theme");
-    if (hack == nullptr) return themes["Future Dark"].as_object();
-    if (currentThemes.empty()) return themes["Future Dark"].as_object();
+    if (hack == nullptr) return themes["Future Dark"];
+    if (currentThemes.empty()) return themes["Future Dark"];
     auto value = currentThemes[hack->value.intValue];
-    if (!value.is_string()) return themes["Future Dark"].as_object();
-    auto valueStr = value.as_string();
+    if (!value.isString()) return themes["Future Dark"];
+    auto valueStr = value.asString().unwrapOrDefault();
     if (valueStr.ends_with("(Custom)") && std::find(currentThemes.begin(), currentThemes.end(), valueStr) != currentThemes.end()) {
         // custom themes!
         auto saveDir = Mod::get()->getSaveDir().string();
         valueStr = valueStr.substr(0, valueStr.length() - 9); // remove the (Custom)
         auto themeDataStr = Hacks::readFile(saveDir + "/themes/" + valueStr + ".json", true);
-        if (themeDataStr == "{}") return themes["Future Dark"].as_object();
-        auto themeData = matjson::parse(themeDataStr).as_object();
+        if (themeDataStr == "{}") return themes["Future Dark"];
+        auto themeData = matjson::parse(themeDataStr).unwrapOrDefault();
         if (themeData["Version"] != "1.6.0") {
             themeData["InfoButton"] = themeData["ButtonActive"];
         }
         return themeData;
         //ButtonActive
     } else {
-        if (!themes.contains(valueStr)) return themes["Future Dark"].as_object();
-        return themes[valueStr].as_object();
+        if (!themes.contains(valueStr)) return themes["Future Dark"];
+        return themes[valueStr];
     }
 }
 
-matjson::Array Themes::getCurrentThemes() {
+std::vector<matjson::Value> Themes::getCurrentThemes() {
     return currentThemes;
 }
 
@@ -224,23 +232,27 @@ void Themes::LoadTheme(matjson::Object theme) {
 
 void Themes::RGBAToCC(matjson::Value rgba, CCNodeRGBA* obj) {
     float currentOpacity = Hacks::getHack("Menu Opacity")->value.floatValue;
-    rgba = rgba.as_array();
-    float alpha = rgba[3].as_double();
+    std::vector<matjson::Value> emptyArray;
+    rgba = rgba.asArray().unwrapOr(emptyArray);
+    if (rgba.size() != 4) return;
+    float alpha = rgba[3].asDouble().unwrapOrDefault();
     ccColor3B color;
-    color.r = rgba[0].as_double();
-    color.g = rgba[1].as_double();
-    color.b = rgba[2].as_double();
+    color.r = rgba[0].asDouble().unwrapOrDefault();
+    color.g = rgba[1].asDouble().unwrapOrDefault();
+    color.b = rgba[2].asDouble().unwrapOrDefault();
     obj->setColor(color);
     obj->setOpacity((alpha == -1) ? currentOpacity * 255.0F : alpha);
 }
 void Themes::RGBAToCC(matjson::Value rgba, CCLabelBMFont* obj) {
     float currentOpacity = Hacks::getHack("Menu Opacity")->value.floatValue;
-    rgba = rgba.as_array();
-    float alpha = rgba[3].as_double();
+    std::vector<matjson::Value> emptyArray;
+    rgba = rgba.asArray().unwrapOr(emptyArray);
+    if (rgba.size() != 4) return;
+    float alpha = rgba[3].asDouble().unwrapOrDefault();
     ccColor3B color;
-    color.r = rgba[0].as_double();
-    color.g = rgba[1].as_double();
-    color.b = rgba[2].as_double();
+    color.r = rgba[0].asDouble().unwrapOrDefault();
+    color.g = rgba[1].asDouble().unwrapOrDefault();
+    color.b = rgba[2].asDouble().unwrapOrDefault();
     obj->setColor(color);
     obj->setOpacity((alpha == -1) ? currentOpacity * 255.0F : alpha);
 }

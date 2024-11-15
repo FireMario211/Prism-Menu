@@ -1,6 +1,5 @@
 #ifndef CUSTOM_SETTINGS_HPP
 #define CUSTOM_SETTINGS_HPP
-#include <Geode/loader/SettingNode.hpp>
 using namespace geode::prelude;
 
 struct HackValuesStruct {
@@ -10,39 +9,35 @@ struct HackValuesStruct {
 };
 
 struct SettingHackStruct {
-    matjson::Array m_hackValues;
+    std::vector<matjson::Value> m_hackValues;
 };
 
 template<>
 struct matjson::Serialize<SettingHackStruct> {
-    static SettingHackStruct from_json(matjson::Value const& value) {
-        return SettingHackStruct {
-            .m_hackValues = value.as_array(),
-        };
+    static Result<SettingHackStruct> fromJson(matjson::Value const& value) {
+        GEODE_UNWRAP_INTO(auto hackValues, value.asArray());
+        return Ok(SettingHackStruct {
+            .m_hackValues = hackValues
+        });
     }
-    static bool is_json(matjson::Value const& a) { // thank you mat!
-        return a.is_array();
-    }
-    static matjson::Value to_json(SettingHackStruct const& value) {
+    static matjson::Value toJson(SettingHackStruct const& value) {
         return value.m_hackValues;
     }
 };
 
 
-class SettingHackValue;
-
 // im laughing, it wont compile if i put the struct SettingHackValue, but it will if i just do matjson::Array, hahahaHAHAHAHA
-class SettingHackValue : public SettingBaseValueV3<matjson::Array> {
+class SettingHackValue : public SettingBaseValueV3<std::vector<matjson::Value>> {
 protected:
     // unsure if this is necessary...
-    matjson::Array m_hackValues;
+    std::vector<matjson::Value> m_hackValues;
 public:
-    static Result<std::shared_ptr<SettingHackValue>> parse(std::string const& key, std::string const& modID, matjson::Value const& json) {
+    static Result<std::shared_ptr<SettingV3>> parse(std::string const& key, std::string const& modID, matjson::Value const& json) {
         auto res = std::make_shared<SettingHackValue>();
         auto root = checkJson(json, "SettingHackValue");
         res->parseBaseProperties(key, modID, root);
         root.checkUnknownKeys();
-        return root.ok(res);
+        return root.ok(std::static_pointer_cast<SettingV3>(res));
     }
     SettingNodeV3* createNode(float width) override;
 };

@@ -63,7 +63,7 @@
         },
         "type": "bool",
         "save": false,
-        "platforms": ["win", "android32", "android64"]
+        "platforms": []
     },
     {
 	    "name": "No (C) Mark",

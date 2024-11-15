@@ -7,12 +7,12 @@
 
 using namespace geode::prelude;
 
-extern matjson::Array currentThemes;
+extern std::vector<matjson::Value> currentThemes;
 
 // as per request of acaruso, PLEASE DO NOT BE MAD AT ME ALK FOR USING NAMESPACE ok
 namespace Themes {
     void addToCurrentThemes();
-    matjson::Array getCurrentThemes();
+    std::vector<matjson::Value> getCurrentThemes();
     /*struct Color {
         unsigned char r, g, b, a;
         ccColor3B getColor() const {
@@ -31,5 +31,5 @@ namespace Themes {
     #endif
     void RGBAToCC(matjson::Value rgba, CCNodeRGBA* obj);
     void RGBAToCC(matjson::Value rgba, CCLabelBMFont* obj);
-    matjson::Object getCurrentTheme();
+    matjson::Value getCurrentTheme();
 };

@@ -1,14 +1,13 @@
 #include "hacks.hpp"
 #include "CustomSettings.hpp"
-#include "Geode/utils/Result.hpp"
 #include "UI/PrismUI.hpp"
 
 std::vector<HackItem> allHacks;
 
-bool Hacks::Settings::settingContainsHack(const matjson::Array& objArr, const std::string& name) {
+bool Hacks::Settings::settingContainsHack(const std::vector<matjson::Value>& objArr, const std::string& name) {
     for (const matjson::Value& obj : objArr) {
-        if (obj.is_object()) {
-            if (obj.get<std::string>("name") == name) {
+        if (obj.isObject()) {
+            if (obj.get("name").unwrapOr("").asString().unwrapOrDefault() == name) {
                 return true;
             }
         }
@@ -16,11 +15,11 @@ bool Hacks::Settings::settingContainsHack(const matjson::Array& objArr, const st
     return false;
 }
 
-matjson::Value Hacks::Settings::getSettingValue(const matjson::Array& objArr, const std::string& name) {
+matjson::Value Hacks::Settings::getSettingValue(const std::vector<matjson::Value>& objArr, const std::string& name) {
     for (const matjson::Value& obj : objArr) {
-        if (obj.is_object()) {
-            if (obj.get<std::string>("name") == name) {
-                return obj.get<matjson::Value>("value");
+        if (obj.isObject()) {
+            if (obj.get("name").unwrapOr("").asString().unwrapOrDefault() == name) {
+                return obj.get("value").unwrapOr(0);
             }
         }
     }
@@ -28,16 +27,16 @@ matjson::Value Hacks::Settings::getSettingValue(const matjson::Array& objArr, co
 }
 
 void Hacks::Settings::setSettingValue(SettingHackStruct* settings, const HackItem& item, const matjson::Value& value) {
-    if (item.data.contains("save") && item.data.get<bool>("save") == false) return;
+    if (item.data.contains("save") && item.data.get("save").unwrap().asBool().unwrapOrDefault() == false) return;
     auto array = settings->m_hackValues;
     auto name = item.name;
     auto it = std::find_if(array.begin(), array.end(), [name](const matjson::Value& obj) {
-        return obj.is_object() && obj.get<std::string>("name") == name;
+        return obj.isObject() && obj.get("name").unwrapOr("").asString().unwrapOrDefault() == name;
     });
     if (it != array.end()) {
         (*it)["value"] = value;
     } else {
-        auto newObj = matjson::Object();
+        matjson::Value newObj;
         newObj["name"] = name;
         newObj["value"] = value;
         newObj["type"] = item.type;
@@ -245,11 +244,11 @@ void Hacks::setTPS(int tps) {
     }
     if (!hasChangedTPS) return;
 #if defined(GEODE_IS_WINDOWS) // why is windows the only one with 1 addr!?
-    uintptr_t addr1 = 0x5ec6d0;
+    uintptr_t addr1 = 0x607008;
     uintptr_t addr2 = 0x0;
 #elif defined(GEODE_IS_ANDROID32)
-    uintptr_t addr1 = 0x45ce44; // float 
-    uintptr_t addr2 = 0x45ce38; // double
+    uintptr_t addr1 = 0x4640fc; // float 
+    uintptr_t addr2 = 0x4640f0; // double
 #elif defined(GEODE_IS_ANDROID64)
     uintptr_t addr1 = 0x8384c0; // float
     uintptr_t addr2 = 0x8384b8; // double
@@ -273,24 +272,12 @@ void Hacks::setTPS(int tps) {
         auto patch1 = std::find_if(patches.begin(), patches.end(), [addr1](Patch* const patch) {
             return patch->getAddress() == base::get() + addr1;
         });
-#ifndef GEODE_IS_WINDOWS
         if (patch1 != patches.end()) {
             (void)(*patch1)->updateBytes(bytesVec);
-#else 
-        if (false) {
-#endif
         } else {
             auto res1 = Mod::get()->patch(reinterpret_cast<void*>(base::get() + addr1), bytesVec);
-            if (res1.has_error() && res1.unwrapErr().find("Unable to write to memory") != std::string::npos) {
-                #ifdef GEODE_IS_WINDOWS 
-                // stupid dumb
-                auto protRes = Hacks::Patching::withProtectedMemory(addr1, bytesVec);
-                if (!protRes) {
-                    log::error("[1] Something went wrong when trying to patch TPS Bypass with protecetd memory | {}", protRes.unwrapErr());
-                }
-                #endif
-            } else if (res1.has_error()) {
-                log::error("[1] Something went wrong when trying to patch TPS Bypass | {}", res1.error());
+            if (res1.isErr()) {
+                log::error("[1] Something went wrong when trying to patch TPS Bypass | {}", res1.err());
             }
         }
     }
@@ -308,8 +295,8 @@ void Hacks::setTPS(int tps) {
             (void)(*patch2)->updateBytes(bytesVec2);
         } else {
             auto res2 = Mod::get()->patch(reinterpret_cast<void*>(base::get() + addr2), bytesVec2);
-            if (res2.has_error()) {
-                log::error("[2] Something went wrong when trying to patch TPS Bypass | {}", res2.error());
+            if (res2.isErr()) {
+                log::error("[2] Something went wrong when trying to patch TPS Bypass | {}", res2.err());
             }
         }
     }

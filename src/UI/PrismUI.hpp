@@ -97,7 +97,7 @@ class PrismUI : public FLAlertLayer {
         //static constexpr const float s_defWidth = 400.0f;
         //static constexpr const float s_defHeight = 280.0f;
         void updateLabel();
-        static matjson::Object GetTheme();
+        static matjson::Value GetTheme();
         static PrismUI* create();
         static void fixVSync();
 };

@@ -59,6 +59,7 @@ void IntroUI::onContinue(CCObject*) {
     title->setPositionY((s_defHeight / 3));
     this->m_buttonMenu->addChild(title);
 
+#if 0
     auto lang = Hacks::getHack("Language");
     auto langLabel = CCLabelBMFont::create("Language", "chatFont.fnt");
     langLabel->setPositionY(25);
@@ -107,12 +108,15 @@ void IntroUI::onContinue(CCObject*) {
         posY_slider->setValue(Utils::getSliderValue(posY_value, posY->data.get<int>("min"), posY->data.get<int>("max"), false));
         this->m_buttonMenu->addChild(posY_slider);
     }
+#endif
 }
 
 void IntroUI::onLang(CCObject*) {
     auto lang = Hacks::getHack("Language");
+#if 0
     auto values = lang->data.get<matjson::Array>("values");
     DropdownPopup::create(values, lang)->show();
+#endif
 }
 
 void IntroUI::onSkip(CCObject*) {
