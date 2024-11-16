@@ -1,5 +1,5 @@
 # v1.9.3 
-    - Updated to Geode 4.0.0-alpha.1
+    - Updated to Geode 4.0.0-beta.1
     - Updated Ukrainian Translations
     - Updated Turkish Translations
 # v1.9.2 
