@@ -60,6 +60,7 @@ class $modify(PlayerObject) {
         if (!Hacks::isHackEnabled("No Death Effect")) return PlayerObject::playerDestroyed(p0);
         m_isDead = true;
     }
+#ifndef GEODE_IS_MACOS
     bool pushButton(PlayerButton p0) {
         if (p0 != PlayerButton::Jump) return PlayerObject::pushButton(p0);
         float boost = 10.0F;
@@ -67,6 +68,7 @@ class $modify(PlayerObject) {
         if (Hacks::isHackEnabled("Jump Hack")) PlayerObject::boostPlayer(boost); // idk if i should make this customizable
         return PlayerObject::pushButton(p0);
     }
+#endif
     void toggleDartMode(bool p0, bool p1) {
         // this is the fix until someone actually creates pads for android32 and android64, because i cant use m_isDart
         m_fields->isActuallyDart = p0;
