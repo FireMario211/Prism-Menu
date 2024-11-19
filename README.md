@@ -22,7 +22,7 @@ A mod menu made in Geode for Geometry Dash, made by [Firee](https://github.com/F
     * By default, **Prism Menu** comes with lots of mods / hacks that are in most mod menus! While the current amount is low, I plan on adding more as I update this mod.
 * **Custom Themes**
     * You can use the default themes present, create your own theme, or use theme made by others!
-    * Currently, there are 2 themes available: `Future Dark`, `Light`, & `Catppuccin`, but you can create your own theme and share it with others on the Discord Server, or (in the future) in the game itself!
+    * Currently, there are 3 themes available: `Future Dark`, `Light`, & `Catppuccin`, but you can create your own theme and share it with others on the Discord Server, or (in the future) in the game itself!
 * **Multi-Language Support**
     * Prism Menu supports more languages than **English,** it supports **Spanish**, **French**, **Portuguese** (Brazilian), **German**, **Russian**, **Czech**, and many more! Thanks to the translators!
 * **Replay Bot** (Quartz)
@@ -38,7 +38,7 @@ Press on the circle button located on the left corner, or press `Tab` to open th
 
 # Known issues
 - Entering a level can crash your game on Android32 in v1.8.0
-    - Current workaround is to downgrade to the v1.7.4 version of Prism Menu.
+    - Current workaround is to downgrade to the v1.7.4 version of Prism Menu, or upgrade to the 1.8.2 version of Prism Menu or later.
    - [Download link for v1.7.4](https://github.com/FireMario211/Prism-Menu/releases/download/v1.7.4/firee.prism.geode)
 - Most likely in platformer, Macro Editor has a bug where the hold button clicks really fast
    - [Video of the bug](https://prism.tixte.co/hold.mp4) (volume warning)
@@ -77,7 +77,9 @@ Press on the circle button located on the left corner, or press `Tab` to open th
 This project is created by [Firee](https://github.com/FireMario211) under the [GNU General Public License v3.0](https://choosealicense.com/licenses/gpl-3.0/), read more by clicking on the highlighted name.
 
 ---
-Send any suggestions or report any issues to this GitHub Repository or Discord Server.
+Send any suggestions or report any issues to this GitHub repository or Discord server.
+
+If you can fix an issue, please send a pull request containing a fix to this GitHub repository.
 
 note for me: maybe make server closed source or in a private repo, idk if people would really contribute towards it
 
