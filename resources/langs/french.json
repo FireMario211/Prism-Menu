@@ -81,8 +81,8 @@
     },
     {
         "Cheat Indicator": {
-            "name": "Indicateur de triche",
-            "desc": "Affiche une icône indiquant si vous utilisez ou non des mods qui pourraient vous donner un avantage sur les autres joueurs !"
+            "name": "Indicateur de cheat",
+            "desc": "Affiche une icône indiquant si vous utilisez des mods qui pourraient vous donner un avantage sur les autres joueurs !"
         }
     },
     {
@@ -94,12 +94,12 @@
     {
         "FPS Bypass": {
             "name": "FPS Bypass",
-            "desc": "Débloque la limite de FPS du jeu, vous permettant d'avoir une fréquence de rafraîchissement supérieur à 60 ou à celle de votre moniteur."
+            "desc": "Permet de débloquer la limite de FPS du jeu, vous permettant d'avoir une fréquence de rafraîchissement supérieur à 60 ou à celle de votre moniteur."
         }
     },
     {
         "Reset Speedhack": {
-            "name": "Réinitialiser le Speedhack",
+            "name": "Réinitialisation du Speedhack",
             "desc": "Remet la vitesse du jeu à la normale."
         }
     },
@@ -130,7 +130,7 @@
     },
     {
         "Everything Hurts": {
-            "name": "Tout fait mail",
+            "name": "Tout fait mal",
             "desc": "Aïe."
         }
     },
@@ -155,7 +155,7 @@
     {
         "Jump Hack": {
             "name": "Jump Hack",
-            "desc": "Permet au joueur de sauter en l'air."
+            "desc": "Permet au joueur de sauter plus haut."
         }
     },
     {
@@ -246,7 +246,7 @@
     {
         "Backup Stars Limit": {
             "name": "Enlever la limite d'étoile",
-            "desc": "Permet de sauvegarder vos données même si vous avez moins do 10 étoiles."
+            "desc": "Permet de sauvegarder vos données même si vous avez moins de 10 étoiles."
         }
     },
 
@@ -260,7 +260,7 @@
     {
         "Verify Hack": {
             "name": "Verify Hack",
-            "desc": "Permet d'uploader des niveaux non vérifiés."
+            "desc": "Permet de publier des niveaux sans les vérifiés."
         }
     },
     {
@@ -272,7 +272,7 @@
     {
         "No (C) Mark": {
             "name": "Pas de marque (C)",
-            "desc": "Enlève la marque (C) lors de l'upload d'un niveau copié."
+            "desc": "Enlève la marque (C) lors de la publication d'un niveau copié."
         }
     },
     {
@@ -422,7 +422,7 @@
     {
         "Speedhack Audio": {
             "name": "Speedhack Audio",
-            "desc": "Permet d'affecter ou non la vitesse de la musique lors de l'utilisation du \"Speedhack\"."
+            "desc": "Permet d'affecter ou de ne pas affecter la vitesse de la musique lors de l'utilisation du \"Speedhack\"."
         }
     },
     {
@@ -489,7 +489,7 @@
     {
         "Show Hitboxes": {
             "name": "Montrer les hitboxes",
-            "desc": "Montrer les hitboxes des joueurs, des obstacles et des objets solides."
+            "desc": "Permet de montrer les hitboxes des joueurs, des obstacles et des objets solides."
         }
     },
     {
@@ -525,7 +525,7 @@
     },
     {
         "Record": {
-            "name": "Record",
+            "name": "Enregistrer",
             "desc": "Enregistre le gameplay pour qu'il soit rejouer. (Si une macro existante est séléctionnée, cela effacera le gameplay de celle-ci.)"
         }
     },
@@ -725,7 +725,7 @@
     },
     {
         "Fixed FPS": {
-            "name": "Fixer FPS",
+            "name": "FPS Fixés",
             "desc": "Verrouille les images sur la fréquence d'images cible de la macro. Cela peut ressembler à l'option \"smooth fix\" qui est activée si le jeu bug."
         }
     },
@@ -816,18 +816,18 @@
     {
         "Low FPS Pause": {
             "name": "Pause en cas de faible FPS",
-            "desc": "Met le jeu en pause si vos FPS dÃ©cendent en dessous d'une certaine valeur."
+            "desc": "Met le jeu en pause si vos FPS descendent en dessous d'une certaine valeur."
         }
     },
     {
         "Pause below FPS": {
-            "name": "Pause en dessous d'un certain FPS",
+            "name": "Pause au dessous d'un certain FPS",
             "desc": "Le nombre minimum de FPS avant que le jeu ne se mette automatiquement en pause."
         }
     },
     {
         "Auto Clicker": {
-            "name": "Auto Clicker",
+            "name": "Cliqueur Automatique",
             "desc": "Clique automatiquement pour vous."
         }
     },
