@@ -661,5 +661,35 @@
             "name": "Clicks per second",
             "desc": "The amount of times the auto clicker should click every second."
         }
+    },
+    {
+        "Always Show Trail": {
+            "name": "Always Show Trail",
+            "desc": "Always shows the trail behind the player."
+        }
+    },
+    {
+        "Show Hitbox Trail": {
+            "name": "Show Hitbox Trail",
+            "desc": "Shows a hitbox trail behind the player."
+        }
+    },
+    {
+        "Hitbox Trail Length": {
+            "name": "Hitbox Trail Length",
+            "desc": "How long the hitbox trail is behind the player."
+        }
+    },
+    {
+        "Menu Transition": {
+            "name": "Menu Transition",
+            "desc": "(Geometry Dash Only) If there should be a popup animation when opening the menu."
+        }
+    },
+    {
+        "Export to JSON": {
+            "name": "Export to JSON",
+            "desc": "Export your macro to JSON! (.gdr.json)"
+        }
     }
 ]
