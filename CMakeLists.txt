@@ -43,9 +43,9 @@ endif()
 #    set_source_files_properties(${CMAKE_CURRENT_SOURCE_DIR}/src/FPSFix.mm PROPERTIES SKIP_PRECOMPILE_HEADERS ON)
 #endif()
 
-set(IMGUI_VERSION "v1.90")
+#set(IMGUI_VERSION "v1.90")
 if (NOT APPLE AND NOT DEFINED ENV{NO_IMGUI})
-    CPMAddPackage("gh:matcool/gd-imgui-cocos#09a9555") # specify a commit!
+    CPMAddPackage("gh:matcool/gd-imgui-cocos#fbd4103") # specify a commit!
     target_link_libraries(${PROJECT_NAME} imgui-cocos)
 endif()
 

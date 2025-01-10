@@ -1,0 +1,665 @@
+[
+    {
+        "§ Global": {
+            "name": "§ Globaalne"
+        }
+    },
+    {
+        "¬ Player": {
+            "name": "¬ Mängija"
+        }
+    },
+    {
+        "ª Bypass": {
+            "name": "ª Möödumine"
+        }
+    },
+    {
+        "« Creator": {
+            "name": "« Looja"
+        }
+    },
+    {
+        "¦ Quartz Bot": {
+            "name": "¦ Quartz Bot"
+        }
+    },
+    {
+        "··· Misc": {
+            "name": "··· Muu"
+        }
+    },
+    {
+        "¶ Settings": {
+            "name": "¶ Sätted"
+        }
+    },
+
+    {
+        "Prism Menu by Firee": {
+            "name": "Prism Menu Firee poolt"
+        }
+    },
+
+
+
+    {
+        "Anticheat Bypass": {
+            "name": "Anticheatist Möödumine",
+            "desc": "Lülitab välja kõik anticheatid. [Levelid, Looja, Muu]"
+        }
+    },
+    {
+        "Practice Music": {
+            "name": "Harjutamise Muusika",
+            "desc": "Lülitab sisse harjutamise muusika, isegi kui see on lukus."
+        }
+    },
+    {
+        "Safe Mode": {
+            "name": "Turvaline Režiim",
+            "desc": "Paneb levelis edusammud pausile"
+        }
+    },
+    {
+        "Accurate Percentage": {
+            "name": "Täpne Protsent",
+            "desc": "Lubab komakohad leveli protsentides. [Üle tuhandike kohtade]"
+        }
+    },
+    {
+        "Layout Mode": {
+            "name": "Paigutuse Režiim",
+            "desc": "Eemaldab leveliga seotud dekoratsioonid"
+        }
+    },
+    {
+        "No Transition": {
+            "name": "Pole Üleminekut",
+            "desc": "Lühendab stseeni animatsiooni 0s peale"
+        }
+    },
+    {
+        "Cheat Indicator": {
+            "name": "Sohitegemise Indikaator",
+            "desc": "Näitab ikooni, et teatada, kas kasutad sohitegemise alla kuulivaid modifikatsioone!"
+        }
+    },
+    {
+        "Speedhack": {
+            "name": "Kiirusehäkk",
+            "desc": "Muudab mängu ja heli kiirust."
+        }
+    },
+    {
+        "FPS Bypass": {
+            "name": "FPS Vabastamine",
+            "desc": "Lubab FPS-il olla kõrgem, kui teie monitori värskendussagedus."
+        }
+    },
+    {
+        "Reset Speedhack": {
+            "name": "Taasta Kiirusehäkk",
+            "desc": "Taastab kiirusehäki normaalse peale."
+        }
+    },
+
+    {
+        "Noclip": {
+            "name": "Pole Tabamusi",
+            "desc": "Muudab mängija surematuks."
+        }
+    },
+    {
+        "No Spikes": {
+            "name": "Pole Okkaid",
+            "desc": "Ignoreerib okka objekte."
+        }
+    },
+    {
+        "No Hitbox": {
+            "name": "Pole Tabamuskasti",
+            "desc": "Eemaldab kõikide objektide tabamuskastid. Erilised objektid on väljas."
+        }
+    },
+    {
+        "No Solids": {
+            "name": "Pole Tahkust",
+            "desc": "Keelab kõik tahked tabamuskastid. Erilised objektid ikka töötavad."
+        }
+    },
+    {
+        "Everything Hurts": {
+            "name": "Kõik valutab",
+            "desc": "Aih."
+        }
+    },
+    {
+        "No Mirror Transition": {
+            "name": "Pole Peegli Üleminekut",
+            "desc": "Takistab ekraani peegeldamast, kui sisened peegliportaali."
+        }
+    },
+    {
+        "Instant Mirror Portal": {
+            "name": "Kohene Peegliportaal",
+            "desc": "Peegliportaal peegeldab koheselt."
+        }
+    },
+    {
+        "Freeze Player": {
+            "name": "Külmuta Mängija",
+            "desc": "Külmutab mängija liikumise."
+        }
+    },
+    {
+        "Jump Hack": {
+            "name": "Hüppehäkk",
+            "desc": "Lubab hüpata õhus."
+        }
+    },
+    {
+        "Instant Complete": {
+            "name": "Kohene Lõpetamine",
+            "desc": "Koheselt lõpetab leveli. (Ära kasuta leveli muutjas.)"
+        }
+    },
+    {
+        "Force Platformer Mode": {
+            "name": "Sunni Platvormeri Režiim",
+            "desc": "Suunib teid platvormeri režiimi levelit mängides."
+        }
+    },
+    {
+        "Change Gravity": {
+            "name": "Muuda Gravitatsiooni",
+            "desc": "Lubab gravitatsiooni muuta hüpates või kukkudes."
+        }
+    },
+    {
+        "Gravity Value": {
+            "name": "Gravitatsiooni Väärtus",
+            "desc": "Seab gravitatsiooni väärtuse."
+        }
+    },
+
+    {
+        "Icon Bypass": {
+            "name": "Ikoonidest Möödumine",
+            "desc": "Avab kõik ikoonid."
+        }
+    },
+    {
+        "Text Length": {
+            "name": "Tekstipikkus",
+            "desc": "Lubab tekstiväljadesse lõputult teksti lisada."
+        }
+    },
+    {
+        "Character Filter": {
+            "name": "Sümboli Filter",
+            "desc": "Lubab sisestada igat sümbolit igasse tekstivälja."
+        }
+    },
+    {
+        "Slider Limit": {
+            "name": "Liuguri piirang",
+            "desc": "Lubab liugureid nähtavast piirist edasi libistada."
+        }
+    },
+    {
+        "Main Levels": {
+            "name": "Põhilevelid",
+            "desc": "Avab lukustatud deemonlevelid."
+        }
+    },
+    {
+        "Guard Vault": {
+            "name": "Kaitsja Laegas",
+            "desc": "Avab kaitsja laeka."
+        }
+    },
+    {
+        "Keymaster Vault": {
+            "name": "Võtmemeistri Laegas",
+            "desc": "Avab võtmemeistri laeka."
+        }
+    },
+    {
+        "Treasure Room": {
+            "name": "Aarde Ruum",
+            "desc": "Avab aarde ruumi."
+        }
+    },
+    {
+        "Free Shop Items": {
+            "name": "Tasuta poe esemed",
+            "desc": "Lubab kõiki poe esemeid osta 0 mana orbi eest."
+        }
+    },
+    {
+        "Gatekeeper Vault": {
+            "name": "Väravavahi Laegas",
+            "desc": "Avab väravavahi laeka."
+        }
+    },
+    {
+        "Backup Stars Limit": {
+            "name": "Varunduse Tähtede Piirang",
+            "desc": "Lubab andmed varundada isegi siis, kui teil on vähem kui 10 tähte."
+        }
+    },
+
+
+    {
+        "Level Edit": {
+            "name": "Leveli Muutmine",
+            "desc": "Lubab muuta igat levelit, ava muutja pausimenüüst. (EBASTABIILNE)"
+        }
+    },
+    {
+        "Verify Hack": {
+            "name": "Kontrollimishäkk",
+            "desc": "Lubab üles laadida kontrollimatta levelit. Automaatselt seab leveli kontrollituks."
+        }
+    },
+    {
+        "Copy Hack": {
+            "name": "Kopeerimishäkk",
+            "desc": "Lubab kopeerida igat levelit paroolita."
+        }
+    },
+    {
+        "No (C) Mark": {
+            "name": "Pole (C) Märki",
+            "desc": "Eemaldab (C) märgi kopeeritud levelitelt. Automatselt seab leveli originaaliks."
+        }
+    },
+    {
+        "Hide Testmode": {
+            "name": "Peida Testirežiim",
+            "desc": "Peidab 'Testmode' teksti, kui mängid startpos'iga."
+        }
+    },
+    {
+        "Rotation Hack": {
+            "name": "Pööramishäkk",
+            "desc": "Lubab pöörata igat objekti. Töötab ainult kohalikult."
+        }
+    },
+    {
+        "Default Song Bypass": {
+            "name": "Vaikimisi Pala Möödumine",
+            "desc": "Lubab kasutada peidetud vaikimisi palasid muutjas."
+        }
+    },
+
+    {
+        "No Progress Bar": {
+            "name": "Pole Eduriba",
+            "desc": "Eemaldab eduriba! Protsendid on ikka näidatud."
+        }
+    },
+    {
+        "Progress Bar Position": {
+            "name": "Edurea Asukoht",
+            "desc": "Seab eduriba asukoha."
+        }
+    },
+    {
+        "Hide Attempts": {
+            "name": "Peida Katsed",
+            "desc": "Kas katsete lugeja peaks leveli mängimisel olema nähtav või mitte."
+        }
+    },
+    {
+        "Attempt Opacity": {
+            "name": "Katsete Läbipaistvus",
+            "desc": "Seab katsete lugeja läbipaistvuse."
+        }
+    },
+
+    {
+        "Menu Opacity": {
+            "name": "Menüü Läbipaistvus",
+            "desc": "Seab menüü läbipaistvuse."
+        }
+    },
+    {
+        "Theme": {
+            "name": "Teema",
+            "desc": "Vali UI teema Prism Menu jaoks!"
+        }
+    },
+    {
+        "Import Theme": {
+            "name": "Impordi Tema",
+            "desc": "Impordib a teema! [JSON fail]"
+        }
+    },
+    {
+        "Live Theme Editing": {
+            "name": "Otse teema muutmine",
+            "desc": "See lubab muuta teie kohandatud teemat ja näha muutuseid ekraanil! (Hoiatus: See võib mälulekke põhjustada.)"
+        }
+    },
+    {
+        "Show Tooltips": {
+            "name": "Näita vihjeid",
+            "desc": "Näitab või mitte vihjeid modide peal hõljudes."
+        }
+    },
+    {
+        "Show Button": {
+            "name": "Näita Nuppu",
+            "desc": "Näitab nuppu menüü aktiveerimiseks. See on soovitatud Androidi jaoks."
+        }
+    },
+    {
+        "Button Position X": {
+            "name": "Nupu X Asukoht",
+            "desc": "Menüü avamis nupu X asukoht."
+        }
+    },
+    {
+        "Button Position Y": {
+            "name": "Nupu Y asukoht",
+            "desc": "Menüü avamis nupu Y asukoht."
+        }
+    },
+    {
+        "Language": {
+            "name": "Keel",
+            "desc": "Seab Prism Menu keele!"
+        }
+    },
+    {
+        "Restore Defaults": {
+            "name": "Taasta vaikeseaded",
+            "desc": "Lülitab välja kõik modid ja taastab kõik vaikeseadetele."
+        }
+    },
+    {
+        "Credits": {
+            "name": "Tiitrid",
+            "desc": "Inimesed, kes on mod'iga aidanud!"
+        }
+    },
+    {
+        "Thank you to Electrify (ES), Jouca (FR), dank_meme01, savvacorgi, МегаСвятой (RU), Gazonk (BR), huhnmitferrari (DE), and Ignis (CS) for translations!": {
+            "name": "Aitäh Electrify (ES), Jouca (FR), dank_meme01, savvacorgi, МегаСвятой (RU), Gazonk (BR), huhnmitferrari (DE), and Ignis (CS) tõlgete eest!"
+        }
+    },
+    {
+        "And thank you for using the mod! I hope you enjoy using Prism Menu!": {
+            "name": "Ja aitäh teid mod'i kasutamast! Loodan, et naudid Prism Menu kasutamist!"
+        }
+    },
+    {
+        "Close Popup": {
+            "name": "Sule Hüpikaken"
+        }
+    },
+    {
+        "Menu Scale": {
+            "name": "Menüü Skaala",
+            "desc": "Seab teksti ja nuppude suuruse. (Nõuab mängu restarti)"
+        }
+    },
+
+    {
+        "Show Hidden Objects": {
+            "name": "Näita Peidetud Objekte",
+            "desc": "Näitab kõiki peidetud objekte. Taastab objektide algvärvi. See ei tööta objektidel, millel on \"Hide\" atribuut. (Kasulik paigutuse režiimis)"
+        }
+    },
+    {
+        "Transparent BG": {
+            "name": "Läbipaistev Taust",
+            "desc": "Automaatselt seab tausta värvi selle originaalvärviks."
+        }
+    },
+    {
+        "Speedhack Audio": {
+            "name": "Kiirusehäki Heli",
+            "desc": "Seab või mitte heli kiiruse kiirusehäkiga samaks."
+        }
+    },
+    {
+        "No Glow": {
+            "name": "Pole Helendust",
+            "desc": "Keelab kõikidel objektidel helendamise."
+        }
+    },
+    {
+        "Noclip Accuracy": {
+            "name": "Pole Tabamusi Täpsus",
+            "desc": "Informeerib teid teie tabamusteta katse täpsusega."
+        }
+    },
+    {
+        "Show Graphic Options": {
+            "name": "Näita Graafikasätteid",
+            "desc": "Näitab Geometry Dash'i graafikasätteid! Kasulik Android'il, sest see valik pole tavaliselt saadaval."
+        }
+    },
+    {
+        "No Trail": {
+            "name": "Pole Rada",
+            "desc": "Keelab kõik mängija rajaeffektid."
+        }
+    },
+    {
+        "No Wave Trail": {
+            "name": "Pole Laine Rada",
+            "desc": "Peidab Laine taga oleva raja."
+        }
+    },
+    {
+        "Solid Wave Trail": {
+            "name": "Kindel Laine Rada",
+            "desc": "Eemaldab mõlema ikooni värvi segunemise Laine tagusel rajal."
+        }
+    },
+
+    {
+        "Extra Percent Digits": {
+            "name": "Lisa Protsendi Komakohad",
+            "desc": "Lisab täpsele protsendile lisa komakohti."
+        }
+    },
+    {
+        "Uncomplete Level": {
+            "name": "Taasta Level",
+            "desc": "Taastab tavalise ja harjutuse edu ja lubab teil vähendada tähtede arvu, kui lõpetasite leveli!"
+        }
+    },
+    {
+        "No Shaders": {
+            "name": "Pole varjendid",
+            "desc": "Keelab kõik kaamera varjendid."
+        }
+    },
+    {
+        "Disable Camera Effects": {
+            "name": "Keela Kaamera Effektid",
+            "desc": "Keelab iga kaamera effekti ja fookustab kaamera mängija peale. See võib kõik mängurežiimid katki teha peale Kuubiku ja Roboti."
+        }
+    },
+    {
+        "Show Hitboxes": {
+            "name": "Näita tabamuskaste",
+            "desc": "Näita mängija, takistuse ja tahke tabamuskastid."
+        }
+    },
+    {
+        "Show Hitboxes on Death": {
+            "name": "Näita Surmal Tabamuskaste",
+            "desc": "Näitab tabamuskaste, kui sured ja peidab need uuesti tekkides."
+        }
+    },
+    {
+        "Hitbox Stroke": {
+            "name": "Tabamuskast Äär",
+            "desc": "Ääre 'laius' tabamuskaste näidates."
+        }
+    },
+    {
+        "Suicide": {
+            "name": "Enesetapp",
+            "desc": "Tapab mängija korduvalt."
+        }
+    },
+
+    {
+        "TPS Bypass": {
+            "name": "TPS Möödumine",
+            "desc": "Muudab mängu \"Physics FPS\" kõrgemaks või madalamaks vaikeseadest. (240)"
+        }
+    },
+    {
+        "Macro": {
+            "name": "Makro",
+            "desc": "Vali makro, mida salvestada või mängida!"
+        }
+    },
+    {
+        "Record": {
+            "name": "Salvesta",
+            "desc": "Salvestab mängu uuest mängimiseks. (Se taastab praegused sisestused, kui mängid ja makro on valitud.)"
+        }
+    },
+    {
+        "Playback": {
+            "name": "Esita",
+            "desc": "Esitab makro."
+        }
+    },
+    {
+        "Macro Editor": {
+            "name": "Makro Muutja",
+            "desc": "Sisene makro muutjasse. (Ei tööta õigesti, kui salvestamine on sees)"
+        }
+    },
+    {
+        "Frame Fix": {
+            "name": "Kaadri Parandus",
+            "desc": "Salvestab mängija iga liigutuse, kaasa arvatud salvestades ja esitades makrot. Pane tähele, et see valik suurendab salvestades makro faili suurust."
+        }
+    },
+    {
+        "Fixed FPS": {
+            "name": "Fikseritud FPS",
+            "desc": "Lukustab kaadrisageduse makro kaadrisageduse sihtmärgiks. See võib välja näha nagu \"smooth fix\" oleks sees, kui mäng hakib."
+        }
+    },
+    {
+        "Import Macro": {
+            "name": "Impordi Makro",
+            "desc": "Impordib makro."
+        }
+    },
+    {
+        "Save Macro": {
+            "name": "Salvesta Makro",
+            "desc": "Salvestab makro."
+        }
+    },
+    {
+        "No Pulse": {
+            "name": "Pole Pulssi",
+            "desc": "Keelab orbide ja muude seotud objektide pulsseerimise muusikale."
+        }
+    },
+    {
+        "Noclip Flash": {
+            "name": "Pole Tabamusi Välgatus",
+            "desc": "Välgatab terve ekraani punaseks pole tabamusi täpsuse protsendi asemel."
+        }
+    },
+    {
+        "Instant Respawn": {
+            "name": "Kohene Tagasiteke",
+            "desc": "Eemaldab viivituse leveli uude katsesse minemisel."
+        }
+    },
+    {
+        "No Death Effect": {
+            "name": "Pole Surmaeffekti",
+            "desc": "Eemaldab plahvatuse tükid, kui mängija sureb."
+        }
+    },
+    {
+        "No Wave Pulse": {
+            "name": "Pole Laine Pulssi",
+            "desc": "Keelab Laine pulsseerimise muusikale."
+        }
+    },
+    {
+        "Wave Pulse Size": {
+            "name": "Laine Pulsisuurus",
+            "desc": "Seab Laine pulsisuuruse."
+        }
+    },
+    {
+        "Auto Safe Mode": {
+            "name": "Automaatne Turvaline Režiim",
+            "desc": "Paneb edusammud pausile, kui kindlad häkid on sees."
+        }
+    },
+    {
+        "Custom Object Bypass": {
+            "name": "Kohandatud Objektidest Möödumine",
+            "desc": "Lubab teil mööduda 1000 kohandatud objekti piirist."
+        }
+    },
+    {
+        "Menu Keybind": {
+            "name": "Menüü Kiirklahv",
+            "desc": "Kiirklahv Prism Menu UI avamiseks!"
+        }
+    },
+    {
+        "Hide Level": {
+            "name": "Peida Level",
+            "desc": "Peidab kõik objektid levelis."
+        }
+    },
+    {
+        "Hide Player": {
+            "name": "Peida Mängija",
+            "desc": "Peidab mängija. (Vajab leveli uuesti mängimist)"
+        }
+    },
+    {
+        "No Rotate": {
+            "name": "Pole Pöörlemist",
+            "desc": "Peatab mängija pöörlemise hüpates või kukkudes."
+        }
+    },
+
+    {
+        "Low FPS Pause": {
+            "name": "Madalal FPS'il Paus",
+            "desc": "Automaatselt paneb mängu pausile, kui FPS langeb täpsustatud väärtuseni."
+        }
+    },
+    {
+        "Pause below FPS": {
+            "name": "Paus allpool FPS'i",
+            "desc": "Miinimum FPS enne, kui mäng pausile pannakse."
+        }
+    },
+    {
+        "Auto Clicker": {
+            "name": "Automaat Klikker",
+            "desc": "Automaatselt klikib teie eest."
+        }
+    },
+    {
+        "Clicks per second": {
+            "name": "Klikid sekundis",
+            "desc": "Mitu klikki peaks automaat klikker sekundis tegema."
+        }
+    }
+]

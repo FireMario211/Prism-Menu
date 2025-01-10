@@ -108,8 +108,10 @@ bool restoreOldFiles() {
 
 // maybe this will fix the issue
 $execute {
-    SettingHackStruct val { matjson::Array() };
-    Mod::get()->addCustomSetting<SettingHackValue>("values", val);
+    auto ret = Mod::get()->registerCustomSettingType("hack-values", &SettingHackValue::parse);
+    if (!ret) {
+        log::error("Unable to register setting type: {}", ret.unwrapErr());
+    }
 }
 
 $on_mod(Loaded) {
@@ -275,6 +277,8 @@ class $modify(PrismPlayLayer, PlayLayer) {
         CCLabelBMFont* accuracyLabel;
         float flashOpacity = 0.0F;
         CCSprite* flashNode;
+
+        bool hasCompletedLevel = false;
     };
 
     // Anticheat Bypass, Noclip, No Spikes, No Solids
@@ -374,9 +378,7 @@ class $modify(PrismPlayLayer, PlayLayer) {
                 break;
             }*\/
         }*/
-        #if !defined(GEODE_IS_MACOS) && !defined(GEODE_IS_IOS)
         m_fields->previousTestMode = m_isTestMode;
-        #endif
         if (Hacks::isHackEnabled("Level Edit")) {
             //m_fields->m_gameLevel->m_levelType = static_cast<GJLevelType>(2);
         }
@@ -430,12 +432,17 @@ class $modify(PrismPlayLayer, PlayLayer) {
     }
     void resetLevel() {
         m_fields->death = 0;
+        m_fields->hasCompletedLevel = false;
+        if (m_fields->accuracyLabel != nullptr && m_fields->flashNode != nullptr) {
+            m_fields->flashOpacity = 0.0F;
+            m_fields->flashNode->setOpacity(m_fields->flashOpacity);
+        }
         PlayLayer::resetLevel();
     }
     void postUpdate(float p0) {
         PlayLayer::postUpdate(p0);
         if (m_player1 != nullptr && Hacks::isHackEnabled("Suicide")) return PlayLayer::destroyPlayer(m_player1, nullptr);
-        if (m_fields->accuracyLabel != nullptr) {
+        if (m_fields->accuracyLabel != nullptr && !m_fields->hasCompletedLevel) {
             float accuracy = ((static_cast<float>(m_gameState.m_currentProgress - m_fields->death)) / static_cast<float>(m_gameState.m_currentProgress)) * 100; // for some reason this doesnt work on android, like it goes in the negatives
             m_fields->accuracyLabel->setString(fmt::format("{}%", Utils::setPrecision(accuracy, 2)).c_str());
             m_fields->accuracyLabel->setVisible(Hacks::isHackEnabled("Noclip Accuracy") && (Hacks::isHackEnabled("Noclip") || Hacks::isHackEnabled("No Solids") || Hacks::isHackEnabled("No Spikes")));
@@ -448,7 +455,6 @@ class $modify(PrismPlayLayer, PlayLayer) {
                 m_fields->flashNode->setOpacity(m_fields->flashOpacity);
             }
         }
-#if !defined(GEODE_IS_MACOS) && !defined(GEODE_IS_IOS)
         if (!m_fields->hasSetTestMode) {
             m_fields->hasSetTestMode = true;
             m_fields->previousTestMode = m_isTestMode;
@@ -460,7 +466,6 @@ class $modify(PrismPlayLayer, PlayLayer) {
                 m_isTestMode = m_fields->previousTestMode;
             }
         }
-#endif
         // whats the difference between m_fields and not using? i have no idea!
         if (Hacks::isCheating()) { // cheating
             if (!m_fields->isCheating) {
@@ -547,7 +552,6 @@ class $modify(PrismPlayLayer, PlayLayer) {
     }
     
     // Accurate Percentage
-#if !defined(GEODE_IS_MACOS) && !defined(GEODE_IS_IOS)
     void updateProgressbar() {
         PlayLayer::updateProgressbar();
         if (Hacks::isHackEnabled("Accurate Percentage")) {
@@ -559,8 +563,8 @@ class $modify(PrismPlayLayer, PlayLayer) {
             m_fields->percentLabel->setString(percentStr.c_str());
         }
     }
-#endif
     void levelComplete() {
+        m_fields->hasCompletedLevel = true;
         if (!(Hacks::isHackEnabled("Safe Mode") || Hacks::isAutoSafeModeActive())) return PlayLayer::levelComplete();
         PlayLayer::resetLevel(); // haha
     }

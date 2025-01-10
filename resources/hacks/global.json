@@ -57,8 +57,7 @@
     {
         "name": "Accurate Percentage",
         "desc": "Allows for decimals in the level percentage.",
-        "type": "bool",
-        "platforms": ["win", "android32", "android64"]
+        "type": "bool"
     },
     {
         "name": "Extra Percent Digits",
@@ -67,8 +66,7 @@
         "min": 1,
         "max": 15,
         "step": 1,
-        "default": 4,
-        "platforms": ["win", "android32", "android64"]
+        "default": 4
     },
     {
         "name": "Uncomplete Level",

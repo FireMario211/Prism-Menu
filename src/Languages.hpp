@@ -1,11 +1,7 @@
 #pragma once
-#include <unordered_map>
 #include "hacks.hpp"
-//#include <battery/embed.hpp>
-
-
 class Lang {
-    matjson::Array langFile;
+    std::vector<matjson::Value> langFile;
     int langId = 0;
     public:
         static std::unique_ptr<Lang> getLanguage();
@@ -57,25 +53,26 @@ class Lang {
                     case 14: // Romanian
                         file = Hacks::readFile("romanian.json");
                         break;
-                    case 15: // Greek
-                        file = Hacks::readFile("greek.json");
-                        break;
-                    case 16: // Japanese
+                    case 15: // Japanese
                         file = Hacks::readFile("japanese.json");
+                        break;
+                    case 16: // Greek
+                        file = Hacks::readFile("greek.json");
                         break;
                     default: // anything else should be discarded
                         langId = 0;
                         break;
                 }
-                lang->langFile = matjson::parse(file).as_array();
+                lang->langFile = matjson::parse(file).unwrapOrDefault().asArray().unwrapOrDefault();
                 lang->langId = langId;
             }
             return lang;
         }
         matjson::Value find(std::string key) {
+            matjson::Value def;
             for (size_t i = 0; i < langFile.size(); ++i) {
                 if (langFile[i].contains(key)) {
-                    return langFile[i].get<matjson::Value>(key.c_str());
+                    return langFile[i].get(key.c_str()).unwrapOr(def);
                 }
             }
             return nullptr;
@@ -85,12 +82,17 @@ class Lang {
             if (this->langId == 0) return key;
             auto obj = this->find(key);
             if (obj == nullptr) return key;
-            return obj.get<std::string>("name");
+            matjson::Value def = "";
+            return obj.get("name").unwrapOr(def).asString().unwrapOrDefault();
         }
         std::string desc(std::string key, std::string original) {
             if (this->langId == 0) return original;
             auto obj = this->find(key);
             if (obj == nullptr) return key;
-            return obj.get<std::string>("desc");
+            matjson::Value def = "";
+            return obj.get("desc").unwrapOr(def).asString().unwrapOrDefault();
+        }
+        int getLangID() {
+            return langId;
         }
 };

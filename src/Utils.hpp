@@ -29,9 +29,9 @@ class Utils {
         oss << std::fixed << std::setprecision(streamsize) << value;
         return oss.str();
     }
-    static bool arrayContainsString(const matjson::Array& arr, const std::string& str) {
+    static bool arrayContainsString(const std::vector<matjson::Value>& arr, const std::string& str) {
         return std::any_of(arr.begin(), arr.end(), [&](const matjson::Value& val) {
-            return val.as_string() == str;
+            return val.asString().unwrapOrDefault() == str;
         });
     }
     static float getSliderValue(float current, float min, float max, bool inverse) {

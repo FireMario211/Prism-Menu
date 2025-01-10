@@ -35,16 +35,25 @@ void Dropdown::onToggle(CCObject* sender) {
             };
             auto pMenu = prismUIButton->getMenu();
             if (pHack->type == "bool") {
-                static_cast<CCMenuItemToggler*>(pMenu->getChildren()->objectAtIndex(1))->setEnabled(!expanded);
+                if (auto menuItem = pMenu->getChildByType<CCMenuItemToggler>(0)) {
+                    menuItem->setEnabled(!expanded);
+                }
             } else if (pHack->type == "button") {
-                static_cast<CCMenuItemSpriteExtra*>(pMenu->getChildren()->objectAtIndex(0))->setEnabled(!expanded);
+                if (auto menuItem = pMenu->getChildByType<CCMenuItemSpriteExtra>(0)) {
+                    menuItem->setEnabled(!expanded);
+                }
             } else if (pHack->type == "float" || pHack->name.starts_with("Button Pos")) {
                 prismUIButton->getInputNode()->setEnabled(!expanded);
                 prismUIButton->getSlider()->getThumb()->setEnabled(!expanded);
-                static_cast<CCMenuItemSpriteExtra*>(pMenu->getChildren()->objectAtIndex(0))->setEnabled(!expanded);
+                if (auto menuItem = pMenu->getChildByType<CCMenuItemSpriteExtra>(0)) {
+                    menuItem->setEnabled(!expanded);
+                }
             } else if (pHack->type == "dropdown") {
-                auto otherDDMenu = static_cast<CCMenu*>(pMenu->getChildren()->objectAtIndex(1));
-                static_cast<CCMenuItemSpriteExtra*>(otherDDMenu->getChildByID("flip-btn"))->setEnabled(!expanded);
+                if (auto otherDDMenu = pMenu->getChildByType<CCMenu>(0)) {
+                    if (auto flipBtn = typeinfo_cast<CCMenuItemSpriteExtra*>(otherDDMenu->getChildByID("flip-btn"))) {
+                        flipBtn->setEnabled(!expanded);
+                    }
+                }
             }
         }
     }
@@ -83,7 +92,7 @@ Dropdown* Dropdown::create(std::vector<matjson::Value> strs, HackItem *item, coc
     arrowBtn->setScaleY(-0.75f);
     arrowBtn->setUserData(reinterpret_cast<void*>(dd));
     menu->addChild(arrowBtn);
-    auto lbl = CCLabelBMFont::create(strs[item->value.intValue].as_string().c_str(), "PrismMenu.fnt"_spr);
+    auto lbl = CCLabelBMFont::create(strs[item->value.intValue].asString().unwrapOrDefault().c_str(), "PrismMenu.fnt"_spr);
     Themes::RGBAToCC(Themes::getCurrentTheme()["Text"], lbl);
     lbl->setScale(0.5f);
     lbl->setPosition({size.width / 2 - (arrowBtn->getScaledContentSize().width / 2) - 5, size.height / 2});
@@ -106,7 +115,7 @@ Dropdown* Dropdown::create(std::vector<matjson::Value> strs, HackItem *item, coc
     for (size_t i = 0; i < strs.size(); i++)
     {
 
-        auto lbl = CCLabelBMFont::create(strs[i].as_string().c_str(), "PrismMenu.fnt"_spr);
+        auto lbl = CCLabelBMFont::create(strs[i].asString().unwrapOrDefault().c_str(), "PrismMenu.fnt"_spr);
         Themes::RGBAToCC(Themes::getCurrentTheme()["Text"], lbl);
         lbl->limitLabelWidth(size.width - 20, 0.6f, 0);
 

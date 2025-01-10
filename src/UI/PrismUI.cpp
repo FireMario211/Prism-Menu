@@ -9,10 +9,11 @@
 #include "../Utils.hpp"
 #include "CreditsMenu.hpp"
 #include "../Hacks/Quartz.hpp"
+//#include "../Misc/Label.hpp"
 
 int currentMenuIndexGD = 0;
 
-matjson::Array currentThemeApplied;
+std::vector<matjson::Value> currentThemeApplied;
 
 int calcLimit(int n) {
     return static_cast<int>(std::floor(std::log10(n)) + 1);
@@ -115,9 +116,11 @@ bool PrismUIButton::init(HackItem* hack) {
     const auto& obj = hack->data;
     std::string name = hack->name;
     std::string desc = hack->desc;
+    matjson::Value val = 0;
     //auto opcodes = obj.get<matjson::Array>("opcodes");
     this->m_hack = hack;
     auto label = CCLabelBMFont::create(currentLanguage->name(name).c_str(), "PrismMenu.fnt"_spr);
+    //auto label = Label::create(currentLanguage->name(name).c_str(), "NotoSansJP-Regular.ttf"_spr);
     Themes::RGBAToCC(PrismUI::GetTheme()["Text"], label);
     label->setAnchorPoint({0.0F, 0.5F});
     label->limitLabelWidth(150, 0.5F, .2F);
@@ -133,8 +136,8 @@ bool PrismUIButton::init(HackItem* hack) {
         //checkbox->setUserData(reinterpret_cast<void*>(hack));
         menu->addChild(checkbox);
     } else if (hack->value.type == ValueType::Int && hack->type != "dropdown" && hack->type != "char" && !name.starts_with("Button Position")) {
-        auto min = obj.get<int>("min");
-        auto max = obj.get<int>("max");
+        int min = obj.get("min").unwrapOr(val).asInt().unwrapOrDefault();
+        int max = obj.get("max").unwrapOr(val).asInt().unwrapOrDefault();
         label->limitLabelWidth(120, 0.5F, .1F);
         // TODO: add + and - buttons because according to some, android keyboard is BAD!
         m_input = TextInput::create(150.f, "...", "PrismMenu.fnt"_spr);
@@ -210,8 +213,8 @@ bool PrismUIButton::init(HackItem* hack) {
         auto value = (name.starts_with("Button Position")) ? hack->value.intValue : hack->value.floatValue;
 
         label->limitLabelWidth(64, 0.5F, .1F);
-        auto min = obj.get<int>("min");
-        auto max = obj.get<int>("max");
+        int min = obj.get("min").unwrapOr(val).asInt().unwrapOrDefault();
+        int max = obj.get("max").unwrapOr(val).asInt().unwrapOrDefault();
         m_input = TextInput::create(100.f, "...", "PrismMenu.fnt"_spr);
         m_input->setString(
             name.starts_with("Button Position") ? std::to_string(value) : Utils::setPrecision(value, 3)
@@ -225,7 +228,7 @@ bool PrismUIButton::init(HackItem* hack) {
         m_slider->setValue(Utils::getSliderValue(value, min, max, false));
         menu->addChild(m_slider);
     } else if (hack->type == "dropdown" || hack->value.type == ValueType::Custom) {
-        auto type = obj.get<std::string>("type");
+        auto type = obj.get("type").unwrapOr(val).asString().unwrapOrDefault();
         if (type == "button") {
             //const char* caption, int width, bool absolute, const char* font, const char* texture, float height, float scale
             //currentLanguage->name(name).c_str()
@@ -249,7 +252,7 @@ bool PrismUIButton::init(HackItem* hack) {
             label->removeFromParentAndCleanup(true);
         } else if (type == "dropdown") {
             label->limitLabelWidth(64, 0.5F, .1F);
-            auto values = obj.get<matjson::Array>("values");
+            std::vector<matjson::Value> values = obj.get("values").unwrapOr(0).asArray().unwrapOr(std::vector<matjson::Value> {});
             if (hack->name == "Theme") {
                 values = Themes::getCurrentThemes();
             }
@@ -408,8 +411,9 @@ void PrismUIButton::onFloatBtn(CCObject* ret) {
     auto slider = static_cast<SliderThumb*>(ret);
     auto settings = Mod::get()->getSavedValue<SettingHackStruct>("values");
     std::string name = m_hack->name;
-    auto min = m_hack->data.get<int>("min");
-    auto max = m_hack->data.get<int>("max");
+    matjson::Value val = 0;
+    int min = m_hack->data.get("min").unwrapOr(val).asInt().unwrapOrDefault();
+    int max = m_hack->data.get("max").unwrapOr(val).asInt().unwrapOrDefault();
     float actualValue = Utils::getSliderValue(slider->getValue(), min, max, true);
     if (!name.starts_with("Button Position")) {
         m_hack->value.floatValue = actualValue;
@@ -437,70 +441,69 @@ void PrismUIButton::onBtn(CCObject* ret) {
     auto settings = Mod::get()->getSavedValue<SettingHackStruct>("values");
     std::string name = m_hack->name;
 
-    if (CCScene::get() == nullptr) return;
-    auto prismUI = static_cast<PrismUI*>(CCScene::get()->getChildByID("prism-menu"));
+    auto scene = CCScene::get();
+    if (!scene) return;
+    auto prismUI = static_cast<PrismUI*>(scene->getChildByID("prism-menu"));
     if (name == "Restore Defaults") {
         Mod::get()->setSettingValue("skip-intro", false);
         Hacks::processJSON(true);
         prismUI->onClose(ret);
         //GatoSim::onButton();
     } else if (name == "Import Theme") {
-        geode::FileSetting::Filter filter;
-        filter.description = "Theme (*.json)";
-        filter.files.insert("*.json");
-
-        m_listener.bind([] (FileEvent::Event* e) {
-            if (e->getValue()) {
-                if (e->getValue()->isOk()) {
-                    auto path = e->getValue()->unwrap();
-                    auto saveDir = Mod::get()->getSaveDir().string();
-                    if (!std::filesystem::exists(saveDir + "/themes")) {
-                        std::filesystem::create_directory(saveDir + "/themes");
-                    }
-                    auto savePath = saveDir + "/themes/" + path.filename().string();
-                    if (std::filesystem::exists(savePath)) {
-                        std::filesystem::remove(savePath);
-                    }
-                    std::filesystem::copy_file(path, savePath); // why this crashes if a file already exists? idk
-                    FLAlertLayer::create("Success!", "The <cy>theme</c> has successfully been imported! Restart your game to use it.", "OK")->show();
-                } else {
-                    log::error("Something went wrong when picking files: {}", e->getValue()->err());
+        file::pick(file::PickMode::OpenFile, file::FilePickOptions {
+            .filters = { file::FilePickOptions::Filter {
+                .description = "Theme (*.json)",
+                .files = { "*.json" }
+            }}
+        }).listen([](Result<std::filesystem::path>* pathRes) {
+            if (*pathRes) {
+                auto path = pathRes->unwrap();
+                auto saveDir = Mod::get()->getSaveDir().string();
+                if (!std::filesystem::exists(saveDir + "/themes")) {
+                    std::filesystem::create_directory(saveDir + "/themes");
                 }
+                auto savePath = saveDir + "/themes/" + path.filename().string();
+                if (std::filesystem::exists(savePath)) {
+                    std::filesystem::remove(savePath);
+                }
+                std::filesystem::copy_file(path, savePath); // why this crashes if a file already exists? idk
+                FLAlertLayer::create("Success!", "The <cy>theme</c> has successfully been imported! Restart your game to use it.", "OK")->show();
             } else {
-                log::error("Something went wrong when picking files: Value is empty.");
+                FLAlertLayer::create(
+                    "Unable to Select File",
+                    pathRes->unwrapErr(),
+                    "OK"
+                )->show();
             }
         });
-
-        m_listener.setFilter(file::pick(file::PickMode::OpenFile, { dirs::getGameDir(), { filter }}));
-
     } else if (name == "Import Macro") {
-        geode::FileSetting::Filter filter;
-        filter.description = "Macro (*.gdr)";
-        filter.files.insert("*.gdr.json");
-        filter.files.insert("*.gdr");
 
-        m_listener.bind([] (FileEvent::Event* e) {
-            if (e->getValue()) {
-                if (e->getValue()->isOk()) {
-                    auto path = e->getValue()->unwrap();
-                    auto saveDir = Mod::get()->getSaveDir().string();
-                    if (!std::filesystem::exists(saveDir + "/macros")) {
-                        std::filesystem::create_directory(saveDir + "/macros");
-                    }
-                    auto savePath = saveDir + "/macros/" + path.filename().string();
-                    if (std::filesystem::exists(savePath)) {
-                        std::filesystem::remove(savePath);
-                    }
-                    std::filesystem::copy_file(path, savePath); // why this crashes if a file already exists? idk
-                    FLAlertLayer::create("Success!", "The <cy>macro</c> has successfully been imported!", "OK")->show();
-                } else {
-                    log::error("Something went wrong when picking files: {}", e->getValue()->err());
+        file::pick(file::PickMode::OpenFile, file::FilePickOptions {
+            .filters = { file::FilePickOptions::Filter {
+                .description = "Macro (*.gdr)",
+                .files = { "*.gdr", "*.gdr.json" }
+            }}
+        }).listen([](Result<std::filesystem::path>* pathRes) {
+            if (*pathRes) {
+                auto path = pathRes->unwrap();
+                auto saveDir = Mod::get()->getSaveDir().string();
+                if (!std::filesystem::exists(saveDir + "/macros")) {
+                    std::filesystem::create_directory(saveDir + "/macros");
                 }
+                auto savePath = saveDir + "/macros/" + path.filename().string();
+                if (std::filesystem::exists(savePath)) {
+                    std::filesystem::remove(savePath);
+                }
+                std::filesystem::copy_file(path, savePath); // why this crashes if a file already exists? idk
+                FLAlertLayer::create("Success!", "The <cy>macro</c> has successfully been imported!", "OK")->show();
             } else {
-                log::error("Something went wrong when picking files: Value is empty.");
+                FLAlertLayer::create(
+                    "Unable to Select File",
+                    pathRes->unwrapErr(),
+                    "OK"
+                )->show();
             }
         });
-        m_listener.setFilter(file::pick(file::PickMode::OpenFile, { dirs::getGameDir(), { filter }}));
     } else if (name == "Reset Speedhack") {
         HackItem* speedHack = Hacks::getHack("Speedhack");
         speedHack->value.floatValue = 1.0F;
@@ -520,7 +523,7 @@ void PrismUIButton::onBtn(CCObject* ret) {
         FLAlertLayer::create("Error", "This option can only be used on <cy>Android</c>!", "OK")->show();
         #endif
     } else if (name == "Uncomplete Level") {
-        if (auto levelInfoLayer = getChildOfType<LevelInfoLayer>(CCScene::get(), 0)) {
+        if (auto levelInfoLayer = scene->getChildByType<LevelInfoLayer>(0)) {
             // i forgor why i didnt do this and did for loop
             Hacks::resetLevel(levelInfoLayer, levelInfoLayer->m_level);
         } else {
@@ -531,7 +534,8 @@ void PrismUIButton::onBtn(CCObject* ret) {
     } else if (name == "Save Macro") {
         auto macroItem = Hacks::getHack("Macro");
         if (macroItem != nullptr) {
-            std::string value = macroItem->data["values"].as_array()[0].as_string();
+            std::vector<matjson::Value> defaultVal = { "" };
+            std::string value = macroItem->data["values"].asArray().unwrapOr(defaultVal)[0].asString().unwrapOrDefault();
             if (value != "None") {
                 if (MacroManager::exportMacro(value, current_macro)) {
                     FLAlertLayer::create("Success!", "The macro has been <cy>exported</c>","OK")->show();
@@ -592,7 +596,7 @@ void PrismUIButton::onDropdownBtn(CCObject* sender) {
             auto obj = static_cast<PrismUI*>(CCScene::get()->getChildByID("prism-menu"));
             obj->onClose(sender);
         } else if (hack->name == "Theme") {
-            currentThemeApplied = matjson::Array {};
+            currentThemeApplied = std::vector<matjson::Value> {};
         }
     }
 }
@@ -642,13 +646,15 @@ void PrismUIButton::textChanged(CCTextInputNode* input) {
     const auto& obj = m_hack->data;
     auto settings = Mod::get()->getSavedValue<SettingHackStruct>("values");
     std::string name = m_hack->name;
+    matjson::Value val = 0;
     if (m_hack->type == "int") {
-        auto min = m_hack->data.get<int>("min");
-        auto max = m_hack->data.get<int>("max");
+        int min = m_hack->data.get("min").unwrapOr(val).asInt().unwrapOrDefault();
+        int max = m_hack->data.get("max").unwrapOr(val).asInt().unwrapOrDefault();
+
         int value = min;
         std::istringstream iss(input->getString());
         if (!(iss >> value)) {
-            auto def = m_hack->data.get<int>("default");
+            auto def = m_hack->data.get("default").unwrapOr(val).asInt().unwrapOrDefault();
             value = def;
         }
         if (value == m_hack->value.intValue) return;
@@ -663,12 +669,13 @@ void PrismUIButton::textChanged(CCTextInputNode* input) {
         }
         Hacks::Settings::setSettingValue(&settings, *m_hack, m_hack->value.intValue);
     } else if (m_hack->type == "float") { // assume float
-        auto min = m_hack->data.get<int>("min");
-        auto max = m_hack->data.get<int>("max");
+        int min = m_hack->data.get("min").unwrapOr(val).asInt().unwrapOrDefault();
+        int max = m_hack->data.get("max").unwrapOr(val).asInt().unwrapOrDefault();
         float value = min;
         std::istringstream iss(input->getString());
         if (!(iss >> value)) {
-            auto def = m_hack->data.get<float>("default");
+            //auto def = m_hack->data.get<float>("default");
+            auto def = m_hack->data.get("default").unwrapOr(val).as<float>().unwrapOrDefault();
             value = def;
         }
         if (value == m_hack->value.floatValue) return;
@@ -809,8 +816,9 @@ void PrismUIButton::textInputClosed(CCTextInputNode* input) { // basically onInt
 void PrismUIButton::onIncBtn(CCObject* ret) {
     auto settings = Mod::get()->getSavedValue<SettingHackStruct>("values");
     const auto& obj = m_hack->data;
-    auto max = m_hack->data.get<int>("max");
-    int step = (obj.contains("step")) ? obj.get<int>("step") : 5;
+    matjson::Value val = 0;
+    int max = m_hack->data.get("max").unwrapOr(val).asInt().unwrapOrDefault();
+    int step = (obj.contains("step")) ? obj.get("step").unwrapOr(val).asInt().unwrapOrDefault() : 5;
     m_hack->value.intValue += step;
     if (m_hack->value.intValue > max) {
         m_hack->value.intValue = max;
@@ -822,8 +830,9 @@ void PrismUIButton::onIncBtn(CCObject* ret) {
 void PrismUIButton::onDecBtn(CCObject* ret) {
     auto settings = Mod::get()->getSavedValue<SettingHackStruct>("values");
     const auto& obj = m_hack->data;
-    auto min = m_hack->data.get<int>("min");
-    int step = (obj.contains("step")) ? obj.get<int>("step") : 5;
+    matjson::Value val = 0;
+    int min = m_hack->data.get("min").unwrapOr(val).asInt().unwrapOrDefault();
+    int step = (obj.contains("step")) ? obj.get("step").unwrapOr(val).asInt().unwrapOrDefault() : 5;
     m_hack->value.intValue -= step; 
     if (min > m_hack->value.intValue) {
         m_hack->value.intValue = min;
@@ -838,19 +847,19 @@ void PrismUI::RegenCategory() {
     currentI = 0;
     switch (currentMenuIndexGD) {
         case 0: // Global 
-            jsonArray = matjson::parse(Hacks::getGlobalHacks()).as_array();
+            jsonArray = matjson::parse(Hacks::getGlobalHacks()).unwrapOrDefault().asArray().unwrapOrDefault();
             break;
         case 1: // Player
-            jsonArray = matjson::parse(Hacks::getPlayerHacks()).as_array();
+            jsonArray = matjson::parse(Hacks::getPlayerHacks()).unwrapOrDefault().asArray().unwrapOrDefault();
             break;
         case 2: // Bypass
-            jsonArray = matjson::parse(Hacks::getBypassHacks()).as_array();
+            jsonArray = matjson::parse(Hacks::getBypassHacks()).unwrapOrDefault().asArray().unwrapOrDefault();
             break;
         case 3: // Creator
-            jsonArray = matjson::parse(Hacks::getCreatorHacks()).as_array();
+            jsonArray = matjson::parse(Hacks::getCreatorHacks()).unwrapOrDefault().asArray().unwrapOrDefault();
             break;
         case 4: { // Quartz (Bot)
-            jsonArray = matjson::parse(Hacks::getBotHacks()).as_array();
+            jsonArray = matjson::parse(Hacks::getBotHacks()).unwrapOrDefault().asArray().unwrapOrDefault();
             auto label = CCLabelBMFont::create("Quartz is in beta! Recording may be inaccurate!", "PrismMenu.fnt"_spr);
             label->limitLabelWidth(150, 1.0F, .2F);
             Themes::RGBAToCC(GetTheme()["Text"], label);
@@ -860,10 +869,10 @@ void PrismUI::RegenCategory() {
             break;
         }
         case 5: // Misc
-            jsonArray = matjson::parse(Hacks::getMiscHacks()).as_array();
+            jsonArray = matjson::parse(Hacks::getMiscHacks()).unwrapOrDefault().asArray().unwrapOrDefault();
             break;
         case 6: { // Settings
-            jsonArray = matjson::parse(Hacks::getSettings()).as_array();
+            jsonArray = matjson::parse(Hacks::getSettings()).unwrapOrDefault().asArray().unwrapOrDefault();
             auto createdByLabel = CCLabelBMFont::create(m_currentLang->name("Prism Menu by Firee").c_str(), "PrismMenu.fnt"_spr);
             auto versionLabel = CCLabelBMFont::create("Unknown.", "PrismMenu.fnt"_spr);
             float indexY = (currentI * -28) + 310;
@@ -904,10 +913,12 @@ void PrismUI::RegenCategory() {
     }*/
     for (auto it = jsonArray.begin(); it != jsonArray.end(); it++) {
         const auto& obj = *it;
-        std::string name = obj.get<std::string>("name");
-        HackItem* hack = Hacks::getHack(name);
-        if (hack != nullptr) {
-            CreateHackItem(hack);
+        auto name = obj.get("name");
+        if (name.isOk()) {
+            HackItem* hack = Hacks::getHack(name.unwrap().asString().unwrapOrDefault());
+            if (hack != nullptr) {
+                CreateHackItem(hack);
+            }
         }
     }
 }
@@ -1014,12 +1025,12 @@ void PrismUIButton::onInfoBtn(CCObject* ret) {
 
 }
 
-matjson::Object PrismUI::GetTheme() {
+matjson::Value PrismUI::GetTheme() {
     if (currentThemeApplied.empty()) {
         log::debug("Getting current theme...");
         currentThemeApplied.push_back(Themes::getCurrentTheme());
     }
-    return currentThemeApplied[0].as_object();
+    return currentThemeApplied[0];
 }
 
 bool PrismUI::init(float _w, float _h) {

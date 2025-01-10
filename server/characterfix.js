@@ -7,5 +7,6 @@ const letters = japaneseText.split("").map((a) => {
 
 console.log([...new Set(letters)])
 
-require('fs').writeFileSync("./kata.txt", JSON.stringify([...new Set(letters)]), 'utf8');
-
+//require('fs').writeFileSync("./kata.txt", JSON.stringify([...new Set(letters)]), 'utf8');
+console.log("言".codePointAt(0))
+console.log("".codePointAt(0))

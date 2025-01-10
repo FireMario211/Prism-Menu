@@ -13,7 +13,7 @@ export WINSDK_BASE=$SPLAT_DIR/sdk
 #export LLVM_VER=17
 #export CLANG_VER=$LLVM_VER
 
-#export NO_IMGUI=1
+export NO_IMGUI=1
 
 # you can also use `-G Ninja` here
 #-DCMAKE_BUILD_TYPE=Release -B build-linux \
@@ -32,4 +32,4 @@ cmake \
 
 cmake --build build-linux-deb --config RelWithDebInfo
 # /SDrive/Users/Fire/Desktop/Restoration/ClarifyGDPS V.1.3/GDGeode-2.206
-cp build-linux-deb/firee.prism.geode "/SDrive/Users/Fire/Desktop/Restoration/ClarifyGDPS V.1.3/GDGeode-2.206/geode/mods/firee.prism.geode"
+cp build-linux-deb/firee.prism.geode "/SDrive/Users/Fire/Desktop/Restoration/ClarifyGDPS V.1.3/GDGeode-2.2074/geode/mods/firee.prism.geode"

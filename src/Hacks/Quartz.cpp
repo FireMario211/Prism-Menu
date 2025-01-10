@@ -186,7 +186,7 @@ void MacroItemCell::onTrash(CCObject*) {
                             if (item == nullptr) {
                                 log::error("Couldn't find hack item \"Macro\"");
                             } else {
-                                matjson::Array arr;
+                                std::vector<matjson::Value> arr;
                                 arr.push_back("None");
                                 item->data["values"] = arr;
                                 changedMacro = false;
@@ -224,7 +224,7 @@ void MacroItemCell::onSelect(CCObject*) {
     if (item == nullptr) {
         log::error("Couldn't find hack item \"Macro\"");
     } else {
-        matjson::Array arr;
+        std::vector<matjson::Value> arr;
         arr.push_back(m_file.file);
         item->data["values"] = arr;
         changedMacro = true;
@@ -491,6 +491,8 @@ bool ClearFramesUI::setup() {
     return true;
 }
 
+bool dxDebug = false;
+
 class $modify(QuartzPlayLayer, PlayLayer) {
     struct Fields {
         float bot_frame_dt = 0.F;
@@ -534,6 +536,9 @@ class $modify(QuartzPlayLayer, PlayLayer) {
 
         std::vector<PlayerFrame> player_frames;
         CCPoint previousPosition;
+
+        CCScale9Sprite* m_dxDebug;
+
     };
     /*bool init(GJGameLevel* level, bool useReplay, bool dontCreateObjects) {
         if (!PlayLayer::init(level, useReplay, dontCreateObjects)) return false;
@@ -560,7 +565,6 @@ class $modify(QuartzPlayLayer, PlayLayer) {
             }
         }
     }
-
     void startGame() {
         STOPTIME = false;
         auto winSize = CCDirector::sharedDirector()->getWinSize();
@@ -568,7 +572,7 @@ class $modify(QuartzPlayLayer, PlayLayer) {
         if (Hacks::isHackEnabled("Playback") || Hacks::isHackEnabled("Record")) {
             auto macroItem = Hacks::getHack("Macro");
             if (macroItem != nullptr) {
-                std::string value = macroItem->data["values"].as_array()[0].as_string();
+                std::string value = macroItem->data["values"].asArray().unwrap()[0].asString().unwrapOrDefault();
                 changedMacro = false;
                 if (value != "None") {
                     current_macro = MacroManager::getMacro(value);
@@ -755,6 +759,7 @@ class $modify(QuartzPlayLayer, PlayLayer) {
         m_fields->buttons->setPositionY(0);
 
         // TODO: add advance and prev frame for +5 and -5, oh and also allow clearing from right or clearing a section
+        // here
     }
 
     void gotoBtn(CCObject*) {
@@ -978,6 +983,7 @@ class $modify(QuartzPlayLayer, PlayLayer) {
         PlayLayer::onQuit();
     }
     void resetLevel() {
+        // here
         if (m_fields->checkpoints.size() == 0 || !m_isPracticeMode) {
             m_fields->bot_frame_dt = 0.F;
             m_fields->bot_frame = 0;
@@ -1005,7 +1011,7 @@ class $modify(QuartzPlayLayer, PlayLayer) {
         if ((Hacks::isHackEnabled("Playback") || Hacks::isHackEnabled("Record")) && changedMacro) {
             auto macroItem = Hacks::getHack("Macro");
             if (macroItem != nullptr) {
-                std::string value = macroItem->data["values"].as_array()[0].as_string();
+                std::string value = macroItem->data["values"].asArray().unwrap()[0].asString().unwrapOrDefault();
                 if (value != "None") {
                     current_macro = MacroManager::getMacro(value);
                     current_macro.isEnabled = true;
@@ -1133,6 +1139,9 @@ class $modify(QuartzGJBGL, GJBaseGameLayer) {
                     playLayer->m_fields->inputStateBtn2_p2->setVisible(false);
                 }
                 playLayer->m_fields->bot_frame_dt += dt;
+
+                // here
+
                 float addDt = dt * macroFPS;
                 float fixedDt = 1.0 / macroFPS;
                 playLayer->m_fields->bot_frame = m_gameState.m_currentProgress;
@@ -1189,11 +1198,15 @@ class $modify(QuartzGJBGL, GJBaseGameLayer) {
                             }
                         }
                         if (player1) {
-                            GJBaseGameLayer::handleButton(input1->down, input1->button, !input1->player2);
+                            if (!dxDebug) {
+                                GJBaseGameLayer::handleButton(input1->down, input1->button, !input1->player2);
+                            }
                             playLayer->m_fields->changedInputP1 = input1->down;
                         }
                         if (player2) {
-                            GJBaseGameLayer::handleButton(input2->down, input2->button, !input2->player2);
+                            if (!dxDebug) {
+                                GJBaseGameLayer::handleButton(input2->down, input2->button, !input2->player2);
+                            }
                             playLayer->m_fields->changedInputP2 = input2->down;
                         }
                         
@@ -1252,7 +1265,9 @@ class $modify(QuartzGJBGL, GJBaseGameLayer) {
                         // Insert the new element at the desired position
                         log::debug("[Hold] Insert new frame at {}", playLayer->m_fields->bot_frame);
                         current_macro.inputs.insert(insertPos, newInput);
-                        GJBaseGameLayer::handleButton(newInput.down, newInput.button, newInput.player2);
+                        if (!dxDebug) {
+                            GJBaseGameLayer::handleButton(newInput.down, newInput.button, newInput.player2);
+                        }
                         playLayer->RecreateInputState(2, playLayer->m_fields->holdingP2, false);
                     }
                     if (!hadDone) {
