@@ -670,5 +670,35 @@
             "name": "Nhấp chuột mỗi giây (hay là chỉ số CPS)",
             "desc": "Số lần mà trình nhấp tự động phải nhấp mỗi giây."
         }
+    },
+    {
+        "Always Show Trail": {
+            "name": "Luôn luôn hiển thị dấu vết",
+            "desc": "Luôn luôn hiển thị dấu vết phía sau người chơi."
+        }
+    },
+    {
+        "Show Hitbox Trail": {
+            "name": "Hiển thị vùng va chạm",
+            "desc": "Hiển thị vùng va chạm phía sau người chơi."
+        }
+    },
+    {
+        "Hitbox Trail Length": {
+            "name": "Độ dài đường mòn Hitbox",
+            "desc": "Khoảng cách từ hitbox đến phía sau người chơi dài bao nhiêu."
+        }
+    },
+    {
+        "Menu Transition": {
+            "name": "Chuyển đổi menu",
+            "desc": "(Chỉ dành cho Geometry Dash) Nếu có hoạt ảnh bật lên khi mở menu."
+        }
+    },
+    {
+        "Export to JSON": {
+            "name": "Xuất sang JSON",
+            "desc": "Xuất macro của bạn sang JSON! (.gdr.json)"
+        }
     }
 ]
