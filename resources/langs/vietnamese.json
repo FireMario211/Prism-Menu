@@ -670,5 +670,35 @@
             "name": "Nhap chuot moi giay (hay la chi so CPS)",
             "desc": "So lan ma trinh nhap tu đong phai nhap moi giay."
         }
+    },
+    {
+        "Always Show Trail": {
+            "name": "Luon luon hien thi dau vet",
+            "desc": "Luon luon hien thi dau vet phia sau nguoi choi."
+        }
+    },
+    {
+        "Show Hitbox Trail": {
+            "name": "Hien thi vung va cham",
+            "desc": "Hien thi vung va cham phia sau nguoi choi."
+        }
+    },
+    {
+        "Hitbox Trail Length": {
+            "name": "Do dai duong mon Hitbox",
+            "desc": "Khoang cach tu hitbox den phia sau nguoi choi dai bao nhieu."
+        }
+    },
+    {
+        "Menu Transition": {
+            "name": "Chuyen doi menu",
+            "desc": "(Chi danh cho Geometry Dash) Neu co hoat anh bat len khi mo menu."
+        }
+    },
+    {
+        "Export to JSON": {
+            "name": "Xuat sang JSON",
+            "desc": "Xuat macro cua ban sang JSON! (.gdr.json)"
+        }
     }
 ]
