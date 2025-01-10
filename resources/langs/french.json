@@ -836,5 +836,35 @@
             "name": "Clics par seconde",
             "desc": "Le nombre de clics que l'Auto Clicker devra faire par seconde."
         }
+    },
+    {
+        "Always Show Trail": {
+            "name": "Toujours montrer la traînée",
+            "desc": "Toujours afficher la traînée de particules derrière le joueur."
+        }
+    },
+    {
+        "Show Hitbox Trail": {
+            "name": "Montrer la traînée de hitboxes",
+            "desc": "Affiche la traînée de hitboxes derrière le joueur."
+        }
+    },
+    {
+        "Hitbox Trail Length": {
+            "name": "Longeur de la trainée de hitboxes",
+            "desc": "Quelle devrait être la longueur de la traînée de hitboxes derrière le joueur."
+        }
+    },
+    {
+        "Menu Transition": {
+            "name": "Transition du Menu",
+            "desc": "(Geometry Dash Uniquement) S'il devrait y avoir une animation lors de l'ouverture d'un menu."
+        }
+    },
+    {
+        "Export to JSON": {
+            "name": "Exporter en JSON",
+            "desc": "Exportez votre macro vers un fichier JSON ! (.gdr.json)"
+        }
     }
 ]
