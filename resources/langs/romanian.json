@@ -635,5 +635,35 @@
             "name": "Fără Rotație",
             "desc": "Oprește rotația jucătorului când sare sau cade."
         }
+    },
+	{
+        "Always Show Trail": {
+            "name": "Întotdeauna Arată Urma",
+            "desc": "Arată întotdeauna urma lăsată de jucător."
+        }
+    },
+    {
+        "Show Hitbox Trail": {
+            "name": "Arată Urmă Hitbox",
+            "desc": "Arată o urmă hitbox în urma jucătorului."
+        }
+    },
+    {
+        "Hitbox Trail Length": {
+            "name": "Lungime Urmă Hitbox",
+            "desc": "Cât de lungă urma hitbox este."
+        }
+    },
+    {
+        "Menu Transition": {
+            "name": "Tranziție Meniu",
+            "desc": "(Numai în Geometry Dash) Dacă ar trebui să fie o animație pop-up când se deschide meniul."
+        }
+    },
+    {
+        "Export to JSON": {
+            "name": "Exportă Către JSON",
+            "desc": "Exportă fișierul tău macro ca JSON (.gdr.json)"
+        }
     }
 ]
