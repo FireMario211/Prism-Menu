@@ -119,14 +119,14 @@
   },
   {
     "No Hitbox": {
-      "name": "Vuruş Kutularını Yok Say",
-      "desc": "Tüm nesnelerin vuruş kutularını yok sayar, Özel nesneleri devre dışı bırakır."
+      "name": "Hitboxları Yok Say",
+      "desc": "Tüm nesnelerin hitbox yok sayar, Özel nesneleri devre dışı bırakır."
     }
   },
   {
     "No Solids": {
       "name": "Katı Maddeleri Yok Say",
-      "desc": "Çoğu katı maddelerin vuruş kutusunu yok sayar, Özel nesneler hala çalışır."
+      "desc": "Çoğu katı maddelerin hitboxunu yok sayar, Özel nesneler hala çalışır."
     }
   },
   {
@@ -482,20 +482,20 @@
   },
   {
     "Show Hitboxes": {
-      "name": "Vuruş Kutularını Göster",
-      "desc": "Oyuncu, engel ve katı vuruş kutularını gösterir."
+      "name": "Hitboxları Göster",
+      "desc": "Oyuncu, engel ve katı hitboxlarını gösterir."
     }
   },
   {
     "Show Hitboxes on Death": {
-      "name": "Ölünce Vuruş Kutularını Göster",
-      "desc": "Öldüğünüzde vuruş kutularını gösterir ve yeniden doğduğunuzda gizler."
+      "name": "Ölünce Hitboxları Göster",
+      "desc": "Öldüğünüzde hitboxları gösterir ve yeniden doğduğunuzda gizler."
     }
   },
   {
     "Hitbox Stroke": {
-      "name": "Vuruş Kutusu Darbesi",
-      "desc": "Vuruş kutularını çizerken 'darbe genişliği'."
+      "name": "Hitbox Kalınlığı",
+      "desc": "Hitboxların çizerken 'kalınlığı'."
     }
   },
   {
@@ -647,5 +647,35 @@
       "name": "Saniye başı tıklama(lar)",
       "desc": "Otomatik tıklayıcının saniye başı tıklayacağı miktar."
     }
-  }
+  }, 
+  {
+        "Always Show Trail": {
+            "name": "İzi Her Zaman Göster",
+            "desc": "Oyuncunun arkasındaki izi her zaman gösterir."
+    }
+  }, 
+  {
+        "Show Hitbox Trail": {
+            "name": "Hitbox İzini Göster",
+            "desc": "Oyuncunun arkasında bir hitbox izi gösterir."
+    }
+  },
+  {
+        "Hitbox Trail Length": {
+            "name": "Hitbox İz Uzunluğu",
+            "desc": "Oyuncunun arkasındaki hitbox izinin ne kadar uzun olacağı."
+    }
+  },
+  {
+        "Menu Transition": {
+            "name": "Menü Geçişi",
+            "desc": "(Sadece Geometry Dash menü stili) Menüyü açarken açılır pencere animasyonunun olup olmayacağı."
+    }
+  },
+  {
+        "Export to JSON": {
+            "name": "JSON'a Aktar",
+            "desc": "Makronuzu JSON'a aktarın! (.gdr.json)"
+        }
+    }
 ]
