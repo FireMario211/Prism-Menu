@@ -1,6 +1,5 @@
 #pragma once 
 
-#include "Misc/RTLSupport.hpp"
 #include <Geode/Geode.hpp>
 using namespace geode::prelude;
 

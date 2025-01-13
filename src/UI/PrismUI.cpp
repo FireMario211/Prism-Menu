@@ -74,6 +74,7 @@ int getYPosBasedOnCategory(int length) { // someone give me a proper math formul
     }*/
     if (length <= 8) return -100;
     if (currentMenuIndexGD == 6) return 145;
+    if (currentMenuIndexGD == 4) return -50;
     return (30 * length) - 350;
 }
 float getContentSizeBasedOnCategory(int length) { // someone give me a proper math formula ok thanks
@@ -95,7 +96,8 @@ float getContentSizeBasedOnCategory(int length) { // someone give me a proper ma
         default: return 320;
     }*/
     if (length <= 8) return 230;
-    if (currentMenuIndexGD == 6) length += 1;
+    //if (currentMenuIndexGD == 6) length += 1;
+    if (currentMenuIndexGD == 4) length += 1;
     return (29 * length) - 7;
 }
 
