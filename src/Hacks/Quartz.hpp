@@ -162,8 +162,8 @@ class MacroManager {
                 std::filesystem::create_directory(saveDir + "/macros");
             }
             auto savePath = saveDir + "/macros/" + name + ".gdr";
-            if (std::filesystem::exists(savePath)) return false;
             if (isJSON) savePath = savePath + ".json";
+            if (std::filesystem::exists(savePath)) return false;
             if (std::filesystem::exists(savePath)) return false;
             QuartzMacro macro;
             macro.author = GJAccountManager::sharedState()->m_username;
@@ -173,7 +173,7 @@ class MacroManager {
             macro.levelInfo.name = "";
             macro.levelInfo.id = 0;
 
-            macro.gameVersion = 2.206;
+            macro.gameVersion = 2.2074;
             std::ofstream f(savePath, std::ios::binary);
             auto data = macro.exportData(isJSON);
 

@@ -227,15 +227,32 @@ class $modify(PlayLayer) {
 };
 */
 
-/*
+float currentTPS = 240.F;
+// because FOR SOME REASON PATCHING DOESNT WORK!
+#ifdef GEODE_IS_MOBILE
 #include <Geode/modify/GJBaseGameLayer.hpp>
-class $modify(GJBaseGameLayer) {
+class $modify(PrismTPS, GJBaseGameLayer) {
     float getModifiedDelta(float dt) {
-        log::debug("the dt is {}", dt);
-        return GJBaseGameLayer::getModifiedDelta(dt);
+        auto tps = 1.f / currentTPS;
+        double timer;
+        if (m_resumeTimer < 1) {
+            timer = (double)dt + m_extraDelta;
+        } else {
+            m_resumeTimer--;
+            timer = m_extraDelta;
+        }
+        if (m_gameState.m_timeWarp < 1.0) {
+            dt = (double)(m_gameState.m_timeWarp * tps);
+        } else {
+            dt = tps;
+        }
+        dt *= (double)(int)((double)(float)timer / dt);
+        m_extraDelta = (double)(float)timer - dt;
+        return (float)dt;
     }
 };
-*/
+#endif
+
 bool hasChangedTPS = false;
 void Hacks::setTPS(int tps) {
     // im actually too lazy to hook GJBaseGameLayer::update and do the calculations, ok!?
@@ -243,6 +260,8 @@ void Hacks::setTPS(int tps) {
         hasChangedTPS = true;
     }
     if (!hasChangedTPS) return;
+    currentTPS = tps;
+#ifdef GEODE_IS_WINDOWS
 #if defined(GEODE_IS_WINDOWS) // why is windows the only one with 1 addr!?
     uintptr_t addr1 = 0x607008;
     uintptr_t addr2 = 0x0;
@@ -250,8 +269,8 @@ void Hacks::setTPS(int tps) {
     uintptr_t addr1 = 0x4640fc; // float 
     uintptr_t addr2 = 0x4640f0; // double
 #elif defined(GEODE_IS_ANDROID64)
-    uintptr_t addr1 = 0x8384c0; // float
-    uintptr_t addr2 = 0x8384b8; // double
+    uintptr_t addr1 = 0x8384b8; // float
+    uintptr_t addr2 = 0x8384c0; // double
 #elif defined(GEODE_IS_INTEL_MAC)
     uintptr_t addr2 = 0x7e9c60; // double TODO
     uintptr_t addr1 = 0x7e9ac0; // float TODO
@@ -300,6 +319,7 @@ void Hacks::setTPS(int tps) {
             }
         }
     }
+#endif
     log::debug("Changed TPS to {}", tps);
 
     // oh and uhh, this is expanded from gdmo ok. please dont hurt me maxnut

@@ -1,6 +1,6 @@
 #pragma once 
 
-#include "Geode/cocos/robtop/keyboard_dispatcher/CCKeyboardDelegate.h"
+#include "Misc/RTLSupport.hpp"
 #include <Geode/Geode.hpp>
 using namespace geode::prelude;
 
@@ -23,6 +23,114 @@ class Utils {
             return ret;
         }
     #endif
+    }
+
+    static bool isRTLChar(uint32_t c) {
+        // This is a simplified check. You might need a more comprehensive list
+        // based on the specific Arabic characters your engine supports.
+        return (c >= 0x0600 && c <= 0x06FF) || (c >= 0x0750 && c <= 0x077F) || (c >= 0xFB50 && c <= 0xFDFF) || (c >= 0xFE70 && c <= 0xFEFF);
+    }
+
+    // Helper function to determine if a character is a strong LTR character
+    static bool isLTRChar(uint32_t c) {
+        // Simplified check for common LTR characters (English, digits, etc.)
+        return (c >= 0x0041 && c <= 0x005A) || (c >= 0x0061 && c <= 0x007A) || (c >= 0x0030 && c <= 0x0039);
+    }
+
+    // Helper function to convert UTF-8 to UTF-32
+    static std::vector<uint32_t> utf8ToUtf32(const std::string& utf8) {
+        std::vector<uint32_t> utf32;
+        size_t i = 0;
+        while (i < utf8.length()) {
+            uint32_t c = 0;
+            if ((utf8[i] & 0x80) == 0) {
+                c = utf8[i];
+                i++;
+            } else if ((utf8[i] & 0xE0) == 0xC0) {
+                c = ((utf8[i] & 0x1F) << 6) | (utf8[i + 1] & 0x3F);
+                i += 2;
+            } else if ((utf8[i] & 0xF0) == 0xE0) {
+                c = ((utf8[i] & 0x0F) << 12) | ((utf8[i + 1] & 0x3F) << 6) | (utf8[i + 2] & 0x3F);
+                i += 3;
+            } else if ((utf8[i] & 0xF8) == 0xF0) {
+                c = ((utf8[i] & 0x07) << 18) | ((utf8[i + 1] & 0x3F) << 12) | ((utf8[i + 2] & 0x3F) << 6) | (utf8[i + 3] & 0x3F);
+                i += 4;
+            } else {
+                // Handle error (invalid UTF-8) - replace with a replacement character or throw an exception
+                c = 0xFFFD; // Replacement character
+                i++;
+            }
+            utf32.push_back(c);
+        }
+        return utf32;
+    }
+
+    // Helper function to convert UTF-32 to UTF-8
+    static std::string utf32ToUtf8(const std::vector<uint32_t>& utf32) {
+        std::string utf8;
+        for (uint32_t c : utf32) {
+            if (c <= 0x7F) {
+                utf8 += static_cast<char>(c);
+            } else if (c <= 0x7FF) {
+                utf8 += static_cast<char>(0xC0 | (c >> 6));
+                utf8 += static_cast<char>(0x80 | (c & 0x3F));
+            } else if (c <= 0xFFFF) {
+                utf8 += static_cast<char>(0xE0 | (c >> 12));
+                utf8 += static_cast<char>(0x80 | ((c >> 6) & 0x3F));
+                utf8 += static_cast<char>(0x80 | (c & 0x3F));
+            } else if (c <= 0x10FFFF) {
+                utf8 += static_cast<char>(0xF0 | (c >> 18));
+                utf8 += static_cast<char>(0x80 | ((c >> 12) & 0x3F));
+                utf8 += static_cast<char>(0x80 | ((c >> 6) & 0x3F));
+                utf8 += static_cast<char>(0x80 | (c & 0x3F));
+            } else {
+                // Handle error (invalid UTF-32)
+                utf8 += "\xEF\xBF\xBD"; // Replacement character
+            }
+        }
+        return utf8;
+    }
+
+    static std::string simulateRTL(const std::string& text) {
+        // 1. Convert UTF-8 to UTF-32 for easier character handling
+        std::vector<uint32_t> utf32Text = utf8ToUtf32(text);
+
+        // 2. Identify "runs" of characters with the same directionality
+        std::vector<std::pair<size_t, size_t>> rtlRuns;
+        size_t start = 0;
+        for (size_t i = 0; i < utf32Text.size(); ++i) {
+            if (isRTLChar(utf32Text[i])) {
+                if (i == start || !isRTLChar(utf32Text[i - 1])) {
+                    start = i;
+                }
+            } else if (isLTRChar(utf32Text[i])) {
+                if (i > start && isRTLChar(utf32Text[i - 1])) {
+                  rtlRuns.push_back({start, i - 1});
+                }
+            } else {
+                // Treat neutral characters (spaces, punctuation) based on surrounding context
+                if (i > start && isRTLChar(utf32Text[i-1])) {
+                    rtlRuns.push_back({start, i - 1});
+                }
+                start = i + 1;
+            }
+        }
+        if (start < utf32Text.size() && isRTLChar(utf32Text.back())) {
+            rtlRuns.push_back({start, utf32Text.size() - 1});
+        }
+        
+        // 3. Reverse the order of characters within each RTL run
+        for (const auto& run : rtlRuns) {
+            std::reverse(utf32Text.begin() + run.first, utf32Text.begin() + run.second + 1);
+        }
+
+        // 4. Convert back to UTF-8
+        return utf32ToUtf8(utf32Text);
+    }
+    static std::string reverseString(const std::string& input) {
+        std::string reversed = input;
+        std::reverse(reversed.begin(), reversed.end());
+        return reversed;
     }
     static std::string setPrecision(float value, int streamsize) {
         std::ostringstream oss;

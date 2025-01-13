@@ -24,6 +24,11 @@
         "type": "bool"
     },
     {
+        "name": "Everything Hurts",
+        "desc": "Owie.",
+        "type": "bool"
+    },
+    {
         "name": "Suicide",
         "desc": "Kills the player repeatedly.",
         "type": "bool"
@@ -68,6 +73,11 @@
     {
         "name": "No Trail",
         "desc": "Disables any trail effect from the player.",
+        "type": "bool"
+    },
+    {
+        "name": "Always Show Trail",
+        "desc": "Always shows the trail behind the player.",
         "type": "bool"
     },
     {

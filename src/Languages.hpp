@@ -56,7 +56,10 @@ class Lang {
                     case 15: // Japanese
                         file = Hacks::readFile("japanese.json");
                         break;
-                    case 16: // Greek
+                    case 16: // Arabic
+                        file = Hacks::readFile("arabic.json");
+                        break;
+                    case 17: // Greek
                         file = Hacks::readFile("greek.json");
                         break;
                     default: // anything else should be discarded
@@ -83,14 +86,29 @@ class Lang {
             auto obj = this->find(key);
             if (obj == nullptr) return key;
             matjson::Value def = "";
-            return obj.get("name").unwrapOr(def).asString().unwrapOrDefault();
+            auto ret = obj.get("name").unwrapOr(def).asString().unwrapOrDefault();
+            if (isRTL()) {
+                //return Utils::simulateRTL(ret);
+                return "\u200F" + ret;
+            } else {
+                return ret;
+            }
         }
         std::string desc(std::string key, std::string original) {
             if (this->langId == 0) return original;
             auto obj = this->find(key);
             if (obj == nullptr) return key;
             matjson::Value def = "";
-            return obj.get("desc").unwrapOr(def).asString().unwrapOrDefault();
+            auto ret = obj.get("desc").unwrapOr(def).asString().unwrapOrDefault();
+            if (isRTL()) { // 16
+                //return Utils::simulateRTL(ret);
+                return "\u200F" + ret;
+            } else {
+                return ret;
+            }
+        }
+        bool isRTL() {
+            return langId == 16;
         }
         int getLangID() {
             return langId;

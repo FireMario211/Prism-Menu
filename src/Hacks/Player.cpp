@@ -9,39 +9,23 @@ using namespace geode::prelude;
 #include <Geode/modify/CCDrawNode.hpp>
 #include <Geode/modify/GJEffectManager.hpp>
 
-class $modify(PlayerObject) {
-    struct Fields {
-    bool isActuallyDart;
-    // No Solids
-    /*
-     * +       bool collidedWithObject(float, GameObject*, cocos2d::CCRect, bool) = win 0x2cc450;
-+       TodoReturn collidedWithObject(float, GameObject*) = win 0x2cc3d0;
-    bool collidedWithObject(float p0, GameObject* obj, cocos2d::CCRect p2, bool p3) { // what is the point of not having p2, because this doesnt work without it
-        if (Hacks::isHackEnabled("Enable Patching")) return PlayerObject::collidedWithObject(p0, obj, p2, p3);
-        if (!Hacks::isHackEnabled("No Solids")) return PlayerObject::collidedWithObject(p0, obj, p2, p3);
-        //return PlayerObject::collidedWithObject(p0, obj, p2, p3);
-        return false;
-    }*/
-    bool was_platformer;
-    };
+class $modify(POPlayerHacks, PlayerObject) {
     /*bool collidedWithObject(float fl, GameObject* obj,  cocos2d::CCRect p0, bool p1) {
         return PlayerObject::collidedWithObject(fl, obj, p0, p1);
     }*/
+    // No Solids
+    void collidedWithObject(float p0, GameObject* obj, cocos2d::CCRect p2, bool p3) { // what is the point of not having p2, because this doesnt work without it
+         if (Hacks::isHackEnabled("Everything Hurts")) {
+            if (auto playLayer = PlayLayer::get()) {
+                playLayer->destroyPlayer(this, obj);
+            }
+        }
+        if (!Hacks::isHackEnabled("No Solids")) return PlayerObject::collidedWithObject(p0, obj, p2, p3);
+    }
     // Freeze Player
     void update(float dt) {
-        if (!m_fields->was_platformer) {
-            m_fields->was_platformer = this->m_isPlatformer;
-        }
-        #ifndef GEODE_IS_DESKTOP
-        if (PlayLayer::get() != nullptr) {
-            auto playLayer = PlayLayer::get(); //shut!
-            playLayer->m_uiLayer->togglePlatformerMode(Hacks::isHackEnabled("Force Platformer Mode") ? true : m_fields->was_platformer);
-            // for some reason i was trying to look for togglePlatformerMode when I realized that i couldve just literally used the func as its android, im so mad
-        }
-        #endif
-        togglePlatformerMode(Hacks::isHackEnabled("Force Platformer Mode") ? true : m_fields->was_platformer);
-        auto gravityHack = Hacks::getHack("Gravity Value");
         if (Hacks::isHackEnabled("Change Gravity")) { // assume its enabled 
+            auto gravityHack = Hacks::getHack("Gravity Value");
             m_gravityMod = gravityHack->value.floatValue;
         }
         if (Hacks::isHackEnabled("Instant Complete")) return;
@@ -51,12 +35,12 @@ class $modify(PlayerObject) {
             m_waveTrail->m_currentPoint.y,
             m_waveTrail->m_waveSize,
             m_waveTrail->m_pulseSize
-        ));*/ 
+        ));*/
+        //if (Hacks::isHackEnabled("No Rotate")) PlayerObject::setRotation(0);
         if (!Hacks::isHackEnabled("Freeze Player")) return PlayerObject::update(dt);
     }
 
     void playerDestroyed(bool p0) {
-        m_fields->was_platformer = this->m_isPlatformer;
         if (!Hacks::isHackEnabled("No Death Effect")) return PlayerObject::playerDestroyed(p0);
         m_isDead = true;
     }
@@ -69,26 +53,14 @@ class $modify(PlayerObject) {
         return PlayerObject::pushButton(p0);
     }
 #endif
-    void toggleDartMode(bool p0, bool p1) {
-        // this is the fix until someone actually creates pads for android32 and android64, because i cant use m_isDart
-        m_fields->isActuallyDart = p0;
-        PlayerObject::toggleDartMode(p0, p1);
-    }
-    void activateStreak() { // i still need this because no one found m_isDart on mac
-        /*if (!m_isDart && Hacks::isHackEnabled("No Trail")) return;
-        if (m_isDart && Hacks::isHackEnabled("No Wave Trail")) return;*/
-        if (!m_fields->isActuallyDart && Hacks::isHackEnabled("No Trail")) return;
-        if (m_fields->isActuallyDart && Hacks::isHackEnabled("No Wave Trail")) return;
+    void activateStreak() {
+        if (!m_isDart && Hacks::isHackEnabled("No Trail")) return;
+        if (m_isDart && Hacks::isHackEnabled("No Wave Trail")) return;
         PlayerObject::activateStreak();
     }
 #ifndef GEODE_IS_ANDROID32
-    void setRotation(float p0) {
-        if (p0 == 0.F || Hacks::isHackEnabled("No Rotate")) return PlayerObject::setRotation(0);
-        PlayerObject::setRotation(p0);
-    }
-    void setVisible(bool p0) {
-        if (!p0) return PlayerObject::setVisible(p0);
-        PlayerObject::setVisible(!Hacks::isHackEnabled("Hide Player"));
+    void runNormalRotation(bool p0, float p1) {
+        if (!Hacks::isHackEnabled("No Rotate")) return PlayerObject::runNormalRotation(p0, p1);
     }
 #endif
 };
@@ -127,7 +99,7 @@ class $modify(MenuGameLayer) {
 };
 
 
-class $modify(PlayerHacks, GJBaseGameLayer) {
+class $modify(GJBGLPlayerHacks, GJBaseGameLayer) {
     struct Fields {
         float timer = 0;
         bool down = false;

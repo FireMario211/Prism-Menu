@@ -258,4 +258,16 @@ void Themes::RGBAToCC(matjson::Value rgba, CCLabelBMFont* obj) {
     obj->setColor(color);
     obj->setOpacity((alpha == -1) ? currentOpacity * 255.0F : alpha);
 }
-
+void Themes::RGBAToCC(matjson::Value rgba, Label* obj) {
+    float currentOpacity = Hacks::getHack("Menu Opacity")->value.floatValue;
+    std::vector<matjson::Value> emptyArray;
+    rgba = rgba.asArray().unwrapOr(emptyArray);
+    if (rgba.size() != 4) return;
+    float alpha = rgba[3].asDouble().unwrapOrDefault();
+    ccColor3B color;
+    color.r = rgba[0].asDouble().unwrapOrDefault();
+    color.g = rgba[1].asDouble().unwrapOrDefault();
+    color.b = rgba[2].asDouble().unwrapOrDefault();
+    obj->setColor(color);
+    obj->setOpacity((alpha == -1) ? currentOpacity * 255.0F : alpha);
+}

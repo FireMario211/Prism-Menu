@@ -1,5 +1,11 @@
 [
     {
+        "name": "Menu Transition",
+        "desc": "(Geometry Dash Only) If there should be a popup animation when opening the menu.",
+        "type": "bool",
+        "default": true
+    },
+    {
         "name": "Menu Opacity",
         "desc": "Determines how opaque the menu should be.",
         "type": "float",
@@ -20,7 +26,7 @@
         "desc": "Sets the language for Prism Menu!",
         "type": "dropdown",
         "default": 0,
-        "values": ["English", "Français", "Português (Brasil)", "Deutsch", "Русский", "Čeština", "Indonesia", "Español", "Polski", "Melayu", "Türkçe", "Tieng Viet", "Українська","Italiano","Română","日本語"],
+        "values": ["English", "Français", "Português (Brasil)", "Deutsch", "Русский", "Čeština", "Indonesia", "Español", "Polski", "Melayu", "Türkçe", "Tieng Viet", "Українська","Italiano","Română","日本語", "Arabic"],
         "todovalues": ["Ελληνική","日本語"]
     },
     {
@@ -53,7 +59,7 @@
         "desc": "The X position for the button to open the menu.",
         "type": "int",
         "min": -30,
-        "max": 600,
+        "max": 800,
         "default": 75,
         "step": 1
     },

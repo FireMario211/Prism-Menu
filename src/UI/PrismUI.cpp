@@ -9,7 +9,8 @@
 #include "../Utils.hpp"
 #include "CreditsMenu.hpp"
 #include "../Hacks/Quartz.hpp"
-//#include "../Misc/Label.hpp"
+#include "../PrismButton.hpp"
+#include "../Misc/Label.hpp"
 
 int currentMenuIndexGD = 0;
 
@@ -119,32 +120,44 @@ bool PrismUIButton::init(HackItem* hack) {
     matjson::Value val = 0;
     //auto opcodes = obj.get<matjson::Array>("opcodes");
     this->m_hack = hack;
-    auto label = CCLabelBMFont::create(currentLanguage->name(name).c_str(), "PrismMenu.fnt"_spr);
-    //auto label = Label::create(currentLanguage->name(name).c_str(), "NotoSansJP-Regular.ttf"_spr);
+    //auto label = CCLabelBMFont::create(currentLanguage->name(name).c_str(), "PrismMenu.fnt"_spr);
+    if (hack->name == "Practice Music") {
+        //auto tempLabel = CCLabelTTF::create("الموسيقى ممارسة", "NotoSansArabic-Regular.ttf"_spr, 24);
+        //menu->addChild(tempLabel);
+        //log::info("Difference between {} and {} I have no idea!", "الموسيقى ممارسة", currentLanguage->name(name).c_str());
+    }
+    auto label = Label::create(currentLanguage->name(name).c_str(), currentLanguage->getLangID());
     Themes::RGBAToCC(PrismUI::GetTheme()["Text"], label);
-    label->setAnchorPoint({0.0F, 0.5F});
+    //label->setAnchorPoint({0.0F, 0.5F});
     label->limitLabelWidth(150, 0.5F, .2F);
-    label->setPositionX(20);
+    if (currentLanguage->isRTL()) {
+        label->setPositionX(260);
+        label->setAnchorPointTTF({1.0F, 0.5F});
+    } else {
+        label->setPositionX(20);
+        label->setAnchorPointTTF({0.0F, 0.5F});
+    }
     menu->addChild(label);
-    //Themes::RGBAToCC(PrismUI::GetTheme()["Text"], reinterpret_cast<CCNodeRGBA*>(label)); // prrrobably not a good idea
     if (hack->value.type == ValueType::Bool) {
         auto checkbox = CCMenuItemToggler::create(
             createCheckbox(hack->value.boolValue), createCheckbox(!hack->value.boolValue),
             this,
             menu_selector(PrismUIButton::onBoolBtn)
         );
+        if (currentLanguage->isRTL()) {
+            checkbox->setPositionX(280);
+        }
         //checkbox->setUserData(reinterpret_cast<void*>(hack));
         menu->addChild(checkbox);
     } else if (hack->value.type == ValueType::Int && hack->type != "dropdown" && hack->type != "char" && !name.starts_with("Button Position")) {
         int min = obj.get("min").unwrapOr(val).asInt().unwrapOrDefault();
         int max = obj.get("max").unwrapOr(val).asInt().unwrapOrDefault();
         label->limitLabelWidth(120, 0.5F, .1F);
-        // TODO: add + and - buttons because according to some, android keyboard is BAD!
         m_input = TextInput::create(150.f, "...", "PrismMenu.fnt"_spr);
         m_input->setString(std::to_string(hack->value.intValue));
         m_input->setFilter("0123456789");
         m_input->setMaxCharCount(20);
-        m_input->setPositionX(37);
+        m_input->setPositionX((currentLanguage->isRTL()) ? 243 : 37);
         
         auto incBtnSpr = cocos2d::extension::CCScale9Sprite::create("square02b_001.png", { 0.0f, 0.0f, 80.0f, 80.0f });
         incBtnSpr->setContentSize({ 50.0f, 50.0f });
@@ -171,14 +184,14 @@ bool PrismUIButton::init(HackItem* hack) {
             this,
             menu_selector(PrismUIButton::onIncBtn)
         );
-        incBtn->setPositionX(124);
+        incBtn->setPositionX((currentLanguage->isRTL()) ? 156 : 124);
         menu->addChild(incBtn);
         auto decBtn = CCMenuItemSpriteExtra::create(
             decBtnSpr,
             this,
             menu_selector(PrismUIButton::onDecBtn)
         );
-        decBtn->setPositionX(100);
+        decBtn->setPositionX((currentLanguage->isRTL()) ? 180 : 100);
         menu->addChild(decBtn);
 
         label->setPositionX(140);
@@ -188,8 +201,8 @@ bool PrismUIButton::init(HackItem* hack) {
         m_input->setString(Utils::enumKeyToString(static_cast<cocos2d::enumKeyCodes>(hack->value.intValue)));
         m_input->setCommonFilter(CommonFilter::Any);
         m_input->setMaxCharCount(1);
-        m_input->setPositionX(37);
-        label->setPositionX(117);
+        m_input->setPositionX((currentLanguage->isRTL()) ? 243 : 37);
+        label->setPositionX((currentLanguage->isRTL()) ? 167 : 117);
 
         auto changeBtnSpr = cocos2d::extension::CCScale9Sprite::create("square02b_001.png", { 0.0f, 0.0f, 80.0f, 80.0f });
         changeBtnSpr->setContentSize({ 50.0f, 50.0f });
@@ -207,11 +220,10 @@ bool PrismUIButton::init(HackItem* hack) {
             this,
             menu_selector(PrismUIButton::onCharBtn)
         );
-        changeBtn->setPositionX(100);
+        changeBtn->setPositionX((currentLanguage->isRTL()) ? 180 : 100);
         menu->addChild(changeBtn);
     } else if (hack->value.type == ValueType::Float || name.starts_with("Button Position")) {
         auto value = (name.starts_with("Button Position")) ? hack->value.intValue : hack->value.floatValue;
-
         label->limitLabelWidth(64, 0.5F, .1F);
         int min = obj.get("min").unwrapOr(val).asInt().unwrapOrDefault();
         int max = obj.get("max").unwrapOr(val).asInt().unwrapOrDefault();
@@ -220,11 +232,11 @@ bool PrismUIButton::init(HackItem* hack) {
             name.starts_with("Button Position") ? std::to_string(value) : Utils::setPrecision(value, 3)
         );
         m_input->setFilter("0123456789.");
-        m_input->setPositionX(21);
+        m_input->setPositionX((currentLanguage->isRTL()) ? 259 : 21);
         m_input->setMaxCharCount(20);
-        label->setPositionX(190);
+        label->setPositionX((currentLanguage->isRTL()) ? 85 : 190);
         m_slider = Slider::create(this, menu_selector(PrismUIButton::onFloatBtn), .6f);
-        m_slider->setPositionX(122);
+        m_slider->setPositionX((currentLanguage->isRTL()) ? 150 : 122);
         m_slider->setValue(Utils::getSliderValue(value, min, max, false));
         menu->addChild(m_slider);
     } else if (hack->type == "dropdown" || hack->value.type == ValueType::Custom) {
@@ -233,8 +245,7 @@ bool PrismUIButton::init(HackItem* hack) {
             //const char* caption, int width, bool absolute, const char* font, const char* texture, float height, float scale
             //currentLanguage->name(name).c_str()
             auto btnSpr = cocos2d::extension::CCScale9Sprite::create("square02b_001.png", { 0.0f, 0.0f, 80.0f, 80.0f });
-            auto btnlabel = CCLabelBMFont::create(currentLanguage->name(name).c_str(), "PrismMenu.fnt"_spr);
-
+            auto btnlabel = Label::create(currentLanguage->name(name).c_str(), currentLanguage->getLangID());
             Themes::RGBAToCC(PrismUI::GetTheme()["Text"], btnlabel);
             btnlabel->limitLabelWidth(250, 1.0F, .1F);
             btnSpr->setContentSize({ 300.0f, 50.0f });
@@ -247,7 +258,7 @@ bool PrismUIButton::init(HackItem* hack) {
                 this,
                 menu_selector(PrismUIButton::onBtn)
             );
-            btn->setPositionX(63);
+            btn->setPositionX((currentLanguage->isRTL()) ? 217 : 63);
             menu->addChild(btn);
             label->removeFromParentAndCleanup(true);
         } else if (type == "dropdown") {
@@ -257,7 +268,7 @@ bool PrismUIButton::init(HackItem* hack) {
                 values = Themes::getCurrentThemes();
             }
             Dropdown* dropdown;
-            label->setPositionX(180);
+            label->setPositionX((currentLanguage->isRTL()) ? 110 : 180);
             if (hack->name == "Macro") {
                 auto incBtnSpr = cocos2d::extension::CCScale9Sprite::create("square02b_001.png", { 0.0f, 0.0f, 80.0f, 80.0f });
                 incBtnSpr->setContentSize({ 50.0f, 50.0f });
@@ -282,7 +293,7 @@ bool PrismUIButton::init(HackItem* hack) {
             } else {
                 dropdown = Dropdown::create(values, hack, menu_selector(PrismUIButton::onDropdownBtn), nullptr);
             }
-            dropdown->menu->setPosition({78, 0});
+            dropdown->menu->setPosition({(currentLanguage->isRTL()) ? 202.F : 78.F, 0});
             dropdown->menu->setScale(.75F);
 
             //cocos::handleTouchPriority(dropdown->menu);
@@ -334,6 +345,23 @@ void PrismUIButton::onBoolBtn(CCObject* ret) {
     }
     if (name == "Instant Complete" && m_hack->value.boolValue) {
         FLAlertLayer::create(nullptr, "Cheater!", "Just a warning, you will be <cr>banned off leaderboards</c> if you use this on rated levels. Consider this your <cy>warning</c>.", "OK", nullptr)->show();
+    }
+    // "optimization"
+    if (name == "Hide Player") {
+        if (auto PL = PlayLayer::get()) {
+            PL->m_player1->setVisible(!m_hack->value.boolValue);
+            PL->m_player2->setVisible(!m_hack->value.boolValue);
+        }
+    }
+    if (name == "Force Platformer Mode") {
+        if (auto PL = PlayLayer::get()) {
+            PL->m_player1->togglePlatformerMode(m_hack->value.boolValue);
+            PL->m_player2->togglePlatformerMode(m_hack->value.boolValue);
+            #ifndef GEODE_IS_DESKTOP
+            PL->m_uiLayer->togglePlatformerMode(m_hack->value.boolValue);
+            // for some reason i was trying to look for togglePlatformerMode when I realized that i couldve just literally used the func as its android, im so mad
+            #endif
+        }
     }
     if (!m_hack->opcodes.empty()) {
         Hacks::applyPatches(name, m_hack->opcodes, m_hack->value.boolValue);
@@ -443,12 +471,22 @@ void PrismUIButton::onBtn(CCObject* ret) {
 
     auto scene = CCScene::get();
     if (!scene) return;
-    auto prismUI = static_cast<PrismUI*>(scene->getChildByID("prism-menu"));
+    auto prismUI = typeinfo_cast<PrismUI*>(scene->getChildByID("prism-menu"));
+    if (!prismUI) return;
     if (name == "Restore Defaults") {
-        Mod::get()->setSettingValue("skip-intro", false);
-        Hacks::processJSON(true);
-        prismUI->onClose(ret);
-        //GatoSim::onButton();
+        geode::createQuickPopup(
+            "Confirm",
+            fmt::format("Are you sure you want to <cr>restore defaults</c>?\nThis will reset <cy>all settings</c> back to their default values, but will not clear themes, macros, etc..."),
+            "Yes", "No",
+            [prismUI, ret](auto, bool btn2) {
+                if (!btn2) { // yes
+                    Mod::get()->setSettingValue("skip-intro", false);
+                    Hacks::processJSON(true);
+                    prismUI->onClose(ret);
+                    //GatoSim::onButton();
+                }
+            }, true, true
+        );
     } else if (name == "Import Theme") {
         file::pick(file::PickMode::OpenFile, file::FilePickOptions {
             .filters = { file::FilePickOptions::Filter {
@@ -477,7 +515,6 @@ void PrismUIButton::onBtn(CCObject* ret) {
             }
         });
     } else if (name == "Import Macro") {
-
         file::pick(file::PickMode::OpenFile, file::FilePickOptions {
             .filters = { file::FilePickOptions::Filter {
                 .description = "Macro (*.gdr)",
@@ -539,6 +576,30 @@ void PrismUIButton::onBtn(CCObject* ret) {
             if (value != "None") {
                 if (MacroManager::exportMacro(value, current_macro)) {
                     FLAlertLayer::create("Success!", "The macro has been <cy>exported</c>","OK")->show();
+                }
+            } else {
+                FLAlertLayer::create("Error", "You currently do not have a <cy>macro selected</c>.","OK")->show();
+            }
+        }
+    } else if (name == "Export to JSON") {
+        auto macroItem = Hacks::getHack("Macro");
+        if (macroItem != nullptr) {
+            std::vector<matjson::Value> defaultVal = { "" };
+            std::string value = macroItem->data["values"].asArray().unwrapOr(defaultVal)[0].asString().unwrapOrDefault();
+            if (value != "None") {
+                current_macro = MacroManager::getMacro(value);
+                current_macro.isEnabled = false;
+                if (current_macro.inputs.empty()) return FLAlertLayer::create("Error", "Your macro must <cy>have inputs</c>. Try selecting the macro with <cy>playback</c> enabled and enter a level, then try again.", "OK")->show();
+                if (!value.ends_with("gdr")) return FLAlertLayer::create("Error", "Your macro either is already a <cg>JSON file</c>, or is <cr>invalid</c>!", "OK")->show();
+                auto dotPos = value.find_last_of('.');
+                std::string newValue = value;
+                if (dotPos != std::string::npos && dotPos != 0) {
+                    newValue = newValue.substr(0, dotPos);
+                }
+                if (MacroManager::createMacro(newValue, current_macro.description, std::to_string(current_macro.framerate), true)) {
+                    if (MacroManager::exportMacro(value + ".json", current_macro)) {
+                        FLAlertLayer::create("Success!", "The macro has been <cy>exported as JSON</c>","OK")->show();
+                    }
                 }
             } else {
                 FLAlertLayer::create("Error", "You currently do not have a <cy>macro selected</c>.","OK")->show();
@@ -614,14 +675,15 @@ void PrismUI::CreateHackItem(HackItem* hack) {
     //if (!((Hacks::isHackEnabled("Enable Patching") && obj.contains("winOnly")) || !obj.contains("winOnly") || name == "Enable Patching")) return;
     auto btn = PrismUIButton::create(hack, m_currentLang.get());
     float indexY = (currentI * -28) + 310;
-    // TODO: create custom sprite so people dont complain
     //auto infoSpr = CCSprite::createWithSpriteFrameName("GJ_infoIcon_001.png");
     auto infoSpr = CCSprite::create("infoIcon.png"_spr);
     Themes::RGBAToCC(GetTheme()["InfoButton"], infoSpr);
     //infoSpr->setScale(.5F);
     auto infoBtn = CCMenuItemSpriteExtra::create(infoSpr, this, menu_selector(PrismUIButton::onInfoBtn));
     infoBtn->setUserData(reinterpret_cast<void*>(hack));
-    m_content->addChild(infoBtn);
+    if (Hacks::isHackEnabled("Show Tooltips")) {
+        m_content->addChild(infoBtn);
+    }
     
     btn->setPositionY(indexY);
     m_content->addChild(btn);
@@ -633,7 +695,7 @@ void PrismUI::CreateHackItem(HackItem* hack) {
         m_scrollLayer->m_contentLayer->setContentSize(m_content->getContentSize());
     }
     m_scrollLayer->m_contentLayer->setContentSize({m_content->getContentSize().width, getContentSizeBasedOnCategory(currentI + 1)});
-    infoBtn->setPosition({280, indexY});
+    infoBtn->setPosition({(m_currentLang->isRTL()) ? 0.F : 280.F, indexY});
     //m_content->setPositionY(calculateYPosition(currentI));
     m_content->setPositionY(getYPosBasedOnCategory(currentI + 1));
     m_scrollLayer->moveToTop();
@@ -766,9 +828,9 @@ void PrismUIButton::intChanged() {
         //CCApplication::sharedApplication()->toggleVerticalSync(false);
         GM->updateCustomFPS();*/////
     } else if (name == "Button Position X") {
-        prismButton->setPositionX(m_hack->value.intValue);
+        static_cast<PrismButton*>(prismButton)->setSpritePosX(m_hack->value.intValue);
     } else if (name == "Button Position Y") {
-        prismButton->setPositionY(m_hack->value.intValue);
+        static_cast<PrismButton*>(prismButton)->setSpritePosY(m_hack->value.intValue);
     } else if (name == "TPS Bypass") {
         Hacks::setTPS(m_hack->value.intValue);
     }
@@ -873,12 +935,12 @@ void PrismUI::RegenCategory() {
             break;
         case 6: { // Settings
             jsonArray = matjson::parse(Hacks::getSettings()).unwrapOrDefault().asArray().unwrapOrDefault();
-            auto createdByLabel = CCLabelBMFont::create(m_currentLang->name("Prism Menu by Firee").c_str(), "PrismMenu.fnt"_spr);
+            auto createdByLabel = Label::create(m_currentLang->name("Prism Menu by Firee").c_str(), m_currentLang->getLangID());
             auto versionLabel = CCLabelBMFont::create("Unknown.", "PrismMenu.fnt"_spr);
             float indexY = (currentI * -28) + 310;
             createdByLabel->limitLabelWidth(150, 1.0F, .2F);
-            createdByLabel->setPosition({63, indexY + 15});
-            versionLabel->setPosition({63, indexY});
+            createdByLabel->setPosition({(m_currentLang->isRTL()) ? 220.F : 63.F, indexY + 15});
+            versionLabel->setPosition({(m_currentLang->isRTL()) ? 220.F : 63.F, indexY});
             Themes::RGBAToCC(GetTheme()["Text"], createdByLabel);
             Themes::RGBAToCC(GetTheme()["Text"], versionLabel);
             #ifndef DEV_BUILD
@@ -927,13 +989,14 @@ void PrismUI::CreateButton(const char* name, int menuIndex) {
     auto menu = CCMenu::create();
 
     float scale = 25.0F; // used to be 35.0F
-    auto label = CCLabelBMFont::create(name, "PrismMenu.fnt"_spr);
+    auto label = Label::create(name, m_currentLang->getLangID());
     //label->addChild(invisBG);
     //label->limitLabelWidth(72, 1.0F, .2F);
+    label->setAnchorPointTTF({0, 0});
     label->limitLabelWidth(72, 0.5F, .2F);
     auto button = CCMenuItemSpriteExtra::create(label, this, menu_selector(PrismUI::onSideButton));
-    button->setContentSize({90.0f, scale});
     label->setPosition({90.0f / 2, scale / 2});
+    button->setContentSize({90.0f, scale});
     auto buttonBG = cocos2d::extension::CCScale9Sprite::create("square02b_001.png", { 0.0f, 0.0f, 80.0f, 80.0f });
     buttonBG->setContentSize({ 90.0f, 35.0F }); // used to be scale
     buttonBG->setScaleY(.83F);
@@ -948,8 +1011,9 @@ void PrismUI::CreateButton(const char* name, int menuIndex) {
     offsetY -= 4.0F;
     //float otherOffsetY = 97.F;
     float otherOffsetY = 98.F;
-    buttonBG->setPosition(-163, (menuIndex * offsetY) + otherOffsetY);
-    button->setPosition(-163, (menuIndex * offsetY) + otherOffsetY);
+    int posTo = (m_currentLang->isRTL()) ? 167 : -163;
+    buttonBG->setPosition(posTo, (menuIndex * offsetY) + otherOffsetY);
+    button->setPosition(posTo, (menuIndex * offsetY) + otherOffsetY);
     buttonBG->setID(fmt::format("prism-nav-bg-{}", menuIndex));
     button->setID(fmt::format("prism-nav-btn-{}", menuIndex));
     button->setUserData(button);
@@ -995,7 +1059,7 @@ void PrismUIButton::onInfoBtn(CCObject* ret) {
     }
     if (lines != nullptr && title != nullptr) {
         // probably a bad idea memory-wise
-        auto newTitle = CCLabelBMFont::create(name.c_str(), "PrismMenu.fnt"_spr);
+        auto newTitle = Label::create(name.c_str(), currentLanguage->getLangID());//CCLabelBMFont::create(name.c_str(), "PrismMenu.fnt"_spr);
         newTitle->setPosition({title->getPositionX(), title->getPositionY() - 15});
         newTitle->limitLabelWidth(256, 0.75F, 0.25F);
         newTitle->setZOrder(title->getZOrder());
@@ -1011,15 +1075,24 @@ void PrismUIButton::onInfoBtn(CCObject* ret) {
             280.F, { 0.5, 0 }, 20.F, false);*/ 
         //const std::string& font, const std::string& text, const float scale, const float width,
         auto winSize = cocos2d::CCDirector::sharedDirector()->getWinSize();
-        auto newLines = SimpleTextArea::create("A", "PrismMenu.fnt"_spr, 0.5F, winSize.width / 2.2F); // 260.0F
-        newLines->setText(desc.c_str());
-        newLines->setAlignment(CCTextAlignment::kCCTextAlignmentCenter);
-        newLines->setScale(calculateScale(desc, 25, .75F, .25F));
-        // ok geode broke AxisLayout, thats nice
-        newLines->setPosition({(winSize.width / 2), (winSize.height / 2) + 10}); // 160 - 220
-        newLines->setZOrder(lines->getZOrder());
-        lines->removeFromParentAndCleanup(true);
-        flAlert->m_mainLayer->addChild(newLines);
+        if (!currentLanguage->isRTL()) {
+            auto newLines = SimpleTextArea::create("A", "PrismMenu.fnt"_spr, 0.5F, winSize.width / 2.2F); // 260.0F
+            newLines->setText(desc.c_str());
+            newLines->setAlignment(CCTextAlignment::kCCTextAlignmentCenter);
+            newLines->setScale(calculateScale(desc, 25, .75F, .25F));
+            // ok geode broke AxisLayout, thats nice
+            newLines->setPosition({(winSize.width / 2), (winSize.height / 2) + 10}); // 160 - 220
+            newLines->setZOrder(lines->getZOrder());
+            lines->removeFromParentAndCleanup(true);
+            flAlert->m_mainLayer->addChild(newLines);
+        } else {
+            auto newLines = Label::create(desc.c_str(), currentLanguage->getLangID());
+            newLines->setScale(calculateScale(desc, 25, .75F, .25F));
+            newLines->setPosition({(winSize.width / 2), (winSize.height / 2) + 10});
+            newLines->setZOrder(lines->getZOrder());
+            lines->removeFromParentAndCleanup(true);
+            flAlert->m_mainLayer->addChild(newLines);
+        }
         flAlert->show();
     }
 
@@ -1034,12 +1107,12 @@ matjson::Value PrismUI::GetTheme() {
 }
 
 bool PrismUI::init(float _w, float _h) {
+    this->m_noElasticity = !Hacks::isHackEnabled("Menu Transition");
     auto winSize = cocos2d::CCDirector::sharedDirector()->getWinSize();
     m_currentLang = Lang::getLanguage();
 
     float menuScale = Hacks::getHack("Menu Scale")->value.floatValue;
     this->m_pLrSize = cocos2d::CCSize { _w, _h };
-    //  this->m_pLrSize = cocos2d::CCSize { _w * menuScale, _h * menuScale };
     if (!this->initWithColor({ 0, 0, 0, 105 })) return false;
     this->m_mainLayer = cocos2d::CCLayer::create();
     this->addChild(m_mainLayer);
@@ -1076,18 +1149,26 @@ bool PrismUI::init(float _w, float _h) {
     
     auto prismButton = CCScene::get()->getChildByID("prism-icon");
     if (prismButton != nullptr) {
-        static_cast<CCMenuItemSpriteExtra*>(prismButton->getChildren()->objectAtIndex(0))->setEnabled(false);
+        static_cast<CCMenu*>(prismButton)->setEnabled(false);
+        //static_cast<CCMenuItemSpriteExtra*>(prismButton->getChildren()->objectAtIndex(0))->setEnabled(false);
     }
 
     auto sideBar = cocos2d::extension::CCScale9Sprite::create("square02b_001.png", { 0.0f, 0.0f, 80.0f, 80.0f });
     sideBar->setContentSize({ 100.0f, 230.0f });
-    //sideBar->setPosition(125, bg->getContentSize().height / 2);
-    sideBar->setPosition(60, _h / 2);
+    if (m_currentLang->isRTL()) {
+        sideBar->setPosition(_w - 60, _h / 2);
+    } else {
+        sideBar->setPosition(60, _h / 2);
+    }
     Themes::RGBAToCC(GetTheme()["TableRowBg"], sideBar);
 
     auto buttonBG = cocos2d::extension::CCScale9Sprite::create("square02b_001.png", { 0.0f, 0.0f, 80.0f, 80.0f });
     buttonBG->setContentSize({ 320.0f, 230.0f });
-    buttonBG->setPosition(_w - 173, _h / 2);
+    if (m_currentLang->isRTL()) {
+        buttonBG->setPosition(175, _h / 2);
+    } else {
+        buttonBG->setPosition(_w - 173, _h / 2);
+    }
     Themes::RGBAToCC(GetTheme()["TableRowBg"], buttonBG);
 
     bg->addChild(sideBar);
@@ -1144,7 +1225,8 @@ void PrismUI::keybackClicked() {
 void PrismUI::onClose(cocos2d::CCObject* pSender) {
     auto prismButton = CCScene::get()->getChildByID("prism-icon");
     if (prismButton != nullptr) {
-        static_cast<CCMenuItemSpriteExtra*>(prismButton->getChildren()->objectAtIndex(0))->setEnabled(true);
+        static_cast<CCMenu*>(prismButton)->setEnabled(true);
+        //static_cast<CCMenuItemSpriteExtra*>(prismButton->getChildren()->objectAtIndex(0))->setEnabled(true);
     }
     if (PlayLayer::get() != nullptr) { // attempt to fix the stupid issue
         #ifndef GEODE_IS_DESKTOP

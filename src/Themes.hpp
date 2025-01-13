@@ -4,6 +4,7 @@
 #include <imgui-cocos.hpp>
 #endif
 #include <Geode/ui/TextInput.hpp>
+#include "Misc/Label.hpp"
 
 using namespace geode::prelude;
 
@@ -31,5 +32,6 @@ namespace Themes {
     #endif
     void RGBAToCC(matjson::Value rgba, CCNodeRGBA* obj);
     void RGBAToCC(matjson::Value rgba, CCLabelBMFont* obj);
+    void RGBAToCC(matjson::Value rgba, Label* obj);
     matjson::Value getCurrentTheme();
 };

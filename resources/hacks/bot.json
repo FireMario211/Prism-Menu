@@ -45,6 +45,12 @@
         "desc": "Saves the macro.",
         "type": "button",
         "default": "a"
+    },
+    {
+        "name": "Export to JSON",
+        "desc": "Export your macro to JSON! (.gdr.json)",
+        "type": "button",
+        "default": "a"
     }
     
 ]

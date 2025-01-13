@@ -205,13 +205,14 @@ void MacroItemCell::onInfo(CCObject*) {
         nullptr,
         m_file.name.c_str(),
         fmt::format(
-            "By <cy>{}</c>\nFile Name: <cg>{}</c>\nDescription: <cy>{}</c>\nLevel: <cg>{}</c> ({})\nTPS: <cy>{}</c>\nDuration: <cg>{}</c>\n\n<cr>Made with</c> {} (v{})",
+            "By <cy>{}</c>\nFile Name: <cg>{}</c>\nDescription: <cy>{}</c>\nLevel: <cg>{}</c> ({})\nTPS: <cy>{}</c>\nDuration: <cg>{}</c>\nFrame Fix: {}\n\n<cr>Made with</c> {} (v{})",
             m_file.macro.author,
             m_file.file,
             m_file.macro.description,
             m_file.macro.levelInfo.name, m_file.macro.levelInfo.id,
             m_file.macro.framerate,
             m_file.macro.duration,
+            (!m_file.macro.inputs.empty() && m_file.macro.inputs[0].frameFix.fix) ? "<cy>Yes</c>" : "<cr>No</c>",
             m_file.macro.botInfo.name, m_file.macro.botInfo.version
         ).c_str(),
         "OK",

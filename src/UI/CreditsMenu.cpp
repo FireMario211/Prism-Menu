@@ -34,10 +34,10 @@ std::vector<CreditUser> users = {
     },*/
     {
         "TheSillyDoggo",
-        5,
+        373,
         "Logo Base",
-        { 125,125,255 },
-        { 125,255,175 },
+        { 255,255,255 },
+        { 255, 185, 255 },
         { 255, 255, 255 },
         true,
         "https://github.com/TheSillyDoggo",
@@ -352,7 +352,7 @@ std::vector<CreditUser> users = {
         "ItzRatchett",
         275,
         "Proofreader (PT)",
-        { 125, 0, 255 },
+        { 0, 125, 125 },
         { 0, 255, 255 },
         { 0, 255, 0 },
         true,
@@ -369,6 +369,27 @@ std::vector<CreditUser> users = {
         true,
         "",
         20527327
+    },
+    {
+        "Sosuke Aoi",
+        459,
+        "Translator (FR)",
+        { 255, 255, 255 },
+        { 0, 0, 0 },
+        { 255, 255, 255 },
+        true,
+        "https://www.youtube.com/channel/UC_wDsDqnDOkpC2yPb7pEZWw"
+    },
+    {
+        "Adamorocco",
+        35,
+        "Translator (AR)",
+        { 64, 64, 64, },
+        { 255, 0, 0 },
+        { 255, 255, 255 },
+        true,
+        "",
+        25682776
     }
 };
 

@@ -1,3 +1,22 @@
+# v1.10.0
+    - Updated to Geode 4.1.2
+    - Added Arabic Translations
+    - Updated French Translations
+    - Updated Russian Translations
+    - Updated Romanian Translations
+    - Updated Turkish Translations
+    - Updated Vietnamese Translations
+    - Added Hitbox Trail
+    - Added Dragging the Prism Button
+    - Added Menu Transition
+    - Added Show Tooltip to work properly with info buttons
+    - Added information for whether or not Quartz Macros have frame fix enabled or not 
+    - Added a confirmation for resetting settings to default
+    - Added "Export as JSON" for Macros
+    - Added Everything Hurts back
+    - Added No Solids back
+    - Fixed TPS Bypass for Android
+    - Optimized some hacks
 # v1.9.3 
     - Updated to Geode 4.0.0-beta.1
     - Updated Ukrainian Translations
