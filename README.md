@@ -67,6 +67,11 @@ Press on the circle button located on the left corner, or press `Tab` to open th
 * slideglide - Translations for Turkish
 * DarkKing - Proofreading for Turkish
 * [BinZ FAKE](https://youtube.com/@tienanh_90) - Translations for Vietnamese
+* Lancelot220 - Translations for Ukrainian
+* [HiimandrewYT](https://youtube.com/@MyNamesAndrew) - Translations for Romanian 
+* Adamorocco - Translations for Arabic
+* [AprilWaterfalls](https://x.com/aprilwaterfalls) - Translations for Italian
+* 
 * **All contributors that helped with Prism Menu!**
 
 # Libraries
