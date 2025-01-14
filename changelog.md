@@ -1,3 +1,8 @@
+# v1.10.1
+    - Changed language name for selecting Arabic to be "al-Arabia"
+    - Updated Arabic Translations
+    - Fixed mods that use getModifiedDelta to work unless you change the TPS for Prism yourself (xdBot as an example)
+    - Reworked Safe Mode (for Eclipse Menu compatibility)
 # v1.10.0
     - Updated to Geode 4.1.2
     - Added Arabic Translations
@@ -6,6 +11,7 @@
     - Updated Romanian Translations
     - Updated Turkish Translations
     - Updated Vietnamese Translations
+    - Updated Ukrainian Translations
     - Added Hitbox Trail
     - Added Dragging the Prism Button
     - Added Menu Transition

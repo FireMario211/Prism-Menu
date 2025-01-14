@@ -339,7 +339,7 @@
     },
     {
         "Live Theme Editing": {
-            "name": "Live Theme Editing",
+            "name": "تحرير السمة المباشرة",
             "desc": "يتيح لك تحرير سمة مخصصة أثناء رؤية التغييرات على الشاشة! (تحذير: قد يتسبب ذلك في حدوث تسرب في الذاكرة)"
         }
     },
@@ -351,8 +351,8 @@
     },
     {
         "Show Button": {
-            "name": "Show Button",
-            "desc": "Shows the button to activate the menu. It's recommended to keep this enabled for Android."
+            "name": "إظهار الزر",
+            "desc": "يُظهر الزر لتفعيل القائمة. يوصى بإبقاء هذا ممكّنًا لنظام أندرويد"
         }
     },
     {

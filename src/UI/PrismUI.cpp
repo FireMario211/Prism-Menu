@@ -365,6 +365,21 @@ void PrismUIButton::onBoolBtn(CCObject* ret) {
             #endif
         }
     }
+    /*
+    if (name == "Safe Mode" || name == "Auto Safe Mode") {
+        if (auto PL = PlayLayer::get()) {
+            if (m_hack->value.boolValue) {
+                if (name == "Safe Mode" || Hacks::isAutoSafeModeActive()) {
+                    PL->m_isTestMode = true;
+                }
+            } else {
+                if (name == "Safe Mode" && !Hacks::isAutoSafeModeActive()) {
+                    PL->m_isTestMode = false;
+                }
+            }
+        }
+    }
+    */
     if (!m_hack->opcodes.empty()) {
         Hacks::applyPatches(name, m_hack->opcodes, m_hack->value.boolValue);
     }

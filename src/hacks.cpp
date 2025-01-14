@@ -229,10 +229,20 @@ class $modify(PlayLayer) {
 
 float currentTPS = 240.F;
 // because FOR SOME REASON PATCHING DOESNT WORK!
-#ifdef GEODE_IS_MOBILE
+#ifndef GEODE_IS_MACOS
 #include <Geode/modify/GJBaseGameLayer.hpp>
 class $modify(PrismTPS, GJBaseGameLayer) {
+    static void onModify(auto& self) {
+        auto res = self.getHook("GJBaseGameLayer::getModifiedDelta");
+        if (!res) {
+            log::error("Something went horribly wrong while hooking GJBaseGameLayer::getModifiedDelta");
+            return;
+        }
+        res.unwrap()->disable();
+        log::info("Disabled GJBaseGameLayer::getModifiedDelta");
+    }
     float getModifiedDelta(float dt) {
+        if (currentTPS == 240.F) return GJBaseGameLayer::getModifiedDelta(dt); // as a "just in case"
         auto tps = 1.f / currentTPS;
         double timer;
         if (m_resumeTimer < 1) {
@@ -261,7 +271,7 @@ void Hacks::setTPS(int tps) {
     }
     if (!hasChangedTPS) return;
     currentTPS = tps;
-#ifdef GEODE_IS_WINDOWS
+#if 0
 #if defined(GEODE_IS_WINDOWS) // why is windows the only one with 1 addr!?
     uintptr_t addr1 = 0x607008;
     uintptr_t addr2 = 0x0;
@@ -321,6 +331,18 @@ void Hacks::setTPS(int tps) {
     }
 #endif
     log::debug("Changed TPS to {}", tps);
+    for (auto& hook : Mod::get()->getHooks()) {
+        if (hook->getDisplayName() == "GJBaseGameLayer::getModifiedDelta") {
+            if (tps == 240.F) {
+                log::info("Disable GJBaseGameLayer::getModifiedDelta");
+                (void)hook->disable();
+            } else {
+                log::info("Enable GJBaseGameLayer::getModifiedDelta");
+                (void)hook->enable();
+            }
+            break;
+        }
+    }
 
     // oh and uhh, this is expanded from gdmo ok. please dont hurt me maxnut
     // src/Hacks/PhysicsBypass.cpp
