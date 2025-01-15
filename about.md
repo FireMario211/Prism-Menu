@@ -49,5 +49,9 @@ Press on the circle button located on the left corner, or press `Tab` to open th
 * DarkKing - Proofreading for Turkish
 * [tienanh109](https://youtube.com/@tienanh_90) - Translations for Vietnamese
 * WALVe - Translations for French
+* Lancelot220 - Translations for Ukrainian
+* [HiimandrewYT](https://youtube.com/@MyNamesAndrew) - Translations for Romanian 
+* Adamorocco - Translations for Arabic
+* [AprilWaterfalls](https://x.com/aprilwaterfalls) - Translations for Italian
 
 Send any suggestions or report any issues to the **GitHub Repository** or <cb>Discord Server</c>. I hope you enjoy using the mod!
