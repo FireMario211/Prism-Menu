@@ -66,7 +66,7 @@ Press on the circle button located on the left corner, or press `Tab` to open th
 * hori - Translations for Malay
 * slideglide - Translations for Turkish
 * DarkKing - Proofreading for Turkish
-* [BinZ FAKE](https://youtube.com/@tienanh_90) - Translations for Vietnamese
+* [tienanh109](https://youtube.com/@tienanh_90) - Translations for Vietnamese
 * Lancelot220 - Translations for Ukrainian
 * [HiimandrewYT](https://youtube.com/@MyNamesAndrew) - Translations for Romanian 
 * Adamorocco - Translations for Arabic
