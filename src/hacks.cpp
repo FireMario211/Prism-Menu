@@ -132,7 +132,13 @@ void proceedWithReset(LevelInfoLayer* levelInfoLayer, GJGameLevel* level, bool r
                         }
                     }
                     if (resetCoins) {
-                        GSM->setStat("12", GSM->getStat("12") - level->m_coinsVerified);
+                        auto coinDict = GSM->m_verifiedUserCoins;
+                        for (auto i = 0; i < level->m_coins; i++) {
+                            auto key = level->getCoinKey(i + 1);
+                            if (GSM->hasUserCoin(key) || GSM->hasPendingUserCoin(key)) {
+                                GSM->setStat("12", GSM->getStat("12") - 1);
+                            }
+                        }
                     }
                 }
                 level->m_normalPercent = 0;
