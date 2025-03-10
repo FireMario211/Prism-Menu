@@ -57,7 +57,6 @@ Press on the circle button located on the left corner, or press `Tab` to open th
 * MegaSa1nt - Translations for Russian
 * savvacorgi - Translations for Russian
 * [Gazonk](https://www.youtube.com/channel/UCgp5Tql2b6Y1Xcni82pPxmA) - Translations for Brazilian Portuguese
-* [huhnmitferrari](https://discordapp.com/users/1043189307302752256) - Translations for German
 * [Ignis](https://twitter.com/IgnisPeaks0) - Translations for Czech
 * [RzaIX](https://twitter.com/RzaIX_) - Translations for Indonesian
 * KONDIROTSU - Translations for Polish

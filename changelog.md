@@ -1,3 +1,5 @@
+# v1.10.2
+    - Fixed uncomplete level from removing secret coins
 # v1.10.1
     - Changed language name for selecting Arabic to be "al-Arabia"
     - Updated Arabic Translations
