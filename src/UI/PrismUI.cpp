@@ -571,10 +571,10 @@ void PrismUIButton::onBtn(CCObject* ret) {
         //creditsMenu1->onClose(nullptr);
         //CreditsMenu::create()->show();
     } else if (name == "Show Graphic Options") {
-        #ifdef GEODE_IS_ANDROID 
+        #if defined(GEODE_IS_ANDROID) || defined(GEODE_IS_IOS)
         VideoOptionsLayer::create()->show();
         #else 
-        FLAlertLayer::create("Error", "This option can only be used on <cy>Android</c>!", "OK")->show();
+        FLAlertLayer::create("Error", "This option can only be used on <cy>Android</c> and <cy>iOS</c>!", "OK")->show();
         #endif
     } else if (name == "Uncomplete Level") {
         if (auto levelInfoLayer = scene->getChildByType<LevelInfoLayer>(0)) {
@@ -972,6 +972,8 @@ void PrismUI::RegenCategory() {
                 versionLabel->setString(fmt::format("{} - Android", version).c_str());
             #elif defined(GEODE_IS_MACOS)
                 versionLabel->setString(fmt::format("{} - Mac OS", version).c_str());
+            #elif defined(GEODE_IS_MACOS)
+                versionLabel->setString(fmt::format("{} - iOS", version).c_str());
             #else // TODO: when camila releases iCreate on geode, add iOS
                 versionLabel->setString(fmt::format("{} - HOW by Spu7nix", version).c_str());
             #endif

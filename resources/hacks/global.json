@@ -106,7 +106,7 @@
         "desc": "Whether or not to also change the audio speed based on the speedhack value.",
         "type": "bool",
         "default": true,
-        "platforms": ["win","android32","android64"]
+        "platforms": ["win","android32","android64","mac"]
     },
     {
         "name": "Reset Speedhack",

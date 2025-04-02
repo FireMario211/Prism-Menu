@@ -8,12 +8,19 @@ using namespace geode::prelude;
 // definitely not copied from eclipse!
 class PrismButton : public CCMenu {
 protected:
+#ifndef GEODE_IS_IOS
     // how many units required to begin dragging the button
     constexpr static float MIN_MOVE_DISTANCE = 30.f;
     // move progress per second
     constexpr static float MOVE_SPEED = 9.2f;
     // how many units until the button snaps to touch pos
     constexpr static float SNAP_MARGIN = 0.1f;
+#else
+    // i do not know why but the numbers are vastly different on ios
+    constexpr static float MIN_MOVE_DISTANCE = 2.5f;
+    constexpr static float MOVE_SPEED = 9.2f;
+    constexpr static float SNAP_MARGIN = 40.f;
+#endif
     cocos2d::CCPoint m_holdPosition{};
     bool m_shouldMove = false; // whether currently in move animation
     bool m_haveMoved = false; // used to determine whether we should trigger callback after release

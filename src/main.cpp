@@ -147,6 +147,7 @@ $on_mod(Loaded) {
 }
 
 // remove when custom keybinds is fixed
+#ifndef GEODE_IS_IOS
 #include <Geode/modify/CCKeyboardDispatcher.hpp>
 class $modify(CCKeyboardDispatcher) {
     bool dispatchKeyboardMSG(enumKeyCodes key, bool down, bool arr) {
@@ -190,7 +191,7 @@ class $modify(CCKeyboardDispatcher) {
         return CCKeyboardDispatcher::dispatchKeyboardMSG(key, down, arr);
     }
 };
-
+#endif
 // sorry, not sorry. for some reason the allHacks vector isnt being initialized in the other .cpp file
 // i completely wasted my time writing this whole patch script, and i kinda want android + mac support soooo
 

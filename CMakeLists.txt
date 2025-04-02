@@ -4,6 +4,13 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_OSX_ARCHITECTURES "arm64;x86_64")
 set(CMAKE_CXX_VISIBILITY_PRESET hidden)
 set(CMAKE_INTERPROCEDURAL_OPTIMIZATION TRUE) # thanks dank_meme01
+if ("${CMAKE_SYSTEM_NAME}" STREQUAL "iOS" OR IOS)
+    set(CMAKE_OSX_ARCHITECTURES "arm64")
+    set(CMAKE_OSX_DEPLOYMENT_TARGET "14.0")
+    add_definitions(-DGLES_SILENCE_DEPRECATION)
+else()
+    set(CMAKE_OSX_ARCHITECTURES "arm64;x86_64")
+endif()
 include(cmake/CPM.cmake) # why do I need this, this didnt happen before
 
 project(PrismMenu VERSION 1.0.0)

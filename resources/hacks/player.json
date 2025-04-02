@@ -51,8 +51,7 @@
     {
         "name": "Jump Hack",
         "desc": "Allows for jumping in mid-air.",
-        "type": "bool",
-        "platforms": ["win", "android64", "android32"]
+        "type": "bool"
     },
     {
         "name": "Instant Complete",

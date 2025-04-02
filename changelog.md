@@ -1,3 +1,7 @@
+# v1.10.3
+    - Added Jump Hack on Mac OS
+    - Allowed speedhack audio on Mac OS
+    - Added Sapphire SDK support
 # v1.10.2
     - Fixed uncomplete level from removing secret coins
 # v1.10.1

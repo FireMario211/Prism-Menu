@@ -27,6 +27,10 @@ jobs:
           os: ubuntu-latest
           target: Android64
         
+        - name: iOS
+          os: macos-latest
+          target: iOS
+
     name: ${{ matrix.config.name }}
     runs-on: ${{ matrix.config.os }}
 
@@ -41,6 +45,8 @@ jobs:
           build-config: 'RelWithDebInfo'
           export-pdb: true
           combine: true
+          cli: nightly # remove after iso
+          sdk: nightly # remove after iso
           #sdk: 'nightly'
           target: ${{ matrix.config.target }}
 

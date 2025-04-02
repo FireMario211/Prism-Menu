@@ -29,13 +29,6 @@ class $modify(POPlayerHacks, PlayerObject) {
             m_gravityMod = gravityHack->value.floatValue;
         }
         if (Hacks::isHackEnabled("Instant Complete")) return;
-        /*log::info(fmt::format(
-            "HardStreak\n---\nx = {}, y = {}, m_waveSize = {}\nm_pulseSize = {}",
-            m_waveTrail->m_currentPoint.x,
-            m_waveTrail->m_currentPoint.y,
-            m_waveTrail->m_waveSize,
-            m_waveTrail->m_pulseSize
-        ));*/
         //if (Hacks::isHackEnabled("No Rotate")) PlayerObject::setRotation(0);
         if (!Hacks::isHackEnabled("Freeze Player")) return PlayerObject::update(dt);
     }
@@ -44,7 +37,7 @@ class $modify(POPlayerHacks, PlayerObject) {
         if (!Hacks::isHackEnabled("No Death Effect")) return PlayerObject::playerDestroyed(p0);
         m_isDead = true;
     }
-#ifndef GEODE_IS_MACOS
+#ifndef GEODE_IS_IOS
     bool pushButton(PlayerButton p0) {
         if (p0 != PlayerButton::Jump) return PlayerObject::pushButton(p0);
         float boost = 10.0F;
