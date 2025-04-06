@@ -468,7 +468,6 @@ class Hacks {
         }
     }
     static void setPitch(float pitch) {
-#if !defined(GEODE_IS_MACOS)
         if (!Hacks::isHackEnabled("Speedhack Audio")) {
             pitch = 1.0F;
         }
@@ -485,7 +484,6 @@ class Hacks {
         fmod->m_globalChannel->setPitch(pitch);
         #endif
         //fmod->pitchForIdx()
-#endif
     }
 };
 #endif

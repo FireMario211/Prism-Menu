@@ -972,7 +972,7 @@ void PrismUI::RegenCategory() {
                 versionLabel->setString(fmt::format("{} - Android", version).c_str());
             #elif defined(GEODE_IS_MACOS)
                 versionLabel->setString(fmt::format("{} - Mac OS", version).c_str());
-            #elif defined(GEODE_IS_MACOS)
+            #elif defined(GEODE_IS_IOS)
                 versionLabel->setString(fmt::format("{} - iOS", version).c_str());
             #else // TODO: when camila releases iCreate on geode, add iOS
                 versionLabel->setString(fmt::format("{} - HOW by Spu7nix", version).c_str());

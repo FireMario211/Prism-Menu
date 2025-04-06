@@ -1,3 +1,5 @@
+# v1.10.4
+    - Added Uncomplete Level for all platforms
 # v1.10.3
     - Added Jump Hack on Mac OS
     - Allowed speedhack audio on Mac OS

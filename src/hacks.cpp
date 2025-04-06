@@ -95,7 +95,6 @@ class $modify(GJGameLevel) {
 ////GJGameLevel::saveNewScore
 
 // sorry, some people are rushing me to release this, youll get your chance Mac OS users.
-#if !defined(GEODE_IS_MACOS) && !defined(GEODE_IS_IOS)
 void proceedWithReset(LevelInfoLayer* levelInfoLayer, GJGameLevel* level, bool resetStars, bool resetCoins) {
     geode::createQuickPopup(
             "Final Warning",
@@ -155,17 +154,12 @@ void proceedWithReset(LevelInfoLayer* levelInfoLayer, GJGameLevel* level, bool r
     
 }
 
-#endif
-
 void Hacks::resetLevel(LevelInfoLayer* levelInfoLayer, GJGameLevel* level) {
     if (CCScene::get() == nullptr) return;
     auto prismUIExists = CCScene::get()->getChildByID("prism-menu");
     if (prismUIExists != nullptr) {
         static_cast<PrismUI*>(prismUIExists)->onClose(CCNode::create());
     }
-#if defined(GEODE_IS_MACOS) || defined(GEODE_IS_IOS)
-    FLAlertLayer::create("Notice", "This currently does not work on <cy>Mac OS</c> and <cy>iOS</c>", "OK")->show();
-#else 
     if (level->m_dailyID > 0) {
         FLAlertLayer::create("Notice", "This currently does not work on <cy>daily</c> or <cy>weekly</c> levels.", "OK")->show();
         return;
@@ -216,7 +210,6 @@ void Hacks::resetLevel(LevelInfoLayer* levelInfoLayer, GJGameLevel* level) {
             }, true, true
         );
     }
-#endif 
 }
 
 /*
