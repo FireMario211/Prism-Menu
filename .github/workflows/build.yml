@@ -45,8 +45,6 @@ jobs:
           build-config: 'RelWithDebInfo'
           export-pdb: true
           combine: true
-          cli: nightly # remove after iso
-          sdk: nightly # remove after iso
           #sdk: 'nightly'
           target: ${{ matrix.config.target }}
 

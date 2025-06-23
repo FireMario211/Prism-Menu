@@ -419,6 +419,7 @@ class Hacks {
                 }
 #endif
             } else {
+#ifndef GEODE_IS_IOS
                 auto res = Mod::get()->patch(
                     reinterpret_cast<void*>(base::get() + std::stoul(addrStr, nullptr, 16)),
                     bytes
@@ -429,6 +430,7 @@ class Hacks {
                     res.unwrap()->setAutoEnable(false);
                     log::info("[{}] Patch {} with addr {}", ((isEnabled) ? "+" : "-"), name, addrStr);
                 }
+#endif
             }
         }
     }

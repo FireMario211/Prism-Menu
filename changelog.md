@@ -1,3 +1,5 @@
+# v1.10.6
+    - Bump geode version
 # v1.10.4
     - Added Uncomplete Level for all platforms
 # v1.10.3

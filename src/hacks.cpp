@@ -95,7 +95,6 @@ class $modify(GJGameLevel) {
 ////GJGameLevel::saveNewScore
 
 // sorry, some people are rushing me to release this, youll get your chance Mac OS users.
-#if !defined(GEODE_IS_MACOS) && !defined(GEODE_IS_IOS)
 void proceedWithReset(LevelInfoLayer* levelInfoLayer, GJGameLevel* level, bool resetStars, bool resetCoins) {
     geode::createQuickPopup(
             "Final Warning",
@@ -120,7 +119,7 @@ void proceedWithReset(LevelInfoLayer* levelInfoLayer, GJGameLevel* level, bool r
                     GSM->m_completedLevels->removeObjectForKey(fmt::format("c_{}", levelid));
                     if (resetStars) {
                         //GSM->m_completedLevels->removeObjectForKey(fmt::format("unique_{}", levelid));
-                        GSM->m_completedLevels->removeObjectForKey(fmt::format("star_{}", levelid));
+                        GSM->m_completedLevels->removeObjectForKey(fmt::format("{}", GSM->getStarLevelKey(level))); // star_{}
                         GSM->m_completedLevels->removeObjectForKey(fmt::format("demon_{}", levelid));
                         if (level->isPlatformer()) {
                             GSM->setStat("28", GSM->getStat("28") - level->m_stars); // moons
@@ -143,6 +142,8 @@ void proceedWithReset(LevelInfoLayer* levelInfoLayer, GJGameLevel* level, bool r
                 }
                 level->m_normalPercent = 0;
                 level->m_newNormalPercent2 = 0;
+                level->m_bestTime = 0;
+                level->m_bestPoints = 0;
                 level->m_isChkValid = 0;
                 level->m_chk = 0;
                 level->m_coinsVerified = 0;
@@ -154,7 +155,6 @@ void proceedWithReset(LevelInfoLayer* levelInfoLayer, GJGameLevel* level, bool r
     );
     
 }
-#endif
 
 void Hacks::resetLevel(LevelInfoLayer* levelInfoLayer, GJGameLevel* level) {
     if (CCScene::get() == nullptr) return;
@@ -162,9 +162,7 @@ void Hacks::resetLevel(LevelInfoLayer* levelInfoLayer, GJGameLevel* level) {
     if (prismUIExists != nullptr) {
         static_cast<PrismUI*>(prismUIExists)->onClose(CCNode::create());
     }
-    #if defined(GEODE_IS_MACOS) || defined(GEODE_IS_IOS)
-    FLAlertLayer::create("Notice", "This currently does not work on <cy>Mac OS</c> and <cy>iOS</c>", "OK")->show();
-#else
+    //FLAlertLayer::create("Notice", "This currently does not work on <cy>Mac OS</c> and <cy>iOS</c>", "OK")->show();
     if (level->m_dailyID > 0) {
         FLAlertLayer::create("Notice", "This currently does not work on <cy>daily</c> or <cy>weekly</c> levels.", "OK")->show();
         return;
@@ -215,7 +213,6 @@ void Hacks::resetLevel(LevelInfoLayer* levelInfoLayer, GJGameLevel* level) {
             }, true, true
         );
     }
-#endif
 }
 
 /*
