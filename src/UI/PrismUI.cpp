@@ -312,7 +312,7 @@ bool PrismUIButton::init(HackItem* hack) {
         Themes::RGBAToCC(PrismUI::GetTheme()["Button"], m_input->getBGSprite());
         m_input->setScale(.65f);
         m_input->setDelegate(this);
-        Themes::RGBAToCC(PrismUI::GetTheme()["Text"], m_input->getInputNode()->m_placeholderLabel);
+        Themes::RGBAToCC(PrismUI::GetTheme()["Text"], m_input->getInputNode()->m_textLabel);
         menu->addChild(m_input);
     }
     menu->setPosition({0,0});
@@ -721,7 +721,7 @@ void PrismUI::CreateHackItem(HackItem* hack) {
 
 void PrismUIButton::textChanged(CCTextInputNode* input) {
     if (!editedInputNode) return;
-    Themes::RGBAToCC(PrismUI::GetTheme()["Text"], input->m_placeholderLabel);
+    Themes::RGBAToCC(PrismUI::GetTheme()["Text"], input->m_textLabel);
     const auto& obj = m_hack->data;
     auto settings = Mod::get()->getSavedValue<SettingHackStruct>("values");
     std::string name = m_hack->name;
@@ -863,7 +863,7 @@ void PrismUI::fixVSync() {
 void PrismUIButton::textInputOpened(CCTextInputNode* input) { // basically onIntBtn
     if (input->getString().size() == 0) return;
     editedInputNode = true;
-    Themes::RGBAToCC(PrismUI::GetTheme()["Text"], input->m_placeholderLabel);
+    Themes::RGBAToCC(PrismUI::GetTheme()["Text"], input->m_textLabel);
 }
 
 
@@ -875,7 +875,7 @@ void PrismUIButton::textInputClosed(CCTextInputNode* input) { // basically onInt
     if (input->getString().size() == 0) return;
     editedInputNode = false;
     std::string name = m_hack->name;
-    Themes::RGBAToCC(PrismUI::GetTheme()["Text"], input->m_placeholderLabel);
+    Themes::RGBAToCC(PrismUI::GetTheme()["Text"], input->m_textLabel);
     if (m_hack->type == "float") {
         input->setString(Utils::setPrecision(m_hack->value.floatValue, 3));
         if (name == "Speedhack") {
