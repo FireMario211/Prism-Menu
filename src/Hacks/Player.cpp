@@ -51,7 +51,7 @@ class $modify(POPlayerHacks, PlayerObject) {
         if (m_isDart && Hacks::isHackEnabled("No Wave Trail")) return;
         PlayerObject::activateStreak();
     }
-#ifndef GEODE_IS_ANDROID32
+#if !defined(GEODE_IS_ANDROID32) && !defined(GEODE_IS_IOS)
     void runNormalRotation(bool p0, float p1) {
         if (!Hacks::isHackEnabled("No Rotate")) return PlayerObject::runNormalRotation(p0, p1);
     }
