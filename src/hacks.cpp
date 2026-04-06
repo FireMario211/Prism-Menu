@@ -243,7 +243,7 @@ class $modify(PrismTPS, GJBaseGameLayer) {
         (void)res.unwrap()->disable();
         log::info("Disabled GJBaseGameLayer::getModifiedDelta");
     }
-    float getModifiedDelta(float dt) {
+    double getModifiedDelta(float dt) {
         if (currentTPS == 240.F) return GJBaseGameLayer::getModifiedDelta(dt); // as a "just in case"
         auto tps = 1.f / currentTPS;
         double timer;
@@ -260,7 +260,7 @@ class $modify(PrismTPS, GJBaseGameLayer) {
         }
         dt *= (double)(int)((double)(float)timer / dt);
         m_extraDelta = (double)(float)timer - dt;
-        return (float)dt;
+        return (double)dt;
     }
 };
 #endif

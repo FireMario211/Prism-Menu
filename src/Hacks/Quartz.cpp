@@ -332,16 +332,16 @@ void CreateMacroUI::onInfo(CCObject*) {
 }
 
 void CreateMacroUI::onCreate(CCObject* sender) {
-    if (m_inputName->getString().length() == 0) return FLAlertLayer::create("Error", "Please enter in a <cy>Macro Name</c>!", "OK")->show();
-    if (m_fpsInput->getString().length() == 0) return FLAlertLayer::create("Error", "Please enter in the <cy>TPS</c>!", "OK")->show();
+    if (m_inputName->getString().empty()) return FLAlertLayer::create("Error", "Please enter in a <cy>Macro Name</c>!", "OK")->show();
+    if (m_fpsInput->getString().empty()) return FLAlertLayer::create("Error", "Please enter in the <cy>TPS</c>!", "OK")->show();
     if (!MacroManager::createMacro(m_inputName->getString(), m_inputDesc->getString(), m_fpsInput->getString(), false)) {
         FLAlertLayer::create("Error", "A macro with a similar name already exists!", "OK")->show();
     }
     onClose(sender);
 }
 void CreateMacroUI::onCreateJSON(CCObject* sender) {
-    if (m_inputName->getString().length() == 0) return FLAlertLayer::create("Error", "Please enter in a <cy>Macro Name</c>!", "OK")->show();
-    if (m_fpsInput->getString().length() == 0) return FLAlertLayer::create("Error", "Please enter in the <cy>TPS</c>!", "OK")->show();
+    if (m_inputName->getString().empty()) return FLAlertLayer::create("Error", "Please enter in a <cy>Macro Name</c>!", "OK")->show();
+    if (m_fpsInput->getString().empty()) return FLAlertLayer::create("Error", "Please enter in the <cy>TPS</c>!", "OK")->show();
     if (!MacroManager::createMacro(m_inputName->getString(), m_inputDesc->getString(), m_fpsInput->getString(), true)) {
         FLAlertLayer::create("Error", "A macro with a similar name already exists!", "OK")->show();
     }

@@ -880,7 +880,7 @@ void PrismUI::fixVSync() {
 #endif
 
 void PrismUIButton::textInputOpened(CCTextInputNode* input) { // basically onIntBtn
-    if (input->getString().size() == 0) return;
+    if (input->getString().empty()) return;
     editedInputNode = true;
     Themes::RGBAToCC(PrismUI::GetTheme()["Text"], input->m_textLabel);
 }
@@ -891,7 +891,7 @@ bool PrismUIButton::allowTextInput(CCTextInputNode*) {
 }
 
 void PrismUIButton::textInputClosed(CCTextInputNode* input) { // basically onIntBtn
-    if (input->getString().size() == 0) return;
+    if (input->getString().empty()) return;
     editedInputNode = false;
     std::string name = m_hack->name;
     Themes::RGBAToCC(PrismUI::GetTheme()["Text"], input->m_textLabel);
