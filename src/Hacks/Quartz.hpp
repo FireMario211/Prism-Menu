@@ -173,7 +173,7 @@ class MacroManager {
             macro.levelInfo.name = "";
             macro.levelInfo.id = 0;
 
-            macro.gameVersion = 2.2074;
+            macro.gameVersion = numFromString<float>(Loader::get()->getGameVersion()).unwrapOr(2.2081);
             std::ofstream f(savePath, std::ios::binary);
             auto data = macro.exportData(isJSON);
 
@@ -275,7 +275,7 @@ class SelectMacroUI : public FLAlertLayer {
             float height,
             Dropdown* dropdown
         );
-        virtual void keyDown(cocos2d::enumKeyCodes) override;
+        virtual void keyDown(cocos2d::enumKeyCodes, double timestamp) override;
         virtual void keybackClicked();
         CCArray* createCells();
     public:
@@ -344,10 +344,10 @@ class CreateMacroUI : public BrownAlertDelegate {
 
 
 // i forgot geode popups existed, maybe i should migrate to them
-class GotoFrameUI : public geode::Popup<> {
+class GotoFrameUI : public geode::Popup {
 protected:
     TextInput* m_frame;
-    bool setup() override;
+    bool init(); 
     void onInfoBtn(CCObject*) {
         FLAlertLayer::create(
             "About",
@@ -360,7 +360,7 @@ protected:
 public:
     static GotoFrameUI* create() {
         auto ret = new GotoFrameUI();
-        if (ret->initAnchored(240.f, 160.f)) {
+        if (ret->init()) {
             ret->autorelease();
             return ret;
         }
@@ -370,9 +370,9 @@ public:
     }
 };
 
-class ClearFramesUI : public geode::Popup<> {
+class ClearFramesUI : public geode::Popup {
 protected:
-    bool setup() override;
+    bool init();
     void onInfoBtn(CCObject*) {
         FLAlertLayer::create(
             nullptr,
@@ -387,7 +387,7 @@ protected:
 public:
     static ClearFramesUI* create() {
         auto ret = new ClearFramesUI();
-        if (ret->initAnchored(240.f, 160.f)) {
+        if (ret->init()) {
             ret->autorelease();
             return ret;
         }

@@ -11,8 +11,10 @@
 #include "../Hacks/Quartz.hpp"
 #include "../PrismButton.hpp"
 #include "../Misc/Label.hpp"
+#include <Geode/utils/async.hpp>
 
 int currentMenuIndexGD = 0;
+bool g_menuIsOpen = false;
 
 std::vector<matjson::Value> currentThemeApplied;
 
@@ -333,7 +335,7 @@ void PrismUIButton::onBoolBtn(CCObject* ret) {
     }
     if (name == "Show Button") {
         if (CCScene::get() != nullptr) {
-            auto prismButton = CCScene::get()->getChildByID("prism-icon");
+            auto prismButton = OverlayManager::get()->getChildByID("prism-icon");
             if (prismButton != nullptr && PlayLayer::get() == nullptr) {
                 prismButton->setVisible(m_hack->value.boolValue);
             }
@@ -399,7 +401,7 @@ CharUI* CharUI::create(PrismUIButton* button) {
     return nullptr;
 };
 
-void CharUI::keyDown(cocos2d::enumKeyCodes key) {
+void CharUI::keyDown(cocos2d::enumKeyCodes key, double timestamp) {
     //keyPressed(key);
     if (key == cocos2d::enumKeyCodes::KEY_Escape)
         return;
@@ -407,7 +409,7 @@ void CharUI::keyDown(cocos2d::enumKeyCodes key) {
         return;
     if (key == cocos2d::enumKeyCodes::KEY_Space)
         return;
-    return FLAlertLayer::keyDown(key);
+    return FLAlertLayer::keyDown(key, timestamp);
 }
 
 void CharUI::keyPressed(cocos2d::enumKeyCodes key) {
@@ -505,59 +507,76 @@ void PrismUIButton::onBtn(CCObject* ret) {
             }, true, true
         );
     } else if (name == "Import Theme") {
-        file::pick(file::PickMode::OpenFile, file::FilePickOptions {
-            .filters = { file::FilePickOptions::Filter {
-                .description = "Theme (*.json)",
-                .files = { "*.json" }
-            }}
-        }).listen([](Result<std::filesystem::path>* pathRes) {
-            if (*pathRes) {
-                auto path = pathRes->unwrap();
-                auto saveDir = Mod::get()->getSaveDir().string();
-                if (!std::filesystem::exists(saveDir + "/themes")) {
-                    std::filesystem::create_directory(saveDir + "/themes");
+        async::spawn(
+            file::pick(file::PickMode::OpenFile, file::FilePickOptions {
+                .filters = { file::FilePickOptions::Filter {
+                    .description = "Theme (*.json)",
+                    .files = { "*.json" }
+                }}
+            }),
+            [](Result<std::optional<std::filesystem::path>> result) {
+                if (result.isOk()) {
+                    auto opt = result.unwrap();
+                    if (opt) {
+                        auto path = opt.value();
+                        auto saveDir = Mod::get()->getSaveDir().string();
+                        if (!std::filesystem::exists(saveDir + "/themes")) {
+                            std::filesystem::create_directory(saveDir + "/themes");
+                        }
+                        auto savePath = saveDir + "/themes/" + path.filename().string();
+                        if (std::filesystem::exists(savePath)) {
+                            std::filesystem::remove(savePath);
+                        }
+                        std::filesystem::copy_file(path, savePath); // why this crashes if a file already exists? idk
+                        FLAlertLayer::create("Success!", "The <cy>theme</c> has successfully been imported! Restart your game to use it.", "OK")->show();
+                    } else {
+                        // assume cancelled
+                    }
+                } else {
+                    FLAlertLayer::create(
+                        "Unable to Select File",
+                        result.unwrapErr(),
+                        "OK"
+                    )->show();
                 }
-                auto savePath = saveDir + "/themes/" + path.filename().string();
-                if (std::filesystem::exists(savePath)) {
-                    std::filesystem::remove(savePath);
-                }
-                std::filesystem::copy_file(path, savePath); // why this crashes if a file already exists? idk
-                FLAlertLayer::create("Success!", "The <cy>theme</c> has successfully been imported! Restart your game to use it.", "OK")->show();
-            } else {
-                FLAlertLayer::create(
-                    "Unable to Select File",
-                    pathRes->unwrapErr(),
-                    "OK"
-                )->show();
             }
-        });
+        );
     } else if (name == "Import Macro") {
-        file::pick(file::PickMode::OpenFile, file::FilePickOptions {
-            .filters = { file::FilePickOptions::Filter {
-                .description = "Macro (*.gdr)",
-                .files = { "*.gdr", "*.gdr.json" }
-            }}
-        }).listen([](Result<std::filesystem::path>* pathRes) {
-            if (*pathRes) {
-                auto path = pathRes->unwrap();
-                auto saveDir = Mod::get()->getSaveDir().string();
-                if (!std::filesystem::exists(saveDir + "/macros")) {
-                    std::filesystem::create_directory(saveDir + "/macros");
+
+        async::spawn(
+            file::pick(file::PickMode::OpenFile, file::FilePickOptions {
+                .filters = { file::FilePickOptions::Filter {
+                    .description = "Macro (*.gdr)",
+                    .files = { "*.gdr", "*.gdr.json" }
+                }}
+            }),
+            [](Result<std::optional<std::filesystem::path>> result) {
+                if (result.isOk()) {
+                    auto opt = result.unwrap();
+                    if (opt) {
+                        auto path = opt.value();
+                        auto saveDir = Mod::get()->getSaveDir().string();
+                        if (!std::filesystem::exists(saveDir + "/macros")) {
+                            std::filesystem::create_directory(saveDir + "/macros");
+                        }
+                        auto savePath = saveDir + "/macros/" + path.filename().string();
+                        if (std::filesystem::exists(savePath)) {
+                            std::filesystem::remove(savePath);
+                        }
+                        std::filesystem::copy_file(path, savePath); // why this crashes if a file already exists? idk
+                        FLAlertLayer::create("Success!", "The <cy>macro</c> has successfully been imported!", "OK")->show();
+                    } else {
+                        // assume cancelled
+                    }
+                } else {
+                    FLAlertLayer::create(
+                        "Unable to Select File",
+                        result.unwrapErr(),
+                        "OK"
+                    )->show();
                 }
-                auto savePath = saveDir + "/macros/" + path.filename().string();
-                if (std::filesystem::exists(savePath)) {
-                    std::filesystem::remove(savePath);
-                }
-                std::filesystem::copy_file(path, savePath); // why this crashes if a file already exists? idk
-                FLAlertLayer::create("Success!", "The <cy>macro</c> has successfully been imported!", "OK")->show();
-            } else {
-                FLAlertLayer::create(
-                    "Unable to Select File",
-                    pathRes->unwrapErr(),
-                    "OK"
-                )->show();
             }
-        });
+        );
     } else if (name == "Reset Speedhack") {
         HackItem* speedHack = Hacks::getHack("Speedhack");
         speedHack->value.floatValue = 1.0F;
@@ -789,7 +808,7 @@ class $modify(PlatformToolbox) {
 #endif
 void PrismUIButton::intChanged() {
     std::string name = m_hack->name;
-    auto prismButton = CCScene::get()->getChildByID("prism-icon");
+    auto prismButton = OverlayManager::get()->getChildByID("prism-icon");
     if (prismButton == nullptr) return;
     if (name == "FPS Bypass") {
         // from mats fps unlocker
@@ -1046,9 +1065,13 @@ void PrismUI::CreateButton(const char* name, int menuIndex) {
 void PrismUI::onSideButton(CCObject* ret) {
     m_content->removeAllChildrenWithCleanup(true);
     auto idStr = static_cast<CCNodeRGBA*>(ret)->getID();
-    int id = std::stoi(idStr.substr(idStr.length() - 1));
+    auto v = idStr.view();
+    v.remove_prefix(idStr.length() - 1);
+    auto idOpt = numFromString<int>(v);
     ButtonState(currentMenuIndexGD, false);
-    ButtonState(id, true);
+    if (idOpt.isOk()) {
+        ButtonState(idOpt.unwrap(), true);
+    }
     RegenCategory();
     cocos::handleTouchPriority(this);
 }
@@ -1166,7 +1189,7 @@ bool PrismUI::init(float _w, float _h) {
 
     closeBtn->setPosition( - _w / 2, _h / 2 );
     
-    auto prismButton = CCScene::get()->getChildByID("prism-icon");
+    auto prismButton = OverlayManager::get()->getChildByID("prism-icon");
     if (prismButton != nullptr) {
         static_cast<CCMenu*>(prismButton)->setEnabled(false);
         //static_cast<CCMenuItemSpriteExtra*>(prismButton->getChildren()->objectAtIndex(0))->setEnabled(false);
@@ -1225,7 +1248,7 @@ bool PrismUI::init(float _w, float _h) {
     return true;
 }
 
-void PrismUI::keyDown(cocos2d::enumKeyCodes key) {
+void PrismUI::keyDown(cocos2d::enumKeyCodes key, double timestamp) {
     if (key == cocos2d::enumKeyCodes::KEY_Escape)
         return onClose(nullptr);
     if (key == cocos2d::enumKeyCodes::KEY_Tab)
@@ -1233,7 +1256,7 @@ void PrismUI::keyDown(cocos2d::enumKeyCodes key) {
     if (key == cocos2d::enumKeyCodes::KEY_Space)
         return;
     
-    return FLAlertLayer::keyDown(key);
+    return FLAlertLayer::keyDown(key, timestamp);
 }
 
 // why is onClose not actually called what!?
@@ -1242,7 +1265,7 @@ void PrismUI::keybackClicked() {
 };
 
 void PrismUI::onClose(cocos2d::CCObject* pSender) {
-    auto prismButton = CCScene::get()->getChildByID("prism-icon");
+    auto prismButton = OverlayManager::get()->getChildByID("prism-icon");
     if (prismButton != nullptr) {
         static_cast<CCMenu*>(prismButton)->setEnabled(true);
         //static_cast<CCMenuItemSpriteExtra*>(prismButton->getChildren()->objectAtIndex(0))->setEnabled(true);

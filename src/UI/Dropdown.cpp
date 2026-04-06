@@ -149,9 +149,9 @@ bool DropdownPopup::init(std::vector<matjson::Value> strs, HackItem* item) {
     return true;
 }
 
-void DropdownPopup::keyDown(cocos2d::enumKeyCodes key) {
+void DropdownPopup::keyDown(cocos2d::enumKeyCodes key, double timestamp) {
     if (key == cocos2d::enumKeyCodes::KEY_Escape)
         return onClose(nullptr);
-    return FLAlertLayer::keyDown(key);
+    return FLAlertLayer::keyDown(key, timestamp);
 };
 

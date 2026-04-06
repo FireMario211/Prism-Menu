@@ -17,7 +17,7 @@ class BrownAlertDelegate : public FLAlertLayer {
             const char* _title = ""
         );
         virtual void setup() = 0;
-        virtual void keyDown(cocos2d::enumKeyCodes) override;
+        virtual void keyDown(cocos2d::enumKeyCodes, double timestamp) override;
     public:
         virtual void onClose(cocos2d::CCObject*);
 };

@@ -11,7 +11,7 @@ class IntroUI : public BrownAlertDelegate {
         CCMenu* m_items;
         float m_fWidth = s_defWidth;
         float m_fHeight = s_defHeight;
-        virtual void keyDown(cocos2d::enumKeyCodes) override;
+        virtual void keyDown(cocos2d::enumKeyCodes, double timestamp) override;
         virtual void setup() override;
         void onLang(CCObject*);
         void onSliderMove(bool x);

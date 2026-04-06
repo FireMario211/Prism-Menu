@@ -19,8 +19,8 @@ class $modify(ShaderMiscHacks, ShaderLayer) {
 std::vector<std::pair<CCRect, CCRect>> playerHitboxTrail;
 
 class $modify(GJBGLMiscHacks, GJBaseGameLayer) {
-    void processCommands(float dt) {
-        GJBaseGameLayer::processCommands(dt);
+    void processCommands(float dt, bool isHalfTick, bool isLastTick) {
+        GJBaseGameLayer::processCommands(dt, isHalfTick, isLastTick);
         if (Hacks::isHackEnabled("Show Hitbox Trail")) {
             playerHitboxTrail.push_back(
                 std::make_pair(m_player1->getObjectRect(), m_player1->getObjectRect(0.25F, 0.25F))

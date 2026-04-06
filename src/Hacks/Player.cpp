@@ -102,8 +102,8 @@ class $modify(GJBGLPlayerHacks, GJBaseGameLayer) {
     void toggleFlipped(bool p0, bool p1) { // i spent a lot of time figuring out why CCActionTween wont hook, only to realize that p1 instantly transitions it
         if (!Hacks::isHackEnabled("No Mirror Transition")) return GJBaseGameLayer::toggleFlipped(p0, (p1) ? p1 : Hacks::isHackEnabled("Instant Mirror Portal"));
     }
-    void processCommands(float dt) {
-        GJBaseGameLayer::processCommands(dt);
+    void processCommands(float dt, bool isHalfTick, bool isLastTick) {
+        GJBaseGameLayer::processCommands(dt, isHalfTick, isLastTick);
         if (Hacks::isHackEnabled("Auto Clicker")) {
             m_fields->timer += dt;
             int value = ((Hacks::getHack("Clicks per second") != nullptr) ? Hacks::getHack("Clicks per second")->value.intValue : 1) * 2;

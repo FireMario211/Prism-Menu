@@ -1,3 +1,6 @@
+# v1.10.8
+    - Bump geode version ()
+    - Fixed imgui showing errors
 # v1.10.6
     - Bump geode version
 # v1.10.4

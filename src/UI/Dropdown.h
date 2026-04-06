@@ -25,7 +25,7 @@ class DropdownPopup : public FLAlertLayer {
         HackItem* m_hack;
         std::vector<matjson::Value> m_values;
         virtual bool init(std::vector<matjson::Value> strs, HackItem* item);
-        virtual void keyDown(cocos2d::enumKeyCodes key) override;
+        virtual void keyDown(cocos2d::enumKeyCodes key, double timestamp) override;
         virtual void keybackClicked() {
             onClose(nullptr);
         };

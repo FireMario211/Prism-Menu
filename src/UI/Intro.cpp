@@ -15,7 +15,7 @@ IntroUI* IntroUI::create() {
     return nullptr;
 };
 
-void IntroUI::keyDown(cocos2d::enumKeyCodes key) {
+void IntroUI::keyDown(cocos2d::enumKeyCodes key, double timestamp) {
     //keyPressed(key);
     if (key == cocos2d::enumKeyCodes::KEY_Escape)
         return;
@@ -23,7 +23,7 @@ void IntroUI::keyDown(cocos2d::enumKeyCodes key) {
         return;
     if (key == cocos2d::enumKeyCodes::KEY_Space)
         return;
-    return FLAlertLayer::keyDown(key);
+    return FLAlertLayer::keyDown(key, timestamp);
 }
 
 void IntroUI::setup() {

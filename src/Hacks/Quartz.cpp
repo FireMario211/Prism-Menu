@@ -61,7 +61,7 @@ CCArray* SelectMacroUI::createCells() {
     return items;
 }
 
-void SelectMacroUI::keyDown(cocos2d::enumKeyCodes key) {
+void SelectMacroUI::keyDown(cocos2d::enumKeyCodes key, double timestamp) {
     if (key == cocos2d::enumKeyCodes::KEY_Escape)
         return onClose(nullptr);
     if (key == cocos2d::enumKeyCodes::KEY_Tab)
@@ -69,7 +69,7 @@ void SelectMacroUI::keyDown(cocos2d::enumKeyCodes key) {
     if (key == cocos2d::enumKeyCodes::KEY_Space)
         return;
     
-    return FLAlertLayer::keyDown(key);
+    return FLAlertLayer::keyDown(key, timestamp);
 }
 
 void SelectMacroUI::keybackClicked() {
@@ -441,7 +441,8 @@ bool stillHolding2 = false;
 bool hadHeld = false;
 bool macroSpeedhack = false;
 
-bool GotoFrameUI::setup() {
+bool GotoFrameUI::init() {
+    if (!Popup::init(240.f, 160.f)) return false;
     auto winSize = CCDirector::sharedDirector()->getWinSize();
     auto cSize = m_size;
     this->setTitle("Goto Frame");
@@ -474,7 +475,8 @@ bool GotoFrameUI::setup() {
     return true;
 }
 
-bool ClearFramesUI::setup() {
+bool ClearFramesUI::init() {
+    if (!Popup::init(240.f, 160.f)) return false;
     auto winSize = CCDirector::sharedDirector()->getWinSize();
     auto cSize = m_size;
     this->setTitle("Clear Frames");
@@ -1108,14 +1110,14 @@ class $modify(QuartzGJBGL, GJBaseGameLayer) {
         if (STOPTIME) return;
         GJBaseGameLayer::update(dt);
     }
-    void processCommands(float realDt) {
+    void processCommands(float realDt, bool isHalfTick, bool isLastTick) {
         if (STOPTIME) return;
-        if (!Hacks::isHackEnabled("Playback") && !Hacks::isHackEnabled("Record") && !Hacks::isHackEnabled("Macro Editor")) return GJBaseGameLayer::processCommands(realDt);
+        if (!Hacks::isHackEnabled("Playback") && !Hacks::isHackEnabled("Record") && !Hacks::isHackEnabled("Macro Editor")) return GJBaseGameLayer::processCommands(realDt, isHalfTick, isLastTick);
         float currentFPS = 1.F / realDt;
         float macroFPS = current_macro.framerate;
         if (PlayLayer::get() != nullptr) {
             auto playLayer = static_cast<QuartzPlayLayer*>(QuartzPlayLayer::get());
-            if (!playLayer->m_fields->started || !playLayer->m_fields->playLayerPostUpdate) return GJBaseGameLayer::processCommands(realDt);
+            if (!playLayer->m_fields->started || !playLayer->m_fields->playLayerPostUpdate) return GJBaseGameLayer::processCommands(realDt, isHalfTick, isLastTick);
             playLayer->m_fields->replay = Hacks::isHackEnabled("Playback") || Hacks::isHackEnabled("Record");
             float dt = realDt;
             playLayer->m_fields->previousPosition = m_player1->getPosition();
@@ -1145,11 +1147,11 @@ class $modify(QuartzGJBGL, GJBaseGameLayer) {
 
                 float addDt = dt * macroFPS;
                 float fixedDt = 1.0 / macroFPS;
-                playLayer->m_fields->bot_frame = m_gameState.m_currentProgress;
+                playLayer->m_fields->bot_frame = m_gameState.m_currentProgress / 2;
                 if (Hacks::isHackEnabled("Fixed FPS")) {
                     dt = fixedDt;
                 }
-                if (m_gameState.m_currentProgress >= keepSpeedhackUntilFrame && keepSpeedhackUntilFrame != -1) {
+                if ((m_gameState.m_currentProgress / 2) >= keepSpeedhackUntilFrame && keepSpeedhackUntilFrame != -1) {
                     macroSpeedhack = false;
                     keepSpeedhackUntilFrame = -1;
                     STOPTIME = true;
@@ -1279,9 +1281,9 @@ class $modify(QuartzGJBGL, GJBaseGameLayer) {
                     }
                 } 
             }
-            GJBaseGameLayer::processCommands(dt);
+            GJBaseGameLayer::processCommands(dt, isHalfTick, isLastTick);
         } else {
-            GJBaseGameLayer::processCommands(realDt);
+            GJBaseGameLayer::processCommands(realDt, isHalfTick, isLastTick);
         }
     }
     void handleButton(bool push, int button, bool player1) {

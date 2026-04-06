@@ -63,8 +63,8 @@ void CreateButton(const char* name, int menuIndex, float buttonWidth, float butt
     };
     if (currentMenuIndex == menuIndex) {
         ImGui::EndDisabled();
-        //ImGui::PopStyleColor(2);
-        ImGui::PopStyleColor();
+        ImGui::PopStyleColor(2);
+        // ImGui::PopStyleColor();
     }
     //ImGui::PushStyleColor();
 }
@@ -82,7 +82,7 @@ class $modify(MenuLayer) {
             Themes::LoadTheme(Themes::getCurrentTheme());
         }).draw([] {
             if (CCScene::get() == nullptr) return;
-            auto prismButton = typeinfo_cast<PrismButton*>(CCScene::get()->getChildByID("prism-icon"));
+            auto prismButton = typeinfo_cast<PrismButton*>(OverlayManager::get()->getChildByID("prism-icon"));
             if (prismButton == nullptr) return;
             if (prismButton->showImGuiMenu) {
                 // i cant use LoadTheme because 0160:err:virtual:allocate_virtual_memory out of memory for allocation, base (nil) size
@@ -136,10 +136,6 @@ class $modify(MenuLayer) {
                     CreateButton(currentLanguage->name("¦ Quartz Bot").c_str(), 4, buttonWidth, buttonHeight);
                     CreateButton(currentLanguage->name("··· Misc").c_str(), 5, buttonWidth, buttonHeight);
 
-                    /*ImGui::Spacing();
-                    ImGui::Spacing();
-                    ImGui::PopStyleVar(2);
-                    ImGui::PushStyleVar(ImGuiStyleVar_FrameRounding, 12.0f);*/
                     // ad "UI Labels"
                     CreateButton(currentLanguage->name("¶ Settings").c_str(), 6, buttonWidth, buttonHeight);
                     ImGui::PopStyleVar();
@@ -224,7 +220,7 @@ class $modify(MenuLayer) {
                                         hack->value.intValue = oldValue;
                                         return;
                                     }
-                                    auto prismButton = CCScene::get()->getChildByID("prism-icon");
+                                    auto prismButton = OverlayManager::get()->getChildByID("prism-icon");
                                     if (name == "FPS Bypass") {
                                         // from mats fps unlocker
                                         //Hacks::Settings::setSettingValue(&settings, *hack, hack->value.floatValue);
@@ -292,7 +288,7 @@ class $modify(MenuLayer) {
                                             changedMenuScale = true;
                                         }
                                     }
-                                    if (ImGui::IsKeyPressed(ImGui::GetKeyIndex(ImGuiKey_Escape))) {
+                                    if (ImGui::IsKeyPressed(ImGuiKey_Escape)) {
                                         editingMode.isEditing = false;
                                         editingMode.name = "";
                                     }
@@ -303,7 +299,7 @@ class $modify(MenuLayer) {
 #if 0
                                         Hacks::Settings::setSettingValue(&settings, *hack, hack->value.boolValue);
                                         if (name == "Show Button") {
-                                            auto prismButton = CCScene::get()->getChildByID("prism-icon");
+                                            auto prismButton = OverlayManager::get()->getChildByID("prism-icon");
                                             if (prismButton != nullptr) prismButton->setVisible(hack->value.boolValue);
                                         }
                                         if (name == "Instant Complete" && hack->value.boolValue) {
@@ -317,8 +313,10 @@ class $modify(MenuLayer) {
 #endif
                                     }
                                 }
-                            } else if (false) {//(hack->value.type == ValueType::Char) {
-                                /*auto oldValue = hack->value.charValue;
+                            }
+                            #if 0 
+                            else if (hack->value.type == ValueType::Char) {
+                                auto oldValue = hack->value.charValue;
                                 if (ImGui::InputTextWithHint(currentLanguage->name(name).c_str(), "C", hack->value.charValue, 2, ImGuiInputTextFlags_EnterReturnsTrue)) {
                                     if (name == "Open Menu Keybind") {
                                         auto it = charToKeyMap.find(*hack->value.charValue);
@@ -339,8 +337,9 @@ class $modify(MenuLayer) {
                                         }
                                         
                                     }
-                                }*/
-                            } else if (hack->type == "dropdown" || hack->value.type == ValueType::Custom) {
+                                }
+                            #endif
+                            else if (hack->type == "dropdown" || hack->value.type == ValueType::Custom) {
                                 auto type = obj.get("type").unwrapOr(val).asString().unwrapOrDefault();
                                 if (type == "button") {
                                     if (ImGui::Button(currentLanguage->name(name).c_str())) {
@@ -451,7 +450,7 @@ class $modify(MenuLayer) {
                     if (ImGui::Button("X")) {
                         prismButton->showImGuiMenu = !prismButton->showImGuiMenu;
                     }
-                    ImGui::PopStyleVar();
+                    ImGui::PopStyleVar(2);
                     ImGui::EndTable();
                 }
                 if (ImGui::BeginPopupModal("Success", nullptr)) {
@@ -460,6 +459,7 @@ class $modify(MenuLayer) {
                         ImGui::CloseCurrentPopup();
                     ImGui::EndPopup();
                 }
+                ImGui::PopFont();
                 ImGui::End();
             }
         });

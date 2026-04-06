@@ -13,7 +13,6 @@ using FileEvent = Task<Result<std::filesystem::path>>;
 
 class PrismUIButton : public CCNode, public TextInputDelegate, public CCKeyboardDelegate {
     protected:
-        EventListener<FileEvent> m_listener;
         CCMenu* menu;
         HackItem* m_hack;
         Slider* m_slider;
@@ -51,7 +50,7 @@ class CharUI : public BrownAlertDelegate {
         CCLabelBMFont* m_currentKeyLbl;
         cocos2d::enumKeyCodes m_currentKey;
         float m_fHeight = s_defHeight;
-        virtual void keyDown(cocos2d::enumKeyCodes) override;
+        virtual void keyDown(cocos2d::enumKeyCodes, double timestamp) override;
         PrismUIButton* m_prismButton;
         virtual void setup() override;
     public:
@@ -80,7 +79,7 @@ class PrismUI : public FLAlertLayer {
             float width,
             float height
         );
-        virtual void keyDown(cocos2d::enumKeyCodes) override;
+        virtual void keyDown(cocos2d::enumKeyCodes, double timestamp) override;
         virtual void keybackClicked();
         void CreateHackItem(HackItem*);
         void RegenCategory();

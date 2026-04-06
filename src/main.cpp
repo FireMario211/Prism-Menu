@@ -3,6 +3,7 @@
 // please do not judge my coding, ok thank you!!!
 #include "CustomSettings.hpp"
 #include <Geode/utils/file.hpp>
+#include "Geode/ui/OverlayManager.hpp"
 #include "PrismButton.hpp"
 #include "UI/Intro.hpp"
 #include "hacks.hpp"
@@ -70,7 +71,7 @@ class $modify(MenuLayer) {
             prismButton->setVisible(Hacks::isHackEnabled("Show Button"));
             if (Mod::get()->getSettingValue<bool>("hide-button")) prismButton->setVisible(false);
             prismButton->setID("prism-icon");
-            SceneManager::get()->keepAcrossScenes(prismButton);
+            OverlayManager::get()->addChild(prismButton);
         }
         #endif
         return true;
@@ -150,17 +151,17 @@ $on_mod(Loaded) {
 #ifndef GEODE_IS_IOS
 #include <Geode/modify/CCKeyboardDispatcher.hpp>
 class $modify(CCKeyboardDispatcher) {
-    bool dispatchKeyboardMSG(enumKeyCodes key, bool down, bool arr) {
+    bool dispatchKeyboardMSG(enumKeyCodes key, bool down, bool isKeyRepeat, double p0) {
         //if (down && (static_cast<int>(key) == 18)) {//(key == KEY_Tab)) {
         if (down) {
-            if (CCScene::get() == nullptr) return CCKeyboardDispatcher::dispatchKeyboardMSG(key, down, arr);
+            if (CCScene::get() == nullptr) return CCKeyboardDispatcher::dispatchKeyboardMSG(key,down,isKeyRepeat,p0);
             if (auto charUI = typeinfo_cast<CharUI*>(CCScene::get()->getChildByID("prism-charui"))) {
                 charUI->keyPressed(key);
             } else {
                 HackItem* keybind = Hacks::getHack("Menu Keybind");
                 int currentKeyID = (keybind != nullptr) ? keybind->value.intValue : 9;
                 if (static_cast<int>(key) == currentKeyID) {
-                    auto prismButton = typeinfo_cast<PrismButton*>(CCScene::get()->getChildByID("prism-icon"));
+                    auto prismButton = typeinfo_cast<PrismButton*>(OverlayManager::get()->getChildByID("prism-icon"));
                     HackItem* menuStyle = Hacks::getHack("Menu-Style");
                     #ifdef NO_IMGUI 
                     menuStyle->value.intValue = 1;
@@ -188,7 +189,7 @@ class $modify(CCKeyboardDispatcher) {
                 }
             }
         }
-        return CCKeyboardDispatcher::dispatchKeyboardMSG(key, down, arr);
+        return CCKeyboardDispatcher::dispatchKeyboardMSG(key,down,isKeyRepeat,p0);
     }
 };
 #endif
