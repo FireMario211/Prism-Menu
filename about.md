@@ -21,7 +21,7 @@ This mod menu also provides unique features not present in most mod menus, here 
 * **Quartz** supports GDR (GD Replay Format), meaning you can use your pre-existing macros on it.
 * **Quartz** also comes with a <cg>Macro Editor</c>, making the recording process easier incase you made a mistake!
 ## Cross Platform
-* Prism Menu is available on <cb>Windows</c>, **Mac**, and <co>Android</c>!
+* Prism Menu is available on <cb>Windows</c>, **Mac**, <co>Android</c>, and **iOS**!
 ---
 # How to use 
 Press on the circle button located on the left corner, or press `Tab` to open the menu!

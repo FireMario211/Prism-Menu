@@ -30,16 +30,12 @@ A mod menu made in Geode for Geometry Dash, made by [Firee](https://github.com/F
     * **Quartz** supports GDR (GD Replay Format), meaning you can use your pre-existing macros on it.
     * **Quartz** also comes with a **Macro Editor**, making the recording process easier incase you made a mistake!
 * **Cross Platform**
-    * Prism Menu is available on `Windows`, `Mac`, and `Android`!
-    * Soon, it may also be available on `iOS`!
+    * Prism Menu is available on `Windows`, `Mac`, `Android`, and `iOS`!
 ---
 # How to use 
 Press on the circle button located on the left corner, or press `Tab` to open the menu!
 
 # Known issues
-- Entering a level can crash your game on Android32 in v1.8.0
-    - Current workaround is to downgrade to the v1.7.4 version of Prism Menu, or upgrade to the 1.8.2 version of Prism Menu or later.
-   - [Download link for v1.7.4](https://github.com/FireMario211/Prism-Menu/releases/download/v1.7.4/firee.prism.geode)
 - Most likely in platformer, Macro Editor has a bug where the hold button clicks really fast
    - [Video of the bug](https://prism.tixte.co/hold.mp4) (volume warning)
 - Frame Fix may teleport the player to random positions

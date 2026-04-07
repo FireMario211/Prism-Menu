@@ -1,6 +1,10 @@
+# v1.10.9
+    - Fixed prism button not showing in pause menu
 # v1.10.8
-    - Bump geode version ()
+    - Bump geode version
     - Fixed imgui showing errors
+# v1.10.7
+    - Fix JIT-Less from crashing
 # v1.10.6
     - Bump geode version
 # v1.10.4

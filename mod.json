@@ -1,6 +1,6 @@
 {
 	"geode": "5.4.1",
-	"version": "v1.10.8",
+	"version": "v1.10.9",
 	"gd": {
 		"win": "2.2081",
 		"mac": "2.2081",
@@ -71,5 +71,8 @@
 			"description": "NONE",
 			"type": "custom:hack-values"
 		}
+	},
+	"dependencies": {
+		"geode.node-ids": ">=1.21.1"
 	}
 }

@@ -205,15 +205,11 @@ class $modify(PauseLayer) {
     void customSetup() {
         PauseLayer::customSetup();
         if (!Mod::get()->getSettingValue<bool>("hide-button")) {
-            for (size_t i = 0; i < this->getChildrenCount(); i++) {
-                auto obj = this->getChildren()->objectAtIndex(i);
-                if (Utils::getNodeName(obj) == "cocos2d::CCMenu") {
-                    auto menu = static_cast<CCMenu*>(obj);
-                    auto button = PrismButton::createButton(this);
-                    button->setPositionX(-240);
-                    menu->addChild(button);
-                    break;
-                }
+            if (auto menu = this->getChildByID("center-button-menu")) {
+                auto button = PrismButton::createButton(this);
+                menu->addChild(button);
+                menu->reorderChild(button, -1);
+                menu->updateLayout();
             }
         }
         
