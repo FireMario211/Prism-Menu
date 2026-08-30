@@ -99,7 +99,7 @@ bool ProgressBarNode::init() { // on purpose im not even providing any params be
 
 void ProgressBarNode::setProgress(float percentage) {
     this->m_pPercentage = percentage;
-    float realPercentage = (204/100) * this->m_pPercentage; // "Result of integer division used in a floating point" ok i know clangd warnings wow
+    float realPercentage = (204.0f/100.0f) * this->m_pPercentage;
     progressBar->setTextureRect(CCRect(0, 0, realPercentage, 8));
 }
 
